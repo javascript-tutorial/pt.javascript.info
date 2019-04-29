@@ -1,159 +1,158 @@
-# Code structure
+# Estrutura do código
 
-The first thing we'll study is the building blocks of code.
+A primeira coisa que vamos estudar são os blocos de construção do código.
 
-## Statements
+## Declarações
 
-Statements are syntax constructs and commands that perform actions.
+As expressões são construções de sintaxe e comandos que executam ações.
 
-We've already seen a statement, `alert('Hello, world!')`, which shows the message "Hello, world!".
+Nós já vimos uma declaração, `alert('Olá, mundo!')`, que mostra a mensagem "Olá, mundo!".
 
-We can have as many statements in our code as we want. Statements can be separated with a semicolon.
+Podemos ter tantas declarações em nosso código quanto quisermos. Declarações podem ser separadas por ponto-e-vírgula.
 
-For example, here we split "Hello World" into two alerts:
-
-```js run no-beautify
-alert('Hello'); alert('World');
-```
-
-Usually, statements are written on separate lines to make the code more readable:
+Por exemplo, aqui dividimos " Olá Mundo" em dois alertas:
 
 ```js run no-beautify
-alert('Hello');
-alert('World');
+alert('Olá'); alert('Mundo');
 ```
 
-## Semicolons [#semicolon]
-
-A semicolon may be omitted in most cases when a line break exists.
-
-This would also work:
+Normalmente, as declarações são escritas em linhas separadas para tornar o código mais legível:
 
 ```js run no-beautify
-alert('Hello')
-alert('World')
+alert('Olá');
+alert('Mundo');
 ```
 
-Here, JavaScript interprets the line break as an "implicit" semicolon. This is called an [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
+## Ponto e vírgula [#semicolon]
 
-**In most cases, a newline implies a semicolon. But "in most cases" does not mean "always"!**
+Um ponto e vírgula pode ser omitido na maioria dos casos quando existe uma quebra de linha.
 
-There are cases when a newline does not mean a semicolon. For example:
+Isto também funcionaria:
 
+```js run no-beautify
+alert('Olá')
+alert('Mundo')
+```
+
+Aqui, o JavaScript interpreta a quebra de linha como um ponto-e-vírgula "implícito". Isso é chamado de [inserção automática de ponto-e-vírgula](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
+
+**Na maioria dos casos, uma nova linha implica um ponto e vírgula. Mas "na maioria dos casos" não significa "sempre"!
+
+Há casos em que uma nova linha não significa ponto e vírgula. Por exemplo:
 ```js run no-beautify
 alert(3 +
 1
 + 2);
 ```
 
-The code outputs `6` because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", so the semicolon is not required. And in this case that works as intended.
+O código produz `6` porque o Javascript não insere pontos e virgulas aqui. É intuitivamente óbvio que se a linha termina com um sinal de mais `"+"`, então é uma "expressão incompleta", logo o ponto e vírgula não é necessário. E neste caso isso funciona como pretendido.
 
-**But there are situations where JavaScript "fails" to assume a semicolon where it is really needed.**
+**Mas há situações em que o JavaScript "falha" em assumir um ponto e vírgula onde ele é realmente necessário.**
 
-Errors which occur in such cases are quite hard to find and fix.
+Erros que ocorrem em tais casos são bastante difíceis de encontrar e corrigir.
 
-````smart header="An example of an error"
-If you're curious to see a concrete example of such an error, check this code out:
+````smart header="Um exemplo de erro"
+Se você está curioso para ver um exemplo concreto de tal erro, verifique este código:
 
 ```js run
 [1, 2].forEach(alert)
 ```
 
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of the code: it shows `1` then `2`.
+Não há necessidade de pensar sobre o significado dos parênteses `[]` e `forEach` ainda. Nós vamos estudá-los mais tarde. Por enquanto, apenas lembre-se que o resultado do código: mostra `1` e depois` 2`.
 
-Now, let's add an `alert` before the code and *not* finish it with a semicolon:
+Agora, vamos adicionar um `alert` antes do código e * não * terminá-lo com um ponto e vírgula:
 
 ```js run no-beautify
-alert("There will be an error")
+alert("Haverá um erro")
 
 [1, 2].forEach(alert)
 ```
 
-Now if we run the code, only the first `alert` is shown and then we have an error!
+Agora, se nós executarmos o código, apenas o primeiro `alert` é mostrado e então temos um erro!
 
-But everything is fine again if we add a semicolon after `alert`:
+Mas tudo está bem novamente se adicionarmos um ponto e vírgula após `alert`:
 ```js run
-alert("All fine now");
+alert("Tudo bem agora");
 
 [1, 2].forEach(alert)  
 ```
 
-Now we have the "All fine now" message followed by `1` and `2`.
+Agora temos a mensagem "Tudo bem agora" seguida por "1" e "2".
 
 
-The error in the no-semicolon variant occurs because JavaScript does not assume a semicolon before square brackets `[...]`.
+O erro na variante sem ponto e vírgula ocorre porque o JavaScript não assume um ponto e vírgula antes dos colchetes `[...]`.
 
-So, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement. Here's how the engine sees it:
+Portanto, como o ponto e vírgula não é inserido automaticamente, o código no primeiro exemplo é tratado como uma única instrução. Veja como o mecanismo vê isso:
 
 ```js run no-beautify
-alert("There will be an error")[1, 2].forEach(alert)
+alert("Haverá um erro")[1, 2].forEach(alert)
 ```
 
-But it should be two separate statements, not one. Such a merging in this case is just wrong, hence the error. This can happen in other situations.
+Mas devem ser duas declarações separadas, não uma. Tal fusão neste caso é completamente errado, daí o erro. Isso pode acontecer em outras situações.
 ````
 
-We recommend putting semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer -- especially for a beginner -- to use them.
+Recomendamos colocar ponto e vírgula entre as frases, mesmo que estejam separadas por novas linhas. Esta regra é amplamente adotada pela comunidade. Vamos notar mais uma vez -- *é possível* deixar de fora os pontos e vírgulas na maior parte do tempo. Mas é mais seguro -- especialmente para um iniciante -- usá-los.
 
-## Comments
+## Comentários
 
-As time goes on, programs become more and more complex. It becomes necessary to add *comments* which describe what the code does and why.
+Com o passar do tempo, os programas tornam-se cada vez mais complexos. Torna-se necessário adicionar *comentários* que descrevem o que o código faz e porquê.
 
-Comments can be put into any place of a script. They don't affect its execution because the engine simply ignores them.
+Comentários podem ser colocados em qualquer lugar de um script. Eles não afetam sua execução porque o motor simplesmente os ignora.
 
-**One-line comments start with two forward slash characters `//`.**
+**Comentários de uma linha começam com dois caracteres de barra `//`.**
 
-The rest of the line is a comment. It may occupy a full line of its own or follow a statement.
+O resto da linha é um comentário. Ele pode ocupar uma linha inteira ou seguir uma instrução.
 
-Like here:
+Como aqui:
 ```js run
-// This comment occupies a line of its own
-alert('Hello');
+// Este comentário ocupa uma linha própria
+alert('Olá');
 
-alert('World'); // This comment follows the statement
+alert('Mundo'); // Este comentário segue-se à afirmação
 ```
 
-**Multiline comments start with a forward slash and an asterisk <code>/&#42;</code> and end with an asterisk and a forward slash <code>&#42;/</code>.**
+**Comentários de várias linhas começam com uma barra e um asterisco <code>/&#42;</code> e terminar com um asterisco e uma barra frontal <code>&#42;/</code>.**
 
-Like this:
+Assim:
 
 ```js run
-/* An example with two messages.
-This is a multiline comment.
+/* Um exemplo com duas mensagens.
+Este é um comentário multilinha.
 */
-alert('Hello');
-alert('World');
+alert('Olá');
+alert('Mundo');
 ```
 
-The content of comments is ignored, so if we put code inside <code>/&#42; ... &#42;/</code>, it won't execute.
+O conteúdo dos comentários é ignorado, então se colocarmos código dentro de <code>/&#42; ... &#42;/</code>, ele não vai executar.
 
-Sometimes it can be handy to temporarily disable a part of code:
+Às vezes, pode ser útil desativar temporariamente uma parte do código:
 
 ```js run
-/* Commenting out the code
-alert('Hello');
+/* Comentando o código
+alert('Olá');
 */
-alert('World');
+alert('Mundo');
 ```
 
 ```smart header="Use hotkeys!"
-In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl`.
+Na maioria dos editores, uma linha de código pode ser comentada pressionando a tecla de atalho `key:Ctrl+/` para um comentário de linha única e algo como `key:Ctrl+Shift+/` -- para comentários multilinha (selecione um pedaço de código e pressione a tecla de atalho). Para Mac, tente `key:Cmd` em vez de `key:Ctrl`.
 ```
 
-````warn header="Nested comments are not supported!"
-There may not be `/*...*/` inside another `/*...*/`.
+````warn header="Comentários aninhados não são suportados!"
+Pode não haver `/*...*/` dentro de outro `/*...*/`.
 
-Such code will die with an error:
+Tal código morrerá com um erro:
 
 ```js run no-beautify
 /*
-  /* nested comment ?!? */
+  /* comentário aninhado ?!? */
 */
-alert( 'World' );
+alert( 'Mundo' );
 ```
 ````
 
-Please, don't hesitate to comment your code.
+Por favor, não hesite em comentar o seu código.
 
-Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify code before publishing to a production server. They remove comments, so they don't appear in the working scripts. Therefore, comments do not have negative effects on production at all.
+Os comentários aumentam a pegada global do código, mas isso não é um problema. Há muitas ferramentas que minificam o código antes de publicar em um servidor de produção. Elas removem comentários, então elas não aparecem nos scripts de trabalho. Portanto, os comentários não têm efeitos negativos na produção.
 
-Later in the tutorial there will be a chapter <info:code-quality> that also explains how to write better comments.
+Mais tarde no tutorial haverá um capítulo <info:code-quality> que também explica como escrever melhores comentários.

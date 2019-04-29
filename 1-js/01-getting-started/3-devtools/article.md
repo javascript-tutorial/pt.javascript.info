@@ -16,7 +16,7 @@ Abra a página [bug.html](bug.html).
 
 Há um erro no código JavaScript dela. Ele está escondido dos olhos de um visitante comum, então vamos abrir as ferramentas de desenvolvedor para vê-lo.
 
-Pressione `tecla:F12` ou, se você estiver no Mac, então `tecla:Cmd+Opt+J`.
+Pressione `key:F12` ou, se você estiver no Mac, então `key:Cmd+Opt+J`.
 
 As ferramentas de desenvolvedor serão abertas na aba Console por padrão.
 
@@ -29,13 +29,13 @@ O aspecto exato das ferramentas de desenvolvimento depende da sua versão do Chr
 - Aqui podemos ver a mensagem de erro de cor vermelha. Neste caso, o script contém um comando "lalala" desconhecido.
 - À direita, há um link clicável para o código-fonte `bug.html:12` com o número da linha onde o erro ocorreu.
 
-Abaixo da mensagem de erro, há um símbolo azul `>`. Ele marca uma "linha de comando" onde podemos digitar comandos JavaScript. Pressione `tecla:Enter` para executá-los (`tecla:Shift+Enter` para introduzir comandos multi-linha).
+Abaixo da mensagem de erro, há um símbolo azul `>`. Ele marca uma "linha de comando" onde podemos digitar comandos JavaScript. Pressione `key:Enter` para executá-los (`key:Shift+Enter` para introduzir comandos multi-linha).
 
 Agora podemos ver erros, e isso é suficiente para começar. Voltaremos mais tarde às ferramentas de desenvolvedor e abordaremos a depuração mais profundamente no capítulo <info:debugging-chrome>.
 
 ## Firefox, Edge, e outros
 
-A maioria dos outros navegadores usam `tecla:F12` para abrir ferramentas de desenvolvimento.
+A maioria dos outros navegadores usam `key:F12` para abrir ferramentas de desenvolvimento.
 
 A interface deles é bem parecida. Uma vez que você saiba como usar uma dessas ferramentas (você pode começar com o Chrome), você pode facilmente mudar para outra.
 
@@ -47,17 +47,17 @@ Abra Preferências e vá para o painel "Avançado". Há uma caixa de seleção n
 
 ![safari](safari.png)
 
-Agora o `tecla:Cmd+Opt+C` pode alternar o console. Além disso, note que o novo item do menu superior chamado "Develop" apareceu. Ele tem muitos comandos e opções.
+Agora o `key:Cmd+Opt+C` pode alternar o console. Além disso, note que o novo item do menu superior chamado "Develop" apareceu. Ele tem muitos comandos e opções.
 
 ## Entrada multi-linha
 
-Normalmente, quando colocamos uma linha de código no console, e então pressionamos `tecla:Enter`, ele executa.
+Normalmente, quando colocamos uma linha de código no console, e então pressionamos `key:Enter`, ele executa.
 
-Para inserir várias linhas, pressione `tecla:Shift+Enter`.
+Para inserir várias linhas, pressione `key:Shift+Enter`.
 
 ## Resumo
 
 - As ferramentas de desenvolvedor nos permitem ver erros, executar comandos, examinar variáveis e muito mais.
-- Elas podem ser abertas com `tecla:F12` para a maioria dos navegadores no Windows. O Chrome para Mac precisa de `tecla:Cmd+Opt+J`, Safari: `tecla:Cmd+Opt+C` (precisa ser ativado primeiro).
+- Elas podem ser abertas com `key:F12` para a maioria dos navegadores no Windows. O Chrome para Mac precisa de `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (precisa ser ativado primeiro).
 
 Agora temos o ambiente pronto. Na próxima seção, chegaremos ao JavaScript.
