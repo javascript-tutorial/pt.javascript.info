@@ -123,7 +123,6 @@ O exemplo acima pode ser dividido em dois scripts para funcionar:
   alert(1);
 </script>
 ```
-````
 
 ## Resumo
 
