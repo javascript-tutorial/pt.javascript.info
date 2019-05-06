@@ -1,79 +1,69 @@
-# The modern mode, "use strict"
+# O modo moderno, "use strict"
 
-For a long time, JavaScript evolved without compatibility issues. New features were added to the language while old functionality didn't change.
+Por um longo tempo, o JavaScript evoluiu sem problemas de compatibilidade. Novos recursos foram adicionados ao idioma enquanto as funcionalidades antigas não foram alteradas.
 
-That had the benefit of never breaking existing code. But the downside was that any mistake or an imperfect decision made by JavaScript's creators got stuck in the language forever.
+Isso teve o benefício de nunca quebrar o código existente. Mas a desvantagem foi que qualquer erro ou decisão imperfeita feita pelos criadores do JavaScript acabou ficando presa na linguagem para sempre.
 
-This was the case until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most modifications are off by default. You need to explicitly enable them with a special directive: `"use strict"`.
+Este foi o caso até 2009, quando ECMAScript 5 (ES5) apareceu. Adicionou novos recursos à linguagem e modificou alguns dos existentes. Para manter o código antigo funcionando, a maioria das modificações está desativada por padrão. Você precisa habilitá-los explicitamente com uma diretiva especial: `" use strict "`.
 
 ## "use strict"
 
-The directive looks like a string: `"use strict"` or `'use strict'`. When it is located at the top of a script, the whole script works the "modern" way.
+A diretiva parece uma string `"use strict"` ou `'use strict'`. Quando ele está localizado no topo de um script, todo o script funciona da maneira "moderna".
 
 For example:
 
 ```js
 "use strict";
 
-// this code works the modern way
+// esse código funciona de forma moderna
 ...
 ```
 
-We will learn functions (a way to group commands) soon.
-
-Looking ahead, let's just note that `"use strict"` can be put at the start of most kinds of functions instead of the whole script. Doing that enables strict mode in that function only. But usually, people use it for the whole script.
+Nós vamos aprender sobre funções, uma forma de agupar comandos, em breve.
 
 
-````warn header="Ensure that \"use strict\" is at the top"
-Please make sure that `"use strict"` is at the top of your scripts, otherwise strict mode may not be enabled.
+Vamos apenas observar que "use strict" pode ser colocado no início da maioria dos tipos de funções em vez do script inteiro. Fazer isso habilita o modo estrito apenas nessa função. Mas geralmente, as pessoas usam no script inteiro.
 
-Strict mode isn't enabled here:
+O modo estrito não está ativado aqui:
 
 ```js no-strict
-alert("some code");
-// "use strict" below is ignored--it must be at the top
+alert("algum código");
+// "use strict" abaixo é ignorado - deve estar no topo
 
 "use strict";
 
-// strict mode is not activated
+// modo estrito não está ativado
 ```
 
-Only comments may appear above `"use strict"`.
-````
+Apenas comentários devem aparecer acima de `"use strict"`.
 
-```warn header="There's no way to cancel `use strict`"
-There is no directive like `"no use strict"` that reverts the engine to old behavior.
+## Console do navegador
 
-Once we enter strict mode, there's no return.
-```
+Para o futuro, quando você usar o console do navegador para testar funcionalidades, observe que ele não "usa strict" por padrão.
 
-## Browser console
+As vezes, quando usar `use strict` faz alguma diferença, você terá resultados incorretos.
 
-For the future, when you use a browser console to test features, please note that it doesn't `use strict` by default.
+Mesmo se pressionarmos `key: Shift + Enter` para inserir várias linhas e colocar` use strict` no topo, isso não funcionará. Isso é por causa de como o console executa o código internamente.
 
-Sometimes, when `use strict` makes a difference, you'll get incorrect results.
-
-Even if we press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, it doesn't work. That's because of how the console executes the code internally.
-
-The reliable way to ensure `use strict` would be to input the code into console like this:
+A maneira confiável de garantir `use strict` seria inserir o código no console da seguinte forma:
 
 ```js
 (function() {
   'use strict';
 
-  // ...your code...
+  // ...seu código...
 })()
 ```
 
-## Always "use strict"
+## Sempre "use strict"
 
-We have yet to cover the differences between strict mode and the "default" mode.
+Ainda precisamos cobrir as diferenças entre o modo estrito e o modo "padrão".
 
-In the next chapters, as we learn language features, we'll note the differences between the strict and default modes. Luckily, there aren't many and they actually make our lives better.
+Nos próximos capítulos, assim como nós vamos aprender novas funcinalidades, vamos aprender as diferenças entre o modo estrito e os modos padrões. Felizmente, não há muitos e eles realmente tornam nossas vidas melhores.
 
-For now, it's enough to know about it in general:
+Por agora, de um momento geral, basta saber sobre isso:
 
-1. The `"use strict"` directive switches the engine to the "modern" mode, changing the behavior of some built-in features. We'll see the details later in the tutorial.
-2. Strict mode is enabled by placing `"use strict"` at the top of a script or function. Several language features, like "classes" and "modules", enable strict mode automatically.
-3. Strict mode is supported by all modern browsers.
-4. We recommended always starting scripts with `"use strict"`. All examples in this tutorial assume strict mode unless (very rarely) specified otherwise.
+1. A diretiva `" use strict "` alterna o mecanismo para o modo "moderno", alterando o comportamento de alguns recursos internos. Vamos ver os detalhes mais tarde no tutorial.
+2. O modo estrito é ativado colocando `" use strict "` no topo de um script ou função. Vários recursos de idioma, como "classes" e "módulos", ativam o modo estrito automaticamente.
+3. Modo estrito é suportado por todos os navegadores modernos.
+4. Recomendamos sempre iniciar scripts com `" use strict "`. Todos os exemplos neste tutorial assumem o modo estrito, a menos que (muito raramente) seja especificado de outra forma.
