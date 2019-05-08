@@ -1,10 +1,10 @@
-importance: 2
+importância: 2
 
 ---
 
-# Working with variables
+# Trabalhando com variáveis
 
-1. Declare two variables: `admin` and `name`.
-2. Assign the value `"John"` to `name`.
-3. Copy the value from `name` to `admin`.
-4. Show the value of `admin` using `alert` (must output "John").
+1. Declarar duas variáveis: `admin` e `name`.
+2. Atribuir o valor `"John"` para `name`.
+3. Copiar o valor de `name` para `admin`.
+4. Mostrar o valor de `admin` usando `alert` (deve retornar "John").
