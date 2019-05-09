@@ -1,5 +1,5 @@
-We generally use upper case for constants that are "hard-coded". Or, in other words, when the value is known prior to execution and directly written into the code.
+Nós geralmente usamos letras maiúsculas para constantes que são "hard-coded". Ou, em outras palavras, quando o valor é conhecido antes da execução e diretamente escrito no código.
 
-In this code, `birthday` is exactly like that. So we could use the upper case for it.
+Neste código, o `birthday` é exatamente assim. Então nós poderíamos usar a maiúscula para ele.
 
-In contrast, `age` is evaluated in run-time. Today we have one age, a year after we'll have another one. It is constant in a sense that it does not change through the code execution. But it is a bit "less of a constant" than `birthday`, it is calculated, so we should keep the lower case for it.
+Em contraste, `age` é avaliada em tempo de execução. Hoje temos uma idade, um ano depois teremos outra. É constante no sentido de não mudar através da execução do código. Mas é um pouco "menos constante" do que `birthday`, é calculada, por isso devemos manter as minúsculas para ela.
