@@ -1,96 +1,96 @@
-# Variables
+# Variáveis
 
-Most of the time, a JavaScript application needs to work with information. Here are two examples:
-1. An online shop -- the information might include goods being sold and a shopping cart.
-2. A chat application -- the information might include users, messages, and much more.
+Na maioria das vezes, um aplicativo JavaScript precisa trabalhar com informações. Aqui estão dois exemplos:
+1. Uma loja online -- a informação pode incluir mercadorias vendidas e um carrinho de compras.
+2. Uma aplicação de chat -- a informação pode incluir usuários, mensagens e muito mais.
 
-Variables are used to store this information.
+Variáveis são usadas para armazenar esta informação.
 
-## A variable
+## Uma variável
 
-A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "named storage" for data. We can use variables to store goodies, visitors, and other data.
+Uma [variável](https://pt.wikipedia.org/wiki/Variável_(programação)) é um "armazenamento nomeado" para dados. Podemos usar variáveis para armazenar artigos, visitantes e outros dados.
 
-To create a variable in JavaScript, use the `let` keyword.
+Para criar uma variável em JavaScript, use a palavra-chave `let`.
 
-The statement below creates (in other words: *declares* or *defines*) a variable with the name "message":
+A declaração abaixo cria (em outras palavras: * declara * ou * define *) uma variável com o nome "message":
 
 ```js
 let message;
 ```
 
-Now, we can put some data into it by using the assignment operator `=`:
+Agora, podemos colocar alguns dados usando o operador de atribuição `=`:
 
 ```js
 let message;
 
 *!*
-message = 'Hello'; // store the string
+message = 'Olá'; // armazenar a string
 */!*
 ```
 
-The string is now saved into the memory area associated with the variable. We can access it using the variable name:
+A string agora é armazenada na área de memória associada à variável. Nós podemos acessá-la usando o nome da variável:
 
 ```js run
 let message;
-message = 'Hello!';
+message = 'Olá!';
 
 *!*
-alert(message); // shows the variable content
+alert(message); // mostra o conteúdo variável
 */!*
 ```
 
-To be concise, we can combine the variable declaration and assignment into a single line:
+Para ser conciso, podemos combinar a declaração de variável e atribuição em uma única linha:
 
 ```js run
-let message = 'Hello!'; // define the variable and assign the value
+let message = 'Olá!'; // define a variável e atribui o valor
 
-alert(message); // Hello!
+alert(message); // Olá!
 ```
 
-We can also declare multiple variables in one line:
+Podemos também declarar múltiplas variáveis em uma linha:
 
 ```js no-beautify
-let user = 'John', age = 25, message = 'Hello';
+let user = 'John', age = 25, message = 'Olá';
 ```
 
-That might seem shorter, but we don't recommend it. For the sake of better readability, please use a single line per variable.
+Isso pode parecer mais curto, mas não o recomendamos. Por uma questão de melhor legibilidade, use uma única linha por variável.
 
-The multiline variant is a bit longer, but easier to read:
+A variante multilinha é um pouco mais longa, mas mais fácil de ler:
 
 ```js
 let user = 'John';
 let age = 25;
-let message = 'Hello';
+let message = 'Olá';
 ```
 
-Some people also define multiple variables in this multiline style:
+Algumas pessoas também definem múltiplas variáveis nesse estilo multilinha:
 ```js no-beautify
 let user = 'John',
   age = 25,
-  message = 'Hello';
+  message = 'Olá';
 ```
 
-...Or even in the "comma-first" style:
+... Ou até mesmo no estilo "comma-first":
 
 ```js no-beautify
 let user = 'John'
   , age = 25
-  , message = 'Hello';
+  , message = 'Olá';
 ```
 
-Technically, all these variants do the same thing. So, it's a matter of personal taste and aesthetics.
+Tecnicamente, todas estas variantes fazem a mesma coisa. Então, é uma questão de gosto pessoal e estética.
 
 
 ````smart header="`var` instead of `let`"
-In older scripts, you may also find another keyword: `var` instead of `let`:
+Em scripts antigos, você também pode encontrar outra palavra-chave: `var` em vez de `let`:
 
 ```js
-*!*var*/!* message = 'Hello';
+*!*var*/!* message = 'Olá';
 ```
 
-The `var` keyword is *almost* the same as `let`. It also declares a variable, but in a slightly different, "old-school" way.
+A palavra-chave `var` é quase a mesma que `let`. Ela também declara uma variável, mas de um modo um pouco diferente, "old-school".
 
-There are subtle differences between `let` and `var`, but they do not matter for us yet. We'll cover them in detail in the chapter <info:var>.
+Existem diferenças sutis entre `let` e `var`, mas elas ainda não são importantes para nós. Nós as abordaremos em detalhes no capítulo <info:var>.
 ````
 
 ## A real-life analogy
