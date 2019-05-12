@@ -14,11 +14,10 @@ Articles can be in both Brazilian and European Portuguese. Translators are encou
 - Fork the repository, translate and send a PR when done.
     - PR title should match article title, the bot will write it's number into the issue.
 
-If you're a maintainer, you can just translate and push, but please check articles as translated in the [issue](https://github.com/javascript-tutorial/pt.javascript.info/issues/1), for others to see that.
-
-If you're just a newcomer, without write access to the repo, please kindly allow maintainers to review and merge your translation.
+Please kindly allow maintainers to review and merge or request changes in your translation.
    
-If something's unclear, feel free to ask, make an issue [here](https://github.com/javascript-tutorial/pt.javascript.info/issues/new) or in the [English repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new). 
+If maintainers do not respond:
+- Please make an issue in the [main repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new).
     
 **Let others know what you're translating, in message boards or chats in your language. Invite them to join!**
 
