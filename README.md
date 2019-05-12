@@ -16,7 +16,7 @@ Articles can be in both Brazilian and European Portuguese. Translators are encou
 
 Please kindly allow maintainers to review and merge or request changes in your translation.
    
-If maintainers do not respond, or if you'd like to become a maintainer,  write us at <https://github.com/javascript-tutorial/en.javascript.info/issues/new>.
+If maintainers do not respond, or if you'd like to become a maintainer,  write us at the [main repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new).
     
 **Let others know what you're translating, in message boards or chats in your language. Invite them to join!**
 
