@@ -10,7 +10,7 @@ Articles can be in both Brazilian and European Portuguese. Translators are encou
 - Choose an unchecked article you'd like to translate.
 - Add a comment with the article title to the issue, e.g. `An Introduction to JavaScript`.
     - Our bot will mark it in the issue, for everyone to know that you're translating it.
-    - The comment should only contain the title.
+    - Your comment should contain only the title.
 - Fork the repository, translate and send a PR when done.
     - PR title should match article title, the bot will write it's number into the issue.
 
