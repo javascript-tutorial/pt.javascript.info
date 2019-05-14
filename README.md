@@ -51,8 +51,7 @@ If you see that the English version can be improved – great, please send a PR 
 ### Terms
 
 - Some specification terms are not to be translated, e.g. "Function Declaration" can be left "as is".
-- For other terms like `resolved promise`, `slash`, `regexp`, and so on - look for a glossary, hopefully there's one for your language already.
-    - If not, look for translations in manuals, such as [MDN](https://developer.mozilla.org/en-US/).
+- For other terms like `resolved promise`, `slash`, `regexp`, and so on - look for a glossary, hopefully there's one for your language already. If not, look for translations in manuals, such as [MDN](https://developer.mozilla.org/en-US/).
 
 ### Text in Code Blocks
 
