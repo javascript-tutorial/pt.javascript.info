@@ -1,18 +1,18 @@
-importance: 5
+importância: 5
 
 ---
 
-# Can I add a string property?
+# Posso adicionar uma propriedade à uma string?
 
 
 Consider the following code:
 
 ```js
-let str = "Hello";
+let str = "Olá";
 
 str.test = 5;
 
 alert(str.test);
 ```
 
-How do you think, will it work? What will be shown?
+Como você acha, vai funcionar? O que será mostrado?
