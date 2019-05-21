@@ -1,17 +1,17 @@
-importance: 5
+importância: 5
 
 ---
 
-# String quotes
+# Aspas de String
 
-What is the output of the script?
+Qual é o resultado do script?
 
 ```js
 let name = "Ilya";
 
-alert( `hello ${1}` ); // ?
+alert( `olá ${1}` ); // ?
 
-alert( `hello ${"name"}` ); // ?
+alert( `olá ${"name"}` ); // ?
 
-alert( `hello ${name}` ); // ?
+alert( `olá ${name}` ); // ?
 ```
