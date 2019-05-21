@@ -1,5 +1,5 @@
 
-Acentos graves incorporam a expressão `${...}` dentro da string.
+Backticks incorporam a expressão `${...}` dentro da string.
 
 ```js run
 let name = "Ilya";
