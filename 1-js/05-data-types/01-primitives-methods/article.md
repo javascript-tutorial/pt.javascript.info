@@ -13,8 +13,13 @@ Um primitivo
 
 Um objeto
 
+<<<<<<< HEAD
 - É capaz de armazenar vários valores como propriedades.
 - Pode ser criado com `{}`, por exemplo: `{name: "John", age: 30}`. Existem outros tipos de objetos em JavaScript; funções, por exemplo, são objetos.
+=======
+- Is capable of storing multiple values as properties.
+- Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript: functions, for example, are objects.
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 
 Uma das melhores coisas sobre objetos é que podemos armazenar uma função como uma de suas propriedades.
 
@@ -46,9 +51,15 @@ Aqui está o paradoxo enfrentado pelo criador do JavaScript:
 
 A solução parece um pouco estranha, mas aqui está:
 
+<<<<<<< HEAD
 1. Primitivos ainda são primitivos. Um único valor, conforme desejado.
 2. A linguagem permite acesso a métodos e propriedades de strings, números, booleanos e símbolos.
 3. Quando isso acontece, um "invólucro de objeto" especial que fornece a funcionalidade extra é criado e, em seguida, é destruído.
+=======
+1. Primitives are still primitive. A single value, as desired.
+2. The language allows access to methods and properties of strings, numbers, booleans and symbols.
+3. In order for that to work, a special "object wrapper" that provides the extra functionality is created, and then is destroyed.
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 
 Os "invólucros de objeto" são diferentes para cada tipo primitivo e são chamados: `String`, `Number`, `Boolean` e `Symbol`. Assim, eles fornecem diferentes conjuntos de métodos.
 
@@ -91,18 +102,32 @@ Em JavaScript, isso também é possível por razões históricas, mas é altamen
 Por exemplo:
 
 ```js run
+<<<<<<< HEAD
 alert( typeof 1 ); // "número"
 
 alert( typeof new Number(1) ); // "objeto"!
 ```
 
 E por isso a seguir, `zero`, é um objeto, o alerta será mostrado:
+=======
+alert( typeof 0 ); // "number"
+
+alert( typeof new Number(0) ); // "object"!
+```
+
+Objects are always truthy in `if`, so here the alert will show up:
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 
 ```js run
 let zero = new Number(0);
 
+<<<<<<< HEAD
 if (zero) { // zero é true (verdadeiro), por que é um objeto
   alert( "zero é verdadeiro?!?" );
+=======
+if (zero) { // zero is true, because it's an object
+  alert( "zero is truthy!?!" );
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 }
 ```
 
