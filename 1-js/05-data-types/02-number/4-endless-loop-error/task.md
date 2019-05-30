@@ -1,10 +1,10 @@
-importance: 4
+importância: 4
 
 ---
 
-# An occasional infinite loop
+# Um loop infinito ocasional
 
-This loop is infinite. It never ends. Why?
+Esse loop é infinito. Nunca acaba. Por quê?
 
 ```js
 let i = 0;
