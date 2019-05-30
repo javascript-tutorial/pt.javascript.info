@@ -1,6 +1,6 @@
-That's because `i` would never equal `10`.
+É porque `i` nunca será igual a `10`.
 
-Run it to see the *real* values of `i`:
+Execute para ver os valores *reais* de `i`:
 
 ```js run
 let i = 0;
@@ -10,8 +10,8 @@ while (i < 11) {
 }
 ```
 
-None of them is exactly `10`.
+Nenhum deles é exatamente `10`.
 
-Such things happen because of the precision losses when adding fractions like `0.2`.
+Esse tipo de coisas acontecem por causa da perda de precisão ao adicionar frações como `0.2`.
 
-Conclusion: evade equality checks when working with decimal fractions.
+Conclusão: evite checar igualdade quando trabalhando com frações decimais.
