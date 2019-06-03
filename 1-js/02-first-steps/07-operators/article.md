@@ -251,16 +251,16 @@ Então, existem operadores especiais para isso:
 - **Incremento** `++` aumenta uma variável por 1:
 
     ```js run no-beautify
-    let contador = 2;
-    contador++;      // funciona da mesma forma que o contador = contador + 1, mas é mais curto
-    alert( contador ); // 3
+    let counter = 2;
+    counter++;      // funciona da mesma forma que o counter = counter + 1, mas é mais curto
+    alert( counter ); // 3
     ```
 - **Decremento** `--` diminui uma variável por 1:
 
     ```js run no-beautify
-    let contador = 2;
-    contador--;      // funciona da mesma forma que o contador = contador - 1, mas é mais curto
-    alert( contador ); // 1
+    let counter = 2;
+    counter--;      // funciona da mesma forma que o counter = counter - 1, mas é mais curto
+    alert( counter ); // 1
     ```
 
 ```aviso
@@ -269,10 +269,10 @@ Incremento/decremento só pode ser aplicado a variáveis. Tentando usá-lo em um
 
 Os operadores `++` e `--` podem ser colocados antes ou depois de uma variável.
 
-- Quando o operador vai atrás da variável, está na "forma sufixo": `contador++`.
-- A "forma prefixo" é quando o operador vai antes da variável: `++contador`.
+- Quando o operador vai atrás da variável, está na "forma sufixo": `counter++`.
+- A "forma prefixo" é quando o operador vai antes da variável: `++counter`.
 
-Ambas as declarações fazem a mesma coisa: aumentar `contador` por `1`.
+Ambas as declarações fazem a mesma coisa: aumentar `counter` por `1`.
 
 Existe alguma diferença? Sim, mas só podemos vê-lo se usarmos o valor retornado de `++/--`.
 
@@ -281,46 +281,46 @@ Vamos esclarecer. Como sabemos, todos os operadores retornam um valor. Increment
 Para ver a diferença, aqui está um exemplo:
 
 ```js run
-let contador = 1;
-let a = ++contador; // (*)
+let counter = 1;
+let a = ++counter; // (*)
 
 alert(a); // *!*2*/!*
 ```
 
-Na linha `(*)`, a forma *prefixo* `++contador` incrementa `contador` e retorna o novo valor, `2`. Então, o `alert` mostra `2`.
+Na linha `(*)`, a forma *prefixo* `++counter` incrementa `counter` e retorna o novo valor, `2`. Então, o `alert` mostra `2`.
 
 Agora vamos usar a forma sufixo:
 
 ```js run
-let contador = 1;
-let a = contador++; // (*) altere ++contador a contador++
+let counter = 1;
+let a = counter++; // (*) altere ++counter a counter++
 
 alert(a); // *!*1*/!*
 ```
 
-Na linha `(*)`, a forma *sufixo* `contador++` também incrementa `contador` mas retorna o valor *antigo* (antes do incremento). Então, o `alert` mostra `1`.
+Na linha `(*)`, a forma *sufixo* `counter++` também incrementa `counter` mas retorna o valor *antigo* (antes do incremento). Então, o `alert` mostra `1`.
 
 Para resumir:
 
 - Se o resultado de incremento/decremento não for usado, não há diferença em qual formulário usar:
 
     ```js run
-    let contador = 0;
-    contador++;
-    ++contador;
-    alert( contador ); // 2, as linhas acima fizeram o mesmo
+    let counter = 0;
+    counter++;
+    ++counter;
+    alert( counter ); // 2, as linhas acima fizeram o mesmo
     ```
 - Se quisermos aumentar um valor *e* imediatamente usar o resultado do operador, precisamos da forma prefixo:
 
     ```js run
-    let contador = 0;
-    alert( ++contador ); // 1
+    let counter = 0;
+    alert( ++counter ); // 1
     ```
 - Se quisermos incrementar um valor, mas usar seu valor anterior, precisamos da forma sufixo:
 
     ```js run
-    let contador = 0;
-    alert( contador++ ); // 0
+    let counter = 0;
+    alert( counter++ ); // 0
     ```
 
 ````smart header="Increment/decrement among other operators"
@@ -329,27 +329,27 @@ Os operadores `++/--` também podem ser usados dentro de expressões. Sua preced
 Por exemplo:
 
 ```js run
-let contador = 1;
-alert( 2 * ++contador ); // 4
+let counter = 1;
+alert( 2 * ++counter ); // 4
 ```
 
 Compare com:
 
 ```js run
-let contador = 1;
-alert( 2 * contador++ ); // 2, porque contador++ retorna o valor "antigo"
+let counter = 1;
+alert( 2 * counter++ ); // 2, porque counter++ retorna o valor "antigo"
 ```
 
 Embora tecnicamente bem, essa notação geralmente torna o código menos legível. Uma linha faz várias coisas -- não é boa.
 
-Durante a leitura do código, uma rápida varredura ocular "vertical" pode facilmente perder algo como "contador ++" e não será óbvio que a variável tenha aumentado.
+Durante a leitura do código, uma rápida varredura ocular "vertical" pode facilmente perder algo como "counter ++" e não será óbvio que a variável tenha aumentado.
 
 Aconselhamos um estilo de "uma linha -- uma ação":
 
 ```js run
-let contador = 1;
-alert( 2 * contador );
-contador++;
+let counter = 1;
+alert( 2 * counter );
+counter++;
 ```
 ````
 
