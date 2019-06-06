@@ -39,7 +39,7 @@ if (1 || 0) { // funciona como se( verdadeiro || falso )
 }
 ```
 
-Na maior parte do tempo, OR `||` é usado em uma instrução `if` para testar se *qualquer* das condições dadas é `true`.
+Na maior parte do tempo, OR `||` é usado em uma instrução `if` para testar se *any* das condições dadas é `true`.
 
 Por exemplo:
 
@@ -147,7 +147,7 @@ Isso leva a um uso interessante em comparação com uma "OR pura, clássica, ape
 
     Como podemos ver, tal caso de uso é um "modo mais curto de fazer `if`". O primeiro operando é convertido em booleano. Se é falso, o segundo é avaliado.
 
-    Na maioria das vezes, é melhor usar um `if` "regular" para manter o código fácil de entender, mas às vezes isso pode ser útil.
+    Na maioria das vezes, é melhor usar um "regular" `if` para manter o código fácil de entender, mas às vezes isso pode ser útil.
 
 ## && (AND)
 
@@ -231,7 +231,7 @@ alert( 1 && 2 && 3 ); // 3, o último
 ```
 
 ````smart header="Precedence of AND `&&` is higher than OR `||`"
-A precedência do operador AND `&&` é maior que OR `||`.
+A precedência do AND `&&` operator é maior que OR `||`.
 
 Então o código `a && b || c && d` é essencialmente o mesmo que se as expressões `&&` estivessem entre parênteses: `(a && b) || (c & d)`.
 ````
@@ -284,7 +284,7 @@ alert( !true ); // falso
 alert( !0 ); // verdadeiro
 ```
 
-Um duplo NOT `!!` às vezes é usado para converter um valor em um tipo booleano:
+Um double NOT `!!` às vezes é usado para converter um valor em um tipo booleano:
 
 ```js run
 alert( !!"non-empty string" ); // verdadeiro

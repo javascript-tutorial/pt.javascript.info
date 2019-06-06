@@ -31,7 +31,7 @@ alert( result ); // true
 
 ## Comparação de strings
 
-Para ver se uma string é maior que outra, o JavaScript usa o chamada ordem "dicionário" ou "lexicográfica".
+Para ver se uma string é maior que outra, o JavaScript usa o chamado ordem "dicionário" ou "lexicográfico".
 
 Em outras palavras, as strings são comparadas letra a letra.
 
