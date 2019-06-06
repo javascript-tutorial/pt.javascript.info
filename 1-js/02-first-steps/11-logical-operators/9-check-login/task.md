@@ -2,24 +2,24 @@ importance: 3
 
 ---
 
-# Check the login
+# Verifique o login
 
-Write the code which asks for a login with `prompt`.
+Escreva o código que pede um login com o `prompt`.
 
-If the visitor enters `"Admin"`, then `prompt` for a password, if the input is an empty line or `key:Esc` -- show "Canceled.", if it's another string -- then show "I don't know you".
+Se o visitante inserir `"Admin"`, então `prompt` para uma senha, se a entrada for uma linha vazia ou `key: Esc` -- mostre "Canceled.", Se for outra string - então mostre "eu don conheço você ".
 
-The password is checked as follows:
+A senha é verificada da seguinte forma:
 
-- If it equals "TheMaster", then show "Welcome!",
-- Another string -- show "Wrong password",
-- For an empty string or cancelled input, show "Canceled."
+- Se for igual a "TheMaster", então mostre "Welcome!",
+- Outra string - mostra "Senha incorreta",
+- Para uma sequência vazia ou entrada cancelada, mostre "Cancelado".
 
-The schema:
+O esquema:
 
 ![](ifelse_task.png)
 
-Please use nested `if` blocks. Mind the overall readability of the code.
+Por favor use blocos `if` aninhados. Observe a legibilidade geral do código.
 
-Hint:  passing an empty input to a prompt returns an empty string `''`. Pressing `key:ESC` during a prompt returns `null`.
+Dica: passar uma entrada vazia para um prompt retorna uma string vazia `''`. Pressionando a `key:ESC` durante um prompt retorna `null`.
 
 [demo]
