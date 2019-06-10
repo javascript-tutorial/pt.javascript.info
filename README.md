@@ -6,6 +6,7 @@ Articles can be in Brazilian or European Portuguese, but not mixed. Translators 
 
 **That's how you can contribute:**
 
+<<<<<<< HEAD
 - See the [Portuguese Translate Progress](https://github.com/javascript-tutorial/pt.javascript.info/issues/1) issue.
 - Choose an unchecked article you'd like to translate.
 - Add a comment with the article title to the issue, e.g. `An Introduction to JavaScript`.
@@ -13,6 +14,9 @@ Articles can be in Brazilian or European Portuguese, but not mixed. Translators 
     - Your comment should contain only the title.
 - Fork the repository, translate and send a PR when done.
     - PR title should match article title, the bot will write it's number into the issue.
+=======
+See <https://javascript.info/translate> for the details.
+>>>>>>> 9cb33f4039e5751bfd0e2bca565a37aa463fb477
 
 Please kindly allow maintainers to review and merge or request changes in your translation.
    
