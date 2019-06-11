@@ -1,12 +1,13 @@
 describe("truncate", function() {
-  it("truncate the long string to the given length (including the ellipsis)", function() {
+  it("truncar a longa string até o comprimento determinado (incluindo as reticências)
+", function() {
     assert.equal(
       truncate("What I'd like to tell on this topic is:", 20),
       "What I'd like to te…"
     );
   });
 
-  it("doesn't change short strings", function() {
+  it("não muda strings curtas", function() {
     assert.equal(
       truncate("Hi everyone!", 20),
       "Hi everyone!"
