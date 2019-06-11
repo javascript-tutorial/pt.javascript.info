@@ -1,6 +1,6 @@
-The maximal length must be `maxlength`, so we need to cut it a little shorter, to give space for the ellipsis.
+O comprimento máximo deve ser `maxlength`, então nós precisamos cortar-la um pouco mais curta, para dar espaço às reticências.
 
-Note that there is actually a single unicode character for an ellipsis. That's not three dots.
+Note que existe um caractere único para reticências. Não são três pontos.
 
 ```js run demo
 function truncate(str, maxlength) {
