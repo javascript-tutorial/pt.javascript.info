@@ -6,7 +6,7 @@ importância: 5
 
 Você tem um array de objetos `user`, cada um tem `user.name`. Escreva o código que o converte em um array de nomes.
 
-Por exemplo
+Por exemplo:
 
 ```js no-beautify
 let john = { name: "John", age: 25 };
