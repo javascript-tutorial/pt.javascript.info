@@ -1,22 +1,22 @@
-importance: 4
+importância: 4
 
 ---
 
-# Filter range
+# Intervalo de filtragem
 
-Write a function `filterRange(arr, a, b)` that gets an array `arr`, looks for elements between `a` and `b` in it and returns an array of them. 
+Escreva uma função `filterRange(arr, a, b)` que recebe um array `arr`, procura por elementos entre `a` e `b` nele e retorna um array deles. 
 
-The function should not modify the array. It should return the new array.
+A função não deve modificar o array. Deve devolver o novo array.
 
-For instance:
+Por exemplo:
 
 ```js
 let arr = [5, 3, 8, 1];
 
 let filtered = filterRange(arr, 1, 4); 
 
-alert( filtered ); // 3,1 (matching values)
+alert( filtered ); // 3,1 (valores filtrados)
 
-alert( arr ); // 5,3,8,1 (not modified)
+alert( arr ); // 5,3,8,1 (não modificado)
 ```
 
