@@ -1,14 +1,14 @@
-importance: 4
+importância: 4
 
 ---
 
-# Get average age
+# Obter idade média
 
-Write the function `getAverageAge(users)` that gets an array of objects with property `age` and gets the average.
+Escreva a função `getAverageAge(users)` que obtém um array de objetos com a propriedade `age` e obtém a média.
 
-The formula for the average is `(age1 + age2 + ... + ageN) / N`.
+A fórmula para a média é `(age1 + age2 + ... + ageN) / N`.
 
-For instance:
+Por exemplo:
 
 ```js no-beautify
 let john = { name: "John", age: 25 };
