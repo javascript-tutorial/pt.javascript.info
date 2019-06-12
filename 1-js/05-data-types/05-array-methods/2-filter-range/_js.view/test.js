@@ -1,6 +1,6 @@
 describe("filterRange", function() {
 
-  it("returns the filtered values", function() {
+  it("retorna os valores filtrados", function() {
 
     let arr = [5, 3, 8, 1];
 
@@ -9,7 +9,7 @@ describe("filterRange", function() {
     assert.deepEqual(filtered, [3, 1]);
   });
 
-  it("doesn't change the array", function() {
+  it("não modifica o array", function() {
 
     let arr = [5, 3, 8, 1];
 
