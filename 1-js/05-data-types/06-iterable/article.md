@@ -1,20 +1,20 @@
 
-# Iterables
+# Iteráveis
 
-*Iterable* objects is a generalization of arrays. That's a concept that allows to make any object useable in a `for..of` loop.
+Objetos *Iteráveis* são uma generalização de arrays. Esse é um conceito que permite tornar qualquer objeto utilizável em um loop `for..of`.
 
-Of course, Arrays are iterable. But there are many other built-in objects, that are iterable as well. For instance, Strings are iterable also. As we'll see, many built-in operators and methods rely on them.
+Claro, Arrays são iteráveis. Mas há muitos outros objetos internos, que também são iteráveis. Por exemplo, Strings são iteráveis ​​também. Como veremos, muitos operadores e métodos integrados dependem deles.
 
-If an object represents a collection (list, set) of something, then `for..of` is a great syntax to loop over it, so let's see how to make it work.
+Se um objeto representa uma coleção (lista, conjunto) de alguma coisa, então `for..of` é uma ótima sintaxe para fazer um loop sobre ele, então vamos ver como fazê-lo funcionar.
 
 
 ## Symbol.iterator
 
-We can easily grasp the concept of iterables by making one of our own.
+Podemos facilmente entender o conceito de iteráveis ​​fazendo o nosso próprio.
 
-For instance, we have an object, that is not an array, but looks suitable for `for..of`.
+Por exemplo, temos um objeto, que não é um array, mas parece adequado para `for..of`.
 
-Like a `range` object that represents an interval of numbers:
+Como um objeto `range` que representa um intervalo de números:
 
 ```js
 let range = {
@@ -22,18 +22,18 @@ let range = {
   to: 5
 };
 
-// We want the for..of to work:
+// Queremos que o for..of funcione:
 // for(let num of range) ... num=1,2,3,4,5
 ```
 
-To make the `range` iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
+Para tornar o `range` iterável (e, portanto, fazer o `for..of` funcionar), precisamos adicionar um método ao objeto chamado `Symbol.iterator` (um símbolo embutido especialmente para isso).
 
-1. When `for..of` starts, it calls that method once (or errors if not found). The method must return an *iterator* -- an object with the method `next`.
-2. Onward, `for..of` works *only with that returned object*.
-3. When `for..of` wants the next value, it calls `next()` on that object.
-4. The result of `next()` must have the form `{done: Boolean, value: any}`, where `done=true`  means that the iteration is finished, otherwise `value` must be the new value.
+1. Quando `for..of` inicia, ele chama esse método uma vez (ou erros se não for encontrado). O método deve retornar um *iterador* - um objeto com o método `next`.
+2. Em diante, `for..of` funciona *apenas com esse objeto retornado*.
+3. Quando `for..of` quer o próximo valor, ele chama `next()` nesse objeto.
+4. O resultado de `next ()` deve ter a forma `{done: Boolean, value: any}`, onde `done = true` significa que a iteração está terminada, caso contrário `value` deve ser o novo valor.
 
-Here's the full implementation for `range`:
+Aqui está a implementação completa para o `range`:
 
 ```js run
 let range = {
@@ -41,18 +41,18 @@ let range = {
   to: 5
 };
 
-// 1. call to for..of initially calls this
+// 1. chamada para for..of inicialmente chama isso
 range[Symbol.iterator] = function() {
 
-  // ...it returns the iterator object:
-  // 2. Onward, for..of works only with this iterator, asking it for next values
+// ...retorna o objeto iterador:
+  // 2. Daqui em diante, for..of funciona apenas com este iterador, solicitando os próximos valores
   return {
     current: this.from,
     last: this.to,      
 
-    // 3. next() is called on each iteration by the for..of loop
+    // 3. next () é chamado em cada iteração pelo loop for..of
     next() {
-      // 4. it should return the value as an object {done:.., value :...}
+      // 4. ele deve retornar o valor como um objeto {done:.., value:...}
       if (this.current <= this.last) {
         return { done: false, value: this.current++ };
       } else {
@@ -62,22 +62,22 @@ range[Symbol.iterator] = function() {
   };
 };
 
-// now it works!
+// agora funciona!
 for (let num of range) {
-  alert(num); // 1, then 2, 3, 4, 5
+  alert(num); // 1, então 2, 3, 4, 5
 }
 ```
 
-Please note the core feature of iterables: an important separation of concerns:
+Observe a principal característica dos iteráveis: uma importante separação de interesses:
 
-- The `range` itself does not have the `next()` method.
-- Instead, another object, a so-called "iterator" is created by the call to `range[Symbol.iterator]()`, and it handles the whole iteration.
+- O `range` em si não possui o método `next() `.
+- Em vez disso, outro objeto, o chamado "iterador", é criado pela chamada para `range[Symbol.iterator]()`, e manipula toda a iteração.
 
-So, the iterator object is separate from the object it iterates over.
+Assim, o objeto iterador é separado do objeto que é iterado.
 
-Technically, we may merge them and use `range` itself as the iterator to make the code simpler.
+Tecnicamente, podemos mesclá-los e usar `range` como o iterador para tornar o código mais simples.
 
-Like this:
+Assim:
 
 ```js run
 let range = {
@@ -99,57 +99,57 @@ let range = {
 };
 
 for (let num of range) {
-  alert(num); // 1, then 2, 3, 4, 5
+  alert(num); // 1, então 2, 3, 4, 5
 }
 ```
 
-Now `range[Symbol.iterator]()` returns the `range` object itself:  it has the necessary `next()` method and remembers the current iteration progress in `this.current`. Shorter? Yes. And sometimes that's fine too.
+Agora o `range[Symbol.iterator]()` retorna o objeto `range` em si: ele possui o método `next()` necessário e lembra o progresso atual da iteração em `this.current`. Mais curta? Sim. E às vezes tudo bem também.
 
-The downside is that now it's impossible to have two `for..of` loops running over the object simultaneously: they'll share the iteration state, because there's only one iterator -- the object itself. But two parallel for-ofs is a rare thing, doable with some async scenarios.
+A desvantagem é que agora é impossível ter dois loops `for..of` passando sobre o objeto simultaneamente: eles compartilharão o estado de iteração, porque há apenas um iterador - o objeto em si. Mas dois aspectos paralelos são uma coisa rara, factível com alguns cenários assíncronos.
 
-```smart header="Infinite iterators"
-Infinite iterators are also possible. For instance, the `range` becomes infinite for `range.to = Infinity`. Or we can make an iterable object that generates an infinite sequence of pseudorandom numbers. Also can be useful.
+```smart header="Iteradores infinitos"
+Os iteradores infinitos também são possíveis. Por exemplo, o `range` se torna infinito para `range.to = Infinity`. Ou podemos fazer um objeto iterável que gera uma sequência infinita de números pseudo-aleatórios. Também pode ser útil.
 
-There are no limitations on `next`, it can return more and more values, that's normal.
+Não há limitações em `next`, ele pode retornar mais e mais valores, isso é normal.
 
-Of course, the `for..of` loop over such an iterable would be endless. But we can always stop it using `break`.
+É claro que o loop `for..of` sobre tal iterável seria infinito. Mas sempre podemos pará-lo usando `break`.
 ```
 
 
-## String is iterable
+## A string é iterável
 
-Arrays and strings are most widely used built-in iterables.
+Arrays e strings são os iteráveis ​​incorporados mais usados.
 
-For a string, `for..of` loops over its characters:
+Para uma string, `for..of` itera sobre seus caracteres:
 
 ```js run
 for (let char of "test") {
-  // triggers 4 times: once for each character
-  alert( char ); // t, then e, then s, then t
+  // dispara 4 vezes: uma vez para cada caractere
+  alert( char ); // t, então e, então s, então t
 }
 ```
 
-And it works correctly with surrogate pairs!
+E funciona corretamente com pares substitutos!
 
 ```js run
 let str = '𝒳😂';
 for (let char of str) {
-    alert( char ); // 𝒳, and then 😂
+    alert( char ); // 𝒳, e depois 😂
 }
 ```
 
-## Calling an iterator explicitly
+## Chamando um iterador explicitamente
 
-Normally, internals of iterables are hidden from the external code. There's a `for..of` loop, that works, that's all it needs to know.
+Normalmente, os internos de iteráveis ​​são ocultados do código externo. Existe um loop `for..of` que funciona, é tudo que ele precisa saber.
 
-But to understand things a little bit deeper let's see how to create an iterator explicitly.
+Mas, para entender as coisas um pouco mais profundamente, vamos ver como criar um iterador explicitamente.
 
-We'll iterate over a string the same way as `for..of`, but with direct calls. This code gets a string iterator and calls it "manually":
+Vamos iterar por uma string da mesma maneira que `for..of`, mas com chamadas diretas. Esse código obtém um iterador de string e o chama "manualmente":
 
 ```js run
 let str = "Hello";
 
-// does the same as
+// faz o mesmo que
 // for (let char of str) alert(char);
 
 let iterator = str[Symbol.iterator]();
@@ -157,47 +157,47 @@ let iterator = str[Symbol.iterator]();
 while (true) {
   let result = iterator.next();
   if (result.done) break;
-  alert(result.value); // outputs characters one by one
+  alert(result.value); // alerta caracteres um por um
 }
 ```
 
-That is rarely needed, but gives us more control over the process than `for..of`. For instance, we can split the iteration process: iterate a bit, then stop, do something else, and then resume later.
+Isso raramente é necessário, mas nos dá mais controle sobre o processo do que `for..of`. Por exemplo, podemos dividir o processo de iteração: iterar um pouco, depois parar, fazer outra coisa e depois retomar mais tarde.
 
-## Iterables and array-likes [#array-like]
+## Iteráveis e array-likes [#array-like]
 
-There are two official terms that look similar, but are very different. Please make sure you understand them well to avoid the confusion.
+Existem dois termos oficiais que parecem semelhantes, mas são muito diferentes. Por favor, certifique-se de entendê-los bem para evitar a confusão.
 
-- *Iterables* are objects that implement the `Symbol.iterator` method, as described above.
-- *Array-likes* are objects that have indexes and `length`, so they look like arrays.
+- *Iteráveis* são objetos que implementam o método `Symbol.iterator`, conforme descrito acima.
+- *Array-likes* são objetos que possuem índices e `length`, então eles se parecem com arrays.
 
-Naturally, these properties can combine. For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
+Naturalmente, essas propriedades podem combinar. Por exemplo, as strings são iteráveis ​​(`for..of` funciona nelas) e são parecidas com array (possuem índices numéricos e `length`).
 
-But an iterable may be not array-like. And vice versa an array-like may be not iterable.
+Mas um iterável pode não ser um array-like. E vice-versa, um array-like pode não ser iterável.
 
-For example, the `range` in the example above is iterable, but not array-like, because it does not have indexed properties and `length`.
+Por exemplo, o `range` no exemplo acima é iterável, mas não é array-like, porque não possui propriedades indexadas e` length`.
 
-And here's the object that is array-like, but not iterable:
+E aqui está o objeto que é semelhante a um array, mas não é iterável:
 
 ```js run
-let arrayLike = { // has indexes and length => array-like
+let arrayLike = { // tem índices e length => array-like
   0: "Hello",
   1: "World",
   length: 2
 };
 
 *!*
-// Error (no Symbol.iterator)
+// Erro (não possui Symbol.iterator)
 for (let item of arrayLike) {}
 */!*
 ```
 
-What do they have in common? Both iterables and array-likes are usually *not arrays*, they don't have `push`, `pop` etc. That's rather inconvenient if we have such an object and want to work with it as with an array.
+O que eles têm em comum? Ambos iteráveis e array-likes são geralmente *não arrays*, eles não têm `push`, `pop` etc. Isso é bastante inconveniente se tivermos um objeto e quisermos trabalhar com ele como em um array.
 
 ## Array.from
 
-There's a universal method [Array.from](mdn:js/Array/from) that brings them together. It takes an iterable or array-like value and makes a "real" `Array` from it. Then we can call array methods on it.
+Existe um método universal [Array.from](mdn:js/Array/from) que os une. Ele recebe um valor iterável ou semelhante a um array e cria um "array" "real" a partir dele. Então podemos chamar métodos de array nele.
 
-For instance:
+Por exemplo:
 
 ```js run
 let arrayLike = {
@@ -209,43 +209,43 @@ let arrayLike = {
 *!*
 let arr = Array.from(arrayLike); // (*)
 */!*
-alert(arr.pop()); // World (method works)
+alert(arr.pop()); // World (o método funciona)
 ```
 
-`Array.from` at the line `(*)` takes the object, examines it for being an iterable or array-like, then makes a new array and copies there all items.
+`Array.from` na linha `(*)` pega o objeto, examina se é iterável ou array-like, então cria um novo array e copia todos os itens.
 
-The same happens for an iterable:
+O mesmo acontece para um iterável:
 
 ```js
-// assuming that range is taken from the example above
+// assumindo que range é obtido do exemplo acima
 let arr = Array.from(range);
-alert(arr); // 1,2,3,4,5 (array toString conversion works)
+alert(arr); // 1,2,3,4,5 (conversão array toString funciona)
 ```
 
-The full syntax for `Array.from` allows to provide an optional "mapping" function:
+A sintaxe completa do `Array.from` permite fornecer uma função opcional de "mapeamento ":
 ```js
 Array.from(obj[, mapFn, thisArg])
 ```
 
-The second argument `mapFn` should be the function to apply to each element before adding to the array, and `thisArg` allows to set `this` for it.
+O segundo argumento `mapFn` deve ser a função a ser aplicada a cada elemento antes de ser adicionado ao array, e `thisArg` permite definir `this` para ele.
 
-For instance:
+Por exemplo:
 
 ```js
-// assuming that range is taken from the example above
+// assumindo que range é obtido do exemplo acima
 
-// square each number
+// eleva cada número ao quadrado
 let arr = Array.from(range, num => num * num);
 
 alert(arr); // 1,4,9,16,25
 ```
 
-Here we use `Array.from` to turn a string into an array of characters:
+Aqui nós usamos `Array.from` para transformar uma string em um array de caracteres:
 
 ```js run
 let str = '𝒳😂';
 
-// splits str into array of characters
+// divide str em um array de caracteres
 let chars = Array.from(str);
 
 alert(chars[0]); // 𝒳
@@ -253,14 +253,14 @@ alert(chars[1]); // 😂
 alert(chars.length); // 2
 ```
 
-Unlike `str.split`, it relies on the iterable nature of the string and so, just like `for..of`, correctly works with surrogate pairs.
+Ao contrário de `str.split`, ele depende da natureza iterável da string e, assim como `for..of`, funciona corretamente com pares substitutos.
 
-Technically here it does the same as:
+Tecnicamente aqui faz o mesmo que:
 
 ```js run
 let str = '𝒳😂';
 
-let chars = []; // Array.from internally does the same loop
+let chars = []; // Array.from internamente faz o mesmo loop
 for (let char of str) {
   chars.push(char);
 }
@@ -268,9 +268,9 @@ for (let char of str) {
 alert(chars);
 ```
 
-...But is shorter.    
+...mas é mais curto.
 
-We can even build surrogate-aware `slice` on it:
+Nós podemos até criar `slice` que entendem pares substitutos nele:
 
 ```js run
 function slice(str, start, end) {
@@ -281,25 +281,25 @@ let str = '𝒳😂𩷶';
 
 alert( slice(str, 1, 3) ); // 😂𩷶
 
-// native method does not support surrogate pairs
-alert( str.slice(1, 3) ); // garbage (two pieces from different surrogate pairs)
+// método nativo não suporta pares substitutos
+alert( str.slice(1, 3) ); // lixo (duas partes de diferentes pares substitutos)
 ```
 
 
-## Summary
+## Resumo
 
-Objects that can be used in `for..of` are called *iterable*.
+Objetos que podem ser usados ​​em `for..of` são chamados *iteráveis*.
 
-- Technically, iterables must implement the method named `Symbol.iterator`.
-    - The result of `obj[Symbol.iterator]` is called an *iterator*. It handles the further iteration process.
-    - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the iteration end, otherwise the `value` is the next value.
-- The `Symbol.iterator` method is called automatically by `for..of`, but we also can do it directly.
-- Built-in iterables like strings or arrays, also implement `Symbol.iterator`.
-- String iterator knows about surrogate pairs.
+Tecnicamente, os iteráveis devem implementar o método chamado `Symbol.iterator`.
+    - O resultado de `obj[Symbol.iterator]` é chamado de *iterador*. Ele lida com o processo de iteração adicional.
+    - Um iterador deve ter o método `next()` que retorna um objeto `{done: Boolean, value: any}`, aqui `done: true` denota o fim da iteração, caso contrário o `value` é o próximo valor.
+- O método `Symbol.iterator` é chamado automaticamente por `for..of`, mas também podemos fazê-lo diretamente.
+- Iteráveis internos, como strings ou arrays, também implementam o `Symbol.iterator`.
+- Iteradores de string reconhecem pares substitutos.
 
 
-Objects that have indexed properties and `length` are called *array-like*. Such objects may also have other properties and methods, but lack the built-in methods of arrays.
+Objetos que possuem propriedades indexadas e `length` são chamados de *array-like*. Esses objetos também podem ter outras propriedades e métodos, mas não possuem os métodos incorporados de arrays.
 
-If we look inside the specification -- we'll see that most built-in methods assume that they work with iterables or array-likes instead of "real" arrays, because that's more abstract.
+Se olharmos dentro da especificação - veremos que a maioria dos métodos incorporados pressupõe que eles trabalhem com iteráveis ​​ou com arrays em vez de arrays "reais", porque isso é mais abstrato.
 
-`Array.from(obj[, mapFn, thisArg])` makes a real `Array` of an iterable or array-like `obj`, and we can then use array methods on it. The optional arguments `mapFn` and `thisArg` allow us to apply a function to each item.
+`Array.from(obj[, mapFn, thisArg])` faz um `Array` real de um `obj` iterável ou um array-like, e nós podemos usar métodos array nele. Os argumentos opcionais `mapFn` e` thisArg` nos permitem aplicar uma função para cada item.
