@@ -226,7 +226,11 @@ As três últimas linhas podem precisar de explicações adicionais:
 
 ## Resumo
 
+<<<<<<< HEAD
 Existem 7 tipos básicos em JavaScript.
+=======
+There are 7 basic data types in JavaScript.
+>>>>>>> 027933531e121650120f7e8385f691de99af12d2
 
 - `number` para números de qualquer tipo: inteiro ou ponto flutuante.
 - `string` para cordas. Uma cadeia de caracteres pode ter um ou mais caracteres, não há nenhum tipo de caractere único separado.

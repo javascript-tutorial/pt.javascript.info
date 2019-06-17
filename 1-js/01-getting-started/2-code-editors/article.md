@@ -12,6 +12,7 @@ Uma IDE carrega o projeto (que pode ter muitos arquivos), permite navegação en
 
 Se você ainda não tiver selecionado uma IDE, considere as seguintes opções:
 
+<<<<<<< HEAD
 - [WebStorm](http://www.jetbrains.com/webstorm/) para desenvolvimento de front-end. A mesma empresa oferece outros editores para outras linguagens (pago).
 - [Netbeans](http://netbeans.org/) (livre).
 
@@ -20,6 +21,14 @@ Todas essas IDEs são multi-plataforma.
 Para Windows, há também "Visual Studio", que não deve ser confundido com "Visual Studio Code". "Visual Studio" é um editor pago e poderoso somente para Windows, bem adequado para a plataforma .NET . Uma versão gratuita é chamada [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
 Muitas IDEs são pagas, mas têm um período experimental. Seu custo é geralmente desprezível comparado ao salário de um desenvolvedor qualificado, então basta escolher o melhor para você.
+=======
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [WebStorm](http://www.jetbrains.com/webstorm/) (cross-platform, paid).
+
+For Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. It's also good at JavaScript. There's also a free version [Visual Studio Community](https://www.visualstudio.com/vs/community/).
+
+Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+>>>>>>> 027933531e121650120f7e8385f691de99af12d2
 
 ## Editores leves
 
@@ -33,6 +42,7 @@ Na prática, os editores leves podem ter muitos plug-ins, incluindo analisadores
 
 As seguintes opções merecem sua atenção:
 
+<<<<<<< HEAD
 - [Visual Studio Code](https://code.visualstudio.com/) (plataforma cruzada, livre) também tem muitos recursos similares a IDE.
 - [Atom](https://atom.io/) (multi-plataforma, livre).
 - [Sublime Text](http://www.sublimetext.com) (multi-plataforma, shareware).
@@ -49,6 +59,14 @@ Eu estou usando:
 - Como um editor de peso leve -- [Sublime Text](http://www.sublimetext.com) ou [Atom](https://atom.io/).
 
 ## Não vamos discutir
+=======
+- [Atom](https://atom.io/) (cross-platform, free).
+- [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
+- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+
+## Let's not argue
+>>>>>>> 027933531e121650120f7e8385f691de99af12d2
 
 Os editores nas listas acima são aqueles que eu ou os meus amigos que eu considero bons desenvolvedores têm usado por um longo tempo e estão felizes com eles.
 
