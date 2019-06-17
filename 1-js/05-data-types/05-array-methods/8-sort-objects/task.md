@@ -1,12 +1,12 @@
-importance: 5
+importância: 5
 
 ---
 
-# Sort users by age
+# Classificar usuários por idade
 
-Write the function `sortByAge(users)` that gets an array of objects with the `age` property and sorts them by `age`.
+Escreva a função `sortByAge(users)` que obtém um array de objetos com a propriedade `age` e classifica-os por `age`.
 
-For instance:
+Por exemplo:
 
 ```js no-beautify
 let john = { name: "John", age: 25 };
