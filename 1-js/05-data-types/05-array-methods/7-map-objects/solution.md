@@ -25,9 +25,9 @@ alert( usersMapped[0].id ); // 1
 alert( usersMapped[0].fullName ); // John Smith
 ```
 
-Please note that in for the arrow functions we need to use additional brackets. 
+Por favor, note que para as funções de flecha, precisamos usar colchetes adicionais.
 
-We can't write like this:
+Nós não podemos escrever assim:
 ```js
 let usersMapped = users.map(user => *!*{*/!*
   fullName: `${user.name} ${user.surname}`,
@@ -35,9 +35,9 @@ let usersMapped = users.map(user => *!*{*/!*
 });
 ```
 
-As we remember, there are two arrow functions: without body `value => expr` and with body `value => {...}`.
+Como nos lembramos, existem duas funções de flecha: sem corpo `value => expr` e com corpo `value => {...}`.
 
-Here JavaScript would treat `{` as the start of function body, not the start of the object. The workaround is to wrap them in the "normal" brackets:
+Aqui JavaScript trataria `{` como o início do corpo da função, não o início do objeto. A solução é envolvê-los nos parênteses "normais":
 
 ```js
 let usersMapped = users.map(user => *!*({*/!*
@@ -46,6 +46,5 @@ let usersMapped = users.map(user => *!*({*/!*
 }));
 ```
 
-Now fine.
-
+Agora está certo.
 
