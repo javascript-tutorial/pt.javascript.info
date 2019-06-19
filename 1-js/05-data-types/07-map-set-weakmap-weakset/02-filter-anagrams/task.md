@@ -1,12 +1,12 @@
-importance: 4
+importância: 4
 
 ---
 
-# Filter anagrams
+# Filtrar anagramas
 
-[Anagrams](https://en.wikipedia.org/wiki/Anagram) are words that have the same number of same letters, but in different order.
+[Anagramas](https://en.wikipedia.org/wiki/Anagram) são palavras que têm o mesmo número de letras iguais, mas em ordem diferente.
 
-For instance:
+Por exemplo:
 
 ```
 nap - pan
@@ -14,9 +14,9 @@ ear - are - era
 cheaters - hectares - teachers
 ```
 
-Write a function `aclean(arr)` that returns an array cleaned from anagrams.
+Escreva uma função `aclean(arr)` que retorna um array limpo de anagramas.
 
-For instance:
+Por exemplo:
 
 ```js
 let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
@@ -24,5 +24,5 @@ let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 alert( aclean(arr) ); // "nap,teachers,ear" or "PAN,cheaters,era"
 ```
 
-From every anagram group should remain only one word, no matter which one.
+De todo grupo anagrama deve permanecer apenas uma palavra, não importa qual.
 
