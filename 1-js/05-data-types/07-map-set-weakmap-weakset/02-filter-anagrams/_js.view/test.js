@@ -4,7 +4,7 @@ function intersection(arr1, arr2) {
 
 describe("aclean", function() {
 
-  it("returns exactly 1 word from each anagram set", function() {
+  it("retorna exatamente 1 palavra de cada conjunto de anagramas", function() {
     let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
     let result = aclean(arr);
