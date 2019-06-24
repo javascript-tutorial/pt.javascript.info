@@ -238,8 +238,8 @@ Estes são métodos para procurar por algo em um array.
 
 Os métodos [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) e [arr.includes](mdn:js/Array/includes) têm a mesma sintaxe e fazem essencialmente o mesmo que suas contrapartes de string, mas operam em itens em vez de caracteres:
 
-- `arr.indexOf (item, from)` procura por `item` iniciando no índice `from` e retorna o índice onde foi encontrado, caso contrário `-1`.
-- `arr.lastIndexOf (item, from)` - mesmo, mas procura da direita para a esquerda.
+- `arr.indexOf (item, from)` -- procura por `item` iniciando no índice `from` e retorna o índice onde foi encontrado, caso contrário `-1`.
+- `arr.lastIndexOf (item, from)` -- mesmo, mas procura da direita para a esquerda.
 - `arr.includes(item, from)` -- procura por `item` iniciando no índice `from`, retorna `true` se econtrar.
 
 Por exemplo:
@@ -418,7 +418,7 @@ alert(arr);  // *!*1, 2, 15*/!*
 
 Agora funciona como pretendido.
 
-Vamos nos afastar e pensar o que está acontecendo. O `arr` pode ser array de qualquer coisa, certo? Pode conter números ou strings ou elementos html ou qualquer outra coisa. Nós temos um conjunto de *algo*. Para classificá-lo, precisamos de uma *função de ordenação* que saiba como comparar seus elementos. O padrão é uma ordem de string.
+Vamos nos afastar e pensar o que está acontecendo. O `arr` pode ser array de qualquer coisa, certo? Pode conter números ou strings ou elementos HTML ou qualquer outra coisa. Nós temos um conjunto de *algo*. Para classificá-lo, precisamos de uma *função de ordenação* que saiba como comparar seus elementos. O padrão é uma ordem de string.
 
 O método `arr.sort(fn)` possui uma implementação incorporada do algoritmo de ordenação. Nós não precisamos nos importar como isso funciona exatamente (um [quicksort](https://en.wikipedia.org/wiki/Quicksort) otimizado  na maior parte do tempo). Ele irá percorrer o array, comparar seus elementos usando a função fornecida e reordená-los, tudo o que precisamos é fornecer o `fn` que faz a comparação.
 
@@ -548,7 +548,7 @@ Até agora, igual a `forEach/map`. Mas há mais um argumento:
 
 A maneira mais fácil de entender isso é pelo exemplo.
 
-Aqui nós temos uma soma de array em uma linha:
+Aqui nós temos uma soma de um array em uma linha:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
@@ -681,7 +681,7 @@ Na chamada acima, usamos `user.younger` como um filtro e também fornecemos `use
 
 ## Resumo
 
-Uma cheatsheet de métodos de array:
+Uma planilha de ajuda de métodos de array:
 
 - Para adicionar/remover elementos:
   - `push(...items)` -- adiciona itens no final,
@@ -729,4 +729,4 @@ Para a lista completa, veja o [manual](mdn:js/Array).
 
 Olhe a cheatsheet apenas para estar ciente deles. Em seguida, resolva as tarefas deste capítulo para praticar, para que você tenha experiência com métodos de array.
 
-Depois, sempre que você precisar fazer algo com um array e não souber como - examine a planilha e encontre o método correto. Exemplos irão ajudá-lo a escrever corretamente. Em breve, você se lembrará automaticamente dos métodos, sem esforços específicos do seu lado.
+Depois, sempre que você precisar fazer algo com um array e não souber como - examine a planilha de ajuda e encontre o método correto. Exemplos irão ajudá-lo a escrever corretamente. Em breve, você se lembrará automaticamente dos métodos, sem esforços específicos do seu lado.
