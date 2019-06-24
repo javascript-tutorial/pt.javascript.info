@@ -1,4 +1,4 @@
-# Arrays 
+# Arrays
 
 Objetos permitem que você armazene coleções de valores com chave. Isso é bom.
 
@@ -81,10 +81,10 @@ arr[3](); // hello
 
 ````smart header="Vírgula à direita"
 Um array, assim como um objeto, pode terminar com uma vírgula:
-```js 
+```js
 let fruits = [
-  "Apple", 
-  "Orange", 
+  "Apple",
+  "Orange",
   "Plum"*!*,*/!*
 ];
 ```
@@ -189,7 +189,7 @@ alert( fruits );
 
 ## Internamente
 
-Um array é um tipo especial de objeto. Os colchetes usados ​​para acessar uma propriedade `arr[0]` realmente vêm da sintaxe do objeto. Os números são usados ​​como chaves.
+Um array é um tipo especial de objeto. Os colchetes usados para acessar uma propriedade `arr[0]` realmente vêm da sintaxe do objeto. Isso é essencialmente o mesmo que `obj[key]`, onde `arr` é o objeto, enquanto os números são usados como chaves.
 
 Eles estendem objetos fornecendo métodos especiais para trabalhar com coleções ordenadas de dados e também a propriedade `length`. Mas no fundo ainda é um objeto.
 
@@ -203,7 +203,7 @@ let fruits = ["Banana"]
 let arr = fruits; // copia por referência (duas variáveis ​​referenciam o mesmo array)
 
 alert( arr === fruits ); // true
- 
+
 arr.push("Pear"); // modifica o array por referencia
 
 alert( fruits ); // Banana, Pear - 2 itens agora
@@ -296,7 +296,7 @@ let fruits = ["Apple", "Orange", "Plum"];
 
 // iterates over array elements
 for (let fruit of fruits) {
-  alert( fruit ); 
+  alert( fruit );
 }
 ```
 
@@ -320,7 +320,7 @@ Mas isso é realmente uma má ideia. Existem problemas potenciais com isso:
 
   Existem os chamados objetos "array-like" no navegador e em outros ambientes, que *se parecem com arrays*. Ou seja, eles possuem propriedades length e indíces, mas também podem ter outras propriedades e métodos não-numéricos, que normalmente não precisamos. O loop `for..in` irá listá-las. Portanto, se precisarmos trabalhar com objetos do tipo array, essas propriedades "extras" podem se tornar um problema.
 
-2. O loop `for..in` é otimizado para objetos genéricos, não para arrays, e portanto é 10 a 100 vezes mais lento. Claro, ainda é muito rápido. O aumento de velocidade só pode importar em gargalos ou parecer irrelevante. Mas ainda devemos estar conscientes da diferença.
+2. O loop `for..in` é otimizado para objetos genéricos, não para arrays, e portanto é 10 a 100 vezes mais lento. Claro, ainda é muito rápido. O aumento de velocidade só pode importar em gargalos. Mas ainda devemos estar conscientes da diferença.
 
 Geralmente, não devemos usar `for..in` para matrizes.
 
@@ -385,7 +385,7 @@ Para evitar essas surpresas, geralmente usamos colchetes, a menos que realmente 
 
 ## Arrays multidimensionais
 
-Arrays podem ter itens que também são arrays. Podemos usá-lo para arrays multidimensionais, para armazenar matrizes:
+Arrays podem ter itens que também são arrays. Podemos usá-lo para arrays multidimensionais, por exemplo para armazenar matrizes:
 
 ```js run
 let matrix = [
