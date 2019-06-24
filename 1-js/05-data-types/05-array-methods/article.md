@@ -36,7 +36,7 @@ Isso é natural, porque `delete obj.key` remove um valor pela `chave`. É tudo q
 
 Então, métodos especiais devem ser usados.
 
-O método [arr.splice (str)](mdn:js/Array/splice) é um canivete suíço para arrays. Pode fazer tudo: adicionar, remover e inserir elementos.
+O método [arr.splice (str)](mdn:js/Array/splice) é um canivete suíço para arrays. Pode fazer tudo: inserir, remover e substituir elementos.
 
 A sintaxe é:
 
