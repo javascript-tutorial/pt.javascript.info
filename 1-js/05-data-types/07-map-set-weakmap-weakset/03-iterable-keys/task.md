@@ -1,12 +1,12 @@
-importance: 5
+importância: 5
 
 ---
 
-# Iterable keys
+# Chaves Iteráveis
 
-We want to get an array of `map.keys()` and go on working with it (apart from the map itself).
+Queremos obter um array de `map.keys()` e continuar trabalhando com ele (além do próprio map).
 
-But there's a problem:
+Mas existe um problema:
 
 ```js run
 let map = new Map();
@@ -16,9 +16,9 @@ map.set("name", "John");
 let keys = map.keys();
 
 *!*
-// Error: keys.push is not a function
+// Erro: keys.push não é uma função
 keys.push("more");
 */!*
 ```
 
-Why? How can we fix the code to make `keys.push` work?
+Por quê? Como podemos consertar o código para fazer `keys.push` funcionar?

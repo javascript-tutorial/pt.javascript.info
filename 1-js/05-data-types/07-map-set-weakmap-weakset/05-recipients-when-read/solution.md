@@ -1,5 +1,5 @@
 
-To store a date, we can use `WeakMap`:
+Para armazenar uma data, podemos usar `WeakMap`:
 
 ```js
 let messages = [
@@ -11,5 +11,5 @@ let messages = [
 let readMap = new WeakMap();
 
 readMap.set(messages[0], new Date(2017, 1, 1));
-// Date object we'll study later
+// Objeto Date que estudaremos depois
 ```

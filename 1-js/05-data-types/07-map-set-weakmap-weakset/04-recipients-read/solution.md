@@ -1,4 +1,4 @@
-The sane choice here is a `WeakSet`:
+A escolha sensata aqui é um `WeakSet`:
 
 ```js
 let messages = [
@@ -25,17 +25,17 @@ messages.shift();
 // now readMessages has 1 element (technically memory may be cleaned later)
 ```
 
-The `WeakSet` allows to store a set of messages and easily check for the existance of a message in it.
+O `WeakSet` permite armazenar um conjunto de mensagens e verificar facilmente a existência de uma mensagem dentro dele.
 
-It cleans up itself automatically. The tradeoff is that we can't iterate over it. We can't get "all read messages" directly. But we can do it by iterating over all messages and filtering those that are in the set.
+Ele se limpa automaticamente. A desvantagem é que não podemos interar sobre ele. Não podemos receber "todas as mensagens lidas" diretamente. Mas podemos fazer isso iterando todas as mensagens e filtrando as que estão no conjunto.
 
-P.S. Adding a property of our own to each message may be dangerous if messages are managed by someone else's code, but we can make it a symbol to evade conflicts.
+P.S. Adicionar uma propriedade própria a cada mensagem pode ser perigoso se as mensagens forem gerenciadas pelo código de outra pessoa, mas podemos torná-la um símbolo para evitar conflitos.
 
-Like this:
+Como isso:
 ```js
-// the symbolic property is only known to our code
+// a propriedade simbólica é conhecida apenas pelo nosso código
 let isRead = Symbol("isRead");
 messages[0][isRead] = true;
 ```
 
-Now even if someone else's code uses `for..in` loop for message properties, our secret flag won't appear.
+Agora, mesmo se o código de outra pessoa usar o loop for..in para as propriedades da mensagem, nosso sinalizador secreto não aparecerá.

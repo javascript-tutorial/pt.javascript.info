@@ -1,10 +1,10 @@
-importance: 5
+importância: 5
 
 ---
 
-# Store "unread" flags
+# Armazena sinalizadores "não lidos"
 
-There's an array of messages:
+Existe um array de mensagens:
 
 ```js
 let messages = [
@@ -14,10 +14,10 @@ let messages = [
 ];
 ```
 
-Your code can access it, but the messages are managed by someone else's code. New messages are added, old ones are removed regularly by that code, and you don't know the exact moments when it happens.
+Seu código pode acessá-lo, mas as mensagens são gerenciadas pelo código de outra pessoa. Novas mensagens são adicionadas, as antigas são removidas regularmente por esse código e você não sabe exatamente quando isso acontece.
 
-Now, which data structure you could use to store information whether the message "have been read"? The structure must be well-suited to give the answer "was it read?" for the given message object.
+Agora, qual estrutura de dados você poderia usar para armazenar informações se a mensagem "foi lida"? A estrutura deve ser adequada para dar a resposta "foi lida?" para o objeto de mensagem fornecido.
 
-P.S. When a message is removed from `messages`, it should disappear from your structure as well.
+P.S. Quando uma mensagem é removida de `messages`, ela também deve desaparecer da sua estrutura.
 
-P.P.S. We shouldn't modify message objects directly. If they are managed by someone else's code, then adding extra properties to them may have bad consequences.
+P.P.S. Não devemos modificar objetos de mensagem diretamente. Se eles são gerenciados pelo código de outra pessoa, adicionar propriedades extras a eles pode ter consequências ruins.

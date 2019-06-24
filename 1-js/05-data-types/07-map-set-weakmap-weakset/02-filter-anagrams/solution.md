@@ -1,6 +1,6 @@
-To find all anagrams, let's split every word to letters and sort them. When letter-sorted, all anagrams are same.
+Para encontrar todos os anagramas, vamos dividir cada palavra em letras e classificá-las. Quando classificados por letras, todos os anagramas são iguais.
 
-For instance:
+Por exemplo:
 
 ```
 nap, pan -> anp
@@ -9,14 +9,14 @@ cheaters, hectares, teachers -> aceehrst
 ...
 ```
 
-We'll use the letter-sorted variants as map keys to store only one value per each key:
+Usaremos as variantes ordenadas por letras como chaves de mapp para armazenar apenas um valor por cada chave.
 
 ```js run
 function aclean(arr) {
   let map = new Map();
 
   for (let word of arr) {
-    // split the word by letters, sort them and join back
+    // divide a palavra por letras, odene-as e junte-as devolta
 *!*
     let sorted = word.toLowerCase().split('').sort().join(''); // (*)
 */!*
@@ -31,9 +31,9 @@ let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 alert( aclean(arr) );
 ```
 
-Letter-sorting is done by the chain of calls in the line `(*)`.
+Ordenação por letras é feita pelas chamadas encadeadas na linha `(*)`.
 
-For convenience let's split it into multiple lines:
+Por conveniência, vamos dividi-lo em várias linhas:
 
 ```js
 let sorted = arr[i] // PAN
@@ -43,21 +43,21 @@ let sorted = arr[i] // PAN
   .join(''); // anp
 ```
 
-Two different words `'PAN'` and `'nap'` receive the same letter-sorted form `'anp'`.
+Duas palavras diferentes `'PAN'` e `'nap'` recebem a mesma forma ordenada por letras `'anp'`.
 
-The next line put the word into the map:
+A próxima linha insere a palavra no map:
 
 ```js
 map.set(sorted, word);
 ```
 
-If we ever meet a word the same letter-sorted form again, then it would overwrite the previous value with the same key in the map. So we'll always have at maximum one word per letter-form.
+Se alguma vez encontrarmos uma palavra da mesma forma ordenada por letras novamente, ela sobrescreverá o valor anterior com a mesma chave no mapa. Portanto, sempre teremos no máximo uma palavra por letra.
 
-At the end `Array.from(map.values())` takes an iterable over map values (we don't need keys in the result) and returns an array of them.
+Por fim `Array.from(map.values())` pega um iterável sobre os valores do map (não precisamos das chaves no resultado) e retorna um array deles.
 
-Here we could also use a plain object instead of the `Map`, because keys are strings.
+Aqui nós também poderíamos usar um simples object em vez do `Map`, porque as chaves são strings.
 
-That's how the solution can look:
+É assim que a solução pode parecer:
 
 ```js run demo
 function aclean(arr) {
