@@ -17,12 +17,12 @@ let salaries = {
 
 alert( sumSalaries(salaries) ); // 650
 ```
-Or, optionally, we could also get the sum using `Object.values` and `reduce`:
+Ou, opcionalmente, poderíamos também obter a soma usando `Object.values` e `reduce`:
 
 ```js
-// reduce loops over array of salaries,
-// adding them up
-// and returns the result
+// reduce faz um loop sobre o array de salários,
+// soma-os
+// e retorna o resultado
 function sumSalaries(salaries) {
   return Object.values(salaries).reduce((a, b) => a + b, 0) // 650
 }
