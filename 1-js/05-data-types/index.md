@@ -1,3 +1,3 @@
-# Data types
+# Tipos de dados
 
-More data structures and more in-depth study of the types.
+Mais estruturas de dados e um estudo mais aprofundado dos tipos.
