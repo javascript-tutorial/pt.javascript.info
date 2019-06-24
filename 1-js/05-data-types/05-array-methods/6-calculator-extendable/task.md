@@ -1,25 +1,25 @@
-importance: 5
+importância: 5
 
 ---
 
-# Create an extendable calculator
+# Crie uma calculadora extensível
 
-Create a constructor function `Calculator` that creates "extendable" calculator objects.
+Crie uma função construtora `Calculator`, que cria objetos "extensíveis" de calcuadora.
 
-The task consists of two parts.
+A tarefa consiste em duas partes.
 
-1. First, implement the method `calculate(str)` that takes a string like `"1 + 2"` in the format "NUMBER operator NUMBER" (space-delimited) and returns the result. Should understand plus `+` and minus `-`.
+1. Primeiro, implemente o método `calculate(str)` que recebe uma string como `"1 + 2"` no formato "NÚMERO operador NÚMERO" (delimitado por espaços) e retorna o resultado. Deve entender mais `+` e menos `-`.
 
-    Usage example:
+    Exemplo de uso:
 
     ```js
     let calc = new Calculator;
 
     alert( calc.calculate("3 + 7") ); // 10
     ```
-2. Then add the method `addMethod(name, func)` that teaches the calculator a new operation. It takes the operator `name` and the two-argument function `func(a,b)` that implements it.
+2. Em seguida, adicione o método `addMethod(name, func)` que ensina à calculadora uma nova operação. Ele pega o operador `name` e a função de dois argumentos `func(a, b)` que o implementa.
 
-    For instance, let's add the multiplication `*`, division `/` and power `**`:
+    Por exemplo, vamos adicionar a multiplicação `*`, division `/` e potênciação `**`:
 
     ```js
     let powerCalc = new Calculator;
@@ -31,6 +31,6 @@ The task consists of two parts.
     alert( result ); // 8
     ```
 
-- No brackets or complex expressions in this task.
-- The numbers and the operator are delimited with exactly one space.
-- There may be error handling if you'd like to add it.
+- Sem colchetes ou expressões complexas nesta tarefa.
+- Os números e o operador são delimitados com exatamente um espaço.
+- Pode haver tratamento de erros se você quiser adicioná-lo.

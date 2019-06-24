@@ -1,4 +1,4 @@
-We can use `slice()` to make a copy and run the sort on it:
+Podemos usar `slice()` para fazer uma cópia e depois ordená-la:
 
 ```js run
 function copySorted(arr) {

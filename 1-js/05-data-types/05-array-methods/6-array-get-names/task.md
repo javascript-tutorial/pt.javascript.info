@@ -1,12 +1,12 @@
-importance: 5
+importância: 5
 
 ---
 
-# Map to names
+# Mapear para nomes
 
-You have an array of `user` objects, each one has `user.name`. Write the code that converts it into an array of names.
+Você tem um array de objetos `user`, cada um tem `user.name`. Escreva o código que o converte em um array de nomes.
 
-For instance:
+Por exemplo:
 
 ```js no-beautify
 let john = { name: "John", age: 25 };

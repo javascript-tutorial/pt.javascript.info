@@ -1,13 +1,13 @@
-importance: 4
+importância: 4
 
 ---
 
-# Sort in the reverse order
+# Ordenar na ordem inversa
 
 ```js
 let arr = [5, 2, 1, -10, 8];
 
-// ... your code to sort it in the reverse order
+// ... seu código para classificá-lo na ordem inversa
 
 alert( arr ); // 8, 5, 2, 1, -10
 ```
