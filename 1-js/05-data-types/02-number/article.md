@@ -1,7 +1,6 @@
 # Números
 
-Todos os números em JavaScript são armazenados no formato de 64 bits [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), também conhecido como "precisão dupla".
-
+Todos os números em JavaScript são armazenados no formato de 64 bits [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), também conhecido como "número de ponto flutuante de precisão dupla".
 
 Vamos recapitular e expandir o que atualmente sabemos sobre eles.
 
@@ -178,7 +177,7 @@ Existem duas maneiras de fazer isso:
 
 ## Cálculos imprecisos
 
-Internamente um número é representado no formato de 64-bit  [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), então existem exatamente 64 bits para guardar um número: 52 deles são usados para guardar os dígitos, 11 deles para guardar a posição do ponto decimal (eles são zero para números inteiros), e 1 bit é para o sinal.
+Internamente um número é representado no formato de 64-bit  [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), então existem exatamente 64 bits para guardar um número: 52 deles são usados para guardar os dígitos, 11 deles para guardar a posição do ponto decimal (eles são zero para números inteiros), e 1 bit é para o sinal.
 
 Se um número é muito grande, iria estourar o armazenamento de 64 bits, potencialmente retornando Infinity:
 
@@ -206,7 +205,7 @@ Ai! Existem mais consequências do que uma comparação incorreta aqui. Imagine 
 
 Mas por que isso acontece?
 
-Um número é armazenado na memória em sua forma binária, uma sequência de zeros e uns. Mas frações como `0.1`, `0.2` que parecem simples no sistema numérico decimal na verdade são frações infinitas em sua forma binária.
+Um número é armazenado na memória em sua forma binária, uma sequência de bits - zeros e uns. Mas frações como `0.1`, `0.2` que parecem simples no sistema numérico decimal na verdade são frações infinitas em sua forma binária.
 
 Em outras palavras, o que é `0.1`? É um dividído por dez `1/10`, um décimo. No sistema numérico decimal tais números são facilmente representados. Compare-o a um terço: `1/3`. Se torna uma fração sem fim `0.33333(3)`.
 
@@ -327,7 +326,7 @@ Por favor note que uma string vazia ou apenas com espaços é tratada como `0`  
 Existe um método interno especial [Object.is](mdn:js/Object/is) que compara valores como o operador `===`, mas é mais confiável em dois casos extremos:
 
 1. Funciona com `NaN`: `Object.is(NaN, NaN) === true`, isso é uma coisa boa.
-2. Valores `0` e `-0` são diferentes: `Object.is(0, -0) === false`, raramente importa, mas esses valores tecnicamente são diferentes.
+2. Valores `0` e `-0` são diferentes: `Object.is(0, -0) === false`, tecnicamente isso é verdade, porque internamente o número tem um bit de sinal que pode ser diferente, mesmo se todos outros bits são zeros.
 
 Em todos outros casos, `Object.is(a, b)` é o mesmo que `a === b`.
 
