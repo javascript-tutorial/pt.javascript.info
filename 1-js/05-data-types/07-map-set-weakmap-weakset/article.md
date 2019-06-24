@@ -241,7 +241,7 @@ set.forEach((value, valueAgain, set) => {
 
 Note a coisa engraçada. A função de callback passada em `forEach` possui 3 argumentos: um valor, então *novamente um valor*, e então o objeto alvo. De fato, o mesmo valor aparece nos argumentos duas vezes.
 
-Isso é para compatibilidade com o `Map` onde o callback passado `forEach` tem três argumentos. Parece um pouco estranho, com certeza. Mas pode ajudar a substituir `Map` por `Set` em certos casos com facilidade, e vice-versa.
+Isso é para compatibilidade com o `Map` onde a callback passada em `forEach` tem três argumentos. Parece um pouco estranho, com certeza. Mas pode ajudar a substituir `Map` por `Set` em certos casos com facilidade, e vice-versa.
 
 Os mesmos métodos `Map` tem para iteradores também são suportados:
 
