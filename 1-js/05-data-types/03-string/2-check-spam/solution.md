@@ -1,6 +1,6 @@
-To make the search case-insensitive, let's bring the string to lower case and then search:
+Para tornar a busca insensível a maiúsculas e minúsculas, vamos trazer a string para minúsculas e então procurar:
 
-```js run
+```js run demo
 function checkSpam(str) {
   let lowerStr = str.toLowerCase();
 
