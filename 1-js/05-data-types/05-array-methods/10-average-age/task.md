@@ -4,7 +4,7 @@ importância: 4
 
 # Obter idade média
 
-Escreva a função `getAverageAge(users)` que obtém um array de objetos com a propriedade `age` e obtém a média.
+Escreva a função `getAverageAge(users)` que obtém um array de objetos com a propriedade `age` e retorna a idade média.
 
 A fórmula para a média é `(age1 + age2 + ... + ageN) / N`.
 
@@ -19,4 +19,3 @@ let arr = [ john, pete, mary ];
 
 alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
 ```
-
