@@ -1,10 +1,10 @@
-importance: 5
+importância: 5
 
 ---
 
-# The maximal salary 
+# O salário máximo
 
-There is a `salaries` object:
+Existe um objeto `salaries`:
 
 ```js
 let salaries = {
@@ -14,9 +14,9 @@ let salaries = {
 };
 ```
 
-Create the function `topSalary(salaries)` that returns the name of the top-paid person.
+Crie a função `topSalary(salaries)` que retorna o nome da pessoa mais bem paga.
 
-- If `salaries` is empty, it should return `null`.
-- If there are multiple top-paid persons, return any of them.
+- Se `salaries` estiver vazio, deve retornar `null`.
+- Se houver várias pessoas mais bem pagas, devolva qualquer uma delas.
 
-P.S. Use `Object.entries` and destructuring to iterate over key/value pairs.
+P.S. Use `Object.entries` e desestruturação para iterar os pares chave/valor.

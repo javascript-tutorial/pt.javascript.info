@@ -1,5 +1,5 @@
 describe("topSalary", function() {
-  it("returns top-paid person", function() {
+  it("retorna a pessoa mais bem paga", function() {
     let salaries = {
       "John": 100,
       "Pete": 300,
@@ -9,7 +9,7 @@ describe("topSalary", function() {
     assert.equal( topSalary(salaries), "Pete" );
   });
 
-  it("returns null for the empty object", function() {
+  it("retorna null para o objeto vazio", function() {
     assert.isNull( topSalary({}) );
   });
 });
