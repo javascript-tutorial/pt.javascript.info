@@ -1,17 +1,17 @@
-importance: 4
+importância: 4
 
 ---
 
-# Format the relative date
+# Formate a data relativa
 
-Write a function `formatDate(date)` that should format `date` as follows:
+Escreva uma função `formatDate(date)` que deve formatar `date` da seguinte maneira:
 
-- If since `date` passed less than 1 second, then `"right now"`.
-- Otherwise, if since `date` passed less than 1 minute, then `"n sec. ago"`.
-- Otherwise, if less than an hour, then `"m min. ago"`.
-- Otherwise, the full date in the format `"DD.MM.YY HH:mm"`. That is: `"day.month.year hours:minutes"`, all in 2-digit format, e.g. `31.12.16 10:00`.
+- Se desde `date` passou menos de 1 segundo, então` "right now" `.
+- Caso contrário, se desde `date` passou menos de 1 minuto, então `"n sec. ago"`.
+- Caso contrário, se menos de uma hora, então `"m min. ago"`.
+- Caso contrário, a data completa no formato `"DD.MM.YY HH:mm"`. Ou seja: `"dia.mês.ano horas:minutos"`, tudo em formato de 2 dígitos, por ex. `31.12.16 10:00`.
 
-For instance:
+Por exemplo:
 
 ```js
 alert( formatDate(new Date(new Date - 1)) ); // "right now"
