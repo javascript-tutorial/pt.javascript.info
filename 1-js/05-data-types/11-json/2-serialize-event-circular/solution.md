@@ -26,5 +26,5 @@ alert( JSON.stringify(meetup, function replacer(key, value) {
 */
 ```
 
-Here we also need to test `key==""` to exclude the first call where it is normal that `value` is `meetup`.
+Aqui nós também precisamos testar `key ==""` para excluir a primeira chamada, onde é normal que `value` seja `Tmeetup`.
 

@@ -1,14 +1,14 @@
-importance: 5
+importância: 5
 
 ---
 
-# Exclude backreferences
+# Excluir referências anteriores
 
-In simple cases of circular references, we can exclude an offending property from serialization by its name.
+Em casos simples de referências circulares, podemos excluir uma propriedade ofensiva da serialização por seu nome.
 
-But sometimes there are many backreferences. And names may be used both in circular references and normal properties.
+Mas às vezes há muitas referências anteriores. E os nomes podem ser usados tanto em referências circulares como em propriedades normais.
 
-Write `replacer` function to stringify everything, but remove properties that reference `meetup`:
+Escreva a função `replacer` para transformar tudo em string, mas remova as propriedades que fazem referência a `meetup`:
 
 ```js run
 let room = {
@@ -22,16 +22,16 @@ let meetup = {
 };
 
 *!*
-// circular references 
+// referências circulares
 room.occupiedBy = meetup;
 meetup.self = meetup;
 */!*
 
 alert( JSON.stringify(meetup, function replacer(key, value) {
-  /* your code */
+  /* seu código */
 }));
 
-/* result should be:
+/* resultado deve ser:
 {
   "title":"Conference",
   "occupiedBy":[{"name":"John"},{"name":"Alice"}],
