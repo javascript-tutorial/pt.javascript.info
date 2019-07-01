@@ -1,12 +1,12 @@
-# Functions
+# Funções
 
-Quite often we need to perform a similar action in many places of the script.
+Muitas vezes nós precisamos realizar uma ação semelhante em muitos lugares do script.
 
-For example, we need to show a nice-looking message when a visitor logs in, logs out and maybe somewhere else.
+Por exemplo, precisamos mostrar uma boa mensagem quando um usuário efetua login, efetua logout e talvez em outro lugar.
 
-Functions are the main "building blocks" of the program. They allow the code to be called many times without repetition.
+Funções são os principais "building blocks" do programa. Elas permitem que o código sejam chamados muitas vezes sem repetição.
 
-We've already seen examples of built-in functions, like `alert(message)`, `prompt(message, default)` and `confirm(question)`. But we can create functions of our own as well.
+Nós já vimos exemplos de built-in functions, como `alert(message)`, `prompt(message, default)` e `confirm(question)`. Mas nós podemos criar funções próprias também.
 
 ## Function Declaration
 
