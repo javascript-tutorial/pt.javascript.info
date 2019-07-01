@@ -135,8 +135,13 @@ alert(hello); // Olá Mundo!
 alert(message); // Olá Mundo!
 ```
 
+<<<<<<< HEAD
 ```smart header="Linguagens funcionais"
 É interessante notar que linguagens de programação [funcional](https://en.wikipedia.org/wiki/Functional_programming), como [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/), proibem a modificação de valores de variáveis.
+=======
+```smart header="Functional languages"
+It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+>>>>>>> 6bbe0b4313a7845303be835d632ef8e5bc7715cd
 
 Em tais linguagens, uma vez que o valor é armazenado "na box", ele está lá para sempre. Se precisarmos de armazenar algo mais, a linguagem nos obriga a criar uma nova box (declarar uma nova variável). Não podemos reutilizar a antiga.
 
@@ -182,8 +187,13 @@ let my-name; // hífens '-' não são permitidos no nome
 Variáveis chamadas `apple` e `AppLE` são duas variáveis diferentes.
 ```
 
+<<<<<<< HEAD
 ````smart header="Letras não inglesas são permitidas, mas não são recomendadas"
 É possível usar qualquer idioma, incluindo letras cirílicas ou até hieróglifos, como este:
+=======
+````smart header="Non-Latin letters are allowed, but not recommended"
+It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
+>>>>>>> 6bbe0b4313a7845303be835d632ef8e5bc7715cd
 
 ```js
 let имя = '...';
@@ -254,7 +264,11 @@ Há uma prática generalizada de usar constantes como aliases para valores difí
 
 Tais constantes são nomeadas usando letras maiúsculas e sublinhados.
 
+<<<<<<< HEAD
 Como estas:
+=======
+For instance, let's make constants for colors in so-called "web" (hexadecimal) format:
+>>>>>>> 6bbe0b4313a7845303be835d632ef8e5bc7715cd
 
 ```js run
 const COLOR_RED = "#F00";
@@ -290,7 +304,11 @@ Em outras palavras, constantes com nomes maiúsculos são usadas apenas como pse
 
 Falando em variáveis, há mais uma coisa extremamente importante.
 
+<<<<<<< HEAD
 Por favor, nomeie as suas variáveis de forma sensata. Tome tempo para pensar sobre isso.
+=======
+A variable name should have a clean, obvious meaning, describe the data that it stores.
+>>>>>>> 6bbe0b4313a7845303be835d632ef8e5bc7715cd
 
 A nomenclatura variável é uma das habilidades mais importantes e complexas em programação. Uma rápida olhada em nomes de variáveis pode revelar qual código foi escrito por um iniciante versus um desenvolvedor experiente.
 

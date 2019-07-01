@@ -181,9 +181,9 @@ document.cookie = "user=John; secure";
 
 ## samesite
 
-That's another security option, to protect from so-called XSRF (cross-site request forgery) attacks.
+That's another security attribute `somesite`. It's designed to protect from so-called XSRF (cross-site request forgery) attacks.
 
-To understand when it's useful, let's introduce the following attack scenario.
+To understand how it works and when it's useful, let's take a look at XSRF attacks.
 
 ### XSRF attack
 
@@ -232,7 +232,7 @@ Lax mode, just like `strict`, forbids the browser to send cookies when coming fr
 A `samesite=lax` cookie is sent if both of these conditions are true:
 1. The HTTP method is "safe" (e.g. GET, but not POST).
 
-    The full list safe of HTTP methods is in the [RFC7231 specification](https://tools.ietf.org/html/rfc7231). Basically, these are the methods that should be used for reading, but not writing the data. They must not perform any data-changing operations. Following a link is always GET, the safe method.
+    The full list of safe HTTP methods is in the [RFC7231 specification](https://tools.ietf.org/html/rfc7231). Basically, these are the methods that should be used for reading, but not writing the data. They must not perform any data-changing operations. Following a link is always GET, the safe method.
 
 2. The operation performs top-level navigation (changes URL in the browser address bar).
 
