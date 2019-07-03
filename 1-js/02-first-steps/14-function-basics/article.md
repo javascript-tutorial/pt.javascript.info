@@ -10,27 +10,27 @@ Nós já vimos exemplos de built-in functions, como `alert(message)`, `prompt(me
 
 ## Function Declaration
 
-To create a function we can use a *function declaration*.
+Para criarmos uma função podemos usar uma *function declaration*.
 
-It looks like this:
+Se parece assim:
 
 ```js
 function showMessage() {
-  alert( 'Hello everyone!' );
+  alert( 'Olá a todos!' );
 }
 ```
 
-The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
+A palavra-chave `function` vem primeiro, depois vem o *nome da função*, e uma lista de *parâmetros* entre os parêntesis (vazio no exemplo acima) e finalmente o código da função, também chamado de "o corpo da função", entre chaves.
 
 ![](function_basics.png)
 
-Our new function can be called by its name: `showMessage()`.
+Nossa nova função pode ser chamada pelo seu nome: `showMessage()`.
 
-For instance:
+Por exemplo:
 
 ```js run
 function showMessage() {
-  alert( 'Hello everyone!' );
+  alert( 'Olá a todos!' );
 }
 
 *!*
@@ -39,96 +39,96 @@ showMessage();
 */!*
 ```
 
-The call `showMessage()` executes the code of the function. Here we will see the message two times.
+A chamada `showMessage()` executa o código da função. Aqui vemos a mensagem duas vezes.
 
-This example clearly demonstrates one of the main purposes of functions: to avoid code duplication.
+Este exemplo demonstra claramente um dos principais objetivos das funções: evitar código duplicado.
 
-If we ever need to change the message or the way it is shown, it's enough to modify the code in one place: the function which outputs it.
+Se precisarmos mudar a mensagem ou a maneira que ela é mostrada, basta modificar o código em um só lugar: the function which outputs it.
 
-## Local variables
+## Variáveis locais
 
-A variable declared inside a function is only visible inside that function.
+Uma variável declarada dentro de uma função é apenas visível dentro dessa função.
 
-For example:
+Por exemplo:
 
 ```js run
 function showMessage() {
 *!*
-  let message = "Hello, I'm JavaScript!"; // local variable
+  let message = "Olá, Eu sou JavaScript!"; // variável local
 */!*
 
   alert( message );
 }
 
-showMessage(); // Hello, I'm JavaScript!
+showMessage(); // Olá, Eu sou JavaScript!
 
-alert( message ); // <-- Error! The variable is local to the function
+alert( message ); // <-- Erro! A variável é local para a função
 ```
 
-## Outer variables
+## Variáveis externas
 
-A function can access an outer variable as well, for example:
+Uma função também pode acessar uma variável externa, por exemplo:
 
 ```js run no-beautify
 let *!*userName*/!* = 'John';
 
 function showMessage() {
-  let message = 'Hello, ' + *!*userName*/!*;
+  let message = 'Olá, ' + *!*userName*/!*;
   alert(message);
 }
 
-showMessage(); // Hello, John
+showMessage(); // Olá, John
 ```
 
-The function has full access to the outer variable. It can modify it as well.
+A função tem acesso total à variável externa. It can modify it as well.
 
-For instance:
+Por exemplo:
 
 ```js run
 let *!*userName*/!* = 'John';
 
 function showMessage() {
-  *!*userName*/!* = "Bob"; // (1) changed the outer variable
+  *!*userName*/!* = "Bob"; // (1) mudou a variável externa
 
-  let message = 'Hello, ' + *!*userName*/!*;
+  let message = 'Olá, ' + *!*userName*/!*;
   alert(message);
 }
 
-alert( userName ); // *!*John*/!* before the function call
+alert( userName ); // *!*John*/!* antes da chamada da função
 
 showMessage();
 
-alert( userName ); // *!*Bob*/!*, the value was modified by the function
+alert( userName ); // *!*Bob*/!*, o valor foi modificado pela função
 ```
 
-The outer variable is only used if there's no local one. So an occasional modification may happen if we forget `let`.
+A variável externa é apenas usada se não existir uma local. Então, uma modificação ocasional pode acontencer se esquercermos do `let`.
 
-If a same-named variable is declared inside the function then it *shadows* the outer one. For instance, in the code below the function uses the local `userName`. The outer one is ignored:
+Se uma variável com o mesmo nome é declarada dentro da função, então ela *shadows* a externa. Por exemplo, no código abaixo, a função usa o `userName` local. O exterior é ignorado:
 
 ```js run
 let userName = 'John';
 
 function showMessage() {
 *!*
-  let userName = "Bob"; // declare a local variable
+  let userName = "Bob"; // declara uma variável local
 */!*
 
-  let message = 'Hello, ' + userName; // *!*Bob*/!*
+  let message = 'Olá, ' + userName; // *!*Bob*/!*
   alert(message);
 }
 
-// the function will create and use its own userName
+// a função criará e usará seu próprio userName
 showMessage();
 
-alert( userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
+alert( userName ); // *!*John*/!*, inalterado, a função não acessou a variável externa
 ```
 
 ```smart header="Global variables"
-Variables declared outside of any function, such as the outer `userName` in the code above, are called *global*.
+Variáveis declaradas fora de qualquer função, como o `userName` externo no código acima, são chamados de *globais*.
 
-Global variables are visible from any function (unless shadowed by locals).
+Variáveis globais são visíveis por qualquer função (a não ser que sejam shadowed pelas locais).
 
-Usually, a function declares all variables specific to its task. Global variables only store project-level data, and it's important that these variables are accessible from anywhere. Modern code has few or no globals. Most variables reside in their functions.
+Normalmente, uma função declara todas as variáveis específicas de sua tarefa. As variáveis globais armazenam apenas dados em nível de projeto e é importante que essas variáveis sejam acessíveis de qualquer lugar. Código moderno tem poucos ou nenhum globais. A maioria das variáveis reside em suas funções.
 ```
 
 ## Parameters
