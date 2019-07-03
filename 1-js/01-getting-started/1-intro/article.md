@@ -6,7 +6,11 @@ Vamos ver o que há de tão especial no JavaScript, o que podemos fazer com ele,
 
 *JavaScript* foi inicialmente criado para *" tornar páginas web vivas "*.
 
+<<<<<<< HEAD
 Os programas nesta linguagem são chamados de *scripts*. Eles podem ser escritos diretamente no HTML de uma página web e executados automaticamente quando a página é carregada.
+=======
+The programs in this language are called *scripts*. They can be written right in a web page's HTML and run automatically as the page loads.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Os scripts são fornecidos e executados como texto puro. Eles não precisam de preparação ou compilação especial para serem executados.
 
@@ -70,7 +74,11 @@ Exemplos de tais restrições incluem:
    Existem maneiras de interagir com a câmera / microfone e outros dispositivos, mas eles exigem permissão explícita do usuário. Assim, uma página habilitada para JavaScript pode não habilmente habilitar uma câmera web, observar os arredores e enviar as informações para a [NSA](https://pt.wikipedia.org/wiki/Ag%C3%AAncia_de_Seguran%C3%A7a_Nacional).
 - Diferentes abas/janelas geralmente não se conhecem mutuamente. Às vezes sim, por exemplo, quando uma janela usa JavaScript para abrir a outra. Mas mesmo neste caso, JavaScript de uma página pode não acessar a outra se eles vierem de sites diferentes (de um domínio, protocolo ou porta diferente).
 
+<<<<<<< HEAD
     Isso é chamado de "Política de mesma origem ". Para contornar isso, *ambas as páginas* devem conter um código JavaScript especial que lida com a troca de dados.
+=======
+    This is called the "Same Origin Policy". To work around that, *both pages* must agree for data exchange and contain a special JavaScript code that handles it. We'll cover that in the tutorial.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
     Essa limitação é, novamente, para a segurança do usuário. Uma página de `http://umsitequalquer.com.br` que um usuário abriu não deve poder alcançar uma outra aba do navegador com a URL `http://gmail.com` e roubar a informação de lá.
 - O JavaScript pode se comunicar facilmente pela rede com o servidor de onde a página atual veio. Mas sua capacidade de receber dados de outros sites / domínios é prejudicada. Embora possível, requer acordo explícito (expresso em cabeçalhos HTTP) do lado remoto. Mais uma vez, isso é uma limitação de segurança.
@@ -107,11 +115,20 @@ Ferramentas modernas tornam a transpilação muito rápida e transparente, permi
 
 Exemplos de tais linguagens:
 
+<<<<<<< HEAD
 - [CoffeeScript](http://coffeescript.org/) é um "açúcar sintático" para JavaScript. Ele introduz uma sintaxe mais curta, permitindo-nos escrever um código mais claro e preciso. Normalmente, Ruby devs gostam dele.
 - [TypeScript](http://www.typescriptlang.org/) está concentrado em adicionar "dados estritos de digitação" para simplificar o desenvolvimento e suporte de sistemas complexos. É desenvolvido pela Microsoft.
 - [Dart](https://www.dartlang.org/) é uma linguagem autônoma que tem seu próprio mecanismo que roda em ambientes sem navegador (como aplicativos móveis). Ela foi inicialmente oferecida pelo Google como um substituto para JavaScript, mas a partir de agora, os navegadores exigem que ela seja transpilada para JavaScript da mesma forma que as anteriores.
 
 Há mais. Claro que, mesmo que usemos uma dessas linguagens, também devemos saber JavaScript para entender o que estamos fazendo.
+=======
+- [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
+- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
+- [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
+- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
+
+There are more. Of course, even if we use one of transpiled languages, we should also know JavaScript to really understand what we're doing.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 ## Resumo
 
