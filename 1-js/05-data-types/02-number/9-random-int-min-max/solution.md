@@ -1,6 +1,6 @@
-# The simple but wrong solution
+# A solução simples porém errada
 
-The simplest, but wrong solution would be to generate a value from `min` to `max` and round it:
+A solução mais simples, porém errada seria gerar um valor entre `min` e `max` e arredondá-lo:
 
 ```js run
 function randomInteger(min, max) {
@@ -11,11 +11,11 @@ function randomInteger(min, max) {
 alert( randomInteger(1, 3) );
 ```
 
-The function works, but it is incorrect. The probability to get edge values `min` and `max` is two times less than any other.
+A função funciona, mas é incorrea. A probabilidade de obter os valores extremos `min` e `max` é duas vezes menor do que qualquer outro.
 
-If you run the example above many times, you would easily see that `2` appears the most often.
+Se você executar o exemplo acima várias vezes, você facilmente perceberia que `2` aparece com maior frequência.
 
-That happens because `Math.round()` gets random numbers from the interval `1..3` and rounds them as follows:
+Isso acontece porque `Math.round()` recebe números aleatórios no intervalo `1..3` e arredonda-os da seguinte maneira:
 
 ```js no-beautify
 values from 1    ... to 1.4999999999  become 1
@@ -23,16 +23,16 @@ values from 1.5  ... to 2.4999999999  become 2
 values from 2.5  ... to 2.9999999999  become 3
 ```
 
-Now we can clearly see that `1` gets twice less values than `2`. And the same with `3`.
+Agora podemos ver claramente que `1` recebe duas vezes menos valores do que `2`. E o mesmo com `3`.
 
-# The correct solution
+# A solução correta
 
-There are many correct solutions to the task. One of them is to adjust interval borders. To ensure the same intervals, we can generate values from `0.5 to 3.5`, thus adding the required probabilities to the edges:
+Existem várias soluções corretas para a tarefa. Uma delas é ajustar as bordas do intervalo. Para garantir os mesmos intervalos, podemos gerar valores entre `0.5 e 3.5`, assim adicionando as probailidades requeridas aos extremos:
 
 ```js run
 *!*
 function randomInteger(min, max) {
-  // now rand is from  (min-0.5) to (max+0.5)
+  // agora rand vai de  (min-0.5) a (max+0.5)
   let rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
 }
@@ -41,12 +41,12 @@ function randomInteger(min, max) {
 alert( randomInteger(1, 3) );
 ```
 
-An alternative way could be to use `Math.floor` for a random number from `min` to `max+1`:
+Uma maneira alternativa seria usar `Math.floor` para um número aleatório entre `min` e `max+1`:
 
 ```js run
 *!*
 function randomInteger(min, max) {
-  // here rand is from min to (max+1)
+  // aqui rand está entre min e (max+1)
   let rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 }
@@ -55,7 +55,7 @@ function randomInteger(min, max) {
 alert( randomInteger(1, 3) );
 ```
 
-Now all intervals are mapped this way:
+Agora todos intervalos estão mapeados dessa forma:
 
 ```js no-beautify
 values from 1  ... to 1.9999999999  become 1
@@ -63,4 +63,4 @@ values from 2  ... to 2.9999999999  become 2
 values from 3  ... to 3.9999999999  become 3
 ```
 
-All intervals have the same length, making the final distribution uniform.
+Todos intervalos têm o mesmo tamanho, fazendo a distribuição final uniforme.
