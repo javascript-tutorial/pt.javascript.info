@@ -131,33 +131,33 @@ Variáveis globais são visíveis por qualquer função (a não ser que sejam sh
 Normalmente, uma função declara todas as variáveis específicas de sua tarefa. As variáveis globais armazenam apenas dados em nível de projeto e é importante que essas variáveis sejam acessíveis de qualquer lugar. Código moderno tem poucos ou nenhum globais. A maioria das variáveis reside em suas funções.
 ```
 
-## Parameters
+## Parâmetros
 
-We can pass arbitrary data to functions using parameters (also called *function arguments*) .
+Nós podemos passar dados arbitrários para funções usando parâmetros (também chamados de *function arguments*) .
 
-In the example below, the function has two parameters: `from` and `text`.
+No exemplo abaixo, a função tem dois parâmetros: `from` e `text`.
 
 ```js run
-function showMessage(*!*from, text*/!*) { // arguments: from, text
+function showMessage(*!*from, text*/!*) { // argumentos: from, text
   alert(from + ': ' + text);
 }
 
 *!*
-showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
-showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+showMessage('Ann', 'Olá!'); // Ann: Olá! (*)
+showMessage('Ann', "Estás bem?"); // Ann: Estás bem? (**)
 */!*
 ```
 
-When the function is called in lines `(*)` and `(**)`, the given values are copied to local variables `from` and `text`. Then the function uses them.
+Quando uma função é chamada em linhas `(*)` e `(**)`, os valores passados são copiados para as variáveis locais `from` e `text`. Então a função os usa.
 
-Here's one more example: we have a variable `from` and pass it to the function. Please note: the function changes `from`, but the change is not seen outside, because a function always gets a copy of the value:
+Aqui está mais um exemplo: temos uma variável `from` e passamos para a função. Por favor anote: a função muda `from`, mas a mudança não é vista de fora, porque uma função sempre recebe uma cópia do valor:
 
 
 ```js run
 function showMessage(from, text) {
 
 *!*
-  from = '*' + from + '*'; // make "from" look nicer
+  from = '*' + from + '*'; // faz "from" parecer melhor
 */!*
 
   alert( from + ': ' + text );
@@ -165,9 +165,9 @@ function showMessage(from, text) {
 
 let from = "Ann";
 
-showMessage(from, "Hello"); // *Ann*: Hello
+showMessage(from, "Hello"); // *Ann*: Olá
 
-// the value of "from" is the same, the function modified a local copy
+// o valor de "from" é o mesmo, a função modifica a cópia local
 alert( from ); // Ann
 ```
 
