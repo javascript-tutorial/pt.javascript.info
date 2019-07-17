@@ -171,56 +171,57 @@ showMessage(from, "Hello"); // *Ann*: Olá
 alert( from ); // Ann
 ```
 
-## Default values
+## Valores padrões
 
-If a parameter is not provided, then its value becomes `undefined`.
+Se um parâmetro não é fornecido, então seu valor torna-se `undefined`.
 
-For instance, the aforementioned function `showMessage(from, text)` can be called with a single argument:
+Por exemplo, a função acima mencionada `showMessage(from, text)` pode ser chamada com um único argumento:
 
 ```js
 showMessage("Ann");
 ```
 
-That's not an error. Such a call would output `"Ann: undefined"`. There's no `text`, so it's assumed that `text === undefined`.
+Isso não é um erro. Tal chamada produziria `"Ann: undefined"`. Não existe `text`, então é assumido que `text === undefined`.
 
-If we want to use a "default" `text` in this case, then we can specify it after `=`:
+Se queremos usar um `text` "padrão" nessa caso, então podemos especificá-lo depois `=`:
 
 ```js run
-function showMessage(from, *!*text = "no text given"*/!*) {
+function showMessage(from, *!*text = "nenhum texto passado"*/!*) {
   alert( from + ": " + text );
 }
 
-showMessage("Ann"); // Ann: no text given
+showMessage("Ann"); // Ann: nenhum texto passado
 ```
 
-Now if the `text` parameter is not passed, it will get the value `"no text given"`
+Agora se o parâmetro `text` não foi passado, ele irá retornar o valor `"nenhum texto passado"`
 
-Here `"no text given"` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
+Aqui `"nenhum texto passado"` é uma string, embora ela possa ser uma expressão mais complexa, que só é avaliada e atribuída se o parâmetro estiver faltando. Logo, isso também é possível:
 
 ```js run
 function showMessage(from, text = anotherFunction()) {
-  // anotherFunction() only executed if no text given
-  // its result becomes the value of text
+  // anotherFunction() apenas é executada se nenhum texto for passado
+  // seu resultado torna-se o valor do texto
 }
 ```
 
-```smart header="Evaluation of default parameters"
+```smart header="Avaliação de parâmetros padrão"
 
-In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter. In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter. This is in contrast to some other languages like Python, where any default parameters are evaluated only once during the initial interpretation.
+Em JavaScript, um parâmetro padrão é avaliado toda vez que a função é chamada sem o respectivo parâmetro. No exemplo acima, `anotherFunction ()` é chamado toda vez que `showMessage ()` é chamado sem o parâmetro `text`. Isto está em contraste com algumas outras linguagens como o Python, onde qualquer parâmetro padrão é avaliado apenas uma vez durante a interpretação inicial.
 
 ```
 
 
-````smart header="Default parameters old-style"
-Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
+````smart header="Parâmetros padrão no old-style"
+Edições antigas de JavaScript não suportavam parâmetros padrão. Portanto, há maneiras alternativas de suportá-las, que você pode encontrar principalmente nos scripts antigos.
 
-For instance, an explicit check for being `undefined`:
+Por exemplo, uma verificação explícita por ser `undefined`:
+
 
 ```js
 function showMessage(from, text) {
 *!*
   if (text === undefined) {
-    text = 'no text given';
+    text = 'nenhum texto passado';
   }
 */!*
 
@@ -228,12 +229,12 @@ function showMessage(from, text) {
 }
 ```
 
-...Or the `||` operator:
+...Ou o `||` operador:
 
 ```js
 function showMessage(from, text) {
-  // if text is falsy then text gets the "default" value
-  text = text || 'no text given';
+  // se o texto é falso então retorna o valor "default"
+  text = text || 'nenhum texto passado';
   ...
 }
 ```
