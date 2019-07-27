@@ -93,27 +93,27 @@ alert( +"" );   // 0
 
 Na realidade faz a mesma coisa que `Number(...)`, mas é mais curto.
 
-The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings.
+A necessidade de converter strings em números surge frequentemente. Por exemplo, se nós estamos pegando valores de campos de formulário HTML, eles são geralmente strings.
 
-What if we want to sum them?
+E se nós quisermos somá-los?
 
-The binary plus would add them as strings:
+O binário mais deve somá-los como strings:
 
 ```js run
 let apples = "2";
 let oranges = "3";
 
-alert( apples + oranges ); // "23", the binary plus concatenates strings
+alert( apples + oranges ); // "23", o binário mais concatena strings
 ```
 
-If we want to treat them as numbers, we need to convert and then sum them:
+E Se nós quisermos tratá-los como números, nós precisamos converter e então somá-los:
 
 ```js run
 let apples = "2";
 let oranges = "3";
 
 *!*
-// both values converted to numbers before the binary plus
+// ambos valores convertidos para números antes do mais binário
 alert( +apples + +oranges ); // 5
 */!*
 
