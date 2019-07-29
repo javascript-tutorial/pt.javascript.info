@@ -99,7 +99,7 @@ Podemos facilmente compreender o conceito de uma "variável" se a imaginarmos co
 
 Por exemplo, a variável `mensagem` pode ser imaginada como uma box chamada `"message"`com o valor `"Olá"`!:
 
-![](variable.png)
+![](variable.svg)
 
 Podemos pôr qualquer valor na box.
 
@@ -116,7 +116,7 @@ alert(message);
 
 Quando o valor é modificado, os dados antigos são removidos da variável:
 
-![](variable-change.png)
+![](variable-change.svg)
 
 Nós também podemos declarar duas variáveis e copiar dados de uma para a outra.
 
@@ -135,8 +135,13 @@ alert(hello); // Olá Mundo!
 alert(message); // Olá Mundo!
 ```
 
+<<<<<<< HEAD
 ```smart header="Linguagens funcionais"
 É interessante notar que linguagens de programação [funcional](https://en.wikipedia.org/wiki/Functional_programming), como [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/), proibem a modificação de valores de variáveis.
+=======
+```smart header="Functional languages"
+It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Em tais linguagens, uma vez que o valor é armazenado "na box", ele está lá para sempre. Se precisarmos de armazenar algo mais, a linguagem nos obriga a criar uma nova box (declarar uma nova variável). Não podemos reutilizar a antiga.
 
@@ -182,8 +187,13 @@ let my-name; // hífens '-' não são permitidos no nome
 Variáveis chamadas `apple` e `AppLE` são duas variáveis diferentes.
 ```
 
+<<<<<<< HEAD
 ````smart header="Letras não inglesas são permitidas, mas não são recomendadas"
 É possível usar qualquer idioma, incluindo letras cirílicas ou até hieróglifos, como este:
+=======
+````smart header="Non-Latin letters are allowed, but not recommended"
+It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ```js
 let имя = '...';
@@ -254,7 +264,11 @@ Há uma prática generalizada de usar constantes como aliases para valores difí
 
 Tais constantes são nomeadas usando letras maiúsculas e sublinhados.
 
+<<<<<<< HEAD
 Como estas:
+=======
+For instance, let's make constants for colors in so-called "web" (hexadecimal) format:
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ```js run
 const COLOR_RED = "#F00";
@@ -290,7 +304,11 @@ Em outras palavras, constantes com nomes maiúsculos são usadas apenas como pse
 
 Falando em variáveis, há mais uma coisa extremamente importante.
 
+<<<<<<< HEAD
 Por favor, nomeie as suas variáveis de forma sensata. Tome tempo para pensar sobre isso.
+=======
+A variable name should have a clean, obvious meaning, describe the data that it stores.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 A nomenclatura variável é uma das habilidades mais importantes e complexas em programação. Uma rápida olhada em nomes de variáveis pode revelar qual código foi escrito por um iniciante versus um desenvolvedor experiente.
 
@@ -323,8 +341,14 @@ Os minificadores e navegadores JavaScript modernos otimizam o código o suficien
 
 Podemos declarar variáveis para armazenar dados usando as palavras-chave `var`, `let`, ou `const`.
 
+<<<<<<< HEAD
 - `let` -- é uma declaração de variável moderna. O código deve estar em modo estrito para usar `let` no Chrome (V8).
 - `var` -- é uma declaração de variável da velha escola. Normalmente não a usamos de todo, mas vamos cobrir diferenças sutis de `let` no capítulo <info:var>, para o caso de você precisar delas.
 - `const` -- é como `let`, mas o valor da variável não pode ser alterado.
+=======
+- `let` -- is a modern variable declaration.
+- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
+- `const` -- is like `let`, but the value of the variable can't be changed.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 As variáveis devem ser nomeadas de uma forma que nos permita compreender facilmente o que está dentro delas.
