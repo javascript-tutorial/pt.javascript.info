@@ -99,7 +99,7 @@ Podemos facilmente compreender o conceito de uma "variável" se a imaginarmos co
 
 Por exemplo, a variável `mensagem` pode ser imaginada como uma box chamada `"message"`com o valor `"Olá"`!:
 
-![](variable.png)
+![](variable.svg)
 
 Podemos pôr qualquer valor na box.
 
@@ -116,7 +116,7 @@ alert(message);
 
 Quando o valor é modificado, os dados antigos são removidos da variável:
 
-![](variable-change.png)
+![](variable-change.svg)
 
 Nós também podemos declarar duas variáveis e copiar dados de uma para a outra.
 
