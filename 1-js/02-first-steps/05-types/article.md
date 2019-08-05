@@ -178,7 +178,11 @@ O tipo `object` é especial.
 
 Todos os outros tipos são chamados de "primitivos" porque seus valores podem conter apenas uma única coisa (seja uma string ou um número ou qualquer outro). Por outro lado, os objetos são usados para armazenar coleções de dados e entidades mais complexas. Nós vamos lidar com eles mais adiante no capítulo <info: object> depois que aprendermos mais sobre primitivos.
 
+<<<<<<< HEAD
 O tipo `symbol` é usado para criar identificadores únicos para objetos. Nós temos que mencioná-lo aqui para completude, mas é melhor estudar este tipo após os objetos.
+=======
+The `symbol` type is used to create unique identifiers for objects. We mention it here for completeness, but we'll study it after objects.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ## The typeof operator [#type-typeof]
 
@@ -219,14 +223,24 @@ typeof alert // "function"  (3)
 
 As três últimas linhas podem precisar de explicações adicionais:
 
+<<<<<<< HEAD
 1. `Math` é um objeto embutido que fornece operações matemáticas. Nós o aprenderemos no capítulo <info:number>. Aqui, ele serve apenas como um exemplo de um objeto.
 2. O resultado de `typeof null` é `"object"`. Isso é errado. É um erro oficialmente reconhecido em `typeof`, mantido para compatibilidade. Naturalmente, `null` não é um objeto. É um valor especial com um tipo separado próprio. Assim, outra vez, este é um erro na linguagem.
 3. O resultado de `typeof alert` é `"function"`, porque `alert` é uma função da linguagem. Vamos estudar as funções nos próximos capítulos onde veremos que não há nenhum tipo de "função" especial em JavaScript. As funções pertencem ao tipo de objecto. Mas o `typeof` trata-as de forma diferente. Formalmente, é incorrecto, mas muito conveniente na prática.
+=======
+1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here, it serves just as an example of an object.
+2. The result of `typeof null` is `"object"`. That's wrong. It is an officially recognized error in `typeof`, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, this is an error in the language.
+3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That's not quite correct, but very convenient in practice.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 
 ## Resumo
 
+<<<<<<< HEAD
 Existem 7 tipos básicos em JavaScript.
+=======
+There are 7 basic data types in JavaScript.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 - `number` para números de qualquer tipo: inteiro ou ponto flutuante.
 - `string` para cordas. Uma cadeia de caracteres pode ter um ou mais caracteres, não há nenhum tipo de caractere único separado.
