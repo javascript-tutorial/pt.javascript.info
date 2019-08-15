@@ -2,7 +2,7 @@ importância: 4
 
 ---
 
-# Function pow(x,n)
+# Função pow(x,n)
 
 Escreva uma função `pow(x,n)` que retorna `x` no expoente `n`. Ou, em outras palavras, multiplica `x` por si mesmo `n` vezes e retorna um resultado.
 
