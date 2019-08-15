@@ -43,7 +43,7 @@ A chamada `showMessage()` executa o código da função. Aqui vemos a mensagem d
 
 Este exemplo demonstra claramente um dos principais objetivos das funções: evitar código duplicado.
 
-Se precisarmos mudar a mensagem ou a maneira que ela é mostrada, basta modificar o código em um só lugar: the function which outputs it.
+Se precisarmos mudar a mensagem ou a maneira que ela é mostrada, basta modificar o código em um só lugar: a função que gera isso.
 
 ## Variáveis locais
 
@@ -80,7 +80,7 @@ function showMessage() {
 showMessage(); // Olá, John
 ```
 
-A função tem acesso total à variável externa. It can modify it as well.
+A função tem acesso total à variável externa. Pode modificá-la também.
 
 Por exemplo:
 
@@ -243,11 +243,11 @@ function showMessage(from, text) {
 ````
 
 
-## Returning a value
+## Retornando um valor
 
-A function can return a value back into the calling code as the result.
+Uma função pode retornar um valor de volta ao código de chamada como resultado.
 
-The simplest example would be a function that sums two values:
+O exemplo mais simples seria uma função que soma dois valores:
 
 ```js run no-beautify
 function sum(a, b) {
@@ -258,9 +258,9 @@ let result = sum(1, 2);
 alert( result ); // 3
 ```
 
-The directive `return` can be in any place of the function. When the execution reaches it, the function stops, and the value is returned to the calling code (assigned to `result` above).
+A diretiva `return` pode estar em qualquer lugar da função. Quando a execução a alcança, a função para, e o valor é retornado ao código de chamada (atribuído a `result` acima).
 
-There may be many occurrences of `return` in a single function. For instance:
+Pode haver muita ocorrências de `return` em uma única função. Por exemplo:
 
 ```js run
 function checkAge(age) {
@@ -270,23 +270,23 @@ function checkAge(age) {
 */!*
   } else {
 *!*
-    return confirm('Do you have permission from your parents?');
+    return confirm('Você tem permissão dos seus pais?');
 */!*
   }
 }
 
-let age = prompt('How old are you?', 18);
+let age = prompt('Quantos anos você tem?', 18);
 
 if ( checkAge(age) ) {
-  alert( 'Access granted' );
+  alert( 'Acesso concedido' );
 } else {
-  alert( 'Access denied' );
+  alert( 'Acesso negado' );
 }
 ```
 
-It is possible to use `return` without a value. That causes the function to exit immediately.
+É possível usar `return` sem um valor. Isso faz com que a função saia imediatamente.
 
-For example:
+Por exemplo:
 
 ```js
 function showMovie(age) {
@@ -296,23 +296,23 @@ function showMovie(age) {
 */!*
   }
 
-  alert( "Showing you the movie" ); // (*)
+  alert( "Monstrando-lhe o filme" ); // (*)
   // ...
 }
 ```
 
-In the code above, if `checkAge(age)` returns `false`, then `showMovie` won't proceed to the `alert`.
+No código acima, se `checkAge(age)` retornar `false`, então `showMovie` não vao prosseguir para o `alert`.
 
-````smart header="A function with an empty `return` or without it returns `undefined`"
-If a function does not return a value, it is the same as if it returns `undefined`:
+````smart header="Uma função com um `return` vazio ou sem ele retorna `undefined`"
+Se uma função não retorna um valor, é o mesmo que se retorna-se `undefined`:
 
 ```js run
-function doNothing() { /* empty */ }
+function doNothing() { /* vazia */ }
 
 alert( doNothing() === undefined ); // true
 ```
 
-An empty `return` is also the same as `return undefined`:
+Um `return` vazio é também o mesmo que `return undefined`:
 
 ```js run
 function doNothing() {
@@ -323,20 +323,20 @@ alert( doNothing() === undefined ); // true
 ```
 ````
 
-````warn header="Never add a newline between `return` and the value"
-For a long expression in `return`, it might be tempting to put it on a separate line, like this:
+````warn header="Nunca adicione uma nova linha entre `return` e o valor"
+Para uma expressão longa em `return`, pode ser tentador colocá-lo em uma linha separada, assim:
 
 ```js
 return
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
-That doesn't work, because JavaScript assumes a semicolon after `return`. That'll work the same as:
+Isso não funciona, porque JavaScript assume um ponto e vírgula depois do `return`. Isso vai funcionar o mesmo que:
 
 ```js
 return*!*;*/!*
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
-So, it effectively becomes an empty return. We should put the value on the same line instead.
+Então, ele efetivamente torna-se um retorno vazio. Nós devemos colocar o valor na mesma linha.
 ````
 
 ## Naming a function [#function-naming]
