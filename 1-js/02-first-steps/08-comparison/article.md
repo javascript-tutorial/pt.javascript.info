@@ -74,7 +74,7 @@ alert( '2' > 1 ); // true, string '2' becomes a number 2
 alert( '01' == 1 ); // true, string '01' becomes a number 1
 ```
 
-For boolean values, `true` becomes `1` and `false` becomes `0`.
+For boolean values, `true` becomes `1` and `false` becomes `0`. 
 
 For example:
 
@@ -138,7 +138,10 @@ The strict equality operator is a bit longer to write, but makes it obvious what
 
 ## Comparison with null and undefined
 
+Let's see more edge cases.
+
 There's a non-intuitive behavior when `null` or `undefined` are compared to other values.
+
 
 For a strict equality check `===`
 : These values are different, because each of them is a different type.
@@ -190,7 +193,7 @@ Why does it dislike zero so much? Always false!
 We get these results because:
 
 - Comparisons `(1)` and `(2)` return `false` because `undefined` gets converted to `NaN` and `NaN` is a special numeric value which returns `false` for all comparisons.
-- The equality check `(3)` returns `false` because `undefined` only equals `null`, `undefined`, and no other value.
+- The equality check `(3)` returns `false` because `undefined` only equals `null` and no other value.
 
 ### Evade problems
 

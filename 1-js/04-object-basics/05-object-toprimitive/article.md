@@ -3,22 +3,28 @@
 
 What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
 
-In that case, objects are auto-converted to primitives, and then the operation is carried out.
+There are special methods in objects that do the conversion.
 
-In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to fill it.
+In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to close it.
 
-1. All objects are `true` in a boolean context. There are only numeric and string conversions.
-2. The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be subtracted, and the result of `date1 - date2` is the time difference between two dates.
-3. As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
+For objects, there's no to-boolean conversion, because all objects are `true` in a boolean context. So there are only string and numeric conversions.
+
+The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be subtracted, and the result of `date1 - date2` is the time difference between two dates.
+
+As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
 
 ## ToPrimitive
 
-We can fine-tune string and numeric conversion, using special object methods.
+When an object is used in the context where a primitive is required, for instance, in an `alert` or mathematical operations, it's converted to a primitive value using the `ToPrimitive` algorithm ([specification](https://tc39.github.io/ecma262/#sec-toprimitive)).
 
-There are three variants of type conversion, so-called "hints", described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive):
+That algorithm allows us to customize the conversion using a special object method.
+
+Depending on the context, the conversion has a so-called "hint".
+
+There are three variants:
 
 `"string"`
-: For an object-to-string conversion, when we're doing an operation on an object that expects a string, like `alert`:
+: When an operation expects a string, for object-to-string conversions, like `alert`:
 
     ```js
     // output
@@ -29,7 +35,7 @@ There are three variants of type conversion, so-called "hints", described in the
     ```
 
 `"number"`
-: For an object-to-number conversion, like when we're doing maths:
+: When an operation expects a number, for object-to-number conversions, like maths:
 
     ```js
     // explicit conversion
@@ -46,7 +52,7 @@ There are three variants of type conversion, so-called "hints", described in the
 `"default"`
 : Occurs in rare cases when the operator is "not sure" what type to expect.
 
-    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. Or when an object is compared using `==` with a string, number or a symbol, it's also unclear which conversion should be done.
+    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. Or when an object is compared using `==` with a string, number or a symbol.
 
     ```js
     // binary plus
@@ -64,7 +70,7 @@ Please note -- there are only three hints. It's that simple. There is no "boolea
 
 **To do the conversion, JavaScript tries to find and call three object methods:**
 
-1. Call `obj[Symbol.toPrimitive](hint)` - the method with the symbolic key `Symbol.toPrimitive` (system symbol), if such method exists,
+1. Call `obj[Symbol.toPrimitive](hint)` if the method exists,
 2. Otherwise if hint is `"string"`
     - try `obj.toString()` and `obj.valueOf()`, whatever exists.
 3. Otherwise if hint is `"number"` or `"default"`
@@ -76,9 +82,9 @@ Let's start from the first method. There's a built-in symbol named `Symbol.toPri
 
 ```js
 obj[Symbol.toPrimitive] = function(hint) {
-  // must return a primitive value
+  // return a primitive value
   // hint = one of "string", "number", "default"
-};
+}
 ```
 
 For instance, here `user` object implements it:
@@ -136,9 +142,7 @@ alert(+user); // valueOf -> 1000
 alert(user + 500); // valueOf -> 1500
 ```
 
-As we can see, the behavior is the same as the previous example with `Symbol.toPrimitive`.
-
-Often we want a single "catch-all" place to handle all primitive conversions. In this case, we can implement `toString` only, like this:
+Often we want a single "catch-all" place to handle all primitive conversions. In this case we can implement `toString` only, like this:
 
 ```js run
 let user = {
@@ -155,40 +159,34 @@ alert(user + 500); // toString -> John500
 
 In the absence of `Symbol.toPrimitive` and `valueOf`, `toString` will handle all primitive conversions.
 
-## Return types
+
+## ToPrimitive and ToString/ToNumber
 
 The important thing to know about all primitive-conversion methods is that they do not necessarily return the "hinted" primitive.
 
 There is no control whether `toString()` returns exactly a string, or whether `Symbol.toPrimitive` method returns a number for a hint "number".
 
-The only mandatory thing: these methods must return a primitive, not an object.
+**The only mandatory thing: these methods must return a primitive.**
 
-```smart header="Historical notes"
-For historical reasons, if `toString` or `valueOf` returns an object, there's no error, but such value is ignored (like if the method didn't exist). That's because in ancient times there was no good "error" concept in JavaScript.
-
-In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise there will be an error.
-```
-
-## Further operations
-
-An operation that initiated the conversion gets the primitive, and then continues to work with it, applying further conversions if necessary.
+An operation that initiated the conversion gets that primitive, and then continues to work with it, applying further conversions if necessary.
 
 For instance:
 
-- Mathematical operations, except binary plus, convert the primitive to a number:
+- Mathematical operations (except binary plus) perform `ToNumber` conversion:
 
     ```js run
     let obj = {
-      // toString handles all conversions in the absence of other methods
-      toString() {
+      toString() { // toString handles all conversions in the absence of other methods
         return "2";
       }
     };
 
-    alert(obj * 2); // 4, object converted to primitive "2", then multiplication made it a number
+    alert(obj * 2); // 4, ToPrimitive gives "2", then it becomes 2
     ```
 
-- Binary plus will concatenate strings in the same situation:
+- Binary plus checks the primitive -- if it's a string, then it does concatenation, otherwise it performs `ToNumber` and works with numbers.
+
+    String example:
     ```js run
     let obj = {
       toString() {
@@ -199,12 +197,29 @@ For instance:
     alert(obj + 2); // 22 (ToPrimitive returned string => concatenation)
     ```
 
+    Number example:
+    ```js run
+    let obj = {
+      toString() {
+        return true;
+      }
+    };
+
+    alert(obj + 2); // 3 (ToPrimitive returned boolean, not string => ToNumber)
+    ```
+
+```smart header="Historical notes"
+For historical reasons, methods `toString` or `valueOf` *should* return a primitive: if any of them returns an object, then there's no error, but that object is ignored (like if the method didn't exist).
+
+In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise, there will be an error.
+```
+
 ## Summary
 
 The object-to-primitive conversion is called automatically by many built-in functions and operators that expect a primitive as a value.
 
 There are 3 types (hints) of it:
-- `"string"` (for `alert` and other operations that need a string)
+- `"string"` (for `alert` and other string conversions)
 - `"number"` (for maths)
 - `"default"` (few operators)
 

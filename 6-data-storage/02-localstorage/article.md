@@ -7,7 +7,7 @@ What's interesting about them is that the data survives a page refresh (for `ses
 We already have cookies. Why additional objects?
 
 - Unlike cookies, web storage objects are not sent to server with each request. Because of that, we can store much more. Most browsers allow at least 2 megabytes of data (or more) and have settings to configure that.
-- Also unlike cookies, the server can't manipulate storage objects via HTTP headers. Everything's done in JavaScript.
+- The server can't manipulate storage objects via HTTP headers, everything's done in JavaScript.
 - The storage is bound to the origin (domain/protocol/port triplet). That is, different protocols or subdomains infer different storage objects, they can't access data from each other.
 
 Both storage objects provide same methods and properties:
@@ -18,8 +18,6 @@ Both storage objects provide same methods and properties:
 - `clear()` -- delete everything.
 - `key(index)` -- get the key on a given position.
 - `length` -- the number of stored items.
-
-As you can see, it's like a `Map` collection (`setItem/getItem/removeItem`), but also keeps elements order and allows to access by index with `key(index)`.
 
 Let's see how it works.
 
@@ -42,9 +40,9 @@ localStorage.setItem('test', 1);
 alert( localStorage.getItem('test') ); // 1
 ```
 
-We only have to be on the same origin (domain/port/protocol), the url path can be different.
+We only have to be on the same domain/port/protocol, the url path can be different.
 
-The `localStorage` is shared between all windows with the same origin, so if we set the data in one window, the change becomes visible in another one.
+The `localStorage` is shared, so if we set the data in one window, the change becomes visible in the other one.
 
 ## Object-like access
 
@@ -61,7 +59,7 @@ alert( localStorage.test ); // 2
 delete localStorage.test;
 ```
 
-That's allowed for historical reasons, and mostly works, but generally not recommended, because:
+That's allowed for historical reasons, and mostly works, but generally not recommended for two reasons:
 
 1. If the key is user-generated, it can be anything, like `length` or `toString`, or another built-in method of `localStorage`. In that case `getItem/setItem` work fine, while object-like access fails:
     ```js run
@@ -73,11 +71,11 @@ That's allowed for historical reasons, and mostly works, but generally not recom
 
 ## Looping over keys
 
-As we've seen, the methods provide "get/set/remove by key" functionality. But how to get all saved values or keys?
+Methods provide get/set/remove functionality. But how to get all the keys?
 
 Unfortunately, storage objects are not iterable.
 
-One way is to loop over them as over an array:
+One way is to use "array-like" iteration:
 
 ```js run
 for(let i=0; i<localStorage.length; i++) {
@@ -86,9 +84,9 @@ for(let i=0; i<localStorage.length; i++) {
 }
 ```
 
-Another way is to use `for key in localStorage` loop, just as we do with regular objects.
+Another way is to use object-specific `for key in localStorage` loop.
 
-It iterates over keys, but also outputs few built-in fields that we don't need:
+That iterates over keys, but also outputs few built-in fields that we don't need:
 
 ```js run
 // bad try
@@ -124,7 +122,7 @@ The latter works, because `Object.keys` only returns the keys that belong to the
 
 Please note that both key and value must be strings.
 
-If were any other type, like a number, or an object, it gets converted to string automatically:
+If we any other type, like a number, or an object, it gets converted to string automatically:
 
 ```js run
 sessionStorage.user = {name: "John"};
@@ -157,7 +155,7 @@ Properties and methods are the same, but it's much more limited:
 
 - The `sessionStorage` exists only within the current browser tab.
   - Another tab with the same page will have a different storage.
-  - But it is shared between iframes in the same tab (assuming they come from the same origin).
+  - But it is shared between iframes in the tab (assuming they come from the same origin).
 - The data survives page refresh, but not closing/opening the tab.
 
 Let's see that in action.
@@ -182,7 +180,7 @@ That's exactly because `sessionStorage` is bound not only to the origin, but als
 
 When the data gets updated in `localStorage` or `sessionStorage`, [storage](https://www.w3.org/TR/webstorage/#the-storage-event) event triggers, with properties:
 
-- `key` – the key that was changed (`null` if `.clear()` is called).
+- `key` – the key that was changed (null if `.clear()` is called).
 - `oldValue` – the old value (`null` if the key is newly added).
 - `newValue` – the new value (`null` if the key is removed).
 - `url` – the url of the document where the update happened.
@@ -198,7 +196,7 @@ Imagine, you have two windows with the same site in each. So `localStorage` is s
 You might want to open this page in two browser windows to test the code below.
 ```
 
-If both windows are listening for `window.onstorage`, then each one will react on updates that happened in the other one.
+Now if both windows are listening for `window.onstorage`, then each one will react on updates that happened in the other one.
 
 ```js run
 // triggers on updates made to the same storage from other documents
@@ -212,7 +210,7 @@ localStorage.setItem('now', Date.now());
 
 Please note that the event also contains: `event.url` -- the url of the document where the data was updated.
 
-Also, `event.storageArea` contains the storage object -- the event is the same for both `sessionStorage` and `localStorage`, so `event.storageArea` references the one that was modified. We may even want to set something back in it, to "respond" to a change.
+Also, `event.storageArea` contains the storage object -- the event is the same for both `sessionStorage` and `localStorage`, so `storageArea` references the one that was modified. We may event want to set something back in it, to "respond" to a change.
 
 **That allows different windows from the same origin to exchange messages.**
 
@@ -229,7 +227,7 @@ Web storage objects `localStorage` and `sessionStorage` allow to store key/value
 | `localStorage` | `sessionStorage` |
 |----------------|------------------|
 | Shared between all tabs and windows with the same origin | Visible within a browser tab, including iframes from the same origin |
-| Survives browser restart | Survives page refresh (but not tab close) |
+| Survives browser restart | Dies on tab close |
 
 API:
 
@@ -237,13 +235,13 @@ API:
 - `getItem(key)` -- get the value by key.
 - `removeItem(key)` -- remove the key with its value.
 - `clear()` -- delete everything.
-- `key(index)` -- get the key number `index`.
+- `key(index)` -- get the key on a given position.
 - `length` -- the number of stored items.
 - Use `Object.keys` to get all keys.
-- We access keys as object properties, in that case `storage` event isn't triggered.
+- Can use the keys as object properties, in that case `storage` event doesn't trigger.
 
 Storage event:
 
 - Triggers on `setItem`, `removeItem`, `clear` calls.
-- Contains all the data about the operation (`key/oldValue/newValue`), the document `url` and the storage object `storageArea`.
+- Contains all the data about the operation, the document `url` and the storage object.
 - Triggers on all `window` objects that have access to the storage except the one that generated it (within a tab for `sessionStorage`, globally for `localStorage`).

@@ -1,6 +1,6 @@
 # Regexp for HTML colors
 
-Create a regexp to search HTML-colors written as `#ABCDEF`: first `#` and then 6 hexadecimal characters.
+Create a regexp to search HTML-colors written as `#ABCDEF`: first `#` and then 6 hexadimal characters.
 
 An example of use:
 

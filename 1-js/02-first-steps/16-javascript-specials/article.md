@@ -53,7 +53,7 @@ To fully enable all features of modern JavaScript, we should start scripts with 
 ...
 ```
 
-The directive must be at the top of a script or at the beginning of a function body.
+The directive must be at the top of a script or at the beginning of a function.
 
 Without `"use strict"`, everything still works, but some features behave in the old-fashion, "compatible" way. We'd generally prefer the modern behavior.
 
@@ -103,7 +103,7 @@ More in: <info:variables> and <info:types>.
 We're using a browser as a working environment, so basic UI functions will be:
 
 [`prompt(question, [default])`](mdn:api/Window/prompt)
-: Ask a `question`, and return either what the visitor entered or `null` if they clicked "cancel".
+: Ask a `question`, and return either what the visitor entered or `null` if they pressed "cancel".
 
 [`confirm(question)`](mdn:api/Window/confirm)
 : Ask a `question` and suggest to choose between Ok and Cancel. The choice is returned as `true/false`.
@@ -143,9 +143,9 @@ Assignments
 : There is a simple assignment: `a = b` and combined ones like `a *= 2`.
 
 Bitwise
-: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
+: Bitwise operators work with integers on bit-level: see the [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
 
-Conditional
+Ternary
 : The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
 
 Logical operators
@@ -161,7 +161,7 @@ Comparisons
 
     Other comparisons convert to a number as well.
 
-    The strict equality operator `===` doesn't do the conversion: different types always mean different values for it.
+    The strict equality operator `===` doesn't do the conversion: different types always mean different values for it, so:
 
     Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else.
 
@@ -245,8 +245,10 @@ We covered three ways to create a function in JavaScript:
       let result = a + b;
 
       return result;
-    };
+    }
     ```
+
+    Function expressions can have a name, like `sum = function name(a, b)`, but that `name` is only visible inside that function.
 
 3. Arrow functions:
 
@@ -272,7 +274,13 @@ We covered three ways to create a function in JavaScript:
 - Parameters can have default values: `function sum(a = 1, b = 2) {...}`.
 - Functions always return something. If there's no `return` statement, then the result is `undefined`.
 
-Details: see <info:function-basics>, <info:function-expressions-arrows>.
+
+| Function Declaration | Function Expression |
+|----------------------|---------------------|
+| visible in the whole code block | created when the execution reaches it |
+|   - | can have a name, visible only inside the function |
+
+More: see <info:function-basics>, <info:function-expressions-arrows>.
 
 ## More to come
 

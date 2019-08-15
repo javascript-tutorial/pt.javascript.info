@@ -19,20 +19,21 @@ Here Babel comes to the rescue.
 
 Actually, there are two parts in Babel:
 
-1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build system like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that very easy to integrate into development process.
+1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build system like [webpack](http://webpack.github.io/) or [brunch](http://brunch.io/) provide means to run transpiler automatically on every code change, so that doesn't involve any time loss from our side.
 
 2. Second, the polyfill.
 
-    New language features may include new built-in functions and syntax constructs.
-    The transpiler rewrites the code, transforming syntax constructs into older ones. But as for new built-in functions, we need to implement them. JavaScript is a highly dynamic language, scripts may add/modify any functions, so that they behave according to the modern standard.
+    The transpiler rewrites the code, so syntax features are covered. But for new functions we need to write a special script that implements them. JavaScript is a highly dynamic language, scripts may not just add new functions, but also modify built-in ones, so that they behave according to the modern standard.
 
-    A script that updates/adds new functions is called "polyfill". It "fills in" the gap and adds missing implementations.
+    There's a term "polyfill" for scripts that "fill in" the gap and add missing implementations.
 
     Two interesting polyfills are:
-    - [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
-    - [polyfill.io](http://polyfill.io) service that provides a script with polyfills, depending on the features and user's browser.
+    - [babel polyfill](https://babeljs.io/docs/usage/polyfill/) that supports a lot, but is big.
+    - [polyfill.io](http://polyfill.io) service that allows to load/construct polyfills on-demand, depending on the features we need.
 
-So, if we're going to use modern language features, a transpiler and a polyfill are necessary.
+So, we need to setup the transpiler and add the polyfill for old engines to support modern features.
+
+If we orient towards modern engines and do not use features except those supported everywhere, then we don't need to use Babel.
 
 ## Examples in the tutorial
 
@@ -48,7 +49,9 @@ Examples that use modern JS will work only if your browser supports it.
 ````
 
 ```offline
-As you're reading the offline version, in PDF examples are not runnable. In EPUB some of them can run.
+As you're reading the offline version, examples are not runnable. But they usually work :)
 ```
 
-Google Chrome is usually the most up-to-date with language features, good to run bleeding-edge demos without any transpilers, but other modern browsers also work fine.
+[Chrome Canary](https://www.google.com/chrome/browser/canary.html) is good for all examples, but other modern browsers are mostly fine too.
+
+Note that on production we can use Babel to translate the code into suitable for less recent browsers, so there will be no such limitation, the code will run everywhere.

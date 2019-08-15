@@ -63,7 +63,7 @@ Object.defineProperty(obj, propertyName, descriptor)
 ```
 
 `obj`, `propertyName`
-: The object and its property to apply the descriptor.
+: The object and property to work on.
 
 `descriptor`
 : Property descriptor to apply.
@@ -116,33 +116,30 @@ Object.defineProperty(user, "name", {
 });
 
 *!*
-user.name = "Pete"; // Error: Cannot assign to read only property 'name'
+user.name = "Pete"; // Error: Cannot assign to read only property 'name'...
 */!*
 ```
 
 Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
 
-```smart header="Errors appear only in strict mode"
-In the non-strict mode, no errors occur when writing to read-only properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
-```
-
-Here's the same example, but the property is created from scratch:
+Here's the same operation, but for the case when a property doesn't exist:
 
 ```js run
 let user = { };
 
 Object.defineProperty(user, "name", {
 *!*
-  value: "John",
+  value: "Pete",
   // for new properties need to explicitly list what's true
   enumerable: true,
   configurable: true
 */!*
 });
 
-alert(user.name); // John
-user.name = "Pete"; // Error
+alert(user.name); // Pete
+user.name = "Alice"; // Error
 ```
+
 
 ## Non-enumerable
 
@@ -240,6 +237,10 @@ Object.defineProperty(user, "name", {
 //   defineProperty(user, "name", ...)
 Object.defineProperty(user, "name", {writable: true}); // Error
 */!*
+```
+
+```smart header="Errors appear only in use strict"
+In the non-strict mode, no errors occur when writing to read-only properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
 ```
 
 ## Object.defineProperties

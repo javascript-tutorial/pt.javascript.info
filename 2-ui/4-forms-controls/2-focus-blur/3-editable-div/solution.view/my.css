@@ -20,6 +20,6 @@
 }
 
 .edit:focus {
-  /* remove focus border in Safari */
   outline: none;
+  /* remove focus border in Safari */
 }
