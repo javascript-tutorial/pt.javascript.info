@@ -11,3 +11,4 @@ If the visitor enters "ECMAScript", then output "Right!", otherwise -- output: "
 ![](ifelse_task2.svg)
 
 [demo src="ifelse_task2"]
+

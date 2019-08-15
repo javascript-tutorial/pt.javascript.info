@@ -15,7 +15,7 @@ If we handle an event in JavaScript, often we don't want browser actions. Fortun
 There are two ways to tell the browser we don't want it to act:
 
 - The main way is to use the `event` object. There's a method `event.preventDefault()`.
-- If the handler is assigned using `on<event>` (not by `addEventListener`), then we can also return `false` from it.
+- If the handler is assigned using `on<event>` (not by `addEventListener`), then we can just return `false` from it.
 
 In the example below a click to links doesn't lead to URL change:
 
@@ -30,7 +30,7 @@ The value returned by an event handler is usually ignored.
 
 The only exception -- is `return false` from a handler assigned using `on<event>`.
 
-In all other cases, `return` is not needed and it's not processed anyhow.
+In all other cases, the return is not needed and it's not processed anyhow.
 ```
 
 ### Example: the menu
@@ -71,16 +71,20 @@ menu.onclick = function(event) {
 };
 ```
 
-If we omit `return false`, then after our code executes the browser will do its "default action" -- navigating to the URL in `href`. And we don't need that here, as we're handling the click by ourselves.
+If we omit `return false`, then after our code executes the browser will do its "default action" -- following to the URL in `href`.
 
-By the way, using event delegation here makes our menu very flexible. We can add nested lists and style them using CSS to "slide down".
+By the way, using event delegation here makes our menu flexible. We can add nested lists and style them using CSS to "slide down".
 
-````smart header="Follow-up events"
+
+## Prevent further events
+
 Certain events flow one into another. If we prevent the first event, there will be no second.
 
 For instance, `mousedown` on an `<input>` field leads to focusing in it, and the `focus` event. If we prevent the `mousedown` event, there's no focus.
 
-Try to click on the first `<input>` below -- the `focus` event happens. But if you click the second one, there's no focus.
+Try to click on the first `<input>` below -- the `focus` event happens. That's normal.
+
+But if you click the second one, there's no focus.
 
 ```html run autorun
 <input value="Focus works" onfocus="this.value=''">
@@ -88,7 +92,6 @@ Try to click on the first `<input>` below -- the `focus` event happens. But if y
 ```
 
 That's because the browser action is canceled on `mousedown`. The focusing is still possible if we use another way to enter the input. For instance, the `key:Tab` key to switch from the 1st input into the 2nd. But not with the mouse click any more.
-````
 
 ## The "passive" handler option
 
@@ -113,23 +116,21 @@ There's an interesting use case for it.
 
 You remember in the chapter <info:bubbling-and-capturing> we talked about `event.stopPropagation()`  and why stopping bubbling is bad?
 
-Sometimes we can use `event.defaultPrevented` instead, to signal other event handlers that the event was handled.
+Sometimes we can use `event.defaultPrevented` instead.
 
-Let's see a practical example.
+Let's see a practical example where stopping the bubbling looks necessary, but actually we can do well without it.
 
 By default the browser on `contextmenu` event (right mouse click) shows a context menu with standard options. We can prevent it and show our own, like this:
 
 ```html autorun height=50 no-beautify run
-<button>Right-click shows browser context menu</button>
+<button>Right-click for browser context menu</button>
 
 <button *!*oncontextmenu="alert('Draw our menu'); return false"*/!*>
-  Right-click shows our context menu
+  Right-click for our context menu
 </button>
 ```
 
-Now, in addition to that context menu we'd like to implement document-wide context menu.
-
-Upon right click, the closest context menu should show up.
+Now let's say we want to implement our own document-wide context menu, with our options. And inside the document we may have other elements with their own context menus:
 
 ```html autorun height=80 no-beautify run
 <p>Right-click here for the document context menu</p>
@@ -150,7 +151,7 @@ Upon right click, the closest context menu should show up.
 
 The problem is that when we click on `elem`, we get two menus: the button-level and (the event bubbles up) the document-level menu.
 
-How to fix it? One of solutions is to think like: "When we handle right-click in the button handler, let's stop its bubbling" and use `event.stopPropagation()`:
+How to fix it? One of solutions is to think like: "We fully handle the event in the button handler, let's stop it" and use `event.stopPropagation()`:
 
 ```html autorun height=80 no-beautify run
 <p>Right-click for the document menu</p>
@@ -178,7 +179,7 @@ An alternative solution would be to check in the `document` handler if the defau
 
 
 ```html autorun height=80 no-beautify run
-<p>Right-click for the document menu (added a check for event.defaultPrevented)</p>
+<p>Right-click for the document menu (fixed with event.defaultPrevented)</p>
 <button id="elem">Right-click for the button menu</button>
 
 <script>
@@ -205,7 +206,7 @@ As we can clearly see, `event.stopPropagation()` and `event.preventDefault()` (a
 ```
 
 ```smart header="Nested context menus architecture"
-There are also alternative ways to implement nested context menus. One of them is to have a single global object with a handler for `document.oncontextmenu`, and also methods that allow to store other handlers in it.
+There are also alternative ways to implement nested context menus. One of them is to have a special global object with a method that handles `document.oncontextmenu`, and also methods that allow to store various "lower-level" handlers in it.
 
 The object will catch any right-click, look through stored handlers and run the appropriate one.
 
@@ -219,6 +220,7 @@ There are many default browser actions:
 - `mousedown` -- starts the selection (move the mouse to select).
 - `click` on `<input type="checkbox">` -- checks/unchecks the `input`.
 - `submit` -- clicking an `<input type="submit">` or hitting `key:Enter` inside a form field causes this event to happen, and the browser submits the form after it.
+- `wheel` -- rolling a mouse wheel event has scrolling as the default action.
 - `keydown` -- pressing a key may lead to adding a character into a field, or other actions.
 - `contextmenu` -- the event happens on a right-click, the action is to show the browser context menu.
 - ...there are more...
@@ -234,7 +236,7 @@ If the default action was prevented, the value of `event.defaultPrevented` becom
 ```warn header="Stay semantic, don't abuse"
 Technically, by preventing default actions and adding JavaScript we can customize the behavior of any elements. For instance, we can make a link `<a>` work like a button, and a button `<button>` behave as a link (redirect to another URL or so).
 
-But we should generally keep the semantic meaning of HTML elements. For instance, `<a>` should perform navigation, not a button.
+But we should generally keep the semantic meaning of HTML elements. For instance, `<a>` should preform navigation, not a button.
 
 Besides being "just a good thing", that makes your HTML better in terms of accessibility.
 

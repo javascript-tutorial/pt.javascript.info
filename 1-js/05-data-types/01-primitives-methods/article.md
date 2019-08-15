@@ -1,12 +1,8 @@
 # Métodos de primitivos
 
-<<<<<<< HEAD
 JavaScript nos permite trabalhar com primitivos (strings, números, etc.) como se fossem objetos.
 
 Eles também fornecem métodos para chamar como se fossem objetos. Estudaremos isso em breve, mas primeiro veremos como isso funciona, porque, é claro, os primitivos não são objetos (e aqui deixaremos isso ainda mais claro).
-=======
-JavaScript allows us to work with primitives (strings, numbers, etc.) as if they were objects. They also provide methods to call as such. We will study those soon, but first we'll see how it works because, of course, primitives are not objects (and here we will make it even clearer).
->>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Vejamos as principais diferenças entre primitivos e objetos.
 
@@ -17,13 +13,8 @@ Um primitivo
 
 Um objeto
 
-<<<<<<< HEAD
 - É capaz de armazenar vários valores como propriedades.
 - Pode ser criado com `{}`, por exemplo: `{name: "John", age: 30}`. Existem outros tipos de objetos em JavaScript; funções, por exemplo, são objetos.
-=======
-- Is capable of storing multiple values as properties.
-- Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript: functions, for example, are objects.
->>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Uma das melhores coisas sobre objetos é que podemos armazenar uma função como uma de suas propriedades.
 
@@ -44,11 +35,7 @@ Muitos objetos internos já existem, como aqueles que trabalham com datas, erros
 
 Mas esses recursos vêm com um custo!
 
-<<<<<<< HEAD
 Objetos são "mais pesados" que primitivos. Eles exigem recursos adicionais para suportar o maquinário interno. Mas, como as propriedades e os métodos são muito úteis na programação, os mecanismos de JavaScript tentam otimizá-los para reduzir a carga adicional.
-=======
-Objects are "heavier" than primitives. They require additional resources to support the internal machinery.
->>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ## Um primitivo como objeto
 
@@ -59,15 +46,9 @@ Aqui está o paradoxo enfrentado pelo criador do JavaScript:
 
 A solução parece um pouco estranha, mas aqui está:
 
-<<<<<<< HEAD
 1. Primitivos ainda são primitivos. Um único valor, conforme desejado.
 2. A linguagem permite acesso a métodos e propriedades de strings, números, booleanos e símbolos.
 3. Quando isso acontece, um "invólucro de objeto" especial que fornece a funcionalidade extra é criado e, em seguida, é destruído.
-=======
-1. Primitives are still primitive. A single value, as desired.
-2. The language allows access to methods and properties of strings, numbers, booleans and symbols.
-3. In order for that to work, a special "object wrapper" that provides the extra functionality is created, and then is destroyed.
->>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Os "invólucros de objeto" são diferentes para cada tipo primitivo e são chamados: `String`, `Number`, `Boolean` e `Symbol`. Assim, eles fornecem diferentes conjuntos de métodos.
 
@@ -102,45 +83,26 @@ alert( n.toFixed(2) ); // 1.23
 Vamos ver métodos mais específicos nos capítulos <info:number> e <info:string>.
 
 
-<<<<<<< HEAD
 ````warn header="Construtores `String/Number/Boolean` são apenas para uso interno"
 Algumas linguagens como Java nos permitem criar "objetos invólucros" para primitivos explicitamente usando uma sintaxe como `new Number(1)` ou `new Boolean(false)`.
-=======
-````warn header="Constructors `String/Number/Boolean` are for internal use only"
-Some languages like Java allow us to explicitly create "wrapper objects" for primitives using a syntax like `new Number(1)` or `new Boolean(false)`.
->>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Em JavaScript, isso também é possível por razões históricas, mas é altamente **não recomendado**. As coisas vão enlouquecer em vários lugares.
 
 Por exemplo:
 
 ```js run
-<<<<<<< HEAD
 alert( typeof 1 ); // "número"
 
 alert( typeof new Number(1) ); // "objeto"!
 ```
 
 E por isso a seguir, `zero`, é um objeto, o alerta será mostrado:
-=======
-alert( typeof 0 ); // "number"
-
-alert( typeof new Number(0) ); // "object"!
-```
-
-Objects are always truthy in `if`, so here the alert will show up:
->>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ```js run
 let zero = new Number(0);
 
-<<<<<<< HEAD
 if (zero) { // zero é true (verdadeiro), por que é um objeto
   alert( "zero é verdadeiro?!?" );
-=======
-if (zero) { // zero is true, because it's an object
-  alert( "zero is truthy!?!" );
->>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 }
 ```
 

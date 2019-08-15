@@ -4,11 +4,7 @@ Por um longo tempo, o JavaScript evoluiu sem problemas de compatibilidade. Novos
 
 Isso teve o benefício de nunca quebrar o código existente. Mas a desvantagem foi que qualquer erro ou decisão imperfeita feita pelos criadores do JavaScript acabou ficando presa na linguagem para sempre.
 
-<<<<<<< HEAD
 Este foi o caso até 2009, quando ECMAScript 5 (ES5) apareceu. Adicionou novos recursos à linguagem e modificou alguns dos existentes. Para manter o código antigo funcionando, a maioria das modificações está desativada por padrão. Você precisa habilitá-los explicitamente com uma diretiva especial: `" use strict "`.
-=======
-This was the case until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most such modifications are off by default. You need to explicitly enable them with a special directive: `"use strict"`.
->>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ## "use strict"
 
@@ -23,12 +19,8 @@ For example:
 ...
 ```
 
-<<<<<<< HEAD
 Nós vamos aprender sobre funções, uma forma de agupar comandos, em breve.
 
-=======
-We will learn functions (a way to group commands) soon. Looking ahead, let's note that `"use strict"` can be put at the beginning of the function body instead of the whole script. Doing that enables strict mode in that function only. But usually, people use it for the whole script.
->>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Vamos apenas observar que "use strict" pode ser colocado no início da maioria dos tipos de funções em vez do script inteiro. Fazer isso habilita o modo estrito apenas nessa função. Mas geralmente, as pessoas usam no script inteiro.
 
@@ -51,23 +43,9 @@ Para o futuro, quando você usar o console do navegador para testar funcionalida
 
 As vezes, quando usar `use strict` faz alguma diferença, você terá resultados incorretos.
 
-<<<<<<< HEAD
 Mesmo se pressionarmos `key: Shift + Enter` para inserir várias linhas e colocar` use strict` no topo, isso não funcionará. Isso é por causa de como o console executa o código internamente.
 
 A maneira confiável de garantir `use strict` seria inserir o código no console da seguinte forma:
-=======
-You can try to press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, like this:
-
-```js
-'use strict'; <Shift+Enter for a newline>
-//  ...your code
-<Enter to run>
-```
-
-It works in most browsers, namely Firefox and Chrome.
-
-If it doesn't, the most reliable way to ensure `use strict` would be to input the code into console like this:
->>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ```js
 (function() {

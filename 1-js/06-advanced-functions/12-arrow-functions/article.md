@@ -2,7 +2,7 @@
 
 Let's revisit arrow functions.
 
-Arrow functions are not just a "shorthand" for writing small stuff. They have some very specific and useful features.
+Arrow functions are not just a "shorthand" for writing small stuff.
 
 JavaScript is full of situations where we need to write a small function, that's executed somewhere else.
 
@@ -14,7 +14,7 @@ For instance:
 
 It's in the very spirit of JavaScript to create a function and pass it somewhere.
 
-And in such functions we usually don't want to leave the current context. That's where arrow functions come in handy.
+And in such functions we usually don't want to leave the current context.
 
 ## Arrow functions have no "this"
 

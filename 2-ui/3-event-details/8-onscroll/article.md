@@ -32,8 +32,6 @@ For instance:
 - `wheel` event -- a mouse wheel roll (a "scrolling" touchpad action generates it too).
 - `keydown` event for `key:pageUp` and `key:pageDown`.
 
-If we add an event handler to these events and `event.preventDefault()` in it, then the scroll won't start.
-
-Sometimes that may help, but it's more reliable to use CSS to make something unscrollable, such as the `overflow` property.
+Sometimes that may help. But there are more ways to scroll, so it's quite hard to handle all of them. So it's more reliable to use CSS to make something unscrollable, like `overflow` property.
 
 Here are few tasks that you can solve or look through to see the applications on `onscroll`.

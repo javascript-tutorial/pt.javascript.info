@@ -6,7 +6,7 @@ importance: 5
 
 The task has two parts.
 
-We have objects:
+We have an object:
 
 ```js
 let head = {

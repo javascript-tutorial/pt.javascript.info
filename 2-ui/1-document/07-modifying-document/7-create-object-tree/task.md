@@ -21,7 +21,7 @@ let data = {
       "oak": {}
     },
     "Flowering": {
-      "apple tree": {},
+      "redbud": {},
       "magnolia": {}
     }
   }

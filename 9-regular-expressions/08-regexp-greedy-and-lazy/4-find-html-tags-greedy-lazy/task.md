@@ -12,4 +12,4 @@ let str = '<> <a href="/"> <input type="radio" checked> <b>';
 alert( str.match(reg) ); // '<a href="/">', '<input type="radio" checked>', '<b>'
 ```
 
-Here we assume that tag attributes may not contain `<` and `>` (inside squotes too), that simplifies things a bit. 
+Let's assume that may not contain `<` and `>` inside (in quotes too), that simplifies things a bit. 
