@@ -57,7 +57,7 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 ```
 
-A solução tem uma complexidade de tempo de [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). Em outras palavras, se aumentarmos o tamanho do array 2 vezes, o algoritmo demorará 4 vezes mais.
+A solução tem uma complexidade de tempo de [O(n<sup>2</sup>)](https://pt.wikipedia.org/wiki/Grande-O). Em outras palavras, se aumentarmos o tamanho do array 2 vezes, o algoritmo demorará 4 vezes mais.
 
 Para arrays grandes (1000, 10000 or more items) tais algoritmos podem levar a uma séria lentidão.
 
@@ -90,4 +90,4 @@ alert( getMaxSubSum([-1, -2, -3]) ); // 0
 ```
 
 O algoritmo requer exatamente 1 passagem de matriz, então a complexidade de tempo é O(n).
-Você pode encontrar mais informações detalhadas sobre o algoritmo aqui: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem). Se ainda não é óbvio por que isso funciona, então, por favor, investigue o algoritmo nos exemplos acima, veja como funciona, isso é melhor que qualquer palavra.
+Você pode encontrar mais informações detalhadas sobre o algoritmo aqui: [Maximum subarray problem](https://pt.wikipedia.org/wiki/Sublista_cont%C3%ADgua_de_soma_m%C3%A1xima). Se ainda não é óbvio por que isso funciona, então, por favor, investigue o algoritmo nos exemplos acima, veja como funciona, isso é melhor que qualquer palavra.

@@ -420,7 +420,7 @@ Agora funciona como pretendido.
 
 Vamos nos afastar e pensar o que está acontecendo. O `arr` pode ser array de qualquer coisa, certo? Pode conter números ou strings ou elementos HTML ou qualquer outra coisa. Nós temos um conjunto de *algo*. Para classificá-lo, precisamos de uma *função de ordenação* que saiba como comparar seus elementos. O padrão é uma ordem de string.
 
-O método `arr.sort(fn)` possui uma implementação incorporada do algoritmo de ordenação. Nós não precisamos nos importar como isso funciona exatamente (um [quicksort](https://en.wikipedia.org/wiki/Quicksort) otimizado  na maior parte do tempo). Ele irá percorrer o array, comparar seus elementos usando a função fornecida e reordená-los, tudo o que precisamos é fornecer o `fn` que faz a comparação.
+O método `arr.sort(fn)` possui uma implementação incorporada do algoritmo de ordenação. Nós não precisamos nos importar como isso funciona exatamente (um [quicksort](https://pt.wikipedia.org/wiki/Quicksort) otimizado  na maior parte do tempo). Ele irá percorrer o array, comparar seus elementos usando a função fornecida e reordená-los, tudo o que precisamos é fornecer o `fn` que faz a comparação.
 
 A propósito, se quisermos saber quais elementos são comparados - nada impede de alertá-los:
 

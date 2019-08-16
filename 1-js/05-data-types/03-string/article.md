@@ -2,7 +2,7 @@
 
 Em JavaScript, os dados textuais são armazenados como strings. Não existe um tipo separado para um único caractere.
 
-O formato interno para strings é sempre [UTF-16](https://en.wikipedia.org/wiki/UTF-16), não está vinculado à codificação da página.
+O formato interno para strings é sempre [UTF-16](https://pt.wikipedia.org/wiki/UTF-16), não está vinculado à codificação da página.
 
 ## Citações
 
@@ -306,7 +306,7 @@ if (str.indexOf("Widget") != -1) {
 ```
 
 ````smart header="O truque NOT bit a bit"
-Um dos velhos truques usados ​​aqui é o operador [NOT bit a bit](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~`. Ele converte o número em um inteiro de 32 bits (remove a parte decimal, se existir) e, em seguida, inverte todos os bits em sua representação binária.
+Um dos velhos truques usados ​​aqui é o operador [NOT bit a bit](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~`. Ele converte o número em um inteiro de 32 bits (remove a parte decimal, se existir) e, em seguida, inverte todos os bits em sua representação binária.
 
 Para inteiros de 32 bits, a chamada `~n` significa exatamente o mesmo que `- (n + 1)` (devido ao formato IEEE-754).
 
@@ -476,7 +476,7 @@ Isso pode levar a resultados estranhos se classificarmos esses nomes de países.
 
 Para entender o que acontece, vamos revisar a representação interna de strings em JavaScript.
 
-Todas as strings são codificadas usando [UTF-16](https://en.wikipedia.org/wiki/UTF-16). Ou seja: cada caractere tem um código numérico correspondente. Existem métodos especiais que permitem obter o caractere para o código e vice versa.
+Todas as strings são codificadas usando [UTF-16](https://pt.wikipedia.org/wiki/UTF-16). Ou seja: cada caractere tem um código numérico correspondente. Existem métodos especiais que permitem obter o caractere para o código e vice versa.
 
 `str.codePointAt(pos)`
 : Retorna o código para o caractere na posição `pos`:

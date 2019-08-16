@@ -27,7 +27,7 @@ Luckily, there's no need to write the code to handle all this. The task has been
 
 ## JSON.stringify
 
-O [JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) é um formato geral para representar valores e objetos. É descrito como no padrão [RFC 4627](http://tools.ietf.org/html/rfc4627). Inicialmente, foi feito para JavaScript, mas muitas outras linguagens também têm bibliotecas para lidar com isso. Portanto, é fácil usar o JSON para troca de dados quando o cliente usa JavaScript e o servidor é escrito em Ruby/PHP/Java/Qualquer coisa.
+O [JSON](http://pt.wikipedia.org/wiki/JSON) (JavaScript Object Notation) é um formato geral para representar valores e objetos. É descrito como no padrão [RFC 4627](http://tools.ietf.org/html/rfc4627). Inicialmente, foi feito para JavaScript, mas muitas outras linguagens também têm bibliotecas para lidar com isso. Portanto, é fácil usar o JSON para troca de dados quando o cliente usa JavaScript e o servidor é escrito em Ruby/PHP/Java/Qualquer coisa.
 
 JavaScript fornece métodos:
 

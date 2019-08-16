@@ -56,7 +56,7 @@ Em outras palavras, um número negativo depois de "e" significa uma divisão por
 
 ### Números hexadecimais, binários e octais
 
-Os números [Hexadecimais](https://en.wikipedia.org/wiki/Hexadecimal) são amplamente usados ​​em JavaScript para representar cores, codificar caracteres e muitas outras coisas. Então, naturalmente, existe uma maneira mais curta de escrevê-los: `0x` e depois o número.
+Os números [Hexadecimais](https://pt.wikipedia.org/wiki/Sistema_de_numera%C3%A7%C3%A3o_hexadecimal) são amplamente usados ​​em JavaScript para representar cores, codificar caracteres e muitas outras coisas. Então, naturalmente, existe uma maneira mais curta de escrevê-los: `0x` e depois o número.
 
 Por exemplo:
 
@@ -152,7 +152,7 @@ Existem duas maneiras de fazer isso:
     alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
     ```
 
-2. O método [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) arredonda o número para `n` dígitos depois do ponto e retorna uma representação  em string do resultado.
+2. O método [toFixed(n)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) arredonda o número para `n` dígitos depois do ponto e retorna uma representação  em string do resultado.
 
     ```js run
     let num = 12.34;
@@ -230,7 +230,7 @@ O mesmo problema existe em muitas outras linguagens de programação.
 PHP, Java, C, Perl, Ruby dão exatamente o mesmo resultado, porqe elas são baseadas no mesmo formato numérico.
 ```
 
-Podemos trabalhar em torno do problema? Claro, a maneira mais confiável é arredondar o resultado com a ajuda do método [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
+Podemos trabalhar em torno do problema? Claro, a maneira mais confiável é arredondar o resultado com a ajuda do método [toFixed(n)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
 
 ```js run
 let sum = 0.1 + 0.2;
@@ -377,7 +377,7 @@ alert( parseInt('2n9c', 36) ); // 123456
 
 ## Outras funções matemáticas
 
-JavaScript possui um objeto interno [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) que contém uma pequena biblioteca de funções matemáticas e constantes.
+JavaScript possui um objeto interno [Math](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math) que contém uma pequena biblioteca de funções matemáticas e constantes.
 
 Alguns exemplos:
 

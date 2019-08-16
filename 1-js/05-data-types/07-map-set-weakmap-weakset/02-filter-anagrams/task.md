@@ -4,7 +4,7 @@ importance: 4
 
 # Filtrar anagramas
 
-[Anagramas](https://en.wikipedia.org/wiki/Anagram) são palavras que têm o mesmo número de letras iguais, mas em ordem diferente.
+[Anagramas](https://pt.wikipedia.org/wiki/Anagrama) são palavras que têm o mesmo número de letras iguais, mas em ordem diferente.
 
 Por exemplo:
 
