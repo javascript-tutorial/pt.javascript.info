@@ -12,7 +12,7 @@ pow(3, 3) = 3 * 3 * 3 = 27
 pow(1, 100) = 1 * 1 * ...* 1 = 1
 ```
 
-Crie uma página web that prompts para `x` e `n`, e depois mostre o resultado de `pow(x,n)`.
+Crie uma página web que solicite `x` e `n`, em seguida, mostre o resultado de `pow(x,n)`.
 
 [demo]
 
