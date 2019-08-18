@@ -19,4 +19,3 @@ function min(a, b) {
 ```
 
 P.S. No caso de igualdade `a == b`, não importa o que retorna.
-
