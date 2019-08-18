@@ -18,7 +18,7 @@ function checkAge(age) {
 }
 ```
 
-Reescreva, to perform the same, mas sem `if`, em uma única linha.
+Reescreva, para executar a mesma, mas sem `if`, em uma única linha.
 
 Faça duas variantes de `checkAge`:
 
