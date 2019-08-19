@@ -132,6 +132,11 @@ In the example below, the contents of the new window is modified after loading.
 let newWindow = open('/', 'example', 'width=300,height=300')
 newWindow.focus();
 
+<<<<<<< HEAD
+=======
+alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
+
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 newWindow.onload = function() {
   let html = `<div style="font-size:30px">Welcome!</div>`;
 *!*
@@ -152,7 +157,13 @@ So both the main window and the popup have a reference to each other. They may m
 
 ## Closing a popup
 
+<<<<<<< HEAD
 If we don't need a popup any more, we can call `newWindow.close()` on it.
+=======
+To close a window: `win.close()`.
+
+To check if a window is closed: `win.closed`.
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 Technically, the `close()` method is available for any `window`, but `window.close()` is ignored by most browsers if `window` is not created with `window.open()`.
 
@@ -200,5 +211,8 @@ For instance:
 - To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
 - Methods `focus()` and `blur()` allow to focus/unfocus a window. Sometimes.
 - Events `focus` and `blur` allow to track switching in and out of the window. But please note that a  window may still be visible even in the background state, after `blur`.
+<<<<<<< HEAD
 
 Also if we open a popup, a good practice is to notify the user about it. An icon with the opening window can help the visitor to survive the focus shift and keep both windows in mind.
+=======
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923

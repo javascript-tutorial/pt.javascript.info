@@ -150,7 +150,11 @@ new Promise((resolve, reject) => {
   }
 
 }).then(function() {
+<<<<<<< HEAD
   /* never runs here */
+=======
+  /* doesn't run here */
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 }).catch(error => { // (**)
 
   alert(`The unknown error has occurred: ${error}`);
@@ -266,7 +270,11 @@ new Promise(function() {
 
 In case of an error, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck".
 
+<<<<<<< HEAD
 In practice, just like with a regular unhandled errors, it means that something has terribly gone wrong, the script probably died.
+=======
+In practice, just like with regular unhandled errors in code, it means that something has terribly gone wrong.
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 Most JavaScript engines track such situations and generate a global error in that case. We can see it in the console.
 
