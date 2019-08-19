@@ -3,11 +3,11 @@
 
 By specification, object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols, these two types.
 
-Till now we've only seen strings. Now let's see the advantages that symbols can give us.
+Till now we've been using only strings. Now let's see the benefits that symbols can give us.
 
 ## Symbols
 
-"Symbol" value represents a unique identifier.
+A "symbol" represents a unique identifier.
 
 A value of this type can be created using `Symbol()`:
 
@@ -52,7 +52,7 @@ alert(id); // TypeError: Cannot convert a Symbol value to a string
 
 That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not occasionally convert one into another.
 
-If we really want to show a symbol, we need to call `.toString()` on it, like here:
+If we really want to show a symbol, we need to explicitly call `.toString()` on it, like here:
 ```js run
 let id = Symbol("id");
 *!*
@@ -60,7 +60,7 @@ alert(id.toString()); // Symbol(id), now it works
 */!*
 ```
 
-Or get `symbol.description` property to get the description only:
+Or get `symbol.description` property to show the description only:
 ```js run
 let id = Symbol("id");
 *!*
@@ -74,13 +74,23 @@ alert(id.description); // id
 
 Symbols allow us to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
 
+<<<<<<< HEAD
 For instance, if we want to store an "identifier" for the object `user`, we can use a symbol as a key for it:
+=======
+For instance, if we're working with `user` objects, that belong to a third-party code. We'd like to add identifiers to them.
+
+Let's use a symbol key for it:
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 ```js run
-let user = { name: "John" };
+let user = { // belongs to another code
+  name: "John"
+};
+
 let id = Symbol("id");
 
-user[id] = "ID Value";
+user[id] = 1;
+
 alert( user[id] ); // we can access the data using the symbol as the key
 ```
 
@@ -106,13 +116,13 @@ Now note that if we used a string `"id"` instead of a symbol for the same purpos
 ```js run
 let user = { name: "John" };
 
-// our script uses "id" property
-user.id = "ID Value";
+// Our script uses "id" property
+user.id = "Our id value";
 
-// ...if later another script the uses "id" for its purposes...
+// ...Another script also wants "id" for its purposes...
 
 user.id = "Their id value"
-// boom! overwritten! it did not mean to harm the colleague, but did it!
+// Boom! overwritten by another script!
 ```
 
 ### Symbols in a literal
@@ -127,7 +137,7 @@ let id = Symbol("id");
 let user = {
   name: "John",
 *!*
-  [id]: 123 // not just "id: 123"
+  [id]: 123 // not "id: 123"
 */!*
 };
 ```

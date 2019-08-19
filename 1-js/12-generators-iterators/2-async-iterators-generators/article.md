@@ -280,7 +280,11 @@ for await (let commit of fetchCommits(repo)) {
 }
 ```
 
+<<<<<<< HEAD
 We'd like `fetchCommits` to get commits for us, making requests whenever needed. And let it care about all pagination stuff, for us it'll be a simple `for await..of`.
+=======
+We'd like to make a function `fetchCommits(repo)` that gets commits for us, making requests whenever needed. And let it care about all pagination stuff, for us it'll be a simple `for await..of`.
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 With async generators that's pretty easy to implement:
 
@@ -358,4 +362,8 @@ In web-development we often meet streams of data, when it flows chunk-by-chunk. 
 
 We could use async generators to process such data, but there's also another API called Streams, that may be more convenient, as it provides special interfaces to transform the data and to pass it from one stream to another (e.g. download from one place and immediately send elsewhere). But they are also more complex.
 
+<<<<<<< HEAD
 Streams API not a part of JavaScript language standard. Streams and async generators complement each other, both are great ways to handle async data flows.
+=======
+Streams API is not a part of JavaScript language standard.
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923

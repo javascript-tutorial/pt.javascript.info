@@ -308,8 +308,7 @@ for (let i = 0; i < 3; i++) {
 
     let input = prompt(`Value at coords (${i},${j})`, '');
 
-    // what if I want to exit from here to Done (below)?
-
+    // what if we want to exit from here to Done (below)?
   }
 }
 
