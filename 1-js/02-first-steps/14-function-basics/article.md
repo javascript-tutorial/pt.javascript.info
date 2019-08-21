@@ -45,7 +45,7 @@ Este exemplo demonstra claramente um dos principais objetivos das funções: evi
 
 Se precisarmos mudar a mensagem ou a maneira que ela é mostrada, basta modificar o código em um só lugar: a função que gera isso.
 
-## Local variables
+## Variáveis locais
 
 A variable declared inside a function is only visible inside that function.
 
