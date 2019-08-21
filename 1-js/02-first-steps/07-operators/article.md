@@ -2,7 +2,7 @@
 
 Nós aprendemos muitos operadores na escolas. Alguns deles são adição `+`, multiplicação `*`, subtração `-` e assim por diante.
 
-Nesta capítulo, nós vamos no concentrar nos aspectos de operadores que não são cobertos pela aritmética escolar.
+Nesta capítulo, iremos nos concentrar em aspectos dos operadores que não são cobertos pela aritmética escolar.
 
 ## Termos: "unário", "binário", "operandos"
 
