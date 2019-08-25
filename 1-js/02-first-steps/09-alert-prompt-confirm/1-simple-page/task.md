@@ -2,8 +2,7 @@ importance: 4
 
 ---
 
-# A simple page
+# Uma página simples
 
 Create a web-page that asks for a name and outputs it.
-
-[demo]
+Crie uma página web que pede um nome e o exibe [demo]
