@@ -1,5 +1,6 @@
 # Patterns and flags
 
+<<<<<<< HEAD
 Regular expressions is a powerful way of searching and replacing inside a string.
 
 In JavaScript regular expressions are implemented using objects of a built-in `RegExp` class and integrated with strings.
@@ -7,12 +8,19 @@ In JavaScript regular expressions are implemented using objects of a built-in `R
 Please note that regular expressions vary between programming languages. In this tutorial we concentrate on JavaScript. Of course there's a lot in common, but they are a somewhat different in Perl, Ruby, PHP etc.
 
 ## Regular expressions
+=======
+Regular expressions is a powerful way to search and replace in text.
+
+In JavaScript, they are available as `RegExp` object, and also integrated in methods of strings.
+
+## Regular Expressions
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 A regular expression (also "regexp", or just "reg") consists of a *pattern* and optional *flags*.
 
 There are two syntaxes to create a regular expression object.
 
-The long syntax:
+The "long" syntax:
 
 ```js
 regexp = new RegExp("pattern", "flags");

@@ -124,7 +124,11 @@ arr.slice(start, end)
 
 It returns a new array containing all items from index `"start"` to `"end"` (not including `"end"`). Both `start` and `end` can be negative, in that case position from array end is assumed.
 
+<<<<<<< HEAD
 It works like `str.slice`, but makes subarrays instead of substrings.
+=======
+It's similar to a string method `str.slice`, but instead of substrings it makes subarrays.
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 For instance:
 

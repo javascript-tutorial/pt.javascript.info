@@ -416,6 +416,10 @@ In real-life, the problem is how to remember the order of arguments. Usually IDE
 Like this?
 
 ```js
+<<<<<<< HEAD:1-js/05-data-types/09-destructuring-assignment/article.md
+=======
+// undefined where default values are fine
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72:1-js/05-data-types/10-destructuring-assignment/article.md
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 
