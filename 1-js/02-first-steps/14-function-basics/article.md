@@ -1,36 +1,36 @@
-# Functions
+# Funções
 
-Quite often we need to perform a similar action in many places of the script.
+Muitas vezes nós precisamos realizar uma ação semelhante em muitos lugares do script.
 
-For example, we need to show a nice-looking message when a visitor logs in, logs out and maybe somewhere else.
+Por exemplo, precisamos mostrar uma boa mensagem quando um usuário efetua login, efetua logout e talvez em outro lugar.
 
-Functions are the main "building blocks" of the program. They allow the code to be called many times without repetition.
+Funções são os principais "building blocks" do programa. Elas permitem que o código sejam chamados muitas vezes sem repetição.
 
-We've already seen examples of built-in functions, like `alert(message)`, `prompt(message, default)` and `confirm(question)`. But we can create functions of our own as well.
+Nós já vimos exemplos de built-in functions, como `alert(message)`, `prompt(message, default)` e `confirm(question)`. Mas nós podemos criar funções próprias também.
 
 ## Function Declaration
 
-To create a function we can use a *function declaration*.
+Para criarmos uma função podemos usar uma *function declaration*.
 
-It looks like this:
+Se parece assim:
 
 ```js
 function showMessage() {
-  alert( 'Hello everyone!' );
+  alert( 'Olá a todos!' );
 }
 ```
 
-The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
+A palavra-chave `function` vem primeiro, depois vem o *nome da função*, e uma lista de *parâmetros* entre os parêntesis (vazio no exemplo acima) e finalmente o código da função, também chamado de "o corpo da função", entre chaves.
 
 ![](function_basics.png)
 
-Our new function can be called by its name: `showMessage()`.
+Nossa nova função pode ser chamada pelo seu nome: `showMessage()`.
 
-For instance:
+Por exemplo:
 
 ```js run
 function showMessage() {
-  alert( 'Hello everyone!' );
+  alert( 'Olá a todos!' );
 }
 
 *!*
@@ -39,13 +39,13 @@ showMessage();
 */!*
 ```
 
-The call `showMessage()` executes the code of the function. Here we will see the message two times.
+A chamada `showMessage()` executa o código da função. Aqui vemos a mensagem duas vezes.
 
-This example clearly demonstrates one of the main purposes of functions: to avoid code duplication.
+Este exemplo demonstra claramente um dos principais objetivos das funções: evitar código duplicado.
 
-If we ever need to change the message or the way it is shown, it's enough to modify the code in one place: the function which outputs it.
+Se precisarmos mudar a mensagem ou a maneira que ela é mostrada, basta modificar o código em um só lugar: a função que gera isso.
 
-## Local variables
+## Variáveis locais
 
 A variable declared inside a function is only visible inside that function.
 
