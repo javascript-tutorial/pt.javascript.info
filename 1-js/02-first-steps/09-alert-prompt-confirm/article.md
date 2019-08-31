@@ -1,6 +1,7 @@
 # Interação: alert, prompt, confirm
 
 Esta parte do tutorial tem como objetivo cobrir o JavaScript  "como é ", sem ajustes específicos de ambiente.
+
 Mas ainda estaremos usando o navegador como nosso ambiente de demostração, portanto devemos conhecer pelo menos algumas de suas funções de interface. Neste capítulo, familiazaremos com as funções do navegador `alert`, `prompt` e `confirm`.
 
 ## alert
@@ -11,7 +12,7 @@ Sintaxe:
 alert(mensagem);
 ```
 
- mostrará uma mensagem até o usuário pressionar  "OK".
+ Mostra uma mensagem até o usuário pressionar  "OK".
 
 Por exemplo:
 
@@ -19,8 +20,8 @@ Por exemplo:
 alert("Ola");
 ```
 
-
 A mini-janela com a mensagem é chamada *modal view*. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc. Até que ele tenha lidado com a janela. Nesse caso -- até pressionar "OK"
+
 ## prompt
 
 A função `prompt`  aceita dois argumentos
@@ -31,15 +32,13 @@ result = prompt(title, [default]);
 
 Mostra uma janela modal com mensagem de texto,  um campo de entrada para o visitante, e os botões OK/CANCEL
 
-
 `title`
 : Texto para ser mostrado ao visitante.
-
 `default`
 : Um parâmetro opcional, valor inicial para o campo de entrada
-
-
 O visitante pode digitar algo no campo de entrada do prompt e pressionar OK. Ou ele pode cancelar a entrada pressionando CANCEL ou `key:Esc`.
+
+
 
 A chamada do `prompt` retorna o texto do campo de entrada ou `null` se a entrada foi cancelada.
 
@@ -89,11 +88,15 @@ alert( isBoss ); // true se OK for pressionado
 
 Cobrimos 3 funções específicas do navegador para interagir com o visitante:
 
+
+
 `alert`
 : mostra uma mensagem.
 
 `prompt`
 : mostra uma mensagem pedindo para o usuário inserir texto. Ele retorna o texto ou, se CANCEL ou `key:Esc` for clicado, `null`.
+
+
 
 `confirm`
 : mostra uma mensagem e espera o usuário pressionar  "OK" ou "CANCEL". Ele retorna `true` para OK e `false` para CANCEL/`key:Esc`.
