@@ -45,7 +45,7 @@ for (let key in count) {
 }
 ```
 
-Um exemplo de resultado (para V8, julho de 2017):
+Um exemplo de resultado (depende do motor de JS):
 
 ```js
 123: 250706
@@ -68,7 +68,13 @@ Existem outras boas maneiras de fazer a tarefa. Por exemplo, existe um ótimo al
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1)); // índice aleatório de 0 a i
-    [array[i], array[j]] = [array[j], array[i]]; // trocar elementos
+    
+    // troca os elementos array[i] e array[j]
+    // usamos a sintaxe "atribuição de desestruturação" para alcançar isso
+    // você encontrará mais detalhes sobre essa sintaxe nos próximos capítulos
+    // o mesmo pode ser escrito como:
+    // let t = array[i]; array[i] = array[j]; array[j] = t
+    [array[i], array[j]] = [array[j], array[i]];
   }
 }
 ```

@@ -31,6 +31,6 @@ A tarefa consiste em duas partes.
     alert( result ); // 8
     ```
 
-- Sem colchetes ou expressões complexas nesta tarefa.
+- Sem parênteses ou expressões complexas nesta tarefa.
 - Os números e o operador são delimitados com exatamente um espaço.
 - Pode haver tratamento de erros se você quiser adicioná-lo.

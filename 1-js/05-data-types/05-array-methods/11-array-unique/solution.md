@@ -36,4 +36,4 @@ Então, se `arr.length` for `10000`, teremos algo como `10000 * 10000` = 100 mil
 
 Portanto, a solução é boa apenas para matrizes pequenas.
 
-Mais adiante, no capítulo <info:map-set-weakmap-weakset>, veremos como otimizá-lo.
+Mais adiante, no capítulo <info:map-set>, veremos como otimizá-lo.

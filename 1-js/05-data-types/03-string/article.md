@@ -17,7 +17,7 @@ let double = "aspas duplas";
 let backticks = `acento grave`;
 ```
 
-Aspas simples e duplas são essencialmente as mesmas. Acento grave, no entanto, nos permitem incorporar qualquer expressão na string, incluindo chamadas de função:
+Aspas simples e duplas são essencialmente as mesmas. Acento grave, no entanto, nos permitem incorporar qualquer expressão na string, envolvendo-a em `${…}`:
 
 ```js run
 function sum(a, b) {
@@ -39,9 +39,12 @@ let guestList = `Convidados:
 alert(guestList); // uma lista de convidados, múltiplas linhas
 ```
 
-Se tentarmos usar aspas simples ou duplas da mesma maneira, haverá um erro:
+Parece natural, certo? Mas aspas simples ou duplas não funcionam dessa maneira.
+
+Se as usarmos e tentarmos usar várias linhas, haverá um erro:
+
 ```js run
-let guestList = "Convidados:  // Error: Unexpected token ILLEGAL
+let guestList = "Convidados: // Error: Unexpected token ILLEGAL
   * John";
 ```
 
@@ -49,10 +52,9 @@ Aspas simples e duplas vêm de tempos antigos de criação da linguagem quando a
 
 Acento agudo também nos permitem especificar uma "função de modelo" antes do primeiro acento agudo. A sintaxe é: <code>func&#96;string&#96;</code>. A função `func` é chamada automaticamente, recebe a string e expressões incorporadas e pode processá-las. Você pode ler mais sobre isso no [docs](mdn: / JavaScript / Referência / Template_literals # Tagged_template_literals). Isso é chamado de "modelos marcados". Esse recurso facilita o encapsulamento de strings em modelos personalizados ou outras funcionalidades, mas raramente é usado.
 
-
 ## Caracteres especiais
 
-Ainda é possível criar strings de múltiplas linhas com aspas simples usando o chamado "caractere de nova linha", escrito como `\n`, que indica uma quebra de linha:
+Ainda é possível criar strings de múltiplas linhas com aspas simples e duplas usando o chamado "caractere de nova linha", escrito como `\n`, que indica uma quebra de linha:
 
 ```js run
 let guestList = "Convidados:\n * John\n * Pete\n * Mary";
@@ -60,39 +62,45 @@ let guestList = "Convidados:\n * John\n * Pete\n * Mary";
 alert(guestList); // uma lista de convidados com múltiplas linhas
 ```
 
-Por exemplo, estas duas linhas descrevem o mesmo:
+Por exemplo, estas duas linhas são iguais, apenas escritas de maneiras diferentes:
 
 ```js run
-alert( "Hello\nWorld" ); // duas linhas usando um "símbolo de nova linha"
+let str1 = "Hello\nWorld"; // duas linhas usando um "símbolo de nova linha"
 
 // duas linhas usando uma nova linha normal e acento agudo
-alert( `Hello
-World` );
+let str2 = `Hello
+World`;
+
+alert(str1 == str2); // true
 ```
 
-Existem outros caracteres "especiais" menos comuns também. Aqui está a lista:
+Existem outros caracteres "especiais" menos comuns:
+
+Aqui está a lista completa:
 
 | Caractere | Descrição |
 |-----------|-------------|
-|`\b`|Backspace|
-|`\f`|Feed de formulário|
 |`\n`|Nova linha|
-|`\r`|Quebra de linha|
+|`\r`|Quebra de linha: não usado sozinho. Os arquivos de texto do Windows usam uma combinação de dois caracteres `\r\n` para representar uma quebra de linha.|
+|`\'`, `\"`|Aspas|
+|`\\`|Barra invertida|
 |`\t`|Tab|
-|`\uNNNN`|Um símbolo unicode com o código hexadecimal `NNNN`, por exemplo `\u00A9` -- é um unicode para o símbolo de direitos autorais `©`. Deve ser exatamente 4 dígitos hexadecimais. |
-|`\u{NNNNNNNN}`|Alguns caracteres raros são codificados com dois símbolos unicode, ocupando até 4 bytes. Este longo unicode requer chaves em torno dele.|
+|`\b`, `\f`,`\v`| Backspace, Feed de formulário, Tab Vertical - mantidos para compatibilidade, não utilizados atualmente. |
+|`\xXX`|Caractere Unicode com o dado Unicode hexadimal `XX`, por exemplo `'\x7A'` é o mesmo que `'z'`.|
+|`\uXXXX`|Um símbolo unicode com o código hexadecimal `XXXX` na codificação UTF-16, por exemplo `\u00A9` -- é um unicode para o símbolo de direitos autorais `©`. Ele deve ter exatamente 4 dígitos hexadecimais. |
+|`\u{X…XXXXXX}` (1 a 6 caracteres hexadecimais) | Um símbolo unicode com a codificação UTF-32 fornecida. Alguns caracteres raros são codificados com dois símbolos unicode, ocupando até 4 bytes. Dessa forma, podemos inserir códigos longos.|
 
 Exemplos com unicode:
 
 ```js run
 alert( "\u00A9" ); // ©
-alert( "\u{20331}" ); // 佫, um hieróglifo chinês raro (unicode longo)
+alert( "\u{20331}" ); // 佫, um hieróglifo Chinês raro (unicode longo)
 alert( "\u{1F60D}" ); // 😍, um símbolo de rosto sorridente (outro unicode longo)
 ```
 
 Todos os caracteres especiais começam com um caractere de barra invertida `\`. Também é chamado de "caractere de escape".
 
-Nós também o usaríamos se quisermos inserir uma citação na string.
+Nós também o usaríamos se quiséssemos inserir uma citação na string.
 
 Por exemplo:
 
@@ -102,7 +110,7 @@ alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 
 Como você pode ver, temos que prefixar a aspas internas pela barra invertida `\'`, porque senão indicaria o final da string.
 
-Naturalmente, isso se refere apenas às cotações que são as mesmas que as contidas. Então, como uma solução mais elegante, poderíamos alternar entre aspas duplas ou acento agudo:
+Naturalmente, apenas às aspas que são as mesmas que as contidas precisam ser escapadas. Então, como uma solução mais elegante, poderíamos alternar entre aspas duplas ou acento agudo:
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
@@ -119,7 +127,6 @@ alert( `The backslash: \\` ); // The backslash: \
 ```
 
 ## Comprimento String
-
 
 A propriedade `length` guarda o comprimento da string:
 
@@ -189,7 +196,7 @@ For instance:
 ```js run
 let str = 'Hi';
 
-str = 'h' + str[1];  // substitui string
+str = 'h' + str[1]; // substitui string
 
 alert( str ); // hi
 ```
@@ -242,9 +249,7 @@ let str = 'Widget with id';
 alert( str.indexOf('id', 2) ) // 12
 ```
 
-
-If we're interested in all occurrences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
-
+Se estivermos interessados ​​em todas as ocorrências, podemos executar o `indexOf` em um loop. Cada nova chamada é feita com a posição após a partida anterior:
 
 ```js run
 let str = 'As sly as a fox, as strong as an ox';
@@ -305,10 +310,11 @@ if (str.indexOf("Widget") != -1) {
 }
 ```
 
-````smart header="O truque NOT bit a bit"
+#### O truque NOT bit a bit
+
 Um dos velhos truques usados ​​aqui é o operador [NOT bit a bit](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~`. Ele converte o número em um inteiro de 32 bits (remove a parte decimal, se existir) e, em seguida, inverte todos os bits em sua representação binária.
 
-Para inteiros de 32 bits, a chamada `~n` significa exatamente o mesmo que `- (n + 1)` (devido ao formato IEEE-754).
+Na prática, isso significa uma coisa simples: para números inteiros de 32 bits `~n` é igual a `-(n+1)`.
 
 Por exemplo:
 
@@ -321,7 +327,7 @@ alert( ~-1 ); // 0, o mesmo que -(-1+1)
 */!*
 ```
 
-Como podemos ver, `~n` é zero somente se `n == -1`.
+Como podemos ver, `~n` é zero somente se `n == -1` (isso é para qualquer número inteiro com sinal de 32 bits `n`).
 
 Então, o teste `if ( ~str.indexOf("...") )` é verdadeiro quando o resultado de `indexOf` não é `-1`. Em outras palavras, quando encontrou uma combinação.
 
@@ -338,7 +344,10 @@ if (~str.indexOf("Widget")) {
 Geralmente, não é recomendado usar os recursos de linguagem de maneira não óbvia, mas esse truque específico é amplamente usado em códigos antigos, por isso devemos entendê-lo.
 
 Lembre-se: `if (~str.indexOf(...))` lê-se como "se encontrado".
-````
+
+Para ser preciso, porém, como os números grandes são truncados para 32 bits pelo operador `~`; existem outros números que dão `0`, o menor é` `~4294967295=0`. Isso faz com que essa verificação esteja correta apenas se uma sequência não for tão longa.
+
+No momento, podemos ver esse truque apenas no código antigo, pois o JavaScript moderno fornece o método `.includes` (veja abaixo).
 
 ### includes, startsWith, endsWith
 
@@ -355,15 +364,15 @@ alert( "Hello".includes("Bye") ); // false
 O segundo argumento opcional de `str.includes` é a posição para começar a procurar em:
 
 ```js run
-alert( "Midget".includes("id") ); // true
-alert( "Midget".includes("id", 3) ); // false, a partir da posição 3 não existe nenhum "id"
+alert( "Widget".includes("id") ); // true
+alert( "Widget".includes("id", 3) ); // false, a partir da posição 3 não existe nenhum "id"
 ```
 
 Os métodos [str.startsWith](mdn:js/String/startsWith) e [str.endsWith](mdn:js/String/endsWith) fazem exatamente o que eles dizem:
 
 ```js run
 alert( "Widget".startsWith("Wid") ); // true, "Widget" começa com "Wid"
-alert( "Widget".endsWith("get") );   // true, "Widget" termina com "get"
+alert( "Widget".endsWith("get") );  // true, "Widget" termina com "get"
 ```
 
 ## Obtendo uma substring
@@ -397,14 +406,12 @@ Existem 3 métodos em JavaScript para obter uma substring: `substring`,` substr`
     alert( str.slice(-4, -1) ); // gif
     ```
 
-
 `str.substring(start [, end])`
 : Retorna a parte da string *entre* `start` e `end`.
 
     Isso é quase o mesmo que `slice`, mas permite que `start` seja maior que `end`.
 
     Por exemplo:
-
 
     ```js run
     let str = "st*!*ring*/!*ify";
@@ -420,7 +427,6 @@ Existem 3 métodos em JavaScript para obter uma substring: `substring`,` substr`
     ```
 
     Argumentos negativos são (ao contrário de slice) não suportados, eles são tratados como `0`.
-
 
 `str.substr(start [, length])`
 : Retorna a parte da string a partir de `start`, com o dado comprimento `length`.
@@ -447,11 +453,10 @@ Vamos recapitular esses métodos para evitar qualquer confusão:
 | `substring(start, end)` | entre `start` e `end` |  valores negativos sgnificam `0` |
 | `substr(start, length)` | de `start` obtenha `length` caracteres | permite `start` negativo |
 
-
 ```smart header="Qual escolher?"
 Todos eles podem fazer o trabalho. Formalmente, o `substr` tem uma pequena desvantagem: é descrito não na especificação principal do JavaScript, mas no Anexo B, que cobre recursos somente do navegador que existem principalmente por razões históricas. Assim, ambientes sem navegador podem falhar em suportá-lo. Mas na prática funciona em todos os lugares.
 
-O autor se encontra usando `slice` quase todo o tempo.
+Das outras duas variantes, o `slice` é um pouco mais flexível, permite argumentos negativos e é menor para escrever. Portanto, basta lembrar apenas `slice` desses três métodos.
 ```
 
 ## Comparando strings
@@ -514,7 +519,7 @@ alert( str );
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 ```
 
-Viu? Os caracteres maiúsculos são os primeiros, depois alguns especiais e, em seguida, os caracteres minúsculos.
+Viu? Os caracteres maiúsculos são os primeiros, depois alguns especiais e, em seguida, os caracteres minúsculos, e `Ö` perto do final da saída.
 
 Agora ficou óbvio por quê `a > Z`.
 
@@ -523,10 +528,9 @@ Os caracteres são comparados por seu código numérico. O código maior signifi
 - Todas as letras minúsculas seguem letras maiúsculas porque seus códigos são maiores.
 - Algumas letras como `Ö` destacam-se do alfabeto principal. Aqui, o código é maior que qualquer coisa de `a` até `z`.
 
-
 ### Comparações corretas
 
-O algoritmo "certo" para fazer comparações de cadeias é mais complexo do que parece, porque os alfabetos são diferentes para idiomas diferentes. A mesma letra pode estar localizada de forma diferente em alfabetos diferentes.
+O algoritmo "certo" para fazer comparações de cadeias é mais complexo do que parece, porque os alfabetos são diferentes para idiomas diferentes.
 
 Então, o navegador precisa conhecer o idioma para comparar.
 
@@ -534,11 +538,11 @@ Felizmente, todos os navegadores modernos (IE10 - requer a biblioteca adicional 
 
 Ele fornece um método especial para comparar strings em diferentes idiomas, seguindo suas regras.
 
-A chamada [str.localeCompare(str2)](mdn:js/String/localeCompare):
+A chamada [str.localeCompare(str2)](mdn:js/String/localeCompare) retorna um número inteiro indicando se `str` é menor, igual ou maior que a `str2` de acordo com as regras de idioma:
 
-- Retorna `1` se `str` for maior que `str2` de acordo com as regras do idioma.
-- Retorna `-1` se `str` for menor que `str2`.
-- Retorna `0` se elas forem iguais.
+- Retorna um número negativo se `str` for menor que `str2`.
+- Retorna um número positivo se `str` for maior que `str2`.
+- Retorna `0` se elas forem equivalentes.
 
 Por exemplo:
 
@@ -546,7 +550,7 @@ Por exemplo:
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 
-Este método possui dois argumentos adicionais especificados em [a documentação](mdn: js / String / localeCompare), que permite especificar o idioma (por padrão, extraído do ambiente) e configurar regras adicionais, como maiúsculas e minúsculas, ou `"a"` e `"á"` ser tratado como o mesmo etc.
+Este método possui dois argumentos adicionais especificados em [a documentação](mdn: js / String / localeCompare), que permite especificar o idioma (por padrão, extraído do ambiente, a ordem das letras depende do idioma) e configurar regras adicionais, como maiúsculas e minúsculas, ou `"a"` e `"á"` ser tratado como o mesmo etc.
 
 ## Internos, Unicode
 
@@ -558,7 +562,7 @@ Você pode pular a seção se não pretende usá-los.
 
 ### Pares substitutos
 
-A maioria dos símbolos tem um código de 2 bytes. As letras na maioria das linguagens européias, números e até a maioria dos hieróglifos têm uma representação de 2 bytes.
+Todos caracteres frequentemente usados tem um código de 2 bytes. As letras na maioria das linguagens européias, números e até a maioria dos hieróglifos têm uma representação de 2 bytes.
 
 Mas 2 bytes só permitem 65536 combinações e isso não é suficiente para todos os símbolos possíveis. Então símbolos raros são codificados com um par de caracteres de 2 bytes chamado "um par substituto".
 
@@ -567,7 +571,7 @@ O comprimento de tais símbolos é "2":
 ```js run
 alert( '𝒳'.length ); // 2, SCRIPT MATEMÁTICO CAPITAL X
 alert( '😂'.length ); // 2, FACE COM LÁGRIMAS DE ALEGRIA
-alert( '𩷶'.length ); // 2, um hieróglifo chinês raro
+alert( '𩷶'.length ); // 2, um hieróglifo Chinês raro
 ```
 
 Observe que os pares substitutos não existiam no momento em que o JavaScript foi criado e, portanto, não são processados ​​corretamente pela linguagem!
@@ -576,7 +580,7 @@ Na verdade, temos um único símbolo em cada uma das strings acima, mas o `lengt
 
 `String.fromCodePoint` e `str.codePointAt` são alguns métodos raros que lidam com pares substitutos corretamente. Eles apareceram recentemente no idioma. Antes deles, havia apenas [String.fromCharCode](mdn: js / String / fromCharCode) e [str.charCodeAt](mdn: js / String / charCodeAt). Esses métodos são, na verdade, iguais a `fromCodePoint/codePointAt`, mas não funcionam com pares substitutos.
 
-Mas, por exemplo, obter um símbolo pode ser complicado, porque os pares substitutos são tratados como dois caracteres:
+Obter um símbolo pode ser complicado, porque os pares substitutos são tratados como dois caracteres:
 
 ```js run
 alert( '𝒳'[0] ); // símbolos estranhos...
@@ -604,7 +608,7 @@ Em muitos idiomas existem símbolos que são compostos do caractere base com uma
 
 Por exemplo, a letra 'a' pode ser o caractere base para: `aáâäãå`. O caractere "composto" mais comum tem seu próprio código na tabela UTF-16. Mas nem todos eles, porque existem muitas combinações possíveis.
 
-Para suportar composições arbitrárias, o UTF-16 nos permite usar vários caracteres unicode. O caractere base e um ou vários caracteres "marcados" que "decoram".
+Para suportar composições arbitrárias, o UTF-16 nos permite usar vários caracteres unicode: o caractere base seguido de um ou vários caracteres "marcados" que "decoram".
 
 Por exemplo, se temos `S` seguido do caracter especial" ponto acima "(código` \ u0307`), ele é mostrado como Ṡ.
 
@@ -627,10 +631,12 @@ Isso proporciona uma grande flexibilidade, mas também um problema interessante:
 Por exemplo:
 
 ```js run
-alert( 'S\u0307\u0323' ); // Ṩ, S + ponto acima + ponto abaixo
-alert( 'S\u0323\u0307' ); // Ṩ, S + ponto abaixo + ponto acima
+let s1 = 'S\u0307\u0323'; // Ṩ, S + ponto acima + ponto abaixo
+let s2 = 'S\u0323\u0307'; // Ṩ, S + ponto abaixo + ponto acima
 
-alert( 'S\u0307\u0323' == 'S\u0323\u0307' ); // false
+alert( `s1: ${s1}, s2: ${s2}` );
+
+alert( s1 == s2 ); // false embora os caracteres pareçam idênticos (?!)
 ```
 
 Para resolver isso, existe um algoritmo de "normalização unicode" que traz cada string para a única forma "normal".
@@ -653,10 +659,9 @@ Na realidade, isso nem sempre é o caso. A razão é que o símbolo `Ṩ` é "ba
 
 Se você quiser aprender mais sobre as regras e variantes de normalização - elas estão descritas no apêndice do padrão Unicode: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), mas para a maioria dos casos práticos fins, as informações desta seção são suficientes.
 
-
 ## Resumo
 
-- Existem 3 tipos de citações. Acento agudo permitem que uma string abranja várias linhas e incorpore expressões.
+- Existem 3 tipos de citações. Acento agudo permitem que uma string abranja várias linhas e incorpore expressões `${…}`.
 - Strings em JavaScript são codificadas usando UTF-16.
 - Podemos usar caracteres especiais como `\n` e inserir letras pelo unicode usando `\u ... `.
 - Para obter um caractere, use: `[]`.
@@ -669,6 +674,6 @@ Existem vários outros métodos úteis em strings:
 
 - `str.trim()` - remove ("apara") espaços do começo e fim da string.
 - `str.repeat(n)` - repete a string `n` vezes.
-- ...e mais. Veja o [manual](mdn: js / String) para detalhes.
+- ...e mais a ser encontrado no [manual](mdn:js/String).
 
 As strings também possuem métodos para pesquisar/substituir com expressões regulares. Mas esse tópico merece um capítulo separado, então voltaremos a isso mais tarde.

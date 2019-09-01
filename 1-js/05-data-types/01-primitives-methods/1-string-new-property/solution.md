@@ -17,7 +17,7 @@ Por quê? Vamos examinar o que está acontecendo na linha`(*)`:
 
 1. Quando a propriedade de `str` é acessada, um "invólucro de objeto" é criado.
 2. No modo strict, escrever nela é um erro.
-3. Caso contrário, a operação com a propriedade é continuada, o objeto recebe a propriedade `test`, mas após isso o "invólucro de objeto" desaparece.
+3. Caso contrário, a operação com a propriedade é continuada, o objeto recebe a propriedade `test`, mas após isso o "invólucro de objeto" desaparece, então na última linha `str` não tem nenhum rastro da propriedade..
 
 Então, sem o modo strict, na última linha `str` não tem rastros da propriedade.
 

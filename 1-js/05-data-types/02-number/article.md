@@ -2,7 +2,7 @@
 
 Todos os números em JavaScript são armazenados no formato de 64 bits [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), também conhecido como "número de ponto flutuante de precisão dupla".
 
-Vamos recapitular e expandir o que atualmente sabemos sobre eles.
+Vamos expandir o que atualmente sabemos sobre eles.
 
 ## Mais maneiras de escrever um número
 
@@ -12,7 +12,7 @@ Imagine que precisamos escrever 1 bilhão. A maneira óbvia é:
 let billion = 1000000000;
 ```
 
-Mas na vida real nós geralmente evitamos escrever uma longa seqüência de zeros, pois é comum digitar errado. Além disso, somos preguiçosos. Nós geralmente escrevemos algo como `"1bn"` para um bilhão ou `"7.3bn"` para 7 bilhões e 300 milhões. O mesmo é verdadeiro para a maioria dos números grandes.
+Mas na vida real, nós geralmente evitamos escrever uma longa seqüência de zeros, pois é comum digitar errado. Além disso, somos preguiçosos. Nós geralmente escrevemos algo como `"1bn"` para um bilhão ou `"7.3bn"` para 7 bilhões e 300 milhões. O mesmo é verdadeiro para a maioria dos números grandes.
 
 Em JavaScript, nós abreviamos um número anexando a letra `"e"` ao número e especificando a quantidade de zeros:
 
@@ -213,7 +213,7 @@ Então, divisão por potências de `10` é garantido que vai funcionar bem no si
 
 Não existe maneira de armazenar *exatamente 0.1* ou *exatamente 0.2* usando o sistema binário, da mesma maneira que não há como armazenar um terço como fração decimal.
 
-O formato numérico IEEE-754 resolve isso arredondando para o número mais próximo possível. Essas regras de arredondamento normalmente não nos permitem ver aquela "pequena perda de precisão", então o número aparece como `0.3`. Mas saiba que, a perda ainda existe.
+O formato numérico IEEE-754 resolve isso arredondando para o número mais próximo possível. Essas regras de arredondamento normalmente não nos permitem ver aquela "pequena perda de precisão", mas ela existe.
 
 Podemos ver isso em ação:
 ```js run

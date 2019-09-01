@@ -3,9 +3,9 @@
 
 Objetos *Iteráveis* são uma generalização de arrays. Esse é um conceito que permite tornar qualquer objeto utilizável em um loop `for..of`.
 
-Claro, Arrays são iteráveis. Mas há muitos outros objetos internos, que também são iteráveis. Por exemplo, Strings são iteráveis ​​também. Como veremos, muitos operadores e métodos integrados dependem deles.
+Claro, Arrays são iteráveis. Mas há muitos outros objetos internos, que também são iteráveis. Por exemplo, strings são iteráveis ​​também.
 
-Se um objeto representa uma coleção (lista, conjunto) de alguma coisa, então `for..of` é uma ótima sintaxe para fazer um loop sobre ele, então vamos ver como fazê-lo funcionar.
+Se um objeto não é tecnicamente um array, mas representa uma coleção (lista, conjunto) de alguma coisa, então `for..of` é uma ótima sintaxe para fazer um loop sobre ele, então vamos ver como fazê-lo funcionar.
 
 
 ## Symbol.iterator
@@ -31,9 +31,9 @@ Para tornar o `range` iterável (e, portanto, fazer o `for..of` funcionar), prec
 1. Quando `for..of` inicia, ele chama esse método uma vez (ou erros se não for encontrado). O método deve retornar um *iterador* - um objeto com o método `next`.
 2. Em diante, `for..of` funciona *apenas com esse objeto retornado*.
 3. Quando `for..of` quer o próximo valor, ele chama `next()` nesse objeto.
-4. O resultado de `next ()` deve ter a forma `{done: Boolean, value: any}`, onde `done = true` significa que a iteração está terminada, caso contrário `value` deve ser o novo valor.
+4. O resultado de `next ()` deve ter a forma `{done: Boolean, value: any}`, onde `done = true` significa que a iteração está terminada, caso contrário `value` é o próximo valor.
 
-Aqui está a implementação completa para o `range`:
+Aqui está a implementação completa para o `range`, com observações:
 
 ```js run
 let range = {
@@ -68,10 +68,10 @@ for (let num of range) {
 }
 ```
 
-Observe a principal característica dos iteráveis: uma importante separação de interesses:
+Observe a principal característica dos iteráveis: separação de interesses.
 
 - O `range` em si não possui o método `next() `.
-- Em vez disso, outro objeto, o chamado "iterador", é criado pela chamada para `range[Symbol.iterator]()`, e manipula toda a iteração.
+- Em vez disso, outro objeto, o chamado "iterador", é criado pela chamada para `range[Symbol.iterator]()`, e o seu `next()` gera valores para a iteração.
 
 Assim, o objeto iterador é separado do objeto que é iterado.
 
@@ -140,9 +140,7 @@ for (let char of str) {
 
 ## Chamando um iterador explicitamente
 
-Normalmente, os internos de iteráveis ​​são ocultados do código externo. Existe um loop `for..of` que funciona, é tudo que ele precisa saber.
-
-Mas, para entender as coisas um pouco mais profundamente, vamos ver como criar um iterador explicitamente.
+Para um entendimento mais profundo, vamos ver como usar um iterador explicitamente.
 
 Vamos iterar por uma string exatamente da mesma maneira que `for..of`, mas com chamadas diretas. Esse código cria um iterador de string e pega valores dele "manualmente":
 
@@ -283,7 +281,7 @@ let str = '𝒳😂𩷶';
 
 alert( slice(str, 1, 3) ); // 😂𩷶
 
-// método nativo não suporta pares substitutos
+// o método nativo não suporta pares substitutos
 alert( str.slice(1, 3) ); // lixo (duas partes de diferentes pares substitutos)
 ```
 

@@ -100,7 +100,7 @@ Uma fila ou [queue](https://en.wikipedia.org/wiki/Queue_ (abstract_data_type)) �
 - `push` acrescenta um elemento ao final.
 - `shift` obtém um elemento do começo, avançando a fila, de modo que o segundo elemento se torne o primeiro.
 
-![](queue.png)
+![](queue.svg)
 
 Arrays suportam ambas as operações.
 
@@ -117,7 +117,7 @@ Assim, novos elementos são adicionados ou tirados sempre do "fim".
 
 Uma pilha é normalmente ilustrada como um baralho de cartas: novas cartas são adicionadas ao topo ou tiradas do topo:
 
-![](stack.png)
+![](stack.svg)
 
 Para pilhas, o último item enviado é recebido primeiro, também chamado de princípio LIFO (Last-In-First-Out). Para filas, temos FIFO (First-In-First-Out).
 
@@ -239,7 +239,7 @@ Por favor, pense nos arrays como estruturas especiais para trabalhar com os *dad
 
 Os métodos `push/pop` são executados rapidamente, enquanto` shift/unshift` são lentos.
 
-![](array-speed.png)
+![](array-speed.svg)
 
 Por que é mais rápido trabalhar com o final de uma matriz do que com seu início? Vamos ver o que acontece durante a execução:
 
@@ -255,7 +255,7 @@ A operação `shift` deve fazer 3 coisas:
 2. Move todos os elementos para a esquerda, renumerá-os do índice `1` para` 0`, de `2` para` 1` e assim por diante.
 3. Atualiza a propriedade `length`.
 
-![](array-shift.png)
+![](array-shift.svg)
 
 **Quanto mais elementos na matriz, mais tempo para movê-los, mais operações na memória.**
 
@@ -269,7 +269,7 @@ As ações para a operação `pop`:
 fruits.pop(); // pegue 1 elemento do final
 ```
 
-![](array-pop.png)
+![](array-pop.svg)
 
 **O método `pop` não precisa mover nada, porque outros elementos mantêm seus índices. É por isso que é incrivelmente rápido.**
 
@@ -394,7 +394,7 @@ let matrix = [
   [7, 8, 9]
 ];
 
-alert( matrix[1][1] ); // o elemento central
+alert( matrix[1][1] ); // 5, o elemento central
 ```
 
 ## toString

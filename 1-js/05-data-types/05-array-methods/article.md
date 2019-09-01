@@ -119,29 +119,28 @@ O método [arr.slice](mdn:js/Array/slice) é muito mais simples do que o semelha
 A sintaxe é:
 
 ```js
-arr.slice(start, end)
+arr.slice([start], [end])
 ```
 
-Ele retorna um novo array contendo todos os itens a partir do índice `"start"` até `"end"` (não incluindo `"end"`). Tanto `start` quanto `end` podem ser negativos, neste caso a posição do array end é assumida.
+Ele retorna um novo array copiando para ele todos os itens a partir do índice `start` até `end` (não incluindo `end`). Tanto `start` quanto `end` podem ser negativos, neste caso a posição do array end é assumida.
 
-Ele funciona como `str.slice`, mas faz subarrays ao invés de substrings.
+Ele é similar a um método de string `str.slice`, mas ao invés de substrings faz subarrays.
 
 Por exemplo:
 
 ```js run
-let str = "test";
 let arr = ["t", "e", "s", "t"];
 
-alert( str.slice(1, 3) ); // es
-alert( arr.slice(1, 3) ); // e,s
+alert( arr.slice(1, 3) ); // e,s (copia de 1 a 3)
 
-alert( str.slice(-2) ); // st
-alert( arr.slice(-2) ); // s,t
+alert( arr.slice(-2) ); // s,t (copia de -2 até o final)
 ```
+
+Também podemos chamá-lo sem argumentos: `arr.slice()` cria uma cópia do `arr`. Isso geralmente é usado para obter uma cópia para outras transformações que não devem afetar o array original.
 
 ### concat
 
-O método [arr.concat](mdn:js/Array/concat) une o array com outros arrays e/ou itens.
+O método [arr.concat](mdn:js/Array/concat) cria um novo array que inclui valores de outros arrays e itens adicionais.
 
 A sintaxe é:
 
@@ -153,24 +152,24 @@ Aceita qualquer número de argumentos - arrays ou valores.
 
 O resultado é um novo array contendo itens de `arr`, depois `arg1`, `arg2` etc.
 
-Se um argumento é um array ou possui a propriedade `Symbol.isConcatSpreadable`, então todos os seus elementos são copiados. Caso contrário, o argumento em si é copiado.
+Se um argumento `argN` é um array, então todos os seus elementos são copiados. Caso contrário, o argumento em si é copiado.
 
 Por exemplo:
 
 ```js run
 let arr = [1, 2];
 
-// mescla arr com [3,4]
+// cria um array de: arr e [3,4]
 alert( arr.concat([3, 4])); // 1,2,3,4
 
-// mescla arr com [3,4] e [5,6]
+// cria um array de: arr e [3,4] e [5,6]
 alert( arr.concat([3, 4], [5, 6])); // 1,2,3,4,5,6
 
-// mescla arr com [3,4], em seguida, adiciona os valores 5 e 6
+// cria um array de: arr e [3,4], em seguida, adiciona os valores 5 e 6
 alert( arr.concat([3, 4], 5, 6)); // 1,2,3,4,5,6
 ```
 
-Normalmente, apenas copia elementos de arrays ("espalha"). Outros objetos, mesmo se parecidos com arrays, são adicionados como um todo:
+Normalmente, apenas copia elementos de arrays. Outros objetos, mesmo se parecidos com arrays, são adicionados como um todo:
 
 ```js run
 let arr = [1, 2];
@@ -184,7 +183,7 @@ alert( arr.concat(arrayLike) ); // 1,2,[object Object]
 //[1, 2, arrayLike]
 ```
 
-... Mas se um objeto tipo array tiver a propriedade `Symbol.isConcatSpreadable`, então seus elementos serão adicionados:
+... Mas se um objeto tipo array tiver uma propriedade special `Symbol.isConcatSpreadable`, então é tratado como um array por `concat`: seus elementos serão adicionados:
 
 ```js run
 let arr = [1, 2];
@@ -232,7 +231,7 @@ O resultado da função (se retornar algum) é descartado e ignorado.
 
 ## Pesquisando em array
 
-Estes são métodos para procurar por algo em um array.
+Agora vamos abordar métodos que procuram em um array.
 
 ### indexOf/lastIndexOf e includes
 
@@ -280,7 +279,7 @@ let result = arr.find(function(item, index, array) {
 });
 ```
 
-A função é chamada repetidamente para cada elemento do array:
+A função é chamada para elementos do array, um após o outro:
 
 - `item` é o elemento.
 - `index` é o índice.
@@ -304,7 +303,7 @@ alert(user.name); // John
 
 Na vida real, arrays de objetos é uma coisa comum, então o método `find` é muito útil.
 
-Note que no exemplo nós fornecemos para `find` a função `item => item.id == 1` com um argumento. Outros argumentos desta função são raramente usados.
+Note que no exemplo nós fornecemos para `find` a função `item => item.id == 1` com um argumento. Isso é típico, outros argumentos desta função são raramente usados.
 
 O método [arr.findIndex](mdn:js/Array/findIndex) é essencialmente o mesmo, mas retorna o índice onde o elemento foi encontrado ao invés do próprio elemento e o `-1` é retornado quando nada é encontrado.
 
@@ -314,12 +313,12 @@ O método `find` procura por um único elemento (primeiro) que faz a função re
 
 Se houver muitos, podemos usar [arr.filter (fn)](mdn:js/Array/filter).
 
-A sintaxe é semelhante a `find`, mas o filtro continua a iterar para todos os elementos do array, mesmo que `true` já tenha sido retornado:
+A sintaxe é semelhante a `find`, mas o `filter` retorna um array de todos elementos que satisfazem o filtro:
 
 ```js
 let results = arr.filter(function(item, index, array) {
   // se true o item é enviado para results e a iteração continua
-  // retorna array vazio para um cenário falso completo
+  // retorna um array vazio se nada for encontrado
 });
 ```
 
@@ -340,22 +339,21 @@ alert(someUsers.length); // 2
 
 ## Transforme um array
 
-Esta seção é sobre os métodos que transformam ou reordenam o array.
-
+Vamos seguir para métodos que transformam e reordenam um array.
 
 ### map
 
 O método [arr.map](mdn:js/Array/map) é um dos mais úteis e frequentemente usados.
+
+Ele chama a função para cada elemento do array e retorna o array de resultados.
 
 A sintaxe é:
 
 ```js
 let result = arr.map(function(item, index, array) {
 // retorna o novo valor em vez do item
-})
+});
 ```
-
-Ele chama a função para cada elemento do array e retorna o array de resultados.
 
 Por exemplo, aqui nós transformamos cada elemento em seu comprimento:
 
@@ -366,14 +364,16 @@ alert(lengths); // 5,7,6
 
 ### sort(fn)
 
-O método [arr.sort](mdn:js/Array/sort) coloca o array *em ordem*.
+A chamada para [arr.sort](mdn:js/Array/sort) coloca o array *em ordem*, mudando a ordem de seus elementos.
+
+Ele também retorna o array ordenado, mas o valor retornado geralmente é ignorado, pois o `arr` é modificado.
 
 Por exemplo:
 
 ```js run
 let arr = [ 1, 2, 15 ];
 
-// o método reordena o conteúdo de arr (e retorna)
+// o método reordena o conteúdo de arr
 arr.sort();
 
 alert( arr );  // *!*1, 15, 2*/!*
@@ -385,20 +385,20 @@ A ordem se tornou `1, 15, 2`. Incorreta. Mas por que?
 
 **Os itens são ordenados como strings por padrão.**
 
-Literalmente, todos os elementos são convertidos em strings e depois comparados. Então, o ordenamento lexicográfico é aplicado e de fato `"2" > "15"`.
+Literalmente, todos os elementos são convertidos em strings para comparação. Para strings, o ordenamento lexicográfico é aplicado e de fato `"2" > "15"`.
 
-Para usar nossa própria ordem de classificação, precisamos fornecer uma função de dois argumentos como o argumento de `arr.sort()`.
+Para usar nossa própria ordem de classificação, precisamos fornecer uma função como o argumento de `arr.sort()`.
 
-A função deve funcionar assim:
+A função deve comparar dois valores arbitrários e retorna:
 ```js
 function compare(a, b) {
-  if (a > b) return 1;
-  if (a == b) return 0;
-  if (a < b) return -1;
+  if (a > b) return 1; // se o primeiro valor for maior que o segundo
+  if (a == b) return 0; // se os valores forem iguais
+  if (a < b) return -1; // se o primeiro valor for menor que o segundo
 }
 ```
 
-Por exemplo:
+Por exemplo, para ordenar como números:
 
 ```js run
 function compareNumeric(a, b) {
@@ -418,9 +418,9 @@ alert(arr);  // *!*1, 2, 15*/!*
 
 Agora funciona como pretendido.
 
-Vamos nos afastar e pensar o que está acontecendo. O `arr` pode ser array de qualquer coisa, certo? Pode conter números ou strings ou elementos HTML ou qualquer outra coisa. Nós temos um conjunto de *algo*. Para classificá-lo, precisamos de uma *função de ordenação* que saiba como comparar seus elementos. O padrão é uma ordem de string.
+Vamos nos afastar e pensar o que está acontecendo. O `arr` pode ser array de qualquer coisa, certo? Pode conter números ou strings ou objetos ou qualquer outra coisa. Nós temos um conjunto de *alguns itens*. Para classificá-lo, precisamos de uma *função de ordenação* que saiba como comparar seus elementos. O padrão é uma ordem de string.
 
-O método `arr.sort(fn)` possui uma implementação incorporada do algoritmo de ordenação. Nós não precisamos nos importar como isso funciona exatamente (um [quicksort](https://pt.wikipedia.org/wiki/Quicksort) otimizado  na maior parte do tempo). Ele irá percorrer o array, comparar seus elementos usando a função fornecida e reordená-los, tudo o que precisamos é fornecer o `fn` que faz a comparação.
+O método `arr.sort(fn)` implementa um algoritmo de ordenação genérico. Nós não precisamos nos importar como isso funciona internamente (um [quicksort](https://pt.wikipedia.org/wiki/Quicksort) otimizado  na maior parte do tempo). Ele irá percorrer o array, comparar seus elementos usando a função fornecida e reordená-los, tudo o que precisamos é fornecer o `fn` que faz a comparação.
 
 A propósito, se quisermos saber quais elementos são comparados - nada impede de alertá-los:
 
@@ -430,7 +430,7 @@ A propósito, se quisermos saber quais elementos são comparados - nada impede d
 });
 ```
 
-O algoritmo pode comparar um elemento várias vezes no processo, mas tenta fazer o menor número possível de comparações.
+O algoritmo pode comparar um elemento com vários outros no processo, mas tenta fazer o menor número possível de comparações.
 
 
 ````smart header="Uma função de comparação pode retornar qualquer número"
@@ -454,7 +454,7 @@ Lembra das [funções arrow](info:function-expressions-arrows#arrow-functions)? 
 arr.sort( (a, b) => a - b );
 ```
 
-Isso funciona exatamente da mesma forma que a outra versão mais longa acima.
+Isso funciona exatamente da mesma forma que a versão mais longa acima.
 ````
 
 ### reverse
@@ -508,14 +508,14 @@ alert( str.split('') ); // t,e,s,t
 ```
 ````
 
-A chamada [arr.join(separador)](mdn:js/Array/join) faz o contrário de `split`. Cria uma string de itens `arr` colados por `separador` entre eles.
+A chamada [arr.join(glue)](mdn:js/Array/join) faz o contrário de `split`. Cria uma string de itens de `arr` juntados por `glue` entre eles.
 
 Por exemplo:
 
 ```js run
 let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
 
-let str = arr.join(';');
+let str = arr.join(';'); // cola o array em uma string usando ;
 
 alert( str ); // Bilbo;Gandalf;Nazgul
 ```
@@ -533,18 +533,21 @@ A sintaxe é:
 ```js
 let value = arr.reduce(function(previousValue, item, index, array) {
   // ...
-}, initial);
+}, [initial]);
 ```
 
-A função é aplicada aos elementos. Você pode notar os argumentos familiares, a partir do segundo:
+A função é aplicada a todos elementos do array, um após o outro e "carrega" o resultado para a próxima chamada.
 
+Argumentos:
+
+- `previousValue` - é o resultado da chamada de função anterior, igual a `initial` na primeira vez (se `initial` for fornecido).
 - `item` -- é o item atual do array.
 - `index` -- é sua posição position.
 - `array` -- é o array.
 
-Até agora, igual a `forEach/map`. Mas há mais um argumento:
+À medida que a função é aplicada, o resultado da chamada de função anterior é passado para a próxima como o primeiro argumento.
 
-- `previousValue` - é o resultado da chamada de função anterior, `inicial` para a primeira chamada.
+Parece complicado, mas não é se você pensar no primeiro argumento como o "acumulador" que armazena o resultado combinado de toda a execução anterior. E no final, torna-se o resultado de `reduce`.
 
 A maneira mais fácil de entender isso é pelo exemplo.
 
@@ -558,17 +561,17 @@ let result = arr.reduce((sum, current) => sum + current, 0);
 alert(result); // 15
 ```
 
-Aqui nós usamos a variante mais comum de `reduce` que usa apenas 2 argumentos.
+A função passada a `reduce` usa apenas 2 argumentos, isso é tipicamente o suficiente.
 
 Vamos ver os detalhes do que está acontecendo.
 
-1. Na primeira execução, `sum` é o valor inicial (o último argumento de `reduce`), igual a `0` e `current` é o primeiro elemento do array, igual a `1`. Então o resultado é "1".
+1. Na primeira execução, `sum` é o valor inicial (o último argumento de `reduce`), igual a `0` e `current` é o primeiro elemento do array, igual a `1`. Então o resultado da função é "1".
 2. Na segunda execução, `sum = 1`, adicionamos o segundo elemento do array (`2`) a ele e retornamos.
 3. Na terceira corrida, `sum = 3` e adicionamos mais um elemento a ele, e assim por diante ...
 
 O fluxo de cálculo:
 
-![](reduce.png)
+![](reduce.svg)
 
 Ou na forma de uma tabela, em que cada linha representa uma chamada de função no próximo elemento do array:
 
@@ -580,8 +583,7 @@ Ou na forma de uma tabela, em que cada linha representa uma chamada de função 
 |a quarta chamada|`6`|`4`|`10`|
 |a quinta chamada|`10`|`5`|`15`|
 
-
-Como podemos ver, o resultado da chamada anterior torna-se o primeiro argumento do próximo.
+Aqui podemos ver claramente como o resultado da chamada anterior torna-se o primeiro argumento da próxima.
 
 Nós também podemos omitir o valor inicial:
 
@@ -653,7 +655,7 @@ arr.map(func, thisArg);
 
 O valor do parâmetro `thisArg` se torna `this` para `func`.
 
-Por exemplo, aqui nós usamos um método de objeto como um filtro e `thisArg` vem a calhar:
+Por exemplo, aqui nós usamos um método de objeto como um filtro e `thisArg` ajuda com isso:
 
 ```js run
 let user = {
@@ -725,7 +727,7 @@ Esses métodos são os mais usados, eles cobrem 99% dos casos de uso. Mas existe
 
 Para a lista completa, veja o [manual](mdn:js/Array).
 
-À primeira vista, pode parecer que existem muitos métodos, difíceis de lembrar. Mas na verdade isso é muito mais fácil do que parece.
+À primeira vista, pode parecer que existem muitos métodos, difíceis de lembrar. Mas na verdade isso é muito mais fácil.
 
 Olhe a cheatsheet apenas para estar ciente deles. Em seguida, resolva as tarefas deste capítulo para praticar, para que você tenha experiência com métodos de array.
 

@@ -6,7 +6,7 @@ Mas podemos fazer uma nova string baseada na existente, com o primeiro caractere
 let newStr = str[0].toUpperCase() + str.slice(1);
 ```
 
-No entanto existe um pequeno problema. Se `str` for vazia, então `str[0]` é undefined, então obtemos um erro.
+No entanto existe um pequeno problema. Se `str` for vazia, então `str[0]` é undefined, e como `undefined` não possui o método `toUpperCase()`, obtemos um erro.
 
 Existem duas possibilidades:
 

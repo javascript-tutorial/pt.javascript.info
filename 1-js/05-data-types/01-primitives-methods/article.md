@@ -1,8 +1,6 @@
 # Métodos de primitivos
 
-JavaScript nos permite trabalhar com primitivos (strings, números, etc.) como se fossem objetos.
-
-Eles também fornecem métodos para chamar como se fossem objetos. Estudaremos isso em breve, mas primeiro veremos como isso funciona, porque, é claro, os primitivos não são objetos (e aqui deixaremos isso ainda mais claro).
+O JavaScript nos permite trabalhar com primitivos (strings, números, etc.) como se fossem objetos. Eles também fornecem métodos para chamar como tal. Estudaremos isso em breve, mas primeiro veremos como isso funciona, porque, é claro, os primitivos não são objetos (e aqui vamos esclarecer ainda mais).
 
 Vejamos as principais diferenças entre primitivos e objetos.
 
@@ -35,7 +33,7 @@ Muitos objetos internos já existem, como aqueles que trabalham com datas, erros
 
 Mas esses recursos vêm com um custo!
 
-Objetos são "mais pesados" que primitivos. Eles exigem recursos adicionais para suportar o maquinário interno. Mas, como as propriedades e os métodos são muito úteis na programação, os mecanismos de JavaScript tentam otimizá-los para reduzir a carga adicional.
+Objetos são "mais pesados" que primitivos. Eles exigem recursos adicionais para suportar o maquinário interno.
 
 ## Um primitivo como objeto
 
@@ -84,7 +82,7 @@ Vamos ver métodos mais específicos nos capítulos <info:number> e <info:string
 
 
 ````warn header="Construtores `String/Number/Boolean` são apenas para uso interno"
-Algumas linguagens como Java nos permitem criar "objetos invólucros" para primitivos explicitamente usando uma sintaxe como `new Number(1)` ou `new Boolean(false)`.
+Algumas linguagens como Java nos permitem criar explicitamente "objetos invólucros" para primitivos usando uma sintaxe como `new Number(1)` ou `new Boolean(false)`.
 
 Em JavaScript, isso também é possível por razões históricas, mas é altamente **não recomendado**. As coisas vão enlouquecer em vários lugares.
 
