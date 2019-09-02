@@ -337,7 +337,13 @@ The problem is that JavaScript treats `{...}` in the main code flow (not inside 
 }
 ```
 
+<<<<<<< HEAD:1-js/05-data-types/09-destructuring-assignment/article.md
 To show JavaScript that it's not a code block, we can wrap the whole assignment in parentheses `(...)`:
+=======
+So here JavaScript assumes that we have a code block, that's why there's an error. We have destructuring instead.
+
+To show JavaScript that it's not a code block, we can wrap the expression in parentheses `(...)`:
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927:1-js/05-data-types/10-destructuring-assignment/article.md
 
 ```js run
 let title, width, height;
@@ -416,6 +422,10 @@ In real-life, the problem is how to remember the order of arguments. Usually IDE
 Like this?
 
 ```js
+<<<<<<< HEAD:1-js/05-data-types/09-destructuring-assignment/article.md
+=======
+// undefined where default values are fine
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927:1-js/05-data-types/10-destructuring-assignment/article.md
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 

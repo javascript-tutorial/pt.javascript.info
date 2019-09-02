@@ -146,10 +146,10 @@ function BigUser() {
 
   this.name = "John";
 
-  return { name: "Godzilla" };  // <-- returns an object
+  return { name: "Godzilla" };  // <-- returns this object
 }
 
-alert( new BigUser().name );  // Godzilla, got that object ^^
+alert( new BigUser().name );  // Godzilla, got that object
 ```
 
 And here's an example with an empty `return` (or we could place a primitive after it, doesn't matter):
@@ -159,10 +159,7 @@ function SmallUser() {
 
   this.name = "John";
 
-  return; // finishes the execution, returns this
-
-  // ...
-
+  return; // <-- returns this
 }
 
 alert( new SmallUser().name );  // John

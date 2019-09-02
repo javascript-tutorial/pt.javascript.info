@@ -177,7 +177,11 @@ loadScript("/article/script-async-defer/small.js");
 
 ## Summary
 
+<<<<<<< HEAD
 Both `async` and `defer` have one common thing: they don't block page rendering. So the user can read page content and get acquanted with the page immediately.
+=======
+Both `async` and `defer` have one common thing: downloading of such scripts doesn't block page rendering. So the user can read page content and get acquainted with the page immediately.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 But there are also essential differences between them:
 

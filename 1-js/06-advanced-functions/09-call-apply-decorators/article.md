@@ -60,7 +60,7 @@ As we can see, the wrapper returns the result of `func(x)` "as is". From an outs
 To summarize, there are several benefits of using a separate `cachingDecorator` instead of altering the code of `slow` itself:
 
 - The `cachingDecorator` is reusable. We can apply it to another function.
-- The caching logic is separate, it did not increase the complexity of `slow` itself (if there were any).
+- The caching logic is separate, it did not increase the complexity of `slow` itself (if there was any).
 - We can combine multiple decorators if needed (other decorators will follow).
 
 

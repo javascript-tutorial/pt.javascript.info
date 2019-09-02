@@ -12,7 +12,11 @@ Uma [variável](https://pt.wikipedia.org/wiki/Variável_(programação)) é um "
 
 Para criar uma variável em JavaScript, use a palavra-chave `let`.
 
+<<<<<<< HEAD
 A declaração abaixo cria (em outras palavras: * declara * ou * define *) uma variável com o nome "message":
+=======
+The statement below creates (in other words: *declares*) a variable with the name "message":
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 ```js
 let message;

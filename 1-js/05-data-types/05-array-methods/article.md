@@ -119,12 +119,16 @@ The method [arr.slice](mdn:js/Array/slice) is much simpler than similar-looking 
 The syntax is:
 
 ```js
-arr.slice(start, end)
+arr.slice([start], [end])
 ```
 
 It returns a new array containing all items from index `"start"` to `"end"` (not including `"end"`). Both `start` and `end` can be negative, in that case position from array end is assumed.
 
+<<<<<<< HEAD
 It works like `str.slice`, but makes subarrays instead of substrings.
+=======
+It's similar to a string method `str.slice`, but instead of substrings it makes subarrays.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 For instance:
 
@@ -138,6 +142,8 @@ alert( arr.slice(1, 3) ); // e,s
 alert( str.slice(-2) ); // st
 alert( arr.slice(-2) ); // s,t
 ```
+
+We can also call it without arguments: `arr.slice()` creates a copy of `arr`. That's often used to obtain a copy for further transformations that should not affect the original array.
 
 ### concat
 
