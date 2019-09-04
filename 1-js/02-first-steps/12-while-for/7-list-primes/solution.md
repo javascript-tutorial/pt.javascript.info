@@ -1,29 +1,29 @@
-There are many algorithms for this task.
+Há muitos algotimos para esta tarefa.
 
-Let's use a nested loop:
+Vamos utilizar um loop dentro de outro (isto é, aninhado):
 
 ```js
-For each i in the interval {
-  check if i has a divisor from 1..i
-  if yes => the value is not a prime
-  if no => the value is a prime, show it
+Para cada i no intervalo {
+  testar se  i tem um divisor de 1 a i
+  se sim => o valor não é um primo
+  se não => o valor e um primo, mostre-o
 }
 ```
 
-The code using a label:
+O código usando um label:
 
 ```js run
 let n = 10;
 
 nextPrime:
-for (let i = 2; i <= n; i++) { // for each i...
+for (let i = 2; i <= n; i++) { // para cada i...
 
-  for (let j = 2; j < i; j++) { // look for a divisor..
-    if (i % j == 0) continue nextPrime; // not a prime, go next i
+  for (let j = 2; j < i; j++) { // procurar um divisor..
+    if (i % j == 0) continue nextPrime; // não é primo, passar para o próximo i
   }
 
-  alert( i ); // a prime
+  alert( i ); // é primo
 }
 ```
 
-There's a lot of space to opimize it. For instance, we could look for the divisors from `2` to square root of `i`. But anyway, if we want to be really efficient for large intervals, we need to change the approach and rely on advanced maths and complex algorithms like [Quadratic sieve](https://en.wikipedia.org/wiki/Quadratic_sieve), [General number field sieve](https://en.wikipedia.org/wiki/General_number_field_sieve) etc.
+Há muitas maneiras de otimizá-lo. Por exemplo, podemos procurar divisores de `2` até a raiz quadrada de `i`. De qualquer modo, se quisermos ser realmente eficientes para intervalos maiores, precisamos mudar a abordagem e nos embasar em matemática avançada e  algoritmos complexos como o [Crivo Quadrático](https://en.wikipedia.org/wiki/Quadratic_sieve), o [Crivo do Corpo de Números Geral](https://en.wikipedia.org/wiki/General_number_field_sieve), etc.
