@@ -2,7 +2,11 @@
 
 Before writing more complex code, let's talk about debugging.
 
+<<<<<<< HEAD
 All modern browsers and most other environments support "debugging" -- a special UI in developer tools that makes finding and fixing errors much easier.
+=======
+[Debugging](https://en.wikipedia.org/wiki/Debugging) is the process of finding and fixing errors within a script. All modern browsers and most other environments support debugging tools -- a special UI in developer tools that makes debugging much easier. It also allows to trace the code step by step to see what exactly is going on.
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 We'll be using Chrome here, because it's probably the most feature-rich in this aspect.
 
