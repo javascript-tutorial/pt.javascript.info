@@ -20,7 +20,7 @@ E mais, se você está desenvolvendo para browsers, há outras especificações que c
 
 	Pode ser encontrado em <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
 
-	Porém, as vezes é melhor fazer uma busca na internet. Apenas use “MDN [termo]” na busca, e.g. <https://google.com/search?q=MDN+parseInt para procurar pela função parseInt>.
+	Porém, as vezes é melhor fazer uma busca na internet. Apenas use “MDN [termo]” na busca, e.g. <https://google.com/search?q=MDN+parseInt> para procurar pela função `parseInt`.
 
 - **MSDN** - Manual da Microsoft com muitas informações, incluindo JavaScript (frequentemente referido como JScript). Se precisar de algo específico para o Internet Explorer, melhor ir por aqui: <http://msdn.microsoft.com/>.
 
