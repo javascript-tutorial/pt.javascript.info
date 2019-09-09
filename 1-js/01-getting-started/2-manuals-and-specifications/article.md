@@ -12,7 +12,7 @@ Uma nova versão dessa especificação é lançada todo ano. Sua última versão se enc
 
 Para ler sobre as mais novas funcionalidades (conhecidas como bleeding-edge features), que estão em fase de padronização, veja suas propostas em <https://github.com/tc39/proposals>.
 
-E mais, se você está desenvolvendo para browsers, há outras especificações que cobrem esta demanda na [segunda parte] do tutorial.
+E mais, se você está desenvolvendo para browsers, há outras especificações que cobrem esta demanda na segunda parte do tutorial.
 
 ## Manuais
 
