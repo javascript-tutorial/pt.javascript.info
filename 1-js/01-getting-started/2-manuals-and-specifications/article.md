@@ -4,11 +4,11 @@ Este site é um *tutorial* que vai te ajudar a aprender a linguagem gradualmente.
 
 ## Especificações
 
-A **Especificação ECMA-262** contém as mais profundas, detalhadas e formalizadas informações sobre o JavaScript. Ela que define a linguagem.
+A [Especificação ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contém as mais profundas, detalhadas e formalizadas informações sobre o JavaScript. Ela que define a linguagem.
 
 Mas sendo num formato mais formal, fica difícil de entender a primeira vista. Então se você precisa de uma fonte de informação confiável sobre os detalhes da linguagem, está no lugar certo. Mas não é para o uso cotidiano.
 
-Sua última versão se encontra em <https://tc39.es/ecma262/>.
+Uma nova versão dessa especificação é lançada todo ano. Sua última versão se encontra em <https://tc39.es/ecma262/>.
 
 Para ler sobre as mais novas funcionalidades (conhecidas como bleeding-edge features), que estão em fase de padronização, veja suas propostas em <https://github.com/tc39/proposals>.
 
@@ -26,13 +26,13 @@ E mais, se você está desenvolvendo para browsers, há outras especificações que c
 
 	Assim como no manual do Mozilla, também podemos fazer uma busca na internet com frases do tipo “RegExp MSDN” ou “RegExp MSDN jscript”.
 
-## Suporte à funcionalidades
+## Tabelas de compatibilidade
 
 JavaScript é uma linguagem em desenvolvimento, novas funcionalidades são adicionadas regularmente.
 
-Para verificar o suporte à essas funcionalidades em browsers e em outras engines, veja em:
+Para verificar a compatibilidade dessas funcionalidades em browsers e em outras engines, veja em:
 
-- <http://caniuse.com> - mostra uma tabela de suporte, e.g, para varificar quais engines suportam funções de criptografia moderna: <http://caniuse.com/#feat=cryptography>.
+- <http://caniuse.com> - mostra uma tabela de compatibilidade, e.g, para varificar quais engines suportam funções de criptografia moderna: <http://caniuse.com/#feat=cryptography>.
 - <https://kangax.github.io/compat-table> - uma tabela com as funcionalidades da linguagem e as engines que a suportam ou não.
 
 Todos esses recursos são úteis no cotidiano do desenvolvedor, uma vez que eles contêm informações valiosas sobre a linguagem, detalhes, seus suportes, etc.
