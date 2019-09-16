@@ -276,10 +276,14 @@ let User = user.default;
 new User('John');
 ```
 
+<<<<<<< HEAD
 
 ### Should I use default exports?
 
 One should be careful about using default exports, because they are somewhat more different to maintain.
+=======
+### A word against default exports
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 Named exports are explicit. They exactly name what they import, so we have that information from them, that's a good thing.
 

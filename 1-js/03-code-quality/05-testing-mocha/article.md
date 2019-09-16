@@ -1,4 +1,4 @@
-# Automated testing with mocha
+# Automated testing with Mocha
 
 Automated testing will be used in further tasks.
 

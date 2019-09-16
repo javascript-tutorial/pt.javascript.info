@@ -316,7 +316,7 @@ Supportable
     For users, when a new version comes out, it may be a total overhaul, but still simple to upgrade if the external interface is the same.
 
 Hiding complexity
-: People adore to use things that are simple. At least from outside. What's inside is a different thing.
+: People adore using things that are simple. At least from outside. What's inside is a different thing.
 
     Programmers are not an exception.
 

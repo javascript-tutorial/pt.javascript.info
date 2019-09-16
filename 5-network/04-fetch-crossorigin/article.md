@@ -133,8 +133,13 @@ As you can see, `Origin` contains exactly the origin (domain/protocol/port), wit
 The server can inspect the `Origin` and, if it agrees to accept such a request, adds a special header `Access-Control-Allow-Origin` to the response. That header should contain the allowed origin (in our case `https://javascript.info`), or a star `*`. Then the response is successful, otherwise an error.
 
 The browser plays the role of a trusted mediator here:
+<<<<<<< HEAD:5-network/04-fetch-crossorigin/article.md
 1. It ensures that the corrent `Origin` is sent with a cross-domain request.
 2. If checks for correct `Access-Control-Allow-Origin` in the response, if it is so, then JavaScript access, otherwise forbids with an error.
+=======
+1. It ensures that the corrent `Origin` is sent with a cross-origin request.
+2. It checks for permitting `Access-Control-Allow-Origin` in the response, if it exists, then JavaScript is allowed to access the response, otherwise it fails with an error.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a:5-network/05-fetch-crossorigin/article.md
 
 ![](xhr-another-domain.svg)
 
@@ -160,8 +165,8 @@ For cross-origin request, by default JavaScript may only access "simple response
 
 Any other response header is forbidden.
 
-```smart header="Please note: no `Content-Length`"
-Please note: there's no `Content-Length` header in the list!
+```smart
+There's no `Content-Length` header in the list!
 
 So, if we're downloading something and would like to track the percentage of progress, then an additional permission is required to access that header (see below).
 ```
@@ -296,7 +301,11 @@ For example, `fetch('http://another.com')` does not send any cookies, even those
 
 Why?
 
+<<<<<<< HEAD:5-network/04-fetch-crossorigin/article.md
 That's because a request with credentials is much more powerful than an anonymous one. If allowed, it grants JavaScript the full power to act and access sensitive information on behalf of a user.
+=======
+That's because a request with credentials is much more powerful than without them. If allowed, it grants JavaScript the full power to act on behalf of the user and access sensitive information using their credentials.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a:5-network/05-fetch-crossorigin/article.md
 
 Does the server really trust pages from `Origin` that much? A request with credentials needs an additional header to pass through.
 
@@ -308,7 +317,11 @@ fetch('http://another.com', {
 });
 ```
 
+<<<<<<< HEAD:5-network/04-fetch-crossorigin/article.md
 Now `fetch` sends cookies originating from `another.com` with the request.
+=======
+Now `fetch` sends cookies originating from `another.com` without request to that site.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a:5-network/05-fetch-crossorigin/article.md
 
 If the server wishes to accept the request with credentials, it should add a header `Access-Control-Allow-Credentials: true` to the response, in addition to `Access-Control-Allow-Origin`.
 
@@ -320,12 +333,20 @@ Access-Control-Allow-Origin: https://javascript.info
 Access-Control-Allow-Credentials: true
 ```
 
+<<<<<<< HEAD:5-network/04-fetch-crossorigin/article.md
 Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` for requests with credentials. There must be exactly the origin there, like above. That's an additional safety measure, to ensure that the server really knows who it trusts.
 
 
 ## Summary
 
 Networking methods split cross-origin requests into two kinds: "simple" and all the others.
+=======
+Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` for requests with credentials. Like shown above, there must be exactly the origin there. That's an additional safety measure, to ensure that the server really knows who it trusts to make such requests.
+
+## Summary
+
+From the browser point of view, there are two kinds of cross-origin requests: "simple" and all the others.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a:5-network/05-fetch-crossorigin/article.md
 
 [Simple requests](http://www.w3.org/TR/cors/#terminology) must satisfy the following conditions:
 - Method: GET, POST or HEAD.
@@ -360,7 +381,7 @@ Additionally, if JavaScript wants no access non-simple response headers:
 
 **For non-simple requests, a preliminary "preflight" request is issued before the requested one:**
 
-- → The browser sends `OPTIONS` request to the same url, with headers:
+- → The browser sends `OPTIONS` request to the same URL, with headers:
     - `Access-Control-Request-Method` has requested method.
     - `Access-Control-Request-Headers` lists non-simple requested headers
 - ← The server should respond with status 200 and headers:

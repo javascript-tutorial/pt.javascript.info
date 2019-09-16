@@ -205,7 +205,11 @@ For instance:
       }
     };
 
+<<<<<<< HEAD
     alert(obj + 2); // 3 (ToPrimitive returned boolean, not string => ToNumber)
+=======
+    alert(obj + 2); // 22 (conversion to primitive returned a string => concatenation)
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
     ```
 
 ```smart header="Historical notes"
