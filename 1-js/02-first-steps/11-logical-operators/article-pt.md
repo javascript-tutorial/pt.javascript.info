@@ -21,10 +21,10 @@ Em JavaScript, este operador é um pouco mais útil e poderoso. Mas primeir, vam
 Existem quatro combinações lógicas possíveis:
 
 ```js run
-alert( true || true);   // true
-alert( false || true);  // true
-alert( true || false);  // true
-alert( false || false); // true
+alert( true || true );   // true
+alert( false || true );  // true
+alert( true || false );  // true
+alert( false || false ); // true
 ```
 
 Como podemos ver, o resultado é sempre `true`, exceto para o caso onde os dois operandos são `false`.
@@ -89,12 +89,12 @@ Em outras palavras, uma cadeia de OU `"||"` retorna o primeiro valor verdadeiro 
 Por exemplo:
 
 ```js run
-alert( 1 || 0); // 1 (1 é verdadeiro)
+alert( 1 || 0 ); // 1 (1 é verdadeiro)
 alert( true || 'não importa o quê' ); // (true é verdadeiro)
 
-alert( null || 1); // 1 (1 é o primeiro valor verdadeiro)
-alert( null || 0 || 1); // 1 (o primeiro valor verdadeiro)
-alert( undefined || null || 0); // 0 (todos falsos, retorna o último valor)
+alert( null || 1 ); // 1 (1 é o primeiro valor verdadeiro)
+alert( null || 0 || 1 ); // 1 (o primeiro valor verdadeiro)
+alert( undefined || null || 0 ); // 0 (todos falsos, retorna o último valor)
 ```
 
 Isso nos mostra algumas utilidades interessantes comparadas ao "puro, clássico, apenas-boolean OU".
@@ -149,7 +149,7 @@ Isso nos mostra algumas utilidades interessantes comparadas ao "puro, clássico,
 
   Na maioria das vezes, é melhor usar o `if` "regular" para manter a facilidade de entendimento do código, mas vez ou outra isso pode ser útil.
 
-  
+
 
 
 
