@@ -117,4 +117,62 @@ Isso nos mostra algumas utilidades interessantes comparadas ao "puro, clássico,
   ```
 
   Se ambos `currentUser` e `defaultUser` forem falsos, o resultado será `"unnamed"`.
-2. **
+2. **Interpretação de curto-circuito**
+
+  Operandos podem não ser apenas valores, mas operações arbitrárias. OU interpreta e testa elas da esquerda para a direita. A interpretação para quando um valor verdadeiro é encontrado e este valor é retornado. Este processo é chamado de "interpretação de curto-circuito" pois vai o mais curto possível da esquerda para a direita.
+
+  Isto é claramente visto quando a expressão dada como segundo argumento tem um efeito como a atribuição de uma variável.
+
+  No exemplo abaixo, `x` não tem nenhuma atribuição:
+
+  ```js run no-beautify
+  let x;
+
+  *!*true*/!* || (x = 1);
+
+  alert(x); // undefined, pois (x = 1) não é interpretados
+  ```
+
+  Se, por outro lado, o primeiro argumento é `false`, `||` interpreta o segundo, fazendo assim a atribuição:
+
+  ```js run no-beautify
+  let x;
+
+  *!*false*/!* || (x = 1);
+
+  alert(x); // 1
+  ```
+
+  Uma atribuição é um caso simples. Outros SIDE EFFECTS podem também estarem envolvidos.
+
+  Como podemos ver, esse caso é como um "uma maneira mais curta de se usar `if`". O primeiro operando é convertido para boolean. Se for false, o segundo operando é interpretado.
+
+  Na maioria das vezes, é melhor usar o `if` "regular" para manter a facilidade de entendimento do código, mas vez ou outra isso pode ser útil.
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ```
