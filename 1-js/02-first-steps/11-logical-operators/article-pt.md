@@ -14,9 +14,9 @@ O operador "OU" é representado com dois símbolos de linha vertical:
 result = a || b;
 ```
 
-Na programação clássica, o operador OU é mencionado para manipular apenas valores booleanos. Se qualquer um dos seus argumentos for `true`, ele retorna `true`, se não, retorna `false`.
+Em programação clássica, o operador OU é mencionado para manipular apenas valores booleanos. Se qualquer um dos seus argumentos for `true`, ele retorna `true`, se não, retorna `false`.
 
-Em JavaScript, este operador é um pouco mais útil e poderoso. Mas primeir, vamos ver o que acontece com valores booleanos.
+Em JavaScript, este operador é um pouco mais útil e poderoso. Mas primeiro, vamos ver o que acontece com valores booleanos.
 
 Existem quatro combinações lógicas possíveis:
 
@@ -24,22 +24,22 @@ Existem quatro combinações lógicas possíveis:
 alert( true || true );   // true
 alert( false || true );  // true
 alert( true || false );  // true
-alert( false || false ); // true
+alert( false || false ); // false
 ```
 
 Como podemos ver, o resultado é sempre `true`, exceto para o caso onde os dois operandos são `false`.
 
-Se um operando não é um boolean, ele é convertido em um boolean para sua verificação.
+Se um operando não é um boolean, ele é convertido em um boolean para ser avaliado.
 
-Sendo assim, o número `1` é tratado com `true` e o número `0` como `false`.
+Por exemplo, o número `1` é tratado com `true` e o número `0` como `false`.
 
 ```js run
 if (1 || 0) { // funciona como if( true || false)
-  alert( 'truthy!');
+  alert( 'verdadeiro!');
 }
 ```
 
-Na maioria das vezes, OU `||` é usado dentro de um `if` STATEMENT para testar se *qualquer* uma das condições dadas é `true`.
+Na maioria das vezes, OU `||` é usado dentro de uma expressão `if` para testar se *qualquer* uma das condições dadas é `true`.
 
 Por exemplo:
 
@@ -70,7 +70,7 @@ A lógica descrita acima é algo clássico. Agora, vamos ver as funcionalidades 
 
 O algorítmo extendido funciona da seguinte forma.
 
-Dando múltiplos valores OU's:
+Dando múltiplos valores encadeados em OU's:
 
 ```js
 result = value1 || value2 || value3;
@@ -78,9 +78,9 @@ result = value1 || value2 || value3;
 
 O operador OU `||` faz o seguinte:
 
-- Interpreta os operandos da esquerda para a direita.
+- Avalia os operandos da esquerda para a direita.
 - Para cada operando, o converte para boolean. Se o resultado é `true`, para e retorna o valor original daquele operando.
-- Se todos os operandos foram interpretados (i.e. todos são `false`), retorna o último operando.
+- Se todos os operandos foram avaliados (i.e. todos são `false`), retorna o último operando.
 
 Um valor é retornado na sua forma original, sem conversão.
 
@@ -117,9 +117,9 @@ Isso nos mostra algumas utilidades interessantes comparadas ao "puro, clássico,
     ```
 
     Se ambos `currentUser` e `defaultUser` forem falsos, o resultado será `"unnamed"`.
-2. **Interpretação de curto-circuito**
+2. **Avaliação de curto-circuito**
 
-    Operandos podem não ser apenas valores, mas operações arbitrárias. OU interpreta e testa elas da esquerda para a direita. A interpretação para quando um valor verdadeiro é encontrado e este valor é retornado. Este processo é chamado de "interpretação de curto-circuito" pois vai o mais curto possível da esquerda para a direita.
+    Operandos podem não ser apenas valores, mas operações arbitrárias. OU interpreta e testa elas da esquerda para a direita. A avaliação é interrompida quando um valor verdadeiro é encontrado e este valor é retornado. Este processo é chamado de "avaliação de curto-circuito" pois vai o mais curto possível da esquerda para a direita.
 
     Isto é claramente visto quando a expressão dada como segundo argumento tem um efeito como a atribuição de uma variável.
 
@@ -130,10 +130,10 @@ Isso nos mostra algumas utilidades interessantes comparadas ao "puro, clássico,
 
     *!*true*/!* || (x = 1);
 
-    alert(x); // undefined, pois (x = 1) não é interpretados
+    alert(x); // undefined, pois (x = 1) não é avaliado
     ```
 
-    Se, por outro lado, o primeiro argumento é `false`, `||` interpreta o segundo, fazendo assim a atribuição:
+    Se, por outro lado, o primeiro argumento é `false`, `||` avalia o segundo, fazendo assim a atribuição:
 
     ```js run no-beautify
     let x;
@@ -143,9 +143,9 @@ Isso nos mostra algumas utilidades interessantes comparadas ao "puro, clássico,
     alert(x); // 1
     ```
 
-    Uma atribuição é um caso simples. Outros SIDE EFFECTS podem também estarem envolvidos.
+    Uma atribuição é um caso simples. Outros ##SIDE EFFECTS(???)## podem também estarem envolvidos.
 
-    Como podemos ver, esse caso é como um "uma maneira mais curta de se usar `if`". O primeiro operando é convertido para boolean. Se for false, o segundo operando é interpretado.
+    Como podemos ver, esse caso é como "uma maneira mais curta de se usar `if`". O primeiro operando é convertido para boolean. Se for false, o segundo operando é avaliado.
 
     Na maioria das vezes, é melhor usar o `if` "regular" para manter a facilidade de entendimento do código, mas vez ou outra isso pode ser útil.
 
@@ -157,7 +157,7 @@ O operador E é representado com dois e's comerciais `&&`:
 result = a && b;
 ```
 
-Em programação clássica, E retorna `true` se ambos os operandos forem verdadeiros e `false`, caso contrário:
+Em programação clássica, E retorna `true` se ambos os operandos forem verdadeiros ou `false`, caso contrário:
 
 ```js run
 alert( true && true );   // true
@@ -177,17 +177,17 @@ if (hour == 12 && minute == 30) {
 }
 ```
 
-Da mesma forma com OU, qualquer valor é permitido como um operando de E:
+Da mesma forma que o OU, qualquer valor é permitido como um operando de E:
 
 ```js run
-if (1 && 0) { // interpre como true && false
+if (1 && 0) { // interpreta como true && false
   alert( "não funciona, pois o resultado é falso" );
 }
 ```
 
-## "E" encontra o primeiro valor falsos
+## "E" encontra o primeiro valor falso
 
-Dados múltiplos valores encadeados com E's:
+Dados múltiplos valores encadeados em E's:
 
 ```js
 result = value1 && value2 && value3;
@@ -195,9 +195,9 @@ result = value1 && value2 && value3;
 
 O operador `&&` faz o seguinte:
 
-- Interpreta os operandos da esquerda para a direita.
-- Para cada operando, o converte para um boolean. Se o resultado for `false`, para e retorna o valor original daquele operando.
-- Se todos os operandos foram interpretados (i.e. todos são verdadeiros), retorna o último operando.
+- Avalia os operandos da esquerda para a direita.
+- Para cada operando, o converte para um boolean. Se o resultado for `false`, interrompe e retorna o valor original daquele operando.
+- Se todos os operandos foram avaliados (i.e. todos são verdadeiros), retorna o último operando.
 
 Em outras palavras, E retorna o primeiro valor falso ou o último valor se nenhum for falso.
 
@@ -245,7 +245,7 @@ let x = 1;
 (x > 0) && alert( 'Maior que zero!' );
 ```
 
-A ação na parte direita do `&&` executaria somente se a interpretação chegasse até ela. Ou seja, apenas se `(x > 0)` for verdadeiro.
+A ação na parte direita do `&&` executaria somente se a avaliação chegasse até ela. Ou seja, apenas se `(x > 0)` for verdadeiro.
 
 Então, basicamente temos uma analogia para:
 
@@ -283,14 +283,14 @@ alert( !true ); // false
 alert( !0 );    // true
 ```
 
-Uma repetição do NOT `!!` às vezes é usado para converter um valor para o tipo boolean:
+Uma repetição do NÃO `!!` às vezes é usado para converter um valor para o tipo boolean:
 
 ```js run
 alert( !!"string não vazia" ); // true
 alert( !!null );               // false
 ```
 
-Ou seja, o primeiro NOT converte o valor para boolean e retorna o seu inverso e o segundo NOT o inverte de novo. No final, nós temos uma conversão do valor para boolean.
+Ou seja, o primeiro NÃO converte o valor para boolean e retorna o seu inverso e o segundo NÃO o inverte de novo. No final, nós temos uma conversão do valor para boolean.
 
 Existem outras formas mais extensas de se fazer a mesma coisa -- uma função `Boolean`:
 
@@ -299,7 +299,7 @@ alert( Boolean("string não vazia") ); // true
 alert( Boolean(null) ); // false
 ```
 
-A precedência do NOT `!` é a mais alta entre todos os operadores lógicos, então ele é executado primeiro, antes que `&&` ou `||`.
+A precedência do NÃO `!` é a mais alta entre todos os operadores lógicos, então ele é executado primeiro, antes que `&&` ou `||`.
 
 
 
