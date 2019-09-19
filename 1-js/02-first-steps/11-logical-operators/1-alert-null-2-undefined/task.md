@@ -1,12 +1,11 @@
-importance: 5
+importância: 5
 
 ---
 
-# What's the result of OR?
+# Qual o resultado do OU?
 
-What is the code below going to output?
+Qual é a saída do código abaixo?
 
 ```js
 alert( null || 2 || undefined );
 ```
-

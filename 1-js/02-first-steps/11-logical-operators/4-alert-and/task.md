@@ -1,12 +1,11 @@
-importance: 3
+importância: 3
 
 ---
 
-# What is the result of AND'ed alerts?
+# Qual o resultado dos alerts encadeados em E?
 
-What will this code show?
+O que este código irá mostrar?
 
 ```js
 alert( alert(1) && alert(2) );
 ```
-

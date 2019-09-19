@@ -1,12 +1,11 @@
-The first variant:
+A primeira variação:
 
 ```js
-if (!(age >= 14 && age <= 90))
+if (!(idade >= 14 && idade <= 90))
 ```
 
-The second variant:
+A segunda variação:
 
 ```js
-if (age < 14 || age > 90)
+if (idade < 14 || idade > 90)
 ```
-

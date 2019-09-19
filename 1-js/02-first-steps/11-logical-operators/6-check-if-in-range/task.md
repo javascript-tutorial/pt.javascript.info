@@ -1,9 +1,9 @@
-importance: 3
+importância: 3
 
 ---
 
-# Check the range between
+# Verifique o intervalo entre
 
-Write an "if" condition to check that `age` is between `14` and `90` inclusively.
+Escreva uma condição "if" para verificar se `idade` está entre o intervalo fechado `14` e `90`.
 
-"Inclusively" means that `age` can reach the edges `14` or `90`.
+"Fechado" significa que `idade` pode chegar a ser `14` ou `90`.
