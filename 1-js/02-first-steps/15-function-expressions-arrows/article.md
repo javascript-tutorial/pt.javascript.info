@@ -474,4 +474,4 @@ Assim, deveríamos empregar uma Expressão de Função apenas quando a Declaraç
 Arrow functions são apropriadas para ações única-linha. Elas vêm em dois sabores:
 
 1. Sem chavetas: `(...args) => expression` -- o lado direito é uma expressão: a função a evalua e retorna o resultado.
-2. Com chavetas: `(...args) => { body }` -- chavetas permitem-nos escrever múltiplas instruções dentro da função, mas precisamos de um explícito `return` para retornar alguma coisa.
+2. Com chavetas: `(...args) => { body }` -- chavetas permitem-nos escrever múltiplas instruções dentro da função, mas precisamos de um explícito `return` para retornar algo.
