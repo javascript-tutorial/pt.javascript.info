@@ -6,7 +6,7 @@ Ela é uma forma mais descritiva de comparar um valor com múltiplas variantes.
 
 ## A sintaxe
 
-O `switch` tem um ou mais blocos `caso` e um `defeito` opcional.
+O `switch` tem um ou mais blocos `case` (caso) e um `default` (padrão) opcional.
 
 Tem uma apresentação similar a:
 
@@ -26,9 +26,9 @@ switch(x) {
 }
 ```
 
-- O valor de `x` é comparado por meio de uma igualdade exata ao valor do primeiro `caso` (isto é, ao `valor1`), a seguir ao do segundo (`valor2`) e assim sucessivamente.
-- Se uma igualdade é encontrada, o `switch` começa a executar o código a partir do início do `caso` correspondente, até ao próximo `break` (ou até ao fim do `switch`).
-- Se nenhum caso é equiparado então o código em `defeito` é executado (se existir).
+- O valor de `x` é comparado por meio de uma igualdade exata ao valor do primeiro `case` (isto é, ao `valor1`), a seguir ao do segundo (`valor2`) e assim sucessivamente.
+- Se uma igualdade é encontrada, o `switch` começa a executar o código a partir do início do `case` correspondente, até ao próximo `break` (ou até ao fim do `switch`).
+- Se nenhum `case` é equiparado então o código em `default` é executado (se existir).
 
 ## Um exemplo
 
@@ -114,7 +114,7 @@ Aqui `+a` dá `1`, o que é comparado a `b + 1` no `case`, e o código correspon
 
 Múltiplas variantes de `case` que partihem o mesmo código podem ser agrupadas.
 
-Por exemplo, se quisermos que o mesmo código corra por `caso 3` e `caso 5`:
+Por exemplo, se quisermos que o mesmo código corra por `case 3` e `case 5`:
 
 ```js run no-beautify
 let a = 2 + 2;
@@ -125,7 +125,7 @@ switch (a) {
     break;
 
 *!*
-  case 3:                    // (*) dois casos agrupados
+  case 3:                    // (*) dois cases agrupados
   case 5:
     alert('Errado!');
     alert("Porque não tem aulas de matemática?");
@@ -139,7 +139,7 @@ switch (a) {
 
 Agora ambos `3` e `5` mostram a mesma mensagem.
 
-A habilidade para "agrupar" casos é um efeito secundário de como `switch/case` funciona sem `break`. Aqui a execução do `caso 3` começa pela linha `(*)` e prossegue pelo `caso 5`, por não existir `break`.
+A habilidade para "agrupar" cases é um efeito secundário de como `switch/case` funciona sem `break`. Aqui a execução do `case 3` começa pela linha `(*)` e prossegue pelo `case 5`, por não existir `break`.
 
 ## O tipo importa
 
