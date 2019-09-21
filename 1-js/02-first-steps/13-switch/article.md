@@ -2,7 +2,7 @@
 
 Uma instrução `switch` pode substituir muitas comparações `se`.
 
-Ela dá uma forma mais descritiva de comparar um valor com múltiplas variantes.
+Ela é uma forma mais descritiva de comparar um valor com múltiplas variantes.
 
 ## A sintaxe
 
@@ -26,13 +26,13 @@ switch(x) {
 }
 ```
 
-- O valor de `x` é comparado por meio de uma igualdade exata ao valor do primeiro `caso` (isto é, ao `valor1`), a seguir ao segundo (`valor2`) e assim sucessivamente.
+- O valor de `x` é comparado por meio de uma igualdade exata ao valor do primeiro `caso` (isto é, ao `valor1`), a seguir ao do segundo (`valor2`) e assim sucessivamente.
 - Se uma igualdade é encontrada, o `switch` começa a executar o código a partir do início do `caso` correspondente, até ao próximo `break` (ou até ao fim do `switch`).
 - Se nenhum caso é equiparado então o código em `defeito` é executado (se existir).
 
-## Um examplo
+## Um exemplo
 
-Um examplo de `switch` (o código executado code está em destaque):
+Um exemplo de `switch` (o código executado está em destaque):
 
 ```js run
 let a = 2 + 2;
@@ -54,13 +54,13 @@ switch (a) {
 }
 ```
 
-Aqui o `switch` começa por comparar `a` à variante no primeiro `caso`, que é `3`. A equiparação falha.
+Aqui o `switch` começa por comparar `a` à variante no primeiro `case`, que é `3`. A correspondência falha.
 
-Então a `4`. Existe uma equiparação, e assim a execução começa a partir do `caso 4` até ao próximo `break`.
+Então a `4`. Existe uma correspondência, e assim a execução começa a partir do `case 4` até ao próximo `break`.
 
-**Se não existir um `break` então a execução continua pelo próximo `caso` sem quaisquer verificações.**
+**Se não existir um `break` então a execução continua pelo próximo `case` sem quaisquer verificações.**
 
-Um examplo sem `break`:
+Um exemplo sem `break`:
 
 ```js run
 let a = 2 + 2;
@@ -79,7 +79,7 @@ switch (a) {
 }
 ```
 
-No examplo acima, vemos uma execução sequential de três `alert`s:
+No exemplo acima, vemos uma execução sequential de três `alert`'s:
 
 ```js
 alert( 'Exacto!' );
@@ -87,10 +87,10 @@ alert( 'Muito alto' );
 alert( "Não conheço tais valores" );
 ```
 
-````smart header="Qualquer expressão pode servir de argumento para `switch/case` "
+````smart header="Any expression can be a switch/case argument"
 Ambos `switch` e `case` permitem expressões arbitrárias.
 
-Por examplo:
+Por exemplo:
 
 ```js run
 let a = "1";
@@ -107,14 +107,14 @@ switch (+a) {
     alert("isto não executa");
 }
 ```
-Aqui `+a` dá `1`, o que é comparado a `b + 1` no `caso`, e o código correspondente é executado.
+Aqui `+a` dá `1`, o que é comparado a `b + 1` no `case`, e o código correspondente é executado.
 ````
 
-## Grupos de "caso"
+## Grupos de "case"
 
-Múltiplas variantes de `caso` que partihem o mesmo código podem ser agrupadas.
+Múltiplas variantes de `case` que partihem o mesmo código podem ser agrupadas.
 
-Por examplo, se quisermos que o mesmo código corra por `caso 3` e `caso 5`:
+Por exemplo, se quisermos que o mesmo código corra por `caso 3` e `caso 5`:
 
 ```js run no-beautify
 let a = 2 + 2;
@@ -143,9 +143,9 @@ A habilidade para "agrupar" casos é um efeito secundário de como `switch/case`
 
 ## O tipo importa
 
-Vamos emfatizar que a verificação da igualdade é sempre exata. Os valores devem também ser do mesmo tipo para existir equiparação.
+Vamos emfatizar que a verificação da igualdade é sempre exata. Os valores devem também ser do mesmo tipo para existir correspondência.
 
-Por examplo, consideremos o código:
+Por exemplo, consideremos o código:
 
 ```js run
 let arg = prompt("Insira um valor?");
