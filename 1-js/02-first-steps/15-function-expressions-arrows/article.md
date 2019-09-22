@@ -175,7 +175,7 @@ Vamos formular diferenças chave entre Declarações de Função e Expressões.
 
 Primeiro, a sintaxe: como verificar qual é qual no código.
 
-- *Declaração de Função:* uma função, declarada como uma instrução em separado, no fluxo do código principal.
+- *Declaração de Função:* uma função, declarada como uma instrução em separado, no fluxo principal do código .
 
     ```js
     // Declaração de Função
@@ -461,7 +461,7 @@ Por ora, podemos já usá-las para ações de única-linha e callbacks.
 ## Sumário
 
 - Funções são valores. Elas podem ser atribuidas, copiadas ou declaradas em qualquer parte do código.
-- Se a função for declarada como uma instrução separada no fluxo do código principal, é chamada de "Declaração de Função".
+- Se a função for declarada como uma instrução separada no fluxo principal do código , é chamada de "Declaração de Função".
 - Se a função for criada como  parte de uma expressão, é chamada de "Expressão de função".
 - Declarações de Função são processadas antes de um bloco de código ser executado. Elas são visíveis em qualquer lugar dentro do bloco.
 - Expressões de função são criadas quando o fluxo de execução as alcança.
