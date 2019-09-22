@@ -106,10 +106,10 @@ Estamos a utilizar um navegador (*browser*) como ambiente de trabalho, assim fun
 : Faz uma `question`, e retorna o que o visitante inseriu ou `null` se a pessoa "cancelou".
 
 [`confirm(question)`](mdn:api/Window/confirm)
-: Faz uma `question` e sugere que a pessoa escolha entre Ok e Cancel. A escolha é retornada como `true/false`.
+: Faz uma `question` e sugere que a pessoa escolha entre Ok e Cancel. A escolha é retornada como `true/false` (verdadeiro/falso).
 
 [`alert(message)`](mdn:api/Window/alert)
-: Mostra uma `message`.
+: Mostra `message`.
 
 Todas estas funções são *modal* (modais), elas suspendem o código em execução e impedem o visitante de interagir com a página até obterem uma resposta.
 
@@ -149,7 +149,7 @@ Ternários
 : O único operador com três parâmetros: `condition ? resultA : resultB`. Se `condition` for verdadeira, retorna `resultA`, senão `resultB`.
 
 Lógicos
-: Os lógicos  *AND* (E) `&&` e OR (OU) `||` executam evaluação em *short-ciruit* (*short-circuit evaluation*) e depois retornam o valor em que pararam. O lógico *NOT* (NÃO) `!` converte o operando para o tipo boleano e retorna o valor inverso desse boleano.
+: Os lógicos  *AND* (E) `&&` e OR (OU) `||` executam evaluação em curto-circuito (*short-circuit evaluation*) e depois retornam o valor em que pararam. O lógico *NOT* (NÃO) `!` converte o operando para o tipo boleano e retorna o valor inverso desse boleano.
 
 De comparação
 : O de verificação de igualdade `==`, para valores de tipos diferentes, os converte para números (exceto `null` e `undefined` que igualam-se a si próprios, e a nada mais); assim os seguintes são similares:
@@ -194,7 +194,7 @@ Mais em: <info:operators>, <info:comparison>, <info:logical-operators>.
     ```
 
 - A variável declarada no laço `for(let...)` apenas é visível dentro do laço. Mas também podemos omitir `let` e reusar uma variável já existente.
-- As diretivas `break/continue` permitem sair de todo-o-laço/actual-iteração. Use etiquetas (*labels*) para sair (*break*) de laços aninhados (*nested loops*).
+- As diretivas `break/continue` permitem sair completamente-do-laço/da-actual-iteração. Use etiquetas (*labels*) para sair (*break*) de laços aninhados (*nested loops*).
 
 Detalhes em: <info:while-for>.
 
@@ -202,7 +202,7 @@ Mais adiante estudaremos outros tipos de laços para lidar com objetos.
 
 ## A construção "switch"
 
-A construção "switch" permite substituir múltiplas verificações `if`. Ela emprega `===` (igualdade exata) nas comparações.
+A construção "switch" permite substituir múltiplas verificações `if`. Ela emprega `===` (igualdade exata - *strict equality*) nas comparações.
 
 Por exemplo:
 
@@ -211,7 +211,7 @@ let age = prompt('Que idade tem?', 18);
 
 switch (age) {
   case 18:
-    alert("Não funcionará"); // o resultado de *prompt* é uma  *string*, não um número
+    alert("Não funcionará"); // o resultado de *prompt* é uma *string*, não um número
 
   case "18":
     alert("Isto funciona!");
@@ -256,7 +256,7 @@ Vimos três formas de criar uma função em JavaScript:
     // expressão no lado direito
     let sum = (a, b) => a + b;
 
-    // ou em sintaxe multi-linha com { ... }, aqui precisa de return:
+    // ou em sintaxe multi-linha com { ... }, aqui precisa de return
     let sum = (a, b) => {
       // ...
       return a + b;
