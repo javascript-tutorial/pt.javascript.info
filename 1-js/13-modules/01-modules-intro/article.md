@@ -351,7 +351,7 @@ Build tools do the following:
     - Unused exports removed ("tree-shaking").
     - Development-specific statements like `console` and `debugger` removed.
     - Modern, bleeding-edge JavaScript syntax may be transformed to older one with similar functionality using [Babel](https://babeljs.io/).
-    - The resulting file is minified (spaces removed, variables replaced with shorter named etc).
+    - The resulting file is minified (spaces removed, variables replaced with shorter names, etc).
 
 That said, native modules are also usable. So we won't be using Webpack here: you can configure it later.
 

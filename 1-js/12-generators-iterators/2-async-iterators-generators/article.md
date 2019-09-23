@@ -21,7 +21,12 @@ let range = {
   [Symbol.iterator]() {
 */!*
     // ...it returns the iterator object:
+<<<<<<< HEAD
     // onward, for..of works only with that object, asking it for next values
+=======
+    // onward, for..of works only with that object,
+    // asking it for next values using next()
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
     return {
       current: this.from,
       last: this.to,
@@ -346,20 +351,26 @@ When we expect the data to come asynchronously, with delays, their async counter
 
 Syntax differences between async and regular iterators:
 
-|       | Iterators | Async iterators |
+|       | Iterable | Async Iterable |
 |-------|-----------|-----------------|
+<<<<<<< HEAD
 | Object method to provide iteraterable | `Symbol.iterator` | `Symbol.asyncIterator` |
 | `next()` return value is              | any value         | `Promise`  |
+=======
+| Method to provide iterator | `Symbol.iterator` | `Symbol.asyncIterator` |
+| `next()` return value is          | `{value:…, done: true/false}`         | `Promise` that resolves to `{value:…, done: true/false}`  |
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Syntax differences between async and regular generators:
 
 |       | Generators | Async generators |
 |-------|-----------|-----------------|
 | Declaration | `function*` | `async function*` |
-| `generator.next()` returns              | `{value:…, done: true/false}`         | `Promise` that resolves to `{value:…, done: true/false}`  |
+| `next()` return value is          | `{value:…, done: true/false}`         | `Promise` that resolves to `{value:…, done: true/false}`  |
 
 In web-development we often meet streams of data, when it flows chunk-by-chunk. For instance, downloading or uploading a big file.
 
+<<<<<<< HEAD
 We could use async generators to process such data, but there's also another API called Streams, that may be more convenient, as it provides special interfaces to transform the data and to pass it from one stream to another (e.g. download from one place and immediately send elsewhere). But they are also more complex.
 
 <<<<<<< HEAD
@@ -367,3 +378,6 @@ Streams API not a part of JavaScript language standard. Streams and async genera
 =======
 Streams API is not a part of JavaScript language standard.
 >>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
+=======
+We can use async generators to process such data. It's also noteworthy that in some environments, such as browsers, there's also another API called Streams, that provides special interfaces to work with such streams, to transform the data and to pass it from one stream to another (e.g. download from one place and immediately send elsewhere).
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27

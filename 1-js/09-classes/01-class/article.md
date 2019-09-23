@@ -232,7 +232,11 @@ new User().sayHi(); // Hello
 
 ## Getters/setters, other shorthands
 
+<<<<<<< HEAD
 Classes also include getters/setters, generators, computed properties etc.
+=======
+Just like literal objects, classes may include getters/setters, computed properties etc.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Here's an example for `user.name` implemented using `get/set`:
 
@@ -297,8 +301,6 @@ class User {
 
 new User().sayHi();
 ```
-
-For a generator method, similarly, prepend it with `*`.
 
 ## Class properties
 
