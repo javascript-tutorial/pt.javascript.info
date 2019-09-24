@@ -6,7 +6,7 @@ Ela é uma forma mais descritiva de comparar um valor com múltiplas variantes.
 
 ## A sintaxe
 
-O `switch` tem um ou mais blocos `case` (caso) e um `default` (padrão) opcional.
+O `switch`, tem um ou mais blocos `case` (caso) e um `default` (padrão) opcional.
 
 Tem uma apresentação similar a:
 
@@ -26,7 +26,7 @@ switch(x) {
 }
 ```
 
-- O valor de `x` é comparado por meio de uma igualdade exata ao valor do primeiro `case` (isto é, ao `valor1`), a seguir ao do segundo (`valor2`) e assim sucessivamente.
+- O valor de `x` é comparado por meio de uma igualdade exata (*strict equality*) ao valor do primeiro `case` (isto é, ao `valor1`), a seguir ao do segundo (`valor2`) e assim sucessivamente.
 - Se uma igualdade é encontrada, o `switch` começa a executar o código a partir do início do `case` correspondente, até ao próximo `break` (ou até ao fim do `switch`).
 - Se nenhum `case` é equiparado então o código em `default` é executado (se existir).
 
@@ -79,7 +79,7 @@ switch (a) {
 }
 ```
 
-No exemplo acima, vemos uma execução sequential de três `alert`'s:
+No exemplo acima, vemos uma execução em sequência de três `alert`'s:
 
 ```js
 alert( 'Exacto!' );
@@ -143,7 +143,7 @@ A habilidade para "agrupar" cases é um efeito secundário de como `switch/case`
 
 ## O tipo importa
 
-Vamos emfatizar que a verificação da igualdade é sempre exata. Os valores devem também ser do mesmo tipo para existir correspondência.
+Vamos emfatizar que a verificação da igualdade é sempre exata (*strict*). Os valores devem também ser do mesmo tipo para existir correspondência.
 
 Por exemplo, consideremos o código:
 
