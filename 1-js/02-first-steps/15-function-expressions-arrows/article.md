@@ -38,7 +38,7 @@ alert( sayHi ); // mostra o código da função
 
 Por favor, note que a última linha não executa a função, porque não existem parênteses depois de `sayHi`. Existem linguagens de programação onde qualquer menção ao nome de uma função provoca a sua execução, mas em JavaScript não é assim.
 
-Em JavaScript, uma função é um valor, então podemos lidar com ela como com um valor. O código acima mostra a sua representação em formato de texto (string), que é o código fonte.
+Em JavaScript, uma função é um valor, então podemos lidar com ela como com um valor. O código acima mostra a sua representação em formato de texto (*string*), que é o código fonte.
 
 Óbviamente que é um valor especial, porque podemos invocá-lo usando `sayHi()`.
 
@@ -132,11 +132,11 @@ function showCancel() {
 ask("Você concorda?", showOk, showCancel);
 ```
 
-Antes de explorarmos em como poderemos escrevê-lo de uma forma mais curta, convém notar que no navegador [browser] (e em certos casos do lado do servidor [server-side]) tais funções são muito populares. A maior difereça entre uma implementação em tempo-real [real-life] e o exemplo acima, é que funções em tempo-real usam formas mais complexas de interagir com o utilizador do que um simples `confirm`. No navegador, geralmente tal função desenha uma agradável janela contendo a questão a formular. Mas isso é outra história.
+Antes de explorarmos em como poderemos escrevê-lo de uma forma mais curta, convém notar que no navegador [*browser*] (e em certos casos do lado do servidor [*server-side*]) tais funções são muito populares. A maior difereça entre uma implementação em tempo-real (*real-life*) e o exemplo acima, é que funções em tempo-real usam formas mais complexas de interagir com o utilizador do que um simples `confirm`. No navegador, geralmente tal função desenha uma agradável janela contendo a questão a formular. Mas isso é outra história.
 
 **Os argumentos de `ask` são chamados de *funções de retorno de chamada* (callback functions) ou apenas *callbacks*.**
 
-A ideia é que nós passamos uma função e esperamos que ela seja "chamada" mais tarde se necessário.  No nosso caso, `showOk` se torna na função de retorno de chamada (callback) para a resposta "yes", e `showCancel` para a resposta "no".
+A ideia é que nós passamos uma função e esperamos que ela seja "chamada" mais tarde se necessário.  No nosso caso, `showOk` se torna na função de retorno de chamada (*callback*) para a resposta "yes", e `showCancel` para a resposta "no".
 
 Podemos utilizar Expressões de Funções para escrever uma versão mais curta da mesma função:
 
@@ -157,11 +157,11 @@ ask(
 
 Aqui, as funções são declaradas justamente dentro da chamada a `ask(...)`. Elas não têm nome, e por isso são chamadas de *anónimas*. Tais funções não podem ser acedidas fora de `ask` (porque não estão atribuidas a variáveis), mas é apenas o que queremos para aqui.
 
-Código semelhante aparece nos nossos programas (scripts) muito naturalmente, está no espírito de JavaScript.
+Código semelhante aparece nos nossos programas (*scripts*) muito naturalmente, está no espírito de JavaScript.
 
 
 ```smart header="A function is a value representing an \"action\""
-Valores comuns como cadeias-de-caráteres (strings) ou números representam os *dados*.
+Valores comuns como cadeias-de-caráteres (*strings*) ou números representam os *dados*.
 
 Uma função pode ser tida como uma *ação*.
 
@@ -192,17 +192,17 @@ Primeiro, a sintaxe: como verificar qual é qual no código.
     };
     ```
 
-A mais subtil diferença é *quando* uma função é criada pelo interpretador de JavaScript [JavaScript engine].
+A mais subtil diferença é *o momento* em que uma função é criada pelo interpretador de JavaScript [*JavaScript engine*].
 
 **Uma Expressão de Função é criada quando a execução chega até si, e é utilizável a partir daí.**
 
 Ao passar o fluxo de execução para o lado direito da atribuição `let sum = function…` -- aí é que é, a função é criada e pode ser utilizada (atribuida, chamada, etc.) a partir daí.
 
-Declarações de Função sao diferentes.
+Declarações de Função são diferentes.
 
 **Uma Declaração de Função é utilizável ao longo de todo o script/bloco de código.**
 
-Por outras palavras, quando JavaScript se *prepara* para correr o programa (script) ou bloco de código, primeiro procura nele por  Declarações de Função e cria as funções. Podemos pensar nisto como um  "estágio de inicialização".
+Por outras palavras, quando JavaScript se *prepara* para correr o programa (*script*) ou bloco de código, primeiro procura nele por  Declarações de Função e cria as funções. Podemos pensar nisto como um  "estágio de inicialização".
 
 Após o processamento de todas as Declarações de Função, a execução prossegue.
 
@@ -220,7 +220,7 @@ function sayHi(name) {
 }
 ```
 
-A Declaração de Função `sayHi` é criada quando JavaScript se prepara para iniciar o script e é visível em todo o lugar nele.
+A Declaração de Função `sayHi` é criada quando JavaScript se prepara para iniciar o *script* e é visível em todo o lugar nele.
 
 ...Se fosse uma Expressão de Função, então não funcionaria:
 
@@ -238,9 +238,9 @@ As Expressões de Função são criadas quando a execução as alcança. O que a
 
 **Quando uma Declaração de Função é feita dentro de um bloco de código, ela é visível em todo o lugar dentro desse bloco. Mas não fora dele.**
 
-Por vezes, é prático declarar uma função local apenas necessária num dado bloco. Mas essa possibilidade também pode causar problemas.
+Por vezes, é prático declarar uma função local, apenas necessária num dado bloco. Mas essa possibilidade também pode causar problemas.
 
-Por exemplo, imaginemos que precisamos de declarar uma função `welcome()` que dependa da variável `age` que obtemos durante o tempo de execução (runtime). E que planejamos utilizá-la algures mais tarde.
+Por exemplo, imaginemos que precisamos de declarar uma função `welcome()` que dependa da variável `age` que obtemos durante o tempo de execução (*runtime*). E que planejamos utilizá-la algures mais tarde.
 
 O código abaixo não funciona:
 
@@ -303,9 +303,9 @@ welcome(); // Erro: welcome não está definida
 */!*
 ```
 
-O que poderemos fazer para tonar `welcome` visível fora do `if`?
+O que poderemos fazer para tornar `welcome` visível fora do `if`?
 
-O correto seria empregar uma Função de Expressão e atribuir `welcome` a uma variável declarada fora do `if` e que tenha uma visibilidade adequada.
+O correto seria empregar uma Função de Expressão, e atribuir `welcome` a uma variável declarada fora do `if` e que tenha uma visibilidade adequada.
 
 Agora funciona como pretendido:
 
@@ -461,7 +461,7 @@ Por ora, podemos já usá-las para ações de única-linha e callbacks.
 ## Sumário
 
 - Funções são valores. Elas podem ser atribuidas, copiadas ou declaradas em qualquer parte do código.
-- Se a função for declarada como uma instrução separada no fluxo do código principal, é chamada de "Declaração de Função".
+- Se a função for declarada como uma instrução separada no fluxo principal do código, é chamada de "Declaração de Função".
 - Se a função for criada como  parte de uma expressão, é chamada de "Expressão de função".
 - Declarações de Função são processadas antes de um bloco de código ser executado. Elas são visíveis em qualquer lugar dentro do bloco.
 - Expressões de função são criadas quando o fluxo de execução as alcança.
@@ -471,7 +471,7 @@ Na maior parte dos casos, quando precisarmos de declarar uma função, uma Decla
 
 Assim, deveríamos empregar uma Expressão de Função apenas quando a Declaração de Função não se adequasse à tarefa. Vimos alguns exemplos disso no capítulo, e veremos mais no futuro.
 
-Arrow functions são apropriadas para ações única-linha. Elas vêm em dois sabores:
+Arrow functions são apropriadas para ações em linha-única. Elas vêm em dois sabores:
 
 1. Sem chavetas: `(...args) => expression` -- o lado direito é uma expressão: a função a evalua e retorna o resultado.
 2. Com chavetas: `(...args) => { body }` -- chavetas permitem-nos escrever múltiplas instruções dentro da função, mas precisamos de um explícito `return` para retornar alguma coisa.
