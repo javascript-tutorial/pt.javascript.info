@@ -27,7 +27,7 @@ The getter works when `obj.propName` is read, the setter -- when it is assigned.
 
 For instance, we have a `user` object with `name` and `surname`:
 
-```js run
+```js
 let user = {
   name: "John",
   surname: "Smith"
@@ -87,18 +87,22 @@ Now we have a "virtual" property. It is readable and writable, but in fact does 
 ```smart header="Accessor properties are only accessible with get/set"
 Once a property is defined with `get prop()` or `set prop()`, it's an accessor property, not a data properety any more.
 
+<<<<<<< HEAD
 - If there's a getter -- we can read `object.prop`, othrewise we can't.
 - If there's a setter -- we can set `object.prop=...`, othrewise we can't.
 
 And in either case we can't `delete` an accessor property.
+=======
+```smart header="No way to handle `delete`"
+There's no similar method to handle deletion of an accessor property. Only getter/setter methods may exist.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 ```
-
 
 ## Accessor descriptors
 
-Descriptors for accessor properties are different -- as compared with data properties.
+Descriptors for accessor properties are different from those for data properties.
 
-For accessor properties, there is no `value` and `writable`, but instead there are `get` and `set` functions.
+For accessor properties, there is no `value` or `writable`, but instead there are `get` and `set` functions.
 
 So an accessor descriptor may have:
 

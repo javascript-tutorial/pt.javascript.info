@@ -71,8 +71,13 @@ Why so?
 That's for historical reasons.
 
 - The `"prototype"` property of a constructor function works since very ancient times.
+<<<<<<< HEAD
 - Later in the year 2012: `Object.create` appeared in the standard. It allowed to create objects with the given prototype, but did not allow to get/set it. So browsers implemented non-standard `__proto__` accessor that allowed to get/set a prototype at any time.
 - Later in the year 2015: `Object.setPrototypeOf` and `Object.getPrototypeOf` were added to the standard. The `__proto__` was de-facto implemented everywhere, so it made its way to the Annex B of the standard, that is optional for non-browser environments.
+=======
+- Later, in the year 2012: `Object.create` appeared in the standard. It gave the ability to create objects with a given prototype, but did not provide the ability to get/set it. So browsers implemented the non-standard `__proto__` accessor that allowed the user to get/set a prototype at any time.
+- Later, in the year 2015: `Object.setPrototypeOf` and `Object.getPrototypeOf` were added to the standard, to perform the same functionality as `__proto__`. As `__proto__` was de-facto implemented everywhere, it was kind-of deprecated and made its way to the Annex B of the standard, that is: optional for non-browser environments.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 As of now we have all these ways at our disposal.
 
@@ -81,7 +86,7 @@ Why was `__proto__` replaced by the functions? That's an interesting question, r
 ```warn header="Don't reset `[[Prototype]]` unless the speed doesn't matter"
 Technically, we can get/set `[[Prototype]]` at any time. But usually we only set it once at the object creation time, and then do not modify: `rabbit` inherits from `animal`, and that is not going to change.
 
-And JavaScript engines are highly optimized to that. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation, it breaks internal optimizations for object property access operations. So evade it unless you know what you're doing, or JavaScript speed totally doesn't matter for you.
+And JavaScript engines are highly optimized for this. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation, it breaks internal optimizations for object property access operations. So avoid it unless you know what you're doing, or JavaScript speed totally doesn't matter for you.
 ```
 
 ## "Very plain" objects
@@ -107,17 +112,25 @@ That shouldn't surprise us. The `__proto__` property is special: it must be eith
 
 But we didn't *intend* to implement such behavior, right? We want to store key/value pairs, and the key named `"__proto__"` was not properly saved. So that's a bug!
 
+<<<<<<< HEAD
 Here the consequences are not terrible. But in other cases the prototype may indeed be changed, so the execution may go wrong in totally unexpected ways.
+=======
+Here the consequences are not terrible. But in other cases we may be assigning object values, and then the prototype may indeed be changed. As the result, the execution will go wrong in totally unexpected ways.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
-What's worst -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when JavaScript is used on server-side.
+What's worse -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when JavaScript is used on server-side.
 
+<<<<<<< HEAD
 Unexpected things also may happen when accessing `toString` property -- that's a function by default, and other built-in properties.
+=======
+Unexpected things also may happen when assigning to `toString`, which is a function by default, and to other built-in methods.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
-How to evade the problem?
+How to avoid the problem?
 
 First, we can just switch to using `Map`, then everything's fine.
 
-But `Object` also can serve us well here, because language creators gave a thought to that problem long ago.
+But `Object` also can serve us well here, because language creators gave thought to that problem long ago.
 
 The `__proto__` is not a property of an object, but an accessor property of `Object.prototype`:
 
@@ -189,6 +202,10 @@ Also, `Object.create` provides an easy way to shallow-copy an object with all de
 let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
 ```
 
+<<<<<<< HEAD
+=======
+We also made it clear that `__proto__` is a getter/setter for `[[Prototype]]` and resides in `Object.prototype`, just like other methods.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 - [Object.keys(obj)](mdn:js/Object/keys) / [Object.values(obj)](mdn:js/Object/values) / [Object.entries(obj)](mdn:js/Object/entries) -- returns an array of enumerable own string property names/values/key-value pairs.
 - [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) -- returns an array of all own symbolic property names.

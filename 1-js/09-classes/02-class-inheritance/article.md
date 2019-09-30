@@ -260,9 +260,9 @@ The short answer is: constructors in inheriting classes must call `super(...)`, 
 
 ...But why? What's going on here? Indeed, the requirement seems strange.
 
-Of course, there's an explanation. Let's get into details, so you'd really understand what's going on.
+Of course, there's an explanation. Let's get into details, so you'll really understand what's going on.
 
-In JavaScript, there's a distinction between a "constructor function of an inheriting class" and all others. In an inheriting class, the corresponding constructor function is labelled with a special internal property `[[ConstructorKind]]:"derived"`.
+In JavaScript, there's a distinction between a "constructor function of an inheriting class" and all others. In an inheriting class, the corresponding constructor function is labeled with a special internal property `[[ConstructorKind]]:"derived"`.
 
 The difference is:
 
@@ -307,7 +307,17 @@ alert(rabbit.earLength); // 10
 
 ## Super: internals, [[HomeObject]]
 
+<<<<<<< HEAD
 Let's get a little deeper under the hood of `super`. We'll see some interesting things by the way.
+=======
+```warn header="Advanced information"
+If you're reading the tutorial for the first time - this section may be skipped.
+
+It's about the internal mechanisms behind inheritance and `super`.
+```
+
+Let's get a little deeper under the hood of `super`. We'll see some interesting things along the way.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 First to say, from all that we've learned till now, it's impossible for `super` to work.
 
@@ -459,7 +469,7 @@ In the example below a non-method syntax is used for comparison. `[[HomeObject]]
 
 ```js run
 let animal = {
-  eat: function() { // should be the short syntax: eat() {...}
+  eat: function() { // intentially writing like this instead of eat() {...
     // ...
   }
 };

@@ -232,7 +232,11 @@ new User().sayHi(); // Hello
 
 ## Getters/setters, other shorthands
 
+<<<<<<< HEAD
 Classes also include getters/setters, generators, computed properties etc.
+=======
+Just like literal objects, classes may include getters/setters, computed properties etc.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 Here's an example for `user.name` implemented using `get/set`:
 
@@ -298,8 +302,6 @@ class User {
 new User().sayHi();
 ```
 
-For a generator method, similarly, prepend it with `*`.
-
 ## Class properties
 
 ```warn header="Old browsers may need a polyfill"
@@ -320,8 +322,12 @@ class User {
 new User().sayHi();
 ```
 
+<<<<<<< HEAD
 The property is not placed into `User.prototype`. Instead, it is created by `new`, separately for every object. So, the property will never be shared between different objects of the same class.
 
+=======
+The property `name` is not placed into `User.prototype`. Instead, it is created by `new` before calling the constructor, it's a property of the object itself.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 ## Summary
 
