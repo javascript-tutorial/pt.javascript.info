@@ -74,7 +74,7 @@ alert( '2' > 1 ); // true, a string '2' é convertida para o número 2
 alert( '01' == 1 ); // true, a string '01' é convertida para o número 1
 ```
 
-Para valores booleanos, `true` torna-se `1` e `false` torna-se `0`.
+Para valores booleanos, `true` torna-se `1`, e `false` torna-se `0`.
 
 Por exemplo:
 
@@ -134,7 +134,7 @@ alert( 0 === false ); // false, porque os tipos são diferentes
 
 Existe também um operador de "diferença estrita" `!==`, análogo a `!=`.
 
-O operador de igualdade estrito é um pouco mais longo para escrever, mas torna óbvio o que está acontecendo e deixa menos espaço para erros.
+O operador de igualdade estrita é um pouco mais longo para se escrever, mas torna óbvio o que está acontecendo e deixa menos espaço para erros.
 
 ## Comparação com "null" e "undefined"
 
@@ -143,19 +143,19 @@ Vamos ver mais casos extremos.
 Existe um comportamento não intuitivo quando `null`, ou `undefined`, são comparados com outros valores.
 
 
-Para uma verificação de igualdade estrita `===` : Esses valores são diferentes, porque cada um deles é de um tipo diferente.
+Para uma verificação de igualdade estrita `===`:<br />Esses valores são diferentes, porque cada um deles é de um tipo diferente.
 
     ```js run
     alert( null === undefined ); // false
     ```
 
-Para uma verificação não estrita `==` : Existe uma regra especial. Esses dois são um "lindo casal": eles são iguais (no sentido de "=="), mas a nenhum outro valor.
+Para uma verificação não estrita `==`:<br />Existe uma regra especial. Esses dois são um "lindo casal": eles são iguais (no sentido de "=="), mas a nenhum outro valor.
 
     ```js run
     alert( null == undefined ); // true
     ```
 
-Para matemática e outras comparações `< > <= >=` : `null/undefined` são convertidos em números: `null` torna-se `0`, enquanto `undefined` torna-se `NaN` (*Not a Number*).
+Para matemática e outras comparações `< > <= >=`:<br />`null/undefined` são convertidos em números: `null` torna-se `0`, enquanto `undefined` torna-se `NaN` (*Not a Number*).
 
 Agora, vamos ver algumas coisas engraçadas que acontecem quando aplicamos essas regras. E, o que é mais importante, como não cair em uma armadilha com eles.
 
