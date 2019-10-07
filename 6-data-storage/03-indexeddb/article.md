@@ -97,6 +97,11 @@ let deleteRequest = indexedDB.deleteDatabase(name)
 
 ## Object store
 
+<<<<<<< HEAD
+=======
+To store something in IndexedDB, we need an *object store*.
+
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 An object store is a core concept of IndexedDB. Counterparts in other databases are called "tables" or "collections". It's where the data is stored. A database may have multiple stores: one for users, another one for goods, etc.
 
 Despite being named an "object store", primitives can be stored too.

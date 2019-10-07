@@ -313,9 +313,13 @@ Hopefully, the situation with outer variables is quite clear for you now. But in
 
 ## Environments in detail
 
+<<<<<<< HEAD
 Now that you understand how closures work generally, that's already very good.
 
 Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you know things in the very detail.
+=======
+Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you understand how it works in detail.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 Please note the additional `[[Environment]]` property is covered here. We didn't mention it before for simplicity.
 
