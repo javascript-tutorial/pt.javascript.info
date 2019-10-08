@@ -1,143 +1,144 @@
-# Rest parameters and spread operator
+# Parâmetros rest e operador spread
 
-Many JavaScript built-in functions support an arbitrary number of arguments.
+Várias funções embutidas no JavaScript suportam um número arbitrário de argumentos.
 
-For instance:
+Por exemplo:
 
-- `Math.max(arg1, arg2, ..., argN)` -- returns the greatest of the arguments.
-- `Object.assign(dest, src1, ..., srcN)` -- copies properties from `src1..N` into `dest`.
-- ...and so on.
+- `Math.max(arg1, arg2, ..., argN)` -- retorna o maior dos argumentos.
+- `Object.assign(dest, src1, ..., srcN)` -- copia propriedades de `src1..N` para `dest`.
+- ...e assim por diante.
 
-In this chapter we'll learn how to do the same. And, more importantly, how to feel comfortable working with such functions and arrays.
+Nesse capítulo vamos aprender a fazer o mesmo e, mais importante, se sentindo confortável trabalhando com tais funções e matrizes.
 
-## Rest parameters `...`
+## Parâmetros rest `...`
 
-A function can be called with any number of arguments, no matter how it is defined.
+Uma função pode ser chamada com qualquer número de argumentos, não importa sua definição.
 
-Like here:
+Como por exemlplo:
 ```js run
-function sum(a, b) {
+function soma(a, b) {
   return a + b;
 }
 
-alert( sum(1, 2, 3, 4, 5) );
+alert( soma(1, 2, 3, 4, 5) );
 ```
 
-There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted.
+Não haverão erros por "uso excessivo" de argumentos, mas é claro que somente os dois primeiros valores serão levados em consideração no resultado.
 
-The rest parameters can be mentioned in a function definition with three dots `...`. They literally mean "gather the remaining parameters into an array".
+Os parâmetros rest podem ser declarados na definição da função com três pontos `...`. Eles literalmente significam "reúna os parâmetros restantes em uma matriz".
 
-For instance, to gather all arguments into array `args`:
+Por exemplo, para reunir todos os argumentos em uma matriz `args`:
 
 ```js run
-function sumAll(...args) { // args is the name for the array
-  let sum = 0;
+function somaTodos(...args) { // args é o nome da matriz
+  let soma = 0;
 
-  for (let arg of args) sum += arg;
+  for (let arg of args) soma += arg;
 
-  return sum;
+  return soma;
 }
 
-alert( sumAll(1) ); // 1
-alert( sumAll(1, 2) ); // 3
-alert( sumAll(1, 2, 3) ); // 6
+alert( somaTodos(1) ); // 1
+alert( somaTodos(1, 2) ); // 3
+alert( somaTodos(1, 2, 3) ); // 6
 ```
 
-We can choose to get the first parameters as variables, and gather only the rest.
+Nós podemos escolher receber os primeiros parâmetros como variáveis e reunir o restante.
 
-Here the first two arguments go into variables and the rest go into `titles` array:
+Abaixo os primeiros dois argumentos vão para variáveis e o restante para a matriz `titulos`:
 
 ```js run
-function showName(firstName, lastName, ...titles) {
-  alert( firstName + ' ' + lastName ); // Julius Caesar
+function mostraNome(primeiroNome, ultimoNome, ...titulos) {
+  alert( primeiroNome + ' ' + ultimoNome ); // Julius Caesar
 
-  // the rest go into titles array
-  // i.e. titles = ["Consul", "Imperator"]
-  alert( titles[0] ); // Consul
-  alert( titles[1] ); // Imperator
-  alert( titles.length ); // 2
+  // o restante vai para a matriz titulos
+  // i.e. titulos = ["Consul", "Imperator"]
+  alert( titulos[0] ); // Consul
+  alert( titulos[1] ); // Imperator
+  alert( titulos.length ); // 2
 }
 
-showName("Julius", "Caesar", "Consul", "Imperator");
+mostraNome("Julius", "Caesar", "Consul", "Imperator");
 ```
 
-````warn header="The rest parameters must be at the end"
-The rest parameters gather all remaining arguments, so the following does not make sense and causes an error:
+````warn header="Os parâmetros rest devem ficar no final"
+Os parâmetros rest reúnem todos os argumentos restantes, então o exemplo seguinte não faz sentido e causa um erro:
 
 ```js
-function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
-  // error
+function f(arg1, ...rest, arg2) { // arg2 depois ...rest ?!
+  // erro
 }
 ```
 
-The `...rest` must always be last.
+O `...rest` deve ser sempre no final.
 ````
 
-## The "arguments" variable
+## A variável "arguments"
 
-There is also a special array-like object named `arguments` that contains all arguments by their index.
+Há também um tipo especial de objeto matriz chamado `arguments` que contém todos os argumentos por seu índice.
 
-For instance:
+Por exemplo:
 
 ```js run
-function showName() {
+function mostraNome() {
   alert( arguments.length );
   alert( arguments[0] );
   alert( arguments[1] );
 
-  // it's iterable
+  // é iterável
   // for(let arg of arguments) alert(arg);
 }
 
-// shows: 2, Julius, Caesar
-showName("Julius", "Caesar");
+// exibe: 2, Julius, Caesar
+mostraNome("Julius", "Caesar");
 
-// shows: 1, Ilya, undefined (no second argument)
-showName("Ilya");
+// exibe: 1, Ilya, undefined (não possui um segundo argumento)
+mostraNome("Ilya");
 ```
 
-In old times, rest parameters did not exist in the language, and using `arguments` was the only way to get all arguments of the function, no matter their total number.
+Antigamente, parâmetros rest não existiam na linguagem, portanto usar `arguments` era a única forma de receber todos os argumentos da função, não importando seu total de argumentos.
 
-And it still works, we can use it today.
+E isso ainda funciona atualmente.
 
-But the downside is that although `arguments` is both array-like and iterable, it's not an array. It does not support array methods, so we can't call `arguments.map(...)` for example.
+Mas a desvantagem é que, apesar do `arguments` ser tanto um tipo matriz e iterável, não é uma matriz de fato. Ele não suporta métodos de matrizes, por exemplo, não podemos chamar `arguments.map(...)`.
 
-Also, it always contains all arguments. We can't capture them partially, like we did with rest parameters.
+E além disso, sempre contém todos os argumentos. Não podemos os obter parcialmente, como fizemos com parâmetros rest.
 
-So when we need these features, then rest parameters are preferred.
+Então quando precisamos dessas funcionalidades, os parâmetros rest são preferência.
 
-````smart header="Arrow functions do not have `\"arguments\"`"
-If we access the `arguments` object from an arrow function, it takes them from the outer "normal" function.
+<!-- @todo: uncomment here -->
+<!-- ````smart header="Arrow functions não possuem `\"arguments\"`"
+Se tentarmos acessar o objeto `arguments` de dentro de uma arrow function, ele os recebe da função "normal" externa.
 
-Here's an example:
+Aqui está um exemplo:
 
 ```js run
 function f() {
-  let showArg = () => alert(arguments[0]);
-  showArg();
+  let mostraArg = () => alert(arguments[0]);
+  mostraArg();
 }
 
 f(1); // 1
 ```
-````
+```` -->
 
-As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
+Como citado anteriormente, arrow functions não possuem seu próprio `this`. Agora sabemos que que elas também não possuem o especial `arguments`.
 
-## Spread operator [#spread-operator]
+## Operador spread [#spread-operator]
 
-We've just seen how to get an array from the list of parameters.
+Acabamos de ver como obter uma matriz de uma lista de parâmetros.
 
-But sometimes we need to do exactly the reverse.
+Mas as vezes precisamos fazer exatamente o oposto.
 
-For instance, there's a built-in function [Math.max](mdn:js/Math/max) that returns the greatest number from a list:
+Por exemplo, existe uma função embutida [Math.max](mdn:js/Math/max) que retorna o maior número de uma lista:
 
 ```js run
 alert( Math.max(3, 5, 1) ); // 5
 ```
 
-Now let's say we have an array `[3, 5, 1]`. How do we call `Math.max` with it?
+Agora vamos dizer que temos uma matriz `[3, 5, 1]`. Como podemos fazer para chamar `Math.max` com ele?
 
-Passing it "as is" won't work, because `Math.max` expects a list of numeric arguments, not a single array:
+Passar a matriz "como ela é" não irá funcionar porque `Math.max` espera uma lista de argumentos numéricos, não uma matriz única.
 
 ```js run
 let arr = [3, 5, 1];
@@ -147,21 +148,21 @@ alert( Math.max(arr) ); // NaN
 */!*
 ```
 
-And surely we can't manually list items in the code `Math.max(arr[0], arr[1], arr[2])`, because we may be unsure how many there are. As our script executes, there could be a lot, or there could be none. And that would get ugly.
+E certamente não podemos listar os itens manualmente no código `Math.max(arr[0], arr[1], arr[2])` porque podemos não ter certeza de quantos argumentos são. Conforme nosso script é executado, podem haver muitos parâmetros ou pode não haver nenhum, e isso ficaria muito feio.
 
-*Spread operator* to the rescue! It looks similar to rest parameters, also using `...`, but does quite the opposite.
+O *operador spread* vem para nos salvar! Ele é bem similar ao parâmetro rest, também usando `...`, mas faz o contrário.
 
-When `...arr` is used in the function call, it "expands" an iterable object `arr` into the list of arguments.
+Quando `...arr` é usado em uma chamada de função, ele "expande" um objeto iterável `arr` em uma lista de argumentos.
 
-For `Math.max`:
+Para `Math.max`:
 
 ```js run
 let arr = [3, 5, 1];
 
-alert( Math.max(...arr) ); // 5 (spread turns array into a list of arguments)
+alert( Math.max(...arr) ); // 5 (spread transforma uma matriz em uma lista de argumentos )
 ```
 
-We also can pass multiple iterables this way:
+Também podemos passar múltiplos iteráveis da seguinte forma:
 
 ```js run
 let arr1 = [1, -2, 3, 4];
@@ -170,8 +171,7 @@ let arr2 = [8, 3, -8, 1];
 alert( Math.max(...arr1, ...arr2) ); // 8
 ```
 
-We can even combine the spread operator with normal values:
-
+Podemos até combinar o operador spread com valores normais:
 
 ```js run
 let arr1 = [1, -2, 3, 4];
@@ -180,66 +180,65 @@ let arr2 = [8, 3, -8, 1];
 alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
 ```
 
-Also, the spread operator can be used to merge arrays:
+Além disso, o operador spread também pode ser usado para juntar matrizes:
 
 ```js run
 let arr = [3, 5, 1];
 let arr2 = [8, 9, 15];
 
 *!*
-let merged = [0, ...arr, 2, ...arr2];
+let matrizesReunidas = [0, ...arr, 2, ...arr2];
 */!*
 
-alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
+alert(matrizesReunidas); // 0,3,5,1,2,8,9,15 (0, depois arr, depois 2, depois arr2)
 ```
 
-In the examples above we used an array to demonstrate the spread operator, but any iterable will do.
+Nos exemplos abaixo usamos uma matriz para demonstrar o operador spread, mas qualquer iterável também funcionaria.
 
-For instance, here we use the spread operator to turn the string into array of characters:
+Por exemplo, aqui usamos o operador spread para transformar uma string em uma matriz de caracteres:
 
 ```js run
-let str = "Hello";
+let str = "Olá";
 
-alert( [...str] ); // H,e,l,l,o
+alert( [...str] ); // O,l,á
 ```
 
-The spread operator internally uses iterators to gather elements, the same way as `for..of` does.
+Internamente, o operador spread usa generators para reunir elementos, da mesma forma como `for..of` faz.
 
-So, for a string, `for..of` returns characters and `...str` becomes `"H","e","l","l","o"`. The list of characters is passed to array initializer `[...str]`.
+Então, para uma string, `for..of` retorna caracteres, e `...str` se torna `"O","l","á"`. A lista de caracteres é passada para o inicializador de matriz `[...str]`
 
-For this particular task we could also use `Array.from`, because it converts an iterable (like a string) into an array:
+Para essa tarefa em particular nós também poderíamos usar `Array.from`, porque ele converte um iterável (como uma string) em uma matriz.
 
 ```js run
-let str = "Hello";
+let str = "Olá";
 
-// Array.from converts an iterable into an array
-alert( Array.from(str) ); // H,e,l,l,o
+// Array.from converte um interável em uma matriz
+alert( Array.from(str) ); // O,l,á
 ```
 
-The result is the same as `[...str]`.
+O resultado é o mesmo de `...[str]`.
 
-But there's a subtle difference between `Array.from(obj)` and `[...obj]`:
+Mas há uma diferença sútil entre `Array.from(obj)` e `[...obj]`:
 
-- `Array.from` operates on both array-likes and iterables.
-- The spread operator operates only on iterables.
+- `Array.from` opera tanto em tipos matriz como iteráveis.
+- O operador spread opera somente em iteráveis.
 
-So, for the task of turning something into an array, `Array.from` tends to be more universal.
+Então, para a tarefa de transformar algo em uma matriz, `Array.from` tende a ser uma solução mais universal.
 
+## Sumário
 
-## Summary
+Quando nos depararmos com `"..."` no código, estamos falando de parâmetros rest ou operador spread.
 
-When we see `"..."` in the code, it is either rest parameters or the spread operator.
+Existe uma forma fácil para distinguir entre eles:
 
-There's an easy way to distinguish between them:
+- Quando `...` está no final dos parâmetros da função, é "parâmetros rest" e reune o restante da lista de argumentos em uma matriz.
+- Quando `...` ocorre em uma chamada de função ou similar, é chamado de "operador spread" e expande uma matriz em uma lista.
 
-- When `...` is at the end of function parameters, it's "rest parameters" and gathers the rest of the list of arguments into an array.
-- When `...` occurs in a function call or alike, it's called a "spread operator" and expands an array into a list.
+Padrões de uso:
 
-Use patterns:
+- Operadores rest são usados para criar funções que aceitam qualquer número de argumentos.
+- O operador spread é usado para passar uma matriz em funções que normalmente requerem uma lista de muitos argumentos.
 
-- Rest parameters are used to create functions that accept any number of arguments.
-- The spread operator is used to pass an array to functions that normally require a list of many arguments.
+Juntos eles nos ajudam a manipular entre uma lista e uma matriz de parâmetros com facilidade.
 
-Together they help to travel between a list and an array of parameters with ease.
-
-All arguments of a function call are also available in "old-style" `arguments`: array-like iterable object.
+Todos os argumentos de uma chamada de função também estão disponíveis na "moda antiga" `arguments`: objeto tipo matriz iterável.
