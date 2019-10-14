@@ -313,9 +313,13 @@ Hopefully, the situation with outer variables is quite clear for you now. But in
 
 ## Environments in detail
 
+<<<<<<< HEAD
 Now that you understand how closures work generally, that's already very good.
 
 Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you know things in the very detail.
+=======
+Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you understand how it works in detail.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 Please note the additional `[[Environment]]` property is covered here. We didn't mention it before for simplicity.
 
@@ -363,9 +367,13 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     ![](lexenv-nested-makecounter-5.svg)
 
+<<<<<<< HEAD
     Now if it accesses a variable, it first searches its own Lexical Environment (empty), then the Lexical Environment of the former `makeCounter()` call, then the global one.
 
     When it looks for `count`, it finds it among the variables `makeCounter`, in the nearest outer Lexical Environment.
+=======
+    Now when the call looks for `count` variable, it first searches its own Lexical Environment (empty), then the Lexical Environment of the outer `makeCounter()` call, where it finds it.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
     Please note how memory management works here. Although `makeCounter()` call finished some time ago, its Lexical Environment was retained in memory, because there's a nested function with `[[Environment]]` referencing it.
 

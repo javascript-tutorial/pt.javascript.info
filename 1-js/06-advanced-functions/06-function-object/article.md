@@ -67,7 +67,7 @@ alert(user.sayBye.name); // sayBye
 
 There's no magic though. There are cases when there's no way to figure out the right name. In that case, the name property is empty, like here:
 
-```js
+```js run
 // function created inside array
 let arr = [function() {}];
 
@@ -329,7 +329,7 @@ Now it works, because the name `"func"` is function-local. It is not taken from 
 The outer code still has it's variable `sayHi` or `welcome`. And `func` is an "internal function name", how the function can call itself internally.
 
 ```smart header="There's no such thing for Function Declaration"
-The "internal name" feature described here is only available for Function Expressions, not to Function Declarations. For Function Declarations, there's just no syntax possibility to add a one more "internal" name.
+The "internal name" feature described here is only available for Function Expressions, not for Function Declarations. For Function Declarations, there is no syntax for adding an "internal" name.
 
 Sometimes, when we need a reliable internal name, it's the reason to rewrite a Function Declaration to Named Function Expression form.
 ```
@@ -347,6 +347,11 @@ If the function is declared as a Function Expression (not in the main code flow)
 
 Also, functions may carry additional properties. Many well-known JavaScript libraries make great use of this feature.
 
+<<<<<<< HEAD
 They create a "main" function and attach many other "helper" functions to it. For instance, the [jquery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`. And then adds `_.clone`, `_.keyBy` and other properties to (see the [docs](https://lodash.com/docs) when you want learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
+=======
+They create a "main" function and attach many other "helper" functions to it. For instance, the [jQuery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`, and then adds `_.clone`, `_.keyBy` and other properties to it (see the [docs](https://lodash.com/docs) when you want learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
+
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 So, a function can do a useful job by itself and also carry a bunch of other functionality in properties.

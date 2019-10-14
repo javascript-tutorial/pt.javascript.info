@@ -159,7 +159,11 @@ Details may vary depeding on the browser, but the idea is same: any information 
 
 Why do we need the details?
 
+<<<<<<< HEAD
 There are many services (and we can build our own) that listen to `window.onerror`, save errors at the server and provide an interface to access and analyze them. That's great, as we can see real errors, triggered by our users. But we can't see any error information for scripts from other domains.
+=======
+There are many services (and we can build our own) that listen for global errors using `window.onerror`, save errors and provide an interface to access and analyze them. That's great, as we can see real errors, triggered by our users. But if a script comes from another origin, then there's no much information about errors in it, as we've just seen.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 Similar cross-origin policy (CORS) is enforced for other types of resources as well.
 

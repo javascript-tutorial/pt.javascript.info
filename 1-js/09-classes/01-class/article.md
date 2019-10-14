@@ -91,7 +91,13 @@ What `class User {...}` construct really does is:
 
 Afterwards, for new objects, when we call a method, it's taken from the prototype, just as  described in the chapter <info:function-prototype>. So `new User` object has access to class methods.
 
+<<<<<<< HEAD
 We can illustrate the result of `class User` as:
+=======
+After `new User` object is created, when we call its method, it's taken from the prototype, just as described in the chapter <info:function-prototype>. So the object has access to class methods.
+
+We can illustrate the result of `class User` declaration as:
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ![](class-user.svg)
 
@@ -143,11 +149,15 @@ user.sayHi();
 
 The result of this definition is about the same. So, there are indeed reasons why `class` can be considered a syntax sugar to define a constructor together with its prototype methods.
 
-Although, there are important differences.
+Still, there are important differences.
 
 1. First, a function created by `class` is labelled by a special internal property `[[FunctionKind]]:"classConstructor"`. So it's not entirely the same as creating it manually.
 
+<<<<<<< HEAD
     Unlike a regular function, a class constructor can't be called without `new`:
+=======
+    And unlike a regular function, a class constructor must be called with `new`:
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
     ```js run
     class User {
@@ -232,7 +242,11 @@ new User().sayHi(); // Hello
 
 ## Getters/setters, other shorthands
 
+<<<<<<< HEAD
 Classes also include getters/setters, generators, computed properties etc.
+=======
+Just like literal objects, classes may include getters/setters, computed properties etc.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 Here's an example for `user.name` implemented using `get/set`:
 
@@ -298,8 +312,6 @@ class User {
 new User().sayHi();
 ```
 
-For a generator method, similarly, prepend it with `*`.
-
 ## Class properties
 
 ```warn header="Old browsers may need a polyfill"
@@ -320,8 +332,12 @@ class User {
 new User().sayHi();
 ```
 
+<<<<<<< HEAD
 The property is not placed into `User.prototype`. Instead, it is created by `new`, separately for every object. So, the property will never be shared between different objects of the same class.
 
+=======
+The property `name` is not placed into `User.prototype`. Instead, it is created by `new` before calling the constructor, it's a property of the object itself.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ## Summary
 

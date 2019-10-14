@@ -119,12 +119,16 @@ The method [arr.slice](mdn:js/Array/slice) is much simpler than similar-looking 
 The syntax is:
 
 ```js
-arr.slice(start, end)
+arr.slice([start], [end])
 ```
 
 It returns a new array containing all items from index `"start"` to `"end"` (not including `"end"`). Both `start` and `end` can be negative, in that case position from array end is assumed.
 
+<<<<<<< HEAD
 It works like `str.slice`, but makes subarrays instead of substrings.
+=======
+It's similar to a string method `str.slice`, but instead of substrings it makes subarrays.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 For instance:
 
@@ -138,6 +142,8 @@ alert( arr.slice(1, 3) ); // e,s
 alert( str.slice(-2) ); // st
 alert( arr.slice(-2) ); // s,t
 ```
+
+We can also call it without arguments: `arr.slice()` creates a copy of `arr`. That's often used to obtain a copy for further transformations that should not affect the original array.
 
 ### concat
 
@@ -160,6 +166,7 @@ For instance:
 ```js run
 let arr = [1, 2];
 
+<<<<<<< HEAD
 // merge arr with [3,4]
 alert( arr.concat([3, 4])); // 1,2,3,4
 
@@ -171,6 +178,19 @@ alert( arr.concat([3, 4], 5, 6)); // 1,2,3,4,5,6
 ```
 
 Normally, it only copies elements from arrays ("spreads" them). Other objects, even if they look like arrays, added as a whole:
+=======
+// create an array from: arr and [3,4]
+alert( arr.concat([3, 4]) ); // 1,2,3,4
+
+// create an array from: arr and [3,4] and [5,6]
+alert( arr.concat([3, 4], [5, 6]) ); // 1,2,3,4,5,6
+
+// create an array from: arr and [3,4], then add values 5 and 6
+alert( arr.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6
+```
+
+Normally, it only copies elements from arrays. Other objects, even if they look like arrays, are added as a whole:
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ```js run
 let arr = [1, 2];
@@ -181,10 +201,13 @@ let arrayLike = {
 };
 
 alert( arr.concat(arrayLike) ); // 1,2,[object Object]
-//[1, 2, arrayLike]
 ```
 
+<<<<<<< HEAD
 ...But if an array-like object has `Symbol.isConcatSpreadable` property, then its elements are added instead:
+=======
+...But if an array-like object has a special `Symbol.isConcatSpreadable` property, then it's treated as an array by `concat`: its elements are added instead:
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ```js run
 let arr = [1, 2];
@@ -653,31 +676,41 @@ arr.map(func, thisArg);
 
 The value of `thisArg` parameter becomes `this` for `func`.
 
+<<<<<<< HEAD
 For instance, here we use an object method as a filter and `thisArg` comes in handy:
+=======
+For example, here we use a method of `army` object as a filter, and `thisArg` passes the context:
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ```js run
-let user = {
-  age: 18,
-  younger(otherUser) {
-    return otherUser.age < this.age;
+let army = {
+  minAge: 18,
+  maxAge: 27,
+  canJoin(user) {
+    return user.age >= this.minAge && user.age < this.maxAge;
   }
 };
 
 let users = [
-  {age: 12},
   {age: 16},
-  {age: 32}
+  {age: 20},
+  {age: 23},
+  {age: 30}
 ];
 
 *!*
-// find all users younger than user
-let youngerUsers = users.filter(user.younger, user);
+// find users, for who army.canJoin returns true
+let soldiers = users.filter(army.canJoin, army);
 */!*
 
-alert(youngerUsers.length); // 2
+alert(soldiers.length); // 2
+alert(soldiers[0].age); // 20
+alert(soldiers[1].age); // 23
 ```
 
-In the call above, we use `user.younger` as a filter and also provide `user` as the context for it. If we didn't provide the context, `users.filter(user.younger)` would call `user.younger` as a standalone function, with `this=undefined`. That would mean an instant error.
+If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin` would be called as a standalone function, with `this=undefined`, thus leading to an instant error.
+
+A call to `users.filter(army.canJoin, army)` can be replaced with `users.filter(user => army.canJoin(user))`, that does the same. The former is used more often, as it's a bit easier to understand for most people.
 
 ## Summary
 

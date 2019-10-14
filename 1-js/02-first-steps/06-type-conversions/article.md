@@ -10,7 +10,11 @@ Há também casos em que precisamos explicitamente converter um valor para o tip
 Neste capítulo, não cobriremos objectos. Em vez disso, estudaremos os primitivos primeiro. Mais tarde, depois de aprendermos sobre objetos, veremos como a conversão de objetos funciona no capítulo <info:object-toprimitive>.
 ```
 
+<<<<<<< HEAD
 ## Para String
+=======
+## String Conversion
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 A conversão para strings acontece quando precisamos da forma de string de um valor.
 
@@ -29,7 +33,11 @@ alert(typeof value); // string
 
 A conversão de strings é mais óbvia. Uma `false` torna-se `"false"`, `null` torna-se `"null"`, etc.
 
+<<<<<<< HEAD
 ## Para Número
+=======
+## Numeric Conversion
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 A conversão numérica acontece automaticamente em funções e expressões matemáticas.
 
@@ -94,7 +102,11 @@ alert( '1' + 2 ); // '12' (string para a esquerda)
 Isso só acontece quando pelo menos um dos argumentos é uma string. Caso contrário, os valores são convertidos em números.
 ````
 
+<<<<<<< HEAD
 ## Para Booleano
+=======
+## Boolean Conversion
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 A conversão booleana é a mais simples.
 
@@ -124,14 +136,24 @@ alert( Boolean(" ") ); // espaços, também true (qualquer string não vaiza é 
 ```
 ````
 
+<<<<<<< HEAD
 
 ## Resumo
+=======
+## Summary
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 As três conversões de tipo mais usadas são para string, para número e para booleano.
 
+<<<<<<< HEAD
 **`Para String`** -- Ocorre quando produzimos algo. Pode ser executado com `String(value)`. A conversão para string é geralmente óbvia para valores primitivos.
 
 **`Para Número`** -- Ocorre em operações matemáticas. Pode ser executado com `Number(value)`.
+=======
+**`String Conversion`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+
+**`Numeric Conversion`** -- Occurs in math operations. Can be performed with `Number(value)`.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 Regras de conversão numéricas:
 
@@ -142,7 +164,11 @@ Regras de conversão numéricas:
 |<code>true&nbsp;and&nbsp;false</code> | `1` and `0` |
 | `string` | Espaços em branco do ínicio e fim são removidos. Se a string restante estiver vazia, o resultado é `0`. Casa contrário, o número é "lido" a partir da string. Um erro dá `NaN`. |
 
+<<<<<<< HEAD
 **`Para Booleano`** -- Ocorre em operações lógicas. Pode ser executado com `Boolean(value)`.
+=======
+**`Boolean Conversion`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 Segue as regras:
 

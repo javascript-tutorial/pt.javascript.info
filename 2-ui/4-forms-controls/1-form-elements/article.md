@@ -51,15 +51,17 @@ let form = document.forms[0];
 
 let ageElems = form.elements.age;
 
-alert(ageElems[0].value); // 10, the first input value
+*!*
+alert(ageElems[0]); // [object HTMLInputElement]
+*/!*
 </script>
 ```
 
-These navigation properties do not depend on the tag structure. All elements, no matter how deep they are in the form, are available in `form.elements`.
+These navigation properties do not depend on the tag structure. All control elements, no matter how deep they are in the form, are available in `form.elements`.
 
 
 ````smart header="Fieldsets as \"subforms\""
-A form may have one or many `<fieldset>` elements inside it. They also support the `elements` property.
+A form may have one or many `<fieldset>` elements inside it. They also have `elements` property that lists form controls inside them.
 
 For instance:
 
@@ -79,7 +81,7 @@ For instance:
     let fieldset = form.elements.userFields;
     alert(fieldset); // HTMLFieldSetElement
 
-    // we can get the input both from the form and from the fieldset
+    // we can get the input by name both from the form and from the fieldset
     alert(fieldset.elements.login == form.elements.login); // true
 */!*
   </script>
@@ -90,7 +92,7 @@ For instance:
 ````warn header="Shorter notation: `form.name`"
 There's a shorter notation: we can access the element as `form[index/name]`.
 
-Instead of `form.elements.login` we can write `form.login`.
+In other words, instead of `form.elements.login` we can write `form.login`.
 
 That also works, but there's a minor issue: if we access an element, and then change its `name`, then it is still available under the old name (as well as under the new one).
 
@@ -111,7 +113,7 @@ That's easy to see in an example:
   alert(form.elements.username); // input
 
 *!*
-  // the direct access now can use both names: the new one and the old one
+  // form allows both names: the new one and the old one
   alert(form.username == form.login); // true
 */!*
 </script>
@@ -150,7 +152,7 @@ For instance:
 
 ## Form elements
 
-Let's talk about form controls, pay attention to their specific features.
+Let's talk about form controls.
 
 ### input and textarea
 
@@ -166,20 +168,32 @@ input.checked = true; // for a checkbox or radio button
 ```
 
 ```warn header="Use `textarea.value`, not `textarea.innerHTML`"
+<<<<<<< HEAD
 Please note that we should never use `textarea.innerHTML`: it stores only the HTML that was initially on the page, not the current value.
+=======
+Please note that even though `<textarea>...</textarea>` holds its value as nested HTML, we should never use `textarea.innerHTML` to access it.
+
+It stores only the HTML that was initially on the page, not the current value.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 ```
 
 ### select and option
 
 A `<select>` element has 3 important properties:
 
+<<<<<<< HEAD
 1. `select.options` -- the collection of `<option>` elements,
 2. `select.value` -- the value of the chosen option,
 3. `select.selectedIndex` -- the number of the selected option.
+=======
+1. `select.options` -- the collection of `<option>` subelements,
+2. `select.value` -- the value of the currently selected `<option>`,
+3. `select.selectedIndex` -- the number of the currently selected `<option>`.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
-So we have three ways to set the value of a `<select>`:
+They provide three different ways of setting a value for a `<select>`:
 
-1. Find the needed `<option>` and set `option.selected` to `true`.
+1. Find the corresponding `<option>` element and set `option.selected` to `true`.
 2. Set `select.value` to the value.
 3. Set `select.selectedIndex` to the number of the option.
 
@@ -202,9 +216,9 @@ Here is an example:
 </script>
 ```
 
-Unlike most other controls, `<select multiple>` allows multiple choice. In that case we need to walk over `select.options` to get all selected values.
+Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. That's feature is rarely used. In that case we need to use the first way: add/remove the `selected` property from `<option>` subelements.
 
-Like this:
+We can get their collection as `select.options`, for instance:
 
 ```html run
 <select id="select" *!*multiple*/!*>
@@ -227,7 +241,13 @@ The full specification of the `<select>` element is available at <https://html.s
 
 ### new Option
 
+<<<<<<< HEAD
 In the specification of [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create `<option>` elements:
+=======
+This is rarely used on its own. But there's still an interesting thing.
+
+In the [specification](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create `<option>` elements:
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ```js
 option = new Option(text, value, defaultSelected, selected);
@@ -239,6 +259,8 @@ Parameters:
 - `value` -- the option value,
 - `defaultSelected` -- if `true`, then `selected` attribute is created,
 - `selected` -- if `true`, then the option is selected.
+
+There may be a small confusion about `defaultSelected` and `selected`. That's simple: `defaultSelected` sets HTML-attribute, that we can get using `option.getAttribute('selected')`. And `selected` - whether the option is selected or not, that's more important. Usually both values are either set to `true` or not set (same as `false`).
 
 For instance:
 
@@ -253,18 +275,20 @@ The same element selected:
 let option = new Option("Text", "value", true, true);
 ```
 
-```smart header="Additional properties of `<option>`"
-Option elements have additional properties:
+Option elements have properties:
 
-`selected`
+`option.selected`
 : Is the option selected.
 
-`index`
+`option.index`
 : The number of the option among the others in its `<select>`.
 
-`text`
+`option.text`
 : Text content of the option (seen by the visitor).
-```
+
+## References
+
+- Specification: <https://html.spec.whatwg.org/multipage/forms.html>.
 
 ## Summary
 
@@ -281,6 +305,14 @@ Form navigation:
 
 Value is available as `input.value`, `textarea.value`, `select.value` etc, or `input.checked` for checkboxes and radio buttons.
 
+<<<<<<< HEAD
 For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`. The full specification of this and other elements is at <https://html.spec.whatwg.org/multipage/forms.html>.
 
 These are the basics to start working with forms. In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.
+=======
+For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`.
+
+These are the basics to start working with forms. We'll meet many examples further in the tutorial.
+
+In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac

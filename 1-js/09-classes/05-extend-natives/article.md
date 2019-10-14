@@ -21,7 +21,11 @@ alert(filteredArr); // 10, 50
 alert(filteredArr.isEmpty()); // false
 ```
 
+<<<<<<< HEAD
 Please note a very interesting thing. Built-in methods like `filter`, `map` and others -- return new objects of exactly the inherited type. They rely on the `constructor` property to do so.
+=======
+Please note a very interesting thing. Built-in methods like `filter`, `map` and others -- return new objects of exactly the inherited type `PowerArray`. Their internal implementation uses the object's `constructor` property for that.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 In the example above,
 ```js
@@ -71,9 +75,17 @@ Built-in objects have their own static methods, for instance `Object.keys`, `Arr
 
 And we've already been talking about native classes extending each other: `Array.[[Prototype]] = Object`.
 
+<<<<<<< HEAD
 But statics are an exception. Built-in classes don't inherit static properties from each other.
 
 In other words, the prototype of built-in constructor `Array` does not point to `Object`. This way `Array` and `Date` do not have `Array.keys` or `Date.keys`. And that feels natural.
+=======
+Normally, when one class extends another, both static and non-static methods are inherited. That was thoroughly explained in the article [](info:static-properties-methods#statics-and-inheritance).
+
+But built-in classes are an exception. They don't inherit statics from each other.
+
+For example, both `Array` and `Date` inherit from `Object`, so their instances have methods from `Object.prototype`. But `Array.[[Prototype]]` does not reference `Object`, so there's no, for instance, `Array.keys()` (or `Date.keys()`) static method.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 Here's the picture structure for `Date` and `Object`:
 
