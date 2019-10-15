@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# What's wrong in the test?
+# O que há de errado no teste?
 
-What's wrong in the test of `pow` below?
+O que há de errado no teste de `pow` abaixo?
 
 ```js
-it("Raises x to the power n", function() {
+it("Eleva x à potência de n", function() {
   let x = 5;
 
   let result = x;
@@ -21,4 +21,4 @@ it("Raises x to the power n", function() {
 });
 ```
 
-P.S. Syntactically the test is correct and passes.
+P.S. Sintáticamente, o teste está correto e passa.

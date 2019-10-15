@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- add mocha css, to show results -->
+  <!-- adicione 'css' para mocha, para mostrar os resultados -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
-  <!-- add mocha framework code -->
+  <!-- adicione o código da 'framework mocha' -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
   <script>
-    // enable bdd-style testing
+    // ative o teste em 'bdd-style'
     mocha.setup('bdd');
   </script>
-  <!-- add chai -->
+  <!-- adicione 'chai' -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
   <script>
-    // chai has a lot of stuff, let's make assert global
+    // 'chai' contém muitas funcionalidades, façamos o 'assert' global
     let assert = chai.assert;
   </script>
 </head>
@@ -21,17 +21,17 @@
 
   <script>
     function pow(x, n) {
-      return 8; // :) we cheat!
+      return 8; // :) aldrabámos!
     }
   </script>
 
-  <!-- the script with tests (describe, it...) -->
+  <!-- o programa ['script'] com os testes ('describe', 'it'...) -->
   <script src="test.js"></script>
 
-  <!-- the element with id="mocha" will contain test results -->
+  <!-- o elemento com id="mocha" conterá os resultados do teste -->
   <div id="mocha"></div>
 
-  <!-- run tests! -->
+  <!-- execute os testes! -->
   <script>
     mocha.run();
   </script>
