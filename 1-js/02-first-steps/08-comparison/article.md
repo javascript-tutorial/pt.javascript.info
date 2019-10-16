@@ -46,7 +46,7 @@ alert( 'Bee' > 'Be' ); // true
 O algoritmo para comparar duas strings é simples:
 
 1. Compare o primeiro caractere de ambas as strings.
-2. Se o primeiro caractere da primeira string for maior (ou menor) que o da outra, a primeira string será maior (ou menor) que a segunda. Nós terminamos.
+2. Se o primeiro caractere da primeira string for maior (ou menor) que o da outra, a primeira string será maior (ou menor) que a segunda. Terminou.
 3. Caso contrário, se os primeiros caracteres das duas sequências forem os mesmos, compare os segundos caracteres da mesma maneira.
 4. Repita até o final de qualquer string.
 5. Se ambas as seqüências terminarem com o mesmo comprimento, elas serão iguais. Caso contrário, a string mais longa é maior.
@@ -87,7 +87,7 @@ alert( false == 0 ); // true
 É possível que ao mesmo tempo:
 
 - Dois valores sejam iguais.
-- Um deles é `true` como booleano, e o outro é `false` como booleano.
+- Um deles seja `true` como booleano, e o outro seja `false` como booleano.
 
 Por exemplo:
 
@@ -149,7 +149,7 @@ Para uma verificação de igualdade estrita `===`:<br />Esses valores são difer
     alert( null === undefined ); // false
     ```
 
-Para uma verificação não estrita `==`:<br />Existe uma regra especial. Esses dois são um "lindo casal": eles são iguais (no sentido de "=="), mas a nenhum outro valor.
+Para uma verificação não estrita `==`:<br />Existe uma regra especial. Esses dois formam um "lindo casal": eles são iguais (no sentido de "=="), mas a nenhum outro valor.
 
     ```js run
     alert( null == undefined ); // true
@@ -185,7 +185,7 @@ alert( undefined < 0 ); // false (2)
 alert( undefined == 0 ); // false (3)
 ```
 
-Por que não gostam do zero? Sempre falso!
+Por que não gosta do zero? Sempre falso!
 
 Obtemos estes resultados porque:
 
