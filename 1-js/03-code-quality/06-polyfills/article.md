@@ -3,15 +3,15 @@
 
 A linguagem JavaScript evolui constantemente. Novas propostas à linguagem aparecem regularmente, onde elas são analisadas e, se consideradas que valem a pena, anexadas a lista em <https://tc39.github.io/ecma262/>, onde depois avançam para a [especificação](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
 
-Os times por detrás dos interpretadores de JavaScript _(JavaScript engines)_ têm as suas próprias idéias sobre o que implementar primeiro. Eles podem decidir por implementar propostas que estão em rascunho e postergar coisas que já estão na especificação, porque elas são menos interessantes ou simplesmente mais difíceis de fazer.
+Os times por detrás dos interpretadores de JavaScript (JavaScript engines) têm as suas próprias idéias sobre o que implementar primeiro. Eles podem decidir por implementar propostas que estão em rascunho e postergar coisas que já estão na especificação, porque elas são menos interessantes ou simplesmente mais difíceis de fazer.
 
-Assim, é bastante comum para um interpretador _(engine)_ implementar apenas uma parte do padrão.
+Assim, é bastante comum para um interpretador (engine) implementar apenas uma parte do padrão.
 
 Uma boa página para visualizar o estado atual do suporte de funcionalidades é <https://kangax.github.io/compat-table/es6/> (é bastante conteúdo, ainda temos muito o que estudar).
 
 ## Babel
 
-Quando usamos funcionalidades modernas da linguagem, alguns interpretadores _(engines)_ podem não suportar esse código. Como dito anteriormente, nem todas as funcionalidades são implementadas em todos os lugares.
+Quando usamos funcionalidades modernas da linguagem, alguns interpretadores (engines) podem não suportar esse código. Como dito anteriormente, nem todas as funcionalidades são implementadas em todos os lugares.
 
 É aqui que o Babel vem para nos ajudar.
 
@@ -23,7 +23,7 @@ Atualmente, o Babel possui duas partes:
 
 2. Segundo, o polyfill.
 
-    O transpiler reescreve o código, então funcionalidades de sintaxe são cobertas. Porém, para novas funcionalidades, precisamos de escrever um script especial que cuida dessa implementação. O JavaScript é uma linguagem altamente dinâmica, onde scripts podem não apenas adicionar novas funcionalidades, mas também modificar as já incorporadas _(built-in)_ na linguagem, de forma a que elas se comportem de acordo com o padrão moderno.
+    O transpiler reescreve o código, então funcionalidades de sintaxe são cobertas. Porém, para novas funcionalidades, precisamos de escrever um script especial que cuida dessa implementação. O JavaScript é uma linguagem altamente dinâmica, onde scripts podem não apenas adicionar novas funcionalidades, mas também modificar as já incorporadas (built-in) na linguagem, de forma a que elas se comportem de acordo com o padrão moderno.
 
     Existe o termo "polyfill" para scripts que "preenchem" essa lacuna e adicionam as implementações que faltam.
 
@@ -31,7 +31,7 @@ Atualmente, o Babel possui duas partes:
     - [babel polyfill](https://babeljs.io/docs/usage/polyfill/) que suporta várias funcionalidades, mas é bem grande.
     - [polyfill.io](http://polyfill.io) serviço que permite carregar/construir polyfills sob demanda, dependendo das funcionalidades que precisamos.
 
-Então, precisamos configurar o transpiler e adicionar o polyfill para fazer com que os interpretadores _(engines)_ antigos suportem novas funcionalidades.
+Então, precisamos de configurar o transpiler e adicionar o polyfill para fazer com que os interpretadores (engines) antigos suportem novas funcionalidades.
 
 Se nos orientarmos por engines modernas e só usarmos as _features_ (funcionalidades) suportadas em toda parte, não precisamos de usar o Babel.
 
@@ -53,4 +53,4 @@ Como você está lendo a versão offline, os exemplos não são executáveis, ma
 
 O [Chrome Canary](https://www.google.com/chrome/browser/canary.html) é bom para todos os exemplos, mas outros navegadores modernos também funcionam bem.
 
-Note que podemos usar o Babel em produção para tornar o código compatível para navegadores que não são tão recentes, de forma que eliminamos tal limitação e o código será executado em qualquer lugar.
+Note que podemos usar o Babel em produção (aplicações reais, não em fase de desenvolvimento) para tornar o código compatível para navegadores que não são tão recentes, de forma que eliminamos tal limitação e o código será executado em qualquer lugar.
