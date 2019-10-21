@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Retornar valores pares no loop
+# Output even numbers in the loop
 
-Utilize o loop `for` para retornar números pares de `2` a `10`.
+Use the `for` loop to output even numbers from `2` to `10`.
 
 [demo]

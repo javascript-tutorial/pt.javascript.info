@@ -1,54 +1,54 @@
-# Loops: while e for
+# Loops: while and for
 
-Frequentemente precisamos repetir ações.
+We often need to repeat actions.
 
-Por exemplo, retornar itens de uma lista, um atrás do outro, ou apenas executar o mesmo código para cada número de 1 a 10.
+For example, outputting goods from a list one after another or just running the same code for each number from 1 to 10.
 
-*Loops* são uma maneira de repetir o mesmo código múltiplas vezes.
+*Loops* are a way to repeat the same code multiple times.
 
-## O loop "while"
+## The "while" loop
 
-O `while` loop tem a sintaxe seguinte:
+The `while` loop has the following syntax:
 
 ```js
-while (condição) {
-  // código
-  // chamado de "loop body" (corpo do loop)
+while (condition) {
+  // code
+  // so-called "loop body"
 }
 ```
 
-Enquanto `condição` for verdadeira, o `código` do corpo do loop é executado.
+While the `condition` is `true`, the `code` from the loop body is executed.
 
-Por exemplo, o loop abaixo retorna `i` enquanto `i < 3`:
+For instance, the loop below outputs `i` while `i < 3`:
 
 ```js run
 let i = 0;
-while (i < 3) { // retorna 0, depois 1, depois 2
+while (i < 3) { // shows 0, then 1, then 2
   alert( i );
   i++;
 }
 ```
 
-Uma única execução do corpo do loop é chamada de *uma iteração*. O loop no exemplo acima realiza três iterações.
+A single execution of the loop body is called *an iteration*. The loop in the example above makes three iterations.
 
-Se `i++` não estivesse presente no exemplo acima, o loop repetiria (teoricamente) para sempre. Na prática, o navegador nos oferece maneira de interromper tais loops, e em JavaScript server-side, é possível matar o processo.
+If `i++` was missing from the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and in server-side JavaScript, we can kill the process.
 
-Qualquer expressão ou variável pode ser uma condição para um loop, não apenas comparações: a condição é avaliada e convertida por `while` para um booleano.
+Any expression or variable can be a loop condition, not just comparisons: the condition is evaluated and converted to a boolean by `while`.
 
-Por exemplo, uma maneira mais curta de escrever `while (i != 0)` é `while (i)`:
+For instance, a shorter way to write `while (i != 0)` is `while (i)`:
 
 ```js run
 let i = 3;
 *!*
-while (i) { // quando i se tornar 0, a condição se torna falsa, e o loop para
+while (i) { // when i becomes 0, the condition becomes falsy, and the loop stops
 */!*
   alert( i );
   i--;
 }
 ```
 
-````smart header="Colchetes não são necessários se o corpo possuir só uma linha"
-Se o corpo do loop possuir uma única declaração, podemos omitir os colchetes `{...}`:
+````smart header="Brackets are not required for a single-line body"
+If the loop body has a single statement, we can omit the brackets `{…}`:
 
 ```js run
 let i = 3;
@@ -58,19 +58,19 @@ while (i) alert(i--);
 ```
 ````
 
-## O loop "do..while"
+## The "do..while" loop
 
-A verificação da condição pode ser movida *abaixo* do corpo do loop utilizando a sintaxe `do..while`:
+The condition check can be moved *below* the loop body using the `do..while` syntax:
 
 ```js
 do {
-  // corpo do loop
-} while (condição);
+  // loop body
+} while (condition);
 ```
 
-O loop vai executar primeiro o corpo, depois checar a condição e, enquanto ela permanecer verdadeira, executar o corpo novamente.
+The loop will first execute the body, then check the condition, and, while it's truthy, execute it again and again.
 
-Por exemplo:
+For example:
 
 ```js run
 let i = 0;
@@ -80,107 +80,107 @@ do {
 } while (i < 3);
 ```
 
-Esta forma de sintaxe deve ser usada apenas quando você deseja que o corpo do loop seja executado **pelo menos uma vez**, independente de a condição ser verdadeira. Geralmente, prefere-se a outra forma: `while(...) {...}`.
+This form of syntax should only be used when you want the body of the loop to execute **at least once** regardless of the condition being truthy. Usually, the other form is preferred: `while(…) {…}`.
 
-## O loop "for"
+## The "for" loop
 
-O loop `for` é o mais comumente utilizado.
+The `for` loop is the most commonly used loop.
 
-Ele tem esse formato:
+It looks like this:
 
 ```js
-for (início; condição; etapa) {
-  // ... corpo do loop ...
+for (begin; condition; step) {
+  // ... loop body ...
 }
 ```
 
-Vamos aprender o que significam cada uma dessas partes através de exemplos. O loop abaixo executa `alert(i)` para `i` de `0` a (não incluso) `3`:
+Let's learn the meaning of these parts by example. The loop below runs `alert(i)` for `i` from `0` up to (but not including) `3`:
 
 ```js run
-for (let i = 0; i < 3; i++) { // retorna 0, depois 1, depois 2
+for (let i = 0; i < 3; i++) { // shows 0, then 1, then 2
   alert(i);
 }
 ```
 
-Vamos examinar a declaração `for` parte por parte:
+Let's examine the `for` statement part-by-part:
 
-| part     |            |                                                                                |
-|----------|------------|--------------------------------------------------------------------------------|
-| início   | `i = 0`    | Executado uma vez na entrada do loop.                                          |
-| condição | `i < 3`    | Verificada a cada iteração do loop. Se falsa, o loop é interrompido.           |
-| etapa    | `i++`      | Executado depois do corpo, a cada iteração, mas antes de verificar a condição. |
-| corpo    | `alert(i)` | Executado repetidamente enquanto a condição  for verdadeira.                   |
+| part  |          |                                                                            |
+|-------|----------|----------------------------------------------------------------------------|
+| begin | `i = 0`    | Executes once upon entering the loop.                                      |
+| condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
+| step| `i++`      | Executes after the body on each iteration but before the condition check. |
+| body | `alert(i)`| Runs again and again while the condition is truthy.                         |
 
 
-O algoritmo geral do loop funciona assim:
+The general loop algorithm works like this:
 ```
-Executar início
-→ (se condição verdadeira → executar corpo e executar etapa)
-→ (se condição verdadeira → executar corpo e executar etapa)
-→ (se condição verdadeira → executar corpo e executar etapa)
+Run begin
+→ (if condition → run body and run step)
+→ (if condition → run body and run step)
+→ (if condition → run body and run step)
 → ...
 ```
 
-Caso loops sejam novos para você, pode ser útil voltar ao exemplo e reproduzir sua execução passo-a-passo em uma folha de papel.
+If you are new to loops, it could help to go back to the example and reproduce how it runs step-by-step on a piece of paper.
 
-No nosso exemplo, o que acontece exatamente é isso:
+Here's exactly what happens in our case:
 
 ```js
 // for (let i = 0; i < 3; i++) alert(i)
 
-// executar condição
+// run begin
 let i = 0
-// se condição verdadeira → executar corpo e executar etapa
+// if condition → run body and run step
 if (i < 3) { alert(i); i++ }
-// se condição verdadeira → executar corpo e executar etapa
+// if condition → run body and run step
 if (i < 3) { alert(i); i++ }
-// se condição verdadeira → executar corpo e executar etapa
+// if condition → run body and run step
 if (i < 3) { alert(i); i++ }
-// ...encerrar, pois agora i == 3
+// ...finish, because now i == 3
 ```
 
-````smart header="Declaração de variável inline"
-Aqui, a variável "de contagem" `i` é declarada diretamente no loop. Isso é chamado de declaração de variável "inline". Tais variáveis são visíveis somente no interior do loop.
+````smart header="Inline variable declaration"
+Here, the "counter" variable `i` is declared right in the loop. This is called an "inline" variable declaration. Such variables are visible only inside the loop.
 
 ```js run
 for (*!*let*/!* i = 0; i < 3; i++) {
   alert(i); // 0, 1, 2
 }
-alert(i); // erro, variável não existente
+alert(i); // error, no such variable
 ```
 
-Ao invés de definir a variável, podemos utilizar uma já existente:
+Instead of defining a variable, we could use an existing one:
 
 ```js run
 let i = 0;
 
-for (i = 0; i < 3; i++) { // usando uma variável pré-existente
+for (i = 0; i < 3; i++) { // use an existing variable
   alert(i); // 0, 1, 2
 }
 
-alert(i); // 3, visível, porque declarada fora do loop
+alert(i); // 3, visible, because declared outside of the loop
 ```
 
 ````
 
 
-### Omitindo partes
+### Skipping parts
 
-Qualquer parte de `for` pode ser omitida.
+Any part of `for` can be skipped.
 
-Por exemplo, podemos omitir `início` caso não seja necessário fazer nada no início do loop.
+For example, we can omit `begin` if we don't need to do anything at the loop start.
 
-Como neste exemplo:
+Like here:
 
 ```js run
-let i = 0; // já temos i declarada e atribuída
+let i = 0; // we have i already declared and assigned
 
-for (; i < 3; i++) { // "início" não é necessário
+for (; i < 3; i++) { // no need for "begin"
   alert( i ); // 0, 1, 2
 }
 ```
 
-Também podemos remover a parte da `etapa`:
+We can also remove the `step` part:
 
 ```js run
 let i = 0;
@@ -190,32 +190,32 @@ for (; i < 3;) {
 }
 ```
 
-Isso torna o loop idêntico a `while (i < 3)`.
+This makes the loop identical to `while (i < 3)`.
 
-Na verdade, podemos remover tudo, criando um loop infinito:
+We can actually remove everything, creating an infinite loop:
 
 ```js
 for (;;) {
-  // repete sem limites
+  // repeats without limits
 }
 ```
 
-Note que os dois pontos-e-vírgulas `;` dentro do `for` devem estar presentes. Caso contrário, haverá um erro de sintaxe.
+Please note that the two `for` semicolons `;` must be present. Otherwise, there would be a syntax error.
 
-## Quebrando o loop
+## Breaking the loop
 
-Normalmente, um loop se encerra quando sua condição se torna falsa.
+Normally, a loop exits when its condition becomes falsy.
 
-Mas podemos forçar a saída a qualquer momento utilizando o comando especial `break`.
+But we can force the exit at any time using the special `break` directive.
 
-Por exemplo, o loop abaixo pede ao usuário uma série de números, e "quebra" quando nenhum número é informado:
+For example, the loop below asks the user for a series of numbers, "breaking" when no number is entered:
 
 ```js
 let sum = 0;
 
 while (true) {
 
-  let value = +prompt("Digite um número", '');
+  let value = +prompt("Enter a number", '');
 
 *!*
   if (!value) break; // (*)
@@ -224,35 +224,35 @@ while (true) {
   sum += value;
 
 }
-alert( 'Soma: ' + sum );
+alert( 'Sum: ' + sum );
 ```
 
-O comando `break` é ativado na linha `(*)` se o usuário deixa a linha em branco ou cancela o diálogo. Ele interrompe o loop imediatamente, passando o controle à primeira linha depois do loop. Neste caso, `alert`.
+The `break` directive is activated at the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing control to the first line after the loop. Namely, `alert`.
 
-A combinação "loop infinito " `break` quando necessário" é ótima para situações onde a condição do loop precisa ser verificada não no início ou no fim do loop, mas no meio, ou até mesmo em vários lugares do corpo do loop.
+The combination "infinite loop + `break` as needed" is great for situations when a loop's condition must be checked not in the beginning or end of the loop, but in the middle or even in several places of its body.
 
-## Continue para a próxima iteração [#continue]
+## Continue to the next iteration [#continue]
 
-O comando `continue` é uma "versão mais light" de `break`. Ele não interrompe o loop como um todo. Ao invés disso, ele interrompe a iteração atual e força o loop a começar uma nova (se a condição permitir).
+The `continue` directive is a "lighter version" of `break`. It doesn't stop the whole loop. Instead, it stops the current iteration and forces the loop to start a new one (if the condition allows).
 
-Você pode utilizá-lo caso a iteração atual já não seja útil e você deseje passar para a próxima.
+We can use it if we're done with the current iteration and would like to move on to the next one.
 
-O loop abaixo usa `continue` para exibir apenas valores ímpares:
+The loop below uses `continue` to output only odd values:
 
 ```js run no-beautify
 for (let i = 0; i < 10; i++) {
 
-  // se verdadeiro, pular o restante do corpo
+  // if true, skip the remaining part of the body
   *!*if (i % 2 == 0) continue;*/!*
 
   alert(i); // 1, then 3, 5, 7, 9
 }
 ```
 
-Para valores pares de `i`, o comando `continue` interrompe a execução do corpo e passa o controle para a próxima iteração de `for` (com o número seguinte). Então `alert` só é chamado para valores ímpares.
+For even values of `i`, the `continue` directive stops executing the body and passes control to the next iteration of `for` (with the next number). So the `alert` is only called for odd values.
 
-````smart header="O comando `continue` ajuda a reduzir aninhamento"
-Um loop que retorna apenas valores ímpares poderia ter a seguinte forma:
+````smart header="The `continue` directive helps decrease nesting"
+A loop that shows odd values could look like this:
 
 ```js
 for (let i = 0; i < 10; i++) {
@@ -264,15 +264,15 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-De uma perspectiva técnica, isso é idêntico ao exemplo anterior. Certamente, podemos apenas envolver o código em um bloco `if` ao invés de utilizar `continue`.
+From a technical point of view, this is identical to the example above. Surely, we can just wrap the code in an `if` block instead of using `continue`.
 
-Mas como efeito colateral, isso criou mais um nível de aninhamento (o `alert` dentro dos colchetes). Se o código dentro de `if` for mais longo do que algumas linhas, isso pode reduzir a legibilidade de forma geral.
+But as a side-effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of`if` is longer than a few lines, that may decrease the overall readability.
 ````
 
-````warn header="Não utilize `break/continue` do lado direito de '?'"
-Note que construções sintáticas que não sejam expressões não podem ser utilizados com o operador ternário `?`. Em particular, comandos como `break/continue` não são permitidos nesta posição.
+````warn header="No `break/continue` to the right side of '?'"
+Please note that syntax constructs that are not expressions cannot be used with the ternary operator `?`. In particular, directives such as `break/continue` aren't allowed there.
 
-Por exemplo, se tomarmos este código:
+For example, if we take this code:
 
 ```js
 if (i > 5) {
@@ -282,102 +282,104 @@ if (i > 5) {
 }
 ```
 
-...e reescrevermos utilizando o ponto de interrogação:
+...and rewrite it using a question mark:
+
 
 ```js no-beautify
-(i > 5) ? alert(i) : *!*continue*/!*; // continue não é permitido aqui
+(i > 5) ? alert(i) : *!*continue*/!*; // continue isn't allowed here
 ```
 
-...ele para de funcionar. Códigos como este vão gerar um erro de sintaxe.
+...it stops working. Code like this will give a syntax error:
 
-Esta é apenas mais uma razão para não utilizar o operador ternário `?` no lugar de `if`.
+
+This is just another reason not to use the question mark operator `?` instead of `if`.
 ````
 
 ## Labels for break/continue
 
-Às vezes, precisamos quebrar vários loops aninhados de uma vez só.
+Sometimes we need to break out from multiple nested loops at once.
 
-Por exemplo, no código abaixo nós utilizamos dois loops, com `i` e `j`, dando as coordenadas `(i, j)` de `(0,0)` a `(3,3)`:
+For example, in the code below we loop over `i` and `j`, prompting for the coordinates `(i, j)` from `(0,0)` to `(3,3)`:
 
 ```js run no-beautify
 for (let i = 0; i < 3; i++) {
 
   for (let j = 0; j < 3; j++) {
 
-    let input = prompt(`Valor nas coordenadas (${i},${j})`, '');
+    let input = prompt(`Value at coords (${i},${j})`, '');
 
-    // e se quisermos sair daqui diretamente para "Pronto" (abaixo)?
+    // what if we want to exit from here to Done (below)?
   }
 }
 
-alert('Pronto!');
+alert('Done!');
 ```
 
-Precisamos de uma maneira de interromper o processo caso o usuário cancele o input.
+We need a way to stop the process if the user cancels the input.
 
-O `break` comum depois de `input` quebraria apenas o loop interno. Isso não é suficiente--labels, ao resgate!
+The ordinary `break` after `input` would only break the inner loop. That's not sufficient--labels, come to the rescue!
 
-Um *label* é um identificador com dois pontos antes de um loop:
+A *label* is an identifier with a colon before a loop:
 ```js
 labelName: for (...) {
   ...
 }
 ```
 
-A declaração `break <labelName>` no loop abaixo quebra o loop designado pelo label:
+The `break <labelName>` statement in the loop below breaks out to the label:
 
 ```js run no-beautify
 *!*outer:*/!* for (let i = 0; i < 3; i++) {
 
   for (let j = 0; j < 3; j++) {
 
-    let input = prompt(`Valor nas coordenadas (${i},${j})`, '');
+    let input = prompt(`Value at coords (${i},${j})`, '');
 
-    // se retornar um string vazio ou cancelar, quebrar ambos os loops
+    // if an empty string or canceled, then break out of both loops
     if (!input) *!*break outer*/!*; // (*)
 
-    // fazer algo com input...
+    // do something with the value...
   }
 }
-alert('Pronto!');
+alert('Done!');
 ```
 
-No código acima, `break outer` procura acima dele o label chamado `outer` e quebra aquele loop.
+In the code above, `break outer` looks upwards for the label named `outer` and breaks out of that loop.
 
-Assim o controle vai direto de `(*)` para `alert('Pronto!')`.
+So the control goes straight from `(*)` to `alert('Done!')`.
 
-Também podemos colocar o label em uma linha separada:
+We can also move the label onto a separate line:
 
 ```js no-beautify
 outer:
 for (let i = 0; i < 3; i++) { ... }
 ```
 
-O comando `continue` também pode ser utilizado com um label. Nesse caso, a execução do código pula para a próxima iteração do loop nomeado pelo label.
+The `continue` directive can also be used with a label. In this case, code execution jumps to the next iteration of the labeled loop.
 
-````warn header="Labels não significam \"ir para\""
-Labels não nos permitem pular para qualquer lugar do código.
+````warn header="Labels are not a \"goto\""
+Labels do not allow us to jump into an arbitrary place in the code.
 
-Por exemplo, é impossível fazer isso:
+For example, it is impossible to do this:
 ```js
-break label;  // pula para label? Não.
+break label;  // jumps to label? No.
 
 label: for (...)
 ```
 
-Uma chamada de `break/continue` só é possível de dentro de  um loop e o label deve estar em algum lugar acima do comando.
+A call to `break/continue` is only possible from inside a loop and the label must be somewhere above the directive.
 ````
 
-## Resumo
+## Summary
 
-Nós cobrimos 3 tipos de loops:
+We covered 3 types of loops:
 
-- `while` -- A condição é verificada antes de cada iteração.
-- `do..while` -- A condição é verificada após cada iteração.
-- `for (;;)` -- A condição é verificada antes de cada iteração, configurações adicionais disponíveis.
+- `while` -- The condition is checked before each iteration.
+- `do..while` -- The condition is checked after each iteration.
+- `for (;;)` -- The condition is checked before each iteration, additional settings available.
 
-Para fazer um loop "infinito", geralmente se utiliza a construção `white(true)`. Este loop, como qualquer outro, pode ser interrompido com o comando `break`.
+To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
 
-Se não quisermos fazer nada na iteração atual e gostaríamos de pular para a próxima iteração, podemos utilizar o comando `continue`.
+If we don't want to do anything in the current iteration and would like to forward to the next one, we can use the `continue` directive.
 
-`break/continue` suportam labels antes do loop. Um label é a única maneira de fazer  um `break/continue` escapar um loop aninhado e ir para o loop de fora.
+`break/continue` support labels before the loop. A label is the only way for `break/continue` to escape a nested loop to go to an outer one.

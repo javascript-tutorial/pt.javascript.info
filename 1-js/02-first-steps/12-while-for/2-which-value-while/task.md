@@ -2,19 +2,19 @@ importance: 4
 
 ---
 
-# Quais valores o loop while retorna?
+# Which values does the while loop show?
 
-Para cada iteração dos loops, anote o valor que ele retorna, depois compare com a solução.
+For every loop iteration, write down which value it outputs and then compare it with the solution.
 
-Ambos os loops retornam em `alert` os mesmo valores, ou não?
+Both loops `alert` the same values, or not?
 
-1. A forma prefixada `++i`:
+1. The prefix form `++i`:
 
     ```js
     let i = 0;
     while (++i < 5) alert( i );
     ```
-2. A forma posfixada `i++`:
+2. The postfix form `i++`
 
     ```js
     let i = 0;
