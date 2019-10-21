@@ -1,6 +1,6 @@
 # Manuais e especificações
 
-Este livro é um *tutorial*. Ele tem como objetivo lhe ajudar a aprender gradualmente a linguagem. Mas uma vez  familiarizado com o básico, irá precisar de outros recursos.
+Este livro é um *tutorial*. Ele tem como objetivo lhe ajudar a aprender gradualmente a linguagem. Mas uma vez familiarizado com o básico, irá precisar de outros recursos.
 
 ## Especificação
 
@@ -20,7 +20,7 @@ E mais, se você está desenvolvendo para browsers, há outras especificações 
 
 	Pode ser encontrado em <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
 
-	Porém, às vezes é melhor fazer uma busca na internet. Apenas use "MDN [termo]" na busca, por exemplo, <https://google.com/search?q=MDN+parseInt> para procurar pela função `parseInt`.
+	Porém, às vezes é melhor fazer uma busca na internet. Apenas use "MDN [termo]" na busca, por exemplo: <https://google.com/search?q=MDN+parseInt> para procurar pela função `parseInt`.
 
 - **MSDN** - Manual da Microsoft com muitas informações, incluindo JavaScript (frequentemente referido como JScript). Se precisar de algo específico para o Internet Explorer, é melhor ir por aqui: <http://msdn.microsoft.com/>.
 
