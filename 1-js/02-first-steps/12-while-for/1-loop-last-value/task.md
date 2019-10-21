@@ -2,9 +2,9 @@ importance: 3
 
 ---
 
-# Last loop value
+# Último valor do loop
 
-What is the last value alerted by this code? Why?
+Qual é o último valor exibido no alerta por este código? Por quê?
 
 ```js
 let i = 3;

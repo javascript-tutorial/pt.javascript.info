@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# Repeat until the input is correct
+# Repetir até que o input esteja correto
 
-Write a loop which prompts for a number greater than `100`. If the visitor enters another number -- ask them to input again.
+Escreva um loop que peça um número maior que `100`. Se o usuário digitar outro número, peça para digite digitar novamente.
 
-The loop must ask for a number until either the visitor enters a number greater than `100` or cancels the input/enters an empty line.
+O loop deve pedir um número até que o usuário digite um número maior que `100` ou cancele o diálogo/submeta uma linha em branco.
 
-Here we can assume that the visitor only inputs numbers. There's no need to implement a special handling for a non-numeric input in this task.
+Aqui podemos assumir que o usuário só digita números. Não é preciso implementar um tratamento especial para inputs não-numéricos neste exercício.
 
 [demo]
