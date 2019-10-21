@@ -4,7 +4,8 @@ importance: 3
 
 # Retornar número primos
 
-Um número inteiro maior que `1` é chamado de [primo](https://pt.wikipedia.org/wiki/Número_primo) se ele não puder ser divido por nada exceto por `1` e por si mesmo sem gerar um resto.
+Um número inteiro maior que `1` é chamado de [primo](https://pt.wikipedia.org/wiki/Número_primo) se ele não puder ser divido por nenhum outro número exceto por `1` e por si mesmo sem gerar um resto.
+
 
 Em outras palavras, `n > 1` é um primo se ele não puder ser dividido sem resto por nada além de `1` e `n`.
 

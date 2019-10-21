@@ -8,7 +8,7 @@ while (i) {
 }
 ```
 
-Cada iteração do loop subtrai `1` de `i`. O teste `while(i)` interrompe o loop quando `i = 0`.
+Cada iteração do loop decresce `i` em `1`. O teste `while(i)` interrompe o loop quando `i = 0`.
 
 Portanto, as etapas do loop formam a seguinte sequência ("loop desenrolado"):
 
