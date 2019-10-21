@@ -65,6 +65,29 @@ for (let value of Object.values(user)) {
 
 ## Object.keys/values/entries ignore symbolic properties
 
+<<<<<<< HEAD:1-js/05-data-types/08-keys-values-entries/article.md
 Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
 
 Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, the method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) returns *all* keys.
+=======
+For example, we have an object with prices, and would like to double them:
+
+```js run
+let prices = {
+  banana: 1,
+  orange: 2,
+  meat: 4,
+};
+
+*!*
+let doublePrices = Object.fromEntries(
+  // convert to array, map, and then fromEntries gives back the object
+  Object.entries(prices).map(([key, value]) => [key, value * 2])
+);
+*/!*
+
+alert(doublePrices.meat); // 8
+```   
+
+It may look difficult from the first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way. 
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1:1-js/05-data-types/09-keys-values-entries/article.md

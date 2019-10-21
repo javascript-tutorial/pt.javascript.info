@@ -1,6 +1,6 @@
 # Error handling, "try..catch"
 
-No matter how great we are at programming, sometimes our scripts have errors. They may occur because of our mistakes, an unexpected user input, an erroneous server response and for a thousand of other reasons.
+No matter how great we are at programming, sometimes our scripts have errors. They may occur because of our mistakes, an unexpected user input, an erroneous server response, and for a thousand other reasons.
 
 Usually, a script "dies" (immediately stops) in case of an error, printing it to console.
 
@@ -25,8 +25,13 @@ try {
 It works like this:
 
 1. First, the code in `try {...}` is executed.
+<<<<<<< HEAD
 2. If there were no errors, then `catch(err)` is ignored: the execution reaches the end of `try` and then jumps over `catch`.
 3. If an error occurs, then `try` execution is stopped, and the control flows to the beginning of `catch(err)`. The `err` variable (can use any name for it) contains an error object with details about what's happened.
+=======
+2. If there were no errors, then `catch(err)` is ignored: the execution reaches the end of `try` and goes on, skipping `catch`.
+3. If an error occurs, then `try` execution is stopped, and the control flows to the beginning of `catch(err)`. The `err` variable (can use any name for it) will contain an error object with details about what happened.
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 
 ![](try-catch-flow.svg)
 
@@ -89,7 +94,7 @@ try {
 }
 ```
 
-The JavaScript engine first reads the code, and then runs it. The errors that occur on the reading phrase are called "parse-time" errors and are unrecoverable (from inside that code). That's because the engine can't understand the code.
+The JavaScript engine first reads the code, and then runs it. The errors that occur on the reading phase are called "parse-time" errors and are unrecoverable (from inside that code). That's because the engine can't understand the code.
 
 So, `try..catch` can only handle errors that occur in the valid code. Such errors are called "runtime errors" or, sometimes, "exceptions".
 ````
@@ -526,7 +531,7 @@ alert(result || "error occured");
 alert( `execution took ${diff}ms` );
 ```
 
-You can check by running the code with entering `35` into `prompt` -- it executes normally, `finally` after `try`. And then enter `-1` -- there will be an immediate error, an the execution will take `0ms`. Both measurements are done correctly.
+You can check by running the code with entering `35` into `prompt` -- it executes normally, `finally` after `try`. And then enter `-1` -- there will be an immediate error, and the execution will take `0ms`. Both measurements are done correctly.
 
 In other words, there may be two ways to exit a function: either a `return` or `throw`. The `finally` clause handles them both.
 
@@ -672,4 +677,4 @@ We can also generate our own errors using the `throw` operator. Technically, the
 
 Rethrowing is a basic pattern of error handling: a `catch` block usually expects and knows how to handle the particular error type, so it should rethrow errors it doesn't know.
 
-Even if we don't have `try..catch`, most environments allow to setup a "global" error handler to catch errors that "fall out". In-browser that's `window.onerror`.
+Even if we don't have `try..catch`, most environments allow us to setup a "global" error handler to catch errors that "fall out". In-browser, that's `window.onerror`.

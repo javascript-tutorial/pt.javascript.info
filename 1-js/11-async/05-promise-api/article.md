@@ -152,7 +152,11 @@ Here the second promise rejects in two seconds. That leads to immediate rejectio
 
 The important detail is that promises provide no way to "cancel" or "abort" their execution. So other promises continue to execute, and then eventually settle, but all their results are ignored.
 
+<<<<<<< HEAD
 There are ways to avoid this: we can either write additional code to `clearTimeout` (or otherwise cancel) the promises in case of an error, or we can make errors show up as members in the resulting array (see the task below this chapter about it).
+=======
+For example, if there are multiple `fetch` calls, like in the example above, and one fails, other ones will still continue to execute, but `Promise.all` won't watch them anymore. They will probably settle, but the result will be ignored.
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 
 ````smart header="`Promise.all(...)` allows non-promise items in `iterable`"
 Normally, `Promise.all(...)` accepts an iterable (in most cases an array) of promises. But if any of those objects is not a promise, it's wrapped in `Promise.resolve`.

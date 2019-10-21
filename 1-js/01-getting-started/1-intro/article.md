@@ -12,8 +12,13 @@ Os scripts são fornecidos e executados como texto puro. Eles não precisam de p
 
 Neste aspecto, o JavaScript é muito diferente de outra linguagem chamada [Java](https://pt.wikipedia.org/wiki/Java_(linguagem_de_programação)).
 
+<<<<<<< HEAD
 ```smart header="Por que <u>Java</u>Script?"
 Quando foi criado, inicialmente o JavaScript tinha outro nome: "LiveScript". Mas Java era muito popular naquela época, então foi decidido que posicionar uma nova linguagem como um "irmão mais novo" de Java ajudaria.
+=======
+```smart header="Why is it called <u>Java</u>Script?"
+When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 
 Mas à medida que ele evoluiu, o JavaScript se tornou uma linguagem totalmente independente com sua própria especificação chamada [ECMAScript] (http://en.wikipedia.org/wiki/ECMAScript), e agora ele não tem nenhuma relação com Java.
 ```

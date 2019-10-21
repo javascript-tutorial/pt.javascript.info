@@ -90,7 +90,7 @@ class Article {
 
 let article = Article.createTodays();
 
-alert( article.title ); // Todays digest
+alert( article.title ); // Today's digest
 ```
 
 Now every time we need to create a today's digest, we can call `Article.createTodays()`. Once again, that's not a method of an article, but a method of the whole class.
@@ -187,11 +187,16 @@ class Rabbit extends Animal {}
 // for static properties and methods
 alert(Rabbit.__proto__ === Animal); // true
 
+<<<<<<< HEAD
 // and the next step is Function.prototype
 alert(Animal.__proto__ === Function.prototype); // true
 
 // that's in addition to the "normal" prototype chain for object methods
 alert(Rabbit.prototype.__proto__ === Animal.prototype);
+=======
+// for regular methods
+alert(Rabbit.prototype.__proto__ === Animal.prototype); // true
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 ```
 
 This way `Rabbit` has access to all static methods of `Animal`.

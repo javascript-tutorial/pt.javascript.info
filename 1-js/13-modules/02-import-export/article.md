@@ -152,7 +152,7 @@ say.hi('John'); // Hello, John!
 say.bye('John'); // Bye, John!
 ```
 
-## export default
+## Export default
 
 So far, we've seen how to import/export multiple things, optionally "as" other names.
 
@@ -276,10 +276,14 @@ let User = user.default;
 new User('John');
 ```
 
+<<<<<<< HEAD
 
 ### Should I use default exports?
 
 One should be careful about using default exports, because they are somewhat more different to maintain.
+=======
+### A word against default exports
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 
 Named exports are explicit. They exactly name what they import, so we have that information from them, that's a good thing.
 
@@ -306,7 +310,11 @@ import func from '/path/to/func.js';
 ...
 ```
 
+<<<<<<< HEAD
 Another solution would be to use named exports everywhere. Even if only a single thing is exported, it's still exported under a name, without `default`.
+=======
+Still, some teams consider it a serious drawback of default exports. So they prefer to always use named exports. Even if only a single thing is exported, it's still exported under a name, without `default`.
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 
 That also makes re-export (see below) a little bit easier.
 
