@@ -11,7 +11,7 @@ Em outras palavras, `n > 1` é um primo se ele não puder ser dividido sem resto
 
 Por exemplo, `5` é um primo, pois não pode ser dividido sem resto por `2`, `3` e `4`.
 
-**Escreve o código que retorne números primos no intervalo de `2` a `n`.**
+**Escreva o código que retorne números primos no intervalo de `2` a `n`.**
 
 Para `n = 10`, o resultado será `2,3,5,7`.
 
