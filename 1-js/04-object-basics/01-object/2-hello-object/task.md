@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Olá, objeto
+# Hello, object
 
-Escreva o código, uma ação por linha:
+Write the code, one line for each action:
 
-1. Crie um objeto vazio (*empty object*) `user`.
-2. Adicione a propriedade `name` com o valor `John`.
-3. Adicione a propriedade `surname` com o valor `Smith`.
-4. Altere o valor de `name` para `Pete`.
-5. Remova a propriedade `name` do objeto.
+1. Create an empty object `user`.
+2. Add the property `name` with the value `John`.
+3. Add the property `surname` with the value `Smith`.
+4. Change the value of the `name` to `Pete`.
+5. Remove the property `name` from the object.
 

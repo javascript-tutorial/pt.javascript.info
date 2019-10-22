@@ -1,60 +1,60 @@
 
-# Objetos
+# Objects
 
-Como sabemos, pelo capítulo <info:types>, existem sete tipos de dados em JavaScript. Seis deles são chamados de "primitivos", porque os seus valores apenas contêm uma única coisa (seja ela uma cadeia-de-carateres [*string*], um número, ou o que for).
+As we know from the chapter <info:types>, there are seven data types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
 
-Em contraste, objetos são empregues para armazenar por meio de uma chave, coleções de vários dados e entidades mais complexas. Em JavaScript, objetos penetram em quase todos os aspetos da linguagem. Portanto, devemos primeiro compreendê-los antes de nos envolvermos detalhadamente em algo mais.
+In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
 
-Um objeto pode ser criado por chavetas `{…}`, com uma lista opcional de *propriedades*. Uma propriedade é um par "key: value" (chave: valor), onde `key` é uma *string* (também chamada de "nome da propriedade"), e `value` pode ser qualquer coisa.
+An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
 
-Podemos imaginar um objeto como um fichário com ficheiros assinados. Cada peça de informação, é armazenada no seu ficheiro ligada a uma chave. É fácil encontrar um ficheiro através do seu nome, ou adicionar/remover um ficheiro.
+We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
 
 ![](object.svg)
 
-Um objeto vazio ("fichário vazio"), pode ser criado por uma de duas sintaxes:
+An empty object ("empty cabinet") can be created using one of two syntaxes:
 
 ```js
-let user = new Object(); // sintaxe de "construtor de objetos"
-let user = {};  // sintaxe de "objeto literal"
+let user = new Object(); // "object constructor" syntax
+let user = {};  // "object literal" syntax
 ```
 
 ![](object-user-empty.svg)
 
-Geralmente, são utilizadas as chavetas `{...}`. Essa declaração é chamada de *objeto literal*.
+Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
 
-## Literais e propriedades
+## Literals and properties
 
-Podemos imediatamente colocar algumas propriedades dentro das `{...}` como pares "chave: valor" (*key: value*):
+We can immediately put some properties into `{...}` as "key: value" pairs:
 
 ```js
-let user = {     // um objeto
-  name: "John",  // na chave "name" armazene o valor "John"
-  age: 30        // na chave "age" armazene o valor 30
+let user = {     // an object
+  name: "John",  // by key "name" store value "John"
+  age: 30        // by key "age" store value 30
 };
 ```
 
-Uma propriedade, tem uma chave (*key* - também conhecida por "nome" ou "identificador") antes dos dois-pontos `":"` e um valor à sua direita.
+A property has a key (also known as "name" or "identifier") before the colon `":"` and a value to the right of it.
 
-No objeto `user`, existem duas propriedades:
+In the `user` object, there are two properties:
 
-1. A primeira, tem o nome `"name"` e o valor `"John"`.
-2. A segunda, tem o nome `"age"` e o valor `30`.
+1. The first property has the name `"name"` and the value `"John"`.
+2. The second one has the name `"age"` and the value `30`.
 
-O objeto `user` resultante, pode ser imaginado como um fichário com dois ficheiros assinados com as etiquetas "*name*" e "*age*".
+The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
 
 ![user object](object-user.svg)
 
-Podemos adicionar, remover e ler ficheiros dele a qualquer altura.
+We can add, remove and read files from it any time.
 
-Valores de propriedades podem ser acedidos usando a notação por ponto (*dot notation*):
+Property values are accessible using the dot notation:
 
 ```js
-// obtenha os campos do objeto:
+// get fields of the object:
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
 
-O valor pode ser de qualquer tipo. Vamos adicionar um booleano:
+The value can be of any type. Let's add a boolean one:
 
 ```js
 user.isAdmin = true;
@@ -62,7 +62,7 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
-Para remover uma propriedade, podemos usar o operador `delete`:
+To remove a property, we can use `delete` operator:
 
 ```js
 delete user.age;
@@ -70,70 +70,69 @@ delete user.age;
 
 ![user object 3](object-user-delete.svg)
 
-Podemos também usar nomes de propriedades com múltiplas palavras, mas aí eles têm de estar entre aspas:
+We can also use multiword property names, but then they must be quoted:
 
 ```js
 let user = {
   name: "John",
   age: 30,
-  "likes birds": true  // "likes birds" ("gosta de pássaros") - o nome de propriedade com múltiplas palavras tem de estar entre aspas
+  "likes birds": true  // multiword property name must be quoted
 };
 ```
 
 ![](object-user-props.svg)
 
-A última propriedade da lista pode terminar com uma vírgula:
 
+The last property in the list may end with a comma:
 ```js
 let user = {
   name: "John",
   age: 30*!*,*/!*
 }
 ```
+That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
 
-Esta é chamada de vírgula à direita (*trailing comma*) ou "vírgula pendurada" (*hanging comma*). Ela facilita o adicionar/remover/mover propriedades, porque todas as linhas serão semelhantes (as propriedades são separadas por vírgulas).
+## Square brackets
 
-## Parênteses retos
-
-Para propriedades com múltiplas palavras, o acesso por ponto não funciona:
+For multiword properties, the dot access doesn't work:
 
 ```js run
-// isto daria um erro de sintaxe
+// this would give a syntax error
 user.likes birds = true
 ```
 
-Isto, porque o ponto requere que a chave (*key*) seja um identificador de variável válido. Isto é: sem espaços e outras restrições.
+That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
 
-Existe uma alternativa, a "notação por parênteses retos", que funciona com qualquer *string* (cadeia-de-carateres):
+There's an alternative "square bracket notation" that works with any string:
 
 
 ```js run
 let user = {};
 
-// cria
+// set
 user["likes birds"] = true;
 
-// lê
-alert(user["likes birds"]); // true ('verdadeiro')
+// get
+alert(user["likes birds"]); // true
 
-// remove
+// delete
 delete user["likes birds"];
 ```
 
-Agora, tudo está bem. Por favor, verifique se a *string* dentro dos parênteses retos está própriamente encerrada entre aspas (qualquer tipo de aspas serve).
+Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
 
-Os parênteses retos, também fornecem uma forma de se obter o nome de uma propriedade como resultado de uma expressão -- em vez de uma *string* literal  -- como a partir de uma variável, a exemplo:
+Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
 
 ```js
 let key = "likes birds";
 
-// o mesmo que 'user["likes birds"] = true;'
+// same as user["likes birds"] = true;
 user[key] = true;
 ```
 
-Aqui, a variável `key` pode ser calculada em tempo de execução (*run-time*) ou depender de uma entrada pelo utilizador (*user input*). E depois a utilizamos para aceder à propriedade. Isso, dá-nos um grande grau de flexibilidade.
+Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility. The dot notation cannot be used in a similar way.
 
-Por exemplo:
+For instance:
 
 ```js run
 let user = {
@@ -141,13 +140,15 @@ let user = {
   age: 30
 };
 
-let key = prompt("O que quer saber acerca do utilizador?", "name");
+let key = prompt("What do you want to know about the user?", "name");
 
-// aceda à variável
-alert( user[key] ); // John (se a entrada tiver sido "name")
+// access by variable
+alert( user[key] ); // John (if enter "name")
 ```
 
-A notação por ponto não pode ser usada de forma semelhante:
+<<<<<<< HEAD
+=======
+The dot notation cannot be used in a similar way:
 
 ```js run
 let user = {
@@ -158,41 +159,42 @@ let user = {
 let key = "name";
 alert( user.key ) // undefined
 ```
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
-### Propriedades computadas
+### Computed properties
 
-Podemos utilizar os parênteses retos num object literal. Chamam-se de *propriedades computadas*.
+We can use square brackets in an object literal. That's called *computed properties*.
 
-Por exemplo:
+For instance:
 
 ```js run
-let fruit = prompt("Que fruta comprar?", "apple");
+let fruit = prompt("Which fruit to buy?", "apple");
 
 let bag = {
 *!*
-  [fruit]: 5, // o nome da propriedade é obtido por meio da variável 'fruit'
+  [fruit]: 5, // the name of the property is taken from the variable fruit
 */!*
 };
 
 alert( bag.apple ); // 5 if fruit="apple"
 ```
 
-O significado de uma propriedade computada é simples: `[fruit]` diz que o nome da propriedade é obtido por meio de `fruit`.
+The meaning of a computed property is simple: `[fruit]` means that the property name should be taken from `fruit`.
 
-Assim, se um visitante inserir `"apple"`, `bag` se tornará em `{apple: 5}`.
+So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
 
-Essencialmente, isso é o mesmo que:
+Essentially, that works the same as:
 ```js run
-let fruit = prompt("Que fruta comprar?", "apple");
+let fruit = prompt("Which fruit to buy?", "apple");
 let bag = {};
 
-// obtenha o nome da propriedade por meio da variável fruit
+// take property name from the fruit variable
 bag[fruit] = 5;
 ```
 
-...Mas, tem uma melhor apresentação.
+...But looks nicer.
 
-Podemos usar expressões mais complexas dentro dos parênteses retos:
+We can use more complex expressions inside square brackets:
 
 ```js
 let fruit = 'apple';
@@ -201,14 +203,16 @@ let bag = {
 };
 ```
 
-Parênteses retos, são mais poderosos que a notação por ponto. Eles permitem quaisquer nomes de propriedades e variáveis. Mas, eles também envolvem mais trabalho para escrever.
+Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are also more cumbersome to write.
 
-Assim, a maior parte as vezes, quando nomes de propriedades são conhecidos e simples, o ponto é utilizado. E, se precisarmos de algo mais complexo, mudamos para os parênteses retos.
+So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
+
+
 
 ````smart header="Reserved words are allowed as property names"
-Uma variável, não pode ter um nome igual a uma das palavras reservadas ('keywords') da linguagem, como "for", "let", "return" etc.
+A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
 
-Mas, para uma propriedade de um objeto, não existe tal restrição. Qualquer nome é aceitável:
+But for an object property, there's no such restriction. Any name is fine:
 
 ```js run
 let obj = {
@@ -220,27 +224,28 @@ let obj = {
 alert( obj.for + obj.let + obj.return );  // 6
 ```
 
-Basicamente, qualquer nome é permitido, mas existe um especial: `"__proto__"`, que tem um tratamento particular por razões históricas. Por exemplo, a ele não podemos atribuir um valor não-objeto:
+Basically, any name is allowed, but there's a special one: `"__proto__"` that gets special treatment for historical reasons. For instance, we can't set it to a non-object value:
 
 ```js run
 let obj = {};
 obj.__proto__ = 5;
-alert(obj.__proto__); // [object Object], não resultou como esperado
+alert(obj.__proto__); // [object Object], didn't work as intended
 ```
 
-Como vemos pelo código, a atribuição do primitivo `5` é ignorada.
+As we see from the code, the assignment to a primitive `5` is ignored.
 
-Isso, pode se tornar numa fonte de erros ('bugs') e até de vulnerabilidades, se pretendermos armazenar pares chave-valor arbitrários num objeto, e permitir a um visitante especificar as chaves ('keys').
+That can become a source of bugs and even vulnerabilities if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
 
-Nesse caso, o the visitante pode escolher "__proto__" como chave, e a lógica de atribuição estará arruinada (como se mostra acima).
+In that case the visitor may choose "__proto__" as the key, and the assignment logic will be ruined (as shown above).
 
-Existe uma forma de fazer os objetos tratarem `__proto__` como uma propriedade regular, que analisaremos mais adiante, mas primeiro precisamos de saber mais sobre objetos.
-Existe também outra estrutura de dados [Map](info:map-set-weakmap-weakset), que aprenderemos no capítulo <info:map-set-weakmap-weakset>, que suporta chaves arbitrárias.
+There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
+There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
 ````
 
-## Abreviação do valor da propriedade
 
-Em código real, frequentemente empregamos variáveis semelhantes a valores como nomes de propriedades.
+## Property value shorthand
+
+In real code we often use existing variables as values for property names.
 
 For instance:
 
@@ -249,7 +254,7 @@ function makeUser(name, age) {
   return {
     name: name,
     age: age
-    // ...outras propriedades
+    // ...other properties
   };
 }
 
@@ -257,102 +262,103 @@ let user = makeUser("John", 30);
 alert(user.name); // John
 ```
 
-No exemplo acima, propriedades têm os mesmos nomes que as variáveis. O caso prático (*use-case*) de construir uma propriedade com base numa variável é tão comum, que existe uma especial *abreviação do valor da propriedade* (*property value shorthand*) para a tornar mais curta.
+In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there's a special *property value shorthand* to make it shorter.
 
-Em vez de `name:name`, podemos simplesmente escrever `name`, como abaixo:
+Instead of `name:name` we can just write `name`, like this:
 
 ```js
 function makeUser(name, age) {
 *!*
   return {
-    name, // o mesmo que name: name
-    age   // o mesmo que age: age
+    name, // same as name: name
+    age   // same as age: age
     // ...
   };
 */!*
 }
 ```
 
-Podemos empregar ambas, as propriedades normais e as abreviações (*shorthands*) no mesmo objeto:
+We can use both normal properties and shorthands in the same object:
 
 ```js
 let user = {
-  name,  // o mesmo que name:name
+  name,  // same as name:name
   age: 30
 };
 ```
 
-## Verificação de existência
+## Existence check
 
-Uma particularidade notável de objetos, é que é possível aceder a qualquer propriedade. Não haverá erro se a propriedade não existir! Aceder a uma propriedade não-existente apenas retorna `undefined`. Ela, fornece uma forma muito comum de testar se a propriedade existe -- aceda, e compare o resultado com *undefined*:
+A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
 
 ```js run
 let user = {};
 
-alert( user.noSuchProperty === undefined ); // true, significa "propriedade não existente" (no such property)
+alert( user.noSuchProperty === undefined ); // true means "no such property"
 ```
 
-Também existe um operador especial, `"in"`, para verificar a existência de uma propriedade.
+There also exists a special operator `"in"` to check for the existence of a property.
 
-A sintaxe é:
-
+The syntax is:
 ```js
 "key" in object
 ```
 
-Por exemplo:
+For instance:
 
 ```js run
 let user = { name: "John", age: 30 };
 
-alert( "age" in user ); // true (verdadeiro), 'user.age' existe
-alert( "blabla" in user ); // false (falso), 'user.blabla' não existe
+alert( "age" in user ); // true, user.age exists
+alert( "blabla" in user ); // false, user.blabla doesn't exist
 ```
 
-Por favor, note que no lado esquerdo de `in` deve existir um *nome de propriedade*. Geralmente, é uma *string* entre aspas.
+Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
 
-Se omitirmos as aspas, isso terá o significado de uma variável contendo o atual nome a ser testado. Por exemplo:
+If we omit quotes, that would mean a variable containing the actual name will be tested. For instance:
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
-alert( *!*key*/!* in user ); // true (verdadeiro), recebe o nome por meio de 'key' e procura por tal propriedade
+alert( *!*key*/!* in user ); // true, takes the name from key and checks for such property
 ```
 
-````smart header="Using "in" for properties that store "undefined""
-Geralmente, a comparação exata ('strict') para a verificação `"=== undefined"` funciona bem. Mas, existe um caso especial em que falha. Contudo, `"in"` funciona corretamente.
+````smart header="Using \"in\" for properties that store `undefined`"
+Usually, the strict comparison `"=== undefined"` check works fine. But there's a special case when it fails, but `"in"` works correctly.
 
-É quando uma propriedade de um objeto existe, mas possui `undefined` nela armazenado:
+It's when an object property exists, but stores `undefined`:
 
 ```js run
 let obj = {
   test: undefined
 };
 
-alert( obj.test ); // exibe 'undefined', então - tal propriedade não existe?
+alert( obj.test ); // it's undefined, so - no such property?
 
-alert( "test" in obj ); // true (verdadeiro), a propriedade na realidade existe!
+alert( "test" in obj ); // true, the property does exist!
 ```
 
-No código acima, a propriedade `obj.test` tecnicamente existe. Deste modo, o operador `in` funciona corretamente.
 
-Situações como esta muito raramente ocorrem, porque `undefined` não é usualmente atribuido. Em geral, empregamos `null` para valores "desconhecidos" ou "vazios". Deste modo, o operador `in` é um convidado exótico na codificação.
+In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+
+Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
 ````
 
-## O laço "for..in"
 
-Para navegar por todas as chaves (*keys*) de um objeto, existe uma forma especial de laço (*loop*): `for..in`. Esta, é uma construção completamente diferente da do `for(;;)`, que estudámos antes.
+## The "for..in" loop
 
-A sintaxe:
+To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we studied before.
+
+The syntax:
 
 ```js
 for (key in object) {
-  // executa o corpo do laço, por cada chave (key) de entre as propriedades do objeto
+  // executes the body for each key among object properties
 }
 ```
 
-Por exemplo, vamos imprimir todas propriedades de  `user`:
+For instance, let's output all properties of `user`:
 
 ```js run
 let user = {
@@ -362,32 +368,33 @@ let user = {
 };
 
 for (let key in user) {
-  // key (chave)
-  alert( key );  // 'name', 'age', isAdmin'
-  // valor por chave (key)
+  // keys
+  alert( key );  // name, age, isAdmin
+  // values for the keys
   alert( user[key] ); // John, 30, true
 }
 ```
 
-Note, que todas as construções "for" permitem-nos declarar a variável do laço dentro do ciclo (*loop*), como `let key` aqui.
+Note that all "for" constructs allow us to declare the looping variable inside the loop, like `let key` here.
 
-De igual modo, poderíamos usar aqui um nome de variável differente de `key`. Por exemplo, `"for (let prop in obj)"` também é largamente utilizado.
+Also, we could use another variable name here instead of `key`. For instance, `"for (let prop in obj)"` is also widely used.
 
-### Ordenado como um objeto
 
-Os objetos são ordenados? Por outras palavras, se percorrermos um objeto com um laço, será que obtemos todas as propriedades pela mesma ordem em que foram adicionadas? Poderemos confiar nisso?
+### Ordered like an object
 
-A curta resposta é: "ordenados de um modo especial" - propriedades inteiras são ordenadas de forma crescente, outras aparecem na ordem em que foram criadas. Detalhes a seguir.
+Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
 
-Como exemplo, considermos um objeto com indicativos telefónicos de países:
+The short answer is: "ordered in a special fashion": integer properties are sorted, others appear in creation order. The details follow.
+
+As an example, let's consider an object with the phone codes:
 
 ```js run
 let codes = {
-  "49": "Alemanha",
-  "41": "Suíça",
-  "44": "Grã Bretanha",
+  "49": "Germany",
+  "41": "Switzerland",
+  "44": "Great Britain",
   // ..,
-  "1": "EUA"
+  "1": "USA"
 };
 
 *!*
@@ -397,59 +404,56 @@ for (let code in codes) {
 */!*
 ```
 
-O objeto, pode ser empregue como sugestão de uma lista de opções para o utilizador. Se, estivermos a construir um *site* maioritariamente para uma audiência Alemã, então provavelmente queremos `49` como o primeiro.
+The object may be used to suggest a list of options to the user. If we're making a site mainly for German audience then we probably want `49` to be the first.
 
-Mas, ao correr o código, vemos uma imagem totalmente diferente:
+But if we run the code, we see a totally different picture:
 
-- EUA (1) vem em primeiro lugar,
-- depois a Suiça (41), e assim por adiante.
+- USA (1) goes first
+- then Switzerland (41) and so on.
 
-Os indicativos telefónicos, são ordenados por ordem ascendente, porque são inteiros. Por isso, vemos `1, 41, 44, 49`.
+The phone codes go in the ascending sorted order, because they are integers. So we see `1, 41, 44, 49`.
 
 ````smart header="Integer properties? What's that?"
-O termo "propriedade inteira" aqui, significa que uma *string* pode ser convertida para inteiro ('integer') e, de volta reconvertida sem qualquer alteração.
+The "integer property" term here means a string that can be converted to-and-from an integer without a change.
 
-Assim, "49" é um nome de propriedade inteiro porque, ao ser transformado num número inteiro e de volta reconvertido, continua o mesmo. Mas, "+49" e "1.2" não são:
+So, "49" is an integer property name, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
 
 ```js run
-// Math.trunc é uma função incorporada (*built-in function*) que remove a parte decimal
-
-alert( String(Math.trunc(Number("49"))) ); // "49", inalterado ⇒ propriedade inteira
-
-alert( String(Math.trunc(Number("+49"))) ); // "49", não o mesmo que "+49" ⇒ não é uma propriedade inteira
-
-alert( String(Math.trunc(Number("1.2"))) ); // "1", não o mesmo que "1.2" ⇒ não é uma propriedade inteira
+// Math.trunc is a built-in function that removes the decimal part
+alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
+alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
+alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
 ```
 ````
 
-...Por outro lado, se as chaves (*keys*) forem não-inteiras, elas são listadas segundo a ordem em que foram criadas, por exemplo:
+...On the other hand, if the keys are non-integer, then they are listed in the creation order, for instance:
 
 ```js run
 let user = {
   name: "John",
   surname: "Smith"
 };
-user.age = 25; // adicione mais uma propriedade
+user.age = 25; // add one more
 
 *!*
-// propriedades não-inteiras são listadas segundo a ordem em que foram criadas
+// non-integer properties are listed in the creation order
 */!*
 for (let prop in user) {
-  alert( prop ); // 'name', 'surname', 'age'
+  alert( prop ); // name, surname, age
 }
 ```
 
-Portanto, para corrigir o problema dos indicativos telefónicos, podemos "aldrabar" tornando-os não-inteiros. Adicionar um sinal de mais `"+"`, antes de cada código é o suficiente.
+So, to fix the issue with the phone codes, we can "cheat" by making the codes non-integer. Adding a plus `"+"` sign before each code is enough.
 
-Desta forma:
+Like this:
 
 ```js run
 let codes = {
-  "+49": "Alemanha",
-  "+41": "Suiça",
-  "+44": "Grã Bretanha",
+  "+49": "Germany",
+  "+41": "Switzerland",
+  "+44": "Great Britain",
   // ..,
-  "+1": "EUA"
+  "+1": "USA"
 };
 
 for (let code in codes) {
@@ -457,30 +461,30 @@ for (let code in codes) {
 }
 ```
 
-Agora, funciona como pretendido.
+Now it works as intended.
 
-## Cópia por referência
+## Copying by reference
 
-Uma das principais diferenças entre objetos vs primitivos, está em que os primeiros são armazenados e copiados "por referência"  (*by reference*).
+One of the fundamental differences of objects vs primitives is that they are stored and copied "by reference".
 
-Valores primitivos: *strings*, números, booleanos -- são atribuidos/copiados como "o próprio valor".
+Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
 
-Por exemplo:
+For instance:
 
 ```js
 let message = "Hello!";
 let phrase = message;
 ```
 
-Como resultado, temos duas variáveis independentes, mas cada uma armazenando a *string* (cadeia-de-carateres) `"Hello!"`.
+As a result we have two independent variables, each one is storing the string `"Hello!"`.
 
 ![](variable-copy-value.svg)
 
-Objetos não são assim.
+Objects are not like that.
 
-**Uma variável não armazena o próprio objeto, mas o seu "endereço em memória" (*address in memory*), por outras palavras "uma referência" (*reference*) a ele.**
+**A variable stores not the object itself, but its "address in memory", in other words "a reference" to it.**
 
-Aqui, está a imagem para o objeto:
+Here's the picture for the object:
 
 ```js
 let user = {
@@ -490,25 +494,25 @@ let user = {
 
 ![](variable-contains-reference.svg)
 
-Aqui, o objeto é armazenado algures na memória. E a variável `user` contém uma "referência" para ele.
+Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
 
-**Quando uma variável com um objeto é copiada -- é a referência copiada, o objeto não é duplicado.**
+**When an object variable is copied -- the reference is copied, the object is not duplicated.**
 
-Se imaginarmos um objeto como um fichário, então uma variável será uma chave (*a key*) para ele. Copiando uma variável duplica a chave (*the key*), não o próprio fichário.
+If we imagine an object as a cabinet, then a variable is a key to it. Copying a variable duplicates the key, but not the cabinet itself.
 
-Por exemplo:
+For instance:
 
 ```js no-beautify
 let user = { name: "John" };
 
-let admin = user; // copia a referência
+let admin = user; // copy the reference
 ```
 
-Agora, temos duas variáveis, e cada uma com a referência para o mesmo objeto:
+Now we have two variables, each one with the reference to the same object:
 
 ![](variable-copy-reference.svg)
 
-Podemos utilizar qualquer das variáveis, para aceder ao fichário e alterar o seu conteúdo:
+We can use any variable to access the cabinet and modify its contents:
 
 ```js run
 let user = { name: 'John' };
@@ -516,46 +520,46 @@ let user = { name: 'John' };
 let admin = user;
 
 *!*
-admin.name = 'Pete'; // alterado através da referência em "admin"
+admin.name = 'Pete'; // changed by the "admin" reference
 */!*
 
-alert(*!*user.name*/!*); // 'Pete', as alterações também são visíveis por meio da referência em "user"
+alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 ```
 
-O exemplo acima, demonstra que apenas existe um objecto. Como se tivéssemos um fichário com duas chaves, e usássemos uma delas (`admin`) para o aceder. E depois, se mais tarde usássemos a outra chave (`user`) poderíamos ver as alterações.
+The example above demonstrates that there is only one object. As if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we would see changes.
 
-### Comparação por referência
+### Comparison by reference
 
-Os operadores de igualdade `==` e de igualdade exata (*strict*) `===` para objetos funcionam exatamente da mesma forma.
+The equality `==` and strict equality `===` operators for objects work exactly the same.
 
-**Dois objetos apenas são iguais se eles forem o mesmo objeto.**
+**Two objects are equal only if they are the same object.**
 
-Por exemplo, duas variáveis referenciam o mesmo objeto, elas são iguais:
+For instance, two variables reference the same object, they are equal:
 
 ```js run
 let a = {};
-let b = a; // cópia por referência
+let b = a; // copy the reference
 
-alert( a == b ); // true (verdadeiro), ambas as variáveis referenciam o mesmo objeto
-alert( a === b ); // true (verdadeiro)
+alert( a == b ); // true, both variables reference the same object
+alert( a === b ); // true
 ```
 
-E aqui, dois objetos independentes não são iguais, muito embora ambos sejam vazios:
+And here two independent objects are not equal, even though both are empty:
 
 ```js run
 let a = {};
-let b = {}; // dois objetos independentes
+let b = {}; // two independent objects
 
-alert( a == b ); // false (falso)
+alert( a == b ); // false
 ```
 
-Para comparações como `obj1 > obj2` ou para uma comparação com um primitivo `obj == 5`, objetos são convertidos para primitivos. Estudaremos como funciona a conversão de objetos muito em breve, mas para dizer a verdade, tais comparações são muito raramente necessárias e são geralmente o resultado de um erro de código.
+For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
 
-### Objeto constante
+### Const object
 
-Um objeto declarado com `const` *pode* ser alterado.
+An object declared as `const` *can* be changed.
 
-Por exemplo:
+For instance:
 
 ```js run
 const user = {
@@ -569,9 +573,9 @@ user.age = 25; // (*)
 alert(user.age); // 25
 ```
 
-Parece que a linha `(*)` irá causar um erro, mas não, não há totalmente qualquer problema. Isso, porque `const` apenas fixa o valor de `user`. Então, aqui `user` armazena uma referência para um mesmo objeto pelo tempo todo. A linha `(*)` vai para *dentro* do objeto, não faz uma re-atribuição a `user`.
+It might seem that the line `(*)` would cause an error, but no, there's totally no problem. That's because `const` fixes the value of `user` itself. And here `user` stores the reference to the same object all the time. The line `(*)` goes *inside* the object, it doesn't reassign `user`.
 
-A `const` produzirá um erro se tentarmos colocar em `user` qualquer outra coisa, por exemplo:
+The `const` would give an error if we try to set `user` to something else, for instance:
 
 ```js run
 const user = {
@@ -579,26 +583,26 @@ const user = {
 };
 
 *!*
-// Erro (não é possível reatribuir a 'user')
+// Error (can't reassign user)
 */!*
 user = {
   name: "Pete"
 };
 ```
 
-...Mas, se quisermos tornar as propriedades do objeto constantes? Então, aí `user.age = 25` produzirá um erro. Isso, também é possível. Iremos cobrir isto no capítulo <info:property-descriptors>.
+...But what if we want to make constant object properties? So that `user.age = 25` would give an error. That's possible too. We'll cover it in the chapter <info:property-descriptors>.
 
-## Clonar e fundir, Object.assign
+## Cloning and merging, Object.assign
 
-Portanto, a cópia de uma variável de objeto cria mais uma referência para o mesmo objeto.
+So, copying an object variable creates one more reference to the same object.
 
-Mas, se quisermos duplicar um objecto? Criar uma cópia independente, um *clone*?
+But what if we need to duplicate an object? Create an independent copy, a clone?
 
-Também se pode fazer, mas é um pouco mais difícil, porque não existe método incorporado (*built-in*) ao JavaScript para isso. Na verdade, isso raramente é necessário. A cópia por referência é a maior parte das vezes boa.
+That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. Actually, that's rarely needed. Copying by reference is good most of the time.
 
-Mas, se realmente quisermos isto, aí precisaremos de criar um novo objeto e replicar a estrutura do existente iterando pelas suas propriedades e copiando-as, digamos num nível primitivo.
+But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
 
-Desta forma:
+Like this:
 
 ```js run
 let user = {
@@ -607,32 +611,32 @@ let user = {
 };
 
 *!*
-let clone = {}; // o novo objeto vazio
+let clone = {}; // the new empty object
 
-// copiemos todas as propriedades de 'user' para aquele
+// let's copy all user properties into it
 for (let key in user) {
   clone[key] = user[key];
 }
 */!*
 
-// agora,'clone' é um clone completamente independente 
-clone.name = "Pete"; // altere dados nele
+// now clone is a fully independent clone
+clone.name = "Pete"; // changed the data in it
 
-alert( user.name ); // contudo, ainda está 'John' no objeto original 
+alert( user.name ); // still John in the original object
 ```
 
-Podemos também empregar o método [Object.assign](mdn:js/Object/assign) para isso.
+Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
 
-A sintaxe é:
+The syntax is:
 
 ```js
 Object.assign(dest, [src1, src2, src3...])
 ```
 
-- Os argumentos `dest`, e `src1, ..., srcN` (que podem ser tantos quantos necessários) são objetos.
-- Ele copia as propriedades de todos os objects `src1, ..., srcN` para `dest`. Por outras palavras, propriedades de todos os objetos, a começar pelo segundo, são copiadas para o primeiro. Depois, ele retorna `dest`.
+- Arguments `dest`, and `src1, ..., srcN` (can be as many as needed) are objects.
+- It copies the properties of all objects `src1, ..., srcN` into `dest`. In other words, properties of all arguments starting from the 2nd are copied into the 1st. Then it returns `dest`.
 
-Por exemplo, podemos utilizá-lo para fundir vários objetos num só:
+For instance, we can use it to merge several objects into one:
 ```js
 let user = { name: "John" };
 
@@ -640,25 +644,25 @@ let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
 *!*
-// copia todas propriedades de 'permissions1' e 'permissions2' para 'user'
+// copies all properties from permissions1 and permissions2 into user
 Object.assign(user, permissions1, permissions2);
 */!*
 
-// agora, user = { name: "John", canView: true, canEdit: true }
+// now user = { name: "John", canView: true, canEdit: true }
 ```
 
-Se, o objeto recetor (`user`) já tiver alguma propriedade com o mesmo nome, ela será substituída (*overwritten*):
+If the receiving object (`user`) already has the same named property, it will be overwritten:
 
 ```js
 let user = { name: "John" };
 
-// substitua ('overwrite') 'nome', e adicione 'isAdmin'
+// overwrite name, add isAdmin
 Object.assign(user, { name: "Pete", isAdmin: true });
 
-// agora, user = { name: "Pete", isAdmin: true }
+// now user = { name: "Pete", isAdmin: true }
 ```
 
-Podemos também utilizar `Object.assign` para substituir o ciclo (*loop*) acima para uma clonagem simples:
+We also can use `Object.assign` to replace the loop for simple cloning:
 
 ```js
 let user = {
@@ -671,12 +675,11 @@ let clone = Object.assign({}, user);
 */!*
 ```
 
-Ele copia todas as propriedades de `user` para o objecto vazio e retorna este. Na verdade, é o mesmo laço (*loop*), mas mais curto.
+It copies all properties of `user` into the empty object and returns it. Actually, the same as the loop, but shorter.
 
-Até agora, assumimos que todas as propriedades de `user` são primitivas. Mas, propriedades podem ser referências para outros objetos. O que fazer nesse caso?
+Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
 
-Como aqui:
-
+Like this:
 ```js run
 let user = {
   name: "John",
@@ -689,10 +692,9 @@ let user = {
 alert( user.sizes.height ); // 182
 ```
 
-Agora, não é suficiente efetuar a cópia `clone.sizes = user.sizes`, porque `user.sizes` é um objeto, e aí seria copiado por referência. Então, `clone` e `user` iriam partilhar a mesma propriedade "*sizes*":
+Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes` is an object, it will be copied by reference. So `clone` and `user` will share the same sizes:
 
-Deste modo:
-
+Like this:
 ```js run
 let user = {
   name: "John",
@@ -704,48 +706,49 @@ let user = {
 
 let clone = Object.assign({}, user);
 
-alert( user.sizes === clone.sizes ); // true (verdadeiro), é o mesmo objeto
+alert( user.sizes === clone.sizes ); // true, same object
 
-// 'user' e 'clone' partilham 'sizes'
-user.sizes.width++;       // altere uma propriedade num lugar
-alert(clone.sizes.width); // 51, e verá o resultado a partir do outro
+// user and clone share sizes
+user.sizes.width++;       // change a property from one place
+alert(clone.sizes.width); // 51, see the result from the other one
 ```
 
-Para corrigir isso, deveriamos empregar o laço (*loop*) para clonagem, que examina cada valor de `user[key]` e, se for um objeto, então também replica essa estrutura. Essa, é chamada de uma "clonagem profunda" ("*deep cloning*").
+To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
 
-Existe um algoritmo padrão (*standard*) para clonagem profunda (deep cloning), que trata tanto do caso acima como de mais complexos, chamado de [Structured cloning algorithm](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data) (algoritmo de clonagem de estruturas). Para não se reinventar a roda, poderemos utilizar uma implementação operacional do mesmo disponível na biblioteca (*library*) de JavaScript [lodash](https://lodash.com), o método é chamado [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
-## Sumário
 
-Objetos são *arrays* associativos (*associative arrays*), com várias funcionalidades especiais.
 
-Eles armazenam propriedades em pares chave-valor, onde:
-- As chaves das propriedades devem ser *strings* ou símbolos (geralmente *strings*).
-- Valores podem ser de qualquer tipo.
+## Summary
 
-Para aceder a uma propriedade, podemos utilizar:
-- A notação por ponto: `obj.property`.
-- A notação por parênteses retos `obj["property"]`. Os parênteses retos permitem receber a chave de uma variável, como por exemplo `obj[varWithKey]`.
+Objects are associative arrays with several special features.
 
-Operadores adicionais:
-- Para remover uma propriedade: `delete obj.prop`.
-- Para verificar se uma propriedade com uma dada chave existe: `"key" in obj`.
-- Para iterar sobre um objeto: o ciclo `for (let key in obj)`.
+They store properties (key-value pairs), where:
+- Property keys must be strings or symbols (usually strings).
+- Values can be of any type.
 
-Objetos são atribuidos e copiados por referência. Por outras palavras, uma variável não armazena o "valor do objeto", mas uma "referência" (endereço em memória) do valor. Assim, copiar tal variável ou passá-la como argumento de uma função copia tal referência, não o objeto. Todas as operações sobre cópias de referências (como adicionar/remover propriedades) são executadas sobre um mesmo único objeto.
+To access a property, we can use:
+- The dot notation: `obj.property`.
+- Square brackets notation `obj["property"]`. Square brackets allow to take the key from a variable, like `obj[varWithKey]`.
 
- Para efetuar uma "verdadeira cópia" (um clone), podemos utilizar `Object.assign` ou  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+Additional operators:
+- To delete a property: `delete obj.prop`.
+- To check if a property with the given key exists: `"key" in obj`.
+- To iterate over an object: `for (let key in obj)` loop.
 
-O que estudámos neste capítulo é o chamado "objeto simples" ("*plain object*"), ou simplesmente `Objeto`.
+Objects are assigned and copied by reference. In other words, a variable stores not the "object value", but a "reference" (address in memory) for the value. So copying such a variable or passing it as a function argument copies that reference, not the object. All operations via copied references (like adding/removing properties) are performed on the same single object.
 
-Existem muitos outros tipos de objetos em JavaScript:
+To make a "real copy" (a clone) we can use `Object.assign` or  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
-- `Array` para armazenar coleções de dados ordenadas,
-- `Date` para armazenar informação sobre data e tempo,
-- `Error` para armazenar informação sobre um erro.
-- ...E outros mais.
+What we've studied in this chapter is called a "plain object", or just `Object`.
 
-Eles têm as suas funcionalidades especiais, que estudaremos mais adiante. Por vezes, pessoas dizem algo como "o tipo
-Array" ou "o tipo Data" (*Date*), mas formalmente eles não são própriamente tipos, mas pertencem a um único tipo de dados "objeto". E o extendem de várias formas.
+There are many other kinds of objects in JavaScript:
 
-Objetos em JavaScript são muito poderosos. Aqui, apenas tocámos na superfície de um realmente amplo tópico. Iremos, mais especificamente, trabalhar e aprender sobre objetos em futuras partes do tutorial.
+- `Array` to store ordered data collections,
+- `Date` to store the information about the date and time,
+- `Error` to store the information about an error.
+- ...And so on.
+
+They have their special features that we'll study later. Sometimes people say something like "Array type" or "Date type", but formally they are not types of their own, but belong to a single "object" data type. And they extend it in various ways.
+
+Objects in JavaScript are very powerful. Here we've just scratched the surface of a topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.

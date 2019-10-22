@@ -2,18 +2,19 @@ importance: 5
 
 ---
 
-# Verifique por vazio (*emptiness*)
+# Check for emptiness
 
-Escreva a função `isEmpty(obj)`, que retorna `true` se o  objeto não tiver propriedades, e `false` caso contrário.
+Write the function `isEmpty(obj)` which returns `true` if the object has no properties, `false` otherwise.
 
-Deve assim funcionar:
+Should work like that:
+
 ```js
 let schedule = {};
 
-alert( isEmpty(schedule) ); // verdadeiro
+alert( isEmpty(schedule) ); // true
 
-schedule["8:30"] = "levante-se";
+schedule["8:30"] = "get up";
 
-alert( isEmpty(schedule) ); // falso
+alert( isEmpty(schedule) ); // false
 ```
 
