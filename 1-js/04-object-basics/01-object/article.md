@@ -106,7 +106,6 @@ Isto, porque o ponto requere que a chave (*key*) seja um identificador de variá
 
 Existe uma alternativa, a "notação por parênteses retos", que funciona com qualquer *string* (cadeia-de-carateres):
 
-
 ```js run
 let user = {};
 
@@ -182,6 +181,7 @@ O significado de uma propriedade computada é simples: `[fruit]` diz que o nome 
 Assim, se um visitante inserir `"apple"`, `bag` se tornará em `{apple: 5}`.
 
 Essencialmente, isso é o mesmo que:
+
 ```js run
 let fruit = prompt("Que fruta comprar?", "apple");
 let bag = {};
@@ -633,6 +633,7 @@ Object.assign(dest, [src1, src2, src3...])
 - Ele copia as propriedades de todos os objects `src1, ..., srcN` para `dest`. Por outras palavras, propriedades de todos os objetos, a começar pelo segundo, são copiadas para o primeiro. Depois, ele retorna `dest`.
 
 Por exemplo, podemos utilizá-lo para fundir vários objetos num só:
+
 ```js
 let user = { name: "John" };
 
@@ -720,15 +721,19 @@ Existe um algoritmo padrão (*standard*) para clonagem profunda (deep cloning), 
 Objetos são *arrays* associativos (*associative arrays*), com várias funcionalidades especiais.
 
 Eles armazenam propriedades em pares chave-valor, onde:
+
 - As chaves das propriedades devem ser *strings* ou símbolos (geralmente *strings*).
 - Valores podem ser de qualquer tipo.
 
 Para aceder a uma propriedade, podemos utilizar:
+
 - A notação por ponto: `obj.property`.
 - A notação por parênteses retos `obj["property"]`. Os parênteses retos permitem receber a chave de uma variável, como por exemplo `obj[varWithKey]`.
 
 Operadores adicionais:
+
 - Para remover uma propriedade: `delete obj.prop`.
+
 - Para verificar se uma propriedade com uma dada chave existe: `"key" in obj`.
 - Para iterar sobre um objeto: o ciclo `for (let key in obj)`.
 

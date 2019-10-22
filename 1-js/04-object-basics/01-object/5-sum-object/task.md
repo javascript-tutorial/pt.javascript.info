@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Soma das propriedades de um objeto 
+# Soma das propriedades de um objeto
 
 Temos um objeto armazenando salários da nossa equipa:
 
