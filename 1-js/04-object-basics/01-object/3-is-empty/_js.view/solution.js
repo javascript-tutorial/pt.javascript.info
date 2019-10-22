@@ -1,6 +1,6 @@
 function isEmpty(obj) {
   for (let key in obj) {
-    // if the loop has started, there is a property
+    // se o laço começou, existe uma propriedade
     return false;
   }
   return true;
