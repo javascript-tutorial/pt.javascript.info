@@ -40,7 +40,11 @@ Por favor, note que a última linha não executa a função, porque não existem
 
 Em JavaScript, uma função é um valor, então podemos lidar com ela como com um valor. O código acima mostra a sua representação em formato de texto (string), que é o código fonte.
 
+<<<<<<< HEAD
 Óbviamente que é um valor especial, porque podemos invocá-lo usando `sayHi()`.
+=======
+Surely, a function is a special value, in the sense that we can call it like `sayHi()`.
+>>>>>>> 70ca842bef2390bc26d13dea2b856838aa890fe0
 
 Mas ainda assim é um valor. Então, podemos manuseá-lo como com outros tipos de valores.
 

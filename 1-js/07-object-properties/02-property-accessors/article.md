@@ -3,7 +3,11 @@
 
 There are two kinds of properties.
 
+<<<<<<< HEAD
 The first kind is *data properties*. We already know how to work with them. Actually, all properties that we've been using till now were data properties.
+=======
+The first kind is *data properties*. We already know how to work with them. All properties that we've been using until now were data properties.
+>>>>>>> 70ca842bef2390bc26d13dea2b856838aa890fe0
 
 The second type of properties is something new. It's *accessor properties*. They are essentially functions that work on getting and setting a value, but look like regular properties to an external code.
 
@@ -27,7 +31,7 @@ The getter works when `obj.propName` is read, the setter -- when it is assigned.
 
 For instance, we have a `user` object with `name` and `surname`:
 
-```js run
+```js
 let user = {
   name: "John",
   surname: "Smith"
@@ -87,18 +91,22 @@ Now we have a "virtual" property. It is readable and writable, but in fact does 
 ```smart header="Accessor properties are only accessible with get/set"
 Once a property is defined with `get prop()` or `set prop()`, it's an accessor property, not a data properety any more.
 
+<<<<<<< HEAD
 - If there's a getter -- we can read `object.prop`, othrewise we can't.
 - If there's a setter -- we can set `object.prop=...`, othrewise we can't.
 
 And in either case we can't `delete` an accessor property.
+=======
+```smart header="No way to handle `delete`"
+There's no similar method to handle deletion of an accessor property. Only getter/setter methods may exist.
+>>>>>>> 70ca842bef2390bc26d13dea2b856838aa890fe0
 ```
-
 
 ## Accessor descriptors
 
-Descriptors for accessor properties are different -- as compared with data properties.
+Descriptors for accessor properties are different from those for data properties.
 
-For accessor properties, there is no `value` and `writable`, but instead there are `get` and `set` functions.
+For accessor properties, there is no `value` or `writable`, but instead there are `get` and `set` functions.
 
 So an accessor descriptor may have:
 
@@ -181,9 +189,15 @@ Technically, the external code may still access the name directly by using `user
 
 ## Using for compatibility
 
+<<<<<<< HEAD
 One of the great ideas behind getters and setters -- they allow to take control over a "normal" data property and tweak it at any moment.
 
 For instance, we started implementing user objects using data properties `name` and `age`:
+=======
+One of the great uses of accessors is that they allow to take control over a "regular" data property at any moment by replacing it with a getter and a setter and tweak its behavior.
+
+Imagine we started implementing user objects using data properties `name` and `age`:
+>>>>>>> 70ca842bef2390bc26d13dea2b856838aa890fe0
 
 ```js
 function User(name, age) {
