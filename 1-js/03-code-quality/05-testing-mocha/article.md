@@ -1,4 +1,4 @@
-# Teste automatizado com mocha
+# Teste automatizado com Mocha
 
 Teste automatizado será empregue nas próximas tarefas.
 
