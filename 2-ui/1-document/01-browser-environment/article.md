@@ -6,16 +6,16 @@ A plataforma pode ser um navegador, ou servidor web, ou uma máquina de lavar, o
 
 Um host environment fornece objetos específicos de platarfoma e funções adicionais ao núcleo da linguagem. Navegadores web dão um significado para páginas de controle web. Node.js fornece aplicações server-side, e assim vai.
 
-Here's a bird's-eye view of what we have when JavaScript runs in a web-browser:
+Aqui uma visão rápida do que temos quando JavaScript roda em um navegador web:
 
 ![](windowObjects.svg)
 
-There's a "root" object called `window`. It has two roles:
+Existe um objeto "raiz" chamado `window`. Que tem  dois papeis:
 
-1. First, it is a global object for JavaScript code, as described in the chapter <info:global-object>.
-2. Second, it represents the "browser window" and provides methods to control it.
+1. Primeiro, existe um objeto global para o código JavaScript, como descrito no capítulo <info:global-object>.
+2. Segundo, representa a "janela de navegação" e fornece métodos de controle.
 
-For instance, here we use it as a global object:
+Por instância, aqui nós usamos como objeto global:
 
 ```js run
 function sayHi() {
@@ -26,7 +26,7 @@ function sayHi() {
 window.sayHi();
 ```
 
-And here we use it as a browser window, to see the window height:
+E aqui nós usamos como janela de navegação, para ver a altura da janela:
 
 ```js run
 alert(window.innerHeight); // inner window height
@@ -34,9 +34,9 @@ alert(window.innerHeight); // inner window height
 
 There are more window-specific methods and properties, we'll cover them later.
 
-## Document Object Model (DOM)
+## Modelo de Objeto de Documento (DOM)
 
-The `document` object gives access to the page content. We can change or create anything on the page using it.
+O `document object` da acesso ao conteúdo da página. Nós podemos mudar ou criar qualquer coisa na página usando-o.
 
 For instance:
 ```js run
