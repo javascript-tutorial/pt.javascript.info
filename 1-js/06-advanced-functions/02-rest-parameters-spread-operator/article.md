@@ -8,7 +8,7 @@ Por exemplo:
 - `Object.assign(dest, src1, ..., srcN)` -- copia propriedades de `src1..N` para `dest`.
 - ...e assim por diante.
 
-Neste capítulo vamos aprender a fazer o mesmo e, o mais importante, se sentindo confortável trabalhando com tais funções e listas _(arrays)_.
+Neste capítulo vamos aprender a fazer o mesmo e, o mais importante, se sentindo confortável trabalhando com tais funções e listas (_arrays_).
 
 ## Parâmetros _rest_ `...`
 
@@ -25,17 +25,17 @@ alert( sum(1, 2, 3, 4, 5) );
 
 Não haverão erros por "uso excessivo" de argumentos, mas é claro que somente os dois primeiros valores serão levados em consideração no resultado.
 
-Os parâmetros _rest_, podem ser declarados na definição da função com três pontos `...`. Eles literalmente significam "reúna os parâmetros restantes em uma lista _(array)_".
+Os parâmetros _rest_, podem ser declarados na definição da função com três pontos `...`. Eles literalmente significam "reúna os parâmetros restantes em uma lista (_array_)".
 
 Por exemplo, para reunir todos os argumentos em um _array_ `args`:
 
 ```js run
 function sumAll(...args) { // args é o nome do 'array'
-  let soma = 0;
+  let sum = 0;
 
-  for (let arg of args) soma += arg;
+  for (let arg of args) sum += arg;
 
-  return soma;
+  return sum;
 }
 
 alert( sumAll(1) ); // 1
@@ -45,14 +45,14 @@ alert( sumAll(1, 2, 3) ); // 6
 
 Nós podemos escolher receber os primeiros parâmetros como variáveis, e reunir os restantes.
 
-Abaixo os primeiros dois argumentos vão para variáveis, e os restantes para o _array_ `titulos`:
+Abaixo os primeiros dois argumentos vão para variáveis, e os restantes para o _array_ `titles`:
 
 ```js run
 function showName(firstName, lastName, ...titles) {
   alert( firstName + ' ' + lastName ); // Julius Caesar
 
-  // o restante vai para o array titulos
-  // i.e. titulos = ["Consul", "Imperator"]
+  // o restante vai para o array titles
+  // i.e. titles = ["Consul", "Imperator"]
   alert( titles[0] ); // Consul
   alert( titles[1] ); // Imperator
   alert( titles.length ); // 2
@@ -61,7 +61,7 @@ function showName(firstName, lastName, ...titles) {
 showName("Julius", "Caesar", "Consul", "Imperator");
 ```
 
-````warn header="The rest parameters must be at the end"
+````warn header="Os parâmetros rest devem estar no final"
 Os parâmetros _rest_ reúnem todos os argumentos restantes, então o exemplo seguinte não faz sentido e causa um erro:
 
 ```js
@@ -96,17 +96,17 @@ showName("Julius", "Caesar");
 showName("Ilya");
 ```
 
-Antigamente, parâmetros _rest_ não existiam na linguagem, portanto usar `arguments` era a única forma de receber todos os argumentos da função, não importando o seu total de argumentos.
+Antigamente, parâmetros _rest_ não existiam na linguagem, portanto usar `arguments` era a única forma de receber todos os argumentos da função, não importando o total dos seus argumentos.
 
 E isso ainda funciona atualmente.
 
 Mas a desvantagem é que, apesar do `arguments` ter algumas caracteristicas de _arrays_ e de ser iterável, não é um _array_ de fato. Ele não suporta métodos de _arrays_, por exemplo, não podemos chamar `arguments.map(...)`.
 
-E além disso, sempre contém todos os argumentos. Não podemos os obter parcialmente, como fizemos com parâmetros _rest_.
+E além disso, sempre contém todos os argumentos. Não podemos os obter parcialmente, como o fizemos com parâmetros _rest_.
 
 Então, quando precisamos dessas funcionalidades, os parâmetros _rest_ são a preferência.
 
-````smart header="Arrow functions do not have `\"arguments\"`"
+````smart header="Funções arrow não possuem `\"arguments\"`"
 Se tentarmos acessar o objeto `arguments` de dentro de uma função _arrow_, ele os recebe da função "normal" externa.
 
 Aqui está um exemplo:
@@ -202,7 +202,7 @@ let str = "Olá";
 alert( [...str] ); // O,l,á
 ```
 
-Internamente, o operador _spread_ usa iteradores _(iterators)_ para reunir elementos, da mesma forma como `for..of` faz.
+Internamente, o operador _spread_ usa iteradores (_iterators_) para reunir elementos, da mesma forma como `for..of` faz.
 
 Então, para uma string, `for..of` retorna caracteres, e `...str` se torna `"O","l","á"`. A lista de caracteres é passada para o inicializador do _array_ `[...str]`
 
@@ -219,14 +219,14 @@ O resultado é o mesmo que `...[str]`.
 
 Mas há uma diferença sútil entre `Array.from(obj)` e `[...obj]`:
 
-- `Array.from` opera tanto em listas-genéricas _(array-likes)_ como em iteráveis.
-- O operador spread opera somente em iteráveis.
+- `Array.from` opera tanto em listas-genéricas (_array-likes_) como em iteráveis.
+- O operador _spread_ opera somente em iteráveis.
 
 Então, para a tarefa de transformar algo em um _array_, `Array.from` tende a ser uma solução mais universal.
 
 ## Sumário
 
-Quando nos depararmos com `"..."` no código, estamos falando de parâmetros _rest_ ou operador _spread_.
+Quando nos depararmos com `"..."` no código, estamos falando de parâmetros _rest_ ou do operador _spread_.
 
 Existe uma forma fácil para distinguir entre eles:
 
@@ -240,4 +240,4 @@ Padrões de uso:
 
 Juntos, eles nos ajudam a efetuar a transição entre uma lista e um _array_ de parâmetros com facilidade.
 
-Todos os argumentos de uma chamada de função também estão disponíveis na "moda antiga" `arguments`: objeto iterável tipo lista-genérica _(array-like)_.
+Todos os argumentos de uma chamada de função também estão disponíveis na "moda antiga" `arguments`: objeto iterável tipo lista-genérica (_array-like_).
