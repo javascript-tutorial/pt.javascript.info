@@ -2,9 +2,9 @@
 
 A linguagem JavaScript foi inicialmente criada para navegadores web. Desde então, tem evoluído e se tornado uma linguagem com muitos usuários e plataformas.
 
-A plataforma pode ser um navegador, ou servidor web, ou uma máquina de lavar, ou outro *host*. Cada um deles fornece funcionalidades específicas da plataforma. Nas especificações JavaScript são conhecidas como *host enviroment*.
+A plataforma pode ser um navegador, ou servidor web, ou uma máquina de lavar, ou outro *host*. Cada um deles fornece funcionalidades específicas da plataforma. Nas especificações JavaScript são conhecidas como *ambiente de hospedagem*.
 
-Um host environment fornece objetos específicos de platarfoma e funções adicionais ao núcleo da linguagem. Navegadores web dão um significado para páginas de controle web. Node.js fornece aplicações server-side, e assim vai.
+Um ambente de hospedagem fornece objetos específicos de platarfoma e funções adicionais ao núcleo da linguagem. Navegadores web dão um significado para páginas de controle web. Node.js fornece aplicações server-side, e assim vai.
 
 Aqui uma visão rápida do que temos quando JavaScript roda em um navegador web:
 
@@ -19,28 +19,28 @@ Por instância, aqui nós usamos como objeto global:
 
 ```js run
 function sayHi() {
-  alert("Hello");
+  alert("Olá");
 }
 
-// global functions are accessible as properties of window
+// funcoes globais sao acessiveis como propriedades da janela
 window.sayHi();
 ```
 
 E aqui nós usamos como janela de navegação, para ver a altura da janela:
 
 ```js run
-alert(window.innerHeight); // inner window height
+alert(window.innerHeight); // altura da janela interna
 ```
 
-There are more window-specific methods and properties, we'll cover them later.
+Existem mais metodos específicos de janela e propriedades, vamos falar sobre eles mais tarde.
 
 ## Modelo de Objeto de Documento (DOM)
 
-O `document object` da acesso ao conteúdo da página. Nós podemos mudar ou criar qualquer coisa na página usando-o.
+O `objeto de documento` da acesso ao conteúdo da página. Nós podemos mudar ou criar qualquer coisa na página usando-o.
 
-For instance:
+Por instância:
 ```js run
-// change the background color to red
+// mudando a cor do fundo para vermelho
 document.body.style.background = "red";
 
 // change it back after 1 second
