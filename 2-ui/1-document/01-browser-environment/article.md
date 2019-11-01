@@ -32,7 +32,7 @@ E aqui nós usamos como janela de navegação, para ver a altura da janela:
 alert(window.innerHeight); // altura da janela interna
 ```
 
-Existem mais metodos específicos de janela e propriedades, vamos falar sobre eles mais tarde.
+Existem mais métodos específicos de janela e propriedades, vamos falar sobre eles mais tarde.
 
 ## Modelo de Objeto de Documento (DOM)
 
@@ -53,7 +53,7 @@ Pode aconter que dois grupos de trabalho que desenvolveram:
 1. [W3C](https://pt.wikipedia.org/wiki/W3C) -- a documentação está em <https://www.w3c.br/>.
 2. [WhatWG](https://pt.wikipedia.org/wiki/Web_Hypertext_Application_Technology_Working_Group), publicação em <https://dom.spec.whatwg.org>.
 
-As it happens, the two groups don't always agree, so it's like we have two sets of standards. But they are very similar and eventually things merge. The documentation that you can find on the given resources is very similar, with about a 99% match. There are very minor differences that you probably won't notice.
+Como as vezes acontece, os dois grupos nem sempre entram em concordância, então é como se nós tivessemos dois conjuntos de padrões. Mas eles são muito parecidos e eventualmente as coisas são compatíveis. A documentação que você pode encontrar # on the given resources é muito semelhante, com 99% de compatibilidade. Existem uma diferença pequena que você provavelmente não notaria.
 
 Personally, I find <https://dom.spec.whatwg.org> more pleasant to use.
 
