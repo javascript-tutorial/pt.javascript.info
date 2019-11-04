@@ -4,8 +4,8 @@ We may decide to execute a function not right now, but at a certain time later. 
 
 There are two methods for it:
 
-- `setTimeout` allows to run a function once after the interval of time.
-- `setInterval` allows to run a function regularly with the interval between the runs.
+- `setTimeout` allows us to run a function once after the interval of time.
+- `setInterval` allows us to run a function repeatedly, starting after the interval of time, then repeating continuously at that interval.
 
 These methods are not a part of JavaScript specification. But most environments have the internal scheduler and provide these methods. In particular, they are supported in all browsers and Node.js.
 
@@ -62,7 +62,7 @@ So, this will also work:
 setTimeout("alert('Hello')", 1000);
 ```
 
-But using strings is not recommended, use functions instead of them, like this:
+But using strings is not recommended, use arrow functions instead of them, like this:
 
 ```js run no-beautify
 setTimeout(() => alert('Hello'), 1000);
@@ -133,11 +133,11 @@ In browsers IE and Firefox the internal timer continues "ticking" while showing 
 So if you run the code above and don't dismiss the `alert` window for some time, then in Firefox/IE next `alert` will be shown immediately as you do it (2 seconds passed from the previous invocation), and in Chrome/Opera/Safari -- after 2 more seconds (timer did not tick during the `alert`).
 ```
 
-## Recursive setTimeout
+## Nested setTimeout
 
 There are two ways of running something regularly.
 
-One is `setInterval`. The other one is a recursive `setTimeout`, like this:
+One is `setInterval`. The other one is a nested `setTimeout`, like this:
 
 ```js
 /** instead of:
@@ -154,7 +154,7 @@ let timerId = setTimeout(function tick() {
 
 The `setTimeout` above schedules the next call right at the end of the current one `(*)`.
 
-The recursive `setTimeout` is a more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
+The nested `setTimeout` is a more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
 
 For instance, we need to write a service that sends a request to the server every 5 seconds asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
 
@@ -178,28 +178,32 @@ let timerId = setTimeout(function request() {
 
 And if we regularly have CPU-hungry tasks, then we can measure the time taken by the execution and plan the next call sooner or later.
 
+<<<<<<< HEAD
 **Recursive `setTimeout` guarantees a delay between the executions, `setInterval` -- does not.**
+=======
+**Nested `setTimeout` allows to set the delay between the executions more precisely than `setInterval`.**
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 Let's compare two code fragments. The first one uses `setInterval`:
 
 ```js
 let i = 1;
 setInterval(function() {
-  func(i);
+  func(i++);
 }, 100);
 ```
 
-The second one uses recursive `setTimeout`:
+The second one uses nested `setTimeout`:
 
 ```js
 let i = 1;
 setTimeout(function run() {
-  func(i);
+  func(i++);
   setTimeout(run, 100);
 }, 100);
 ```
 
-For `setInterval` the internal scheduler will run `func(i)` every 100ms:
+For `setInterval` the internal scheduler will run `func(i++)` every 100ms:
 
 ![](setinterval-interval.svg)
 
@@ -215,11 +219,11 @@ In this case the engine waits for `func` to complete, then checks the scheduler 
 
 In the edge case, if the function always executes longer than `delay` ms, then the calls will happen without a pause at all.
 
-And here is the picture for the recursive `setTimeout`:
+And here is the picture for the nested `setTimeout`:
 
 ![](settimeout-interval.svg)
 
-**The recursive `setTimeout` guarantees the fixed delay (here 100ms).**
+**The nested `setTimeout` guarantees the fixed delay (here 100ms).**
 
 That's because a new call is planned at the end of the previous one.
 
@@ -240,9 +244,13 @@ There's a side-effect. A function references the outer lexical environment, so, 
 
 There's a special use case: `setTimeout(func, 0)`, or just `setTimeout(func)`.
 
-This schedules the execution of `func` as soon as possible. But scheduler will invoke it only after the current code is complete.
+This schedules the execution of `func` as soon as possible. But the scheduler will invoke it only after the currently executing script is complete.
 
+<<<<<<< HEAD
 So the function is scheduled to run "right after" the current code. In other words, *asynchronously*.
+=======
+So the function is scheduled to run "right after" the current script.
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 For instance, this outputs "Hello", then immediately "World":
 
@@ -252,7 +260,7 @@ setTimeout(() => alert("World"));
 alert("Hello");
 ```
 
-The first line "puts the call into calendar after 0ms". But the scheduler will only "check the calendar" after the current code is complete, so `"Hello"` is first, and `"World"` -- after it.
+The first line "puts the call into calendar after 0ms". But the scheduler will only "check the calendar" after the current script is complete, so `"Hello"` is first, and `"World"` -- after it.
 
 ### Splitting CPU-hungry tasks
 
@@ -443,6 +451,7 @@ Now the `<div>` shows increasing values of `i`.
 
 ## Summary
 
+<<<<<<< HEAD
 - Methods `setInterval(func, delay, ...args)` and `setTimeout(func, delay, ...args)` allow to run the `func` regularly/once after `delay` milliseconds.
 - To cancel the execution, we should call `clearInterval/clearTimeout` with the value returned by `setInterval/setTimeout`.
 - Nested `setTimeout` calls is a more flexible alternative to `setInterval`. Also they can guarantee the minimal time *between* the executions.
@@ -451,6 +460,13 @@ Now the `<div>` shows increasing values of `i`.
 Some use cases of `setTimeout(...,0)`:
 - To split CPU-hungry tasks into pieces, so that the script doesn't "hang"
 - To let the browser do something else while the process is going on (paint the progress bar).
+=======
+- Methods `setTimeout(func, delay, ...args)` and `setInterval(func, delay, ...args)` allow us to run the `func` once/regularly after `delay` milliseconds.
+- To cancel the execution, we should call `clearTimeout/clearInterval` with the value returned by `setTimeout/setInterval`.
+- Nested `setTimeout` calls are a more flexible alternative to `setInterval`, allowing us to set the time *between* executions more precisely.
+- Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current script is complete".
+- The browser limits the minimal delay for five or more nested call of `setTimeout` or for `setInterval` (after 5th call) to 4ms. That's for historical reasons.
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 Please note that all scheduling methods do not *guarantee* the exact delay. We should not rely on that in the scheduled code.
 

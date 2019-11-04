@@ -257,7 +257,7 @@ For instance:
 
 Please note: the second script actually works before the first! So we'll see `undefined` first, and then `object`.
 
-That's because modules are deferred, so way wait for the document to be processed. The regular scripts runs immediately, so we saw its output first.
+That's because modules are deferred, so we wait for the document to be processed. The regular scripts runs immediately, so we saw its output first.
 
 When using modules, we should be aware that HTML-document can show up before the JavaScript application is ready. Some functionality may not work yet. We should put transparent overlays or "loading indicators", or otherwise ensure that the visitor won't be confused because of it.
 
@@ -351,7 +351,7 @@ Build tools do the following:
     - Unused exports removed ("tree-shaking").
     - Development-specific statements like `console` and `debugger` removed.
     - Modern, bleeding-edge JavaScript syntax may be transformed to older one with similar functionality using [Babel](https://babeljs.io/).
-    - The resulting file is minified (spaces removed, variables replaced with shorter named etc).
+    - The resulting file is minified (spaces removed, variables replaced with shorter names, etc).
 
 That said, native modules are also usable. So we won't be using Webpack here: you can configure it later.
 

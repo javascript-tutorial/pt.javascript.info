@@ -40,7 +40,11 @@ Por favor, note que a última linha não executa a função, porque não existem
 
 Em JavaScript, uma função é um valor, então podemos lidar com ela como com um valor. O código acima mostra a sua representação em formato de texto (string), que é o código fonte.
 
+<<<<<<< HEAD
 Óbviamente que é um valor especial, porque podemos invocá-lo usando `sayHi()`.
+=======
+Surely, a function is a special value, in the sense that we can call it like `sayHi()`.
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 Mas ainda assim é um valor. Então, podemos manuseá-lo como com outros tipos de valores.
 
@@ -352,7 +356,11 @@ welcome(); // bem, agora
 Como uma regra do polegar, quando precisarmos de declarar uma função, o primeiro a considerar é uma sintaxe de Declaração de Função, como utilizámos acima. Ela providencia mais liberdade para organizar o código, porque podemos chamar tais funções antes de serem declaradas.
 
 
+<<<<<<< HEAD
 Também é um pouco mais fácil procurar por `function f(…) {…}` no código do que `let f = function(…) {…}`. Declarações de Função "sobressaem" mais à vista.
+=======
+That's also better for readability, as it's easier to look up `function f(…) {…}` in the code than `let f = function(…) {…};`. Function Declarations are more "eye-catching".
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 ...Mas se por alguma razão uma Declaração de Função não nos for útil, (vimos um exemplo acima), então uma Expressão de Função será a escolha.
 ```
