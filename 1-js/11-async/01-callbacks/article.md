@@ -1,10 +1,10 @@
 
 
-# Introduction: callbacks
+# Introdução: callbacks
 
-Many actions in JavaScript are *asynchronous*.
+Muitas ações em JavaScript são *assíncronas*.
 
-For instance, take a look at the function `loadScript(src)`:
+Por exemplo, veja a função `loadScript(src)`:
 
 ```js
 function loadScript(src) {
@@ -14,40 +14,40 @@ function loadScript(src) {
 }
 ```
 
-The purpose of the function is to load a new script. When it adds the `<script src="…">` to the document, the browser loads and executes it.
+O objetivo da função é carregar um novo script. Quando ela adiciona o `<script src="…">` no documento, o navegador carrega e executa esse script.
 
-We can use it like this:
+Podemos usar essa função assim:
 
 ```js
-// loads and executes the script
+// carrega e executa o script
 loadScript('/my/script.js');
 ```
 
-The function is called "asynchronously," because the action (script loading) finishes not now, but later.
+A função é chamada "assincronamente" porque a ação (carregar o script) não termina no mesmo instante. Ela termina mais tarde.
 
-The call initiates the script loading, then the execution continues. While the script is loading, the code below may finish executing, and if the loading takes time, other scripts may run meanwhile too.
+A chamada inicia o carregamento do script, e depois a execução continua. Enquanto o script está carregando, o código que está embaixo pode terminar de executar. E se o carregamento demorar, outros scripts podem executar enquanto isso.
 
 ```js
 loadScript('/my/script.js');
-// the code below loadScript doesn't wait for the script loading to finish
+// o código embaixo de loadScript não espera o carregamento do script terminar
 // ...
 ```
 
-Now let's say we want to use the new script when it loads. It probably declares new functions, so we'd like to run them.
+Agora, vamos imaginar que queremos usar o novo script quando ele terminar de carregar. Ele provavelmente declara novas funções, e queremos executar elas.
 
-But if we do that immediately after the `loadScript(…)` call, that wouldn't work:
+Mas se nós fizermos isso imediatamente depois da chamada `loadScript(…)`, não iria funcionar.
 
 ```js
-loadScript('/my/script.js'); // the script has "function newFunction() {…}"
+loadScript('/my/script.js'); // o script tem "function newFunction() {…}"
 
 *!*
-newFunction(); // no such function!
+newFunction(); // a função não existe!
 */!*
 ```
 
-Naturally, the browser probably didn't have time to load the script. So the immediate call to the new function fails. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
+Naturalmente, o navegador provavelmente não teve tempo de carregar o script. Então a chamada imediata para a nova função falha. Do jeito que está, a função `loadScript` não provê uma maneira de saber quando o carregamento termina. O script carrega e eventualmente é executado, isso é tudo. Mas nós queremos saber quando isso acontece, para podermos usar as novas funções e variáveis daquele script.
 
-Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
+Vamos adicionar uma função `callback` como segundo argumento em `loadScript` que deve executar quando o script terminar de carregar:
 
 ```js
 function loadScript(src, *!*callback*/!*) {
@@ -62,19 +62,19 @@ function loadScript(src, *!*callback*/!*) {
 }
 ```
 
-Now if we want to call new functions from the script, we should write that in the callback:
+Agora se nós quisermos chamar as novas funções do script, nós podemos fazer isso no callback:
 
 ```js
 loadScript('/my/script.js', function() {
-  // the callback runs after the script is loaded
-  newFunction(); // so now it works
+  // o callback executa depois que o script termina de carregar
+  newFunction(); // então agora funciona
   ...
 });
 ```
 
-That's the idea: the second argument is a function (usually anonymous) that runs when the action is completed.
+Esta é a ideia: o segundo argumento é uma função (normalmente anônima) que executa quando a ação termina.
 
-Here's a runnable example with a real script:
+Veja um exemplo executável com um script real:
 
 ```js run
 function loadScript(src, callback) {
@@ -86,15 +86,15 @@ function loadScript(src, callback) {
 
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
-  alert(`Cool, the ${script.src} is loaded`);
-  alert( _ ); // function declared in the loaded script
+  alert(`Legal, o ${script.src} está carregado`);
+  alert( _ ); // função declarada no script carregado
 });
 */!*
 ```
 
-That's called a "callback-based" style of asynchronous programming. A function that does something asynchronously should provide a `callback` argument where we put the function to run after it's complete.
+Isso é chamado de programação assíncrona "baseada em callbacks". A função que faz alguma coisa assincronamente deve prover um argumento `callback` onde nós colocamos a função que vai executar depois que ela terminar.
 
-Here we did it in `loadScript`, but of course, it's a general approach.
+Aqui nós fizemos isso em `loadScript`, mas é claro que isso é uma abordagem genérica.
 
 ## Callback in callback
 
