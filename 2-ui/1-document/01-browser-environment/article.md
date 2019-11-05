@@ -53,11 +53,11 @@ Pode aconter que dois grupos de trabalho que desenvolveram:
 1. [W3C](https://pt.wikipedia.org/wiki/W3C) -- a documentação está em <https://www.w3c.br/>.
 2. [WhatWG](https://pt.wikipedia.org/wiki/Web_Hypertext_Application_Technology_Working_Group), publicação em <https://dom.spec.whatwg.org>.
 
-Como as vezes acontece, os dois grupos nem sempre entram em concordância, então é como se nós tivessemos dois conjuntos de padrões. Mas eles são muito parecidos e eventualmente as coisas são compatíveis. A documentação que você pode encontrar # on the given resources é muito semelhante, com 99% de compatibilidade. Existem uma diferença pequena que você provavelmente não notaria.
+Como as vezes acontece, os dois grupos nem sempre entram em concordância, então é como se nós tivessemos dois conjuntos de padrões. Mas eles são muito parecidos e eventualmente as coisas são compatíveis. A documentação que você pode encontrar nos recursos dados é muito semelhante, com 99% de compatibilidade. Existem uma diferença pequena que você provavelmente não notaria.
 
-Personally, I find <https://dom.spec.whatwg.org> more pleasant to use.
+Pessoalmente, eu acho <https://dom.spec.whatwg.org> mais prazeroso de usar.
 
-In the ancient past, there was no standard at all -- each browser implemented however it wanted. Different browsers had different sets, methods, and properties for the same thing, and developers had to write different code for each of them. Dark, messy times.
+Em um passado antigo, não existia nenhum tipo de padrão -- cada navegador implementava do jeito que queria. Diferentes navegadores tinham diferentes conjuntos, métodos, e propriedades para a mesma coisa, e desenvolvedores tinham que escrever códigos diferentes para cada um deles. Tempos negros e bagunçados.
 
 Even now we can sometimes meet old code that uses browser-specific properties and works around incompatibilities. But, in this tutorial we'll use modern stuff: there's no need to learn old things until you really need to (chances are high that you won't).
 
