@@ -1,22 +1,21 @@
 
-Here's the explanations.
+Aqui estão as explicações.
 
-1. That's a regular object method call.
+1. É uma regular invocação do método do objeto.
 
-2. The same, brackets do not change the order of operations here, the dot is first anyway.
+2. O mesmo. Aqui, os parênteses não alteram a ordem das operações, o ponto já funciona à primeira.
 
-3. Here we have a more complex call `(expression).method()`. The call works as if it were split into two lines:
+3. Aqui, temos uma chamada `(expression).method()` mais complexa. A chamada funciona como se fosse particionada em duas linhas:
 
     ```js no-beautify
-    f = obj.go; // calculate the expression
-    f();        // call what we have
+    f = obj.go; // calcula a expressão
+    f();        // invoca o resultado
     ```
 
-    Here `f()` is executed as a function, without `this`.
+    Aqui, `f()` é executada como uma função, sem `this`.
 
-4. The similar thing as `(3)`, to the left of the dot `.` we have an expression.
+4. Algo similar a `(3)`, à esquerda do ponto `.` temos uma expressão.
 
-To explain the behavior of `(3)` and `(4)` we need to recall that property accessors (dot or square brackets) return a value of the Reference Type.  
+Para explicar o comportamento de `(3)` e `(4)`, recordemo-nos que propriedades acessoras (o ponto ou os parênteses retos) retornam um valor do Tipo *Reference*.  
 
-Any operation on it except a method call (like assignment `=` or `||`) turns it into an ordinary value, which does not carry the information allowing to set `this`.
-
+Qualquer operação com elas (como, atribuição `=` ou `||`), exceto a chamada a um método, o transforma num valor ordinário, o qual não transporta a informação necessária para configurar `this`.

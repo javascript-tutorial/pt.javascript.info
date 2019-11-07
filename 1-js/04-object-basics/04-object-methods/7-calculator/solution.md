@@ -1,5 +1,5 @@
 
-```js run demo solution
+```js execute a solução demo
 let calculator = {
   sum() {
     return this.a + this.b;
