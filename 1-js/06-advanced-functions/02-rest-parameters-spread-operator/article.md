@@ -121,7 +121,7 @@ f(1); // 1
 ```
 ````
 
-Como nos lembramos, funções _arrow_ não possuem seu próprio `this`. Agora, sabemos que elas também não possuem o especial `arguments`.
+Como nos lembramos, funções _arrow_ não possuem o seu próprio `this`. Agora, sabemos que elas também não possuem o especial `arguments`.
 
 ## Operador _spread_ [_spread-operator_]
 
@@ -240,4 +240,4 @@ Padrões de uso:
 
 Juntos, eles nos ajudam a efetuar a transição entre uma lista e um _array_ de parâmetros com facilidade.
 
-Todos os argumentos de uma chamada de função também estão disponíveis na "moda antiga" `arguments`: objeto iterável tipo lista-genérica (_array-like_).
+Todos os argumentos de uma chamada de função também estão disponíveis na "moda antiga" `arguments`: objeto iterável do tipo lista-genérica (_array-like_).
