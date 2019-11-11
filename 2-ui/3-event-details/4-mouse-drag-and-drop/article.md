@@ -7,12 +7,16 @@ In the modern HTML standard there's a [section about Drag Events](https://html.s
 They are interesting, because they allow to solve simple tasks easily, and also allow to handle drag'n'drop of "external" files into the browser. So we can take a file in the OS file-manager and drop it into the browser window. Then JavaScript gains access to its contents.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 But native Drag Events also have limitations. For instance, we can limit dragging by a certain area. Also we can't make it "horizontal" or "vertical" only. There are other drag'n'drop tasks that can't be implemented using that API.
 =======
 But native Drag Events also have limitations. For instance, we can't limit dragging by a certain area. Also we can't make it "horizontal" or "vertical" only. There are other drag'n'drop tasks that can't be done using that API.
 >>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
+=======
+But native Drag Events also have limitations. For instance, we can't limit dragging by a certain area. Also we can't make it "horizontal" or "vertical" only. There are other drag'n'drop tasks that can't be done using that API. Besides, mobile devices support for such events is almost non-existant.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd
 
-Here we'll see how to implement Drag'n'Drop using mouse events.
+So here we'll see how to implement Drag'n'Drop using mouse events.
 
 ## Drag'n'Drop algorithm
 

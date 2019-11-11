@@ -1,8 +1,12 @@
 # Window sizes and scrolling
 
-How to find out the width and height of the browser window? How to get the full width and height of the document, including the scrolled out part? How to scroll the page using JavaScript?
+How do we find the width and height of the browser window? How do we get the full width and height of the document, including the scrolled out part? How do we scroll the page using JavaScript?
 
+<<<<<<< HEAD
 From the DOM point of view, the root document element is `document.documentElement`. That element corresponds to `<html>` and has geometry properties described in the [previous chapter](info:size-and-scroll). For some cases we can use it, but there are additional methods and peculiarities important enough to consider.
+=======
+For most such requests, we can use the root document element `document.documentElement`, that corresponds to the `<html>` tag. But there are additional methods and peculiarities important enough to consider.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd
 
 ## Width/height of the window
 
@@ -134,9 +138,9 @@ To make the document unscrollable, it's enough to set `document.body.style.overf
 ```online
 Try it:
 
-<button onclick="document.body.style.overflow = 'hidden'">`document.body.style.overflow = 'hidden'`</button>
+<button onclick="document.body.style.overflow = 'hidden'">document.body.style.overflow = 'hidden'</button>
 
-<button onclick="document.body.style.overflow = ''">`document.body.style.overflow = ''`</button>
+<button onclick="document.body.style.overflow = ''">document.body.style.overflow = ''</button>
 
 The first button freezes the scroll, the second one resumes it.
 ```
