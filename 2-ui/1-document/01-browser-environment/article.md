@@ -59,9 +59,9 @@ Pessoalmente, eu acho <https://dom.spec.whatwg.org> mais prazeroso de usar.
 
 Em um passado antigo, não existia nenhum tipo de padrão -- cada navegador implementava do jeito que queria. Diferentes navegadores tinham diferentes conjuntos, métodos, e propriedades para a mesma coisa, e desenvolvedores tinham que escrever códigos diferentes para cada um deles. Tempos negros e bagunçados.
 
-Even now we can sometimes meet old code that uses browser-specific properties and works around incompatibilities. But, in this tutorial we'll use modern stuff: there's no need to learn old things until you really need to (chances are high that you won't).
+Ainda hoje nós podemos nos deparar com códigos antigos que usam propriedades específicas de navegador e trabalha tratando incompatibilidades. Mas, nesse tutorial nós iremos usar coisas modernas: não existe necessidade de aprender coisas antigas até você realmente precisar (as chances são altas de você não precisar).
 
-Then the DOM standard appeared, in an attempt to bring everyone to an agreement. The first version was "DOM Level 1", then it was extended by DOM Level 2, then DOM Level 3, and now it's reached DOM Level 4. People from WhatWG group got tired of version numbers and are calling it just "DOM", without a number. So we'll do the same.
+Então os padrões de DOM surgiram, numa tentativa de fazer com que todod mundo concordasse. A primeira versão era "DOM nível 1", e então foi estendida para DOM nível 2, depois DOM nível 3, e agora chegou a DOm nível 4. Pessoas do grupo WhatWG ficaram cansadas do número de versões e estão chamando somente "DOM", sem um número. Então vamos fazer o mesmo.
 
 ```smart header="DOM is not only for browsers"
 The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use it too.
