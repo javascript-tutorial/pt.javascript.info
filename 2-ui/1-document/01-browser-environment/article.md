@@ -64,9 +64,9 @@ Ainda hoje nós podemos nos deparar com códigos antigos que usam propriedades e
 Então os padrões de DOM surgiram, numa tentativa de fazer com que todod mundo concordasse. A primeira versão era "DOM nível 1", e então foi estendida para DOM nível 2, depois DOM nível 3, e agora chegou a DOm nível 4. Pessoas do grupo WhatWG ficaram cansadas do número de versões e estão chamando somente "DOM", sem um número. Então vamos fazer o mesmo.
 
 ```smart header="DOM is not only for browsers"
-The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use it too.
+A especificação DOM explica a estrutura de um documento e fornece objetos para manipulação. Existem intrumentos que não são de navegador que também usam-o.
 
-For instance, server-side tools that download HTML pages and process them use the DOM. They may support only a part of the specification though.
+Por exemplo, ferramentas de server-side que fazem download e processam páginas HTML usam DOM. Apesar de que eles devem ter suporte apenas para uma parte da especificação.
 ```
 
 ```smart header="CSSOM for styling"
@@ -95,7 +95,6 @@ if (confirm("Go to wikipedia?")) {
 
 Functions `alert/confirm/prompt` are also a part of BOM: they are directly not related to the document, but represent pure browser methods of communicating with the user.
 
-<<<<<<< HEAD
 
 ```smart header="HTML specification"
 BOM is the part of the general [HTML specification](https://html.spec.whatwg.org).
