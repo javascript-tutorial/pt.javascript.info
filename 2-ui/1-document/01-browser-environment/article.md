@@ -66,7 +66,7 @@ Então os padrões de DOM surgiram, numa tentativa de fazer com que todod mundo 
 ```smart header="DOM is not only for browsers"
 A especificação DOM explica a estrutura de um documento e fornece objetos para manipulação. Existem intrumentos que não são de navegador que também usam-o.
 
-Por exemplo, ferramentas de server-side que fazem download e processam páginas HTML usam DOM. Apesar de que eles devem ter suporte apenas para uma parte da especificação.
+Por exemplo, ferramentas server-side que fazem download e processam páginas HTML usam DOM. Apesar de que eles devem ter suporte apenas para uma parte da especificação.
 ```
 
 ```smart header="CSSOM for styling"
