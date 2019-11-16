@@ -70,12 +70,12 @@ Por exemplo, ferramentas server-side que fazem download e processam páginas HTM
 ```
 
 ```smart header="CSSOM for styling"
-Regras CSS e folhas de estilo não são estruturados como HTML. Existe  uma especificação separada [CSSOM](https://www.w3.org/TR/cssom-1/) que explica como representá-los como objetos, e como ler e escreve-los.
+Regras CSS e folhas de estilo não são estruturados como HTML. Existe  uma especificação separada [CSSOM](https://www.w3.org/TR/cssom-1/) que explica como representá-los como objetos, e como ler e escrevê-los.
 
-CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because usually CSS rules are static. We rarely need to add/remove CSS rules from JavaScript, so we won't cover it right now.
+CSSOM é usado junto com DOM quando modificamoss regras de estilo para o documento. Na prática, CSSOM é raramente necessário, porque usualmente regras de CSS são estáticas. Raramente precisamos adicionar/remover regras de CSS do JavaScript, então não iremos abordar isso agora.
 ```
 
-## BOM (part of HTML spec)
+## BOM (parte da especicação HTML)
 
 Browser Object Model (BOM) are additional objects provided by the browser (host environment) to work with everything except the document.
 
