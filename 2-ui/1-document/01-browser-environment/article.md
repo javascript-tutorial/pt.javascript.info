@@ -77,14 +77,14 @@ CSSOM é usado junto com DOM quando modificamoss regras de estilo para o documen
 
 ## BOM (parte da especicação HTML)
 
-Browser Object Model (BOM) are additional objects provided by the browser (host environment) to work with everything except the document.
+Modelo de Objeto do Navegador (BOM) são objetos adcionais forecidos pelo navegador (host environment) para trabalhar com tudo exceto o documento.
 
-For instance:
+Por exemplo:
 
-- The [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operating system. There are many properties, but the two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform` -- about the platform (can help to differ between Windows/Linux/Mac etc).
-- The [location](mdn:api/Window/location) object allows us to read the current URL and can redirect the browser to a new one.
+- O objeto de [navegador](mdn:api/Window/navigator) fornece informações de suporte sobre o navegador e o sistema operacional. Existem muitas propriedades, mas as duas mais usadas são: `navigator.userAgent` -- sobre o navegador atual, e `navigator.platform` -- sobre a platarforma (pode ajudar sobre diferenças entre Windows/Linux/Mac etc).
+- O objeto de [localização](mdn:api/Window/location) nos permite ler a URL atual e pode redirecionar o navegador para um novo.
 
-Here's how we can use the `location` object:
+Aqui um exemplo de como podemos usar o objeto de `localização`:
 
 ```js run
 alert(location.href); // shows current URL
