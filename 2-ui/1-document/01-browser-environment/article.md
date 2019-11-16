@@ -87,25 +87,19 @@ Por exemplo:
 Aqui um exemplo de como podemos usar o objeto de `localização`:
 
 ```js run
-alert(location.href); // shows current URL
-if (confirm("Go to wikipedia?")) {
-  location.href = "https://wikipedia.org"; // redirect the browser to another URL
+alert(location.href); // mostra a URL atual
+if (confirm("Ir para wikipedia?")) {
+  location.href = "https://wikipedia.org"; // redireciona o navegador para outra URL
 }
 ```
 
-Functions `alert/confirm/prompt` are also a part of BOM: they are directly not related to the document, but represent pure browser methods of communicating with the user.
+Funções `alert/confirm/prompt` também são parte do BOM: não são diretamente relacionadas ao documento, mas representam métodos de navegador puramente de comunicação com o usuário.
 
 
 ```smart header="HTML specification"
-BOM is the part of the general [HTML specification](https://html.spec.whatwg.org).
+BOM é parte da [Especificação HTML geral](https://html.spec.whatwg.org).
 
-Yes, you heard that right. The HTML spec at <https://html.spec.whatwg.org> is not only about the "HTML language" (tags, attributes), but also covers a bunch of objects, methods and browser-specific DOM extensions. That's "HTML in broad terms".
-=======
-```smart header="Specifications"
-BOM is the part of the general [HTML specification](https://html.spec.whatwg.org).
-
-Yes, you heard that right. The HTML spec at <https://html.spec.whatwg.org> is not only about the "HTML language" (tags, attributes), but also covers a bunch of objects, methods and browser-specific DOM extensions. That's "HTML in broad terms". Also, some parts have additional specs listed at <https://spec.whatwg.org>.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
+Sim, voce ouviu direito. A especificação HTML <https://html.spec.whatwg.org> não é somente sobre a "Linguagem HTML" (tags, attributes), mas também abrange vários objetos, métodos e específicas extensões DOM para navegadores. Isso é "HTML em termos amplos". Tamém, algumas partes tem especificações adicionais listadas em <https://spec.whatwg.org>.
 ```
 
 ## Summary
