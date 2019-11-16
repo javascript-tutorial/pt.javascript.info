@@ -15,7 +15,7 @@ Existe um objeto "raiz" chamado `window`. Que tem  dois papeis:
 1. Primeiro, existe um objeto global para o código JavaScript, como descrito no capítulo <info:global-object>.
 2. Segundo, representa a "janela de navegação" e fornece métodos de controle.
 
-Por instância, aqui nós usamos como objeto global:
+Por exemplo, aqui nós usamos como objeto global:
 
 ```js run
 function sayHi() {
@@ -38,7 +38,7 @@ Existem mais métodos específicos de janela e propriedades, vamos falar sobre e
 
 O `objeto de documento` da acesso ao conteúdo da página. Nós podemos mudar ou criar qualquer coisa na página usando-o.
 
-Por instância:
+Por exemplo:
 ```js run
 // mudando a cor do fundo para vermelho
 document.body.style.background = "red";
