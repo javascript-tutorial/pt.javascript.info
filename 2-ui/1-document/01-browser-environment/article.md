@@ -102,21 +102,21 @@ BOM é parte da [Especificação HTML geral](https://html.spec.whatwg.org).
 Sim, voce ouviu direito. A especificação HTML <https://html.spec.whatwg.org> não é somente sobre a "Linguagem HTML" (tags, attributes), mas também abrange vários objetos, métodos e específicas extensões DOM para navegadores. Isso é "HTML em termos amplos". Tamém, algumas partes tem especificações adicionais listadas em <https://spec.whatwg.org>.
 ```
 
-## Summary
+## Resumo
 
-Talking about standards, we have:
+Falando sobre padrões, nós temos:
 
-DOM specification
-: Describes the document structure, manipulations and events, see <https://dom.spec.whatwg.org>.
+Especificação DOM
+: Descreve a estrutura de documento, manipulações e eventos, ver em <https://dom.spec.whatwg.org>.
 
-CSSOM specification
-: Describes stylesheets and style rules, manipulations with them and their binding to documents, see <https://www.w3.org/TR/cssom-1/>.
+Especificação CSSOM
+: Descreve folhas de estilo e regras de estilo, manipulações delas e sua documentação obrigatória, ver em <https://www.w3.org/TR/cssom-1/>.
 
-HTML specification
-: Describes the HTML language (e.g. tags) and also the BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes the DOM specification and extends it with many additional properties and methods.
+Especificação HTML
+: Descreve a linguagem HTML (e.g. tags) e também o BOM (Modelo de Objeto do Navegador) -- várias funçoes de navegador: `setTimeout`, `alert`, `location` e assim vai, ver em <https://html.spec.whatwg.org>. Besicamente a especificação DOM expandida com várias propriedades e métodos adicionais.
 
-Now we'll get down to learning DOM, because the document plays the central role in the UI.
+Agora iremos nos aprofundar em aprender DOM, porque a documentação tem papel principal na UI.
 
-Please note the links above, as there's so much stuff to learn it's impossible to cover and remember everything.
+Porfavor anote os links acima, como existe muita coisa para aprender é impossível abranger e lembrar de tudo.
 
-When you'd like to read about a property or a method, the Mozilla manual at <https://developer.mozilla.org/en-US/search> is a nice resource, but reading the corresponding spec may be better: it's more complex and longer to read, but will make your fundamental knowledge sound and complete.
+Quando voce quiser ler sobre uma propriedade ou método, o manual do Mozilla está em <https://developer.mozilla.org/en-US/search> é uma boa fontei, mas ler a espcificação correspondente pode ser melhor: é mais complexo e longo para ler, mas irá fazer seu conhecimento básico completo.
