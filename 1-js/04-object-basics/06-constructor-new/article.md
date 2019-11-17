@@ -1,17 +1,17 @@
-# Constructor, operator "new"
+# Construtor, operador "new"
 
-The regular `{...}` syntax allows to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+A sintaxe regular `{...}` permite criar um objeto. Mas frequentemente precisamos criar vários objetos iguais, como diversos usuários, itens de um menu, etc.
 
-That can be done using constructor functions and the `"new"` operator.
+Isto pode ser feito usando as funções construtoras e o operador `"new"` .
 
-## Constructor function
+## Funções construtoras
 
-Constructor functions technically are regular functions. There are two conventions though:
+Funções construtoras são tecnicamente, funções regulares. Entretanto, existem duas convenções: 
 
-1. They are named with capital letter first.
-2. They should be executed only with `"new"` operator.
+1. Elas são nomeadas com a primeira letra em maiúsculo.
+2. Elas devem ser executadas apenas através do operador `"new"`.
 
-For instance:
+Por exemplo:
 
 ```js run
 function User(name) {
@@ -27,31 +27,31 @@ alert(user.name); // Jack
 alert(user.isAdmin); // false
 ```
 
-When a function is executed as `new User(...)`, it does the following steps:
+Quando uma função é executada através de `new User(...)`, ela segue os seguintes passos:
 
-1. A new empty object is created and assigned to `this`.
-2. The function body executes. Usually it modifies `this`, adds new properties to it.
-3. The value of `this` is returned.
+1. Um novo objeto é criado e atribuído ao `this`.
+2. O corpo da função é executado. Normalmente, ele modifica o `this`, adicionando novas propriedades.
+3. O valor de `this` é retornado.
 
-In other words, `new User(...)` does something like:
+Em outras palavras, `new User(...)` faz algo parecido como:
 
 ```js
 function User(name) {
 *!*
-  // this = {};  (implicitly)
+  // this = {};  (implicitamente)
 */!*
 
-  // add properties to this
+  // adiciona propriedades ao this
   this.name = name;
   this.isAdmin = false;
 
 *!*
-  // return this;  (implicitly)
+  // return this;  (implicitamente)
 */!*
 }
 ```
 
-So the result of `new User("Jack")` is the same object as:
+Então, o resultado de `new User("Jack")` é o mesmo que o objeto:
 
 ```js
 let user = {
@@ -60,106 +60,105 @@ let user = {
 };
 ```
 
-Now if we want to create other users, we can call `new User("Ann")`, `new User("Alice")` and so on. Much shorter than using literals every time, and also easy to read.
+Agora se queremos criar outros usuários, podemos chamar `new User("Ann")`, `new User("Alice")` e assim por diante. Muito mais curto do que usar objetos literais toda vez, e também mais fácil de ler.
 
-That's the main purpose of constructors -- to implement reusable object creation code.
+Este é o principal propósito dos construtores -- implementar códigos de criação de objetos reutilizáveis.
 
-Let's note once again -- technically, any function can be used as a constructor. That is: any function can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
+Note mais uma vez -- Tecnicamente, qualquer função pode ser usada como um construtor. Isto é: qualquer função pode ser chamada com `new`, e irá executar o algoritmo acima. O "primeira letra maiúscula" é um acordo comum, para deixar claro que uma função é para ser executada com `new`.
 
 ````smart header="new function() { ... }"
-If we have many lines of code all about creation of a single complex object, we can wrap them in constructor function, like this:
+Se tivermos várias linhas de código voltadas para a criação de um único objeto complexo, nós podemos embrulhá-las em uma função construtora, como:
 
 ```js
 let user = new function() {
   this.name = "John";
   this.isAdmin = false;
 
-  // ...other code for user creation
-  // maybe complex logic and statements
-  // local variables etc
+  // ...outro código para criação de usuário
+  // possivelmente lógica e declarações complexas
+  // variáveis locais etc
 };
 ```
 
-The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
+O Construtor não pode ser chamado novamente porque ele não está salvo em nenhum lugar, apenas foi criado e chamado. Então, esse truque visa encapsular o código que constrói o único objeto, sem reutilização futura.
 ````
 
-## Dual-syntax constructors: new.target
+## Construtores de sintaxe dupla: new.target
 
 ```smart header="Advanced stuff"
-The syntax from this section is rarely used, skip it unless you want to know everything.
+A sintaxe desta seção é raramente usada, pule a menos que você queira saber sobre tudo. 
 ```
 
-Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
+Dentro de uma função, nós podemos checar se ela foi chamada com `new` ou sem ele, usando a propriedade especial `new.target`.
 
-It is empty for regular calls and equals the function if called with `new`:
+Ela é vazia para chamadas regulares e igual a função se esta foi chamada com ``new`:
 
 ```js run
 function User() {
   alert(new.target);
 }
 
-// without "new":
+// sem "new":
 *!*
 User(); // undefined
 */!*
 
-// with "new":
+// com "new":
 *!*
 new User(); // function User { ... }
 */!*
 ```
 
-That can be used to allow both `new` and regular calls to work the same. That is, create the same object:
+Isto pode ser usado para permitir que chamadas `new` e regulares funcionem da mesma maneira. Isto é, crie o mesmo objeto:
 
 ```js run
 function User(name) {
-  if (!new.target) { // if you run me without new
-    return new User(name); // ...I will add new for you
+  if (!new.target) { // se você me executar sem new
+    return new User(name); // ...Eu irei adicioná-lo para você
   }
 
   this.name = name;
 }
 
-let john = User("John"); // redirects call to new User
+let john = User("John"); // redireciona a chamada para new User
 alert(john.name); // John
 ```
 
-This approach is sometimes used in libraries to make the syntax more flexible. So that people may call the function with or without `new`, and it still works.
+Essa abordagem é utilizada algumas vezes em bibliotecas para deixar a sintaxe mais flexível. Para que as pessoas possam chamar as funções com ou sem `new`, e ela ainda sim, funcionará.
+Porém, provavelmente não é uma boa usar em qualquer lugar, pois omitir `new` faz ficar um pouco menos óbvio o que está acontecendo. Com `new` todos sabemos que o novo objeto está sendo criado.
 
-Probably not a good thing to use everywhere though, because omitting `new` makes it a bit less obvious what's going on. With `new` we all know that the new object is being created.
+## Return em construtores
 
-## Return from constructors
+Geralmente, construtores não têm uma declaração `return`. A tarefa deles é escrever todas as coisas dentro do `this`, e ele automaticamente se torna o resultado.
 
-Usually, constructors do not have a `return` statement. Their task is to write all necessary stuff into `this`, and it automatically becomes the result.
+Mas se existir uma declaração `return`, então a regra é simples:
 
-But if there is a `return` statement, then the rule is simple:
+- Se `return` é chamado com um objeto, então ele é retornado ao invés de `this`.
+- Se `return` é chamado com um primitivo, ele é ignorado.
 
-- If `return` is called with object, then it is returned instead of `this`.
-- If `return` is called with a primitive, it's ignored.
+Em outras palavras, `return` com um objeto retorna o objeto, em todos os outros casos, o `this` é retornado.
 
-In other words, `return` with an object returns that object, in all other cases `this` is returned.
-
-For instance, here `return` overrides `this` by returning an object:
+Por exemplo, aqui, `return` sobrepõe o `this` retornando um objeto:
 
 ```js run
 function BigUser() {
 
   this.name = "John";
 
-  return { name: "Godzilla" };  // <-- returns an object
+  return { name: "Godzilla" };  // <-- retorna um objeto
 }
 
-alert( new BigUser().name );  // Godzilla, got that object ^^
+alert( new BigUser().name );  // Godzilla, pegou aquele objeto ^^
 ```
 
-And here's an example with an empty `return` (or we could place a primitive after it, doesn't matter):
+E aqui está um exemplo com um `return` vazio (ou poderíamos colocar um primitivo depois dele, não importa):
 
 ```js run
 function SmallUser() {
 
   this.name = "John";
 
-  return; // finishes the execution, returns this
+  return; // termina a execução, retorna this
 
   // ...
 
@@ -168,41 +167,41 @@ function SmallUser() {
 alert( new SmallUser().name );  // John
 ```
 
-Usually constructors don't have a `return` statement. Here we mention the special behavior with returning objects mainly for the sake of completeness.
+Geralmente os construtores não têm uma declaração `return`. Aqui, nós mencionamos o comportamento especial com objetos retornados principalmente por uma questão de integralidade.
 
-````smart header="Omitting parentheses"
-By the way, we can omit parentheses after `new`, if it has no arguments:
+````smart header="Omitindo parênteses"
+A propósito, nós podemos omitir os parênteses depois de `new`, se não tiver argumentos.
 
 ```js
-let user = new User; // <-- no parentheses
-// same as
+let user = new User; // <-- sem parênteses
+// igual a
 let user = new User();
 ```
 
-Omitting parentheses here is not considered a "good style", but the syntax is permitted by specification.
+Omitir os parênteses aqui não é considerado uma boa prática, mas a sintaxe é permitida por especificação.
 ````
 
-## Methods in constructor
+## Métodos no construtor
 
-Using constructor functions to create objects gives a great deal of flexibility. The constructor function may have parameters that define how to construct the object, and what to put in it.
+Usar funções construtoras para criar objetos nos dá bastante flexibilidade. A função construtora pode ter parâmetros que definem como construir o objeto, e o quê colocar dentro dele.
 
-Of course, we can add to `this` not only properties, but methods as well.
+Claro, nós podemos adicionar ao `this` não apenas propriedades, mas métodos também.
 
-For instance, `new User(name)` below creates an object with the given `name` and the method `sayHi`:
+Por exemplo, `new User(name)` abaixo, cria um objeto com o `name` dado e o método `sayHi`:
 
 ```js run
 function User(name) {
   this.name = name;
 
   this.sayHi = function() {
-    alert( "My name is: " + this.name );
+    alert( "Meu nome é: " + this.name );
   };
 }
 
 *!*
 let john = new User("John");
 
-john.sayHi(); // My name is: John
+john.sayHi(); // Meu nome é: John
 */!*
 
 /*
@@ -213,17 +212,17 @@ john = {
 */
 ```
 
-## Summary
+## Sumário
 
-- Constructor functions or, briefly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
-- Constructor functions should only be called using `new`. Such a call implies a creation of empty `this` at the start and returning the populated one at the end.
+- Funções construtoras ou, resumidamente, construtores, são funções regulares, mas existe um acordo comum para nomeá-las com a primeira letra em maiúsculo.
+- Funções construtoras deveriam ser chamadas apenas usando `new`. Tal chamada implica a criação de um `this` vazio no começo e retornando o completo ao final.
 
-We can use constructor functions to make multiple similar objects.
+Nós podemos usar funções construtoras para fazer diversos objetos iguais.
 
-JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
+JavaScript fornece funções construtoras para muitos objetos de linguagem internos: como `Date` para datas, `Set` para armazenamento e outros que nós planejamos estudar.
 
-```smart header="Objects, we'll be back!"
-In this chapter we only cover the basics about objects and constructors. They are essential for learning more about data types and functions in the next chapters.
+```smart header="Objetos, nós voltaremos!"
+Nesse capítulo nós cobrimos apenas o básico sobre objetos e construtores. Eles são essenciais para aprender mais sobre tipos de dados e funções nos próximos capítulos.
 
-After we learn that, we return to objects and cover them in-depth in the chapters <info:prototypes> and <info:classes>.
+Depois que aprendemos isto, nós voltamos para os objetos e os cobrimos a fundo nos capítulos <info:prototypes> e <info:classes>.
 ```
