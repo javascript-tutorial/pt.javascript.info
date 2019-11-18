@@ -286,13 +286,13 @@ The first call is special. It is made using a special "wrapper object": `{"": me
 The idea is to provide as much power for `replacer` as possible: it has a chance to analyze and replace/skip the whole object if necessary.
 
 
-## Formatting: spacer
+## Formatting: space
 
-The third argument of `JSON.stringify(value, replacer, spaces)` is the number of spaces to use for pretty formatting.
+The third argument of `JSON.stringify(value, replacer, space)` is the number of spaces to use for pretty formatting.
 
-Previously, all stringified objects had no indents and extra spaces. That's fine if we want to send an object over a network. The `spacer` argument is used exclusively for a nice output.
+Previously, all stringified objects had no indents and extra spaces. That's fine if we want to send an object over a network. The `space` argument is used exclusively for a nice output.
 
-Here `spacer = 2` tells JavaScript to show nested objects on multiple lines, with indentation of 2 spaces inside an object:
+Here `space = 2` tells JavaScript to show nested objects on multiple lines, with indentation of 2 spaces inside an object:
 
 ```js run
 let user = {
@@ -328,7 +328,7 @@ alert(JSON.stringify(user, null, 2));
 */
 ```
 
-The `spaces` parameter is used solely for logging and nice-output purposes.
+The `space` parameter is used solely for logging and nice-output purposes.
 
 ## Custom "toJSON"
 
@@ -393,7 +393,11 @@ alert( JSON.stringify(meetup) );
 */
 ```
 
+<<<<<<< HEAD:1-js/05-data-types/11-json/article.md
 As we can see, `toJSON` is used both for the direct call `JSON.stringify(room)` and for the nested object.
+=======
+As we can see, `toJSON` is used both for the direct call `JSON.stringify(room)` and when `room` is nested in another encoded object.
+>>>>>>> e515f80a9f076115a6e3fef8a30cd73e6db20054:1-js/05-data-types/12-json/article.md
 
 
 ## JSON.parse
@@ -425,9 +429,9 @@ alert( numbers[1] ); // 1
 Or for nested objects:
 
 ```js run
-let user = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+let userData = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
 
-user = JSON.parse(user);
+let user = JSON.parse(userData);
 
 alert( user.friends[1] ); // 1
 ```
