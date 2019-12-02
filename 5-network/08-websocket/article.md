@@ -122,9 +122,15 @@ For instance:
 
 - `Sec-WebSocket-Protocol: soap, wamp` means that we're going to transfer not just any data, but the data in [SOAP](http://en.wikipedia.org/wiki/SOAP) or WAMP ("The WebSocket Application Messaging Protocol") protocols. WebSocket subprotocols are registered in the [IANA catalogue](http://www.iana.org/assignments/websocket/websocket.xml).
 
+<<<<<<< HEAD:5-network/08-websocket/article.md
 `Sec-WebSocket-Extensions` is sent by the browser automatically, with a list of possible extensions it supports.
 
 `Sec-WebSocket-Protocol` is depends on us: we decide what kind of data we send. The second optional parameter of `new WebSocket` lists subprotocols:
+=======
+- `Sec-WebSocket-Protocol: soap, wamp` means that we'd like to transfer not just any data, but the data in [SOAP](http://en.wikipedia.org/wiki/SOAP) or WAMP ("The WebSocket Application Messaging Protocol") protocols. WebSocket subprotocols are registered in the [IANA catalogue](http://www.iana.org/assignments/websocket/websocket.xml). So, this header describes data formats that we're going to use.
+
+    This optional header is set using the second parameter of `new WebSocket`. That's the array of subprotocols, e.g. if we'd like to use SOAP or WAMP:
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a:5-network/11-websocket/article.md
 
 ```js
 let socket = new WebSocket("wss://javascript.info/chat", ["soap", "wamp"]);

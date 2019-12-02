@@ -3,7 +3,7 @@
 
 `MutationObserver` is a built-in object that observes a DOM element and fires a callback in case of changes.
 
-We'll first see syntax, and then explore a real-world use case.
+We'll first take a look at the syntax, and then explore a real-world use case.
 
 ## Syntax
 
@@ -45,7 +45,7 @@ Then after any changes, the `callback` is executed, with a list of [MutationReco
 - `oldValue` -- the previous value, only for attribute or text changes.
 
 
-For example, here's a `<div>` with `contentEditable` attribute. That attribute allows us to focus on it and edit.
+For example, here's a `<div>` with a `contentEditable` attribute. That attribute allows us to focus on it and edit.
 
 ```html run
 <div contentEditable id="elem">Edit <b>me</b>, please</div>
@@ -100,7 +100,21 @@ When `MutationObserver` is needed? Is there a scenario when such thing can be us
 
 Sure, we can track something like `contentEditable` and create "undo/redo" stack, but here's  an example where `MutationObserver` is good from architectural standpoint.
 
+<<<<<<< HEAD:10-misc/12-mutation-observer/article.md
 Let's say we're making a website about programming, like this one. Naturally, articles and other materials may contain source code snippets.
+=======
+There are other situations when a third-party script adds something into our document, and we'd like to detect, when it happens, to adapt our page, dynamically resize something etc.
+
+`MutationObserver` can easily handle this.
+
+## Usage for architecture
+
+There are also situations when `MutationObserver` is good from architectural standpoint.
+
+Let's say we're making a website about programming. Naturally, articles and other materials may contain source code snippets.
+
+Such snippet in an HTML markup looks like this:
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a:2-ui/99-ui-misc/01-mutation-observer/article.md
 
 An HTML code snippet looks like this:
 ```html
@@ -114,7 +128,11 @@ An HTML code snippet looks like this:
 
 There's also a JavaScript highlighting library, e.g. [Prism.js](https://prismjs.com/). A call to `Prism.highlightElem(pre)` examines the contents of such `pre` elements and adds colored syntax highlighting, similar to what you in examples here, this page.
 
+<<<<<<< HEAD:10-misc/12-mutation-observer/article.md
 Generally, when a page loads, e.g. at the bottom of the page, we can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
+=======
+When exactly to run that highlighting method? We can do it on `DOMContentLoaded` event, or at the bottom of the page. At that moment we have our DOM ready, can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a:2-ui/99-ui-misc/01-mutation-observer/article.md
 
 ```js
 // highlight all code snippets on the page
@@ -198,9 +216,19 @@ let demoElem = document.getElementById('highlight-demo');
 observer.observe(demoElem, {childList: true, subtree: true});
 ```
 
+<<<<<<< HEAD:10-misc/12-mutation-observer/article.md
 <p id="highlight-demo" style="border: 1px solid #ddd">Demo element with <code>id="highlight-demo"</code>, obverved by the example above.</p>
 
 The code below populates `innerHTML`. If you've run the code above, snippets will get highlighted:
+=======
+Here, below, there's an HTML-element and JavaScript that dynamically fills it using `innerHTML`.
+
+Please run the previous code (above, observes that element), and then the code below. You'll see how `MutationObserver` detects and highlights the snippet.
+
+<p id="highlight-demo" style="border: 1px solid #ddd">A demo-element with <code>id="highlight-demo"</code>, run the code above to observe it.</p>
+
+The following code populates its `innerHTML`. Please run the code above first, it will watch and highlight the new content:
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a:2-ui/99-ui-misc/01-mutation-observer/article.md
 
 ```js run
 let demoElem = document.getElementById('highlight-demo');

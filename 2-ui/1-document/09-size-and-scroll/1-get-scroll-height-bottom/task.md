@@ -4,7 +4,11 @@ importance: 5
 
 # What's the scroll from the bottom?
 
+<<<<<<< HEAD
 The `elem.scrollTop` property is the size of the scrolled out part from the top. How to get "`scrollBottom`" -- the size from the bottom?
+=======
+The `elem.scrollTop` property is the size of the scrolled out part from the top. How to get the size of the bottom scroll (let's call it `scrollBottom`)?
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a
 
 Write the code that works for an arbitrary `elem`.
 

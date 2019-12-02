@@ -22,7 +22,7 @@ Let's discuss them in more detail.
 The topmost tree nodes are available directly as `document` properties:
 
 `<html>` = `document.documentElement`
-: The topmost document node is `document.documentElement`. That's DOM node of `<html>` tag.
+: The topmost document node is `document.documentElement`. That's the DOM node of the `<html>` tag.
 
 `<body>` = `document.body`
 : Another widely used DOM node is the `<body>` element -- `document.body`.
@@ -149,7 +149,7 @@ There are two important consequences:
 The first thing is nice. The second is tolerable, because we can use `Array.from` to create a "real" array from the collection, if we want array methods:
 
   ```js run
-  alert( Array.from(document.body.childNodes).filter ); // now it's there
+  alert( Array.from(document.body.childNodes).filter ); // function
   ```
 
 ```warn header="DOM collections are read-only"
@@ -222,7 +222,7 @@ The links are similar to those given above, just with `Element` word inside:
 
 - `children` -- only those children that are element nodes.
 - `firstElementChild`, `lastElementChild` -- first and last element children.
-- `previousElementSibling`, `nextElementSibling` -- neighbour elements.
+- `previousElementSibling`, `nextElementSibling` -- neighbor elements.
 - `parentElement` -- parent element.
 
 ````smart header="Why `parentElement`? Can the parent be *not* an element?"
@@ -235,7 +235,11 @@ alert( document.documentElement.parentNode ); // document
 alert( document.documentElement.parentElement ); // null
 ```
 
+<<<<<<< HEAD
 In other words, the `documentElement` (`<html>`) is the root node. Formally, it has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
+=======
+The reason is that the root node `document.documentElement` (`<html>`) has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a
 
 This loop travels up from an arbitrary element `elem` to `<html>`, but not to the `document`:
 ```js
@@ -276,12 +280,12 @@ Till now we described the basic navigation properties.
 
 Certain types of DOM elements may provide additional properties, specific to their type, for convenience.
 
-Tables are a great example and important particular case of that.
+Tables are a great example of that, and represent a particularly important case:
 
 **The `<table>`** element supports (in addition to the given above) these properties:
 - `table.rows` -- the collection of `<tr>` elements of the table.
 - `table.caption/tHead/tFoot` -- references to elements `<caption>`, `<thead>`, `<tfoot>`.
-- `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard).
+- `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard, but there will always be at least one -- even if it is not in the source HTML, the browser will put it in the DOM).
 
 **`<thead>`, `<tfoot>`, `<tbody>`** elements provide the `rows` property:
 - `tbody.rows` -- the collection of `<tr>` inside.
@@ -307,8 +311,9 @@ An example of usage:
 </table>
 
 <script>
-  // get the content of the first row, second cell
-  alert( table.*!*rows[0].cells[1]*/!*.innerHTML ) // "two"
+  // get td with "two" (first row, second column)
+  let td = table.*!*rows[0].cells[1]*/!*;
+  td.style.backgroundColor = "red"; // highlight it
 </script>
 ```
 
@@ -316,9 +321,9 @@ The specification: [tabular data](https://html.spec.whatwg.org/multipage/tables.
 
 There are also additional navigation properties for HTML forms. We'll look at them later when we start working with forms.
 
-# Summary
+## Summary
 
-Given a DOM node, we can go to its immediate neighbours using navigation properties.
+Given a DOM node, we can go to its immediate neighbors using navigation properties.
 
 There are two main sets of them:
 
