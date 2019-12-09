@@ -52,7 +52,11 @@ A solução parece um pouco estranha, mas aqui está:
 
 Os "invólucros de objeto" são diferentes para cada tipo primitivo e são chamados: `String`, `Number`, `Boolean` e `Symbol`. Assim, eles fornecem diferentes conjuntos de métodos.
 
+<<<<<<< HEAD
 Por exemplo, existe um método [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) que retorna uma string em letras maiúsculas.
+=======
+For instance, there exists a string method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized `str`.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Veja como isso funciona:
 

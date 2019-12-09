@@ -1,6 +1,6 @@
 # Modifying the document
 
-DOM modifications is the key to create "live" pages.
+DOM modification is the key to creating "live" pages.
 
 Here we'll see how to create new elements "on the fly" and modify the existing page content.
 
@@ -8,7 +8,11 @@ First we'll see a simple example and then explain the methods.
 
 ## Example: show a message
 
+<<<<<<< HEAD
 For a start, let's see how to add a message on the page that looks nicer than `alert`.
+=======
+Let's demonstrate using an example. We'll add a message on the page that looks nicer than `alert`.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Here's how it will look:
 
@@ -157,9 +161,9 @@ So there exist two other sets of insertion methods to handle all cases easily.
 This set of methods provides more flexible insertions:
 
 - `node.append(...nodes or strings)` -- append nodes or strings at the end of `node`,
-- `node.prepend(...nodes or strings)` -- insert nodes or strings into the beginning of `node`,
-- `node.before(...nodes or strings)` –- insert nodes or strings before the `node`,
-- `node.after(...nodes or strings)` –- insert nodes or strings after the `node`,
+- `node.prepend(...nodes or strings)` -- insert nodes or strings at the beginning of `node`,
+- `node.before(...nodes or strings)` –- insert nodes or strings before `node`,
+- `node.after(...nodes or strings)` –- insert nodes or strings after `node`,
 - `node.replaceWith(...nodes or strings)` –- replaces `node` with the given nodes or strings.
 
 Here's an example of using these methods to add more items to a list and the text before/after it:
@@ -263,7 +267,11 @@ For instance:
 <p>Bye</p>
 ```
 
+<<<<<<< HEAD
 That's how we can append an arbitrary HTML to our page.
+=======
+That's how we can append arbitrary HTML to the page.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Here's the picture of insertion variants:
 
@@ -536,6 +544,7 @@ Insertion and removal of nodes:
 
   Text strings are inserted "as text".
 
+<<<<<<< HEAD
 - Given a piece of HTML: `elem.insertAdjacentHTML(where, html)`, inserts depending on where:
   - `"beforebegin"` -- insert `html` right before `elem`,
   - `"afterbegin"` -- insert `html` into `elem`, at the beginning,
@@ -543,6 +552,15 @@ Insertion and removal of nodes:
   - `"afterend"` -- insert `html` right after `elem`.
 
   Also there are similar methods `elem.insertAdjacentText` and `elem.insertAdjacentElement`, they  insert text strings and elements, but they are rarely used.
+=======
+- Given some HTML in `html`, `elem.insertAdjacentHTML(where, html)` inserts it depending on the value of `where`:
+    - `"beforebegin"` -- insert `html` right before `elem`,
+    - `"afterbegin"` -- insert `html` into `elem`, at the beginning,
+    - `"beforeend"` -- insert `html` into `elem`, at the end,
+    - `"afterend"` -- insert `html` right after `elem`.
+
+    Also there are similar methods, `elem.insertAdjacentText` and `elem.insertAdjacentElement`, that insert text strings and elements, but they are rarely used.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 - To append HTML to the page before it has finished loading:
   - `document.write(html)`
