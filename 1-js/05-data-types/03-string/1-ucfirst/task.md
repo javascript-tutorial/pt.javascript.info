@@ -1,12 +1,11 @@
-importance: 5
+importância: 5
 
 ---
 
-# Uppercast the first character
+# Primeiro carátere em maiúsculas
 
-Write a function `ucFirst(str)` that returns the string `str` with the uppercased first character, for instance:
+Escreva uma função `ucFirst(str)` que retorne a *string* `str` com o primeiro carátere em maiúsculas, por exemplo:
 
 ```js
 ucFirst("john") == "John";
 ```
-
