@@ -55,7 +55,43 @@ If we compare window coordinates versus CSS positioning, then there are obvious 
 
 But in CSS, the `right` property means the distance from the right edge, and the `bottom` property means the distance from the bottom edge.
 
+<<<<<<< HEAD
 If we just look at the picture above, we can see that in JavaScript it is not so. All window coordinates are counted from the upper-left corner, including these ones.
+=======
+Please note:
+
+- Coordinates may be decimal fractions, such as `10.5`. That's normal, internally browser uses fractions in calculations. We don't have to round them when setting to `style.left/top`.
+- Coordinates may be negative. For instance, if the page is scrolled so that `elem` is now above the window, then `elem.getBoundingClientRect().top` is negative.
+
+```smart header="Why derived properties are needed? Why does `top/left` exist if there's `x/y`?"
+Mathematically, a rectangle is uniquely defined with its starting point `(x,y)` and the direction vector `(width,height)`. So the additional derived properties are for convenience.
+
+Technically it's possible for `width/height` to be negative, that allows for "directed" rectangle, e.g. to represent mouse selection with properly marked start and end.
+
+Negative `width/height` values mean that the rectangle starts at its bottom-right corner and then "grows" left-upwards.
+
+Here's a rectangle with negative `width` and `height` (e.g. `width=-200`, `height=-100`):
+
+![](coordinates-negative.svg)
+
+As you can see, `left/top` do not equal `x/y` in such case.
+
+In practice though, `elem.getBoundingClientRect()` always returns positive width/height, here we mention negative `width/height` only for you to understand why these seemingly duplicate properties are not actually duplicates.
+```
+
+```warn header="Internet Explorer and Edge: no support for `x/y`"
+Internet Explorer and Edge don't support `x/y` properties for historical reasons.
+
+So we can either make a polywill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same as `x/y` for positive `width/height`, in particular in the result of `elem.getBoundingClientRect()`.
+```
+
+```warn header="Coordinates right/bottom are different from CSS position properties"
+There are obvious similarities between window-relative coordinates and CSS `position:fixed`.
+
+But in CSS positioning, `right` property means the distance from the right edge, and `bottom` property means the distance from the bottom edge.
+
+If we just look at the picture above, we can see that in JavaScript it is not so. All window coordinates are counted from the top-left corner, including these ones.
+>>>>>>> 524d59884650be539544c34f71d821432b7280fd
 ```
 
 ## elementFromPoint(x, y) [#elementFromPoint]
@@ -191,8 +227,8 @@ function getCoords(elem) {
   let box = elem.getBoundingClientRect();
 
   return {
-    top: box.top + pageYOffset,
-    left: box.left + pageXOffset
+    top: box.top + window.pageYOffset,
+    left: box.left + window.pageXOffset
   };
 }
 ```
@@ -206,4 +242,4 @@ Any point on the page has coordinates:
 
 Window coordinates are great to use with `position:fixed`, and document coordinates do well with `position:absolute`.
 
-Both coordinate systems have their "pro" and "contra", there are times we need one or the other one, just like CSS `position` `absolute` and `fixed`.
+Both coordinate systems have their pros and cons; there are times we need one or the other one, just like CSS `position` `absolute` and `fixed`.
