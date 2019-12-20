@@ -1,8 +1,8 @@
 # Ambiente do Navegador, especificações
 
-A linguagem JavaScript foi inicialmente criada para navegadores web. Desde então, tem evoluído e se tornado uma linguagem com muitos usuários e plataformas.
+A linguagem JavaScript foi inicialmente criada para navegadores para a web. Desde então, tem evoluído e se tornado uma linguagem com muitos usuários e plataformas.
 
-A plataforma pode ser um navegador, ou servidor web, ou uma máquina de lavar, ou outro *host*. Cada um deles fornece funcionalidades específicas da plataforma. Nas especificações JavaScript são conhecidas como *ambiente de hospedagem*.
+A plataforma pode ser um navegador, ou um servidor web, ou uma máquina de lavar, ou outro *hospedeiro* (host). Cada um deles fornece funcionalidades específicas para a plataforma. Na especificação JavaScript é conhecida como *ambiente de hospedagem* (host environment).
 
 Um ambente de hospedagem fornece objetos específicos de platarfoma e funções adicionais ao núcleo da linguagem. Navegadores web dão um significado para páginas de controle web. Node.js fornece aplicações server-side, e assim vai.
 
