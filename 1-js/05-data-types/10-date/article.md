@@ -33,6 +33,13 @@ To create a new `Date` object call `new Date()` with one of the following argume
 
     It's a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp using the `date.getTime()` method (see below).
 
+    Dates before 01.01.1970 have negative timestamps, e.g.:
+    ```js run
+    // 31 Dec 1969
+    let Dec31_1969 = new Date(-24 * 3600 * 1000);
+    alert( Dec31_1969 );
+    ```
+
 `new Date(datestring)`
 : If there is a single argument, and it's a string, then it is parsed with the `Date.parse` algorithm (see below).
 
@@ -61,7 +68,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
     For instance:
 
     ```js
-    new Date(2011, 0, 1, 0, 0, 0, 0); // // 1 Jan 2011, 00:00:00
+    new Date(2011, 0, 1, 0, 0, 0, 0); // 1 Jan 2011, 00:00:00
     new Date(2011, 0, 1); // the same, hours etc are 0 by default
     ```
 

@@ -100,7 +100,7 @@ To summarize:
 
 ### Function Declaration
 
-Till now, we only observed variables. Now enter Function Declarations.
+Until now, we only observed variables. Now enter Function Declarations.
 
 **Unlike `let` variables, they are fully initialized not when the execution reaches them, but earlier, when a Lexical Environment is created.**
 
@@ -117,11 +117,11 @@ The code below demonstrates that the Lexical Environment is non-empty from the b
 
 Now let's go on and explore what happens when a function accesses an outer variable.
 
-During the call, `say()` uses the outer variable `phrase`, let's look at the details of what's going on.
+During the call, `say()` uses the outer variable `phrase`. Let's look at the details of what's going on.
 
 First, when a function runs, a new function Lexical Environment is created automatically. That's a general rule for all functions. That Lexical Environment is used to store local variables and parameters of the call.
 
-For instance, for `say("John")`, it looks like this (the execution is at the line, labelled with an arrow):
+For instance, for `say("John")`, it looks like this (the execution is at the line labeled with an arrow):
 
 <!--
     ```js
@@ -149,7 +149,11 @@ The inner Lexical Environment has a reference to the outer one.
 
 **When the code wants to access a variable -- the inner Lexical Environment is searched first, then the outer one, then the more outer one and so on until the end of the chain.**
 
+<<<<<<< HEAD
 If a variable is not found anywhere, that's an error in strict mode. Without `use strict`, an assignment to an undefined variable creates a new global variable, for backwards compatibility.
+=======
+If a variable is not found anywhere, that's an error in strict mode. Without `use strict`, an assignment to a non-existing variable like `user = "John"` creates a new global variable `user`. That's for backwards compatibility.
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
 Let's see how the search proceeds in our example:
 
@@ -184,8 +188,8 @@ sayHi(); // Pete
 The execution flow of the code above:
 
 1. The global Lexical Environment has `name: "John"`.
-2. At the line `(*)` the global variable is changed, now it has `name: "Pete"`.
-3. When the function `sayHi()`, is executed and takes `name` from outside. Here that's from the global Lexical Environment where it's already `"Pete"`.
+2. At the line `(*)` the global variable is changed. Now it has `name: "Pete"`.
+3. When the function `sayHi()` is executed it takes `name` from outside, the global Lexical Environment, where its value is already `"Pete"`.
 
 
 ```smart header="One call -- one Lexical Environment"
@@ -313,25 +317,39 @@ Hopefully, the situation with outer variables is quite clear for you now. But in
 
 ## Environments in detail
 
+<<<<<<< HEAD
 Now that you understand how closures work generally, that's already very good.
 
 Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you know things in the very detail.
+=======
+Here's what's going on in the `makeCounter` example step-by-step. Follow it to make sure that you understand how it works in detail.
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
 Please note the additional `[[Environment]]` property is covered here. We didn't mention it before for simplicity.
 
-1. When the script has just started, there is only global Lexical Environment:
+1. When the script has just started, there is only the global Lexical Environment:
 
     ![](lexenv-nested-makecounter-1.svg)
 
-    At that starting moment there is only `makeCounter` function, because it's a Function Declaration. It did not run yet.
+    At that starting moment there is only the `makeCounter` function, because it's a Function Declaration. It did not run yet.
 
+<<<<<<< HEAD
     **All functions "on birth" receive a hidden property `[[Environment]]` with a reference to the Lexical Environment of their creation.** We didn't talk about it yet, but that's how the function knows where it was made.
+=======
+    **All functions "on birth" receive a hidden property `[[Environment]]` with a reference to the Lexical Environment of their creation.**
+
+    We didn't talk about it before. That's how the function knows where it was made.
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
     Here, `makeCounter` is created in the global Lexical Environment, so `[[Environment]]` keeps a reference to it.
 
     In other words, a function is "imprinted" with a reference to the Lexical Environment where it was born. And `[[Environment]]` is the hidden function property that has that reference.
 
+<<<<<<< HEAD
 2. The code runs on, the new global variable `counter` is declared and for its value `makeCounter()` is called. Here's a snapshot of the moment when the execution is on the first line inside `makeCounter()`:
+=======
+2. The code runs on, the new global variable `counter` is declared and gets the result of the `makeCounter()` call. Here's a snapshot of the moment when the execution is on the first line inside `makeCounter()`:
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
     ![](lexenv-nested-makecounter-2.svg)
 
@@ -351,7 +369,11 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     ![](lexenv-nested-makecounter-3.svg)
 
+<<<<<<< HEAD
     Please note that on this step the inner function was created, but not yet called. The code inside `function() { return count++; }` is not running; we're going to return it soon.
+=======
+    Please note that on this step the inner function was created, but not yet called. The code inside `return count++;` is not running.
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
 4. As the execution goes on, the call to `makeCounter()` finishes, and the result (the tiny nested function) is assigned to the global variable `counter`:
 
@@ -363,9 +385,13 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     ![](lexenv-nested-makecounter-5.svg)
 
+<<<<<<< HEAD
     Now if it accesses a variable, it first searches its own Lexical Environment (empty), then the Lexical Environment of the former `makeCounter()` call, then the global one.
 
     When it looks for `count`, it finds it among the variables `makeCounter`, in the nearest outer Lexical Environment.
+=======
+    Now when the call looks for `count` variable, it first searches its own Lexical Environment (empty), then the Lexical Environment of the outer `makeCounter()` call, where it finds it.
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
     Please note how memory management works here. Although `makeCounter()` call finished some time ago, its Lexical Environment was retained in memory, because there's a nested function with `[[Environment]]` referencing it.
 
@@ -396,7 +422,7 @@ A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a f
 
 That is: they automatically remember where they were created using a hidden `[[Environment]]` property, and all of them can access outer variables.
 
-When on an interview, a frontend developer gets a question about "what's a closure?", a valid answer would be a definition of the closure and an explanation that all functions in JavaScript are closures, and maybe few more words about technical details: the `[[Environment]]` property and how Lexical Environments work.
+When on an interview, a frontend developer gets a question about "what's a closure?", a valid answer would be a definition of the closure and an explanation that all functions in JavaScript are closures, and maybe a few more words about technical details: the `[[Environment]]` property and how Lexical Environments work.
 ```
 
 ## Code blocks and loops, IIFE
@@ -473,13 +499,13 @@ The code outside of the block (or inside another script) doesn't see variables i
 
 ### IIFE
 
-In the past, there were no block-level lexical environment in JavaScript.
+In the past, there were no block-level lexical environments in JavaScript.
 
-So programmers had to invent something. And what they did is called "immediately-invoked function expressions" (abbreviated as IIFE).
+So programmers had to invent something. And what they did was called "immediately-invoked function expressions" (abbreviated as IIFE).
 
 That's not a thing we should use nowadays, but you can find them in old scripts, so it's better to understand them.
 
-IIFE looks like this:
+An IIFE looks like this:
 
 ```js run
 (function() {
@@ -515,7 +541,7 @@ function go() {
 }(); // <-- can't call Function Declaration immediately
 ```
 
-So, parentheses around the function is a trick to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression: it needs no name and can be called immediately.
+So, the parentheses around the function is a trick to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression: it needs no name and can be called immediately.
 
 There exist other ways besides parentheses to tell JavaScript that we mean a Function Expression:
 
@@ -543,7 +569,7 @@ In all the above cases we declare a Function Expression and run it immediately.
 
 ## Garbage collection
 
-Usually, a Lexical Environment is cleaned up and deleted after the function run. For instance:
+Usually, a Lexical Environment is cleaned up and deleted after the function runs. For instance:
 
 ```js
 function f() {
@@ -554,7 +580,7 @@ function f() {
 f();
 ```
 
-Here two values are technically the properties of the Lexical Environment. But after `f()` finishes that Lexical Environment becomes unreachable, so it's deleted from the memory.
+Here, two values are technically the properties of the Lexical Environment. But after `f()` finishes, that Lexical Environment becomes unreachable, so it's deleted from the memory.
 
 ...But if there's a nested function that is still reachable after the end of `f`, then its `[[Environment]]` reference keeps the outer lexical environment alive as well:
 
@@ -569,7 +595,8 @@ function f() {
 */!*
 }
 
-let g = f(); // g is reachable, and keeps the outer lexical environment in memory
+let func = f(); // func gets a reference to g
+// so it stays and memory and its outer lexical environment stays as well
 ```
 
 Please note that if `f()` is called many times, and resulting functions are saved, then the corresponding Lexical Environment objects will also be retained in memory. All 3 of them in the code below:
@@ -589,7 +616,7 @@ let arr = [f(), f(), f()];
 
 A Lexical Environment object dies when it becomes unreachable (just like any other object). In other words, it exists only while there's at least one nested function referencing it.
 
-In the code below, after `g` becomes unreachable, enclosing Lexical Environment (and hence the `value`) is  cleaned from memory;
+In the code below, after `g` becomes unreachable, its enclosing Lexical Environment (and hence the `value`) is  cleaned from memory;
 
 ```js
 function f() {
@@ -600,10 +627,14 @@ function f() {
   return g;
 }
 
+<<<<<<< HEAD
 let g = f(); // while g is alive
 // there corresponding Lexical Environment lives
+=======
+let func = f(); // while func has a reference to g, it stays in memory
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
-g = null; // ...and now the memory is cleaned up
+func = null; // ...and now the memory is cleaned up
 ```
 
 ### Real-life optimizations

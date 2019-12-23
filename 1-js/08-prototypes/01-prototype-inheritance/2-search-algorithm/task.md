@@ -6,7 +6,11 @@ importance: 5
 
 The task has two parts.
 
+<<<<<<< HEAD
 We have an object:
+=======
+Given the following objects:
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
 ```js
 let head = {
