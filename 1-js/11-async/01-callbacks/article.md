@@ -96,29 +96,29 @@ Isso é chamado de programação assíncrona "baseada em callbacks". A função 
 
 Aqui nós fizemos isso em `loadScript`, mas é claro que isso é uma abordagem genérica.
 
-## Callback in callback
+## Callback no callback
 
-How can we load two scripts sequentially: the first one, and then the second one after it?
+Como poderíamos carregar dois scripts sequencialmente? Carregar um primeiro, e depois o segundo?
 
-The natural solution would be to put the second `loadScript` call inside the callback, like this:
+A solução natural seria colocar a segunda chamada de `loadScript` dentro do callback, assim:
 
 ```js
 loadScript('/my/script.js', function(script) {
 
-  alert(`Cool, the ${script.src} is loaded, let's load one more`);
+  alert(`Legal, ${script.src} foi carregado, vamos carregar mais um`);
 
 *!*
   loadScript('/my/script2.js', function(script) {
-    alert(`Cool, the second script is loaded`);
+    alert(`Legal, o segundo script foi carregado`);
   });
 */!*
 
 });
 ```
 
-After the outer `loadScript` is complete, the callback initiates the inner one.
+Depois que o `loadScript` de fora termina, o callback inicia o `loadScript` de dentro.
 
-What if we want one more script...?
+E se nós quisermos mais um script...?
 
 ```js
 loadScript('/my/script.js', function(script) {
@@ -127,7 +127,7 @@ loadScript('/my/script.js', function(script) {
 
 *!*
     loadScript('/my/script3.js', function(script) {
-      // ...continue after all scripts are loaded
+      // ...continua depois que todo os scripts forem carregados
     });
 */!*
 
@@ -136,7 +136,7 @@ loadScript('/my/script.js', function(script) {
 });
 ```
 
-So, every new action is inside a callback. That's fine for few actions, but not good for many, so we'll see other variants soon.
+Então, toda ação nova fica dentro de um callback. Tudo bem para poucas ações, mas não é bom para muitas ações. Por isso nós vamos ver outras variantes em breve.
 
 ## Handling errors
 
