@@ -39,7 +39,18 @@ Apenas comentários devem aparecer acima de `"use strict"`.
 
 ## Console do navegador
 
+<<<<<<< HEAD
 Para o futuro, quando você usar o console do navegador para testar funcionalidades, observe que ele não "usa strict" por padrão.
+=======
+Once we enter strict mode, there's no going back.
+```
+
+## Browser console
+
+For the future, when you use a browser console to test features, please note that it doesn't `use strict` by default.
+
+Sometimes, when `use strict` makes a difference, you'll get incorrect results.
+>>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
 
 As vezes, quando usar `use strict` faz alguma diferença, você terá resultados incorretos.
 

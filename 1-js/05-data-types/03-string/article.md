@@ -47,7 +47,7 @@ let guestList = "Guests:  // Error: Unexpected token ILLEGAL
 
 Single and double quotes come from ancient times of language creation when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
 
-Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. You can read more about it in the [docs](mdn:/JavaScript/Reference/Template_literals#Tagged_template_literals). This is called "tagged templates". This feature makes it easier to wrap strings into custom templating or other functionality, but it is rarely used.
+Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. This is called "tagged templates". This feature makes it easier to implement custom templating, but is rarely used in practice. You can read more about it in the [manual](mdn:/JavaScript/Reference/Template_literals#Tagged_templates). 
 
 
 ## Special characters
@@ -385,7 +385,7 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
 
     ```js run
     let str = "st*!*ringify*/!*";
-    alert( str.slice(2) ); // ringify, from the 2nd position till the end
+    alert( str.slice(2) ); // 'ringify', from the 2nd position till the end
     ```
 
     Negative values for `start/end` are also possible. They mean the position is counted from the string end:
@@ -394,7 +394,7 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     let str = "strin*!*gif*/!*y";
 
     // start at the 4th position from the right, end at the 1st from the right
-    alert( str.slice(-4, -1) ); // gif
+    alert( str.slice(-4, -1) ); // 'gif'
     ```
 
 
@@ -429,14 +429,14 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
 
     ```js run
     let str = "st*!*ring*/!*ify";
-    alert( str.substr(2, 4) ); // ring, from the 2nd position get 4 characters
+    alert( str.substr(2, 4) ); // 'ring', from the 2nd position get 4 characters
     ```
 
     The first argument may be negative, to count from the end:
 
     ```js run
     let str = "strin*!*gi*/!*fy";
-    alert( str.substr(-4, 2) ); // gi, from the 4th position get 2 characters
+    alert( str.substr(-4, 2) ); // 'gi', from the 4th position get 2 characters
     ```
 
 Let's recap these methods to avoid any confusion:
