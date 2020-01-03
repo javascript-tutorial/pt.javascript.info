@@ -138,11 +138,11 @@ loadScript('/my/script.js', function(script) {
 
 Então, toda ação nova fica dentro de um callback. Tudo bem para poucas ações, mas não é bom para muitas ações. Por isso nós vamos ver outras variantes em breve.
 
-## Handling errors
+## Tratando erros
 
-In the above examples we didn't consider errors. What if the script loading fails? Our callback should be able to react on that.
+No exemplo acima nós não consideramos erros. E se o carregamento do script falhar? Nosso callback deveria ser capaz de reagir a isso.
 
-Here's an improved version of `loadScript` that tracks loading errors:
+Abaixo temos uma versão melhorada do `loadScript` que pega os erros de carregamento:
 
 ```js run
 function loadScript(src, callback) {
@@ -151,33 +151,33 @@ function loadScript(src, callback) {
 
 *!*
   script.onload = () => callback(null, script);
-  script.onerror = () => callback(new Error(`Script load error for ${src}`));
+  script.onerror = () => callback(new Error(`Erro no carregamento do script ${src}`));
 */!*
 
   document.head.append(script);
 }
 ```
 
-It calls `callback(null, script)` for successful load and `callback(error)` otherwise.
+O código acima chama `callback(null, script)` quando o carregamento é feito com sucesso e `callback(error)` caso contrário.
 
-The usage:
+Usando a função:
 ```js
 loadScript('/my/script.js', function(error, script) {
   if (error) {
-    // handle error
+    // tratar o erro
   } else {
-    // script loaded successfully
+    // script carregado com sucesso
   }
 });
 ```
 
-Once again, the recipe that we used for `loadScript` is actually quite common. It's called the "error-first callback" style.
+De novo, o padrão que nós usamos para o `loadScript` é bem comum. É chamado de estilo "error-first callback".
 
-The convention is:
-1. The first argument of the `callback` is reserved for an error if it occurs. Then `callback(err)` is called.
-2. The second argument (and the next ones if needed) are for the successful result. Then `callback(null, result1, result2…)` is called.
+A convenção é:
+1. O primeiro argumento do `callback` é reservado para um erro, se algum ocorrer. Então `callback(err)` é chamado.
+2. O segundo argumento (e o próximo se for necessário) são para quando houver sucesso. Então `callback(null, result1, result2…)` é chamado.
 
-So the single `callback` function is used both for reporting errors and passing back results.
+Assim uma única função `callback` é usada tanto para reportar erros quanto para retornar os resultados.
 
 ## Pyramid of Doom
 
