@@ -31,7 +31,15 @@ A principal diferença entre um "editor leve" e uma "IDE", é que uma IDE trabal
 
 Na prática, os editores leves podem ter muitos plug-ins, incluindo analisadores de sintaxe no nível de diretório e preenchimentos automáticos, portanto não há uma limitação rígida entre um editor leve e uma IDE.
 
+<<<<<<< HEAD
 As seguintes opções merecem sua atenção:
+=======
+- [Atom](https://atom.io/) (cross-platform, free).
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
+- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 - [Visual Studio Code](https://code.visualstudio.com/) (plataforma cruzada, livre) também tem muitos recursos similares a IDE.
 - [Atom](https://atom.io/) (multi-plataforma, livre).

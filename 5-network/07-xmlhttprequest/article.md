@@ -24,15 +24,28 @@ To do the request, we need 3 steps:
 
 1. Create `XMLHttpRequest`.
     ```js
+<<<<<<< HEAD:5-network/07-xmlhttprequest/article.md
     let xhr = new XMLHttpRequest(); // no arguments
+=======
+    let xhr = new XMLHttpRequest();
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a:5-network/08-xmlhttprequest/article.md
     ```
+    The constructor has no arguments.
 
+<<<<<<< HEAD:5-network/07-xmlhttprequest/article.md
 2. Initialize it.
+=======
+2. Initialize it, usually right after `new XMLHttpRequest`:
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a:5-network/08-xmlhttprequest/article.md
     ```js
     xhr.open(method, URL, [async, user, password])
     ```
 
+<<<<<<< HEAD:5-network/07-xmlhttprequest/article.md
     This method is usually called first after `new XMLHttpRequest`. It specifies the main parameters of the request:
+=======
+    This method specifies the main parameters of the request:
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a:5-network/08-xmlhttprequest/article.md
 
     - `method` -- HTTP-method. Usually `"GET"` or `"POST"`.
     - `URL` -- the URL to request.
@@ -49,14 +62,14 @@ To do the request, we need 3 steps:
 
     This method opens the connection and sends the request to server. The optional `body` parameter contains the request body.
 
-    Some request methods like `GET` do not have a body. And some of them like `POST` use `body` to send the data to the server. We'll see examples later.
+    Some request methods like `GET` do not have a body. And some of them like `POST` use `body` to send the data to the server. We'll see examples of that later.
 
 4. Listen to `xhr` events for response.
 
-    These three are the most widely used:
-    - `load` -- when the result is ready, that includes HTTP errors like 404.
+    These three events are the most widely used:
+    - `load` -- when the request is complete (even if HTTP status is like 400 or 500), and the response is fully downloaded.
     - `error` -- when the request couldn't be made, e.g. network down or invalid URL.
-    - `progress` -- triggers periodically during the download, reports how much downloaded.
+    - `progress` -- triggers periodically while the response is being downloaded, reports how much has been downloaded.
 
     ```js
     xhr.onload = function() {

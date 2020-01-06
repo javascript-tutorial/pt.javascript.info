@@ -50,7 +50,7 @@ alert(id); // TypeError: Cannot convert a Symbol value to a string
 */!*
 ```
 
-That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not occasionally convert one into another.
+That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not accidentally convert one into another.
 
 If we really want to show a symbol, we need to explicitly call `.toString()` on it, like here:
 ```js run
@@ -72,7 +72,7 @@ alert(id.description); // id
 
 ## "Hidden" properties
 
-Symbols allow us to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
+Symbols allow us to create "hidden" properties of an object, that no other part of code can accidentally access or overwrite.
 
 <<<<<<< HEAD
 For instance, if we want to store an "identifier" for the object `user`, we can use a symbol as a key for it:
@@ -96,7 +96,11 @@ alert( user[id] ); // we can access the data using the symbol as the key
 
 What's the benefit of using `Symbol("id")` over a string `"id"`?
 
+<<<<<<< HEAD
 Let's make the example a bit deeper to see that.
+=======
+As `user` objects belongs to another code, and that code also works with them, we shouldn't just add any fields to it. That's unsafe. But a symbol cannot be accessed accidentally, the third-party code probably won't even see it, so it's probably all right to do.
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 Imagine that another script wants to have its own "id" property inside `user`, for its own purposes. That may be another JavaScript library, so the scripts are completely unaware of each other.
 
@@ -283,7 +287,11 @@ Symbols are always different values, even if they have the same name. If we want
 Symbols have two main use cases:
 
 1. "Hidden" object properties.
+<<<<<<< HEAD
     If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be occasionally listed. Also it won't be accessed directly, because another script does not have our symbol, so it will not occasionally intervene into its actions.
+=======
+    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be accidentally processed together with other properties. Also it won't be accessed directly, because another script does not have our symbol. So the property will be protected from accidental use or overwrite.
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
     So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
 

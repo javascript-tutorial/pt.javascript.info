@@ -1,10 +1,14 @@
 # Promisification
 
-Promisification -- is a long word for a simple transform. It's conversion of a function that accepts a callback into a function returning a promise.
+"Promisification" is a long word for a simple transformation. It's the conversion of a function that accepts a callback into a function that returns a promise.
 
+<<<<<<< HEAD
 In other words, we create a wrapper-function that does the same, internally calling the original one, but returns a promise.
 
 Such transforms are often needed in real-life, as many functions and libraries are callback-based. But promises are more convenient. So it makes sense to promisify those.
+=======
+Such transformations are often required in real-life, as many functions and libraries are callback-based. But promises are more convenient, so it makes sense to promisify them.
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 For instance, we have `loadScript(src, callback)` from the chapter <info:callbacks>.
 
@@ -23,7 +27,11 @@ function loadScript(src, callback) {
 // loadScript('path/script.js', (err, script) => {...})
 ```
 
+<<<<<<< HEAD
 Let's promisify it. The new `loadScriptPromise(src)` function will do the same, but accept only `src` (no callback) and return a promise.
+=======
+Let's promisify it. The new `loadScriptPromise(src)` function achieves the same result, but it accepts only `src` (no `callback`) and returns a promise.
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 ```js
 let loadScriptPromise = function(src) {
@@ -43,9 +51,13 @@ Now `loadScriptPromise` fits well in our promise-based code.
 
 As we can see, it delegates all the work to the original `loadScript`, providing its own callback that translates to promise `resolve/reject`.
 
+<<<<<<< HEAD
 As we may need to promisify many functions, it makes sense to use a helper.
 
 That's actually very simple -- `promisify(f)` below takes a to-promisify function `f` and returns a wrapper function.
+=======
+In practice we'll probably need to promisify many functions, so it makes sense to use a helper. We'll call it `promisify(f)`: it accepts a to-promisify function `f` and returns a wrapper function.
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 That wrapper does the same as in the code above: returns a promise and passes the call to the original `f`, tracking the result in a custom callback:
 
@@ -105,7 +117,11 @@ f = promisify(f, true);
 f(...).then(arrayOfResults => ..., err => ...)
 ```
 
+<<<<<<< HEAD
 In some cases, `err` may be absent at all: `callback(result)`, or there's something exotic in the callback format, then we can promisify such functions manually.
+=======
+For more exotic callback formats, like those without `err` at all: `callback(result)`, we can promisify such functions manually without using the helper.
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 There are also modules with a bit more flexible promisification functions, e.g. [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify). In Node.js, there's a built-in `util.promisify` function for that.
 

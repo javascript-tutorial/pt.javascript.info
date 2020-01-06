@@ -12,7 +12,11 @@ Let's check the real-life application to better understand that requirement and 
 
 **For instance, we want to track mouse movements.**
 
+<<<<<<< HEAD
 In browser we can setup a function to run at every mouse micro-movement and get the pointer location as it moves. During an active mouse usage, this function usually runs very frequently, can be something like 100 times per second (every 10 ms).
+=======
+In a browser we can setup a function to run at every mouse movement and get the pointer location as it moves. During an active mouse usage, this function usually runs very frequently, can be something like 100 times per second (every 10 ms).
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 **The tracking function should update some information on the web-page.**
 
@@ -31,8 +35,8 @@ A code example:
 
 ```js
 function f(a) {
-  console.log(a)
-};
+  console.log(a);
+}
 
 // f1000 passes calls to f at maximum once per 1000 ms
 let f1000 = throttle(f, 1000);
