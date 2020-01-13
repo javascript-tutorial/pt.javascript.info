@@ -10,9 +10,15 @@ message = 123456;
 
 As linguagens de programação que permitem tais coisas são chamadas "dinamicamente tipadas", o que significa que existem tipos de dados, mas as variáveis não estão vinculadas a nenhum deles.
 
+<<<<<<< HEAD
 Há sete tipos de dados básicos em JavaScript. Aqui, vamos cobri-los em geral e nos próximos capítulos vamos falar sobre cada um deles em detalhe.
 
 ## Um número
+=======
+There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+
+## Number
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 
 ```js
 let n = 123;
@@ -62,14 +68,43 @@ Os valores numéricos especiais pertencem formalmente ao tipo "número". Claro q
 
 Veremos mais sobre como trabalhar com números no capítulo <info:number>.
 
+<<<<<<< HEAD
 ## Uma string
+=======
+## BigInt
+
+In JavaScript, the "number" type cannot represent integer values larger than <code>2<sup>53</sup></code> (or less than <code>-2<sup>53</sup></code> for negatives), that's a technical limitation caused by their internal representation. That's about 16 decimal digits, so for most purposes the limitation isn't a problem, but sometimes we need really big numbers, e.g. for cryptography or microsecond-precision timestamps.
+
+`BigInt` type was recently added to the language to represent integers of arbitrary length.
+
+A `BigInt` is created by appending `n` to the end of an integer literal:
+
+```js
+// the "n" at the end means it's a BigInt
+const bigInt = 1234567890123456789012345678901234567890n;
+```
+
+As `BigInt` numbers are rarely needed, we devoted them a separate chapter <info:bigint>.
+
+```smart header="Compatability issues"
+Right now `BigInt` is supported in Firefox and Chrome, but not in Safari/IE/Edge.
+```
+
+## String
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 
 Uma string em JavaScript deve estar entre aspas.
 
 ```js
+<<<<<<< HEAD
 let str = "Olá";
 let str2 = 'Aspas simples também são ok';
 let phrase = `pode incorporar ${str}`;
+=======
+let str = "Hello";
+let str2 = 'Single quotes are ok too';
+let phrase = `can embed another ${str}`;
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 ```
 
 Em JavaScript, existem 3 tipos de citações.
@@ -78,7 +113,11 @@ Em JavaScript, existem 3 tipos de citações.
 2. Aspas simples: `'Olá'`.
 3. Backticks: <code>&#96;Olá&#96;</code>.
 
+<<<<<<< HEAD
 Aspas duplas e simples são citações "simples". Não há diferença entre elas em JavaScript.
+=======
+Double and single quotes are "simple" quotes. There's practically no difference between them in JavaScript.
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 
 Backticks são citações de "funcionalidade estendida". Eles nos permitem incorporar variáveis e expressões em uma string envolvendo-as em `$ {…}`, por exemplo:
 
@@ -101,13 +140,22 @@ alert( "o resultado é ${1 + 2}" ); // o resultado é ${1 + 2} (aspas duplas nã
 
 Abordaremos as strings mais detalhadamente no capítulo <info:string>.
 
+<<<<<<< HEAD
 ```smart header="Não há nenhum tipo de *caractere*."
 Em algumas linguagens, existe um tipo especial de "caractere" para um único caractere. Por exemplo, na linguagem C e em Java é `char`.
+=======
+```smart header="There is no *character* type."
+In some languages, there is a special "character" type for a single character. For example, in the C language and in Java it is called "char".
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 
 Em JavaScript, não existe tal tipo. Existe apenas um tipo: `string`. Uma string pode consistir de apenas um caractere ou muitos deles.
 ```
 
+<<<<<<< HEAD
 ## Um booleano (tipo lógico)
+=======
+## Boolean (logical type)
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 
 O tipo booleano tem apenas dois valores: `true` e `false`.
 
@@ -198,6 +246,8 @@ typeof undefined // "undefined"
 
 typeof 0 // "number"
 
+typeof 10n // "bigint"
+
 typeof true // "boolean"
 
 typeof "foo" // "string"
@@ -223,6 +273,7 @@ As três últimas linhas podem precisar de explicações adicionais:
 2. O resultado de `typeof null` é `"object"`. Isso é errado. É um erro oficialmente reconhecido em `typeof`, mantido para compatibilidade. Naturalmente, `null` não é um objeto. É um valor especial com um tipo separado próprio. Assim, outra vez, este é um erro na linguagem.
 3. O resultado de `typeof alert` é `"function"`, porque `alert` é uma função da linguagem. Vamos estudar as funções nos próximos capítulos onde veremos que não há nenhum tipo de "função" especial em JavaScript. As funções pertencem ao tipo de objecto. Mas o `typeof` trata-as de forma diferente. Formalmente, é incorrecto, mas muito conveniente na prática.
 
+<<<<<<< HEAD
 
 ## Resumo
 
@@ -235,6 +286,20 @@ Existem 7 tipos básicos em JavaScript.
 - `undefined` para valores não atribuídos -- um tipo autônomo que tem um único valor `undefined`.
 - `object` para estruturas de dados mais complexas.
 - `symbol` para identificadores exclusivos.
+=======
+## Summary
+
+There are 8 basic data types in JavaScript.
+
+- `number` for numbers of any kind: integer or floating-point, integers are limited by ±2<sup>53</sup>.
+- `bigint` is for integer numbers of arbitrary length.
+- `string` for strings. A string may have one or more characters, there's no separate single-character type.
+- `boolean` for `true`/`false`.
+- `null` for unknown values -- a standalone type that has a single value `null`.
+- `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
+- `object` for more complex data structures.
+- `symbol` for unique identifiers.
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 
 O operador `typeof` nos permite ver qual tipo é armazenado em uma variável.
 
