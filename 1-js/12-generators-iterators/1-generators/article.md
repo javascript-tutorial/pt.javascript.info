@@ -30,7 +30,11 @@ The `generator` object can be perceived as a "frozen function call":
 
 ![](generateSequence-1.svg)
 
+<<<<<<< HEAD
 Upon creation, the code execution is paused at the very beginning.
+=======
+The main method of a generator is `next()`. When called, it runs the execution until the nearest `yield <value>` statement (`value` can be omitted, then it's `undefined`). Then the function execution pauses, and the yielded `value` is returned to the outer code.
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 The main method of a generator is `next()`. When called, it resumes execution till the nearest `yield <value>` statement. Then the execution pauses, and the value is returned to the outer code.
 
@@ -70,7 +74,7 @@ alert(JSON.stringify(two)); // {value: 2, done: false}
 
 ![](generateSequence-3.svg)
 
-And, if we call it the third time, then the execution reaches `return` statement that finishes the function:
+And, if we call it a third time, the execution reaches the `return` statement that finishes the function:
 
 ```js
 let three = generator.next();
@@ -82,11 +86,15 @@ alert(JSON.stringify(three)); // {value: 3, *!*done: true*/!*}
 
 Now the generator is done. We should see it from `done:true` and process `value:3` as the final result.
 
+<<<<<<< HEAD
 New calls `generator.next()` don't make sense any more. If we make them, they return the same object: `{done: true}`.
 
 There's no way to "roll back" a generator. But we can create another one by calling `generateSequence()`.
 
 So far, the most important thing to understand is that generator functions, unlike regular function, do not run the code. They serve as "generator factories". Running `function*` returns a generator, and then we ask it for values.
+=======
+New calls to `generator.next()` don't make sense any more. If we do them, they return the same object: `{done: true}`.
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 ```smart header="`function* f(…)` or `function *f(…)`?"
 That's a minor religious question, both syntaxes are correct.
@@ -136,7 +144,11 @@ for(let value of generator) {
 }
 ```
 
+<<<<<<< HEAD
 Naturally, as generators are iterable, we can call all related functionality, e.g. the spread operator `...`:
+=======
+As generators are iterable, we can call all related functionality, e.g. the spread syntax `...`:
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 ```js run
 function* generateSequence() {
@@ -150,7 +162,11 @@ let sequence = [0, ...generateSequence()];
 alert(sequence); // 0, 1, 2, 3
 ```
 
+<<<<<<< HEAD
 In the code above, `...generateSequence()` turns the iterable into array of items (read more about the spread operator in the chapter [](info:rest-parameters-spread-operator#spread-operator))
+=======
+In the code above, `...generateSequence()` turns the iterable generator object into an array of items (read more about the spread syntax in the chapter [](info:rest-parameters-spread#spread-syntax))
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 ## Using generators instead of iterables
 
@@ -222,12 +238,20 @@ let range = {
 alert( [...range] ); // 1,2,3,4,5
 ```
 
+<<<<<<< HEAD
 The `range` object is now iterable.
 
 That works pretty well, because when `range[Symbol.iterator]` is called:
 - it returns an object (now a generator)
 - that has `.next()` method (yep, a generator has it)
 - that returns values in the form `{value: ..., done: true/false}` (check, exactly what generator does).
+=======
+That works, because `range[Symbol.iterator]()` now returns a generator, and generator methods are exactly what `for..of` expects:
+- it has a `.next()` method
+- that returns values in the form `{value: ..., done: true/false}`
+
+That's not a coincidence, of course. Generators were added to JavaScript language with iterators in mind, to implement them easily.
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 That's not a coincidence, of course. Generators aim to make iterables easier, so we can see that.
 
@@ -236,7 +260,11 @@ The last variant with a generator is much more concise than the original iterabl
 ```smart header="Generators may continue forever"
 In the examples above we generated finite sequences, but we can also make a generator that yields values forever. For instance, an unending sequence of pseudo-random numbers.
 
+<<<<<<< HEAD
 That surely would require a `break` in `for..of`, otherwise the loop would repeat forever and hang.
+=======
+That surely would require a `break` (or `return`) in `for..of` over such generator. Otherwise, the loop would repeat forever and hang.
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 ```
 
 ## Generator composition
@@ -257,11 +285,16 @@ function* generateSequence(start, end) {
 }
 ```
 
-Now we'd like to reuse it for generation of a more complex sequence:
+Now we'd like to reuse it to generate a more complex sequence:
 - first, digits `0..9` (with character codes 48..57),
+<<<<<<< HEAD
 - followed by alphabet letters `A..Z` (character codes 65..90)
 - followed by uppercased letters `a..z` (character codes 97..122)
 >>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
+=======
+- followed by uppercase alphabet letters `A..Z` (character codes 65..90)
+- followed by lowercase alphabet letters `a..z` (character codes 97..122)
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 Then we plan to create passwords by selecting characters from it (could add syntax characters as well), but need to generate the sequence first.
 
@@ -339,9 +372,13 @@ It works even if the flow of values from the nested generator is infinite. It's 
 
 ## "yield" is a two-way road
 
+<<<<<<< HEAD
 Till this moment, generators were like "iterators on steroids". And that's how they are often used.
 
 But in fact they are much more powerful and flexible.
+=======
+Until this moment, generators were similar to iterable objects, with a special syntax to generate values. But in fact they are much more powerful and flexible.
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 That's because `yield` is a two-way road: it not only returns the result outside, but also can pass the value inside the generator.
 
@@ -368,7 +405,11 @@ generator.next(4); // --> pass the result into the generator
 
 ![](genYield2.svg)
 
+<<<<<<< HEAD
 1. The first call `generator.next()` is always without an argument. It starts the execution and returns the result of the first `yield` ("2+2?"). At this point the generator pauses the execution (still on that line).
+=======
+1. The first call `generator.next()` should be always made without an argument (the argument is ignored if passed). It starts the execution and returns the result of the first `yield "2+2=?"`. At this point the generator pauses the execution, while staying on the line `(*)`.
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 2. Then, as shown at the picture above, the result of `yield` gets into the `question` variable in the calling code.
 3. On `generator.next(4)`, the generator resumes, and `4` gets in as the result: `let result = 4`.
 
@@ -445,7 +486,7 @@ generator.throw(new Error("The answer is not found in my database")); // (2)
 */!*
 ```
 
-The error, thrown into the generator at the line `(2)` leads to an exception in the line `(1)` with `yield`. In the example above, `try..catch` catches it and shows.
+The error, thrown into the generator at line `(2)` leads to an exception in line `(1)` with `yield`. In the example above, `try..catch` catches it and shows it.
 
 If we don't catch it, then just like any exception, it "falls out" the generator into the calling code.
 
@@ -479,6 +520,10 @@ If we don't catch the error there, then, as usual, it falls through to the outer
 
 In modern JavaScript, generators are rarely used. But sometimes they come in handy, because the ability of a function to exchange data with the calling code during the execution is quite unique.
 
+<<<<<<< HEAD
 Also, in the next chapter we'll learn async generators, which are used to read streams of asynchronously generated data in `for` loop.
+=======
+Also, in the next chapter we'll learn async generators, which are used to read streams of asynchronously generated data (e.g paginated fetches over a network) in `for await ... of` loops.
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 In web-programming we often work with streamed data, e.g. need to fetch paginated results, so that's a very important use case.

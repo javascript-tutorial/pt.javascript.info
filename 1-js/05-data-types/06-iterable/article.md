@@ -142,9 +142,13 @@ for (let char of str) {
 
 Normally, internals of iterables are hidden from the external code. There's a `for..of` loop, that works, that's all it needs to know.
 
+<<<<<<< HEAD
 But to understand things a little bit deeper let's see how to create an iterator explicitly.
 
 We'll iterate over a string the same way as `for..of`, but with direct calls. This code gets a string iterator and calls it "manually":
+=======
+We'll iterate over a string in exactly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 ```js run
 let str = "Hello";
@@ -152,7 +156,9 @@ let str = "Hello";
 // does the same as
 // for (let char of str) alert(char);
 
+*!*
 let iterator = str[Symbol.iterator]();
+*/!*
 
 while (true) {
   let result = iterator.next();
@@ -212,7 +218,7 @@ let arr = Array.from(arrayLike); // (*)
 alert(arr.pop()); // World (method works)
 ```
 
-`Array.from` at the line `(*)` takes the object, examines it for being an iterable or array-like, then makes a new array and copies there all items.
+`Array.from` at the line `(*)` takes the object, examines it for being an iterable or array-like, then makes a new array and copies all items to it.
 
 The same happens for an iterable:
 
@@ -268,7 +274,7 @@ for (let char of str) {
 alert(chars);
 ```
 
-...But is shorter.    
+...But it is shorter.    
 
 We can even build surrogate-aware `slice` on it:
 
