@@ -1,14 +1,14 @@
 # Operadores
 
-Nós aprendemos muitos operadores na escola. Alguns deles são adição `+`, multiplicação `*`, subtração `-` e assim por diante.
+Nós aprendemos sobre muitos operadores na escola. Alguns deles são a adição `+`,a multiplicação `*`, a subtração `-` e assim por diante.
 
-Nesta capítulo, iremos nos concentrar em aspectos dos operadores que não são cobertos pela aritmética escolar.
+Neste capítulo, iremos nos concentrar em aspectos dos operadores que não são cobertos pela aritmética escolar.
 
 ## Termos: "unário", "binário", "operandos"
 
 Antes, vamos compreender alguns termos.
 
-- *Um operando* -- é um valor onde os operadores são aplicados. Por exemplo, na multiplicacao  `5 * 2` há dois operandos: o operador da esquerda é  `5` e o operador da direita é `2`. Às vezes, pessoas os chamam de "argumentos" ao inves de  "operandos".
+- *Um operando* -- é um valor onde os operadores são aplicados. Por exemplo, na multiplicacao  `5 * 2` há dois operandos: o operadando da esquerda é  `5` e o operando da direita é `2`. Às vezes, as pessoas os chamam de "argumentos" ao invés de  "operandos".
 - Um operador é *unário* se ele tem um único operando. Por exemplo, o unário negativo  `-` reverte o sinal de um numero:
 
     ```js run
@@ -23,7 +23,7 @@ Antes, vamos compreender alguns termos.
 
     ```js run no-beautify
     let x = 1, y = 3;
-    alert( y - x ); // 2, binário menos subtrai valores
+    alert( y - x ); // 2, o binário menos subtrai valores
     ```
 
     Formalmente, nós estamos falando sobre dois operadores diferentes aqui: o unário negativo (único operando: reverte o sinal) e o  binário negativo (dois operandos: subtrai).
@@ -34,7 +34,7 @@ Agora, vamos ver características especiais dos operadores de JavaScript que vã
 
 Normalmente, o operador mais `+` soma números.
 
-Mas, se o binário `+` é aplicado em strings, junta (concatena) elas:
+Mas, se o binário `+` é aplicado a strings, ele junta (concatena) elas:
 
 ```js
 let s = "minha" + "string";
@@ -50,7 +50,7 @@ alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
 ```
 
-Veja, não importa se o primeiro operando ou o segundo é uma string. A regra é simples: se um operando é uma string, o outro é convertido em uma string também.
+Veja, não importa se o primeiro operando ou o segundo é uma string. A regra é simples: se um operando é uma string, o outro é convertido para uma string também.
 
 Entretanto, note que as operações são executadas da esquerda para direita. Se há dois números seguidos por uma string, os número serão somados antes e então convertidos para uma string:
 
@@ -72,12 +72,12 @@ alert( '6' / '2' ); // 3
 
 O mais `+` existe em duas formas: a forma binária que usamos acima e a forma unária.
 
-O unário mais ou, em outras palavras, o operador mais `+` aplicado em um único valor, não faz nada para números. Mas se o operando não é um número, o unário mais converte-o em um número.
+O unário mais ou, em outras palavras, o operador mais `+` aplicado a um único valor, não faz nada para números. Mas se o operando não é um número, o unário mais converte-o em um número.
 
 Por exemplo:
 
 ```js run
-// Sem efeitos em números
+// Sem efeito em números
 let x = 1;
 alert( +x ); // 1
 
@@ -93,7 +93,7 @@ alert( +"" );   // 0
 
 Na realidade faz a mesma coisa que `Number(...)`, porém é mais curto.
 
-A necessidade de converter strings em números surge frequentemente. Por exemplo, se nós estamos pegando valores de campos de formulário HTML, eles são geralmente strings.
+A necessidade de converter strings em números surge frequentemente. Por exemplo, se nós estamos pegando valores de campos de um formulário HTML, eles são geralmente strings.
 
 E se nós quisermos somá-los?
 
@@ -106,7 +106,7 @@ let oranges = "3";
 alert( apples + oranges ); // "23", o binário mais concatena strings
 ```
 
-E Se nós quisermos tratá-los como números, nós precisamos converter e então somá-los:
+E ae nós quisermos tratá-los como números, nós precisamos convertê-los e então somá-los:
 
 ```js run
 let apples = "2";
