@@ -17,7 +17,8 @@ Antes, vamos compreender alguns termos.
     *!*
     x = -x;
     */!*
-    alert( x ); // -1, o unário negativo foi aplicado
+    alert( x```
+ ); // -1, o unário negativo foi aplicado
     ```
 - Um operador é *binário* se ele tem dois operandos. O mesmo menos existe na forma binária também:
 
@@ -117,13 +118,13 @@ let oranges = "3";
 alert( +apples + +oranges ); // 5
 */!*
 
-// the longer variant
+// uma outra forma mais longa
 // alert( Number(apples) + Number(oranges) ); // 5
 ```
 
-From a mathematician's standpoint, the abundance of pluses may seem strange. But from a programmer's standpoint, there's nothing special: unary pluses are applied first, they convert strings to numbers, and then the binary plus sums them up.
+De um ponto de vista matemático, a abundância do operador mais pode parecer estranha. Mas de um ponto de vista de programadores, não há nada em especial: unário mais são aplicados primeiros, eles converetem strings para números, e então o mais binários soma-os.
 
-Why are unary pluses applied to values before the binary ones? As we're going to see, that's because of their *higher precedence*.
+Por que os unários mais são aplicados nos valores antes dos binários mais ? Como nós vamos ver, esse é por causa da sua *maior precedência*.
 
 ## Operator precedence
 
