@@ -124,7 +124,7 @@ alert( +apples + +oranges ); // 5
 
 De um ponto de vista matemático, a abundância do operador mais pode parecer estranha. Mas de um ponto de vista de programadores, não há nada em especial: unário mais são aplicados primeiros, eles converetem strings para números, e então o mais binários soma-os.
 
-Por que os unários mais são aplicados nos valores antes dos binários mais ? Como nós vamos ver, esse é por causa da sua *maior precedência*.
+Por que os mais unários são aplicados nos valores antes dos binários mais ? Como nós vamos ver, isto é por causa da sua *maior precedência*.
 
 ## Operator precedence
 
