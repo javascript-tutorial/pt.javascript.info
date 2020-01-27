@@ -1,5 +1,6 @@
 # Patterns and flags
 
+<<<<<<< HEAD
 Regular expressions is a powerful way of searching and replacing inside a string.
 
 In JavaScript regular expressions are implemented using objects of a built-in `RegExp` class and integrated with strings.
@@ -7,53 +8,68 @@ In JavaScript regular expressions are implemented using objects of a built-in `R
 Please note that regular expressions vary between programming languages. In this tutorial we concentrate on JavaScript. Of course there's a lot in common, but they are a somewhat different in Perl, Ruby, PHP etc.
 
 ## Regular expressions
+=======
+Regular expressions are patterns that provide a powerful way to search and replace in text.
+
+In JavaScript, they are available via the [RegExp](mdn:js/RegExp) object, as well as being integrated in methods of strings.
+
+## Regular Expressions
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 A regular expression (also "regexp", or just "reg") consists of a *pattern* and optional *flags*.
 
-There are two syntaxes to create a regular expression object.
+There are two syntaxes that can be used to create a regular expression object.
 
-The long syntax:
+The "long" syntax:
 
 ```js
 regexp = new RegExp("pattern", "flags");
 ```
 
-...And the short one, using slashes `"/"`:
+And the "short" one, using slashes `"/"`:
 
 ```js
 regexp = /pattern/; // no flags
 regexp = /pattern/gmi; // with flags g,m and i (to be covered soon)
 ```
 
-Slashes `"/"` tell JavaScript that we are creating a regular expression. They play the same role as quotes for strings.
+Slashes `pattern:/.../` tell JavaScript that we are creating a regular expression. They play the same role as quotes for strings.
 
-## Usage
+In both cases `regexp` becomes an instance of the built-in `RegExp` class.
 
-To search inside a string, we can use method [search](mdn:js/String/search).
+The main difference between these two syntaxes is that pattern using slashes `/.../` does not allow for expressions to be inserted (like string template literals with `${...}`). They are fully static.
 
-Here's an example:
+Slashes are used when we know the regular expression at the code writing time -- and that's the most common situation. While `new RegExp`, is more often used when we need to create a regexp "on the fly" from a dynamically generated string. For instance:
 
-```js run
-let str = "I love JavaScript!"; // will search here
+```js
+let tag = prompt("What tag do you want to find?", "h2");
 
-let regexp = /love/;
-alert( str.search(regexp) ); // 2
+let regexp = new RegExp(`<${tag}>`); // same as /<h2>/ if answered "h2" in the prompt above
 ```
 
-The `str.search` method looks for the pattern `pattern:/love/` and returns the position inside the string. As we might guess, `pattern:/love/` is the simplest possible pattern. What it does is a simple substring search.
+## Flags
 
-The code above is the same as:
+Regular expressions may have flags that affect the search.
 
-```js run
-let str = "I love JavaScript!"; // will search here
+There are only 6 of them in JavaScript:
 
-let substr = 'love';
-alert( str.search(substr) ); // 2
-```
+`pattern:i`
+: With this flag the search is case-insensitive: no difference between `A` and `a` (see the example below).
 
-So searching for `pattern:/love/` is the same as searching for `"love"`.
+`pattern:g`
+: With this flag the search looks for all matches, without it -- only the first match is returned.
 
-But that's only for now. Soon we'll create more complex regular expressions with much more searching power.
+`pattern:m`
+: Multiline mode (covered in the chapter <info:regexp-multiline-mode>).
+
+`pattern:s`
+: Enables "dotall" mode, that allows a dot `pattern:.` to match newline character `\n` (covered in the chapter <info:regexp-character-classes>).
+
+`pattern:u`
+: Enables full unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter <info:regexp-unicode>.
+
+`pattern:y`
+: "Sticky" mode: searching at the exact position in the text  (covered in the chapter <info:regexp-sticky>)
 
 ```smart header="Colors"
 From here on the color scheme is:
@@ -63,65 +79,113 @@ From here on the color scheme is:
 - result -- `match:green`
 ```
 
+## Searching: str.match
 
-````smart header="When to use `new RegExp`?"
-Normally we use the short syntax `/.../`. But it does not support variable insertions `${...}`.
+As mentioned previously, regular expressions are integrated with string methods.
 
-On the other hand, `new RegExp` allows to construct a pattern dynamically from a string, so it's more flexible.
+The method `str.match(regexp)` finds all matches of `regexp` in the string `str`.
 
-Here's an example of a dynamically generated regexp:
+It has 3 working modes:
 
-```js run
-let tag = prompt("Which tag you want to search?", "h2");
-let regexp = new RegExp(`<${tag}>`);
+1. If the regular expression has flag `pattern:g`, it returns an array of all matches:
+    ```js run
+    let str = "We will, we will rock you";
 
-// finds <h2> by default
-alert( "<h1> <h2> <h3>".search(regexp));
-```
-````
+    alert( str.match(/we/gi) ); // We,we (an array of 2 substrings that match)
+    ```
+    Please note that both `match:We` and `match:we` are found, because flag `pattern:i` makes the regular expression case-insensitive.
 
+2. If there's no such flag it returns only the first match in the form of an array, with the full match at index `0` and some additional details in properties:
+    ```js run
+    let str = "We will, we will rock you";
 
-## Flags
+    let result = str.match(/we/i); // without flag g
 
-Regular expressions may have flags that affect the search.
+    alert( result[0] );     // We (1st match)
+    alert( result.length ); // 1
 
+<<<<<<< HEAD
 There are only 5 of them in JavaScript:
+=======
+    // Details:
+    alert( result.index );  // 0 (position of the match)
+    alert( result.input );  // We will, we will rock you (source string)
+    ```
+    The array may have other indexes, besides `0` if a part of the regular expression is enclosed in parentheses. We'll cover that in the chapter  <info:regexp-groups>.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
-`i`
-: With this flag the search is case-insensitive: no difference between `A` and `a` (see the example below).
+3. And, finally, if there are no matches, `null` is returned (doesn't matter if there's flag `pattern:g` or not).
 
-`g`
-: With this flag the search looks for all matches, without it -- only the first one (we'll see uses in the next chapter).
+    This a very important nuance. If there are no matches, we don't receive an empty array, but instead receive `null`. Forgetting about that may lead to errors, e.g.:
 
-`m`
-: Multiline mode (covered in the chapter <info:regexp-multiline-mode>).
+    ```js run
+    let matches = "JavaScript".match(/HTML/); // = null
 
-`s`
-: "Dotall" mode, allows `.` to match newlines (covered in the chapter <info:regexp-character-classes>).
+    if (!matches.length) { // Error: Cannot read property 'length' of null
+      alert("Error in the line above");
+    }
+    ```
 
-`u`
-: Enables full unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter <info:regexp-unicode>.
+    If we'd like the result to always be an array, we can write it this way:
 
-`y`
-: Sticky mode (covered in the chapter <info:regexp-sticky>)
+    ```js run
+    let matches = "JavaScript".match(/HTML/)*!* || []*/!*;
 
-We'll cover all these flags further in the tutorial.
+    if (!matches.length) {
+      alert("No matches"); // now it works
+    }
+    ```
 
-For now, the simplest flag is `i`, here's an example:
+## Replacing: str.replace
+
+The method `str.replace(regexp, replacement)` replaces matches found using `regexp` in string `str` with `replacement` (all matches if there's flag `pattern:g`, otherwise, only the first one).
+
+For instance:
 
 ```js run
-let str = "I love JavaScript!";
+// no flag g
+alert( "We will, we will".replace(/we/i, "I") ); // I will, we will
 
-alert( str.search(/LOVE/i) ); // 2 (found lowercased)
-
-alert( str.search(/LOVE/) ); // -1 (nothing found without 'i' flag)
+// with flag g
+alert( "We will, we will".replace(/we/ig, "I") ); // I will, I will
 ```
 
-So the `i` flag already makes regular expressions more powerful than a simple substring search. But there's so much more. We'll cover other flags and features in the next chapters.
+The second argument is the `replacement` string. We can use special character combinations in it to insert fragments of the match:
 
+| Symbols | Action in the replacement string |
+|--------|--------|
+|`$&`|inserts the whole match|
+|<code>$&#096;</code>|inserts a part of the string before the match|
+|`$'`|inserts a part of the string after the match|
+|`$n`|if `n` is a 1-2 digit number, then it inserts the contents of n-th parentheses, more about it in the chapter <info:regexp-groups>|
+|`$<name>`|inserts the contents of the parentheses with the given `name`, more about it in the chapter <info:regexp-groups>|
+|`$$`|inserts character `$` |
+
+An example with `pattern:$&`:
+
+```js run
+alert( "I love HTML".replace(/HTML/, "$& and JavaScript") ); // I love HTML and JavaScript
+```
+
+## Testing: regexp.test
+
+The method `regexp.test(str)` looks for at least one match, if found, returns `true`, otherwise `false`.
+
+```js run
+let str = "I love JavaScript";
+let regexp = /LOVE/i;
+
+alert( regexp.test(str) ); // true
+```
+
+Later in this chapter we'll study more regular expressions, walk through more examples, and also meet other methods.
+
+Full information about the methods is given in the article <info:regexp-methods>.
 
 ## Summary
 
-- A regular expression consists of a pattern and optional flags: `g`, `i`, `m`, `u`, `s`, `y`.
-- Without flags and special symbols that we'll study later, the search by a regexp is the same as a  substring search.
-- The method `str.search(regexp)` returns the index where the match is found or `-1` if there's no match. In the next chapter we'll see other methods.
+- A regular expression consists of a pattern and optional flags: `pattern:g`, `pattern:i`, `pattern:m`, `pattern:u`, `pattern:s`, `pattern:y`.
+- Without flags and special symbols  (that we'll study later), the search by a regexp is the same as a substring search.
+- The method `str.match(regexp)` looks for matches: all of them if there's `pattern:g` flag, otherwise, only the first one.
+- The method `str.replace(regexp, replacement)` replaces matches found using `regexp` with `replacement`: all of them if there's `pattern:g` flag, otherwise only the first one.
+- The method `regexp.test(str)` returns `true` if there's at least one match, otherwise, it returns `false`.

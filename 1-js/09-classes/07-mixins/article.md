@@ -103,17 +103,33 @@ Please note that the call to the parent method `super.say()` from `sayHiMixin` l
 
 ![](mixin-inheritance.svg)
 
+<<<<<<< HEAD
 That's because methods from `sayHiMixin` have `[[HomeObject]]` set to it. So `super` actually means `sayHiMixin.__proto__`, not `User.__proto__`.
+=======
+That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixin`. So even though they got copied, their `[[HomeObject]]` internal property references `sayHiMixin`, as shown in the picture above.
+
+As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`, not `User.[[Prototype]]`.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 ## EventMixin
 
 Now let's make a mixin for real life.
 
+<<<<<<< HEAD
 The important feature of many objects is working with events.
 
 That is: an object should have a method to "generate an event" when something important happens to it, and other objects should be able to "listen" to such events.
 
 An event must have a name and, optionally, bundle some additional data.
+=======
+An important feature of many browser objects (for instance) is that they can generate events. Events are a great way to "broadcast information" to anyone who wants it. So let's make a mixin that allows us to easily add event-related functions to any class/object.
+
+- The mixin will provide a method `.trigger(name, [...data])` to "generate an event" when something important happens to it. The `name` argument is a name of the event, optionally followed by additional arguments with event data.
+- Also the method `.on(name, handler)` that adds `handler` function as the listener to events with the given name. It will be called when an event with the given `name` triggers, and get the arguments from the `.trigger` call.
+- ...And the method `.off(name, handler)` that removes the `handler` listener.
+
+After adding the mixin, an object `user` will be able to generate an event `"login"` when the visitor logs in. And another object, say, `calendar` may want to listen for such events to load the calendar for the logged-in person.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 For instance, an object `user` can generate an event `"login"` when the visitor logs in. And another object `calendar` may want to receive such events to load the calendar for the logged-in person.
 
@@ -170,6 +186,12 @@ There are 3 methods here:
 2. `.off(eventName, handler)` -- removes the function from the handlers list.
 3. `.trigger(eventName, ...args)` -- generates the event: all assigned handlers are called and `args` are passed as arguments to them.
 
+<<<<<<< HEAD
+=======
+- `.on(eventName, handler)` -- assigns function `handler` to run when the event with that name occurs. Technically, there's an `_eventHandlers` property that stores an array of handlers for each event name, and it just adds it to the list.
+- `.off(eventName, handler)` -- removes the function from the handlers list.
+- `.trigger(eventName, ...args)` -- generates the event: all handlers from `_eventHandlers[eventName]` are called, with a list of arguments `...args`.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 Usage:
 
@@ -194,7 +216,11 @@ menu.on("select", value => alert(`Value selected: ${value}`));
 menu.choose("123"); // value selected
 ```
 
+<<<<<<< HEAD
 Now if we have the code interested to react on user selection, we can bind it with `menu.on(...)`.
+=======
+Now, if we'd like any code to react to a menu selection, we can listen for it with `menu.on(...)`.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 And the `eventMixin` can add such behavior to as many classes as we'd like, without interfering with the inheritance chain.
 
@@ -202,8 +228,16 @@ And the `eventMixin` can add such behavior to as many classes as we'd like, with
 
 *Mixin* -- is a generic object-oriented programming term: a class that contains methods for other classes.
 
+<<<<<<< HEAD
 Some other languages like e.g. python allow to create mixins using multiple inheritance. JavaScript does not support multiple inheritance, but mixins can be implemented by copying them into the prototype.
+=======
+Some other languages allow multiple inheritance. JavaScript does not support multiple inheritance, but mixins can be implemented by copying methods into prototype.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
-We can use mixins as a way to augment a class by multiple behaviors, like event-handling as we have seen above.
+We can use mixins as a way to augment a class by adding multiple behaviors, like event-handling as we have seen above.
 
+<<<<<<< HEAD
 Mixins may become a point of conflict if they occasionally overwrite native class methods. So generally one should think well about the naming for a mixin, to minimize such possibility.
+=======
+Mixins may become a point of conflict if they accidentally overwrite existing class methods. So generally one should think well about the naming methods of a mixin, to minimize the probability of that happening.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38

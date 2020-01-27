@@ -6,7 +6,12 @@ Eles também fornecem métodos para chamar como se fossem objetos. Estudaremos i
 
 Vejamos as principais diferenças entre primitivos e objetos.
 
+<<<<<<< HEAD
 Um primitivo
+=======
+- Is a value of a primitive type.
+- There are 7 primitive types: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` and `undefined`.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 - É um valor de um tipo primitivo.
 - Existem 6 tipos primitivos: `string`, `number`, `boolean`, `symbol`, `null` e `undefined`.
@@ -52,7 +57,11 @@ A solução parece um pouco estranha, mas aqui está:
 
 Os "invólucros de objeto" são diferentes para cada tipo primitivo e são chamados: `String`, `Number`, `Boolean` e `Symbol`. Assim, eles fornecem diferentes conjuntos de métodos.
 
+<<<<<<< HEAD
 Por exemplo, existe um método [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) que retorna uma string em letras maiúsculas.
+=======
+For instance, there exists a string method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized `str`.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 Veja como isso funciona:
 
