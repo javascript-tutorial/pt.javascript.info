@@ -1,7 +1,7 @@
 
-# Rewrite with arrow functions
+# Reescreva com arrow functions
 
-Replace Function Expressions with arrow functions in the code:
+Substitua as *Expressöes de Funçöes* por Arrow Functions no código:
 
 ```js run
 function ask(question, yes, no) {
@@ -10,8 +10,8 @@ function ask(question, yes, no) {
 }
 
 ask(
-  "Do you agree?",
-  function() { alert("You agreed."); },
-  function() { alert("You canceled the execution."); }
+  "Você concorda?",
+  function() { alert("Você concordou."); },
+  function() { alert("Você cancelou a execução."); }
 );
 ```
