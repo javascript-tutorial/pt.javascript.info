@@ -107,7 +107,7 @@ let oranges = "3";
 alert( apples + oranges ); // "23", o binário mais concatena strings
 ```
 
-E ae nós quisermos tratá-los como números, nós precisamos convertê-los e então somá-los:
+E se nós quisermos tratá-los como números, nós precisamos convertê-los e então somá-los:
 
 ```js run
 let apples = "2";
