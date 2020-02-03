@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Sum all numbers till the given one
+# Soma todos os números até o número informado
 
-Write a function `sumTo(n)` that calculates the sum of numbers `1 + 2 + ... + n`.
+Escreva uma função `sumTo(n)` que calcule a soma dos números `1 + 2 + ... + n`.
 
-For instance:
+Por exemplo:
 
 ```js no-beautify
 sumTo(1) = 1
@@ -17,20 +17,20 @@ sumTo(4) = 4 + 3 + 2 + 1 = 10
 sumTo(100) = 100 + 99 + ... + 2 + 1 = 5050
 ```
 
-Make 3 solution variants:
+Faça 3 variantes de solução:
 
-1. Using a for loop.
-2. Using a recursion, cause `sumTo(n) = n + sumTo(n-1)` for `n > 1`.
-3. Using the [arithmetic progression](https://en.wikipedia.org/wiki/Arithmetic_progression) formula.
+1. Usando um loop `for`.
+2. Usando uma recursão, onde `sumTo(n) = n + sumTo(n-1)` para `n > 1`.
+3. Usando a fórmula da [progressão aritmética](https://pt.wikipedia.org/wiki/Progress%C3%A3o_aritm%C3%A9tica).
 
-An example of the result:
+Um exemplo do resultado:
 
 ```js
-function sumTo(n) { /*... your code ... */ }
+function sumTo(n) { /*... seu código ... */ }
 
 alert( sumTo(100) ); // 5050
 ```
 
-P.S. Which solution variant is the fastest? The slowest? Why?
+Obs. Qual variante de solução é a mais rápida? A mais lenta? Por quê?
 
-P.P.S. Can we use recursion to count `sumTo(100000)`? 
+Obs. Podemos usar a recursão para contar `sumTo(100000)`? 

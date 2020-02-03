@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Output a single-linked list
+# Saída de uma lista ligada
 
-Let's say we have a single-linked list (as described in the chapter <info:recursion>):
+Digamos que tenhamos uma lista ligada (como descrito no capítulo <info:recursion>):
 
 ```js
 let list = {
@@ -22,8 +22,8 @@ let list = {
 };
 ```
 
-Write a function `printList(list)` that outputs list items one-by-one.
+Escreva uma função `printList(list)` que mostra os itens de lista um por um.
 
-Make two variants of the solution: using a loop and using recursion.
+Faça duas variantes da solução: usando um loop e usando recursão.
 
-What's better: with recursion or without it?
+O que é melhor: com recursão ou sem ela?

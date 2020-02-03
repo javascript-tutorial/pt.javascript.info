@@ -1,4 +1,4 @@
-The solution using a loop:
+A solução usando um loop:
 
 ```js run
 function sumTo(n) {
@@ -12,7 +12,7 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-The solution using recursion:
+A solução usando recursão:
 
 ```js run
 function sumTo(n) {
@@ -23,7 +23,7 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-The solution using the formula: `sumTo(n) = n*(n+1)/2`:
+A solução usando a fórmula: `sumTo(n) = n*(n+1)/2`:
 
 ```js run
 function sumTo(n) {
@@ -33,8 +33,8 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-P.S. Naturally, the formula is the fastest solution. It uses only 3 operations for any number `n`. The math helps!
+Obs. Naturalmente, a fórmula é a solução mais rápida. Ela usa apenas 3 operações para qualquer número `n`. A matemática ajuda!
 
-The loop variant is the second in terms of speed. In both the recursive and the loop variant we sum the same numbers. But the recursion involves nested calls and execution stack management. That also takes resources, so it's slower.
+A solução de loop é a segunda em termos de velocidade. Nas soluções recursiva e loop, somamos os mesmos números. Mas a recursão envolve chamadas aninhadas e gerenciamento de pilha de execução. Isso também requer recursos, por isso é mais lento.
 
-P.P.S. The standard describes a "tail call" optimization: if the recursive call is the very last one in the function (like in `sumTo` above), then the outer function will not need to resume the execution and we don't need to remember its execution context. In that case `sumTo(100000)` is countable. But if your JavaScript engine does not support it, there will be an error: maximum stack size exceeded, because there's usually a limitation on the total stack size.
+Obs. O padrão descreve uma otimização denominada "chamada do fim": se a chamada recursiva for a última na função (como em `sumTo` acima), a função externa não precisará retomar a execução e não precisamos nos lembrar seu contexto de execução. Nesse caso, `sumTo (100000)` é contável. Mas se o seu JavaScript não o suportar, haverá um erro: o tamanho máximo da pilha excedido, porque geralmente há uma limitação no tamanho total da pilha.

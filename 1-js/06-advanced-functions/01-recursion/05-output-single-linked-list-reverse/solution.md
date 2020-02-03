@@ -1,8 +1,8 @@
-# Using a recursion
+# Usando recursão
 
-The recursive logic is a little bit tricky here.
+A lógica recursiva é um pouco complicada aqui.
 
-We need to first output the rest of the list and *then* output the current one:
+Precisamos primeiro produzir o restante da lista e *depois* o atual:
 
 ```js run
 let list = {
@@ -31,13 +31,13 @@ function printReverseList(list) {
 printReverseList(list);
 ```
 
-# Using a loop
+# Usando um loop
 
-The loop variant is also a little bit more complicated then the direct output.
+A variante de loop também é um pouco mais complicada do que a saída direta.
 
-There is no way to get the last value in our `list`. We also can't "go back".
+Não há como obter o último valor em nossa `lista'. Também não podemos "voltar".
 
-So what we can do is to first go through the items in the direct order and rememeber them in an array, and then output what we remembered in the reverse order:
+Portanto, o que podemos fazer é primeiro examinar os itens na ordem direta e lembrá-los em uma matriz e, em seguida, produzir o que lembramos na ordem inversa:
 
 ```js run
 let list = {
@@ -71,4 +71,4 @@ function printReverseList(list) {
 printReverseList(list);
 ```
 
-Please note that the recursive solution actually does exactly the same: it follows the list, remembers the items in the chain of nested calls (in the execution context stack), and then outputs them. 
+Observe que a solução recursiva realmente faz exatamente o mesmo: segue a lista, lembra os itens na cadeia de chamadas aninhadas (na pilha de contexto de execução) e as produz.
