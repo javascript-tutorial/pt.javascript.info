@@ -101,9 +101,20 @@ fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commi
   .then(commits => alert(commits[0].author.login));
 ```
 
+<<<<<<< HEAD:5-network/01-fetch-basics/article.md
 To get the text:
 ```js
 let text = await response.text();
+=======
+To get the response text, `await response.text()` instead of `.json()`:
+
+```js run async
+let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
+
+let text = await response.text(); // read response body as text
+
+alert(text.slice(0, 80) + '...');
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4:5-network/01-fetch/article.md
 ```
 
 And for the binary example, let's fetch and show an image (see chapter [Blob](info:blob) for details about operations on blobs):

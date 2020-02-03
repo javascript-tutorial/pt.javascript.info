@@ -3,11 +3,11 @@
 
 In modern websites, scripts are often "heavier" than HTML: their download size is larger, and processing time is also longer.
 
-When the browser loads HTML and comes across a `<script>...</script>` tag, it can't continue building DOM. It must execute the script right now. The same happens for external scripts `<script src="..."></script>`: the browser must wait until the script downloads, execute it, and only after process the rest of the page.
+When the browser loads HTML and comes across a `<script>...</script>` tag, it can't continue building the DOM. It must execute the script right now. The same happens for external scripts `<script src="..."></script>`: the browser must wait until the script downloads, execute it, and only after process the rest of the page.
 
 That leads to two important issues:
 
-1. Scripts can't see DOM elements below them, so can't add handlers etc.
+1. Scripts can't see DOM elements below them, so they can't add handlers etc.
 2. If there's a bulky script at the top of the page, it "blocks the page". Users can't see the page content till it downloads and runs:
 
 ```html run height=100
@@ -31,7 +31,11 @@ There are some workarounds to that. For instance, we can put a script at the bot
 
 But this solution is far from perfect. For example, the browser actually notices the script (and can start downloading it) only after it downloaded the full HTML document. For long HTML documents, that may be a noticeable delay.
 
+<<<<<<< HEAD
 Such things are invisible for people using very fast connections, but many people in the world still have slower internet speeds and far-from-perfect mobile connectivity.
+=======
+Such things are invisible for people using very fast connections, but many people in the world still have slow internet speeds and use a far-from-perfect mobile internet connection.
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 Luckily, there are two `<script>` attributes that solve the problem for us: `defer` and `async`
 
@@ -68,7 +72,7 @@ The following example demonstrates that:
 ```
 
 1. The page content shows up immediately.
-2. `DOMContentLoaded` waits for the deferred script. It only triggers when the script `(2)` is downloaded is executed.
+2. `DOMContentLoaded` waits for the deferred script. It only triggers when the script `(2)` is downloaded and executed.
 
 Deferred scripts keep their relative order, just like regular scripts.
 
@@ -94,8 +98,8 @@ The `defer` attribute is ignored if the script has no `src`.
 
 The `async` attribute means that a script is completely independant:
 
-- The page doesn't wait for async scripts, the contents is processed and displayed.
-- `DOMContentLoaded` and async scripts don't wait each other:
+- The page doesn't wait for async scripts, the contents are processed and displayed.
+- `DOMContentLoaded` and async scripts don't wait for each other:
     - `DOMContentLoaded` may happen both before an async script (if an async script finishes loading after the page is complete)
     - ...or after an async script (if an async script is short or was in HTTP-cache)
 - Other scripts don't wait for `async` scripts, and `async` scripts don't wait for them.
@@ -145,7 +149,10 @@ That is:
 - They don't wait for anything, nothing waits for them.
 - The script that loads first -- runs first ("load-first" order).
 
+<<<<<<< HEAD
 We can change the load-first order into the document order by explicitly setting `async` to `false`:
+=======
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 ```js run
 let script = document.createElement('script');
@@ -177,7 +184,11 @@ loadScript("/article/script-async-defer/small.js");
 
 ## Summary
 
+<<<<<<< HEAD
 Both `async` and `defer` have one common thing: they don't block page rendering. So the user can read page content and get acquanted with the page immediately.
+=======
+Both `async` and `defer` have one common thing: downloading of such scripts doesn't block page rendering. So the user can read page content and get acquainted with the page immediately.
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 But there are also essential differences between them:
 
@@ -193,5 +204,10 @@ So, buttons should be disabled by CSS or by other means, to let the user
 
 In practice, `defer` is used for scripts that need DOM and/or their relative execution order is important.
 
+<<<<<<< HEAD
+=======
+There should be "loading" indications in the proper places, and disabled buttons should show as such, so the user can clearly see what's ready and what's not.
+```
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 So `async` is used for independent scripts, like counters or ads, that don't need to access page content. And their relative execution order does not matter.
