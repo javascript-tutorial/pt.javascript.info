@@ -17,25 +17,25 @@ Aqui está uma imagem das interligações que permitem navegar entre os nós do 
 
 Vamos abordar em mais detalhes.
 
-## On top: documentElement and body
+## Na parte superior: documentElement and body
 
-The topmost tree nodes are available directly as `document` properties:
+Os nós mais acima na árvore do DOM estão disponíveis diretamente como propriedades de `document`:
 
 `<html>` = `document.documentElement`
-: The topmost document node is `document.documentElement`. That's DOM node of `<html>` tag.
+: O mais alto nó de document é `document.documentElement`. Este é o nó do elemento `<html>`.
 
 `<body>` = `document.body`
-: Another widely used DOM node is the `<body>` element -- `document.body`.
+: Outro nó amplamente utilizado é o elemento `<body>` -- `document.body`.
 
 `<head>` = `document.head`
-: The `<head>` tag is available as `document.head`.
+: O elemento `<head>` está acessível como `document.head`.
 
-````warn header="There's a catch: `document.body` can be `null`"
-A script cannot access an element that doesn't exist at the moment of running.
+````warn header="Há um problema: `document.body` pode ser `null`"
+No momento da execução, um script não pode acessar um elemento que ainda não existe.
 
-In particular, if a script is inside `<head>`, then `document.body` is unavailable, because the browser did not read it yet.
+Em particular, se um script estiver dentro de `<head>`, então `document.body` estará indisponível, porquê o navegador ainda não o encontrou.
 
-So, in the example below the first `alert` shows `null`:
+Portanto, no exemplo abaixo, o primeiro `alert` apresentará ` null`:
 
 ```html run
 <html>
@@ -43,7 +43,7 @@ So, in the example below the first `alert` shows `null`:
 <head>
   <script>
 *!*
-    alert( "From HEAD: " + document.body ); // null, there's no <body> yet
+    alert( "a partir de HEAD: " + document.body ); // null! Ainda não há <body>
 */!*
   </script>
 </head>
@@ -51,7 +51,7 @@ So, in the example below the first `alert` shows `null`:
 <body>
 
   <script>
-    alert( "From BODY: " + document.body ); // HTMLBodyElement, now it exists
+    alert( "a partir de BODY: " + document.body ); // HTMLBodyElement! Agora existe
   </script>
 
 </body>
@@ -59,8 +59,8 @@ So, in the example below the first `alert` shows `null`:
 ```
 ````
 
-```smart header="In the DOM world `null` means \"doesn't exist\""
-In the DOM, the `null` value means "doesn't exist" or "no such node".
+```smart header="No DOM, `null` significa \"não existe\""
+No DOM, o valor `null` significa "não existe" ou "nenhum nó".
 ```
 
 ## Children: childNodes, firstChild, lastChild
