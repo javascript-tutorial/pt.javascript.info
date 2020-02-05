@@ -5,17 +5,17 @@ libs:
 ---
 
 
-# Walking the DOM
+# Percorrendo o DOM
 
-The DOM allows us to do anything with elements and their contents, but first we need to reach the corresponding DOM object, get it into a variable, and then we are able to modify it.
+O DOM nos permite fazer qualquer coisa com elementos e seu conteúdo, mas primeiro precisamos alcançar o objeto DOM correspondente.
 
-All operations on the DOM start with the `document` object. From it we can access any node.
+Todas as operações no DOM começam com o objeto `document`. Esse é o principal "ponto de entrada" para o DOM. A partir dele, podemos acessar qualquer nó.
 
-Here's a picture of links that allow for travel between DOM nodes:
+Aqui está uma imagem das interligações que permitem navegar entre os nós do DOM:
 
 ![](dom-links.svg)
 
-Let's discuss them in more detail.
+Vamos abordar em mais detalhes.
 
 ## On top: documentElement and body
 
