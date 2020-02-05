@@ -63,69 +63,69 @@ Portanto, no exemplo abaixo, o primeiro `alert` apresentará ` null`:
 No DOM, o valor `null` significa "não existe" ou "nenhum nó".
 ```
 
-## Children: childNodes, firstChild, lastChild
+## Filhos: childNodes, firstChild, lastChild
 
-There are two terms that we'll use from now on:
+Existem dois termos que usaremos a partir de agora:
 
-- **Child nodes (or children)** -- elements that are direct children. In other words, they are nested exactly in the given one. For instance, `<head>` and `<body>` are children of `<html>` element.
-- **Descendants** -- all elements that are nested in the given one, including children, their children and so on.
+- **Nós filhos** -- elementos que são filhos diretos. Em outras palavras, eles estão exatamente aninhados no elemento pai. Por exemplo, `<head>` e `<body>` são filhos do elemento `<html>`.
+- **Descendentes** -- todos os elementos aninhados em um determinado elemento, incluindo filhos, netos, bisnetos e assim por diante.
 
-For instance, here `<body>` has children `<div>` and `<ul>` (and few blank text nodes):
+Por exemplo, aqui `<body>` tem `<div>` e `<ul>` como filhos (e alguns nós de texto em branco):
 
 ```html run
 <html>
 <body>
-  <div>Begin</div>
+  <div>Começo</div>
 
   <ul>
     <li>
-      <b>Information</b>
+      <b>Informação</b>
     </li>
   </ul>
 </body>
 </html>
 ```
 
-...And if we ask for all descendants of `<body>`, then we get direct children `<div>`, `<ul>` and also more nested elements like `<li>` (being a child of `<ul>`) and `<b>` (being a child of `<li>`) -- the entire subtree.
+...E se pedirmos todos os descendentes de `<body>`, obteremos os filhos diretos `<div>`, `<ul>` e também mais elementos aninhados como `<li>` (sendo filho de `<ul>`) e `<b>` (sendo filho de `<li>`) -- a subárvore toda.
 
-**The `childNodes` collection provides access to all child nodes, including text nodes.**
+**A coleção `childNodes` fornece acesso a todos os nós filhos, incluindo nós de textos.**
 
-The example below shows children of `document.body`:
+O exemplo abaixo mostra os filhos de `document.body`:
 
 ```html run
 <html>
 <body>
-  <div>Begin</div>
+  <div>Início</div>
 
   <ul>
-    <li>Information</li>
+    <li>Informação</li>
   </ul>
 
-  <div>End</div>
+  <div>Fim</div>
 
   <script>
 *!*
     for (let i = 0; i < document.body.childNodes.length; i++) {
-      alert( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT
+      alert( document.body.childNodes[i] ); // text, div, text, ul, ..., SCRIPT
     }
 */!*
   </script>
-  ...more stuff...
+  ...mais coisas...
 </body>
 </html>
 ```
 
-Please note an interesting detail here. If we run the example above, the last element shown is `<script>`. In fact, the document has more stuff below, but at the moment of the script execution the browser did not read it yet, so the script doesn't see it.
+Observe um detalhe interessante aqui. Se executarmos o exemplo acima, o último elemento mostrado é `<script>`. De fato, o documento tem mais informações abaixo, mas no momento da execução do script o navegador ainda não leu os elementos posteriores, portanto o script não os vê.
 
-**Properties `firstChild` and `lastChild` give fast access to the first and last children.**
+**As propriedades `firstChild` e `lastChild` fornecem acesso rápido ao primeiro e ao último filho.**
 
-They are just shorthands. If there exist child nodes, then the following is always true:
+São apenas abreviações. Se houver nós filhos, o seguinte sempre será verdadeiro:
 ```js
 elem.childNodes[0] === elem.firstChild
 elem.childNodes[elem.childNodes.length - 1] === elem.lastChild
 ```
 
-There's also a special function `elem.hasChildNodes()` to check whether there are any child nodes.
+A função `elem.hasChildNodes()` verifica se há algum nó filho.
 
 ### DOM collections
 
