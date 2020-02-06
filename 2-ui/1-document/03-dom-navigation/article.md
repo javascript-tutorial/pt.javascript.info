@@ -180,30 +180,30 @@ Por favor, não! O loop `for..in` itera sobre todas as propriedades enumeráveis
 </body>
 ````
 
-## Siblings and the parent
+## Irmãos e pais
 
-*Siblings* are nodes that are children of the same parent. For instance, `<head>` and `<body>` are siblings:
+*Irmãos* são nós filhos do mesmo pai. Por exemplo, `<head>` e `<body>` são irmãos:
 
-- `<body>` is said to be the "next" or "right" sibling of `<head>`,
-- `<head>` is said to be the "previous" or "left" sibling of `<body>`.
+- É dito que `<body>` é o irmão "próximo" ou "à direita" de `<head>`,
+- É dito que `<head>` é o irmão "anterior" ou "à esquerda" de `<body>`.
 
-The parent is available as `parentNode`.
+O pai está acessível como `parentNode`.
 
-The next node in the same parent (next sibling) is `nextSibling`, and the previous one is `previousSibling`.
+O próximo nó (próximo irmão) no mesmo pai é `nextSibling`, e o anterior é `previousSibling`.
 
-For instance:
+Por exemplo:
 
 ```html run
 <html><head></head><body><script>
-  // HTML is "dense" to evade extra "blank" text nodes.
+  // O HTML é "burro" para evitar nós de textos "em branco".
 
-  // parent of <body> is <html>
+  // o pai de <body> é <html>
   alert( document.body.parentNode === document.documentElement ); // true
 
-  // after <head> goes <body>
+  // depois de <head> vem <body>
   alert( document.head.nextSibling ); // HTMLBodyElement
 
-  // before <body> goes <head>
+  // antes de <head> vem <body>
   alert( document.body.previousSibling ); // HTMLHeadElement
 </script></body></html>
 ```
