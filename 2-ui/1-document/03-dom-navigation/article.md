@@ -203,7 +203,7 @@ Por exemplo:
   // depois de <head> vem <body>
   alert( document.head.nextSibling ); // HTMLBodyElement
 
-  // antes de <head> vem <body>
+  // antes de <body> vem <head>
   alert( document.body.previousSibling ); // HTMLHeadElement
 </script></body></html>
 ```
