@@ -208,60 +208,60 @@ Por exemplo:
 </script></body></html>
 ```
 
-## Element-only navigation
+## Navegação apenas por elementos
 
-Navigation properties listed above refer to *all* nodes. For instance, in `childNodes` we can see both text nodes, element nodes, and even comment nodes if there exist.
+As propriedades de navegação listadas acima se referem a *todos* os nós. Por exemplo, em `childNodes`, podemos ver nós de textos, nós de elementos e até nós de comentários, se existirem.
 
-But for many tasks we don't want text or comment nodes. We want to manipulate element nodes that represent tags and form the structure of the page.
+Mas, para muitas tarefas, não queremos nós de textos ou comentários. Queremos manipular nós de elementos que formam a estrutura da página.
 
-So let's see more navigation links that only take *element nodes* into account:
+Então, vamos ver mais interligações de navegação que consideram apenas *nós de elementos*:
 
 ![](dom-links-elements.svg)
 
-The links are similar to those given above, just with `Element` word inside:
+As interligações são semelhantes às apresentadas acima, acrescentando apenas a palavra `Element`:
 
-- `children` -- only those children that are element nodes.
-- `firstElementChild`, `lastElementChild` -- first and last element children.
-- `previousElementSibling`, `nextElementSibling` -- neighbour elements.
-- `parentElement` -- parent element.
+- `children` -- somente os nós que são filhos do elemento.
+- `firstElementChild`, `lastElementChild` -- primeiro e último elemento filho.
+- `previousElementSibling`, `nextElementSibling` -- elementos vizinhos.
+- `parentElement` -- elemento pai.
 
-````smart header="Why `parentElement`? Can the parent be *not* an element?"
-The `parentElement` property returns the "element" parent, while `parentNode` returns "any node" parent. These properties are usually the same: they both get the parent.
+````smart header="Por que `parentElement`? O pai *não* pode ser um elemento?"
+A propriedade `parentElement` retorna o "elemento" pai, enquanto `parentNode` retorna "qualquer nó" pai. Essas propriedades geralmente são as mesmas: ambas obtêm o pai.
 
-With the one exception of `document.documentElement`:
+Com exceção do `document.documentElement`:
 
 ```js run
 alert( document.documentElement.parentNode ); // document
 alert( document.documentElement.parentElement ); // null
 ```
 
-In other words, the `documentElement` (`<html>`) is the root node. Formally, it has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
+Em outras palavras, o `documentElement` (`<html>`) é o nó raiz. Formalmente, tem `document` como pai. Mas o `document` não é um nó de elemento, portanto, somente `parentNode` o retorna. `parentElement` não.
 
-This loop travels up from an arbitrary element `elem` to `<html>`, but not to the `document`:
+Este laço de repetição percorre de um elemento arbitrário `elem` até `<html>`, mas não até o `document`:
 ```js
 while(elem = elem.parentElement) {
-  alert( elem ); // parent chain till <html>
+  alert( elem ); // sequência de pais até <html>
 }
 ```
 ````
 
-Let's modify one of the examples above: replace `childNodes` with `children`. Now it shows only elements:
+Vamos modificar um dos exemplos acima: substitua `childNodes` por `children`. Agora ele mostra apenas elementos:
 
 ```html run
 <html>
 <body>
-  <div>Begin</div>
+  <div>Início</div>
 
   <ul>
-    <li>Information</li>
+    <li>Informação</li>
   </ul>
 
-  <div>End</div>
+  <div>Fim</div>
 
   <script>
 *!*
     for (let elem of document.body.children) {
-      alert(elem); // DIV, UL, DIV, SCRIPT
+      alert(elem); // div, ul, div, SCRIPT
     }
 */!*
   </script>
