@@ -17,7 +17,7 @@ Aqui está uma imagem das interligações que permitem navegar entre os nós do 
 
 Vamos abordar em mais detalhes.
 
-## Na parte superior: documentElement and body
+## Na parte superior: documentElement e body
 
 Os nós mais acima na árvore do DOM estão disponíveis diretamente como propriedades de `document`:
 
