@@ -270,59 +270,59 @@ Vamos modificar um dos exemplos acima: substitua `childNodes` por `children`. Ag
 </html>
 ```
 
-## More links: tables [#dom-navigation-tables]
+## Mais interligações: tabelas [#dom-navigation-tables]
 
-Till now we described the basic navigation properties.
+Até agora, descrevemos as propriedades básicas de navegação.
 
-Certain types of DOM elements may provide additional properties, specific to their type, for convenience.
+Certos tipos de elementos DOM podem fornecer propriedades adicionais, específicas ao seu tipo, por conveniência.
 
-Tables are a great example and important particular case of that.
+As tabelas são um ótimo exemplo e um importante caso particular disso.
 
-**The `<table>`** element supports (in addition to the given above) these properties:
-- `table.rows` -- the collection of `<tr>` elements of the table.
-- `table.caption/tHead/tFoot` -- references to elements `<caption>`, `<thead>`, `<tfoot>`.
-- `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard).
+O elemento **`<table>`** suporta, além do explicado anteriormente, estas propriedades:
+- `table.rows` -- a coleção de elementos `<tr>` da tabela.
+- `table.caption/tHead/tFoot` -- referências aos elementos `<caption>`, `<thead>`, `<tfoot>`.
+- `table.tBodies` -- a coleção de elementos `<tbody>` (pode haver muitos, de acordo com o padrão normatizador).
 
-**`<thead>`, `<tfoot>`, `<tbody>`** elements provide the `rows` property:
-- `tbody.rows` -- the collection of `<tr>` inside.
+**`<thead>`, `<tfoot>`, `<tbody>`** elementos que fornecem a propriedade `rows`:
+- `tbody.rows` -- a coleção de `<tr>` internas.
 
 **`<tr>`:**
-- `tr.cells` -- the collection of `<td>` and `<th>` cells inside the given `<tr>`.
-- `tr.sectionRowIndex` -- the position (index) of the given `<tr>` inside the enclosing `<thead>/<tbody>/<tfoot>`.
-- `tr.rowIndex` -- the number of the `<tr>` in the table as a whole (including all table rows).
+- `tr.cells` -- a coleção de células `<td>` e `<th>` dentro do `<tr>` referido.
+- `tr.sectionRowIndex` -- a posição (índice) do referido `<tr>` dentro de `<thead> / <tbody> / <tfoot>`.
+- `tr.rowIndex` -- a posição da `<tr>` na tabela como um todo (incluindo todas as linhas da tabela).
 
-**`<td>` and `<th>`:**
-- `td.cellIndex` -- the number of the cell inside the enclosing `<tr>`.
+**`<td>` e `<th>`:**
+- `td.cellIndex` -- a posição da célula dentro do `<tr>`.
 
-An example of usage:
+Um exemplo de uso:
 
 ```html run height=100
 <table id="table">
   <tr>
-    <td>one</td><td>two</td>
+    <td>um</td><td>dois</td>
   </tr>
   <tr>
-    <td>three</td><td>four</td>
+    <td>três</td><td>quatro</td>
   </tr>
 </table>
 
 <script>
-  // get the content of the first row, second cell
-  alert( table.*!*rows[0].cells[1]*/!*.innerHTML ) // "two"
+  // obter o conteúdo da primeira linha, segunda célula
+  alert( table.*!*rows[0].cells[1]*/!*.innerHTML ) // "dois"
 </script>
 ```
 
-The specification: [tabular data](https://html.spec.whatwg.org/multipage/tables.html).
+A especificação: [Informações sobre as tabelas](https://html.spec.whatwg.org/multipage/tables.html).
 
-There are also additional navigation properties for HTML forms. We'll look at them later when we start working with forms.
+Também há propriedades de navegação adicionais para formulários HTML. Veremos quando começarmos a trabalhar com formulários.
 
-# Summary
+# Resumo
 
-Given a DOM node, we can go to its immediate neighbours using navigation properties.
+Quando nos referimos a um nó DOM, podemos ir para seus vizinhos diretos usando propriedades de navegação.
 
-There are two main sets of them:
+Existem dois conjuntos principais:
 
-- For all nodes: `parentNode`, `childNodes`, `firstChild`, `lastChild`, `previousSibling`, `nextSibling`.
-- For element nodes only: `parentElement`, `children`, `firstElementChild`, `lastElementChild`, `previousElementSibling`, `nextElementSibling`.
+- Para todos os nós: `parentNode`, `childNodes`, `firstChild`, `lastChild`, `previousSibling`, `nextSibling`.
+- Apenas para nós de elementos: `parentElement`, `children`, `firstElementChild`, `lastElementChild`, `previousElementSibling`, `nextElementSibling`.
 
-Some types of DOM elements, e.g. tables, provide additional properties and collections to access their content.
+Alguns tipos de elementos DOM, por exemplo tabelas, fornecem propriedades e coleções adicionais para acessar seu conteúdo.
