@@ -1,4 +1,4 @@
-Please note the subtle, but important detail of the solution. We don't convert `value` to number instantly after `prompt`, because after `value = +value` we would not be able to tell an empty string (stop sign) from the zero (valid number). We do it later instead.
+Por favor repare no subtítulo, e em importantes detalhes da solução. Nós não convertemos `value` para número imediatamente após `prompt`, porque depois de `value = +value` não temos como diferenciar uma *string* vazia (sinal para parar) de zero (número válido). Em vez disso, o fazemos mais tarde.
 
 
 ```js run demo
@@ -8,9 +8,9 @@ function sumInput() {
 
   while (true) {
 
-    let value = prompt("A number please?", 0);
+    let value = prompt("Um número, por favor?", 0);
 
-    // should we cancel?
+    // devemos cancelar?
     if (value === "" || value === null || !isFinite(value)) break;
 
     numbers.push(+value);
@@ -23,6 +23,5 @@ function sumInput() {
   return sum;
 }
 
-alert( sumInput() ); 
+alert( sumInput() );
 ```
-

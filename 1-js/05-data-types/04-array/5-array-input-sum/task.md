@@ -1,15 +1,15 @@
-importance: 4
+importância: 4
 
 ---
 
-# Sum input numbers
+# Some números inseridos
 
-Write the function `sumInput()` that:
+Escreva a função `sumInput()` que:
 
-- Asks the user for values using `prompt` and stores the values in the array.
-- Finishes asking when the user enters a non-numeric value, an empty string, or presses "Cancel".
-- Calculates and returns the sum of array items.
+- Peça ao utilizador por valores usando `prompt` e guarde os valores num *array*.
+- Acabe o pedido quando o utilizador inserir um valor não-numérico, uma *string* vazia, ou pressione "*Cancel*".
+- Calcule e retorne a soma dos itens no *array*.
 
-P.S. A zero `0` is a valid number, please don't stop the input on zero.
+P.S. Um zero `0` é um número válido, por favor não pare a inserção com zero.
 
 [demo]
