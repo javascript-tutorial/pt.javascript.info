@@ -12,8 +12,13 @@ Os scripts são fornecidos e executados como texto puro. Eles não precisam de p
 
 Neste aspecto, o JavaScript é muito diferente de outra linguagem chamada [Java](https://pt.wikipedia.org/wiki/Java_(linguagem_de_programação)).
 
+<<<<<<< HEAD
 ```smart header="Por que <u>Java</u>Script?"
 Quando foi criado, inicialmente o JavaScript tinha outro nome: "LiveScript". Mas Java era muito popular naquela época, então foi decidido que posicionar uma nova linguagem como um "irmão mais novo" de Java ajudaria.
+=======
+```smart header="Why is it called <u>Java</u>Script?"
+When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 Mas à medida que ele evoluiu, o JavaScript se tornou uma linguagem totalmente independente com sua própria especificação chamada [ECMAScript] (http://en.wikipedia.org/wiki/ECMAScript), e agora ele não tem nenhuma relação com Java.
 ```
@@ -38,7 +43,11 @@ Os interpretadores são complicados. Mas o básico é fácil.
 2. Depois converte ("compila") o script para a linguagem da máquina.
 3. E então o código da máquina é executado, bem rápido.
 
+<<<<<<< HEAD
 O interpretador aplica otimizações em cada etapa do processo. Ele ainda observa o script compilado enquanto ele roda, analisa os dados que passam por ele e aplica otimizações ao código da máquina com base nesse conhecimento. Quando isso é feito, os scripts são executados rapidamente.
+=======
+The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 ```
 
 ## O que o JavaScript no navegador pode fazer?

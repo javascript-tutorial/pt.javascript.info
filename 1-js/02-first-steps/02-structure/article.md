@@ -93,7 +93,11 @@ Mas devem ser duas declarações separadas, não uma. Tal fusão neste caso é c
 
 Recomendamos colocar ponto e vírgula entre as frases, mesmo que estejam separadas por novas linhas. Esta regra é amplamente adotada pela comunidade. Vamos notar mais uma vez -- *é possível* deixar de fora os pontos e vírgulas na maior parte do tempo. Mas é mais seguro -- especialmente para um iniciante -- usá-los.
 
+<<<<<<< HEAD
 ## Comentários
+=======
+## Comments [#code-comments]
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 Com o passar do tempo, os programas tornam-se cada vez mais complexos. Torna-se necessário adicionar *comentários* que descrevem o que o código faz e porquê.
 

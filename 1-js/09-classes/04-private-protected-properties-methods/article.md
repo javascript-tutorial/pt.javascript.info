@@ -50,7 +50,7 @@ That was a general introduction.
 
 In JavaScript, there are three types of properties and members:
 
-- Public: accessible from anywhere. They comprise the external interface. Till now we were only using public properties and methods.
+- Public: accessible from anywhere. They comprise the external interface. Until now we were only using public properties and methods.
 - Private: accessible only from inside the class. These are for the internal interface.
 
 In many other languages there also exist "protected" fields: accessible only from inside the class and those extending it. They are also useful for the internal interface. They are in a sense more widespread than private ones, because we usually want inheriting classes to gain access to properly do the extension.
@@ -262,7 +262,11 @@ Unlike protected ones, private fields are enforced by the language itself. That'
 But if we inherit from `CoffeeMachine`, then we'll have no direct access to `#waterAmount`. We'll need to rely on `waterAmount` getter/setter:
 
 ```js
+<<<<<<< HEAD
 class CoffeeMachine extends CoffeeMachine() {
+=======
+class MegaCoffeeMachine extends CoffeeMachine {
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
   method() {
 *!*
     alert( this.#waterAmount ); // Error: can only access from CoffeeMachine
@@ -271,7 +275,11 @@ class CoffeeMachine extends CoffeeMachine() {
 }
 ```
 
+<<<<<<< HEAD
 In many scenarios such limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reason to access its internals. That's why protected fields are used most of the time, even though they are not supported by the language syntax.
+=======
+In many scenarios such limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reasons to access its internals. That's why protected fields are used more often, even though they are not supported by the language syntax.
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 ````warn
 Private fields are special.
@@ -293,11 +301,11 @@ With private fields that's impossible: `this['#name']` doesn't work. That's a sy
 
 ## Summary
 
-In terms of OOP, delimiting of the internal interface from the external one is called [encapsulation]("https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)").
+In terms of OOP, delimiting of the internal interface from the external one is called [encapsulation](https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)).
 
 It gives the following benefits:
 
-Protection for users, so that they don't shoot themselves in the feet
+Protection for users, so that they don't shoot themselves in the foot
 : Imagine, there's a team of developers using a coffee machine. It was made by the "Best CoffeeMachine" company, and works fine, but a protective cover was removed. So the internal interface is exposed.
 
     All developers are civilized -- they use the coffee machine as intended. But one of them, John, decided that he's the smartest one, and made some tweaks in the coffee machine internals. So the coffee machine failed two days later.
@@ -316,15 +324,19 @@ Supportable
     For users, when a new version comes out, it may be a total overhaul, but still simple to upgrade if the external interface is the same.
 
 Hiding complexity
-: People adore to use things that are simple. At least from outside. What's inside is a different thing.
+: People adore using things that are simple. At least from outside. What's inside is a different thing.
 
     Programmers are not an exception.
 
     **It's always convenient when implementation details are hidden, and a simple, well-documented external interface is available.**
 
+<<<<<<< HEAD
 To hide internal interface we use either protected or public properties:
+=======
+To hide an internal interface we use either protected or private properties:
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 - Protected fields start with `_`. That's a well-known convention, not enforced at the language level. Programmers should only access a field starting with `_` from its class and classes inheriting from it.
-- Private fields start with `#`. JavaScript makes sure we only can access those from inside the class.
+- Private fields start with `#`. JavaScript makes sure we can only access those from inside the class.
 
 Right now, private fields are not well-supported among browsers, but can be polyfilled.

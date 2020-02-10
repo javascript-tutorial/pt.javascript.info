@@ -68,7 +68,7 @@ So, what exactly is a `class`? That's not an entirely  new language-level entity
 
 Let's unveil any magic and see what a class really is. That'll help in understanding many complex aspects.
 
-In JavaScript, a class is a kind of a function.
+In JavaScript, a class is a kind of function.
 
 Here, take a look:
 
@@ -91,7 +91,13 @@ What `class User {...}` construct really does is:
 
 Afterwards, for new objects, when we call a method, it's taken from the prototype, just as  described in the chapter <info:function-prototype>. So `new User` object has access to class methods.
 
+<<<<<<< HEAD
 We can illustrate the result of `class User` as:
+=======
+After `new User` object is created, when we call its method, it's taken from the prototype, just as described in the chapter <info:function-prototype>. So the object has access to class methods.
+
+We can illustrate the result of `class User` declaration as:
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 ![](class-user.svg)
 
@@ -117,9 +123,13 @@ alert(User.prototype.sayHi); // alert(this.name);
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 ```
 
-## Not just a syntax sugar
+## Not just a syntactic sugar
 
+<<<<<<< HEAD
 Sometimes people say that `class` is a "syntax sugar" in JavaScript, because we could actually declare the same without `class` keyword at all:
+=======
+Sometimes people say that `class` is a "syntactic sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same without `class` keyword at all:
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 ```js run
 // rewriting class User in pure functions
@@ -141,13 +151,17 @@ let user = new User("John");
 user.sayHi();
 ```
 
-The result of this definition is about the same. So, there are indeed reasons why `class` can be considered a syntax sugar to define a constructor together with its prototype methods.
+The result of this definition is about the same. So, there are indeed reasons why `class` can be considered a syntactic sugar to define a constructor together with its prototype methods.
 
-Although, there are important differences.
+Still, there are important differences.
 
 1. First, a function created by `class` is labelled by a special internal property `[[FunctionKind]]:"classConstructor"`. So it's not entirely the same as creating it manually.
 
+<<<<<<< HEAD
     Unlike a regular function, a class constructor can't be called without `new`:
+=======
+    And unlike a regular function, a class constructor must be called with `new`:
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
     ```js run
     class User {
@@ -181,7 +195,7 @@ Also, in addition to its basic operation, the `class` syntax brings many other f
 
 ## Class Expression
 
-Just like functions, classes can be defined inside another expression, passed around, returned, assigned etc.
+Just like functions, classes can be defined inside another expression, passed around, returned, assigned, etc.
 
 Here's an example of a class expression:
 
@@ -232,7 +246,11 @@ new User().sayHi(); // Hello
 
 ## Getters/setters, other shorthands
 
+<<<<<<< HEAD
 Classes also include getters/setters, generators, computed properties etc.
+=======
+Just like literal objects, classes may include getters/setters, computed properties etc.
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 Here's an example for `user.name` implemented using `get/set`:
 
@@ -265,7 +283,7 @@ class User {
 let user = new User("John");
 alert(user.name); // John
 
-user = new User(""); // Name too short.
+user = new User(""); // Name is too short.
 ```
 
 Internally, getters and setters are created on `User.prototype`, like this:
@@ -283,7 +301,11 @@ Object.defineProperties(User.prototype, {
 });
 ```
 
+<<<<<<< HEAD
 Here's an example with computed properties:
+=======
+Here's an example with a computed property name in brackets `[...]`:
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 ```js run
 function f() { return "sayHi"; }
@@ -297,8 +319,6 @@ class User {
 
 new User().sayHi();
 ```
-
-For a generator method, similarly, prepend it with `*`.
 
 ## Class properties
 
@@ -318,10 +338,17 @@ class User {
 }
 
 new User().sayHi();
+
+alert(User.prototype.sayHi); // placed in User.prototype
+alert(User.prototype.name); // undefined, not placed in User.prototype
 ```
 
+<<<<<<< HEAD
 The property is not placed into `User.prototype`. Instead, it is created by `new`, separately for every object. So, the property will never be shared between different objects of the same class.
 
+=======
+The property `name` is not placed into `User.prototype`. Instead, it is created by `new` before calling the constructor, it's a property of the object itself.
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 ## Summary
 
@@ -363,6 +390,10 @@ class MyClass {
 }
 ```
 
+<<<<<<< HEAD
 `MyClass` is technically a function, while methods are written to `MyClass.prototype`.
+=======
+`MyClass` is technically a function (the one that we provide as `constructor`), while methods, getters and setters are written to `MyClass.prototype`.
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 In the next chapters we'll learn more about classes, including inheritance and other features.

@@ -96,7 +96,7 @@ function pow(x, n) {
 
 The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it will be exactly `n`.
 
-The maximal recursion depth is limited by JavaScript engine. We can make sure about 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+The maximal recursion depth is limited by JavaScript engine. We can rely on it being 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
 
 That limits the application of recursion, but it still remains very wide. There are many tasks where recursive way of thinking gives simpler code, easier to maintain.
 
@@ -185,7 +185,13 @@ Here's the context stack when we entered the subcall `pow(2, 2)`:
 
 The new current execution context is on top (and bold), and previous remembered contexts are below.
 
-When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped. Here in the picture we use the word "line", but of course it's more precise.
+When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped.
+
+```smart
+Here in the picture we use the word "line", as our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
+
+So it would be more precise to say that the execution resumes "immediately after the subcall".
+```
 
 ### pow(2, 1)
 
@@ -337,7 +343,11 @@ As we can see, when our function gets a department to sum, there are two possibl
 
 The (1) is the base of recursion, the trivial case.
 
+<<<<<<< HEAD
 The (2) is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
+=======
+The 2nd case when we get an object is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 The algorithm is probably even easier to read from the code:
 
@@ -453,6 +463,7 @@ let list = { value: 1 };
 list.next = { value: 2 };
 list.next.next = { value: 3 };
 list.next.next.next = { value: 4 };
+list.next.next.next.next = null;
 ```
 
 Here we can even more clearer see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following `next` pointers from it we can reach any element.
