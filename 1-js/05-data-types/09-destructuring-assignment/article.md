@@ -183,7 +183,7 @@ The destructuring assignment also works with objects.
 The basic syntax is:
 
 ```js
-let {var1, var2} = {var1:…, var2…}
+let {var1, var2} = {var1:…, var2:…}
 ```
 
 We have an existing object at the right side, that we want to split into variables. The left side contains a "pattern" for corresponding properties. In the simple case, that's a list of variable names in `{...}`.
@@ -337,7 +337,13 @@ The problem is that JavaScript treats `{...}` in the main code flow (not inside 
 }
 ```
 
+<<<<<<< HEAD:1-js/05-data-types/09-destructuring-assignment/article.md
 To show JavaScript that it's not a code block, we can wrap the whole assignment in parentheses `(...)`:
+=======
+So here JavaScript assumes that we have a code block, that's why there's an error. We want destructuring instead.
+
+To show JavaScript that it's not a code block, we can wrap the expression in parentheses `(...)`:
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8:1-js/05-data-types/10-destructuring-assignment/article.md
 
 ```js run
 let title, width, height;
@@ -383,9 +389,13 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
+<<<<<<< HEAD:1-js/05-data-types/09-destructuring-assignment/article.md
 The whole `options` object except `extra` that was not mentioned, is assigned to corresponding variables.
 
 Note that `size` and `items` itself is not destructured.
+=======
+All properties of `options` object except `extra` that is absent in the left part, are assigned to corresponding variables:
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8:1-js/05-data-types/10-destructuring-assignment/article.md
 
 ![](destructuring-complex.svg)
 
@@ -416,6 +426,10 @@ In real-life, the problem is how to remember the order of arguments. Usually IDE
 Like this?
 
 ```js
+<<<<<<< HEAD:1-js/05-data-types/09-destructuring-assignment/article.md
+=======
+// undefined where default values are fine
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8:1-js/05-data-types/10-destructuring-assignment/article.md
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 
