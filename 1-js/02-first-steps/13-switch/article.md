@@ -1,6 +1,6 @@
 # A instrução "switch"
 
-Uma instrução `switch` pode substituir muitas comparações `se`.
+Uma instrução `switch` pode substituir muitas comparações `if` (se).
 
 Ela é uma forma mais descritiva de comparar um valor com múltiplas variantes.
 
@@ -50,7 +50,7 @@ switch (a) {
     alert( 'Muito alto' );
     break;
   default:
-    alert( "Não conheço tais valores" );
+    alert( "Não conheço tal valor" );
 }
 ```
 
@@ -74,7 +74,7 @@ switch (a) {
   case 5:
     alert( 'Muito alto' );
   default:
-    alert( "Não conheço tais valores" );
+    alert( "Não conheço tal valor" );
 */!*
 }
 ```
@@ -84,10 +84,10 @@ No exemplo acima, vemos uma execução sequential de três `alert`'s:
 ```js
 alert( 'Exacto!' );
 alert( 'Muito alto' );
-alert( "Não conheço tais valores" );
+alert( "Não conheço tal valor" );
 ```
 
-````smart header="Any expression can be a switch/case argument"
+````smart header="Quaquer expressão pode servir de argumento para switch/case"
 Ambos `switch` e `case` permitem expressões arbitrárias.
 
 Por exemplo:
@@ -133,7 +133,7 @@ switch (a) {
 */!*
 
   default:
-    alert('O resultado é stranho. Realmente.');
+    alert('O resultado é estranho. Realmente.');
 }
 ```
 
@@ -143,7 +143,7 @@ A habilidade para "agrupar" cases é um efeito secundário de como `switch/case`
 
 ## O tipo importa
 
-Vamos emfatizar que a verificação da igualdade é sempre exata. Os valores devem também ser do mesmo tipo para existir correspondência.
+Vamos enfatizar que a verificação da igualdade é sempre exata. Os valores também devem  ser do mesmo tipo para existir correspondência.
 
 Por exemplo, consideremos o código:
 
