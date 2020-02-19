@@ -231,19 +231,19 @@ Este código é mais elaborado e mostra a posição de cada elemento:
 O resultado da função (se retornar algum) é descartado e ignorado.
 
 
-## Searching in array
+## Buscando valores em um array
 
-These are methods to search for something in an array.
+Estes são métodos para procurar algo em um array.
 
-### indexOf/lastIndexOf and includes
+### indexOf/lastIndexOf e includes
 
-The methods [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) and [arr.includes](mdn:js/Array/includes) have the same syntax and do essentially the same as their string counterparts, but operate on items instead of characters:
+Os métodos [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) and [arr.includes](mdn:js/Array/includes) possuem a mesma sintaxe e fazem, essencialmente, a mesma coisa que acontece com as strings, entretanto, eles operam nos itens de um array em vez de caracteres como feito nas strings:
 
-- `arr.indexOf(item, from)` looks for `item` starting from index `from`, and returns the index where it was found, otherwise `-1`.
-- `arr.lastIndexOf(item, from)` -- same, but looks from right to left.
-- `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
+- `arr.indexOf(item, from)` -- procura por `item` começando pela posição `from`, e retorna o index/posição onde o elemento foi encontrado, caso o elemento não seja encontrado, o método retornará `-1`.
+- `arr.lastIndexOf(item, from)` -- faz o mesmo que o método acima, porém faz uma busca começando da direita para esquerda.
+- `arr.includes(item, from)` -- procura por `item` começando da posição `from`, retorna `true` se achado.
 
-For instance:
+Veja o exemplo:
 
 ```js run
 let arr = [1, 0, false];
@@ -255,59 +255,59 @@ alert( arr.indexOf(null) ); // -1
 alert( arr.includes(1) ); // true
 ```
 
-Note that the methods use `===` comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
+Note que o método usa `===` para fazer a comparação. Então, se procuramos por `false`, o método achará exatamente `false` e não zero.
 
-If we want to check for inclusion, and don't want to know the exact index, then `arr.includes` is preferred.
+Se queremos saber se um elemento está incluso em um array porém sem necessariamente saber qual sua posição, então `arr.includes` é preferível.
 
-Also, a very minor difference of `includes` is that it correctly handles `NaN`, unlike `indexOf/lastIndexOf`:
+Além disso, uma pequena diferença que o `includes` possui é que ele aceita `NaN`, ao contrário de `indexOf/lastIndexOf`:
 
 ```js run
 const arr = [NaN];
-alert( arr.indexOf(NaN) ); // -1 (should be 0, but === equality doesn't work for NaN)
-alert( arr.includes(NaN) );// true (correct)
+alert( arr.indexOf(NaN) ); // -1 (deveria ser 0, mas === igualdade não funciona com NaN)
+alert( arr.includes(NaN) );// true (correto)
 ```
 
-### find and findIndex
+### find e findIndex
 
-Imagine we have an array of objects. How do we find an object with the specific condition?
+Imagine que tenhamos um array de objetos. Como achamos um objeto usando uma condição específica?
 
-Here the [arr.find](mdn:js/Array/find) method comes in handy.
+É nesses momentos que o método [arr.find](mdn:js/Array/find) vem a calhar.
 
-The syntax is:
+Sua sintaxe é:
 ```js
 let result = arr.find(function(item, index, array) {
-  // if true is returned, item is returned and iteration is stopped
-  // for falsy scenario returns undefined
+  // se a condição de find resultar em true, então item é retornado e o laço é parado
+  // se resultar em falso é retornado o valor undefined
 });
 ```
 
-The function is called repetitively for each element of the array:
+A função dentro de `find` é chamada repetitivamente para cada elemento do array:
 
-- `item` is the element.
-- `index` is its index.
-- `array` is the array itself.
+- `item` é o elemento.
+- `index` é sua posição.
+- `array` é o array onde se encontra o elemento.
 
-If it returns `true`, the search is stopped, the `item` is returned. If nothing found, `undefined` is returned.
+Se a função resultar em `true`, a busca é parada e o `item` é retornado. Se nada for achado, `undefined` é retornado.
 
-For example, we have an array of users, each with the fields `id` and `name`. Let's find the one with `id == 1`:
+Por exemplo, nós temos um array de usuários, cada um com os campos `id` e `nome`. Vamos achar o usuário com `id == 1`:
 
 ```js run
-let users = [
-  {id: 1, name: "John"},
-  {id: 2, name: "Pete"},
-  {id: 3, name: "Mary"}
+let usuarios = [
+  {id: 1, nome: "John"},
+  {id: 2, nome: "Pete"},
+  {id: 3, nome: "Mary"}
 ];
 
-let user = users.find(item => item.id == 1);
+let user = usuarios.find(item => item.id == 1);
 
-alert(user.name); // John
+alert(user.nome); // John
 ```
 
-In real life arrays of objects is a common thing, so the `find` method is very useful.
+Na vida real, arrays de objetos é uma coisa comum, dessa forma, o método `find` é muito útil.
 
-Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. Other arguments of this function are rarely used.
+Note que no exemplo nós demos para `find` uma função `item => item.id == 1` com somente um argumento. Os outros argumentos dessa função raramente são usados.
 
-The [arr.findIndex](mdn:js/Array/findIndex) method is essentially the same, but it returns the index where the element was found instead of the element itself and `-1` is returned when nothing is found.
+O método [arr.findIndex](mdn:js/Array/findIndex) é exatamente o mesmo, mas retorna a posição onde o elemento foi encontrado e não seu elemento e `-1` é retornado quando nada é encontrado.
 
 ### filter
 
