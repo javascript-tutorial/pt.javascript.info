@@ -32,9 +32,9 @@ alert( arr.length ); // 3
 
 O elemento foi removido, mas o array ainda possui 3 elementos, nós podemos ver que `arr.length == 3`.
 
-Isso é normal porque `delete obj.chave` remove o valor pela `chave`. É um bom uso para objetos, mas para arrays, nós, normalmente, queremos que o resto dos elementos se movam e ocupem o espaço liberado.Esperávamos um array com menos elementos.
+Isso é normal porque `delete obj.chave` remove o valor pela `chave`. É um bom uso para objetos, mas para arrays, nós, normalmente, queremos que o resto dos elementos se movam e ocupem o espaço liberado. Esperávamos um array com menos elementos.
 
-Então, métodos especiais devem ser usados.
+Dessa forma, métodos especiais devem ser usados.
 
 O metodo [arr.splice(str)](mdn:js/Array/splice) é um canivete suíço para arrays. Ele pode fazer qualquer coisa: adicionar, remover e inserir elementos.
 
@@ -84,7 +84,7 @@ let removido = arr.splice(0, 2);
 alert( removido ); // "Eu", "estudo" <-- array de elementos removidos
 ```
 
-O método `splice` também permite inserir elementos sem remover outros. Para isso, devemos colocar a `quantidade` para `0`:
+O método `splice` também permite inserir elementos sem remover outros. Para isso, devemos colocar a `quantidade` em `0`:
 
 ```js run
 let arr = ["Eu", "estudo", "JavaScript"];
