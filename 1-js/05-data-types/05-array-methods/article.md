@@ -114,19 +114,19 @@ alert( arr ); // 1,2,3,4,5
 
 ### slice
 
-The method [arr.slice](mdn:js/Array/slice) is much simpler than similar-looking `arr.splice`.
+O método [arr.slice](mdn:js/Array/slice) é mais simples do seu similar anterior `arr.splice`.
 
-The syntax is:
+Sua sintaxe é:
 
 ```js
-arr.slice(start, end)
+arr.slice(começo, fim)
 ```
 
-It returns a new array containing all items from index `"start"` to `"end"` (not including `"end"`). Both `start` and `end` can be negative, in that case position from array end is assumed.
+Ele retorna um novo array contendo todos os itens a partir da posição `"começo"` até `"fim"` (ele não inclui o valor da posição `"fim"`). Ambos `começo` e `fim` podem ser negativos, nesse caso, a posição do final da array é assumida.
 
-It works like `str.slice`, but makes subarrays instead of substrings.
+Funciona como `str.slice`, porém este cria subarrays em vez de substrings.
 
-For instance:
+Por exemplo:
 
 ```js run
 let str = "test";
