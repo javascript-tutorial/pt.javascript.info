@@ -141,64 +141,64 @@ alert( arr.slice(-2) ); // s,t
 
 ### concat
 
-The method [arr.concat](mdn:js/Array/concat) joins the array with other arrays and/or items.
+O método [arr.concat](mdn:js/Array/concat) une um array com outros arrays e/ou itens.
 
-The syntax is:
+Sua sintaxe é:
 
 ```js
 arr.concat(arg1, arg2...)
 ```
 
-It accepts any number of arguments -- either arrays or values.
+Este método aceita qualquer número de argumentos -- sendo arrays ou valores.
 
-The result is a new array containing items from `arr`, then `arg1`, `arg2` etc.
+O resultado vai ser um novo array contendo itens do `arr`, e também do `arg1`, `arg2` etc.
 
-If an argument is an array or has `Symbol.isConcatSpreadable` property, then all its elements are copied. Otherwise, the argument itself is copied.
+Se o argumento for um array ou possuir a propriedade `Symbol.isConcatSpreadable`, então todos seus elementos são copiados. Caso contrário, o argumento em si é copiado.
 
-For instance:
+Veja o exemplo:
 
 ```js run
 let arr = [1, 2];
 
-// merge arr with [3,4]
+// une arr com [3,4]
 alert( arr.concat([3, 4])); // 1,2,3,4
 
-// merge arr with [3,4] and [5,6]
+// une arr com [3,4] e [5,6]
 alert( arr.concat([3, 4], [5, 6])); // 1,2,3,4,5,6
 
-// merge arr with [3,4], then add values 5 and 6
+// une arr com [3,4], e então adiciona os valores 5 e 6
 alert( arr.concat([3, 4], 5, 6)); // 1,2,3,4,5,6
 ```
 
-Normally, it only copies elements from arrays ("spreads" them). Other objects, even if they look like arrays, added as a whole:
+Normalmente, ele somente copia elementos de um array. Outros objetos, mesmo que eles se pareçam com arrays, são adicionados como um todo:
 
 ```js run
 let arr = [1, 2];
 
-let arrayLike = {
-  0: "something",
+let exemploDeArray = {
+  0: "algo",
   length: 1
 };
 
-alert( arr.concat(arrayLike) ); // 1,2,[object Object]
-//[1, 2, arrayLike]
+alert( arr.concat(exemploDeArray) ); // 1,2,[objeto Objeto]
+//[1, 2, exemploDeArray] copiou a array em vez de seus elementos armazenados
 ```
 
-...But if an array-like object has `Symbol.isConcatSpreadable` property, then its elements are added instead:
+...Mas se um array parecido com um objeto possui a propriedade `Symbol.isConcatSpreadable`, então os seus elementos são adicionados:
 
 ```js run
 let arr = [1, 2];
 
-let arrayLike = {
-  0: "something",
-  1: "else",
+let exemploDeArray = {
+  0: "qualquer",
+  1: "coisa",
 *!*
   [Symbol.isConcatSpreadable]: true,
 */!*
   length: 2
 };
 
-alert( arr.concat(arrayLike) ); // 1,2,something,else
+alert( arr.concat(exemploDeArray) ); // 1,2,qualquer,coisa
 ```
 
 ## Iterate: forEach
