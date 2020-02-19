@@ -1,111 +1,111 @@
-# Array methods
+# Métodos Arrays
 
-Arrays provide a lot of methods. To make things easier, in this chapter they are split into groups.
+Arrays nos fornece vários métodos. Para deixar esse assunto mais fácil de entender, neste capítulo esses métodos estão divididos em grupos.
 
-## Add/remove items
+## Adicionar/Remover itens
 
-We already know methods that add and remove items from the beginning or the end:
+Nós já conhecemos os métodos que adicionam e removem itens do início ou fim de uma array:
 
-- `arr.push(...items)` -- adds items to the end,
-- `arr.pop()` -- extracts an item from the end,
-- `arr.shift()` -- extracts an item from the beginning,
-- `arr.unshift(...items)` -- adds items to the beginning.
+- `arr.push(...itens)` -- adiciona itens no final de uma array,
+- `arr.pop()` -- retira um item do fim de uma array,
+- `arr.shift()` -- retira um item do começo de uma array,
+- `arr.unshift(...itens)` -- adiciona itens no começo de uma array.
 
-Here are few others.
+Abaixo apresentamos alguns outros métodos.
 
 ### splice
 
-How to delete an element from the array?
+Como deletar um elemento de uma array?
 
-The arrays are objects, so we can try to use `delete`:
+Arrays são objetos, então podemos tentar usar `delete`:
 
 ```js run
-let arr = ["I", "go", "home"];
+let arr = ["Eu", "vou", "casa"];
 
-delete arr[1]; // remove "go"
+delete arr[1]; // remove "vou"
 
-alert( arr[1] ); // undefined
+alert( arr[1] ); // retornará undefined pois o elemento foi apagado
 
-// now arr = ["I",  , "home"];
+// atualizado arr = ["Eu",  , "casa"];
 alert( arr.length ); // 3
 ```
 
-The element was removed, but the array still has 3 elements, we can see that `arr.length == 3`.
+O elemento foi removido, mas o array ainda possui 3 elementos, nós podemos ver que `arr.length == 3`.
 
-That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of elements to shift and occupy the freed place. We expect to have a shorter array now.
+Isso é normal porque `delete obj.chave` remove o valor pela `chave`. É um bom uso para objetos, mas para arrays, nós, normalmente, queremos que o resto dos elementos se movam e ocupem o espaço liberado.Esperávamos um array com menos elementos.
 
-So, special methods should be used.
+Então, métodos especiais devem ser usados.
 
-The [arr.splice(str)](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: add, remove and insert elements.
+O metodo [arr.splice(str)](mdn:js/Array/splice) é um canivete suíço para arrays. Ele pode fazer qualquer coisa: adicionar, remover e inserir elementos.
 
-The syntax is:
+Sua sintaxe é:
 
 ```js
-arr.splice(index[, deleteCount, elem1, ..., elemN])
+arr.splice(indexElementoArray[, quantidade, elem1, ..., elemN])
 ```
 
-It starts from the position `index`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+Começa em uma posição `indexElmentoArray`: remove uma certa `quantidade` de elementos e então insere `elem1, ..., elemN` em seus lugares. Ele retorna um array com os elementos removidos.
 
-This method is easy to grasp by examples.
+Esse metódo é melhor de se entender com exemplos.
 
-Let's start with the deletion:
+Vamos começar com a remoção de elementos:
 
 ```js run
-let arr = ["I", "study", "JavaScript"];
+let arr = ["Eu", "estudo", "JavaScript"];
 
 *!*
-arr.splice(1, 1); // from index 1 remove 1 element
+arr.splice(1, 1); // a partir da posição 1 remova 1 elemento
 */!*
 
-alert( arr ); // ["I", "JavaScript"]
+alert( arr ); // ["Eu", "JavaScript"]
 ```
 
-Easy, right? Starting from the index `1` it removed `1` element.
+Fácil, não é? Começando pela posição `1` o método removeu `1` elemento.
 
-In the next example we remove 3 elements and replace them with the other two:
+No próximo exemplo vamos remover 3 elementos e substituí-los por outros dois elementos:
 
 ```js run
-let arr = [*!*"I", "study", "JavaScript",*/!* "right", "now"];
+let arr = [*!*"Eu", "estudo", "JavaScript",*/!* "agora", "mesmo"];
 
-// remove 3 first elements and replace them with another
-arr.splice(0, 3, "Let's", "dance");
+// remove os 3 primeiros elementos e os substitui por outros
+arr.splice(0, 3, "Vamos", "dançar");
 
-alert( arr ) // now [*!*"Let's", "dance"*/!*, "right", "now"]
+alert( arr ) // atualizado [*!*"Vamos", "dançar"*/!*, "agora", "mesmo"]
 ```
 
-Here we can see that `splice` returns the array of removed elements:
+Abaixo podemos ver que `splice` retorna um array dos elementos removidos:
 
 ```js run
-let arr = [*!*"I", "study",*/!* "JavaScript", "right", "now"];
+let arr = [*!*"Eu", "estudo",*/!* "JavaScript", "agora", "mesmo"];
 
-// remove 2 first elements
-let removed = arr.splice(0, 2);
+// remove os 2 primeiros elementos
+let removido = arr.splice(0, 2);
 
-alert( removed ); // "I", "study" <-- array of removed elements
+alert( removido ); // "Eu", "estudo" <-- array de elementos removidos
 ```
 
-The `splice` method is also able to insert the elements without any removals. For that we need to set `deleteCount` to `0`:
+O método `splice` também permite inserir elementos sem remover outros. Para isso, devemos colocar a `quantidade` para `0`:
 
 ```js run
-let arr = ["I", "study", "JavaScript"];
+let arr = ["Eu", "estudo", "JavaScript"];
 
-// from index 2
-// delete 0
-// then insert "complex" and "language"
-arr.splice(2, 0, "complex", "language");
+// a partir da posição 2
+// delete 0 elementos
+// então insira "linguagem" e "complexa"
+arr.splice(2, 0, "linguagem", "complexa");
 
-alert( arr ); // "I", "study", "complex", "language", "JavaScript"
+alert( arr ); // "Eu", "estudo", "linguagem", "complexa", "JavaScript"
 ```
 
-````smart header="Negative indexes allowed"
-Here and in other array methods, negative indexes are allowed. They specify the position from the end of the array, like here:
+````smart header="Posição negativas são permitidas"
+Neste e em outros métodos arrays, posições negativas são permitidas. Eles especificam a posição a partir do fim de uma array, por exemplo:
 
 ```js run
 let arr = [1, 2, 5];
 
-// from index -1 (one step from the end)
-// delete 0 elements,
-// then insert 3 and 4
+// a partir da posição -1 (uma posição antes da última)
+// delete 0 elementos,
+// então insira 3 e 4
 arr.splice(-1, 0, 3, 4);
 
 alert( arr ); // 1,2,3,4,5
