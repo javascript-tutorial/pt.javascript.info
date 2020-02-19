@@ -114,7 +114,7 @@ alert( arr ); // 1,2,3,4,5
 
 ### slice
 
-O método [arr.slice](mdn:js/Array/slice) é mais simples do seu similar anterior `arr.splice`.
+O método [arr.slice](mdn:js/Array/slice) é mais simples do que seu similar anterior `arr.splice`.
 
 Sua sintaxe é:
 
