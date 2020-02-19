@@ -4,18 +4,18 @@ Arrays nos fornece vários métodos. Para deixar esse assunto mais fácil de ent
 
 ## Adicionar/Remover itens
 
-Nós já conhecemos os métodos que adicionam e removem itens do início ou fim de uma array:
+Nós já conhecemos os métodos que adicionam e removem itens do início ou fim de um array:
 
-- `arr.push(...itens)` -- adiciona itens no final de uma array,
-- `arr.pop()` -- retira um item do fim de uma array,
-- `arr.shift()` -- retira um item do começo de uma array,
-- `arr.unshift(...itens)` -- adiciona itens no começo de uma array.
+- `arr.push(...itens)` -- adiciona itens no final de um array,
+- `arr.pop()` -- retira um item do final de um array,
+- `arr.shift()` -- retira um item do começo de um array,
+- `arr.unshift(...itens)` -- adiciona itens no começo de um array.
 
 Abaixo apresentamos alguns outros métodos.
 
 ### splice
 
-Como deletar um elemento de uma array?
+Como deletar um elemento de um array?
 
 Arrays são objetos, então podemos tentar usar `delete`:
 
@@ -98,7 +98,7 @@ alert( arr ); // "Eu", "estudo", "linguagem", "complexa", "JavaScript"
 ```
 
 ````smart header="Posição negativas são permitidas"
-Neste e em outros métodos arrays, posições negativas são permitidas. Eles especificam a posição a partir do fim de uma array, por exemplo:
+Neste e em outros métodos arrays, posições negativas são permitidas. Eles especificam a posição a partir do fim de um array, por exemplo:
 
 ```js run
 let arr = [1, 2, 5];
