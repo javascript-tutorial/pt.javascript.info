@@ -523,13 +523,13 @@ alert( str ); // Bilbo;Gandalf;Nazgul
 
 ### reduce/reduceRight
 
-When we need to iterate over an array -- we can use `forEach`, `for` or `for..of`.
+Quando precisamos percorrer um array -- podemos usar `forEach`, `for` ou `for..of`.
 
-When we need to iterate and return the data for each element -- we can use `map`.
+Quando precisamos percorrer e retornar uma informação por cada elemento -- usamos o `map`.
 
-The methods [arr.reduce](mdn:js/Array/reduce) and [arr.reduceRight](mdn:js/Array/reduceRight) also belong to that breed, but are a little bit more intricate. They are used to calculate a single value based on the array.
+Os métodos [arr.reduce](mdn:js/Array/reduce) e [arr.reduceRight](mdn:js/Array/reduceRight) também pertence á esse grupo, porém eles podem ser um pouco mais confusos. Eles são usados para calcular um único valor baseado em um array.
 
-The syntax is:
+Sua sintaxe é:
 
 ```js
 let value = arr.reduce(function(previousValue, item, index, array) {
@@ -537,84 +537,92 @@ let value = arr.reduce(function(previousValue, item, index, array) {
 }, initial);
 ```
 
-The function is applied to the elements. You may notice the familiar arguments, starting from the 2nd:
+A função é aplicada nos elementos. Você pode ter notado os argumentos familiares, começando pelo o segundo:
 
-- `item` -- is the current array item.
-- `index` -- is its position.
-- `array` -- is the array.
+- `item` -- é o atual item da array.
+- `index` -- é sua posição.
+- `array` -- é a array.
 
-So far, like `forEach/map`. But there's one more argument:
+Até agora, é similiar ao método `forEach/map`. Porém há mais um argumento:
 
-- `previousValue` -- is the result of the previous function call, `initial` for the first call.
+- `previousValue` -- é o resultado da última chamada da função, `initial` seria o valor inicial.
 
-The easiest way to grasp that is by example.
+O jeito mais fácil de se entender é por meio de exemplos.
 
-Here we get a sum of array in one line:
+Aqui vamos somar os elementos de um array:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
 
-let result = arr.reduce((sum, current) => sum + current, 0);
+let resultado = arr.reduce((sum, current) => {
+  
+  return  sum + current,
 
-alert(result); // 15
+}, 0);
+
+alert(resultado); // 15
 ```
 
-Here we used the most common variant of `reduce` which uses only 2 arguments.
+Neste exemplo, usamos a forma mais simples de se usar `reduce`, o qual recebe somente 2 argumentos.
 
-Let's see the details of what's going on.
+Vamos entender os detalhes do que está acontecendo.
 
-1. On the first run, `sum` is the initial value (the last argument of `reduce`), equals `0`, and `current` is the first array element, equals `1`. So the result is `1`.
-2. On the second run, `sum = 1`, we add the second array element (`2`) to it and return.
-3. On the 3rd run, `sum = 3` and we add one more element to it, and so on...
+1. Na 1º execução, podemos notar que o último argumento de `reduce` é igual a `0`, logo esse será o valor inicial de `sum`, e `current` terá o valor do primeiro elemento do array: `1`. A função está retornando a soma das variáveis `sum` e `current`, então o resultado é `1`.
+2. Na 2º execução, `sum` passa a ter o resultado como valor `sum = 1` e `current` passa a ter o segundo elemento do array `current = 2`) e, então, retorna a soma destes.
+3. Na 3º execução, `sum = 3` e `current` passa a ter o próximo elemento do array e assim por diante...
 
-The calculation flow:
+Abaixo, a imagem mostra o fluxo da calculação:
 
 ![](reduce.svg)
 
-Or in the form of a table, where each row represents a function call on the next array element:
+Ou por meio de uma tabela, onde cada linha representa uma chamada da função no próximo elemento do array:
 
-|   |`sum`|`current`|`result`|
+|   |`sum`|`current`|`resultado`|
 |---|-----|---------|---------|
-|the first call|`0`|`1`|`1`|
-|the second call|`1`|`2`|`3`|
-|the third call|`3`|`3`|`6`|
-|the fourth call|`6`|`4`|`10`|
-|the fifth call|`10`|`5`|`15`|
+|1º chamada|`0`|`1`|`1`|
+|2º chamada|`1`|`2`|`3`|
+|3º chamada|`3`|`3`|`6`|
+|4º chamada|`6`|`4`|`10`|
+|5º chamada|`10`|`5`|`15`|
 
 
-As we can see, the result of the previous call becomes the first argument of the next one.
+Como podemos ver, o resultado da última chamada se torna o valor do primeiro argumento na próxima chamada.
 
-We also can omit the initial value:
+Podemos também omitir o valor inicial:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
 
-// removed initial value from reduce (no 0)
-let result = arr.reduce((sum, current) => sum + current);
+// valor inicial de reduce foi removido (sem 0)
+let resultado = arr.reduce((sum, current) => {
 
-alert( result ); // 15
+  return sum + current
+
+});
+
+alert( resultado ); // 15
 ```
 
-The result is the same. That's because if there's no initial, then `reduce` takes the first element of the array as the initial value and starts the iteration from the 2nd element.
+O resultado é o mesmo. Isto ocorre porque, se não houver um valor inicial, `reduce` irá pegar o primeiro elemento do array como este valor e a iteração começará a partir do 2º elemento.
 
-The calculation table is the same as above, minus the first row.
+A tabela de calculação será a mesma de cima, menos a primeira linha.
 
-But such use requires an extreme care. If the array is empty, then `reduce` call without initial value gives an error.
+Porém, o uso deste método requer extremo cuidado. Se um array estiver vazio e `reduce` for aciondado sem um valor inicial, será retornado um erro.
 
-Here's an example:
+Aqui esta um exemplo:
 
 ```js run
 let arr = [];
 
-// Error: Reduce of empty array with no initial value
-// if the initial value existed, reduce would return it for the empty arr.
+// Erro: Reduce de array vazia sem valor inicial
+// se o valor inicial existir, reduce irá retorná-lo para dentro da array vazia.
 arr.reduce((sum, current) => sum + current);
 ```
 
 
-So it's advised to always specify the initial value.
+Portanto, é aconselhável que o valor inicial sempre seja colocado.
 
-The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
+O método [arr.reduceRight](mdn:js/Array/reduceRight) faz o mesmo, mas começando da direita para a esquerda.
 
 
 ## Array.isArray
