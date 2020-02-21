@@ -454,14 +454,14 @@ Você se lembra de [arrow functions](info:function-expressions-arrows#arrow-func
 arr.sort( (a, b) => a - b );
 ```
 
-Funciona exatamente como a outra versão - maior - acima.
+Funciona exatamente como a outra versão acima.
 ````
 
 ### reverse
 
-The method [arr.reverse](mdn:js/Array/reverse) reverses the order of elements in `arr`.
+O método [arr.reverse](mdn:js/Array/reverse) reverte a ordem dos elementos em `arr`.
 
-For instance:
+Exemplo:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
@@ -471,26 +471,27 @@ alert( arr ); // 5,4,3,2,1
 ```
 
 It also returns the array `arr` after the reversal.
+Ele também retornar o array `arr` depois de revertê-lo.
 
-### split and join
+### split e join
 
-Here's the situation from the real life. We are writing a messaging app, and the person enters the comma-delimited list of receivers: `John, Pete, Mary`. But for us an array of names would be much more comfortable than a single string. How to get it?
+Aqui vai uma situação que ocorre na vida real. Digamos que estamos escrevendo uma aplicativo de mensagem e uma pessoa coloca uma lista dos recebedores delimitado por virgulas: `John, Pete, Mary`. Mas para nós um array de nomes seria muito mais confortável do que uma única string. Como fazer isso?
 
-The [str.split(delim)](mdn:js/String/split) method does exactly that. It splits the string into an array by the given delimiter `delim`.
+O método [str.split(delim)](mdn:js/String/split) faz exatamente isso. Ele separa a string em uma array dado por seu delimitador `delim`.
 
-In the example below, we split by a comma followed by space:
+No exemplo abaixo, nós separamos por uma vírgula seguido por um espaço:
 
 ```js run
-let names = 'Bilbo, Gandalf, Nazgul';
+let nomes = 'Bilbo, Gandalf, Nazgul';
 
-let arr = names.split(', ');
+let arr = nomes.split(', ');
 
-for (let name of arr) {
-  alert( `A message to ${name}.` ); // A message to Bilbo  (and other names)
+for (let nome of arr) {
+  alert( `Uma mensagem para ${name}.` ); // Uma mensagem para Bilbo  (outros nomes)
 }
 ```
 
-The `split` method has an optional second numeric argument -- a limit on the array length. If it is provided, then the extra elements are ignored. In practice it is rarely used though:
+O método `split` possui um segundo argumento numérico opcional -- um limite para o tamanho de uma array. Se for aprovado, então os outros elemento são ignorados. Na prática, é raramente usado:
 
 ```js run
 let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
@@ -498,19 +499,19 @@ let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
 alert(arr); // Bilbo, Gandalf
 ```
 
-````smart header="Split into letters"
-The call to `split(s)` with an empty `s` would split the string into an array of letters:
+````smart header="Separe por letras"
+Ao chamar `split(s)` com o `s` vazio, separaria a string e teríamos um array de letras:
 
 ```js run
-let str = "test";
+let str = "teste";
 
-alert( str.split('') ); // t,e,s,t
+alert( str.split('') ); // t,e,s,t,e
 ```
 ````
 
-The call [arr.join(separator)](mdn:js/Array/join) does the reverse to `split`. It creates a string of `arr` items glued by `separator` between them.
+O método [arr.join(separator)](mdn:js/Array/join) faz o contrário de `split`. Ele cria uma string dos itens de `arr` juntando-os por um `separator` entre eles.
 
-For instance:
+Por exemplo:
 
 ```js run
 let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
