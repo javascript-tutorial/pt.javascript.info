@@ -603,11 +603,11 @@ let resultado = arr.reduce((sum, current) => {
 alert( resultado ); // 15
 ```
 
-O resultado é o mesmo. Isto ocorre porque, se não houver um valor inicial, `reduce` irá pegar o primeiro elemento do array como este valor e a iteração começará a partir do 2º elemento.
+O resultado é o mesmo. Isto ocorre porque, se não houver um valor inicial, `reduce` irá pegar o primeiro elemento do array como este valor e `current` começará a partir do 2º elemento.
 
 A tabela de calculação será a mesma de cima, menos a primeira linha.
 
-Porém, o uso deste método requer extremo cuidado. Se um array estiver vazio e `reduce` for aciondado sem um valor inicial, será retornado um erro.
+Porém, o uso deste método requer extremo cuidado. Se um array estiver vazio e `reduce` for acionado sem um valor inicial, será retornado um erro.
 
 Aqui esta um exemplo:
 
@@ -620,7 +620,7 @@ arr.reduce((sum, current) => sum + current);
 ```
 
 
-Portanto, é aconselhável que o valor inicial sempre seja colocado.
+Portanto, é aconselhável que o valor inicial seja sempre colocado.
 
 O método [arr.reduceRight](mdn:js/Array/reduceRight) faz o mesmo, mas começando da direita para a esquerda.
 
