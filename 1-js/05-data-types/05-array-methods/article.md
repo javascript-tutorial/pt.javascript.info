@@ -568,7 +568,7 @@ Neste exemplo, usamos a forma mais simples de se usar `reduce`, o qual recebe so
 Vamos entender os detalhes do que está acontecendo.
 
 1. Na 1º execução, podemos notar que o último argumento de `reduce` é igual a `0`, logo esse será o valor inicial de `sum`, e `current` terá o valor do primeiro elemento do array: `1`. A função está retornando a soma das variáveis `sum` e `current`, então o resultado é `1`.
-2. Na 2º execução, `sum` passa a ter o resultado como valor `sum = 1` e `current` passa a ter o segundo elemento do array `current = 2`) e, então, retorna a soma destes.
+2. Na 2º execução, `sum` passa a ter o resultado como valor `sum = 1` e `current` passa a ter o segundo elemento do array `current = 2` e, então, retorna a soma destes.
 3. Na 3º execução, `sum = 3` e `current` passa a ter o próximo elemento do array e assim por diante...
 
 Abaixo, a imagem mostra o fluxo da calculação:
