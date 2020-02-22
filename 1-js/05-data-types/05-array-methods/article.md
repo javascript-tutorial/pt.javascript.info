@@ -688,54 +688,54 @@ alert(maisNovoUsuario.length); // 2
 
 No exemplo acima, nós usamos `usuario.maisNovo` como um filtro e também fornecemos `usuario` como contexto. Se não tivéssemos fornecido o contexto, `usuarios.filter(usuario.maisNovo)` iria chamar `usuario.maisNovo` como uma funçao de parâmetro único, com `this=undefined`. No final, ele retornaria um erro.
 
-## Summary
+## Resumo
 
-A cheatsheet of array methods:
+Uma *cola* com os métodos arrays abordados:
 
-- To add/remove elements:
-  - `push(...items)` -- adds items to the end,
-  - `pop()` -- extracts an item from the end,
-  - `shift()` -- extracts an item from the beginning,
-  - `unshift(...items)` -- adds items to the beginning.
-  - `splice(pos, deleteCount, ...items)` -- at index `pos` delete `deleteCount` elements and insert `items`.
-  - `slice(start, end)` -- creates a new array, copies elements from position `start` till `end` (not inclusive) into it.
-  - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
+- Para adicionar/remover elementos:
+  - `push(...items)` -- adiciona itens no final,
+  - `pop()` -- retira um item do final,
+  - `shift()` -- retira um item do começo,
+  - `unshift(...items)` -- adiciona um item no começo.
+  - `splice(posicao, quantidade, ...items)` -- no index `posicao`, deleta uma certa `quantidade` de elementos e insere outros `items`.
+  - `slice(comeco, fim)` -- cria um novo array, copia elementos a partir da posição `comeco` até `fim` (que não é incluso) para dentro do array.
+  - `concat(...items)` -- retorna um novo array: une elementos de um array atual com outros `items` e adiciona a array nova. Se algum `items` for um array, então seus elementos também são capturados e adicionados.
 
-- To search among elements:
-  - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, return the index or `-1` if not found.
-  - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
-  - `find/filter(func)` -- filter elements through the function, return first/all values that make it return `true`.
-  - `findIndex` is like `find`, but returns the index instead of a value.
+- Para procurar entre os elementos:
+  - `indexOf/lastIndexOf(item, posicao)` -- procura por `item` começando pela `posicao`, retorna o index/posição ou `-1` se não for encontrado.
+  - `includes(valor)` -- retorna `true` se o array possuir o `valor`, do contrário, retornará `false`.
+  - `find/filter(func)` -- filtra elementos por meio de uma função, retorna o primeiro - ou todos - valor que fizer a função retornar `true`.
+  - `findIndex` é como `find`, mas retorna o index e não o valor.
   
-- To iterate over elements:
-  - `forEach(func)` -- calls `func` for every element, does not return anything.
+- Para percorrer os elementos:
+  - `forEach(func)` -- chama `func` para cada elemento, não retorna um valor.
 
-- To transform the array:
-  - `map(func)` -- creates a new array from results of calling `func` for every element.
-  - `sort(func)` -- sorts the array in-place, then returns it.
-  - `reverse()` -- reverses the array in-place, then returns it.
-  - `split/join` -- convert a string to array and back.
-  - `reduce(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
+- Para transformar um array:
+  - `map(func)` -- cria um novo array a partir do resultado da chamada de `func` para cada elemento.
+  - `sort(func)` -- ordena o array e o retorna.
+  - `reverse()` -- inverte o array e o retorna.
+  - `split/join` -- converte uma string para array/array para string.
+  - `reduce(func, initial)` -- calcula um único valor a partir de um array ao chamar `func` para cada elemento e passando um resultado intermediário entre as chamadas.
 
-- Additionally:
-  - `Array.isArray(arr)` checks `arr` for being an array.
+- Adicional:
+  - `Array.isArray(arr)` checa se `arr` é um array.
 
-Please note that methods `sort`, `reverse` and `splice` modify the array itself.
+Por favor, note que os métodos `sort`, `reverse` e `splice` modificam o array.
 
-These methods are the most used ones, they cover 99% of use cases. But there are few others:
+Este métodos são os mais usados, eles cobrem 99% em casos de uso. Porém, existem outros:
 
-- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) checks the array.
+- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) examina o array.
 
-  The function `fn` is called on each element of the array similar to `map`. If any/all results are `true`, returns `true`, otherwise `false`.
+  A função `fn` é chamada em cada elemento do array como em `map`. Se algum/todos os resultados for `true`, retorna `true`, do contrário `false`.
 
-- [arr.fill(value, start, end)](mdn:js/Array/fill) -- fills the array with repeating `value` from index `start` to `end`.
+- [arr.fill(valor, comeco, fim)](mdn:js/Array/fill) -- preenche um array com o `valor` dado repetitivamente a partir da posição `comeco` até `fim`.
 
-- [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- copies its elements from position `start` till position `end` into *itself*, at position `target` (overwrites existing).
+- [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- copia *seus próprios elementos* e os leva para outra posição *dentro da mesma array*. A cópia dos elementos começa a partir da posição `start` até a posição `end`, e os elementos são realocados para a posição `target` (sobescrevendo os elementos existentes). Este método não adiciona novos itens ao array.
 
-For the full list, see the [manual](mdn:js/Array).
+Para a lista completa, veja o [manual](mdn:js/Array).
 
-From the first sight it may seem that there are so many methods, quite difficult to remember. But actually that's much easier than it seems.
+Á primeira vista, pode parecer que são muitos métodos e que se torna difícil de lembrá-los. Mas, na verdade, isso é mais simples do que parece.
 
-Look through the cheatsheet just to be aware of them. Then solve the tasks of this chapter to practice, so that you have experience with array methods.
+Examine esta lista de *cola* só para ter uma noção deles e depois resolva os exercícios deste capítulo para praticar. Desta forma, você vai ter uma experiência com métodos arrays.
 
-Afterwards whenever you need to do something with an array, and you don't know how -- come here, look at the cheatsheet and find the right method. Examples will help you to write it correctly. Soon you'll automatically remember the methods, without specific efforts from your side.
+Mais tarde, sempre que precisar fazer algo com arrays -- e você não souber como -- venha até aqui, olhe nossa cola e ache o método correto. Exemplos vão lhe ajudar a escrever corretamente. Logo você irá lembrar dos métodos automaticamente, sem esforços específicos.
