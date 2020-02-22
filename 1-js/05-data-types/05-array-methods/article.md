@@ -627,16 +627,16 @@ O método [arr.reduceRight](mdn:js/Array/reduceRight) faz o mesmo, mas começand
 
 ## Array.isArray
 
-Arrays do not form a separate language type. They are based on objects.
+Arrays não formam um outro tipo de linguagem. Eles são baseados em objetos.
 
-So `typeof` does not help to distinguish a plain object from an array:
+Mesmo usando `typeof` não é possível distinguir um objeto de um array:
 
 ```js run
-alert(typeof {}); // object
-alert(typeof []); // same
+alert(typeof {}); // objeto
+alert(typeof []); // objeto
 ```
 
-...But arrays are used so often that there's a special method for that: [Array.isArray(value)](mdn:js/Array/isArray). It returns `true` if the `value` is an array, and `false` otherwise.
+...Mas arrays são usados tão frequentemente que há um método especial para isso: [Array.isArray(value)](mdn:js/Array/isArray). Este método retorna `true` se o `valor` for um array e `false` se não for.
 
 ```js run
 alert(Array.isArray({})); // false
@@ -644,49 +644,49 @@ alert(Array.isArray({})); // false
 alert(Array.isArray([])); // true
 ```
 
-## Most methods support "thisArg"
+## A maioria dos métodos suportam "thisArg"
 
-Almost all array methods that call functions -- like `find`, `filter`, `map`, with a notable exception of `sort`, accept an optional additional parameter `thisArg`.
+Quase todos os métodos arrays que chamam uma função -- como `find`, `filter`, `map`, com exceção de `sort` -- aceitam um parâmetro adicional opcional `thisArg`.
 
-That parameter is not explained in the sections above, because it's rarely used. But for completeness we have to cover it.
+Este parâmetro não foi explicado nas seções anteriores porque é raramente usado. Entretanto, para um ensinamento melhor e completo, decidimos mostrá-lo.
 
-Here's the full syntax of these methods:
+Abaixo mostramo a sintaxe completa destes métodos:
 
 ```js
 arr.find(func, thisArg);
 arr.filter(func, thisArg);
 arr.map(func, thisArg);
 // ...
-// thisArg is the optional last argument
+// thisArg é o último argumento opcional
 ```
 
-The value of `thisArg` parameter becomes `this` for `func`.
+O valor do parâmetro `thisArg` se torna o `this` para `func`.
 
-For instance, here we use an object method as a filter and `thisArg` comes in handy:
+No exemplo abaixo, usamos um objeto como filtro e acabou que `thisArg` facilitou o uso do método:
 
 ```js run
-let user = {
-  age: 18,
-  younger(otherUser) {
-    return otherUser.age < this.age;
+let usuario = {
+  idade: 18,
+  maisNovo(outroUsuario) {
+    return outroUsuario.idade < this.idade;
   }
 };
 
-let users = [
-  {age: 12},
-  {age: 16},
-  {age: 32}
+let usuarios = [
+  {idade: 12},
+  {idade: 16},
+  {idade: 32}
 ];
 
 *!*
-// find all users younger than user
-let youngerUsers = users.filter(user.younger, user);
+// ache todos os usuarios mais novos que o usuario
+let maisNovoUsers = usuarios.filter(usuario.maisNovo, usuario);
 */!*
 
-alert(youngerUsers.length); // 2
+alert(maisNovoUsuario.length); // 2
 ```
 
-In the call above, we use `user.younger` as a filter and also provide `user` as the context for it. If we didn't provide the context, `users.filter(user.younger)` would call `user.younger` as a standalone function, with `this=undefined`. That would mean an instant error.
+No exemplo acima, nós usamos `usuario.maisNovo` como um filtro e também fornecemos `usuario` como contexto. Se não tivessemos fornecido o contexto, `usuarios.filter(usuario.maisNovo)` iria chamar `usuario.maisNovo` como uma funçao de parâmetro único, com `this=undefined`. No final, ele retornaria um erro.
 
 ## Summary
 
