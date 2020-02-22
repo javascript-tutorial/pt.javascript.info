@@ -650,7 +650,7 @@ Quase todos os métodos arrays que chamam uma função -- como `find`, `filter`,
 
 Este parâmetro não foi explicado nas seções anteriores porque é raramente usado. Entretanto, para um ensinamento melhor e completo, decidimos mostrá-lo.
 
-Abaixo mostramo a sintaxe completa destes métodos:
+Abaixo mostramos a sintaxe completa destes métodos:
 
 ```js
 arr.find(func, thisArg);
@@ -686,7 +686,7 @@ let maisNovoUsers = usuarios.filter(usuario.maisNovo, usuario);
 alert(maisNovoUsuario.length); // 2
 ```
 
-No exemplo acima, nós usamos `usuario.maisNovo` como um filtro e também fornecemos `usuario` como contexto. Se não tivessemos fornecido o contexto, `usuarios.filter(usuario.maisNovo)` iria chamar `usuario.maisNovo` como uma funçao de parâmetro único, com `this=undefined`. No final, ele retornaria um erro.
+No exemplo acima, nós usamos `usuario.maisNovo` como um filtro e também fornecemos `usuario` como contexto. Se não tivéssemos fornecido o contexto, `usuarios.filter(usuario.maisNovo)` iria chamar `usuario.maisNovo` como uma funçao de parâmetro único, com `this=undefined`. No final, ele retornaria um erro.
 
 ## Summary
 
