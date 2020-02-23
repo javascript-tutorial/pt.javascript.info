@@ -6,7 +6,7 @@ importance: 5
 
 Você tem um array de objetos `user`, cada um possui `name`, `surname` e `id`.
 
-Escreva um código para criar um novo array a partir de `user`, também será um array de objetos com as chaves `id` e `fullName`, onde `fullName` é gerado a partir da junção de `name` e `surname`.
+Escreva um código para criar um novo array a partir de `user`, também será um array de objetos com as propriedades `id` e `fullName`, onde `fullName` é gerado a partir da junção de `name` e `surname`.
 
 Exemplo:
 
