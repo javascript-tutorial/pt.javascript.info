@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Sort users by age
+# Ordene (sort) users por age
 
 Escreva a função `sortByAge(users)` que recebe um array de objetos com a propriedade `age` e o ordene por `age`.
 

@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Map to names
+# Map para nomes
 
 Você tem um array de objetos `user`, cada um possui `user.name`. Escreva um código que converta o array para um array de nomes.
 

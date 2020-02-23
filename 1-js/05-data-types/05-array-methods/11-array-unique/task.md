@@ -2,7 +2,7 @@ importance: 4
 
 ---
 
-# Filter unique array members
+# Filtre membros únicos de um array
 
 Deixe `arr` ser um array.
 

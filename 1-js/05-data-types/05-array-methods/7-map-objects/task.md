@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Map to objects
+# Map para objetos
 
 Você tem um array de objetos `user`, cada um possui `name`, `surname` e `id`.
 
