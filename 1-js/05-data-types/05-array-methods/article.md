@@ -36,7 +36,7 @@ Isso é normal porque `delete obj.chave` remove o valor pela `chave`. É um bom 
 
 Dessa forma, métodos especiais devem ser usados.
 
-O metodo [arr.splice(str)](mdn:js/Array/splice) é um canivete suíço para arrays. Ele pode fazer qualquer coisa: adicionar, remover e inserir elementos.
+O metodo [arr.splice(str)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) é um canivete suíço para arrays. Ele pode fazer qualquer coisa: adicionar, remover e inserir elementos.
 
 Sua sintaxe é:
 
@@ -114,7 +114,7 @@ alert( arr ); // 1,2,3,4,5
 
 ### slice
 
-O método [arr.slice](mdn:js/Array/slice) é mais simples do que seu similar anterior `arr.splice`.
+O método [arr.slice](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) é mais simples do que seu similar anterior `arr.splice`.
 
 Sua sintaxe é:
 
@@ -141,7 +141,7 @@ alert( arr.slice(-2) ); // s,t
 
 ### concat
 
-O método [arr.concat](mdn:js/Array/concat) une um array com outros arrays e/ou itens.
+O método [arr.concat](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/concat) une um array com outros arrays e/ou itens.
 
 Sua sintaxe é:
 
@@ -203,7 +203,7 @@ alert( arr.concat(exemploDeArray) ); // 1,2,qualquer,coisa
 
 ## Iterate: forEach
 
-O método [arr.forEach](mdn:js/Array/forEach) permite executar uma função para cada elemento de um array.
+O método [arr.forEach](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) permite executar uma função para cada elemento de um array.
 
 Sua sintaxe:
 ```js
@@ -237,7 +237,7 @@ Estes são métodos para procurar algo em um array.
 
 ### indexOf/lastIndexOf e includes
 
-Os métodos [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) e [arr.includes](mdn:js/Array/includes) possuem a mesma sintaxe e fazem, essencialmente, a mesma coisa que acontece com as strings, entretanto, eles operam nos itens de um array em vez de caracteres como feito nas strings:
+Os métodos [arr.indexOf](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf), [arr.lastIndexOf](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf) e [arr.includes](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/contains) possuem a mesma sintaxe e fazem, essencialmente, a mesma coisa que acontece com as strings, entretanto, eles operam nos itens de um array em vez de caracteres como feito nas strings:
 
 - `arr.indexOf(item, from)` -- procura por `item` começando pela posição `from`, e retorna o index/posição onde o elemento foi encontrado, caso o elemento não seja encontrado, o método retornará `-1`.
 - `arr.lastIndexOf(item, from)` -- faz o mesmo que o método acima, porém faz uma busca começando da direita para esquerda.
@@ -271,7 +271,7 @@ alert( arr.includes(NaN) );// true (correto)
 
 Imagine que tenhamos um array de objetos. Como achamos um objeto usando uma condição específica?
 
-É nesses momentos que o método [arr.find](mdn:js/Array/find) vem a calhar.
+É nesses momentos que o método [arr.find](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/find) vem a calhar.
 
 Sua sintaxe é:
 ```js
@@ -307,13 +307,13 @@ Na vida real, arrays de objetos é uma coisa comum, dessa forma, o método `find
 
 Note que no exemplo nós demos para `find` uma função `item => item.id == 1` com somente um argumento. Os outros argumentos dessa função raramente são usados.
 
-O método [arr.findIndex](mdn:js/Array/findIndex) é exatamente o mesmo, mas retorna a posição onde o elemento foi encontrado e não seu elemento e `-1` é retornado quando nada é encontrado.
+O método [arr.findIndex](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) é exatamente o mesmo, mas retorna a posição onde o elemento foi encontrado e não seu elemento e `-1` é retornado quando nada é encontrado.
 
 ### filter
 
 O método `find` procura por um único (e o primeiro) elemento que fizer a função retornar `true`.
 
-Se quisermos que retorne mais de um elemento, podemos usar [arr.filter(fn)](mdn:js/Array/filter).
+Se quisermos que retorne mais de um elemento, podemos usar [arr.filter(fn)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/filtro).
 
 A sintaxe é parecida com `find`, porém o `filter` continua o loop por todos os elementos do array mesmo se `true` já tiver sindo retornado:
 
@@ -345,7 +345,7 @@ Esta seção irá abordar os métodos que transformam ou reorganizam um array.
 
 ### map
 
-O método [arr.map](mdn:js/Array/map) é um dos mais úteis e usados por programadores.
+O método [arr.map](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/map) é um dos mais úteis e usados por programadores.
 
 Sua sintaxe é:
 
@@ -366,7 +366,7 @@ alert(lengths); // 5,7,6
 
 ### sort(fn)
 
-O método [arr.sort](mdn:js/Array/sort) ordena um array colocando os elementos *em seus devidos lugares*.
+O método [arr.sort](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) ordena um array colocando os elementos *em seus devidos lugares*.
 
 Exemplo:
 
@@ -459,7 +459,7 @@ Funciona exatamente como a outra versão acima.
 
 ### reverse
 
-O método [arr.reverse](mdn:js/Array/reverse) reverte a ordem dos elementos em `arr`.
+O método [arr.reverse](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) reverte a ordem dos elementos em `arr`.
 
 Exemplo:
 
@@ -477,7 +477,7 @@ Ele também retornar o array `arr` depois de revertê-lo.
 
 Aqui vai uma situação que ocorre na vida real. Digamos que estamos escrevendo uma aplicativo de mensagem e uma pessoa coloca uma lista dos recebedores delimitado por virgulas: `John, Pete, Mary`. Mas para nós um array de nomes seria muito mais confortável do que uma única string. Como fazer isso?
 
-O método [str.split(delim)](mdn:js/String/split) faz exatamente isso. Ele separa a string em uma array dado por seu delimitador `delim`.
+O método [str.split(delim)](https://www.devmedia.com.br/javascript-split-dividindo-separando-strings/39254) faz exatamente isso. Ele separa a string em uma array dado por seu delimitador `delim`.
 
 No exemplo abaixo, nós separamos por uma vírgula seguido por um espaço:
 
@@ -509,7 +509,7 @@ alert( str.split('') ); // t,e,s,t,e
 ```
 ````
 
-O método [arr.join(separator)](mdn:js/Array/join) faz o contrário de `split`. Ele cria uma string dos itens de `arr` juntando-os por um `separator` entre eles.
+O método [arr.join(separator)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/join) faz o contrário de `split`. Ele cria uma string dos itens de `arr` juntando-os por um `separator` entre eles.
 
 Por exemplo:
 
@@ -527,7 +527,7 @@ Quando precisamos percorrer um array -- podemos usar `forEach`, `for` ou `for..o
 
 Quando precisamos percorrer e retornar uma informação por cada elemento -- usamos o `map`.
 
-Os métodos [arr.reduce](mdn:js/Array/reduce) e [arr.reduceRight](mdn:js/Array/reduceRight) também pertence á esse grupo, porém eles podem ser um pouco mais confusos. Eles são usados para calcular um único valor baseado em um array.
+Os métodos [arr.reduce](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) e [arr.reduceRight](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/ReduceRight) também pertence á esse grupo, porém eles podem ser um pouco mais confusos. Eles são usados para calcular um único valor baseado em um array.
 
 Sua sintaxe é:
 
@@ -622,7 +622,7 @@ arr.reduce((sum, current) => sum + current);
 
 Portanto, é aconselhável que o valor inicial seja sempre colocado.
 
-O método [arr.reduceRight](mdn:js/Array/reduceRight) faz o mesmo, mas começando da direita para a esquerda.
+O método [arr.reduceRight](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/ReduceRight) faz o mesmo, mas começando da direita para a esquerda.
 
 
 ## Array.isArray
@@ -636,7 +636,7 @@ alert(typeof {}); // objeto
 alert(typeof []); // objeto
 ```
 
-...Mas arrays são usados tão frequentemente que há um método especial para isso: [Array.isArray(value)](mdn:js/Array/isArray). Este método retorna `true` se o `valor` for um array e `false` se não for.
+...Mas arrays são usados tão frequentemente que há um método especial para isso: [Array.isArray(value)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray). Este método retorna `true` se o `valor` for um array e `false` se não for.
 
 ```js run
 alert(Array.isArray({})); // false
@@ -724,15 +724,15 @@ Por favor, note que os métodos `sort`, `reverse` e `splice` modificam o array.
 
 Este métodos são os mais usados, eles cobrem 99% em casos de uso. Porém, existem outros:
 
-- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) examina o array.
+- [arr.some(fn)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/some)/[arr.every(fn)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/every) examina o array.
 
   A função `fn` é chamada em cada elemento do array como em `map`. Se algum/todos os resultados for `true`, retorna `true`, do contrário `false`.
 
-- [arr.fill(valor, comeco, fim)](mdn:js/Array/fill) -- preenche um array com o `valor` dado repetitivamente a partir da posição `comeco` até `fim`.
+- [arr.fill(valor, comeco, fim)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/fill) -- preenche um array com o `valor` dado repetitivamente a partir da posição `comeco` até `fim`.
 
-- [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- copia *seus próprios elementos* e os leva para outra posição *dentro da mesma array*. A cópia dos elementos começa a partir da posição `start` até a posição `end`, e os elementos são realocados para a posição `target` (sobescrevendo os elementos existentes). Este método não adiciona novos itens ao array.
+- [arr.copyWithin(target, start, end)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin) -- copia *seus próprios elementos* e os leva para outra posição *dentro da mesma array*. A cópia dos elementos começa a partir da posição `start` até a posição `end`, e os elementos são realocados para a posição `target` (sobescrevendo os elementos existentes). Este método não adiciona novos itens ao array.
 
-Para a lista completa, veja o [manual](mdn:js/Array).
+Para a lista completa, veja o [manual](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array).
 
 Á primeira vista, pode parecer que são muitos métodos e que se torna difícil de lembrá-los. Mas, na verdade, isso é mais simples do que parece.
 
