@@ -1,3 +1,3 @@
 
-- Please note how methods are stored. They are simply added to the internal object.
-- All tests and numeric conversions are done in the `calculate` method. In future it may be extended to support more complex expressions.
+- Por favor, note como os métodos são armazenados. Eles são simplesmente adicionados no objeto interno.
+- Todos os testes e conversões numéricas são feitas no método `calculate`. No futuro, pode ser extendida para suportar mais expressões complexas.

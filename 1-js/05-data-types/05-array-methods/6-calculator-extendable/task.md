@@ -2,35 +2,38 @@ importance: 5
 
 ---
 
-# Create an extendable calculator
+# Crie uma calculadora extensível
 
-Create a constructor function `Calculator` that creates "extendable" calculator objects.
+Construa uma função construtora `Calculator` que crie objetos de calculadora "extensível".
 
-The task consists of two parts.
+A atividade consiste de duas partes.
 
-1. First, implement the method `calculate(str)` that takes a string like `"1 + 2"` in the format "NUMBER operator NUMBER" (space-delimited) and returns the result. Should understand plus `+` and minus `-`.
+1. Primeiro, implemente o método `calculate(str)` que pegue uma string como `"1 + 2"` e a deixe no formato "NÚMERO operador NÚMERO" (delimitada por espaços) e retorne o resultado. Deve entender os operadores mais `+` e menos `-`.
 
-    Usage example:
+    Exemplo:
 
     ```js
     let calc = new Calculator;
 
     alert( calc.calculate("3 + 7") ); // 10
     ```
-2. Then add the method `addMethod(name, func)` that teaches the calculator a new operation. It takes the operator `name` and the two-argument function `func(a,b)` that implements it.
+2. Então, adicione o método `addMethod(name, func)` que ensina a calculadora uma nova operação. O método pega o operador `name` e a função que recebe dois argumentos `func(a,b)` para implementar a nova operação.
 
-    For instance, let's add the multiplication `*`, division `/` and power `**`:
+    Por exemplo, vamos adicionar multiplicação `*`, divisão `/` e potenciação `**`:
 
     ```js
+    let multCalc = new Calculator;
+    let divCalc = new Calculator;
     let powerCalc = new Calculator;
-    powerCalc.addMethod("*", (a, b) => a * b);
-    powerCalc.addMethod("/", (a, b) => a / b);
+    
+    multCalc.addMethod("*", (a, b) => a * b);
+    divCalc.addMethod("/", (a, b) => a / b);
     powerCalc.addMethod("**", (a, b) => a ** b);
 
     let result = powerCalc.calculate("2 ** 3");
     alert( result ); // 8
     ```
 
-- No brackets or complex expressions in this task.
-- The numbers and the operator are delimited with exactly one space.
-- There may be error handling if you'd like to add it.
+- Sem colchetes ou expressões complexas neste exercício.
+- Os números e o operador são separados por, exatamente, um espaço.
+- Pode haver mensagem de erro se você desejar adicionar.
