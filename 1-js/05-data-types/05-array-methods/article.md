@@ -636,7 +636,7 @@ alert(typeof {}); // objeto
 alert(typeof []); // objeto
 ```
 
-...Mas arrays são usados tão frequentemente que há um método especial para isso: [Array.isArray(value)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray). Este método retorna `true` se o `valor` for um array e `false` se não for.
+...Mas arrays são usados tão frequentemente que há um método especial para isso: [Array.isArray(valor)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray). Este método retorna `true` se o `valor` for um array e `false` se não for.
 
 ```js run
 alert(Array.isArray({})); // false
