@@ -19,6 +19,11 @@ Both storage objects provide same methods and properties:
 - `key(index)` -- get the key on a given position.
 - `length` -- the number of stored items.
 
+<<<<<<< HEAD
+=======
+As you can see, it's like a `Map` collection (`setItem/getItem/removeItem`), but also allows to access by index with `key(index)`.
+
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 Let's see how it works.
 
 ## localStorage demo

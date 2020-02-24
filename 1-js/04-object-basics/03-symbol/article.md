@@ -18,7 +18,7 @@ let id = Symbol();
 
 We can also give symbol a description (also called a symbol name), mostly useful for debugging purposes:
 
-```js run
+```js
 // id is a symbol with the description "id"
 let id = Symbol("id");
 ```
@@ -50,7 +50,7 @@ alert(id); // TypeError: Cannot convert a Symbol value to a string
 */!*
 ```
 
-That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not occasionally convert one into another.
+That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not accidentally convert one into another.
 
 If we really want to show a symbol, we need to explicitly call `.toString()` on it, like here:
 ```js run
@@ -72,7 +72,7 @@ alert(id.description); // id
 
 ## "Hidden" properties
 
-Symbols allow us to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
+Symbols allow us to create "hidden" properties of an object, that no other part of code can accidentally access or overwrite.
 
 <<<<<<< HEAD
 For instance, if we want to store an "identifier" for the object `user`, we can use a symbol as a key for it:
@@ -96,7 +96,11 @@ alert( user[id] ); // we can access the data using the symbol as the key
 
 What's the benefit of using `Symbol("id")` over a string `"id"`?
 
+<<<<<<< HEAD
 Let's make the example a bit deeper to see that.
+=======
+As `user` objects belongs to another code, and that code also works with them, we shouldn't just add any fields to it. That's unsafe. But a symbol cannot be accessed accidentally, the third-party code probably won't even see it, so it's probably all right to do.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 Imagine that another script wants to have its own "id" property inside `user`, for its own purposes. That may be another JavaScript library, so the scripts are completely unaware of each other.
 
@@ -182,22 +186,6 @@ alert( clone[id] ); // 123
 
 There's no paradox here. That's by design. The idea is that when we clone an object or merge objects, we usually want *all* properties to be copied (including symbols like `id`).
 
-````smart header="Property keys of other types are coerced to strings"
-We can only use strings or symbols as keys in objects. Other types are converted to strings.
-
-For instance, a number `0` becomes a string `"0"` when used as a property key:
-
-```js run
-let obj = {
-  0: "test" // same as "0": "test"
-};
-
-// both alerts access the same property (the number 0 is converted to string "0")
-alert( obj["0"] ); // test
-alert( obj[0] ); // test (same property)
-```
-````
-
 ## Global symbols
 
 As we've seen, usually all symbols are different, even if they have the same names. But sometimes we want same-named symbols to be same entities.
@@ -246,7 +234,7 @@ alert( Symbol.keyFor(sym) ); // name
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
-The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and return `undefined`.
+The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and returns `undefined`.
 
 For instance:
 
@@ -283,7 +271,11 @@ Symbols are always different values, even if they have the same name. If we want
 Symbols have two main use cases:
 
 1. "Hidden" object properties.
+<<<<<<< HEAD
     If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be occasionally listed. Also it won't be accessed directly, because another script does not have our symbol, so it will not occasionally intervene into its actions.
+=======
+    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be accidentally processed together with other properties. Also it won't be accessed directly, because another script does not have our symbol. So the property will be protected from accidental use or overwrite.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
     So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
 

@@ -12,8 +12,13 @@ Os scripts são fornecidos e executados como texto puro. Eles não precisam de p
 
 Neste aspecto, o JavaScript é muito diferente de outra linguagem chamada [Java](https://pt.wikipedia.org/wiki/Java_(linguagem_de_programação)).
 
+<<<<<<< HEAD
 ```smart header="Por que <u>Java</u>Script?"
 Quando foi criado, inicialmente o JavaScript tinha outro nome: "LiveScript". Mas Java era muito popular naquela época, então foi decidido que posicionar uma nova linguagem como um "irmão mais novo" de Java ajudaria.
+=======
+```smart header="Why is it called <u>Java</u>Script?"
+When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 Mas à medida que ele evoluiu, o JavaScript se tornou uma linguagem totalmente independente com sua própria especificação chamada [ECMAScript] (http://en.wikipedia.org/wiki/ECMAScript), e agora ele não tem nenhuma relação com Java.
 ```
@@ -38,7 +43,11 @@ Os interpretadores são complicados. Mas o básico é fácil.
 2. Depois converte ("compila") o script para a linguagem da máquina.
 3. E então o código da máquina é executado, bem rápido.
 
+<<<<<<< HEAD
 O interpretador aplica otimizações em cada etapa do processo. Ele ainda observa o script compilado enquanto ele roda, analisa os dados que passam por ele e aplica otimizações ao código da máquina com base nesse conhecimento. Quando isso é feito, os scripts são executados rapidamente.
+=======
+The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 ```
 
 ## O que o JavaScript no navegador pode fazer?
@@ -63,7 +72,11 @@ As habilidades do JavaScript no navegador são limitadas por uma questão de seg
 
 Exemplos de tais restrições incluem:
 
+<<<<<<< HEAD
 - JavaScript em uma página não pode ler/gravar arquivos arbitrários no disco rígido, copiá-los ou executar programas. Não tem acesso direto às funções do sistema operacional.
+=======
+- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
     Os navegadores modernos permitem que ele trabalhe com arquivos, mas o acesso é limitado e fornecido apenas se o usuário executar determinadas ações, como "dropping" de um arquivo em uma janela do navegador ou selecioná-lo por meio de uma tag `<input>`.
 

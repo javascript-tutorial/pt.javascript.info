@@ -1,8 +1,12 @@
 # Window sizes and scrolling
 
-How to find out the width and height of the browser window? How to get the full width and height of the document, including the scrolled out part? How to scroll the page using JavaScript?
+How do we find the width and height of the browser window? How do we get the full width and height of the document, including the scrolled out part? How do we scroll the page using JavaScript?
 
+<<<<<<< HEAD
 From the DOM point of view, the root document element is `document.documentElement`. That element corresponds to `<html>` and has geometry properties described in the [previous chapter](info:size-and-scroll). For some cases we can use it, but there are additional methods and peculiarities important enough to consider.
+=======
+For most such requests, we can use the root document element `document.documentElement`, that corresponds to the `<html>` tag. But there are additional methods and peculiarities important enough to consider.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 ## Width/height of the window
 
@@ -40,7 +44,11 @@ In modern HTML we should always write `DOCTYPE`. Generally that's not a JavaScri
 
 ## Width/height of the document
 
+<<<<<<< HEAD
 Theoretically, as the root document element is `documentElement.clientWidth/Height`, and it encloses all the content, we could measure its full size as `documentElement.scrollWidth/scrollHeight`.
+=======
+Theoretically, as the root document element is `document.documentElement`, and it encloses all the content, we could measure document full size as `document.documentElement.scrollWidth/scrollHeight`.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 These properties work well for regular elements. But for the whole page these properties do not work as intended. In Chrome/Safari/Opera if there's no scroll, then `documentElement.scrollHeight` may be even less than  `documentElement.clientHeight`! For regular elements that's a nonsense.
 
@@ -62,7 +70,11 @@ Why so? Better don't ask. These inconsistencies come from ancient times, not a "
 
 Regular elements have their current scroll state in `elem.scrollLeft/scrollTop`.
 
+<<<<<<< HEAD
 What's with the page? Most browsers provide `documentElement.scrollLeft/Top` for the document scroll, but Chrome/Safari/Opera have bugs (like [157855](https://code.google.com/p/chromium/issues/detail?id=157855), [106133](https://bugs.webkit.org/show_bug.cgi?id=106133)) and we should use  `document.body` instead of `document.documentElement` there.
+=======
+For document scroll `document.documentElement.scrollLeft/Top` works in most browsers, except older WebKit-based ones, like Safari (bug [5991](https://bugs.webkit.org/show_bug.cgi?id=5991)), where we should use `document.body` instead of `document.documentElement`.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 Luckily, we don't have to remember these peculiarities at all, because of the special properties `window.pageXOffset/pageYOffset`:
 
@@ -134,9 +146,9 @@ To make the document unscrollable, it's enough to set `document.body.style.overf
 ```online
 Try it:
 
-<button onclick="document.body.style.overflow = 'hidden'">`document.body.style.overflow = 'hidden'`</button>
+<button onclick="document.body.style.overflow = 'hidden'">document.body.style.overflow = 'hidden'</button>
 
-<button onclick="document.body.style.overflow = ''">`document.body.style.overflow = ''`</button>
+<button onclick="document.body.style.overflow = ''">document.body.style.overflow = ''</button>
 
 The first button freezes the scroll, the second one resumes it.
 ```

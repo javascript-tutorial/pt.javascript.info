@@ -70,7 +70,7 @@ new Promise((resolve, reject) => {
 new Promise((resolve, reject) => {
 *!*
   reject(new Error("Whoops!"));
-*/!*  
+*/!*
 }).catch(alert); // Error: Whoops!
 ```
 
@@ -102,15 +102,15 @@ new Promise((resolve, reject) => {
 }).catch(alert); // ReferenceError: blabla is not defined
 ```
 
-The final `.catch` not only catches explicit rejections, but also occasional errors in the handlers above.
+The final `.catch` not only catches explicit rejections, but also accidental errors in the handlers above.
 
 ## Rethrowing
 
 As we already noticed, `.catch` behaves like `try..catch`. We may have as many `.then` handlers as we want, and then use a single `.catch` at the end to handle errors in all of them.
 
-In a regular `try..catch` we can analyze the error and maybe rethrow it if can't handle. The same thing is possible for promises.
+In a regular `try..catch` we can analyze the error and maybe rethrow it if it can't be handled. The same thing is possible for promises.
 
-If we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we handle the error and finish normally, then it continues to the closest successful `.then` handler.
+If we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we handle the error and finish normally, then it continues to the next closest successful `.then` handler.
 
 In the example below the `.catch` successfully handles the error:
 
@@ -271,12 +271,20 @@ new Promise(function() {
 In case of an error, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck".
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 In practice, just like with a regular unhandled errors, it means that something has terribly gone wrong, the script probably died.
 =======
 In practice, just like with regular unhandled errors in code, it means that something has terribly gone wrong.
 >>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 Most JavaScript engines track such situations and generate a global error in that case. We can see it in the console.
+=======
+In practice, just like with regular unhandled errors in code, it means that something has gone terribly wrong.
+
+What happens when a regular error occurs and is not caught by `try..catch`? The script dies with a message in the console. A similar thing happens with unhandled promise rejections.
+
+The JavaScript engine tracks such rejections and generates a global error in that case. You can see it in the console if you run the example above.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 In the browser we can catch such errors using the event `unhandledrejection`:
 
@@ -305,6 +313,7 @@ In non-browser environments like Node.js there are other similar ways to track u
 
 ## Summary
 
+<<<<<<< HEAD
 - `.catch` handles promise rejections of all kinds: be it a `reject()` call, or an error thrown in a handler.
 - We should place `.catch` exactly in places where we want to handle errors and know how to handle them. The handler should analyze errors (custom error classes help) and rethrow unknown ones.
 - It's normal not to use `.catch` if we don't know how to handle errors (all errors are unrecoverable).
@@ -349,3 +358,9 @@ Here on the line `(1)` we indicate loading by dimming the document. The method d
 When the promise is settled, be it a successful fetch or an error, `finally` triggers at the line `(2)` and stops the indication.
 
 There's a little browser trick `(*)` with returning a zero-timeout promise from `finally`. That's because some browsers (like Chrome) need "a bit time" outside promise handlers to paint document changes. So it ensures that the indication is visually stopped before going further on the chain.
+=======
+- `.catch` handles errors in promises of all kinds: be it a `reject()` call, or an error thrown in a handler.
+- We should place `.catch` exactly in places where we want to handle errors and know how to handle them. The handler should analyze errors (custom error classes help) and rethrow unknown ones (maybe they are programming mistakes).
+- It's ok not to use `.catch` at all, if there's no way to recover from an error.
+- In any case we should have the `unhandledrejection` event handler (for browsers, and analogs for other environments) to track unhandled errors and inform the user (and probably our server) about them, so that our app never "just dies".
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
