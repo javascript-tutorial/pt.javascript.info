@@ -96,9 +96,13 @@ Let's explain that step-by-step:
 
     To create a string, we need to interpret these bytes. The built-in [TextDecoder](info:text-decoder) does exactly that. Then we can `JSON.parse` it.
 
+<<<<<<< HEAD:5-network/02-fetch-progress/article.md
 What if we need binary content instead of JSON? That's even simpler. Instead of steps 4 and 5, we could make a blob of all chunks:
 ```js
 let blob = new Blob(chunks);
 ```
+=======
+At the end we have the result (as a string or a blob, whatever is convenient), and progress-tracking in the process.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a:5-network/03-fetch-progress/article.md
 
 Once again, please note, that's not for upload progress (no way now), only for download progress.

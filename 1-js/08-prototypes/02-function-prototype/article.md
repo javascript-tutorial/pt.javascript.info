@@ -2,7 +2,7 @@
 
 Remember, new objects can be created with a constructor function, like `new F()`.
 
-If `F.prototype` is an object, then `new` operator uses it to set `[[Prototype]]` for the new object.
+If `F.prototype` is an object, then the `new` operator uses it to set `[[Prototype]]` for the new object.
 
 ```smart
 JavaScript had prototypal inheritance from the beginning. It was one of the core features of the language.
@@ -158,11 +158,17 @@ Rabbit.prototype = {
 
 In this chapter we briefly described the way of setting a `[[Prototype]]` for objects created via a constructor function. Later we'll see more advanced programming patterns that rely on it.
 
-Everything is quite simple, just few notes to make things clear:
+Everything is quite simple, just a few notes to make things clear:
 
+<<<<<<< HEAD
 - The `F.prototype` property is not the same as `[[Prototype]]`. The only thing `F.prototype` does: it sets `[[Prototype]]` of new objects when `new F()` is called.
 - The value of `F.prototype` should be either an object or null: other values won't work.
 -  The `"prototype"` property only has such a special effect when is set to a constructor function, and invoked with `new`.
+=======
+- The `F.prototype` property (don't mistake it for `[[Prototype]]`) sets `[[Prototype]]` of new objects when `new F()` is called.
+- The value of `F.prototype` should be either an object or `null`: other values won't work.
+-  The `"prototype"` property only has such a special effect when set on a constructor function, and invoked with `new`.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 On regular objects the `prototype` is nothing special:
 ```js

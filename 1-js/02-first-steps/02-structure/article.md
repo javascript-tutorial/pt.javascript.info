@@ -93,7 +93,11 @@ Mas devem ser duas declarações separadas, não uma. Tal fusão neste caso é c
 
 Recomendamos colocar ponto e vírgula entre as frases, mesmo que estejam separadas por novas linhas. Esta regra é amplamente adotada pela comunidade. Vamos notar mais uma vez -- *é possível* deixar de fora os pontos e vírgulas na maior parte do tempo. Mas é mais seguro -- especialmente para um iniciante -- usá-los.
 
+<<<<<<< HEAD
 ## Comentários
+=======
+## Comments [#code-comments]
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 Com o passar do tempo, os programas tornam-se cada vez mais complexos. Torna-se necessário adicionar *comentários* que descrevem o que o código faz e porquê.
 
@@ -135,7 +139,11 @@ alert('Mundo');
 ```
 
 ```smart header="Use hotkeys!"
+<<<<<<< HEAD
 Na maioria dos editores, uma linha de código pode ser comentada pressionando a tecla de atalho `key:Ctrl+/` para um comentário de linha única e algo como `key:Ctrl+Shift+/` -- para comentários multilinha (selecione um pedaço de código e pressione a tecla de atalho). Para Mac, tente `key:Cmd` em vez de `key:Ctrl`.
+=======
+In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl` and `key:Option` instead of `key:Shift`.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 ```
 
 ````warn header="Comentários aninhados não são suportados!"

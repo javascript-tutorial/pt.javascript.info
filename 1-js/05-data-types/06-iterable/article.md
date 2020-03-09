@@ -1,7 +1,7 @@
 
 # Iterables
 
-*Iterable* objects is a generalization of arrays. That's a concept that allows to make any object useable in a `for..of` loop.
+*Iterable* objects is a generalization of arrays. That's a concept that allows us to make any object useable in a `for..of` loop.
 
 Of course, Arrays are iterable. But there are many other built-in objects, that are iterable as well. For instance, Strings are iterable also. As we'll see, many built-in operators and methods rely on them.
 
@@ -12,7 +12,7 @@ If an object represents a collection (list, set) of something, then `for..of` is
 
 We can easily grasp the concept of iterables by making one of our own.
 
-For instance, we have an object, that is not an array, but looks suitable for `for..of`.
+For instance, we have an object that is not an array, but looks suitable for `for..of`.
 
 Like a `range` object that represents an interval of numbers:
 
@@ -142,9 +142,13 @@ for (let char of str) {
 
 Normally, internals of iterables are hidden from the external code. There's a `for..of` loop, that works, that's all it needs to know.
 
+<<<<<<< HEAD
 But to understand things a little bit deeper let's see how to create an iterator explicitly.
 
 We'll iterate over a string the same way as `for..of`, but with direct calls. This code gets a string iterator and calls it "manually":
+=======
+We'll iterate over a string in exactly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 ```js run
 let str = "Hello";
@@ -152,7 +156,9 @@ let str = "Hello";
 // does the same as
 // for (let char of str) alert(char);
 
+*!*
 let iterator = str[Symbol.iterator]();
+*/!*
 
 while (true) {
   let result = iterator.next();
@@ -212,7 +218,7 @@ let arr = Array.from(arrayLike); // (*)
 alert(arr.pop()); // World (method works)
 ```
 
-`Array.from` at the line `(*)` takes the object, examines it for being an iterable or array-like, then makes a new array and copies there all items.
+`Array.from` at the line `(*)` takes the object, examines it for being an iterable or array-like, then makes a new array and copies all items to it.
 
 The same happens for an iterable:
 
@@ -222,12 +228,16 @@ let arr = Array.from(range);
 alert(arr); // 1,2,3,4,5 (array toString conversion works)
 ```
 
-The full syntax for `Array.from` allows to provide an optional "mapping" function:
+The full syntax for `Array.from` also allows us to provide an optional "mapping" function:
 ```js
 Array.from(obj[, mapFn, thisArg])
 ```
 
+<<<<<<< HEAD
 The second argument `mapFn` should be the function to apply to each element before adding to the array, and `thisArg` allows to set `this` for it.
+=======
+The optional second argument `mapFn` can be a function that will be applied to each element before adding it to the array, and `thisArg` allows us to set `this` for it.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 For instance:
 
@@ -268,7 +278,7 @@ for (let char of str) {
 alert(chars);
 ```
 
-...But is shorter.    
+...But it is shorter.    
 
 We can even build surrogate-aware `slice` on it:
 
@@ -292,7 +302,7 @@ Objects that can be used in `for..of` are called *iterable*.
 
 - Technically, iterables must implement the method named `Symbol.iterator`.
     - The result of `obj[Symbol.iterator]` is called an *iterator*. It handles the further iteration process.
-    - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the iteration end, otherwise the `value` is the next value.
+    - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the end of the iteration process, otherwise the `value` is the next value.
 - The `Symbol.iterator` method is called automatically by `for..of`, but we also can do it directly.
 - Built-in iterables like strings or arrays, also implement `Symbol.iterator`.
 - String iterator knows about surrogate pairs.

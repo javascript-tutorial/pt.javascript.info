@@ -22,8 +22,13 @@ A module is just a file, a single script, as simple as that.
 
 Directives `export` and `import` allow to interchange functionality between modules:
 
+<<<<<<< HEAD
 - `export` keyword labels variables and functions that should be accessible from outside the file.
 - `import` allows to import functionality from other modules.
+=======
+- `export` keyword labels variables and functions that should be accessible from outside the current module.
+- `import` allows the import of functionality from other modules.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 For instance, if we have a file `sayHi.js` exporting a function:
 
@@ -44,7 +49,15 @@ alert(sayHi); // function...
 sayHi('John'); // Hello, John!
 ```
 
+<<<<<<< HEAD
 In this tutorial we concentrate on the language itself, but we use browser as the demo environment, so let's see how modules work in the browser.
+=======
+The `import` directive loads the module by path `./sayHi.js` relative to the current file, and assigns exported function `sayHi` to the corresponding variable.
+
+Let's run the example in-browser.
+
+As modules support special keywords and features, we must tell the browser that a script should be treated as a module, by using the attribute `<script type="module">`.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 To use modules, we must set the attribute `<script type="module">`, like this:
 
@@ -82,7 +95,7 @@ Modules are expected to `export` what they want to be accessible from outside an
 
 So we should import `user.js` directly into `hello.js` instead of `index.html`.
 
-That's the correct variant:
+This is the correct variant:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
@@ -107,7 +120,7 @@ If we really need to make a "global" in-browser variable, we can explicitly assi
 
 If the same module is imported into multiple other places, its code is executed only the first time, then exports are given to all importers.
 
-That has important consequences. Let's see that on examples.
+That has important consequences. Let's look at them using examples:
 
 First, if executing a module code brings side-effects, like showing a message, then importing it multiple times will trigger it only once -- the first time:
 
@@ -160,9 +173,13 @@ alert(admin.name); // Pete
 
 So, let's reiterate -- the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that .
 
+<<<<<<< HEAD
 Such behavior is great for modules that require configuration. We can set required properties on the first import, and then in further imports it's ready.
+=======
+Such behavior allows us to *configure* modules on first import. We can setup its properties once, and then in further imports it's ready.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
-For instance, `admin.js` module may provide certain functionality, but expect the credentials to come into the `admin` object from outside:
+For instance, the `admin.js` module may provide certain functionality, but expect the credentials to come into the `admin` object from outside:
 
 ```js
 // 📁 admin.js
@@ -229,9 +246,15 @@ You may want skip those for now if you're reading for the first time, or if you 
 Module scripts are *always* deferred, same effect as `defer` attribute (described in the chapter [](info:script-async-defer)), for both external and inline scripts.
 
 In other words:
+<<<<<<< HEAD
 - external module scripts `<script type="module" src="...">` don't block HTML processing.
 - module scripts wait until the HTML document is fully ready.
 - relative order is maintained: scripts that go first in the document, execute first.
+=======
+- downloading external module scripts `<script type="module" src="...">` doesn't block HTML processing, they load in parallel with other resources.
+- module scripts wait until the HTML document is fully ready (even if they are tiny and load faster than HTML), and then run.
+- relative order of scripts is maintained: scripts that go first in the document, execute first.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 As a side-effect, module scripts always see HTML elements below them.
 
@@ -255,19 +278,29 @@ For instance:
 <button id="button">Button</button>
 ```
 
-Please note: the second script actually works before the first! So we'll see `undefined` first, and then `object`.
+Please note: the second script actually runs before the first! So we'll see `undefined` first, and then `object`.
 
-That's because modules are deferred, so way wait for the document to be processed. The regular scripts runs immediately, so we saw its output first.
+That's because modules are deferred, so we wait for the document to be processed. The regular script runs immediately, so we see its output first.
 
+<<<<<<< HEAD
 When using modules, we should be aware that HTML-document can show up before the JavaScript application is ready. Some functionality may not work yet. We should put transparent overlays or "loading indicators", or otherwise ensure that the visitor won't be confused because of it.
 
 ### Async works on inline scripts
 
 Async attribute `<script async type="module">` is allowed on both inline and external scripts. Async scripts run immediately when imported modules are processed, independantly of other scripts or the HTML document.
+=======
+When using modules, we should be aware that the HTML page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put "loading indicators", or otherwise ensure that the visitor won't be confused by that.
 
-For example, the script below has `async`, so it doesn't wait for anyone.
+### Async works on inline scripts
 
-It performs the import (fetches `./analytics.js`) and runs when ready, even if HTML document is not finished yet, or if other scripts are still pending.
+For non-module scripts, the `async` attribute only works on external scripts. Async scripts run immediately when ready, independently of other scripts or the HTML document.
+
+For module scripts, it works on inline scripts as well.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
+
+For example, the inline script below has `async`, so it doesn't wait for anything.
+
+It performs the import (fetches `./analytics.js`) and runs when ready, even if the HTML document is not finished yet, or if other scripts are still pending.
 
 That's good for functionality that doesn't depend on anything, like counters, ads, document-level event listeners.
 
@@ -285,7 +318,7 @@ That's good for functionality that doesn't depend on anything, like counters, ad
 
 There are two notable differences of external module scripts:
 
-1. External scripts with same `src` run only once:
+1. External scripts with the same `src` run only once:
     ```html
     <!-- the script my.js is fetched and executed only once -->
     <script type="module" src="my.js"></script>
@@ -311,11 +344,15 @@ import {sayHi} from 'sayHi'; // Error, "bare" module
 // must be './sayHi.js' or wherever the module is
 ```
 
+<<<<<<< HEAD
 Certain environments, like Node.js or bundle tools allow bare modules, as they have own ways for finding modules and hooks to fine-tune them. But browsers do not support bare modules yet.
+=======
+Certain environments, like Node.js or bundle tools allow bare modules, without any path, as they have their own ways for finding modules and hooks to fine-tune them. But browsers do not support bare modules yet.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 ### Compatibility, "nomodule"
 
-Old browsers do not understand `type="module"`. Scripts of the unknown type are just ignored. For them, it's possible to provide a fallback using `nomodule` attribute:
+Old browsers do not understand `type="module"`. Scripts of an unknown type are just ignored. For them, it's possible to provide a fallback using the `nomodule` attribute:
 
 ```html run
 <script type="module">
@@ -346,12 +383,12 @@ Build tools do the following:
 1. Take a "main" module, the one intended to be put in `<script type="module">` in HTML.
 2. Analyze its dependencies: imports and then imports of imports etc.
 3. Build a single file with all modules (or multiple files, that's tunable), replacing native `import` calls with bundler functions, so that it works. "Special" module types like HTML/CSS modules are also supported.
-4. In the process, other transforms and optimizations may be applied:
+4. In the process, other transformations and optimizations may be applied:
     - Unreachable code removed.
     - Unused exports removed ("tree-shaking").
     - Development-specific statements like `console` and `debugger` removed.
     - Modern, bleeding-edge JavaScript syntax may be transformed to older one with similar functionality using [Babel](https://babeljs.io/).
-    - The resulting file is minified (spaces removed, variables replaced with shorter named etc).
+    - The resulting file is minified (spaces removed, variables replaced with shorter names, etc).
 
 That said, native modules are also usable. So we won't be using Webpack here: you can configure it later.
 
@@ -368,7 +405,11 @@ To summarize, the core concepts are:
 3. Modules always `use strict`.
 4. Module code is executed only once. Exports are created once and shared between importers.
 
+<<<<<<< HEAD
 So, generally, when we use modules, each module implements the functionality and exports it. Then we use `import` to directly import it where it's needed. Browser loads and evaluates the scripts automatically.
+=======
+When we use modules, each module implements the functionality and exports it. Then we use `import` to directly import it where it's needed. The browser loads and evaluates the scripts automatically.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 In production, people often use bundlers such as [Webpack](https://webpack.js.org) to bundle modules together for performance and other reasons.
 
