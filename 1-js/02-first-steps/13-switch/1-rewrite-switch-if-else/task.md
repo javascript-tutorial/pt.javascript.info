@@ -4,7 +4,7 @@ importância: 5
 
 # Transforme o "*switch*" num "*if*"
 
-Escreva o código empregando `if..else`, que corresponda ao seguinte `switch`:
+Escreva o código empregando `if..else` que corresponda ao seguinte `switch`:
 
 ```js
 switch (browser) {
@@ -16,7 +16,7 @@ switch (browser) {
   case 'Firefox':
   case 'Safari':
   case 'Opera':
-    alert( 'Esta bem, também suportamos esse navegador (browser).' );
+    alert( 'Está bem, também suportamos esse navegador (browser).' );
     break;
 
   default:
