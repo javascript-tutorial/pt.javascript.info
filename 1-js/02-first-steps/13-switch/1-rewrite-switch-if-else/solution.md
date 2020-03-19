@@ -1,4 +1,4 @@
-Para executar precisamente a funcionalidade do `switch`, o `if` deve empregar uma comparação exata (*strict comparison*) `'==='`.
+Para precisamente se equiparar à funcionalidade do `switch`, o `if` deve empregar uma comparação exata (*strict comparison*) `'==='`.
 
 Contudo, para certas *strings* um simples `'=='` tanbém serve.
 
@@ -9,7 +9,7 @@ if(browser == 'Edge') {
  || browser == 'Firefox'
  || browser == 'Safari'
  || browser == 'Opera') {
-  alert( 'Esta bem, também suportamos esse navegador (browser).' );
+  alert( 'Está bem, também suportamos esse navegador (browser).' );
 } else {
   alert( 'Esperamos que esta página tenha uma boa apresentação!' );
 }
