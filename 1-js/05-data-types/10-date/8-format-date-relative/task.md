@@ -20,6 +20,10 @@ alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 sec. ago"
 
 alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 min. ago"
 
+<<<<<<< HEAD:1-js/05-data-types/10-date/8-format-date-relative/task.md
 // yesterday's date like 31.12.2016, 20:00
+=======
+// yesterday's date like 31.12.16 20:00
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a:1-js/05-data-types/11-date/8-format-date-relative/task.md
 alert( formatDate(new Date(new Date - 86400 * 1000)) );
 ```

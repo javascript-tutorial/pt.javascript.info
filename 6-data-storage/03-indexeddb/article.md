@@ -97,6 +97,11 @@ let deleteRequest = indexedDB.deleteDatabase(name)
 
 ## Object store
 
+<<<<<<< HEAD
+=======
+To store something in IndexedDB, we need an *object store*.
+
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 An object store is a core concept of IndexedDB. Counterparts in other databases are called "tables" or "collections". It's where the data is stored. A database may have multiple stores: one for users, another one for goods, etc.
 
 Despite being named an "object store", primitives can be stored too.
@@ -406,9 +411,9 @@ Methods that involve searching support either exact keys or so-called "range que
 
 Ranges are created using following calls:
 
-- `IDBKeyRange.lowerBound(lower, [open])` means: `>lower` (or `≥lower` if `open` is true)
-- `IDBKeyRange.upperBound(upper, [open])` means: `<upper` (or `≤upper` if `open` is true)
-- `IDBKeyRange.bound(lower, upper, [lowerOpen], [upperOpen])` means: between `lower` and `upper`, with optional equality if the corresponding `open` is true.
+- `IDBKeyRange.lowerBound(lower, [open])` means: `≥lower` (or `>lower` if `open` is true)
+- `IDBKeyRange.upperBound(upper, [open])` means: `≤upper` (or `<upper` if `open` is true)
+- `IDBKeyRange.bound(lower, upper, [lowerOpen], [upperOpen])` means: between `lower` and `upper`. If the open flags is true, the corresponding key is not included in the range.
 - `IDBKeyRange.only(key)` -- a range that consists of only one `key`, rarely used.
 
 All searching methods accept a `query` argument that can be either an exact key or a key range:
@@ -427,16 +432,16 @@ Request examples:
 // get one book
 books.get('js')
 
-// get books with 'css' < id < 'html'
+// get books with 'css' <= id <= 'html'
 books.getAll(IDBKeyRange.bound('css', 'html'))
 
-// get books with 'html' <= id
-books.getAll(IDBKeyRange.lowerBound('html', true))
+// get books with id < 'html'
+books.getAll(IDBKeyRange.upperBound('html', true))
 
 // get all books
 books.getAll()
 
-// get all keys: id >= 'js'
+// get all keys: id > 'js'
 books.getAllKeys(IDBKeyRange.lowerBound('js', true))
 ```
 
@@ -516,7 +521,7 @@ request.onsuccess = function() {
 We can also use `IDBKeyRange` to create ranges and looks for cheap/expensive books:
 
 ```js
-// find books where price < 5
+// find books where price <= 5
 let request = priceIndex.getAll(IDBKeyRange.upperBound(5));
 ```
 

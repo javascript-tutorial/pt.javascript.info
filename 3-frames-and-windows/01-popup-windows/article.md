@@ -205,11 +205,22 @@ For instance:
 ## Summary   
 
 - A popup can be opened by the `open(url, name, params)` call. It returns the reference to the newly opened window.
+<<<<<<< HEAD
 - By default, browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
 - The popup may access the opener window using the `window.opener` property, so the two are connected.
 - If the main window and the popup come from the same origin, they can freely read and modify each other. Otherwise, they can change location of each other and communicate using messages (to be covered).
 - To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
 - Methods `focus()` and `blur()` allow to focus/unfocus a window. Sometimes.
+=======
+- Browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
+- Browsers open a new tab by default, but if sizes are provided, then it'll be a popup window.
+- The popup may access the opener window using the `window.opener` property.
+- The main window and the popup can freely read and modify each other if they have the same origin. Otherwise, they can change location of each other and [exchange messages](info:cross-window-communication).
+
+To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
+
+- Methods `focus()` and `blur()` allow to focus/unfocus a window. But they don't work all the time.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 - Events `focus` and `blur` allow to track switching in and out of the window. But please note that a  window may still be visible even in the background state, after `blur`.
 <<<<<<< HEAD
 

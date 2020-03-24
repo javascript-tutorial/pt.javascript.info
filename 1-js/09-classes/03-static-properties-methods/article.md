@@ -19,12 +19,19 @@ User.staticMethod(); // true
 
 That actually does the same as assigning it as a function property:
 
+<<<<<<< HEAD
 ```js
 function User() { }
+=======
+```js run
+class User { }
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 User.staticMethod = function() {
   alert(this === User);
 };
+
+User.staticMethod(); // true
 ```
 
 The value of `this` inside `User.staticMethod()` is the class constructor `User` itself (the "object before dot" rule).
@@ -90,7 +97,7 @@ class Article {
 
 let article = Article.createTodays();
 
-alert( article.title ); // Todays digest
+alert( article.title ); // Today's digest
 ```
 
 Now every time we need to create a today's digest, we can call `Article.createTodays()`. Once again, that's not a method of an article, but a method of the whole class.
@@ -123,14 +130,21 @@ That is the same as a direct assignment to `Article`:
 Article.publisher = "Ilya Kantor";
 ```
 
+<<<<<<< HEAD
 ## Statics and inheritance
 
 Statics are inherited, we can access `Parent.method` as `Child.method`.
+=======
+## Inheritance of static properties and methods
 
-For instance, `Animal.compare` in the code below is inherited and accessible as `Rabbit.compare`:
+Static properties and methods are inherited.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
+
+For instance, `Animal.compare` and `Animal.planet` in the code below are inherited and accessible as `Rabbit.compare` and `Rabbit.planet`:
 
 ```js run
 class Animal {
+  static planet = "Earth";
 
   constructor(name, speed) {
     this.speed = speed;
@@ -167,16 +181,26 @@ rabbits.sort(Rabbit.compare);
 */!*
 
 rabbits[0].run(); // Black Rabbit runs with speed 5.
+
+alert(Rabbit.planet); // Earth
 ```
 
+<<<<<<< HEAD
 Now we can call `Rabbit.compare` assuming that the inherited `Animal.compare` will be called.
+=======
+Now when we call `Rabbit.compare`, the inherited `Animal.compare` will be called.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 How does it work? Again, using prototypes. As you might have already guessed, extends also gives `Rabbit` the `[[Prototype]]` reference to `Animal`.
 
 
 ![](animal-rabbit-static.svg)
 
+<<<<<<< HEAD
 So, `Rabbit` function now inherits from `Animal` function. And `Animal` function normally has `[[Prototype]]` referencing `Function.prototype`, because it doesn't `extend` anything.
+=======
+As a result, inheritance works both for regular and static methods.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 Here, let's check that:
 
@@ -187,6 +211,7 @@ class Rabbit extends Animal {}
 // for static properties and methods
 alert(Rabbit.__proto__ === Animal); // true
 
+<<<<<<< HEAD
 // and the next step is Function.prototype
 alert(Animal.__proto__ === Function.prototype); // true
 
@@ -195,6 +220,15 @@ alert(Rabbit.prototype.__proto__ === Animal.prototype);
 ```
 
 This way `Rabbit` has access to all static methods of `Animal`.
+=======
+// for regular methods
+alert(Rabbit.prototype.__proto__ === Animal.prototype); // true
+```
+
+## Summary
+
+Static methods are used for the functionality that belongs to the class "as a whole". It doesn't relate to a concrete class instance.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 ## Summary
 

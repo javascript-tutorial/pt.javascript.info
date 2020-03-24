@@ -1,7 +1,7 @@
 
 # Objects
 
-As we know from the chapter <info:types>, there are seven data types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+As we know from the chapter <info:types>, there are eight data types in JavaScript. Seven of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
 
 In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
 
@@ -101,7 +101,9 @@ For multiword properties, the dot access doesn't work:
 user.likes birds = true
 ```
 
-That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
+
+The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` и `_` are allowed).
 
 There's an alternative "square bracket notation" that works with any string:
 
@@ -207,6 +209,7 @@ Square brackets are much more powerful than the dot notation. They allow any pro
 
 So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
 
+<<<<<<< HEAD
 
 
 ````smart header="Reserved words are allowed as property names"
@@ -243,6 +246,8 @@ There's also another data structure [Map](info:map-set-weakmap-weakset), that we
 ````
 
 
+=======
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 ## Property value shorthand
 
 In real code we often use existing variables as values for property names.
@@ -253,7 +258,7 @@ For instance:
 function makeUser(name, age) {
   return {
     name: name,
-    age: age
+    age: age,
     // ...other properties
   };
 }
@@ -271,7 +276,7 @@ function makeUser(name, age) {
 *!*
   return {
     name, // same as name: name
-    age   // same as age: age
+    age,  // same as age: age
     // ...
   };
 */!*
@@ -287,7 +292,63 @@ let user = {
 };
 ```
 
-## Existence check
+## Property names limitations
+
+Property names (keys) must be either strings or symbols (a special type for identifiers, to be covered later).
+
+Other types are automatically converted to strings.
+
+For instance, a number `0` becomes a string `"0"` when used as a property key:
+
+```js run
+let obj = {
+  0: "test" // same as "0": "test"
+};
+
+// both alerts access the same property (the number 0 is converted to string "0")
+alert( obj["0"] ); // test
+alert( obj[0] ); // test (same property)
+```
+
+**Reserved words are allowed as property names.**
+
+As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restriction. Any name is fine:
+
+```js run
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+We can use any string as a key, but there's a special property named `__proto__` that gets special treatment for historical reasons.
+
+For instance, we can't set it to a non-object value:
+
+```js run
+let obj = {};
+obj.__proto__ = 5; // assign a number
+alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+```
+
+As we see from the code, the assignment to a primitive `5` is ignored.
+
+The nature of `__proto__` will be revealed in detail later in the chapter [](info:prototype-inheritance).
+
+As for now, it's important to know that such behavior of `__proto__` can become a source of bugs and even vulnerabilities if we intend to store user-provided keys in an object.
+
+The problem is that a visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+
+There are two workarounds for the problem:
+1. Modify the object's behavior to treat `__proto__` as a regular property. We'll learn how to do it in the chapter [](info:prototype-methods).
+2. Using [Map](info:map-set) data structure which supports arbitrary keys. We'll learn it in the chapter <info:map-set>.
+
+## Property existence test, "in" operator
 
 A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
 
@@ -325,7 +386,11 @@ alert( *!*key*/!* in user ); // true, takes the name from key and checks for suc
 ```
 
 ````smart header="Using \"in\" for properties that store `undefined`"
+<<<<<<< HEAD
 Usually, the strict comparison `"=== undefined"` check works fine. But there's a special case when it fails, but `"in"` works correctly.
+=======
+Usually, the strict comparison `"=== undefined"` check the property existence just fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 It's when an object property exists, but stores `undefined`:
 
@@ -715,7 +780,7 @@ alert(clone.sizes.width); // 51, see the result from the other one
 
 To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
 
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 
 

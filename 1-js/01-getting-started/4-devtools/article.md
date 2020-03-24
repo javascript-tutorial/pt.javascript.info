@@ -29,11 +29,23 @@ O aspecto exato das ferramentas de desenvolvimento depende da sua versão do Chr
 - Aqui podemos ver a mensagem de erro de cor vermelha. Neste caso, o script contém um comando "lalala" desconhecido.
 - À direita, há um link clicável para o código-fonte `bug.html:12` com o número da linha onde o erro ocorreu.
 
+<<<<<<< HEAD
 Abaixo da mensagem de erro, há um símbolo azul `>`. Ele marca uma "linha de comando" onde podemos digitar comandos JavaScript. Pressione `key:Enter` para executá-los (`key:Shift+Enter` para introduzir comandos multi-linha).
+=======
+Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 Agora podemos ver erros, e isso é suficiente para começar. Voltaremos mais tarde às ferramentas de desenvolvedor e abordaremos a depuração mais profundamente no capítulo <info:debugging-chrome>.
 
+<<<<<<< HEAD
 ## Firefox, Edge, e outros
+=======
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 A maioria dos outros navegadores usam `key:F12` para abrir ferramentas de desenvolvimento.
 
@@ -51,11 +63,15 @@ Agora o `key:Cmd+Opt+C` pode alternar o console. Além disso, note que o novo it
 
 ## Entrada multi-linha
 
+<<<<<<< HEAD
 Normalmente, quando colocamos uma linha de código no console, e então pressionamos `key:Enter`, ele executa.
 
 Para inserir várias linhas, pressione `key:Shift+Enter`.
 
 ## Resumo
+=======
+## Summary
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 - As ferramentas de desenvolvedor nos permitem ver erros, executar comandos, examinar variáveis e muito mais.
 - Elas podem ser abertas com `key:F12` para a maioria dos navegadores no Windows. O Chrome para Mac precisa de `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (precisa ser ativado primeiro).

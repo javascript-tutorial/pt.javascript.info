@@ -1,7 +1,11 @@
 
 # Fetch: Basics
 
+<<<<<<< HEAD:5-network/01-fetch-basics/article.md
 Method `fetch()` is the modern way of sending requests over HTTP.
+=======
+JavaScript can send network requests to the server and load new information whenever it's needed.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a:5-network/01-fetch/article.md
 
 <<<<<<< HEAD:5-network/01-fetch-basics/article.md
 It evolved for several years and continues to improve, right now the support is pretty solid among browsers.
@@ -78,8 +82,13 @@ To get the response body, we need to use an additional method call.
 - **`response.text()`** -- return the response as text,
 - **`response.formData()`** -- return the response as FormData object (form/multipart encoding),
 - **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
+<<<<<<< HEAD:5-network/01-fetch-basics/article.md
 - **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (pure binary data),
 - additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows to read the body chunk-by-chunk, we'll see an example later.
+=======
+- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level representaion of binary data),
+- additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows you to read the body chunk-by-chunk, we'll see an example later.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a:5-network/01-fetch/article.md
 
 For instance, here we get a JSON-object with latest commits from GitHub:
 
@@ -101,9 +110,20 @@ fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commi
   .then(commits => alert(commits[0].author.login));
 ```
 
+<<<<<<< HEAD:5-network/01-fetch-basics/article.md
 To get the text:
 ```js
 let text = await response.text();
+=======
+To get the response text, `await response.text()` instead of `.json()`:
+
+```js run async
+let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
+
+let text = await response.text(); // read response body as text
+
+alert(text.slice(0, 80) + '...');
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a:5-network/01-fetch/article.md
 ```
 
 And for the binary example, let's fetch and show an image (see chapter [Blob](info:blob) for details about operations on blobs):
@@ -236,6 +256,7 @@ Please note, if the body is a string, then `Content-Type` is set to `text/plain;
 Let's do the same with an HTML `<form>`.
 
 
+<<<<<<< HEAD:5-network/01-fetch-basics/article.md
 ```html run
 <form id="formElem">
   <input type="text" name="name" value="John">
@@ -265,6 +286,9 @@ Here [FormData](https://xhr.spec.whatwg.org/#formdata) automatically encodes the
 We can also submit binary data directly using `Blob` or `BufferSource`.
 
 For example, here's a `<canvas>` where we can draw by moving a mouse. A click on the "submit" button sends the image to server:
+=======
+In this example, there's a `<canvas>` where we can draw by moving a mouse over it. A click on the "submit" button sends the image to the server:
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a:5-network/01-fetch/article.md
 
 ```html run autorun height="90"
 <body style="margin:0">
