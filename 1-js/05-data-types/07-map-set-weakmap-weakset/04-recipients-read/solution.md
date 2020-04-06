@@ -1,6 +1,6 @@
 The sane choice here is a `WeakSet`:
 
-```js
+```js run
 let messages = [
     {text: "Hello", from: "John"},
     {text: "How goes?", from: "John"},

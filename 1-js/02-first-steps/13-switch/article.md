@@ -117,7 +117,7 @@ Múltiplas variantes de `case` que partihem o mesmo código podem ser agrupadas.
 Por exemplo, se quisermos que o mesmo código corra por `case 3` e `case 5`:
 
 ```js run no-beautify
-let a = 2 + 2;
+let a = 3;
 
 switch (a) {
   case 4:

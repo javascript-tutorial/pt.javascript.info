@@ -11,7 +11,7 @@ let user = {
 (user.go)() // error!
 ```
 
-The error message in most browsers does not give understanding what went wrong.
+The error message in most browsers does not give us much of a clue about what went wrong.
 
 **The error appears because a semicolon is missing after `user = {...}`.**
 
@@ -34,6 +34,7 @@ let user = {
 (user.go)() // John
 ```
 
+<<<<<<< HEAD
 Please note that brackets around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
 
 
@@ -41,3 +42,6 @@ Please note that brackets around `(user.go)` do nothing here. Usually they setup
 
 
 
+=======
+Please note that parentheses around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
