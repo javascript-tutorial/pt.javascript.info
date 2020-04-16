@@ -70,6 +70,7 @@ Podem ser declaradas usando:
 - `var` (estilo-antigo, veremos mais tarde)
 
 O nome de uma varável pode incluir:
+
 - Letras e dígitos, mas o primeiro caráter não pode ser um dígito.
 - Carateres `$` e `_` são normais, on par às letras.
 - Alfabetos não-latinos e hieróglifos também são permitidos, mas geralmente não utilizados.
@@ -91,6 +92,7 @@ Existem 7 tipos de dados:
 - `object` e `symbol` -- para estruturas de dados complexas e identificadores únicos, que ainda não aprendemos.
 
 O operador `typeof` retorna o tipo de um valor, com duas exceções:
+
 ```js
 typeof null == "object" // erro da linguagem
 typeof function(){} == "function" // funções são tratadas de uma forma especial
