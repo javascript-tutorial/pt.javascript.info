@@ -13,8 +13,8 @@ alert('Olá'); alert('Mundo');
 Geralmente, uma quebra de linha é também tratada como um delimitador, assim o exemplo acima também funcionaria como:
 
 ```js run no-beautify
-alert('Hello')
-alert('World')
+alert('Olá')
+alert('Mundo')
 ```
 
 Isto chama-se "inserção automática de ponto-e-vírgula". Por vezes, não funciona, a exemplo:
