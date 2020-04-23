@@ -1,5 +1,7 @@
 
-# Iterables
+# Iteráveis
+
+
 
 *Iterable* objects is a generalization of arrays. That's a concept that allows to make any object useable in a `for..of` loop.
 
