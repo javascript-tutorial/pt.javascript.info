@@ -1,6 +1,10 @@
 
 # Iteráveis
 
+Objetos *iteráveis* são uma generalização dos arrays. Este é um conceito que permite que objetos sejam utilizados laços (*loops*) `for..of`.
+
+Claro, array são iteráveis. Mas 
+
 
 
 *Iterable* objects is a generalization of arrays. That's a concept that allows to make any object useable in a `for..of` loop.
