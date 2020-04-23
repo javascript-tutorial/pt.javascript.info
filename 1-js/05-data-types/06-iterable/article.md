@@ -3,7 +3,7 @@
 
 Objetos *iteráveis* são uma generalização dos arrays. Este é um conceito que permite que objetos sejam utilizados em laços (*loops*) `for..of`.
 
-Claro, arrays são iteráveis. Mas existem muitos objetos nativos que também são iteráveis. Strings são outro exemplo de objetos iteráveis. Como veremos à frente, muitos operadores e métodos nativos dependem eles.
+Claro, arrays são iteráveis. Mas existem muitos objetos nativos que também são iteráveis. Strings são outro exemplo de objetos iteráveis. Como veremos à frente, muitos operadores e métodos nativos dependem deles.
 
 Se um objeto representa uma coleção (list, set) de algo, então `for..of` é um ótimo método para iterar através dele. Veremos como isso funciona.
 
@@ -11,7 +11,7 @@ Se um objeto representa uma coleção (list, set) de algo, então `for..of` é u
 
 Podemos compreender facilmente o conceito de objetos iteráveis ao criar um destes objetos.
 Como exemplo, temos um objeto que não é um array, mas pode ser iterado usando `for..of`.
-É como um objeto vetor que representa um intervalo de números:
+É como um objeto *range* que representa um intervalo de números:
 
 ```js
 let range = {
@@ -19,7 +19,7 @@ let range = {
   to: 5
 };
 
-// Vamos utilizar o `for..of` no objeto criado:
+// Vamos utilizar o for..of no objeto criado:
 // for(let num of range) ... num=1,2,3,4,5
 ```
 
