@@ -1,9 +1,11 @@
 
 # Iteráveis
 
-Objetos *iteráveis* são uma generalização dos arrays. Este é um conceito que permite que objetos sejam utilizados laços (*loops*) `for..of`.
+Objetos *iteráveis* são uma generalização dos arrays. Este é um conceito que permite que objetos sejam utilizados em laços (*loops*) `for..of`.
 
-Claro, array são iteráveis. Mas 
+Claro, arrays são iteráveis. Mas existem muitos objetos nativos que também são iteráveis. Strings são outro exemplo de objetos iteráveis. Como veremos à frente, muitos operadores e métodos nativos se relacionam com eles.
+
+Se um objeto representa uma coleção (list, set) de algo, então `for..of` é um ótimo método para iterar através dele. Veremos como isso funciona.
 
 
 
