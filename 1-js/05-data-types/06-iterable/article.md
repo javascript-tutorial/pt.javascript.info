@@ -7,13 +7,18 @@ Claro, arrays são iteráveis. Mas existem muitos objetos nativos que também s�
 
 Se um objeto representa uma coleção (list, set) de algo, então `for..of` é um ótimo método para iterar através dele. Veremos como isso funciona.
 
+## Symbol.iterator
 
+Podemos compreender facilmente o conceito de objetos iteráveis criando um destes objetos.
+Como exemplo, temos um objeto que não é um array, mas pode ser iterado usando `for..of`.
+É como um objeto vetor que representa um intervalo de números:
 
-*Iterable* objects is a generalization of arrays. That's a concept that allows to make any object useable in a `for..of` loop.
+```js
+let range = {
+  from: 1,
+  to: 5
+};
 
-Of course, Arrays are iterable. But there are many other built-in objects, that are iterable as well. For instance, Strings are iterable also. As we'll see, many built-in operators and methods rely on them.
-
-If an object represents a collection (list, set) of something, then `for..of` is a great syntax to loop over it, so let's see how to make it work.
 
 
 ## Symbol.iterator
