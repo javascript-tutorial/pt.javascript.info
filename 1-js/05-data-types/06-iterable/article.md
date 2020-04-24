@@ -23,24 +23,49 @@ let range = {
 // for(let num of range) ... num=1,2,3,4,5
 ```
 
+Para tornar o `range` iterável (e portanto permitir que `for..of` funcione) precisamos adicionar ao objeto um método chamado `Symbol.iterator` (um símbolo especial nativo criado para isso).
 
-## Symbol.iterator
+1. Quando o `for..of` começa, ele chama este método uma vez (ou dispara erros, se o método não for encontrado). O método deve retornar um *iterador* -- um objeto com o método `next`.
+2. A seguir, o `for..of` passa a trabalhar *somente com o objeto retornado*.
+3. Quando o `for..of` necessita de um novo valor, ele chama o método `next()` no objeto em questão.
+4. O resultado do método `next()` precisa ser um formulário `{done: Boolean, value: any}`, onde `done=true` indica que aquela iteração foi finalizada, caso contrário, `value` precisa ser um novo valor.
 
-We can easily grasp the concept of iterables by making one of our own.
+Esta é a implementação completa para o objeto chamado `range`:
 
-For instance, we have an object, that is not an array, but looks suitable for `for..of`.
-
-Like a `range` object that represents an interval of numbers:
-
-```js
+```js executar
 let range = {
   from: 1,
   to: 5
 };
 
-// We want the for..of to work:
-// for(let num of range) ... num=1,2,3,4,5
+// 1. a chamada para o for..of aciona inicialmente o código abaixo
+range[Symbol.iterator] = function() {
+
+  // ...ele retorna o objeto iterador:
+  // 2. Daqui em diante, o for..of trabalha somente com esse iterador, solicitando a ele novos valores
+  return {
+    current: this.from,
+    last: this.to,      
+
+    // 3. o método next() é acionado a cada iteração pelo laço for..of
+    next() {
+      // 4. ele deve retornar o valor como um objeto {done:.., value :...}
+      if (this.current <= this.last) {
+        return { done: false, value: this.current++ };
+      } else {
+        return { done: true };
+      }
+    }
+  };
+};
+
+// agora o for..of funciona!
+for (let num of range) {
+  alert(num); // 1, then 2, 3, 4, 5
+}
 ```
+
+
 
 To make the `range` iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
 
