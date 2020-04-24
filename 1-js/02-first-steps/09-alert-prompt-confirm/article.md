@@ -2,7 +2,7 @@
 
 Esta parte do tutorial tem como objetivo cobrir o JavaScript  "como é ", sem ajustes específicos de ambiente.
 
-Mas ainda estaremos usando o navegador como nosso ambiente de demostração, portanto devemos conhecer pelo menos algumas das suas funções de interface com o usuário. Neste capítulo, iremos nos familiarizar com as funções do navegador `alert`, `prompt` e `confirm`.
+Mas ainda estaremos usando o navegador como nosso ambiente de demonstração, portanto devemos conhecer pelo menos algumas das suas funções de interface com o usuário. Neste capítulo, iremos nos familiarizar com as funções do navegador `alert`, `prompt` e `confirm`.
 
 ## alert
 
@@ -20,7 +20,7 @@ Por exemplo:
 alert("Ola");
 ```
 
-A mini-janela é chamada de modal  *window*. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc. até que ele tenha lidado com a janela. Nesse caso -- até pressionar "OK"
+A mini-janela é chamada de *modal window*. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc. até que ele tenha lidado com a janela. Nesse caso -- até pressionar "OK"
 
 ## prompt
 
@@ -30,7 +30,7 @@ A função `prompt`  aceita dois argumentos
 result = prompt(title, [default]);
 ```
 
-Mostra uma janela modal com uma mensagem de texto,um campo de entrada para o visitante, e os botões OK/CANCEL
+Mostra uma janela modal com uma mensagem de texto, um campo de entrada para o visitante, e os botões OK/CANCEL
 
 `title`
 : Texto para ser mostrado ao visitante.
@@ -94,18 +94,18 @@ Cobrimos 3 funções específicas do navegador para interagir com o visitante:
 : mostra uma mensagem.
 
 `prompt`
-: mostra uma mensagem pedindo para o usuário inserir texto. Ele retorna o texto ou, se CANCEL ou `key:Esc` for clicado, `null`.
+: mostra uma mensagem pedindo para o usuário inserir texto. Ela retorna o texto ou, se CANCEL ou `key:Esc` for clicado, `null`.
 
 
 
 `confirm`
-: mostra uma mensagem e espera que o usuário pressione  "OK" ou "CANCEL". Ele retorna `true` para OK e `false` para CANCEL/`key:Esc`.
+: mostra uma mensagem e espera que o usuário pressione  "OK" ou "CANCEL". Ela retorna `true` para OK e `false` para CANCEL/`key:Esc`.
 
-Todos esse métodos são modais: eles pausam a execução do script e não permitem o visitante interagir com o resto da página até que a janela seja descartada.
+Todos esse métodos são modais: eles pausam a execução do script e não permitem ao visitante interagir com o resto da página até que a janela seja descartada.
 
 Existem duas limitações compartilhadas entre esses metódos acima:
 
 1. A localização exata da janela modal é determinada pelo navegador. Geralmente, está no centro.
 2. A aparência exata da janela também depende do navegador. Nós não podemos modificá-la.
 
-Este é o preço da simplicidade. Existem outras maneiras de mostrar janelas mais agradáveis e interações mais ricas com os visitantes, mas se "sinos e assobios" não importam muito, esses métodos funcionam bem.
+Este é o preço da simplicidade. Existem outras maneiras de mostrar janelas mais agradáveis e interações mais ricas aos visitantes, mas se "sinos e assobios" não importam muito, esses métodos funcionam bem.
