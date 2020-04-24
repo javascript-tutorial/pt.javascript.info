@@ -65,7 +65,7 @@ for (let num of range) {
 }
 ```
 
-Por favor, observe que o principal recurso dos objetos iteráveis, uma importante separação de conceitos:
+Por favor, observe que o principal recurso dos objetos iteráveis, uma importante separação de conceitos (<a href="https://pt.wikipedia.org/wiki/Separa%C3%A7%C3%A3o_de_conceitos">Separação de conceitos</a>):
 
 - O objeto `range` original não possui o método `next()`
 - Ao invés disso, outro objeto chamado "iterador" é criado ao acionar `range[Symbol.iterator]()`, e ele lida com toda a iteração.
