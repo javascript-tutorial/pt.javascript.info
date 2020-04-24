@@ -65,21 +65,18 @@ for (let num of range) {
 }
 ```
 
-Por favor, observe que o principal recurso dos objetos iteráveis
+Por favor, observe que o principal recurso dos objetos iteráveis, uma importante separação de conceitos:
 
+- O objeto `range` original não possui o método `next()`
+- Ao invés disso, outro objeto chamado "iterador" é criado ao acionar `range[Symbol.iterator]()`, e ele lida com toda a iteração.
 
-Please note the core feature of iterables: an important separation of concerns:
+Logo, o objeto "iterador" é um objeto separado do original.
 
-- The `range` itself does not have the `next()` method.
-- Instead, another object, a so-called "iterator" is created by the call to `range[Symbol.iterator]()`, and it handles the whole iteration.
+Tecnicamente, podemos mesclá-los e usar o próprio objeto `range` de modo a tonar o código mais simples.
 
-So, the iterator object is separate from the object it iterates over.
+Desse modo:
 
-Technically, we may merge them and use `range` itself as the iterator to make the code simpler.
-
-Like this:
-
-```js run
+```js executar
 let range = {
   from: 1,
   to: 5,
@@ -102,6 +99,20 @@ for (let num of range) {
   alert(num); // 1, then 2, 3, 4, 5
 }
 ```
+
+Agora `range[Symbol.iterator]()` retorna o objeto `range` original, ele também possui o método `next()` e `this.current` representa o progresso da iteração neste objeto. Mais sucinto? Sim. Em muitos casos isso é algo bom.
+
+A desvantagem é que agora é impossível ter dois laços `for..of` executando simultaneamente no objeto: eles compartilharão o estado da iteração porque existe apenas um iterador, ou seja, o próprio objeto. Mas dois laços `for..of` paralelos é algo raro, factível em alguns cenários assíncronos.
+
+```smart header="Infinite iterators"
+Iteradores infinitos são também possíveis. Como exemplo, o `range` se torna infinito pelo uso de `range.to = Infinity`. Também podemos criar um objeto iterável que gera uma sequência infinita de número pseudoaleatórios. Isso pode ser útil.
+
+Não existe limitação para o método `next`, ele pode retornar mais e mais valores, é algo normal.
+
+Claro, neste cenário o laço `for..of` seria infinito. Mas sempre podemos pará-lo usando um `break`.
+
+```
+
 
 Now `range[Symbol.iterator]()` returns the `range` object itself:  it has the necessary `next()` method and remembers the current iteration progress in `this.current`. Shorter? Yes. And sometimes that's fine too.
 
