@@ -106,7 +106,7 @@ A desvantagem é que agora é impossível ter dois laços `for..of` executando s
 
 ```smart header="Infinite iterators"
 Iteradores infinitos são possíveis. Como exemplo, o `range` se torna infinito pelo uso de `range.to = Infinity`. 
-Também podemos criar um objeto iterável que gera uma sequência infinita de número pseudoaleatórios. 
+Também podemos criar um objeto iterável que gera uma sequência infinita de números pseudoaleatórios. 
 Isso pode ser útil.
 
 Não existe limitação para o método `next`, ele pode retornar mais e mais valores, é algo normal.
