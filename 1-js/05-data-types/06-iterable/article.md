@@ -114,43 +114,52 @@ Claro, neste cenário o laço `for..of` seria infinito. Mas sempre podemos pará
 
 ```
 
+## String é iterável
 
+Arrays e Strings são os objetos iteráveis mais comumente usados.
 
+No caso de uma string, um laço `for..of` percorre os seus caracteres:
 
-Now `range[Symbol.iterator]()` returns the `range` object itself:  it has the necessary `next()` method and remembers the current iteration progress in `this.current`. Shorter? Yes. And sometimes that's fine too.
-
-The downside is that now it's impossible to have two `for..of` loops running over the object simultaneously: they'll share the iteration state, because there's only one iterator -- the object itself. But two parallel for-ofs is a rare thing, doable with some async scenarios.
-
-```smart header="Infinite iterators"
-Infinite iterators are also possible. For instance, the `range` becomes infinite for `range.to = Infinity`. Or we can make an iterable object that generates an infinite sequence of pseudorandom numbers. Also can be useful.
-
-There are no limitations on `next`, it can return more and more values, that's normal.
-
-Of course, the `for..of` loop over such an iterable would be endless. But we can always stop it using `break`.
-```
-
-
-## String is iterable
-
-Arrays and strings are most widely used built-in iterables.
-
-For a string, `for..of` loops over its characters:
-
-```js run
+```js executar
 for (let char of "test") {
-  // triggers 4 times: once for each character
+  // a linha abaixo executa 4 vezes: uma vez para cada caracter
   alert( char ); // t, then e, then s, then t
 }
 ```
 
-And it works correctly with surrogate pairs!
+E funciona corretamente com caracteres substitutos!
 
-```js run
+```js executar
 let str = '𝒳😂';
 for (let char of str) {
     alert( char ); // 𝒳, and then 😂
 }
 ```
+## Chamando um iterador explicitamente
+
+Normalmente, o mecanismo interno dos objetos iteráveis não é visível. O laço `for..of` funciona e isso é tudo o que se precisa saber.
+
+Mas para entender as coisas um pouco mais detalhadamente, vamos ver como criar um iterador explicitamente.
+
+Vamos iterar sobre uma string do mesmo modo que um laço `for..of`, mas com chamadas diretas. O código a seguir cria um iterador para uma string e o chama "manualmente":
+
+```js executar
+let str = "Hello";
+
+// faz o mesmo que
+// for (let char of str) alert(char);
+
+let iterator = str[Symbol.iterator]();
+
+while (true) {
+  let result = iterator.next();
+  if (result.done) break;
+  alert(result.value); // gera os caracteres um por um
+}
+```
+
+
+
 
 ## Calling an iterator explicitly
 
