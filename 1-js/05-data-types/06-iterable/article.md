@@ -123,7 +123,7 @@ No caso de uma string, um laço `for..of` percorre os seus caracteres:
 ```js executar
 for (let char of "test") {
   // a linha abaixo executa 4 vezes: uma vez para cada caracter
-  alert( char ); // t, then e, then s, then t
+  alert( char ); // t, depois e, depois s e por último t
 }
 ```
 
@@ -132,19 +132,19 @@ E funciona corretamente com caracteres substitutos!
 ```js executar
 let str = '𝒳😂';
 for (let char of str) {
-    alert( char ); // 𝒳, and then 😂
+    alert( char ); // 𝒳, e então 😂
 }
 ```
 ## Chamando um iterador explicitamente
 
 Normalmente, o mecanismo interno dos objetos iteráveis não é visível. O laço `for..of` funciona e isso é tudo o que se precisa saber.
 
-Mas para entender as coisas um pouco mais detalhadamente, vamos ver como criar um iterador explicitamente.
+Mas para entender as coisas um pouco mais detalhadamente, veremos como criar um iterador explicitamente.
 
 Vamos iterar sobre uma string do mesmo modo que um laço `for..of`, mas com chamadas diretas. O código a seguir cria um iterador para uma string e o chama "manualmente":
 
 ```js executar
-let str = "Hello";
+let str = "Olá";
 
 // faz o mesmo que
 // for (let char of str) alert(char);
@@ -154,96 +154,77 @@ let iterator = str[Symbol.iterator]();
 while (true) {
   let result = iterator.next();
   if (result.done) break;
-  alert(result.value); // gera os caracteres um por um
+  alert(result.value); // exibe os caracteres um a um
 }
 ```
 
+Isso é algo raramente utilizado, mas nos dá mais controle sobre o processo do que se estivéssemos utilizando um `for..of`. Como exemplo, podemos dividir o processo de iteração: itere um pouco, então para, faça alguma outra coisa, e então termina mais tarde.
 
+## Iteráveis e array-likes [#array-like]
 
+Estes dois termos oficiais parecem similares, mas são bastante diferentes. Certifique-se de ter os entendido bem para evitar confusão.
 
-## Calling an iterator explicitly
+- *Iteráveis* são objetos que implementam o método `Symbol.iterator`, como descrito acima.
+- *Array-likes* são objetos que possuem índices e tamanho (`length`), logo, eles se parecem com arrays.
 
-Normally, internals of iterables are hidden from the external code. There's a `for..of` loop, that works, that's all it needs to know.
+Naturalmente, essas propriedades podem ser combinadas. Por exemplo, strings são objetos iteráveis (`for..of` funciona com eles) e *array-like* (eles possuem índices e tamanho).
 
-But to understand things a little bit deeper let's see how to create an iterator explicitly.
+Mas um iterável pode não ser um *array-like*. Por outro lado, um *array-like* pode não ser um iterável.
 
-We'll iterate over a string the same way as `for..of`, but with direct calls. This code gets a string iterator and calls it "manually":
+Por exemplo, o objeto `range` no exemplo acima por ser um iterável, mas não um *array-like*, porque ele não tem propriedades de índice e tamanho (`length`).
 
-```js run
-let str = "Hello";
+Abaixo um exemplo de objeto que é um *array-like*, mas não um iterável:
 
-// does the same as
-// for (let char of str) alert(char);
-
-let iterator = str[Symbol.iterator]();
-
-while (true) {
-  let result = iterator.next();
-  if (result.done) break;
-  alert(result.value); // outputs characters one by one
-}
-```
-
-That is rarely needed, but gives us more control over the process than `for..of`. For instance, we can split the iteration process: iterate a bit, then stop, do something else, and then resume later.
-
-## Iterables and array-likes [#array-like]
-
-There are two official terms that look similar, but are very different. Please make sure you understand them well to avoid the confusion.
-
-- *Iterables* are objects that implement the `Symbol.iterator` method, as described above.
-- *Array-likes* are objects that have indexes and `length`, so they look like arrays.
-
-Naturally, these properties can combine. For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
-
-But an iterable may be not array-like. And vice versa an array-like may be not iterable.
-
-For example, the `range` in the example above is iterable, but not array-like, because it does not have indexed properties and `length`.
-
-And here's the object that is array-like, but not iterable:
-
-```js run
-let arrayLike = { // has indexes and length => array-like
-  0: "Hello",
-  1: "World",
+```js executar
+let arrayLike = { // possui índices e tamanho => array-like
+  0: "Olá",
+  1: "Mundo",
   length: 2
 };
 
 *!*
-// Error (no Symbol.iterator)
+// Erro (nenhum Symbol.iterator)
 for (let item of arrayLike) {}
 */!*
 ```
 
-What do they have in common? Both iterables and array-likes are usually *not arrays*, they don't have `push`, `pop` etc. That's rather inconvenient if we have such an object and want to work with it as with an array.
+O que eles têm em comum? É comum que Iteráveis e *array-likes* não sejam arrays, eles não possuem métodos como `push`, `pop`, etc. Isso é bastante inconveniente quando se deseja que estes objetos trabalhem da mesma forma que um array.
 
 ## Array.from
 
-There's a universal method [Array.from](mdn:js/Array/from) that brings them together. It takes an iterable or array-like value and makes a "real" `Array` from it. Then we can call array methods on it.
+Existe um método universal que os reúne. Ele pega um iterável ou *array-like* e faz dele um `Array` "real". Assim podemos chamar métodos típicos de um array sobre ele.
 
-For instance:
+Por exemplo:
 
-```js run
+```js executar
 let arrayLike = {
-  0: "Hello",
-  1: "World",
+  0: "Olá",
+  1: "Mundo",
   length: 2
 };
 
 *!*
 let arr = Array.from(arrayLike); // (*)
 */!*
-alert(arr.pop()); // World (method works)
+alert(arr.pop()); // Mundo (o método funciona)
 ```
 
-`Array.from` at the line `(*)` takes the object, examines it for being an iterable or array-like, then makes a new array and copies there all items.
+`Array.from` na linha `(*)` pega o objeto, examina o mesmo como um objeto iterável ou *array-like*, então cria um novo array e copia todos os itens para ele.
 
-The same happens for an iterable:
+O mesmo acontece com um iterável:
 
 ```js
-// assuming that range is taken from the example above
+// utilizando o objeto "range" que vimos nos primeiros exemplos
 let arr = Array.from(range);
-alert(arr); // 1,2,3,4,5 (array toString conversion works)
+alert(arr); // 1,2,3,4,5 (a conversão do array para string funciona)
 ```
+
+A sintáxe completa de `Array.from` fornece uma função opcional de "mapeamento":
+
+```js
+Array.from(obj[, mapFn, thisArg])
+```
+
 
 The full syntax for `Array.from` allows to provide an optional "mapping" function:
 ```js
