@@ -1,3 +1,7 @@
+# Object.keys, valores e entradas
+
+Vamos dar um passo à frente em relação às estruturas individuais de dados e falaremos sobre as iterações sobre eles.
+
 
 # Object.keys, values, entries
 
