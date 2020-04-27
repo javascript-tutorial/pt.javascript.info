@@ -1,38 +1,35 @@
 # Object.keys, valores e entradas
 
-Vamos dar um passo à frente em relação às estruturas individuais de dados e falaremos sobre as iterações sobre eles.
+Vamos dar um passo à frente em relação às estruturas individuais de dados e falaremos sobre as iterações sobre elas.
 
+No capítulo anterior vimos os métodos `map.keys()`, `map.values()`, `map.entries()`.
 
-# Object.keys, values, entries
+Estes métodos são genéricos. Existe um acordo comum para utilizá-los em estruturas de dados. Se criarmos uma estrutura de dados por nós mesmos, deveremos implementar os referidos métodos.
 
-Let's step away from the individual data structures and talk about the iterations over them. 
-
-In the previous chapter we saw methods `map.keys()`, `map.values()`, `map.entries()`.
-
-These methods are generic, there is a common agreement to use them for data structures. If we ever create a data structure of our own, we should implement them too. 
-
-They are supported for:
+Eles são suportados para:
 
 - `Map`
 - `Set`
 - `Array` (except `arr.values()`)
 
-Plain objects also support similar methods, but the syntax is a bit different.
+Objetos simples também suportam métodos semelhantes, mas a sintaxe é um pouco diferente.
 
-## Object.keys, values, entries
+## Object.keys, valores e entradas
 
-For plain objects, the following methods are available:
+Para objetos simples, os métodos a seguir estão disponíveis:
 
-- [Object.keys(obj)](mdn:js/Object/keys) -- returns an array of keys.
-- [Object.values(obj)](mdn:js/Object/values) -- returns an array of values.
-- [Object.entries(obj)](mdn:js/Object/entries) -- returns an array of `[key, value]` pairs.
+- [Object.keys(obj)](mdn:js/Object/keys) -- retorna um array de chaves.
+- [Object.values(obj)](mdn:js/Object/values) -- retorna um array de valores.
+- [Object.entries(obj)](mdn:js/Object/entries) -- retorna um array de pares `[chave, valor]`.
 
-...But please note the distinctions (compared to map for example):
+...mas observe as distinções (em comparação com o *map*, por exemplo):
 
 |             | Map              | Object       |
 |-------------|------------------|--------------|
-| Call syntax | `map.keys()`  | `Object.keys(obj)`, but not `obj.keys()` |
-| Returns     | iterable    | "real" Array                     |
+| Sintáxe     | `map.keys()`     | `Object.keys(obj)`, but not `obj.keys()` |
+| Retorno     | iterável         | Array real 
+
+
 
 The first difference is that we have to call `Object.keys(obj)`, and not `obj.keys()`.
 
