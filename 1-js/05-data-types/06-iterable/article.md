@@ -214,7 +214,7 @@ alert(arr.pop()); // Mundo (o método funciona)
 O mesmo acontece com um iterável:
 
 ```js
-// utilizando o objeto "range" que vimos nos primeiros exemplos
+// utilizando o objeto "range" dos primeiros exemplos
 let arr = Array.from(range);
 alert(arr); // 1,2,3,4,5 (a conversão do array para string funciona)
 ```
@@ -225,37 +225,50 @@ A sintáxe completa de `Array.from` fornece uma função opcional de "mapeamento
 Array.from(obj[, mapFn, thisArg])
 ```
 
+O segundo argumento `mapFn` deve ser a função a ser aplicada a cada elemento antes que o mesmo seja adicionado ao array, e `thisArg` permite adicionar o valor `this` a este elemento.
 
-The full syntax for `Array.from` allows to provide an optional "mapping" function:
-```js
-Array.from(obj[, mapFn, thisArg])
-```
-
-The second argument `mapFn` should be the function to apply to each element before adding to the array, and `thisArg` allows to set `this` for it.
-
-For instance:
+Por exemplo:
 
 ```js
-// assuming that range is taken from the example above
+// utilizando o objeto "range" dos primeiros exemplos
 
-// square each number
+// quadrado de cada número
 let arr = Array.from(range, num => num * num);
 
 alert(arr); // 1,4,9,16,25
 ```
 
-Here we use `Array.from` to turn a string into an array of characters:
+Aqui usamos `Array.from` para transformar uma string em uma matriz de caracteres:
 
-```js run
+```js executar
 let str = '𝒳😂';
 
-// splits str into array of characters
+// divide a string em uma matriz de caracteres
 let chars = Array.from(str);
 
 alert(chars[0]); // 𝒳
 alert(chars[1]); // 😂
 alert(chars.length); // 2
 ```
+
+Ao contrário de `str.split`, o código acima se baseia na natureza iterável da string e, assim como um laço `for..of`, funciona corretamente com caracteres substitutos.
+
+Tecnicamente, acontece conforme o código abaixo:
+
+```js executar
+let str = '𝒳😂';
+
+let chars = []; // Array.from internamente executa o mesmo loop
+for (let char of str) {
+  chars.push(char);
+}
+
+alert(chars);
+```
+
+...Mas
+
+
 
 Unlike `str.split`, it relies on the iterable nature of the string and so, just like `for..of`, correctly works with surrogate pairs.
 
