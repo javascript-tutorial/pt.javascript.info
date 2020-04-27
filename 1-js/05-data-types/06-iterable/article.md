@@ -3,7 +3,7 @@
 
 Objetos *iteráveis* são uma generalização dos arrays. Este é um conceito que permite que objetos sejam utilizados em laços (*loops*) `for..of`.
 
-Claro, arrays são iteráveis. Mas existem muitos objetos nativos que também são iteráveis. Strings são outro exemplo de objetos iteráveis. Como veremos à frente, muitos operadores e métodos nativos dependem deles.
+Claro, arrays são iteráveis. Mas existem muitos objetos nativos que também são iteráveis. Strings são outro exemplo de objetos iteráveis. Como veremos à frente, muitos operadores e métodos nativos atuam sobre eles.
 
 Se um objeto representa uma coleção (list, set) de algo, então `for..of` é um ótimo método para iterar através dele. Veremos como isso funciona.
 
@@ -65,7 +65,7 @@ for (let num of range) {
 }
 ```
 
-Por favor, observe o principal recurso dos objetos iteráveis, uma importante separação de conceitos (<a href="https://pt.wikipedia.org/wiki/Separa%C3%A7%C3%A3o_de_conceitos">Separação de conceitos</a>):
+Por favor, observe o principal recurso dos objetos iteráveis, isto é, uma importante separação de conceitos (<a href="https://pt.wikipedia.org/wiki/Separa%C3%A7%C3%A3o_de_conceitos">Separação de conceitos</a>):
 
 - O objeto `range` original não possui o método `next()`
 - Ao invés disso, outro objeto chamado "iterador" é criado ao acionar `range[Symbol.iterator]()`, e ele lida com toda a iteração.
@@ -96,7 +96,7 @@ let range = {
 };
 
 for (let num of range) {
-  alert(num); // 1, then 2, 3, 4, 5
+  alert(num); // 1, e depois 2, 3, 4, 5
 }
 ```
 
@@ -114,7 +114,7 @@ Claro, neste cenário o laço `for..of` seria infinito. Mas sempre podemos pará
 
 ```
 
-## String é iterável
+## Strings são iteráveis
 
 Arrays e Strings são os objetos iteráveis mais comumente usados.
 
@@ -132,7 +132,7 @@ E funciona corretamente com caracteres substitutos!
 ```js executar
 let str = '𝒳😂';
 for (let char of str) {
-    alert( char ); // 𝒳, e então 😂
+    alert( char ); // 𝒳, e depois 😂
 }
 ```
 ## Chamando um iterador explicitamente
@@ -158,7 +158,7 @@ while (true) {
 }
 ```
 
-Isso é algo raramente utilizado, mas nos dá mais controle sobre o processo do que se estivéssemos utilizando um `for..of`. Como exemplo, podemos dividir o processo de iteração: itere um pouco, então para, faça alguma outra coisa, e então termina mais tarde.
+Isso é algo raramente utilizado, mas nos dá mais controle sobre o processo do que se estivéssemos utilizando um `for..of`. Como exemplo, podemos dividir o processo de iteração: itere um pouco, então pare, faça alguma outra coisa, e então termine mais tarde.
 
 ## Iteráveis e array-likes [#array-like]
 
@@ -169,7 +169,7 @@ Estes dois termos oficiais parecem similares, mas são bastante diferentes. Cert
 
 Naturalmente, essas propriedades podem ser combinadas. Por exemplo, strings são objetos iteráveis (`for..of` funciona com eles) e *array-like* (eles possuem índices e tamanho).
 
-Mas um iterável pode não ser um *array-like*. Por outro lado, um *array-like* pode não ser um iterável.
+Mas um iterável pode não ser um *array-like*. Do mesmo modo, um *array-like* pode não ser um iterável.
 
 Por exemplo, o objeto `range` no exemplo acima por ser um iterável, mas não um *array-like*, porque ele não tem propriedades de índice e tamanho (`length`).
 
@@ -192,7 +192,7 @@ O que eles têm em comum? É comum que Iteráveis e *array-likes* não sejam arr
 
 ## Array.from
 
-Existe um método universal que os reúne. Ele pega um iterável ou *array-like* e faz dele um `Array` "real". Assim podemos chamar métodos típicos de um array sobre ele.
+Existe um método universal que os reúne. Ele pega um iterável ou *array-like* e faz dele um `Array` "real". Assim podemos chamar métodos típicos de um array a partir deste objeto.
 
 Por exemplo:
 
@@ -232,7 +232,7 @@ Por exemplo:
 ```js
 // utilizando o objeto "range" dos primeiros exemplos
 
-// quadrado de cada número
+// calcula o quadrado de cada número
 let arr = Array.from(range, num => num * num);
 
 alert(arr); // 1,4,9,16,25
