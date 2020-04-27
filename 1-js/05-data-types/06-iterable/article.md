@@ -298,4 +298,4 @@ Objetos que possuem propriedades índice e tamanho (`length`), são chamados *ar
 
 Se investigarmos mais detalhadamente a especificação -- veremos que a maioria dos métodos nativos assumem que funcionam com objetos iteráveis e *array-likes* ao invés de arrays "reais", porque isso é mais abstrato.
 
-`Array.from(obj[, mapFn, thisArg])` cria um array "real" a partir de um objeto iterável ou *array-like* e, consequentemente, podemos usar métodos de arrays neles. Os argumentos opcionais `mapFn` e `thisArg` nos permitem aplicar em função a cada item.
+`Array.from(obj[, mapFn, thisArg])` cria um array "real" a partir de um objeto iterável ou *array-like* e, consequentemente, podemos usar métodos de arrays neles. Os argumentos opcionais `mapFn` e `thisArg` nos permitem aplicar a função em cada item.
