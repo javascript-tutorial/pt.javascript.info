@@ -294,7 +294,7 @@ Objetos que podem ser usados em um laço `for..of` são chamados de *iteráveis*
 - Objetos iteráveis nativos, como strings ou arrays, também implementam o `Symbol.iterator`.
 - Um iterador de strings reconhece caracteres substitutos.
 
-Objetos que possuem propriedades índice e tamanho (`length`), são chamados *array-likes*. Esses objetos também podem ter outras propriedades e métodos, mas não possuem os métodos nativos de matrizes.
+Objetos que possuem propriedades índice e tamanho (`length`), são chamados *array-likes*. Esses objetos também podem ter outras propriedades e métodos, mas não possuem os métodos nativos de arrays.
 
 Se investigarmos mais detalhadamente a especificação -- veremos que a maioria dos métodos nativos assumem que funcionam com objetos iteráveis e *array-likes* ao invés de arrays "reais", porque isso é mais abstrato.
 
