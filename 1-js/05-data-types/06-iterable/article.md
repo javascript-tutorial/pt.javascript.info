@@ -258,7 +258,7 @@ Tecnicamente, acontece conforme o código abaixo:
 ```js executar
 let str = '𝒳😂';
 
-let chars = []; // Array.from internamente executa o mesmo loop
+let chars = []; // Array.from internamente executa o mesmo laço
 for (let char of str) {
   chars.push(char);
 }
@@ -266,30 +266,11 @@ for (let char of str) {
 alert(chars);
 ```
 
-...Mas
+...mas de uma forma mais curta e simples.
 
+Podemos inclusive construir um código que reconheça o caracter substituto:
 
-
-Unlike `str.split`, it relies on the iterable nature of the string and so, just like `for..of`, correctly works with surrogate pairs.
-
-Technically here it does the same as:
-
-```js run
-let str = '𝒳😂';
-
-let chars = []; // Array.from internally does the same loop
-for (let char of str) {
-  chars.push(char);
-}
-
-alert(chars);
-```
-
-...But is shorter.    
-
-We can even build surrogate-aware `slice` on it:
-
-```js run
+```js executar
 function slice(str, start, end) {
   return Array.from(str).slice(start, end).join('');
 }
@@ -298,25 +279,23 @@ let str = '𝒳😂𩷶';
 
 alert( slice(str, 1, 3) ); // 😂𩷶
 
-// native method does not support surrogate pairs
-alert( str.slice(1, 3) ); // garbage (two pieces from different surrogate pairs)
+// método nativo não suporta caracteres substitutos
+alert( str.slice(1, 3) ); // lixo (duas partes de diferentes caracteres substitutos)
 ```
 
+## Sumário
 
-## Summary
+Objetos que podem ser usados em um laço `for..of` são chamados de *iteráveis*.
 
-Objects that can be used in `for..of` are called *iterable*.
+- Tecnicamente, os iteráveis devem implementar o método chamado `Symbol.iterator`.
+    - O resultado de `obj[Symbol.iterator]` é chamado de *iterador*. Ele lida com o processo de iteração adicional.
+    - Um iterador deve ter o método chamado `next()` que retorna um objeto `{done: Boolean, value: any}`, aqui `done: true` denota o final da iteração, caso contrário, o `value` é o próximo valor.
+- O método `Symbol.iterator` é chamado automaticamente pelo laço `for..of`, mas também podemos fazê-lo diretamente.
+- Objetos iteráveis nativos, como strings ou arrays, também implementam o `Symbol.iterator`.
+- Um iterador de strings reconhece caracteres substitutos.
 
-- Technically, iterables must implement the method named `Symbol.iterator`.
-    - The result of `obj[Symbol.iterator]` is called an *iterator*. It handles the further iteration process.
-    - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the iteration end, otherwise the `value` is the next value.
-- The `Symbol.iterator` method is called automatically by `for..of`, but we also can do it directly.
-- Built-in iterables like strings or arrays, also implement `Symbol.iterator`.
-- String iterator knows about surrogate pairs.
+Objetos que possuem propriedades índice e tamanho (`length`), são chamados *array-likes*. Esses objetos também podem ter outras propriedades e métodos, mas não possuem os métodos nativos de matrizes.
 
+Se investigarmos mais detalhadamente a especificação -- veremos que a maioria dos métodos nativos assumem que funcionam com objetos iteráveis e *array-likes* ao invés de arrays "reais", porque isso é mais abstrato.
 
-Objects that have indexed properties and `length` are called *array-like*. Such objects may also have other properties and methods, but lack the built-in methods of arrays.
-
-If we look inside the specification -- we'll see that most built-in methods assume that they work with iterables or array-likes instead of "real" arrays, because that's more abstract.
-
-`Array.from(obj[, mapFn, thisArg])` makes a real `Array` of an iterable or array-like `obj`, and we can then use array methods on it. The optional arguments `mapFn` and `thisArg` allow us to apply a function to each item.
+`Array.from(obj[, mapFn, thisArg])` cria um array "real" a partir de um objeto iterável ou *array-like*, e consequentemente podemos usar métodos de arrays neles. Os argumentos opcionais `mapFn` e `thisArg` nos permitem aplicar em função a cada item.
