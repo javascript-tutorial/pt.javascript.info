@@ -29,43 +29,41 @@ Para objetos simples, os métodos a seguir estão disponíveis:
 | Sintáxe     | `map.keys()`     | `Object.keys(obj)`, but not `obj.keys()` |
 | Retorno     | iterável         | Array real 
 
+A primeira diferença é que temos que chamar `Object.keys(obj)` e não `obj.keys()`.
 
+Por que? A principal razão é flexibilidade. Lembre-se, objetos são a base de todas as estruturas complexas no JavaScript. Portanto, podemos ter um objeto como `order`, que implementa seu próprio método `order.values()`. E ainda podemos chamar `Object.values (order)` nele.
 
-The first difference is that we have to call `Object.keys(obj)`, and not `obj.keys()`.
+A segunda diferença é que os métodos `Object.*` retornam objetos de arrays "reais", não apenas iteráveis. Isso é principalmente por razões históricas.
 
-Why so? The main reason is flexibility. Remember, objects are a base of all complex structures in JavaScript. So we may have an object of our own like `order` that implements its own `order.values()` method. And we still can call `Object.values(order)` on it.
-
-The second difference is that `Object.*` methods return "real" array objects, not just an iterable. That's mainly for historical reasons.
-
-For instance:
+Por exemplo:
 
 ```js
 let user = {
-  name: "John",
-  age: 30
+  nome: "John",
+  idade: 30
 };
 ```
 
-- `Object.keys(user) = ["name", "age"]`
+- `Object.keys(user) = ["nome", "age"]`
 - `Object.values(user) = ["John", 30]`
-- `Object.entries(user) = [ ["name","John"], ["age",30] ]`
+- `Object.entries(user) = [ ["nome","John"], ["idade",30] ]`
 
-Here's an example of using `Object.values` to loop over property values:
+Aqui está um exemplo do uso de `Object.values` para fazer um *loop* sobre os valores da propriedade:
 
-```js run
+```js executar
 let user = {
-  name: "John",
-  age: 30
+  nome: "John",
+  idade: 30
 };
 
-// loop over values
+// loop sobre os valores
 for (let value of Object.values(user)) {
-  alert(value); // John, then 30
+  alert(value); // John, e depois 30
 }
 ```
 
-## Object.keys/values/entries ignore symbolic properties
+## Object.keys/valores/entradas ignora propriedades simbólicas
 
-Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
+Assim como um laço `for..in`, esses métodos ignoram propriedades que usam `Symbol(...)` como chaves.
 
-Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, the method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) returns *all* keys.
+Geralmente isso é conveniente. Mas se também queremos chaves simbólicas, existe um método separado [Object.getOwnPropertySymbols] (mdn:js/Object/getOwnPropertySymbols) que retorna um array com chaves simbólicas apenas. Além disso, o método [Reflect.ownKeys (obj)] (mdn:js/Reflect/ownKeys) retorna *todas* as chaves.
