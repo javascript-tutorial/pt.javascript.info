@@ -10,7 +10,7 @@ Eles são suportados para:
 
 - `Map`
 - `Set`
-- `Array` (except `arr.values()`)
+- `Array` (exceto `arr.values()`)
 
 Objetos simples também suportam métodos semelhantes, mas a sintaxe é um pouco diferente.
 
@@ -26,14 +26,14 @@ Para objetos simples, os métodos a seguir estão disponíveis:
 
 |             | Map              | Object       |
 |-------------|------------------|--------------|
-| Sintáxe     | `map.keys()`     | `Object.keys(obj)`, but not `obj.keys()` |
+| Sintáxe     | `map.keys()`     | `Object.keys(obj)`, mas não `obj.keys()` |
 | Retorno     | iterável         | Array real 
 
 A primeira diferença é que temos que chamar `Object.keys(obj)` e não `obj.keys()`.
 
 Por que? A principal razão é flexibilidade. Lembre-se, objetos são a base de todas as estruturas complexas no JavaScript. Portanto, podemos ter um objeto como `order`, que implementa seu próprio método `order.values()`. E ainda podemos chamar `Object.values (order)` nele.
 
-A segunda diferença é que os métodos `Object.*` retornam objetos de arrays "reais", não apenas iteráveis. Isso é principalmente por razões históricas.
+A segunda diferença é que os métodos `Object.*` retornam objetos de arrays "reais", não apenas iteráveis. Isso acontece principalmente por razões históricas.
 
 Por exemplo:
 
@@ -44,11 +44,11 @@ let user = {
 };
 ```
 
-- `Object.keys(user) = ["nome", "age"]`
+- `Object.keys(user) = ["nome", "idade"]`
 - `Object.values(user) = ["John", 30]`
 - `Object.entries(user) = [ ["nome","John"], ["idade",30] ]`
 
-Aqui está um exemplo do uso de `Object.values` para fazer um *loop* sobre os valores da propriedade:
+Aqui está um exemplo do uso de `Object.values` para fazer um laço (*loop*) sobre os valores da propriedade:
 
 ```js executar
 let user = {
