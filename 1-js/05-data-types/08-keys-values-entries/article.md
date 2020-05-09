@@ -62,40 +62,39 @@ for (let value of Object.values(user)) {
 }
 ```
 
-```warn header="Object.keys/values/entries ignore symbolic properties"
-Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
+```warn header="Object.keys/valores/entradas ignoram propriedades simbólicas"
+Assim como um laço `for..in`, estes métodos ignoram propriedades que usam `Symbol(...)` como chaves.
 
-Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, there exist a method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys.
+Usualmente isso é conveniente. Mas se queremos também chaves simbólicas, há um método separado: [Object.getOwnPropertySymbols] (mdn:js/Object/getOwnPropertySymbols) que retorna um array de chaves simbólicas. Além disso, existe um método [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) que retorna *todas* as chaves.
 ```
 
+## Transformando objetos
 
-## Transforming objects
+Objetos não possuem muitos métodos que estão disponíveis para arrays como, por exemplo, `map`, `filter` e outros.
 
-Objects lack many methods that exist for arrays, e.g. `map`, `filter` and others.
+Se quisermos aplicar estes métodos, podemos usar `Object.entries` seguido de `Object.fromEntries`:
 
-If we'd like to apply them, then we can use `Object.entries` followed `Object.fromEntries`:
+1. Use `Object.entries(obj)` para obter um array de pares chave/valor a partir de `obj`.
+2. Use os métodos de arrays neste array como, por exemplo, `map`.
+3. Use `Object.fromEntries(array)` no array resultante para torná-lo um objeto novamente.
 
-1. Use `Object.entries(obj)` to get an array of key/value pairs from `obj`.
-2. Use array methods on that array, e.g. `map`.
-3. Use `Object.fromEntries(array)` on the resulting array to turn it back into an object.
+Por exemplo, temos um objeto com preços e gostaríamos de dobrar os mesmos:
 
-For example, we have an object with prices, and would like to double them:
-
-```js run
+```js executar
 let prices = {
   banana: 1,
-  orange: 2,
-  meat: 4,
+  laranja: 2,
+  carne: 4,
 };
 
 *!*
 let doublePrices = Object.fromEntries(
-  // convert to array, map, and then fromEntries gives back the object
+  // convert para array, map, e então fromEntries retorna o objeto novamente
   Object.entries(prices).map(([key, value]) => [key, value * 2])
 );
 */!*
 
-alert(doublePrices.meat); // 8
-```   
+alert(doublePrices.carne); // 8
+``` 
 
-It may look difficult from the first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way. 
+Pode parecer difícil à primeira vista, mas fica fácil de entender depois de você usá-lo uma ou duas vezes. Podemos fazer cadeias poderosas de transformações dessa maneira.
