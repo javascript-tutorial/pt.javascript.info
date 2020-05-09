@@ -62,8 +62,8 @@ for (let value of Object.values(user)) {
 }
 ```
 
-## Object.keys/valores/entradas ignora propriedades simbólicas
+```warn header="Object.keys/values/entries ignore symbolic properties"
+Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
 
-Assim como um laço `for..in`, esses métodos ignoram propriedades que usam `Symbol(...)` como chaves.
-
-Geralmente isso é conveniente. Mas se também queremos chaves simbólicas, existe um método separado [Object.getOwnPropertySymbols] (mdn:js/Object/getOwnPropertySymbols) que retorna um array com chaves simbólicas apenas. Além disso, o método [Reflect.ownKeys (obj)] (mdn:js/Reflect/ownKeys) retorna *todas* as chaves.
+Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, there exist a method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys.
+```
