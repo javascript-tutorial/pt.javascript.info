@@ -38,6 +38,7 @@ Além dos números regulares, existem os chamados "valores numéricos especiais"
     ```js run
     alert( Infinity ); // Infinito
     ```
+
 - `NaN` representa um erro computacional. É o resultado de uma operação matemática incorreta ou indefinida, por exemplo:
 
     ```js run
@@ -95,6 +96,7 @@ alert( `o resultado é *!*${1 + 2}*/!*` ); // o resultado é 3
 A expressão dentro de `${…}` é avaliada e o resultado torna-se uma parte da string. Podemos colocar qualquer coisa lá: uma variável como `name` ou uma expressão aritmética como `1 + 2` ou algo mais complexo.
 
 Por favor, note que isso só pode ser feito com backticks. Outras citações não têm esta funcionalidade de incorporação!
+
 ```js run
 alert( "o resultado é ${1 + 2}" ); // o resultado é ${1 + 2} (aspas duplas não fazem nada)
 ```
@@ -222,7 +224,6 @@ As três últimas linhas podem precisar de explicações adicionais:
 1. `Math` é um objeto embutido que fornece operações matemáticas. Nós o aprenderemos no capítulo <info:number>. Aqui, ele serve apenas como um exemplo de um objeto.
 2. O resultado de `typeof null` é `"object"`. Isso é errado. É um erro oficialmente reconhecido em `typeof`, mantido para compatibilidade. Naturalmente, `null` não é um objeto. É um valor especial com um tipo separado próprio. Assim, outra vez, este é um erro na linguagem.
 3. O resultado de `typeof alert` é `"function"`, porque `alert` é uma função da linguagem. Vamos estudar as funções nos próximos capítulos onde veremos que não há nenhum tipo de "função" especial em JavaScript. As funções pertencem ao tipo de objecto. Mas o `typeof` trata-as de forma diferente. Formalmente, é incorrecto, mas muito conveniente na prática.
-
 
 ## Resumo
 
