@@ -1,11 +1,11 @@
 
 # Objeto global
 
-O objeto global fornece variáveis e funções que estão disponíveis em qualquer lugar. Por padrão, aqueles que são incorporados ao idioma ou ao ambiente.
+O objeto global fornece variáveis e funções que estão disponíveis em qualquer lugar. Em sua maioria, aqueles que são incorporados ao idioma ou ao ambiente.
 
 No navegador ele é chamado de `window`, no Node.js é `global`, em outros ambientes pode ter outro nome.
 
-Recentemente, `globalThis` foi adicionado a linguagem como um nome padrão para o objeto global, que deve ser suportado em todos os ambientes. Em alguns navegadores, como o Edge não-Chromium, `globalThis` ainda não é suportado, mas pode ser facilmente utilizado através de um polyfill.
+Recentemente, `globalThis` foi adicionado a linguagem como um nome padrão para o objeto global, que deve ser suportado em todos os ambientes. Em alguns navegadores, como o "non-Chromium Edge", `globalThis` ainda não é suportado, mas pode ser facilmente utilizado através de um polyfill.
 
 Usamos `window` aqui, assumindo que nosso ambiente seja um navegador. Se o seu script puder ser executado em outros ambientes, é melhor utilizar o `globalThis`.
 
@@ -17,7 +17,7 @@ alert("Olá");
 window.alert("Olá");
 ```
 
-No navegador, funções e variáveis globais declaradas com `var` (não `let/const`!) tornam-se propriedade do objeto global:
+No navegador, funções e variáveis globais declaradas com `var` (não `let/const`!) tornam-se propriedades do objeto global:
 
 ```js run untrusted refresh
 var gVar = 5;
@@ -39,7 +39,7 @@ Se um valor é tão importante que você gostaria de deixá-lo disponível globa
 
 ```js run
 *!*
-// tornando as informações de current user global, para permitir que todos os script as acessem
+// tornando globais as informações de current user, para permitir que todos os script as acessem
 window.currentUser = {
   name: "John"
 };
@@ -59,7 +59,7 @@ Dito isto, o uso de variáveis globais é geralmente desencorajado. Deve haver o
 
 Usamos o objeto global para testar o suporte aos recursos modernos da linguagem.
 
-Por exemplo, testar se o objeto interno `Promise` existe (ele não existe em navegadores antigos):
+Por exemplo, testar se o objeto `Promise` nativo existe (ele não existe em navegadores antigos):
 ```js run
 if (!window.Promise) {
   alert("Seu navegador é muito antigo!");
@@ -78,10 +78,10 @@ if (!window.Promise) {
 
 - O objeto global contém variáveis que devem estar disponíveis em qualquer lugar.
 
-    Isso inclui objetos internos Javascript, como `Array` e valores específicos do ambiente, como `window.innerHeight` -- a altura da janela no navegador.
+    Isso inclui objetos nativos Javascript, como `Array` e valores específicos do ambiente, como `window.innerHeight` -- a altura da janela no navegador.
 - O objeto global tem o nome universal `globalThis`.
 
-    ...Porém é mais frequentemente referido pelos seu nomes específicos de ambientes "old-school", como `window` (navegador) e `global` (Node.js). Como `globalThis` é uma proposta recente, não é suportado pelo não Chromium Edge (mas pode ser usado com um polyfill).
+    ...Porém é mais frequentemente referido pelos seu nomes específicos de ambientes "old-school", como `window` (navegador) e `global` (Node.js). Como `globalThis` é uma proposta recente, não é suportado pelo "non-Chromium Edge" (mas pode ser usado com um polyfill).
 - Devemos salvar valores no objeto global apenas se eles forem realmente globais em nosso projeto. E manter sua quantidade no mínimo.
-- No navegador, ao menos que estejamos usando [modules](info:modules), funções e variáveis globais declaradas com `var` se tornar uma propriedade do objeto global.
-- Para tornar nosso código à prova de mudanças no futuro e mais fácil de entender, devemos acessar as propriedades diretamente do objeto global, como `window.x`.
+- No navegador, ao menos que estejamos usando [modules](info:modules), funções e variáveis globais declaradas com `var` tornam-se uma propriedade do objeto global.
+- Para tornar nosso código à prova de mudanças no futuro e mais fácil de entender, devemos acessar as propriedades do objeto global diretamente, como `window.x`.
