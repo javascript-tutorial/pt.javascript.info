@@ -3,7 +3,24 @@
 
 Method `fetch()` is the modern way of sending requests over HTTP.
 
+<<<<<<< HEAD:5-network/01-fetch-basics/article.md
 It evolved for several years and continues to improve, right now the support is pretty solid among browsers.
+=======
+For example, we can use a network request to:
+
+- Submit an order,
+- Load user information,
+- Receive latest updates from the server,
+- ...etc.
+
+...And all of that without reloading the page!
+
+There's an umbrella term "AJAX" (abbreviated <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML) for network requests from JavaScript. We don't have to use XML though: the term comes from old times, that's why that word is there. You may have heard that term already.
+
+There are multiple ways to send a network request and get information from the server.
+
+The `fetch()` method is modern and versatile, so we'll start with it. It's not supported by old browsers (can be polyfilled), but very well supported among the modern ones.
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923:5-network/01-fetch/article.md
 
 The basic syntax is:
 
@@ -14,12 +31,22 @@ let promise = fetch(url, [options])
 - **`url`** -- the URL to access.
 - **`options`** -- optional parameters: method, headers etc.
 
+<<<<<<< HEAD:5-network/01-fetch-basics/article.md
 The browser starts the request right away and returns a `promise`.
 
 Getting a response is usually a two-stage process.
 
 **The `promise` resolves with an object of the built-in [Response](https://fetch.spec.whatwg.org/#response-class) class as soon as the server responds with headers.**
 
+=======
+Without `options`, that is a simple GET request, downloading the contents of the `url`.
+
+The browser starts the request right away and returns a promise that the calling code should use to get the result.
+
+Getting a response is usually a two-stage process.
+
+**First, the `promise`, returned by `fetch`, resolves with an object of the built-in [Response](https://fetch.spec.whatwg.org/#response-class) class as soon as the server responds with headers.**
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923:5-network/01-fetch/article.md
 
 So we can check HTTP status, to see whether it is successful or not, check headers, but don't have the body yet.
 

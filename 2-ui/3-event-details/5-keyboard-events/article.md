@@ -2,7 +2,7 @@
 
 Before we get to keyboard, please note that on modern devices there are other ways to "input something". For instance, people use speech recognition (especially on mobile devices) or copy/paste with the mouse.
 
-So if we want to track any input into an `<input>` field, then keyboard events are not enough. There's another event named `input` to handle changes of an `<input>` field, by any means. And it may be a better choice for such task. We'll cover it later in the chapter <info:events-change-input>.
+So if we want to track any input into an `<input>` field, then keyboard events are not enough. There's another event named `input` to track changes of an `<input>` field, by any means. And it may be a better choice for such task. We'll cover it later in the chapter <info:events-change-input>.
 
 Keyboard events should be used when we want to handle keyboard actions (virtual keyboard also counts). For instance, to react on arrow keys `key:Up` and `key:Down` or hotkeys (including combinations of keys).
 
@@ -30,7 +30,7 @@ The `keydown` events happens when a key is pressed down, and then `keyup` -- whe
 
 The `key` property of the event object allows to get the character, while the `code` property of the event object allows to get the "physical key code".
 
-For instance, the same key `key:Z` can be pressed with or without `Shift`. That gives us two different characters: lowercase `z` and uppercase `Z`.
+For instance, the same key `key:Z` can be pressed with or without `key:Shift`. That gives us two different characters: lowercase `z` and uppercase `Z`.
 
 The `event.key` is exactly the character, and it will be different. But `event.code` is the same:
 
@@ -52,7 +52,7 @@ For instance:
 
 There are several widespread keyboard layouts, and the specification gives key codes for each of them.
 
-See [alphanumeric section of the spec](https://www.w3.org/TR/uievents-code/#key-alphanumeric-section) for more codes, or just try the [teststand](#keyboard-test-stand) above.
+Read the [alphanumeric section of the spec](https://www.w3.org/TR/uievents-code/#key-alphanumeric-section) for more codes, or just press a key in the [teststand](#keyboard-test-stand) above.
 ```
 
 ```warn header="Case matters: `\"KeyZ\"`, not `\"keyZ\"`"
@@ -61,9 +61,7 @@ Seems obvious, but people still make mistakes.
 Please evade mistypes: it's `KeyZ`, not `keyZ`. The check like `event.code=="keyZ"` won't work: the first letter of `"Key"` must be uppercase.
 ```
 
-
-What if a key does not give any character? For instance, `key:Shift` or `key:F1` or others. For those keys `event.key` is approximately the same as `event.code`:
-
+What if a key does not give any character? For instance, `key:Shift` or `key:F1` or others. For those keys, `event.key` is approximately the same as `event.code`:
 
 | Key          | `event.key` | `event.code` |
 |--------------|-------------|--------------|
@@ -73,11 +71,15 @@ What if a key does not give any character? For instance, `key:Shift` or `key:F1`
 
 Please note that `event.code` specifies exactly which key is pressed. For instance, most keyboards have two `key:Shift` keys: on the left and on the right side. The `event.code` tells us exactly which one was pressed, and `event.key` is responsible for the "meaning" of the key: what it is (a "Shift").
 
-Let's say, we want to handle a hotkey: `key:Ctrl+Z` (or `key:Cmd+Z` for Mac). Most text editors hook the "Undo" action on it. We can set a listener on `keydown` and check which key is pressed -- to detect when we have the hotkey.
+Let's say, we want to handle a hotkey: `key:Ctrl+Z` (or `key:Cmd+Z` for Mac). Most text editors hook the "Undo" action on it. We can set a listener on `keydown` and check which key is pressed.
 
 Please answer the question -- in such a listener, should we check the value of `event.key` or `event.code`?
 
+<<<<<<< HEAD
 Please, pause and answer.
+=======
+On one hand, the value of `event.key` is a character, it changes depending on the language. If the visitor has several languages in OS and switches between them, the same key gives different characters. So it makes sense to check `event.code`, it's always the same.
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 Made up your mind?
 
@@ -91,6 +93,35 @@ document.addEventListener('keydown', function(event) {
 });
 ```
 
+<<<<<<< HEAD
+=======
+On the other hand, there's a problem with `event.code`. For different keyboard layouts, the same key may have different characters.
+
+For example, here are US layout ("QWERTY") and German layout ("QWERTZ") under it (from Wikipedia):
+
+![](us-layout.svg)
+
+![](german-layout.svg)
+
+For the same key, US layout has "Z", while German layout has "Y" (letters are swapped).
+
+Literally, `event.code` will equal `KeyZ` for people with German layout when they press `key:Y`.
+
+If we check `event.code == 'KeyZ'` in our code, then for people with German layout such test will pass when they press `key:Y`.
+
+That sounds really odd, but so it is. The [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system) explicitly mentions such behavior.
+
+So, `event.code` may match a wrong character for unexpected layout. Same letters in different layouts may map to different physical keys, leading to different codes. Luckily, that happens only with several codes, e.g. `keyA`, `keyQ`, `keyZ` (as we've seen), and doesn't happen with special keys such as `Shift`. You can find the list in the [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system).
+
+To reliably track layout-dependent characters, `event.key` may be a better way.
+
+On the other hand, `event.code` has the benefit of staying always the same, bound to the physical key location, even if the visitor changes languages. So hotkeys that rely on it work well even in case of a language switch.
+
+Do we want to handle layout-dependant keys? Then `event.key` is the way to go.
+
+Or we want a hotkey to work even after a language switch? Then `event.code` may be better.
+
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 ## Auto-repeat
 
 If a key is being pressed for a long enough time, it starts to repeat: the `keydown` triggers again and again, and then when it's released we finally get `keyup`. So it's kind of normal to have many `keydown` and a single `keyup`.
@@ -123,7 +154,7 @@ function checkPhoneKey(key) {
 <input *!*onkeydown="return checkPhoneKey(event.key)"*/!* placeholder="Phone, please" type="tel">
 ```
 
-Please note that special keys like `key:Backspace`, `key:Left`, `key:Right`, `key:Ctrl+V` do not work in the input. That's a side-effect of the strict filter `checkPhoneKey`.
+Please note that special keys, such as `key:Backspace`, `key:Left`, `key:Right`, `key:Ctrl+V`, do not work in the input. That's a side-effect of the strict filter `checkPhoneKey`.
 
 Let's relax it a little bit:
 
@@ -150,7 +181,10 @@ There were so many browser incompatibilities that developers of the specificatio
 
 There was time when this chapter included their detailed description. But as of now we can forget about those.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 ## Summary
 
 Pressing a key always generates a keyboard event, be it symbol keys or special keys like `key:Shift` or `key:Ctrl` and so on. The only exception is `key:Fn` key that sometimes presents on a laptop keyboard. There's no keyboard event for it, because it's often implemented on lower level than OS.

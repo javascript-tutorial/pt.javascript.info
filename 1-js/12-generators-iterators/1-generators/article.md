@@ -243,10 +243,25 @@ That surely would require a `break` in `for..of`, otherwise the loop would repea
 
 Generator composition is a special feature of generators that allows to transparently "embed" generators in each other.
 
+<<<<<<< HEAD
 For instance, we'd like to generate a sequence of:
 - digits `0..9` (character codes 48..57),
 - followed by alphabet letters `a..z` (character codes 65..90)
 - followed by uppercased letters `A..Z` (character codes 97..122)
+=======
+For instance, we have a function that generates a sequence of numbers:
+
+```js
+function* generateSequence(start, end) {
+  for (let i = start; i <= end; i++) yield i;
+}
+```
+
+Now we'd like to reuse it for generation of a more complex sequence:
+- first, digits `0..9` (with character codes 48..57),
+- followed by alphabet letters `A..Z` (character codes 65..90)
+- followed by uppercased letters `a..z` (character codes 97..122)
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 Then we plan to create passwords by selecting characters from it (could add syntax characters as well), but need to generate the sequence first.
 

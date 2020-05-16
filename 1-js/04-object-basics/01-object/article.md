@@ -146,6 +146,20 @@ let key = prompt("What do you want to know about the user?", "name");
 alert( user[key] ); // John (if enter "name")
 ```
 
+<<<<<<< HEAD
+=======
+The dot notation cannot be used in a similar way:
+
+```js run
+let user = {
+  name: "John",
+  age: 30
+};
+
+let key = "name";
+alert( user.key ) // undefined
+```
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 ### Computed properties
 
