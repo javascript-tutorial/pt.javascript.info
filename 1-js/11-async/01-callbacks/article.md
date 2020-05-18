@@ -179,11 +179,11 @@ A convenção é:
 
 Assim uma única função `callback` é usada tanto para reportar erros quanto para retornar os resultados.
 
-## Pyramid of Doom
+## Pirâmide da Perdição
 
-From the first look, it's a viable way of asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
+À primeira vista parece uma maneira viável de programação assíncrona. E realmente é. Para uma ou duas chamadas aninhadas está ok.
 
-But for multiple asynchronous actions that follow one after another we'll have code like this:
+Mas para múltiplas ações assíncronas que seguem uma depois da outra, vamos ter um código como esse:
 
 ```js
 loadScript('1.js', function(error, script) {
@@ -202,7 +202,7 @@ loadScript('1.js', function(error, script) {
             handleError(error);
           } else {
   *!*
-            // ...continue after all scripts are loaded (*)
+            // ...continua depois que todos os scripts são carregados (*)
   */!*
           }
         });
@@ -213,14 +213,14 @@ loadScript('1.js', function(error, script) {
 });
 ```
 
-In the code above:
-1. We load `1.js`, then if there's no error.
-2. We load `2.js`, then if there's no error.
-3. We load `3.js`, then if there's no error -- do something else `(*)`.
+No código acima:
+1. Carregamos `1.js`, e depois, se não tiver nenhum erro.
+2. Carregamos `2.js`, e depois, se não tiver nenhum erro.
+3. Carregamos `3.js`, e depois, se não tiver nenhum erro -- faz outra coisa `(*)`.
 
-As calls become more nested, the code becomes deeper and increasingly more difficult to manage, especially if we have a real code instead of `...`, that may include more loops, conditional statements and so on.
+À medida em que as chamadas ficam mais aninhadas, o código vai ficando mais profundo e cada vez mais difícil de gerenciar, especialmente se nós tivermos um código real em vez de `...`, que pode incluir mais laços, condicionais e assim por diante.
 
-That's sometimes called "callback hell" or "pyramid of doom."
+Isso é às vezes chamado de "callback hell (inferno dos callbacks)" ou "pyramid of doom (pirâmide da perdição)."
 
 <!--
 loadScript('1.js', function(error, script) {
@@ -248,11 +248,11 @@ loadScript('1.js', function(error, script) {
 
 ![](callback-hell.svg)
 
-The "pyramid" of nested calls grows to the right with every asynchronous action. Soon it spirals out of control.
+A "pirâmide" de chamadas aninhadas cresce para a direita a cada ação assíncrona e rapidamente sai de controle.
 
-So this way of coding isn't very good.
+Então esse jeito de programar não é muito bom.
 
-We can try to alleviate the problem by making every action a standalone function, like this:
+Nós podemos tentar diminuir o problema fazendo cada ação ser uma função separada, assim:
 
 ```js
 loadScript('1.js', step1);
@@ -279,17 +279,17 @@ function step3(error, script) {
   if (error) {
     handleError(error);
   } else {
-    // ...continue after all scripts are loaded (*)
+    // ...continua depois que todos os scripts são carregados (*)
   }
 };
 ```
 
-See? It does the same, and there's no deep nesting now because we made every action a separate top-level function.
+Viu? Isso faz a mesma coisa, e não tem um aninhamento profundo agora porque nós fizemos cada ação em uma função separada no mesmo nível.
 
-It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that one needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
+funciona, porém o código parece uma planilha dividida. É difícil de ler, e você provavelmente percebeu que precisamos pular entre as partes do código enquanto estamos lendo ele. Isso é inconveniente, especialmente se o leitor não estiver familiarizado com o código e não souber para onde pular.
 
-Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of a namespace cluttering here.
+Além disso, as funções chamadas `step*` são todas utilizadas apenas uma vez. Elas são criadas apenas pra evitar a "pirâmide da perdição." Ninguém vai reutilizá-las fora da cadeia de ações. Então tem um pouco de bagunça aqui.
 
-We'd like to have something better.
+Gostaríamos de ter algo melhor.
 
-Luckily, there are other ways to avoid such pyramids. One of the best ways is to use "promises," described in the next chapter.
+Felizmente, existem outras maneiras de evitar essas pirâmides. Uma das melhores maneiras é usar "promises (promessas)", descritas no próximo capítulo.
