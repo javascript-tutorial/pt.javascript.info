@@ -129,7 +129,7 @@ stripe.onclick = function() {
 
 ## transition-timing-function
 
-*Timing function* (função de sincronização) descreve como o processo da animação é distribuída ao longo do tempo. Por exemplo, ela deve começar devagar e depois acelerar ou vice e versa.
+*Timing function* (função de sincronização) descreve como o processo da animação é distribuído ao longo do tempo. Por exemplo, ela deve começar devagar e depois acelerar ou vice e versa.
 
 Essa parece ser a propriedade mais complicada à primeira vista. Mas fica simples se dedicarmos um pouco de tempo para ela.
 
@@ -223,7 +223,7 @@ Mas ele parece um pouco diferente.
 
 **Uma curva Bezier pode fazer uma animação "pular fora" de seu alcance.**
 
-Os pontos de controle da curva pode ter qualquer valor para a coordenada `y`: até mesmo negativo ou enorme. Então, a curva Bezier também pularia muito baixo ou muito alto, fazendo com que a animação vá além de seu alcance normal.
+Os pontos de controle da curva podem ter qualquer valor para a coordenada `y`: até mesmo negativo ou enorme. Então, a curva Bezier também pularia muito baixo ou muito alto, fazendo com que a animação vá além de seu alcance normal.
 
 No exemplo abaixo, o código da animação é:
 ```css
@@ -250,9 +250,9 @@ Por que isso acontece? A resposta é óbvia se olharmos para o gráfico da segui
 
 Nós movemos a coordenada `y` do segundo ponto para abaixo de zero, e para o terceiro ponto, fizemos acima de `1`, então a curva ultrapassa seu quadrante "regular". O `y` está fora de seu alcance "padrão" `0..1`.
 
-Como sabemos, `y` mede "o estado do processo da animação". O valor `y = 0` corresponde ao valor inicial da propriedade e `y = 1` -- o valor final. Então, o valor `y<0` move a propriedade abaixo da propriedade inicial `left` e `y>1` -- para além do valor final `left`.
+Como sabemos, `y` mede "o estado do processo da animação". O valor `y = 0` corresponde ao valor inicial da propriedade e `y = 1` -- ao valor final. Então, o valor `y<0` move a propriedade abaixo da propriedade inicial `left` e `y>1` -- para além do valor final `left`.
 
-Essa é uma variação "leve". Se definirmos valore de `y` como `-99` e `99` então, o trem pularia ainda mais fora de seu alcance.
+Essa é uma variação "leve". Se definirmos valores de `y` como `-99` e `99` então, o trem pularia ainda mais fora de seu alcance.
 
 Mas, como criar uma curva Bezier para uma tarefa específica? Existem várias ferramentas. Por exemplo, podemos fazer isso em <http://cubic-bezier.com/>.
 
@@ -297,7 +297,7 @@ O processo evolui assim:
 - `8s` -- `-80%`
 - (o último segundo mostra o valor final).
 
-O valor alternativo `end` significaria que a mudança devesse ser aplicado não no início, mas ao final de cada segundo.
+O valor alternativo `end` significaria que a mudança devesse ser aplicada não no início, mas ao final de cada segundo.
 
 Então, o processo evoluiria assim:
 
@@ -307,7 +307,7 @@ Então, o processo evoluiria assim:
 - ...
 - `9s` -- `-90%`
 
-Aqui está o `step(9, end)` em ação (note a pausa antes da primeira mudança de dígito):
+Aqui está o `steps(9, end)` em ação (note a pausa antes da primeira mudança de dígito):
 
 [codetabs src="step-end"]
 
@@ -328,7 +328,7 @@ Por exemplo, ao clicar no navio do exemplo abaixo, ele começa a navegar para fr
 
 [iframe src="boat" height=300 edit link]
 
-A animação é iniciada por meio da função `go` que é re-executada a cada vez que a animação é finalizada:
+A animação é iniciada por meio da função `go` que é reexecutada a cada vez que a animação é finalizada:
 
 ```js
 boat.onclick = function() {
@@ -365,7 +365,7 @@ O objeto do evento `transitionend` possui algumas propriedades específicas:
 `event.elapsedTime`
 : O tempo (em segundos) que a animação dura, sem `transition-delay`.
 
-## Keyframes (quadro-chaves)
+## Keyframes (quadros-chaves)
 
 Nós podemos unir diversas animações simples juntas usando a regra CSS `@keyframes`.
 
@@ -411,17 +411,17 @@ Provavelmente, você não precisará de `@keyframes` regularmente, a não ser qu
 
 Animações CSS permitem animar de forma suave (ou não) mudanças em uma ou diversas propriedades CSS.
 
-Eles são úteis para a maioria das tarefas envolvendo animações. Também podemos usar *Javascript* para animações, o próximo capítulo é dedicado a isso.
+Elas são úteis para a maioria das tarefas envolvendo animações. Também podemos usar *Javascript* para animações, o próximo capítulo é dedicado a isso.
 
 Limitações de animações CSS comparadas a animações usando *JavaScript*:
 
 ```compare plus="CSS animations" minus="JavaScript animations"
 + Animações simples de forma simples.
 + Rápidas e leves para a CPU.
-- Animações *Javascript* são flexíveis. Eles podem produzir qualquer lógica de animação, como a "explosão" de um elemento.
+- Animações *Javascript* são flexíveis. Elas podem produzir qualquer lógica de animação, como a "explosão" de um elemento.
 - Não são apenas as propriedades que mudam. Podemos criar novos elementos em *JavaScript* para os propósitos da animação.
 ```
 
-A maioria das animações pode ser implementadas usando CSS como descrito nesse capítulo. E o evento `transitionend` nos permite rodar *Javascript* após a animação, integrando-se bem como o código.
+A maioria das animações pode ser implementada usando CSS como descrito nesse capítulo. E o evento `transitionend` nos permite rodar *Javascript* após a animação, integrando-se bem com o código.
 
 Mas, no próximo capítulo, iremos criar animações em *Javascript* para cobrir casos mais complexos.

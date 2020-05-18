@@ -1,5 +1,5 @@
 
-CSS para aniimar ambos `width` e `height`:
+CSS para animar ambos `width` e `height`:
 ```css
 /* classe original */
 
@@ -14,4 +14,4 @@ CSS para aniimar ambos `width` e `height`:
 }
 ```
 
-Pro favor, note que `transitionend` é disparado duas vezes -- uma vez para cada propriedade. Então, se não perfomarmos uma verificação adicional, a mensagem será exibida 2 vezes.
+Por favor, note que `transitionend` é disparado duas vezes -- uma vez para cada propriedade. Então, se não perfomarmos uma verificação adicional, a mensagem será exibida 2 vezes.
