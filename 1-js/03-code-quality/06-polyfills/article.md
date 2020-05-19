@@ -19,7 +19,7 @@ Quando usamos funcionalidades modernas da linguagem, alguns interpretadores (_en
 
 Atualmente, o Babel possui duas partes:
 
-1. Primeiro, o programa responsável pelo _transpile_, onde o código é reescrito. O desenvolvedor roda o programa na própria máquina, o Babel reescreve o código em um padrão antigo e, após isso, o codigo é entregue ao website para os usuários. Sistemas de _build_ modernos como [webpack](http://webpack.github.io/) ou [brunch](http://brunch.io/) fornecem meios para executar o _transpiler_ automaticamente em todas as mudanças realizadas no código, de forma que não perdemos tempo do nosso lado.
+1. Primeiro, o programa responsável pelo _transpile_, onde o código é reescrito. O desenvolvedor roda o programa na própria máquina, o Babel reescreve o código em um padrão antigo e, após isso, o codigo é entregue ao website para os usuários. Sistemas de _build_ modernos como [webpack](http://webpack.github.io/) ou [brunch](http://brunch.io/) fornecem meios para executar o _transpiler_ automaticamente em todas as mudanças realizadas no código, de forma a não perdermos tempo do nosso lado.
 
 2. Segundo, o _polyfill_.
 
@@ -44,7 +44,7 @@ Muitos exemplos são executáveis diretamente no local, como esse:
 alert('Pressione o botão "Play" no canto superior direito para executar');
 ```
 
-Exemplos que usam JavaScript moderno só irão funcionar se seu navegador tiver suporte.
+Exemplos que usam JavaScript moderno só irão funcionar se o seu navegador tiver suporte.
 ````
 
 ```offline
@@ -53,4 +53,4 @@ Como você está lendo a versão offline, os exemplos não são executáveis, ma
 
 O [Chrome Canary](https://www.google.com/chrome/browser/canary.html) é bom para todos os exemplos, mas outros navegadores modernos também funcionam bem.
 
-Note que podemos usar o Babel em produção (aplicações reais, não em fase de desenvolvimento) para tornar o código compatível para navegadores que não são tão recentes, de forma que eliminamos tal limitação e o código será executado em qualquer lugar.
+Note que podemos usar o Babel em produção (aplicações reais, não em fase de desenvolvimento) para tornar o código compatível para navegadores que não são tão recentes, de forma a eliminarmos tal limitação e o código ser executado em qualquer lugar.
