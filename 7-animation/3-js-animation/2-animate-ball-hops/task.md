@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# Animate the ball bouncing to the right
+# Anime a bola quicando para a direita
 
-Make the ball bounce to the right. Like this:
+Faça a bola quicar para a direita. Assim:
 
 [iframe height=250 src="solution"]
 
-Write the animation code. The distance to the left is `100px`.
+Escreva o código de animação. A distância para a esquerda é `100px`.
 
-Take the solution of the previous task <info:task/animate-ball> as the source.
+Use a solução da atividade anterior <info:task/animate-ball> como a fonte.
