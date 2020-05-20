@@ -1,18 +1,12 @@
 # Interação: alert, prompt, confirm
 
-Esta parte do tutorial tem como objetivo cobrir o JavaScript "como é ", sem ajustes específicos de ambiente.
-
-Mas ainda estaremos usando o navegador como nosso ambiente de demonstração, portanto devemos conhecer pelo menos algumas das suas funções de interface com o usuário. Neste capítulo, iremos nos familiarizar com as funções do navegador `alert`, `prompt` e `confirm`.
+Como usuaremos o navegador como nosso ambiente  de demonstração, vamos ver algumas funções para interagir com o usuário: `alert`, `prompt` e `confirm`.
 
 ## alert
 
-Sintaxe:
-
-```js
-alert(message);
-```
-
 Este já vimos. Ele mostra uma mensagem e aguarda o usuário pressionar "OK"
+
+Por exemplo : 
 
 ```js run
 alert('Ola');
