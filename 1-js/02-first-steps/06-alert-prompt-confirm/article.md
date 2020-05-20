@@ -12,15 +12,13 @@ Sintaxe:
 alert(message);
 ```
 
-Mostra uma mensagem, e suspende a execução do programa (script) até o usuário pressionar "OK".
-
-Por exemplo:
+Este já vimos. Ele mostra uma mensagem e aguarda o usuário pressionar "OK"
 
 ```js run
 alert('Ola');
 ```
 
-A mini-janela é chamada de _modal window_. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc. até que ele tenha lidado com a janela. Nesse caso -- até pressionar "OK"
+A mini-janela com a mensagem é chamada de _modal window_. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc. até que ele tenha lidado com a janela. Nesse caso -- até pressionar "OK"
 
 ## prompt
 
@@ -36,7 +34,12 @@ Mostra uma janela modal com uma mensagem de texto, um campo de entrada para o vi
 : Texto para ser mostrado ao visitante.
 `default`
 : Um parâmetro opcional, o valor inicial para o campo de entrada.
-O visitante pode digitar algo no campo de entrada do prompt e pressionar OK. Ou ele pode cancelar a entrada pressionando CANCEL ou `key:Esc`.
+
+```smart header="Os colchetes na sintaxe `[...]`"
+Os colchetes ao redor de `default` na sintaxe acima denota que o parâmetro como opcional, não é obrigatório.
+```
+
+O visitante pode digitar algo no campo de entrada do prompt e pressionar OK. Então nós temos esse texto no `result`  Ou ele pode cancelar a entrada pressionando Cancelar ou `key:Esc`, então nos temos `null` como o `result`.
 
 A chamada do `prompt` retorna o texto do campo de entrada ou `null` se a entrada for cancelada.
 
@@ -48,7 +51,7 @@ let age = prompt('Qual a sua idade ?', 100);
 alert(`Você tem ${age} anos!`); //Você tem 100 anos!
 ```
 
-``warn header="In IE: always supply a `default`"
+``warn header="No IE: sempre forneça um `default`"
 O segundo parâmetro é opcional, mas se não o fornecermos, o Internet Explorer irá inserir o texto `"undefined"` no prompt.
 
 Execute este código no Internet Explorer para visualizar:
@@ -73,7 +76,7 @@ Sintaxe:
 result = confirm(question);
 ```
 
-A função `confirm` mostra uma janela modal com uma `question` e dois botões: OK e CANCEL.
+A função `confirm` mostra uma janela modal com uma `question` e dois botões: OK e Cancelar.
 O resultado é `true` se OK for pressionado e `false` caso contrário
 Por exemplo:
 
@@ -98,7 +101,7 @@ Cobrimos 3 funções específicas do navegador para interagir com o visitante:
 
 
 `confirm`
-: mostra uma mensagem e espera que o usuário pressione  "OK" ou "CANCEL". Ela retorna `true` para OK e `false` para CANCEL/`key:Esc`.
+: mostra uma mensagem e espera que o usuário pressione  "OK" ou "Cancelar". Ela retorna `true` para OK e `false` para Cancelar/`key:Esc`.
 
 Todos esse métodos são modais: eles pausam a execução do script e não permitem ao visitante interagir com o resto da página até que a janela seja descartada.
 
