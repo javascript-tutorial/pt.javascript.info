@@ -4,7 +4,7 @@ A coordenada horizontal é modificada por outra regra: ela não "quica", mas gra
 
 Podemos escrever mais um `animate` para isso.
 
-Como função the temo podemos usar `liner`, mas algo como `makeEaseOut(quad)` parece bem melhor.
+Como função de tempo podemos usar `liner`, mas algo como `makeEaseOut(quad)` parece bem melhor.
 
 O código:
 
