@@ -17,23 +17,23 @@ let user = {}; // o usuário não possui um endereço
 alert(user.address.street); // Erro!
 ```
 
-Ou, no desenvolvimento web, nós gostariamos de obter uma informação sobre um elemento da página, mas pode ser que ele não exista:
+Ou, no desenvolvimento web, nós gostaríamos de obter uma informação sobre um elemento da página, mas pode ser que ele não exista:
 
 ```js run
-// Erro se o resultado de querySelector(...) é nulo
+// Erro se o resultado de querySelector(...) é null
 let html = document.querySelector('.my-element').innerHTML;
 ```
 
-Antes que `?.` aparecesse na linguagem, o operador `&&` era usado pra dar um jeito nisso.
+Antes que `?.` aparecesse na linguagem, o operador `&&` era usado para dar um jeito nisso.
 Por exemplo:
 
 ```js run
 let user = {}; // o usuário ainda não possui um endereço
 
-alert( user && user.address && user.address.street ); // indefinido (sem erro)
+alert( user && user.address && user.address.street ); // undefined (sem erro)
 ```
 
-utilizando o AND para ter certeza que todos os componentes existam, porém é trabalhoso escrever tudo isso.
+utilizar o AND por todo o caminho garante que todos os componentes existam, porém é trabalhoso escrever tudo isso.
 
 ## Encadeamento opcional
 
@@ -47,7 +47,7 @@ Aqui está a forma segura de acessar `user.address.street`:
 ```js run
 let user = {}; // o usuário não possui um endereço
 
-alert( user?.address?.street ); // indefinido (sem erro)
+alert( user?.address?.street ); // undefined (sem erro)
 ```
 
 Reading the address with `user?.address` works even if `user` object doesn't exist:
@@ -56,22 +56,22 @@ Ler o endereço com `user?.address` funciona mesmo se o objeto `user` não exist
 ```js run
 let user = null;
 
-alert( user?.address ); // indefinido
+alert( user?.address ); // undefined
 
-alert( user?.address.street ); // indefinido
-alert( user?.address.street.anything ); // indefinido
+alert( user?.address.street ); // undefined
+alert( user?.address.street.anything ); // undefined
 ```
 
-Observação: A sintaxe `?.` funciona exatamente aonde ela é colocada, não adiante.
+Observação: A sintaxe `?.` funciona exatamente onde ela é colocada, não adiante.
 
 Nas últimas duas linhas a avaliação para imediatamente após `user?.`, não chegando a acessar as seguintes propriedades. Mas se `user` de fato existir, então as propriedades seguintes, como `user.address` devem existir.
 
 ```warn header="Não abuse do encadeamento opcional"
-Nós devemos usar `?.` apenas aonde é possível ter algo que não existe.
+Nós devemos usar `?.` apenas onde é possível ter algo que não existe.
 
 Por exemplo, se de acordo com a nossa lógica de código o objeto `user` existe, porém `address` é opcional, então seria melhor utilizar `user.address?.street`.
 
-Portanto, se `user` estiver indefinido devido a um erro, saberemos e o corrigiremos. Caso contrário, os erros poderão ser silenciados aonde não forem apropriados, e assim se tornando mais difíceis de debugar.
+Portanto, se `user` estiver indefinido devido a um erro, saberemos e o corrigiremos. Caso contrário, os erros poderão ser silenciados onde não forem apropriados, e assim se tornando mais difíceis de debugar.
 ```
 
 ```warn header="A variável anterior a `?.` deve existir"
@@ -137,9 +137,9 @@ let user2 = null; // Imagine, nós não pudemos autorizar o usuário
 let key = "firstName";
 
 alert( user1?.[key] ); // John
-alert( user2?.[key] ); // indefinido
+alert( user2?.[key] ); // undefined
 
-alert( user1?.[key]?.something?.not?.existing); // indefinido
+alert( user1?.[key]?.something?.not?.existing); // undefined
 ```
 
 Também podemos usar `?.` com `delete`:
@@ -155,7 +155,7 @@ O encadeamento opcional `?.` não possui utilidade ao lado esquerdo de uma atrib
 // A idéia do código a seguir é a de escrever user.name, se o usuário existir
 
 user?.name = "John"; // Erro, não funciona
-// porque é avaliado para indefinido = "John"
+// porque é avaliado para undefined = "John"
 ```
 
 ## Resumo
@@ -166,9 +166,9 @@ A sintaxe `?.` possui 3 formas:
 2. `obj?.[prop]` -- retorna `obj[prop]` if `obj` existe, caso contrário `undefined`.
 3. `obj?.method()` -- chama `obj.method()` if `obj` existe, caso contrário retorna `undefined`.
 
-Como podemos ver, todas as formas são bem diretas e simples de usar. O `?.` verifica se a parte esquerda é `null/undefined` e permite que a avaliação prossiga caso contrário
+Como podemos ver, todas as formas são bem diretas e simples de usar. O `?.` verifica se a parte esquerda é `null/undefined` e permite que a avaliação prossiga caso contrário.
 
-uma cadeia de `?.` permite um acesso seguro de propriedades encapsuladas dentro de um objeto.
+Uma cadeia de `?.` permite um acesso seguro a propriedades encapsuladas dentro de um objeto.
 
 Mesmo assim, devemos usar `?.` com cuidado, apenas se é possível que a parte esquerda não exista.
 
