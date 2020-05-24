@@ -1,7 +1,7 @@
-Código Javascript
+Código Javascript:
 
 ```js demo run
-let name = prompt("Qual o seu nome ?", "");
+let name = prompt("Qual o seu nome?", "");
 alert(name);
 ```
 
@@ -12,13 +12,13 @@ Página completa:
 <html>
 <body>
 
-  <script>
-    'use strict';
+    <script>
+      'use strict';
 
-    let name = prompt("Qual o seu nome ?", "");
-    alert(name);
-  </script>
+      let name = prompt("Qual o seu nome?", "");
+      alert(name);
+    </script>
 
-</body>
+ </body>
 </html>
 ```
