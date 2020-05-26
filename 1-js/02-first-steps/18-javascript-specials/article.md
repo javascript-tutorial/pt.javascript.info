@@ -7,22 +7,22 @@ Este capítulo brevemente revê as funcionalidades de JavaScript que aprendemos 
 Instruções são delimitadas por ponto-e-vírgula:
 
 ```js run no-beautify
-alert('Olá'); alert('Mundo');
+  alert('Olá'); alert('Mundo');
 ```
 
 Geralmente, uma quebra de linha é também tratada como um delimitador, assim o acima também funcionaria como:
 
 ```js run no-beautify
-alert('Olá')
-alert('Mundo')
+  alert('Olá')
+  alert('Mundo')
 ```
 
 Isto chama-se "inserção automática de ponto-e-vírgula". Por vezes, não funciona, a exemplo:
 
 ```js run
-alert("Haverá um erro depois desta mensagem")
+  alert("Haverá um erro depois desta mensagem")
 
-[1, 2].forEach(alert)
+  [1, 2].forEach(alert)
 ```
 
 A maioria dos guias de estilo-de-código concorda que deveríamos colocar um ponto-e-vírgula após cada instrução.
@@ -30,13 +30,13 @@ A maioria dos guias de estilo-de-código concorda que deveríamos colocar um pon
 Pontos-e-vírgula não são necessários depois de blocos de código `{...}` e outras construções sintáticas que os utilizem, como laços (*loops*):
 
 ```js
-function f() {
-  ...
-} // nenhum ponto-e-vírgula necessário depois da declaração de função
+  function f() {
+    ...
+  } // nenhum ponto-e-vírgula necessário depois da declaração de função
 
-for(;;) {
-  ...
-} // nenhum ponto-e-vírgula necessário depois do laço
+  for(;;) {
+    ...
+  } // nenhum ponto-e-vírgula necessário depois do laço
 ```
 
 ...Mas mesmo que coloquemos um ponto-e-vírgula "extra" algures, isso não é um erro. Será ignorado.
@@ -48,9 +48,9 @@ Mais em: <info:structure>.
 Para activar completamente todas as funcionalidades do JavaScript moderno, devemos começar programas (*scripts*) com `"use strict"`.
 
 ```js
-'use strict';
+  'use strict';
 
-...
+  ...
 ```
 
 A diretiva deve estar no topo de um *script* ou no início de uma função.
@@ -70,6 +70,7 @@ Podem ser declaradas usando:
 - `var` (estilo-antigo, veremos mais tarde)
 
 O nome de uma varável pode incluir:
+
 - Letras e dígitos, mas o primeiro caráter não pode ser um dígito.
 - Carateres `$` e `_` são normais, *on par* às letras.
 - Alfabetos não-latinos e hieróglifos também são permitidos, mas geralmente não utilizados.
@@ -77,8 +78,8 @@ O nome de uma varável pode incluir:
 Variáveis obtêm tipos dinâmicamente. Elas podem armazenar qualquer valor:
 
 ```js
-let x = 5;
-x = "John";
+  let x = 5;
+  x = "John";
 ```
 
 Existem 7 tipos de dados:
@@ -91,9 +92,10 @@ Existem 7 tipos de dados:
 - `object` and `symbol` -- para estruturas de dados complexas e identificadores únicos, que ainda não aprendemos.
 
 O operador `typeof` retorna o tipo de um valor, com duas exceções:
+
 ```js
-typeof null == "object" // erro da linguagem
-typeof function(){} == "function" // funções são tratadas especialmente
+  typeof null == "object" // erro da linguagem
+  typeof function(){} == "function" // funções são tratadas especialmente
 ```
 
 Mais em: <info:variables> e <info:types>.
@@ -116,11 +118,11 @@ Todas estas funções são *modal* (modais), elas suspendem o código em execuç
 Por exemplo:
 
 ```js run
-let userName = prompt("Como se chama?", "Alice");
-let isTeaWanted = confirm("Quer chá?");
+  let userName = prompt("Como se chama?", "Alice");
+  let isTeaWanted = confirm("Quer chá?");
 
-alert( "Visitante: " + userName ); // Alice
-alert( "Chá aceite: " + isTeaWanted ); // true
+  alert( "Visitante: " + userName ); // Alice
+  alert( "Chá aceite: " + isTeaWanted ); // true
 ```
 
 Mais em: <info:alert-prompt-confirm>.
@@ -132,12 +134,12 @@ JavaScript suporta os seguintes operadores:
 Aritmétricos
 : Regulares: `* + - /`, e também `%` para o resto de uma divisão inteira, e `**` para a potência de um número.
 
-    O operador binário mais `+` concatena *strings*. E se um dos operandos for uma *string*, o outro também é convertido para *string*:
+O operador binário mais `+` concatena *strings*. E se um dos operandos for uma *string*, o outro também é convertido para *string*:
 
-    ```js run
-    alert( '1' + 2 ); // '12', *string*
-    alert( 1 + '2' ); // '12', *string*
-    ```
+```js run
+  alert( '1' + 2 ); // '12', *string*
+  alert( 1 + '2' ); // '12', *string*
+```
 
 De atribuição
 : Existe uma atribuição simples: `a = b` e combinadas como `a *= 2`.
@@ -154,18 +156,18 @@ Lógicos
 Comparisons
 : O de verificação de igualdade `==` para valores de tipos diferentes, os converte para números (exceto `null` e `undefined` que igualam-se a si próprios, e a nada mais); assim os seguintes são similares:
 
-    ```js run
-    alert( 0 == false ); // verdadeiro
-    alert( 0 == '' ); // verdadeiro
-    ```
+```js run
+  alert( 0 == false ); // verdadeiro
+  alert( 0 == '' ); // verdadeiro
+```
 
-    Em outras comparações também são convertidos para números.
+Em outras comparações também são convertidos para números.
 
-    O operador de igualdade exata (*strict equality*) `===` não executa a conversão; para ele com tipos diferentes sempre são valores diferentes, assim:
+O operador de igualdade exata (*strict equality*) `===` não executa a conversão; para ele com tipos diferentes sempre são valores diferentes, assim:
 
-    Os valores `null` e `undefined` são especiais: eles são iguais `==` a si próprios e a mais nenhum outro.
+Os valores `null` e `undefined` são especiais: eles são iguais `==` a si próprios e a mais nenhum outro.
 
-    Comparações maior/menor, comparam *strings* (cadeias-de-carateres) caráter-por-caráter, outros tipos são convertidos para número.
+Comparações maior/menor, comparam *strings* (cadeias-de-carateres) caráter-por-caráter, outros tipos são convertidos para número.
 
 Outros operadores
 : Existem mais uns outros poucos, como o operador vírgula.
@@ -177,20 +179,20 @@ Mais em: <info:operators>, <info:comparison>, <info:logical-operators>.
 - Vimos 3 tipos de laços:
 
     ```js
-    // 1
-    while (condition) {
-      ...
-    }
+      // 1
+      while (condition) {
+        ...
+      }
 
-    // 2
-    do {
-      ...
-    } while (condition);
+      // 2
+      do {
+        ...
+      } while (condition);
 
-    // 3
-    for(let i = 0; i < 10; i++) {
-      ...
-    }
+      // 3
+      for(let i = 0; i < 10; i++) {
+        ...
+      }
     ```
 
 - A variável declarada no laço `for(let...)` apenas é visível dentro do laço. Mas também podemos omitir `let` e reusar uma variável já existente.
@@ -207,19 +209,19 @@ A construção "*switch*" permite substituir múltiplas verificações `if`. Ela
 Por exemplo:
 
 ```js run
-let age = prompt('Que idade tem?', 18);
+  let age = prompt('Que idade tem?', 18);
 
-switch (age) {
-  case 18:
-    alert("Não funcionará"); // o resultado de *prompt* é uma *string*, não um número
+  switch (age) {
+    case 18:
+      alert("Não funcionará"); // o resultado de *prompt* é uma *string*, não um número
 
-  case "18":
-    alert("Isto funciona!");
-    break;
+    case "18":
+      alert("Isto funciona!");
+      break;
 
-  default:
-    alert("Qualquer valor não igual aos dos 'case' acima");
-}
+    default:
+      alert("Qualquer valor não igual aos dos 'case' acima");
+  }
 ```
 
 Detalhes em: <info:switch>.
@@ -230,7 +232,7 @@ Vimos três formas de criar uma função em JavaScript:
 
 1. Declaração de função: a função no fluxo principal do código
 
-    ```js
+  ```js
     function sum(a, b) {
       let result = a + b;
 
@@ -240,7 +242,7 @@ Vimos três formas de criar uma função em JavaScript:
 
 2. Expressão de função: a função no contexto de uma expressão
 
-    ```js
+  ```js
     let sum = function(a, b) {
       let result = a + b;
 
@@ -252,7 +254,7 @@ Vimos três formas de criar uma função em JavaScript:
 
 3. Arrow functions:
 
-    ```js
+  ```js
     // expressão no lado direito
     let sum = (a, b) => a + b;
 
@@ -269,11 +271,9 @@ Vimos três formas de criar uma função em JavaScript:
     let double = n => n * 2;
     ```
 
-
 - Funções podem ter variáveis locais: aquelas declaradas no seu corpo. Tais variáveis apenas são visíveis dentro da função.
 - Parâmetros podem ter valores por defeito: `function sum(a = 1, b = 2) {...}`.
 - Funções sempre retornam algo. Se não houver uma instrução `return`, então o resultado é `undefined`.
-
 
 | Declaração de Função | Expressão de Função |
 |----------------------|---------------------|
