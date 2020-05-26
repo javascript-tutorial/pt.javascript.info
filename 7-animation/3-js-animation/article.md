@@ -6,7 +6,7 @@ Por exemplo, movimentação por um caminho complexo, com uma função de tempo d
 
 ## Utilizando setInterval
 
-A animação pode ser implmentada como uma sequência de frames (quadros) -- geralmente pequenas modificações nas propriedades de HTML/CSS.
+A animação pode ser implementada como uma sequência de frames (quadros) -- geralmente pequenas modificações nas propriedades de HTML/CSS.
 
 Por exemplo, modificando `style.left` de `0px` para `100px` movimenta o elemento. E se aumentarmos em `setInterval`, mudando por `2px` com um pequeno atraso, como 50 vezes por segundo, parecerá suave. Este é o mesmo princípio do cinema: 24 quadros por segundo é o suficiente para fazer com que pareça suave.
 
@@ -22,25 +22,26 @@ let timer = setInterval(function() {
 Exemplo mais completo da animação:
 
 ```js
-let start = Date.now() // preservar o tempo inicial
+let start = Date.now(); // preservar o tempo inicial
 
-let timer = setInterval(function () {
+let timer = setInterval(function() {
   // quanto tempo passou desde o início?
-  let timePassed = Date.now() - start
+  let timePassed = Date.now() - start;
 
-  if (tempoPetimePassedrcorrido >= 2000) {
-    clearInterval(timer) // finaliza a animação depois de 2 segundos
-    return
+  if (timePassed >= 2000) {
+    clearInterval(timer); // finaliza a animação depois de 2 segundos
+    return;
   }
 
   // desenha a animação no momento timePassed
-  draw(timePassed)
-}, 20)
+  draw(timePassed);
 
-// como timePassed vai de 0 a 2000
-// deixa gets values de 0 a 400px
+}, 20);
+
+// timePassed vai de 0 a 2000
+// recebe valores de 0 a 400px
 function draw(timePassed) {
-  train.style.left = timePassed / 5 + 'px'
+  train.style.left = timePassed / 5 + 'px';
 }
 ```
 
@@ -105,14 +106,14 @@ O código abaixo mostra o tempo entre as 10 primeiras chamadas de `requestAnimat
 
 ```html run height=40 refresh
 <script>
-  let prev = performance.now()
-  let times = 0
+  let prev = performance.now();
+  let times = 0;
 
   requestAnimationFrame(function measure(time) {
-    document.body.insertAdjacentHTML('beforeEnd', Math.floor(time - prev) + ' ')
-    prev = time
+    document.body.insertAdjacentHTML('beforeEnd', Math.floor(time - prev) + ' ');
+    prev = time;
 
-    if (times++ < 10) requestAnimationFrame(measure)
+    if (times++ < 10) requestAnimationFrame(measure);
   })
 </script>
 ```
@@ -123,29 +124,30 @@ Agora podemos fazer uma função de animação mais universal baseada em `reques
 
 ```js
 function animate({ timing, draw, duration }) {
-  let start = performance.now()
+
+  let start = performance.now();
 
   requestAnimationFrame(function animate(time) {
     // timeFraction vai de 0 a 1
-    let timeFraction = (time - start) / duration
+    let timeFraction = (time - start) / duration;
     if (timeFraction > 1) timeFraction = 1
 
     // calcula o atual estado de animação
-    let progress = timing(timeFraction)
+    let progress = timing(timeFraction);
 
-    draw(progress) // o desenha
+    draw(progress); // o desenha
 
     if (timeFraction < 1) {
-      requestAnimationFrame(animate)
+      requestAnimationFrame(animate);
     }
-  })
+  });
 }
 ```
 
 Função `animate` aceita 3 parâmetros que essencialmente descrevem a animação:
 
 `duration`
-: Tempo total da animação. Como, `1000`.
+: Tempo total da animação. Exemplo, `1000`.
 
 `timing(timeFraction)`
 : Função de tempo, como a propriedade CSS `transition-timing-function` que recebe a fração de tempo percorrido (`0` no início, `1` no final) e retorna a conclusão da animação (como `y` na curva de Bezier).
@@ -158,7 +160,7 @@ Função `animate` aceita 3 parâmetros que essencialmente descrevem a animaçã
     }
     ```
 
-    It's graph:
+    Seu gráfico:
     ![](linear.svg)
 
     Isso é igual a `transition-timing-function: linear`. Existem variantes mais interessantes mostradas abaixo.
@@ -192,9 +194,9 @@ animate({
     return timeFraction
   },
   draw(progress) {
-    elem.style.width = progress * 100 + '%'
-  },
-})
+    elem.style.width = progress * 100 + '%';
+  }
+});
 ```
 
 Ao contrário da animação CSS, podemos fazer qualquer função de tempo e qualquer função de desenho. A função de tempo não é limitada pelas curvas de Bezier. E `draw` pode ir além das propriedades, criar novos elements para animações como fogos de artifício ou algo do tipo.
@@ -227,7 +229,7 @@ Veja em ação (clique para ativar):
 
 ...Ou a curva cúbica ou evento maior que `n`. Aumentar a potência faz com que acelere mais rapidamente.
 
-Aqui está o gráfico para `progress` na protência `5`:
+Aqui está o gráfico para `progress` na potência `5`:
 
 ![](quint.svg)
 
@@ -241,7 +243,7 @@ Função:
 
 ```js
 function circ(timeFraction) {
-  return 1 - Math.sin(Math.acos(timeFraction))
+  return 1 - Math.sin(Math.acos(timeFraction));
 }
 ```
 
@@ -299,10 +301,7 @@ Mais uma função "elástica" que aceita um parâmetro acidional `x` para o "int
 
 ```js
 function elastic(x, timeFraction) {
-  return (
-    Math.pow(2, 10 * (timeFraction - 1)) *
-    Math.cos(((20 * Math.PI * x) / 3) * timeFraction)
-  )
+  return (Math.pow(2, 10 * (timeFraction - 1)) *Math.cos(((20 * Math.PI * x) / 3) * timeFraction))
 }
 ```
 
@@ -333,7 +332,7 @@ Em outras palavras, temos uma função de "transformar" `makeEaseOut` que recebe
 // aceita a função de tempo, returna a variante transformada
 function makeEaseOut(timing) {
   return function (timeFraction) {
-    return 1 - timing(1 - timeFraction)
+    return 1 - timing(1 - timeFraction);
   }
 }
 ```
@@ -341,7 +340,7 @@ function makeEaseOut(timing) {
 Por exemplo, podemos usar a função `bounce` descrita acima e aplicá-la:
 
 ```js
-let bounceEaseOut = makeEaseOut(bounce)
+let bounceEaseOut = makeEaseOut(bounce);
 ```
 
 Assim o quique não será no início, mas no final da animação. O que parece bem melhor:
@@ -366,12 +365,10 @@ Podemos também mostrar o efeito tanto no começo quanto no final da animação.
 Dado a função de tempo, calculamos o estado de animação assim:
 
 ```js
-if (timeFraction <= 0.5) {
-  // primeira metade da animação
-  return timing(2 * timeFraction) / 2
-} else {
-  // segunda metade da animação
-  return (2 - timing(2 * (1 - timeFraction))) / 2
+if (timeFraction <= 0.5) { // primeira metade da animação
+  return timing(2 * timeFraction) / 2;
+} else { // segunda metade da animação
+  return (2 - timing(2 * (1 - timeFraction))) / 2;
 }
 ```
 
@@ -380,12 +377,14 @@ O código do wrapper:
 ```js
 function makeEaseInOut(timing) {
   return function (timeFraction) {
-    if (timeFraction < 0.5) return timing(2 * timeFraction) / 2
-    else return (2 - timing(2 * (1 - timeFraction))) / 2
+    if (timeFraction < 0.5) 
+      return timing(2 * timeFraction) / 2;
+    else
+      return (2 - timing(2 * (1 - timeFraction))) / 2;
   }
 }
 
-bounceEaseInOut = makeEaseInOut(bounce)
+bounceEaseInOut = makeEaseInOut(bounce);
 ```
 
 Em ação, `bounceEaseInOut`:
@@ -422,20 +421,21 @@ Aqui está a função helper `animate` para configura a maioria das animações:
 
 ```js
 function animate({ timing, draw, duration }) {
-  let start = performance.now()
+
+  let start = performance.now();
 
   requestAnimationFrame(function animate(time) {
     // timeFraction vai de 0 a 1
-    let timeFraction = (time - start) / duration
-    if (timeFraction > 1) timeFraction = 1
+    let timeFraction = (time - start) / duration;
+    if (timeFraction > 1) timeFraction = 1;
 
     // calcular o atual estado da animação
-    let progress = timing(timeFraction)
+    let progress = timing(timeFraction);
 
-    draw(progress) // o desenha
+    draw(progress); // o desenha
 
     if (timeFraction < 1) {
-      requestAnimationFrame(animate)
+      requestAnimationFrame(animate);
     }
   })
 }
