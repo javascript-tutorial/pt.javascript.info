@@ -22,7 +22,7 @@ Then the ball will be positioned relatively to the field:
 }
 ```
 
-Next we need to assign the correct `ball.style.position.left/top`. They contain field-relative coordinates now.
+Next we need to assign the correct `ball.style.left/top`. They contain field-relative coordinates now.
 
 Here's the picture:
 
@@ -36,7 +36,11 @@ To get field-relative `left` coordinate of the click, we can substract the field
 let left = event.clientX - fieldCoords.left - field.clientLeft;
 ```
 
+<<<<<<< HEAD
 Normally, `ball.style.position.left` means the "left edge of the element" (the ball). So if we assign that `left`, then the ball edge would be under the mouse cursor.
+=======
+Normally, `ball.style.left` means the "left edge of the element" (the ball). So if we assign that `left`, then the ball edge, not center, would be under the mouse cursor.
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 
 We need to move the ball half-width left and half-height up to make it center.
 

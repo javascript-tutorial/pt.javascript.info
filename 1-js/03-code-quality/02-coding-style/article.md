@@ -26,7 +26,7 @@ let n = prompt("n?", "");
 
 if (n < 0) {
   alert(`Power ${n} is not supported,
-    please enter an integer number, greater than 0`);
+    please enter a non-negative integer number`);
 } else {
   alert( pow(x, n) );
 }
@@ -65,9 +65,20 @@ if (n < 0) alert(`Power ${n} is not supported`);
 if (n < 0)
   alert(`Power ${n} is not supported`);
 
+<<<<<<< HEAD
 if (n < 0) {
   alert(`Power ${n} is not supported`);
 }
+=======
+For example:
+```js
+// backtick quotes ` allow to split the string into multiple lines
+let str = `
+  ECMA International's TC39 is a group of JavaScript developers,
+  implementers, academics, and more, collaborating with the community
+  to maintain and evolve the definition of JavaScript.
+`;
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 ```
 -->
 ![](figure-bracket-style.png)
