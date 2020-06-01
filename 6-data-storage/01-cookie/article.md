@@ -6,8 +6,13 @@ Most of the time, cookies are set by a web server. Then they are automatically a
 
 One of the most widespread use cases is authentication:
 
+<<<<<<< HEAD
 1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with "session identifier".
 2. Next time when the request is set to the same domain, the browser sends the over the net using `Cookie` HTTP-header.
+=======
+1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with a unique "session identifier".
+2. Next time when the request is set to the same domain, the browser sends the cookie over the net using `Cookie` HTTP-header.
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 3. So the server knows who made the request.
 
 We can also access cookies from the browser, using `document.cookie` property.
@@ -159,7 +164,7 @@ document.cookie = "user=John; max-age=3600";
 
 // delete cookie (let it expire right now)
 document.cookie = "user=John; max-age=0";
-```  
+```
 
 ## secure
 
@@ -189,7 +194,11 @@ To understand when it's useful, let's introduce the following attack scenario.
 
 Imagine, you are logged into the site `bank.com`. That is: you have an authentication cookie from that site. Your browser sends it to `bank.com` with every request, so that it recognizes you and performs all sensitive financial operations.
 
+<<<<<<< HEAD
 Now, while browsing the web in another window, you occasionally come to another site `evil.com`, that automatically submits a form `<form action="https://bank.com/pay">` to `bank.com` with input fields that initiate a transaction to the hacker's account.
+=======
+Now, while browsing the web in another window, you accidentally come to another site `evil.com`. That site has JavaScript code that submits a form `<form action="https://bank.com/pay">` to `bank.com` with fields that initiate a transaction to the hacker's account.
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 The form is submitted from `evil.com` directly to the bank site, and your cookie is also sent, just because it's sent every time you visit `bank.com`. So the bank recognizes you and actually performs the payment.
 
@@ -240,7 +249,11 @@ A `samesite=lax` cookie is sent if both of these conditions are true:
 
 So, what `samesite=lax` does is basically allows a most common "go to URL" operation to have cookies. E.g. opening a website link from notes satisfies these conditions.
 
+<<<<<<< HEAD
 But anything more complicated, like AJAX request from another site or a form submittion loses cookies.
+=======
+But anything more complicated, like a network request from another site or a form submission loses cookies.
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 If that's fine for you, then adding `samesite=lax` will probably not break the user experience and add protection.
 
@@ -307,7 +320,7 @@ function setCookie(name, value, options = {}) {
     ...options
   };
 
-  if (options.expires.toUTCString) {
+  if (options.expires instanceof Date) {
     options.expires = options.expires.toUTCString();
   }
 
