@@ -1,6 +1,6 @@
 # Expressões de função
 
-Em JavaScript, uma função não é uma "estrutura mágica da linguagem", mas um valor de um tipo especial.
+Em JavaScript, uma função não é uma "estrutura mágica da linguagem", mas um valor de tipo especial.
 
 A sintaxe que usámos antes é chamada de *Declaração de Função* (*Function Declaration*):
 
@@ -38,11 +38,11 @@ Podemos até exibir esse valor usando `alert`:
 
 Por favor, note que a última linha não executa a função, porque não existem parênteses depois de `sayHi`. Existem linguagens de programação onde qualquer menção ao nome de uma função provoca a sua execução, mas em JavaScript não é assim.
 
-Em JavaScript, uma função é um valor, então podemos lidar com ela como com um valor. O código acima mostra a sua definição em formato de texto (*string*), isto é o código fonte.
+Em JavaScript, uma função é um valor, então podemos lidar com ela como com um valor. O código acima mostra a sua definição em formato de texto (*string*), isto é, o código fonte.
 
 Óbviamente, uma função é um valor especial, porque podemos invocá-lo usando `sayHi()`.
 
-Mas ainda assim é um valor. Então, podemos manuseá-lo como com outros tipos de valores.
+Mas ainda assim é um valor. Então, podemos manuseá-lo como acontece com outros tipos de valores.
 
 Podemos copiar uma função para outra variável:
 
@@ -128,11 +128,11 @@ function showCancel() {
 ask("Você concorda?", showOk, showCancel);
 ```
 
-Na prática, tais funções são muito úteis. A maior difereça entre uma `ask` num programa real [real-life] e o exemplo acima, é que funções num programa real usam formas mais complexas de interagir com o utilizador do que um simples `confirm`. No navegador (*browser*), geralmente tal função desenha uma bonita janela com a questão. Mas isso é outra história.
+Na prática, tais funções são muito úteis. A maior difereça entre uma `ask` num programa real [real-life] e o exemplo acima, é que funções num programa real usam formas mais complexas de interação com o utilizador, do que um simples `confirm`. No navegador (*browser*), geralmente tal função desenha uma bonita janela com a questão. Mas isso é outra história.
 
 **Os argumentos `showOk` e `showCancel` de `ask` são chamados de *funções de retorno de chamada* (callback functions) ou apenas *callbacks*.**
 
-A ideia é que nós passamos uma função e esperamos que ela seja "chamada" mais tarde se necessário.  No nosso caso, `showOk` se torna na função *callback* (função de retorno de chamada) para a resposta "yes", e `showCancel` para a resposta "no".
+A ideia é que nós passamos uma função e esperamos que ela seja "chamada" mais tarde se necessário.  No nosso caso, `showOk` se torna na função *callback*  para a resposta "yes", e `showCancel` para a resposta "no".
 
 Podemos utilizar Expressões de Funções para escrever essa função numa versão mais curta:
 
@@ -153,7 +153,7 @@ ask(
 
 Aqui, as funções são declaradas precisamente dentro da chamada a `ask(...)`. Elas não têm nome, e por isso são chamadas de *anónimas*. Tais funções não podem ser acedidas fora de `ask` (porque não estão atribuidas a variáveis), mas é apenas o que queremos para este caso.
 
-Tal código aparece muito naturalmente nos nossos programas (*scripts*), ele está no espírito de JavaScript.
+Tal código aparece muito naturalmente nos nossos programas (*scripts*); ele está no espírito de JavaScript.
 
 ```smart header="Uma função é um valor que representa uma \"ação\""
 Valores comuns como *strings* (cadeias-de-caráteres) ou números representam os *dados*.
@@ -191,17 +191,17 @@ A mais subtil diferença é *quando* uma função é criada pelo interpretador d
 
 **Uma Expressão de Função é criada quando a execução a alcança, e apenas é utilizável a partir desse momento.**
 
-Quando o fluxo de execução passa para o lado direito da atribuição `let sum = function…` -- aí sim, a função é criada e pode ser utilizada (atribuida, chamada, etc.); daí em diante.
+Quando o fluxo de execução passa para o lado direito da atribuição `let sum = function…` -- aí sim, a função é criada e pode ser utilizada (atribuida, chamada, etc.) daí em diante.
 
-Declarações de Função sao diferentes.
+Declarações de Função são diferentes.
 
 **Uma Declaração de Função pode ser invocada antes de ser definida.**
 
-Como exemplo, uma Declaração de Função é visível em todo o programa (*script*), não importa onde estiver.
+Como outro exemplo, uma Declaração de Função é visível em todo o programa (*script*), não importa onde estiver.
 
 Isto se deve a algoritmos internos. Quando o JavaScript se prepara para correr o programa, ele primeiro procura por Declarações de Função globais e cria as funções. Podemos pensar nisto como uma "fase de inicialização".
 
-E após o processamento de todas as Declarações de Função, o código é executado. Desta maneira, tem acesso a estas funções.
+E após o processamento de todas as Declarações de Função, o código é executado. Assim, tem acesso a estas funções.
 
 Por exemplo, isto funciona:
 
@@ -233,9 +233,9 @@ As Expressões de Função são criadas quando a execução as alcança. Isso ap
 
 Uma outra funcionalidade especial de Declarações de Função é o seu escopo de bloco (*block scope*).
 
-**Quando uma Declaração de Função é feita dentro de um bloco de código, ela é visível em todo o lugar dentro desse bloco. Mas não fora dele.**
+**No modo estrito (*strict mode*), quando uma Declaração de Função está dentro de um bloco de código, ela é visível em todo o lugar dentro desse bloco. Mas não fora dele.**
 
-Por exemplo, imaginemos que precisamos de declarar uma função `welcome()` que dependa da variável `age` que obtemos durante o tempo de execução (runtime). E que planejamos utilizá-la algures mais tarde.
+Por exemplo, imaginemos que precisamos de declarar uma função `welcome()` que dependa da variável `age` que obtemos no momento de execução (runtime) do programa. E que planejamos utilizá-la algures mais tarde.
 
 Se empregarmos uma Declaração de Função, isto não funciona como pretendido:
 
@@ -342,112 +342,13 @@ welcome(); // bem, agora
 */!*
 ```
 
-```smart header="When should you choose Function Declaration versus Function Expression?"
-Como uma regra do polegar, quando precisarmos de declarar uma função, o primeiro a considerar é uma sintaxe de Declaração de Função, como utilizámos acima. Ela providencia mais liberdade para organizar o código, porque podemos chamar tais funções antes de serem declaradas.
+```smart header="Quando escolher uma Function Declaration versus uma Expressão de Função?"
+Como uma regra do polegar, quando precisarmos de declarar uma função, a primeira a considerar é uma sintaxe de Declaração de Função. Ela dá uma mior liberdade para organizar o código, porque podemos chamar tais funções antes de serem declaradas.
 
 
-Também é um pouco mais fácil procurar por `function f(…) {…}` no código do que `let f = function(…) {…}`. Declarações de Função "sobressaem" mais à vista.
+Também é melhor para legibilidade, porque é mais fácil procurar por `function f(…) {…}` no código do que por `let f = function(…) {…};`. Declarações de Função "sobressaem" mais à vista.
 
-...Mas se por alguma razão uma Declaração de Função não nos for útil, (vimos um exemplo acima), então uma Expressão de Função será a escolha.
-```
-
-## Arrow functions [#arrow-functions]
-
-Existe mais uma sintaxe muito simples e concisa para criar funções, e que frequentemente é melhor do que Expressões de Funções. É chamada de "Arrow functions", porque se assemelha a:
-
-```js
-let func = (arg1, arg2, ...argN) => expression
-```
-
-...Isto cria a função `func` com os argumentos `arg1..argN`, evalua a `expression` no lado direito utilizando os mesmos e retorna o seu resultado.
-
-Por outras palavras, é aproximadamente o mesmo que:
-
-```js
-let func = function(arg1, arg2, ...argN) {
-  return expression;
-};
-```
-
-...Mas muito mais concisa.
-
-Vejamos um exemplo:
-
-```js run
-let sum = (a, b) => a + b;
-
-/* A função seta é uma forma mais curta de:
-
-let sum = function(a, b) {
-  return a + b;
-};
-*/
-
-alert( sum(1, 2) ); // 3
-
-```
-
-Se tivermos apenas um argumento, então os parênteses podem ser omitidos, tornando-a ainda mais curta:
-
-```js run
-// o mesmo que
-// let double = function(n) { return n * 2 }
-*!*
-let double = n => n * 2;
-*/!*
-
-alert( double(3) ); // 6
-```
-
-Se não houver argumentos, devem existir parênteses vazios (mas devem estar presentes):
-
-```js run
-let sayHi = () => alert("Olá!");
-
-sayHi();
-```
-
-Arrow functions podem ser empregues da mesma forma que Expressões de Função.
-
-A exemplo, aqui re-escrito está o código com `welcome()`:
-
-```js run
-let age = prompt("Que idade tem?", 18);
-
-let welcome = (age < 18) ?
-  () => alert('Olá') :
-  () => alert("Saudações!");
-
-welcome(); // bem, agora
-```
-
-Arrow functions podem parecer não familiares e não muito legíveis a princípio, mas isso rápidamente muda à medida que os olhos habituam-se à estrutura.
-
-Elas são muito convenientes para simples ações numa única-linha, quando estamos preguiçosos demais para escrever muitas palavras.
-
-```smart header="Multiline arrow functions"
-
-Os exemplos acima tomaram argumentos à esqerda de `=>` e evaluaram a expressão à direita com eles.
-
-Por vezes, precisamos de algo um pouco mais complexo, como múltiplas expressões e instruções. Também é possível, mas deveríamos envolvê-las em chavetas. Aí, usamos um `return` normal com elas.
-
-Desta forma:
-
-```js run
-let sum = (a, b) => {  // a chaveta abre uma função multi-linha
-  let result = a + b;
-*!*
-  return result; // ao utilizarmos chavetas, usamos `return` para obter o resultado
-*/!*
-};
-
-alert( sum(1, 2) ); // 3
-```
-
-```smart header="More to come"
-Aqui enaltecemos Arrow functions pela brevidade. Mas não é tudo! Arrow functions têm outras particulariedades interessantes. Voltaremos a elas mais adiante no capitulo <info:arrow-functions>.
-
-Por ora, podemos já usá-las para ações de única-linha e callbacks.
+...Mas se por alguma razão uma Declaração de Função não nos for útil, ou precisarmos de uma declaração condicional (vimos um exemplo acima), então uma Expressão de Função será a escolha.
 ```
 
 ## Sumário
@@ -461,8 +362,3 @@ Por ora, podemos já usá-las para ações de única-linha e callbacks.
 Na maior parte dos casos, quando precisarmos de declarar uma função, uma Declaração de Função é preferível, porque é visível antes da própria definição. Isso dá-nos mais flexibilidade para a organização do código, e geralmente é mais legível.
 
 Assim, deveríamos empregar uma Expressão de Função apenas quando a Declaração de Função não se adequasse à tarefa. Vimos alguns exemplos disso no capítulo, e veremos mais no futuro.
-
-Arrow functions são apropriadas para ações única-linha. Elas vêm em dois sabores:
-
-1. Sem chavetas: `(...args) => expression` -- o lado direito é uma expressão: a função a evalua e retorna o resultado.
-2. Com chavetas: `(...args) => { body }` -- chavetas permitem-nos escrever múltiplas instruções dentro da função, mas precisamos de um explícito `return` para retornar alguma coisa.
