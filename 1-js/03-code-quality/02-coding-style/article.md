@@ -26,7 +26,7 @@ let n = prompt("n?", "");
 
 if (n < 0) {
   alert(`Power ${n} is not supported,
-    please enter an integer number, greater than 0`);
+    please enter a non-negative integer number`);
 } else {
   alert( pow(x, n) );
 }
@@ -65,9 +65,20 @@ if (n < 0) alert(`Power ${n} is not supported`);
 if (n < 0)
   alert(`Power ${n} is not supported`);
 
+<<<<<<< HEAD
 if (n < 0) {
   alert(`Power ${n} is not supported`);
 }
+=======
+For example:
+```js
+// backtick quotes ` allow to split the string into multiple lines
+let str = `
+  ECMA International's TC39 is a group of JavaScript developers,
+  implementers, academics, and more, collaborating with the community
+  to maintain and evolve the definition of JavaScript.
+`;
+>>>>>>> d35baee32dcce127a69325c274799bb81db1afd8
 ```
 -->
 ![](figure-bracket-style.png)
@@ -261,7 +272,7 @@ Of course, a team can always write their own style guide. Most of the time thoug
 
 Some popular choices:
 
-- [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)

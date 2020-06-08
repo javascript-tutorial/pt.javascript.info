@@ -145,7 +145,21 @@ newWindow.onload = function() {
 };
 ```
 
+<<<<<<< HEAD
 Please note that external `document` content is only accessible for windows from the same origin (the same protocol://domain:port).
+=======
+Please note: immediately after `window.open`, the new window isn't loaded yet. That's demonstrated by `alert` in line `(*)`. So we wait for `onload` to modify it. We could also use `DOMContentLoaded` handler for `newWin.document`.
+
+```warn header="Same origin policy"
+Windows may freely access content of each other only if they come from the same origin (the same protocol://domain:port).
+
+Otherwise, e.g. if the main window is from `site.com`, and the popup from `gmail.com`, that's impossible for user safety reasons. For the details, see chapter <info:cross-window-communication>.
+```
+
+## Accessing window from popup
+
+A popup may access the "opener" window as well using `window.opener` reference. It is `null` for all windows except popups.
+>>>>>>> d35baee32dcce127a69325c274799bb81db1afd8
 
 For windows with URLs from another sites, we are able to change the location by assigning `newWindow.location=...`, but we can't read the location or access the content. That's for user safety, so that an evil page can't open a popup with `http://gmail.com` and read the data. We'll talk more about it later.
 
@@ -205,11 +219,22 @@ For instance:
 ## Summary   
 
 - A popup can be opened by the `open(url, name, params)` call. It returns the reference to the newly opened window.
+<<<<<<< HEAD
 - By default, browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
 - The popup may access the opener window using the `window.opener` property, so the two are connected.
 - If the main window and the popup come from the same origin, they can freely read and modify each other. Otherwise, they can change location of each other and communicate using messages (to be covered).
 - To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
 - Methods `focus()` and `blur()` allow to focus/unfocus a window. Sometimes.
+=======
+- Browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
+- Browsers open a new tab by default, but if sizes are provided, then it'll be a popup window.
+- The popup may access the opener window using the `window.opener` property.
+- The main window and the popup can freely read and modify each other if they have the same origin. Otherwise, they can change location of each other and [exchange messages](info:cross-window-communication).
+
+To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
+
+- Methods `focus()` and `blur()` allow to focus/unfocus a window. But they don't work all the time.
+>>>>>>> d35baee32dcce127a69325c274799bb81db1afd8
 - Events `focus` and `blur` allow to track switching in and out of the window. But please note that a  window may still be visible even in the background state, after `blur`.
 <<<<<<< HEAD
 

@@ -6,11 +6,19 @@ Este livro é um *tutorial*. Ele tem como objetivo lhe ajudar a aprender gradual
 
 A [Especificacão ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contém as mais profundas, detalhadas e formalizadas informações sobre JavaScript. Ela define a linguagem.
 
+<<<<<<< HEAD
 Mas, estando num formato mais formal, fica difícil de entender à primeira vista. Porém, se você precisa da mais confiável fonte de informações sobre detalhes da linguagem, está no lugar certo. Contudo, não é para o uso cotidiano.
+=======
+[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information about JavaScript. It defines the language.
+>>>>>>> d35baee32dcce127a69325c274799bb81db1afd8
 
 Uma nova versão dessa especificação é lançada todos os anos. Entre estes lançamentos, a sua última versão de esboço se encontra em <https://tc39.es/ecma262/>.
 
+<<<<<<< HEAD
 Para ler sobre as mais novas funcionalidades (*bleeding-edge features*), incluindo as que estão em fase de padronização (chamadas também de "estágio 3"), veja as suas propostas em <https://github.com/tc39/proposals>.
+=======
+A new specification version is released every year. In-between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
+>>>>>>> d35baee32dcce127a69325c274799bb81db1afd8
 
 E mais, se você está desenvolvendo para browsers, há outras especificações que cobrem esta demanda na [segunda parte](https://javascript.info/browser-environment) do tutorial.
 
