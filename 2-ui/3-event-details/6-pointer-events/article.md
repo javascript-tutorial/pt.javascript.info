@@ -10,7 +10,11 @@ Let's make a small overview, so that you understand the general picture and the 
 
     Then touch devices appeared. For the old code to work, they also generate mouse events. For instance, tapping generates `mousedown`. But mouse events were not good enough, as touch devices are more powerful in many aspects. For example, it's possible to touch multiple points at once, and mouse events don't have any properties for that.
 
+<<<<<<< HEAD
 - So touch events were introduced, such as `touchstart`, `touchend`, `touchmove`, that have touch-specific properties (we don't cover them in details here, because pointer events are event better).
+=======
+- So touch events were introduced, such as `touchstart`, `touchend`, `touchmove`, that have touch-specific properties (we don't cover them in detail here, because pointer events are even better).
+>>>>>>> b52aa942a8e9b75ba8a65124c22593171e273bb6
 
     Still, it wasn't enough, as there are many other devices, such as pens, that have their own features. Also, writing a code that listens both touch and mouse events was cumbersome. 
 

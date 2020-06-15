@@ -68,8 +68,13 @@ For instance, if we have a single handler `form.onclick`, then it can "catch" al
 
 In `form.onclick` handler:
 
+<<<<<<< HEAD
 - `this` (`=event.currentTarget`) is the `<form>` element, because the handler runs on it.
 - `event.target` is the concrete element inside the form that actually was clicked.
+=======
+- `this` (=`event.currentTarget`) is the `<form>` element, because the handler runs on it.
+- `event.target` is the actual element inside the form that was clicked.
+>>>>>>> b52aa942a8e9b75ba8a65124c22593171e273bb6
 
 Check it out:
 
@@ -102,7 +107,7 @@ To stop the bubbling and prevent handlers on the current element from running, t
 ```
 
 ```warn header="Don't stop bubbling without a need!"
-Bubbling is convenient. Don't stop it without a real need: obvious and architecturally well-thought.
+Bubbling is convenient. Don't stop it without a real need: obvious and architecturally well thought out.
 
 Sometimes `event.stopPropagation()` creates hidden pitfalls that later may become problems.
 
@@ -181,10 +186,16 @@ The code sets click handlers on *every* element in the document to see which one
 
 If you click on `<p>`, then the sequence is:
 
+<<<<<<< HEAD
 1. `HTML` -> `BODY` -> `FORM` -> `DIV` -> `P` (capturing phase, the first listener), and then:
 2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
 
 Please note that `P` shows up two times: at the end of capturing and at the start of bubbling.
+=======
+1. `HTML` -> `BODY` -> `FORM` -> `DIV` (capturing phase, the first listener):
+2. `P` (target phase, triggers two times, as we've set two listeners: capturing and bubbling)
+3. `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
+>>>>>>> b52aa942a8e9b75ba8a65124c22593171e273bb6
 
 There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
 
@@ -196,9 +207,15 @@ If we `addEventListener(..., true)`, then we should mention the same phase in `r
 
 The event handling process:
 
+<<<<<<< HEAD
 - When an event happens -- the most nested element where it happens gets labeled as the "target element" (`event.target`).
 - Then the event first moves from the document root down to the `event.target`, calling handlers assigned with `addEventListener(...., true)` on the way (`true` is a shorthand for `{capture: true}`).
 - Then the event moves from `event.target` up to the root, calling handlers assigned using  `on<event>` and `addEventListener` without the 3rd argument or with the 3rd argument `false`.
+=======
+- Then the event moves down from the document root to `event.target`, calling handlers assigned with `addEventListener(..., true)` on the way (`true` is a shorthand for `{capture: true}`).
+- Then handlers are called on the target element itself.
+- Then the event bubbles up from `event.target` up to the root, calling handlers assigned using `on<event>` and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
+>>>>>>> b52aa942a8e9b75ba8a65124c22593171e273bb6
 
 Each handler can access `event` object properties:
 
