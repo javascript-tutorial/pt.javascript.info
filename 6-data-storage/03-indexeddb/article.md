@@ -5,22 +5,30 @@ libs:
 
 # IndexedDB
 
-IndexedDB is a built-in database, much more powerful than `localStorage`.
+IndexedDB is a database that is built into browser, much more powerful than `localStorage`.
 
-- Key/value storage: value can be (almost) anything, multiple key types.
+- Stores almost any kind of values by keys, multiple key types.
 - Supports transactions for reliability.
 - Supports key range queries, indexes.
-- Can store much more data than `localStorage`.
+- Can store much bigger volumes of data than `localStorage`.
 
 That power is usually excessive for traditional client-server apps. IndexedDB is intended for offline apps, to be combined with ServiceWorkers and other technologies.
 
 The native interface to IndexedDB, described in the specification <https://www.w3.org/TR/IndexedDB>, is event-based.
 
+<<<<<<< HEAD
 We can also use `async/await` with the help of a promise-based wrapper, like <https://github.com/jakearchibald/idb>. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases, so we'll start with events, and then use the wrapper.
 
 ## Open database
 
 To start working with IndexedDB, we need to open a database.
+=======
+We can also use `async/await` with the help of a promise-based wrapper, like <https://github.com/jakearchibald/idb>. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases. So we'll start with events, and then, after we gain understanding of IndexedDb, we'll use the wrapper.
+
+## Open database
+
+To start working with IndexedDB, we first need to `open` (connect to) a database.
+>>>>>>> e4e6a50b5762dd5dc4c0f0c58f870c64be39dcfa
 
 The syntax:
 
@@ -33,6 +41,7 @@ let openRequest = indexedDB.open(name, version);
 
 We can have many databases with different names, all within the current origin (domain/protocol/port). So different websites can't access databases of each other.
 
+<<<<<<< HEAD
 After the call, we need to listen to events on `openRequest` object:
 - `success`: database is ready, use the database object `openRequest.result` for further work.
 - `error`: open failed.
@@ -41,12 +50,28 @@ After the call, we need to listen to events on `openRequest` object:
 **IndexedDB has a built-in mechanism of "schema versioning", absent in server-side databases.**
 
 Unlike server-side databases, IndexedDB is client-side, we don't have the data at hands. But when we publish a new version of our app, we may need to update the database.
+=======
+The call returns `openRequest` object, we should listen to events on it:
+- `success`: database is ready, there's the "database object" in `openRequest.result`, that we should use it for further calls.
+- `error`: opening failed.
+- `upgradeneeded`: database is ready, but its version is outdated (see below).
+
+**IndexedDB has a built-in mechanism of "schema versioning", absent in server-side databases.**
+
+Unlike server-side databases, IndexedDB is client-side, the data is stored in the browser, so we, developers, don't have "any time" access to it. So, when we published a new version of our app, and the user visits our webpage, we may need to update the database.
+>>>>>>> e4e6a50b5762dd5dc4c0f0c58f870c64be39dcfa
 
 If the local database version is less than specified in `open`, then a special event `upgradeneeded` is triggered, and we can compare versions and upgrade data structures as needed.
 
-The event also triggers when the database did not exist yet, so we can perform initialization.
+The `upgradeneeded` event also triggers when the database did not exist yet (technically, it's version is `0`), so we can perform initialization.
 
+<<<<<<< HEAD
 For instance, when we first publish our app, we open it with version `1` and perform the initialization in `upgradeneeded` handler:
+=======
+Let's say we published the first version of our app.
+
+Then we can open the database with version `1` and perform the initialization in `upgradeneeded` handler like this:
+>>>>>>> e4e6a50b5762dd5dc4c0f0c58f870c64be39dcfa
 
 ```js
 let openRequest = indexedDB.open("store", *!*1*/!*);
@@ -66,15 +91,24 @@ openRequest.onsuccess = function() {
 };
 ```
 
-When we publish the 2nd version:
+Then, later, we publish the 2nd version.
+
+We can open it with version `2` and perform the upgrade like this:
 
 ```js
 let openRequest = indexedDB.open("store", *!*2*/!*);
 
+<<<<<<< HEAD
 //  check the existing database version, do the updates if needed:
 openRequest.onupgradeneeded = function() {
   let db = openRequest.result;
   switch(db.version) { // existing (old) db version
+=======
+openRequest.onupgradeneeded = function(event) {
+  // the existing database version is less than 2 (or it doesn't exist)
+  let db = openRequest.result;
+  switch(event.oldVersion) { // existing db version
+>>>>>>> e4e6a50b5762dd5dc4c0f0c58f870c64be39dcfa
     case 0:
       // version 0 means that the client had no database
       // perform initialization
@@ -85,7 +119,13 @@ openRequest.onupgradeneeded = function() {
 };
 ```
 
+<<<<<<< HEAD
 After `openRequest.onsuccess` we have the database object in `openRequest.result`, that we'll use for further operations.
+=======
+Please note: as our current version is `2`, `onupgradeneeded` handler has a code branch for version `0`, suitable for users that come for the first time and have no database, and also for version `1`, for upgrades.
+
+And then, only if `onupgradeneeded` handler finishes without errors, `openRequest.onsuccess` triggers, and the database is considered successfully opened.
+>>>>>>> e4e6a50b5762dd5dc4c0f0c58f870c64be39dcfa
 
 To delete a database:
 
@@ -94,9 +134,83 @@ let deleteRequest = indexedDB.deleteDatabase(name)
 // deleteRequest.onsuccess/onerror tracks the result
 ```
 
+<<<<<<< HEAD
 
 ## Object store
 
+=======
+```warn header="We can't open an older version of the database"
+If the current user database has a higher version than in the `open` call, e.g. the existing DB version is `3`, and we try to `open(...2)`, then that's an error, `openRequest.onerror` triggers.
+
+That's odd, but such thing may happen when a visitor loaded an outdated JavaScript code, e.g. from a proxy cache. So the code is old, but his database is new.
+
+To protect from errors, we should check `db.version` and suggest him to reload the page. Use proper HTTP caching headers to avoid loading the old code, so that you'll never have such problem.
+```
+
+### Parallel update problem
+
+As we're talking about versioning, let's tackle a small related problem.
+
+Let's say:
+1. A visitor opened our site in a browser tab, with database version `1`.
+2. Then we rolled out an update, so our code is newer.
+3. And then the same visitor opens our site in another tab.
+
+So there's a tab with an open connection to DB version `1`, while the second tab one attempts to update it to version `2` in its `upgradeneeded` handler.
+
+The problem is that a database is shared between two tabs, as it's the same site, same origin. And it can't be both version `1` and `2`. To perform the update to version `2`, all connections to version 1 must be closed, including the one in the first tab.
+
+In order to organize that, the `versionchange` event triggers in such case on the "outdated" database object. We should listen to it and close the old database connection (and probably suggest the visitor to reload the page, to load the updated code).
+
+If we don't listen to `versionchange` event and don't close the old connection, then the second, new connection won't be made. The `openRequest` object will emit the `blocked` event instead of `success`. So the second tab won't work.
+
+Here's the code to correctly handle the parallel upgrade.
+
+It installs `onversionchange` handler after the database is opened, that closes the old connection:
+
+```js
+let openRequest = indexedDB.open("store", 2);
+
+openRequest.onupgradeneeded = ...;
+openRequest.onerror = ...;
+
+openRequest.onsuccess = function() {
+  let db = openRequest.result;
+
+  *!*
+  db.onversionchange = function() {
+    db.close();
+    alert("Database is outdated, please reload the page.")
+  };
+  */!*
+
+  // ...the db is ready, use it...
+};
+
+*!*
+openRequest.onblocked = function() {
+  // this event shouldn't trigger if we handle onversionchange correctly
+
+  // it means that there's another open connection to same database
+  // and it wasn't closed after db.onversionchange triggered for them
+};
+*/!*
+```
+
+Here we do two things:
+
+1. Add `db.onversionchange` listener after a successful opening, to be informed about a parallel update attempt.
+2. Add `openRequest.onblocked` listener to handle the case when an old connection wasn't closed. This doesn't happen if we close it in `db.onversionchange`.
+
+There are other variants. For example, we can take time to close things gracefully in `db.onversionchange`, prompt the visitor to save the data before the connection is closed. The new updating connection will be blocked immediatelly after `db.onversionchange` finished without closing, and we can ask the visitor in the new tab to close other tabs for the update.
+
+Such update collision happens rarely, but we should at least have some handling for it, e.g. `onblocked` handler, so that our script doesn't surprise the user by dying silently.
+
+## Object store
+
+To store something in IndexedDB, we need an *object store*.
+
+>>>>>>> e4e6a50b5762dd5dc4c0f0c58f870c64be39dcfa
 An object store is a core concept of IndexedDB. Counterparts in other databases are called "tables" or "collections". It's where the data is stored. A database may have multiple stores: one for users, another one for goods, etc.
 
 Despite being named an "object store", primitives can be stored too.
@@ -406,9 +520,9 @@ Methods that involve searching support either exact keys or so-called "range que
 
 Ranges are created using following calls:
 
-- `IDBKeyRange.lowerBound(lower, [open])` means: `>lower` (or `≥lower` if `open` is true)
-- `IDBKeyRange.upperBound(upper, [open])` means: `<upper` (or `≤upper` if `open` is true)
-- `IDBKeyRange.bound(lower, upper, [lowerOpen], [upperOpen])` means: between `lower` and `upper`, with optional equality if the corresponding `open` is true.
+- `IDBKeyRange.lowerBound(lower, [open])` means: `≥lower` (or `>lower` if `open` is true)
+- `IDBKeyRange.upperBound(upper, [open])` means: `≤upper` (or `<upper` if `open` is true)
+- `IDBKeyRange.bound(lower, upper, [lowerOpen], [upperOpen])` means: between `lower` and `upper`. If the open flags is true, the corresponding key is not included in the range.
 - `IDBKeyRange.only(key)` -- a range that consists of only one `key`, rarely used.
 
 All searching methods accept a `query` argument that can be either an exact key or a key range:
@@ -427,16 +541,16 @@ Request examples:
 // get one book
 books.get('js')
 
-// get books with 'css' < id < 'html'
+// get books with 'css' <= id <= 'html'
 books.getAll(IDBKeyRange.bound('css', 'html'))
 
-// get books with 'html' <= id
-books.getAll(IDBKeyRange.lowerBound('html', true))
+// get books with id < 'html'
+books.getAll(IDBKeyRange.upperBound('html', true))
 
 // get all books
 books.getAll()
 
-// get all keys: id >= 'js'
+// get all keys: id > 'js'
 books.getAllKeys(IDBKeyRange.lowerBound('js', true))
 ```
 
@@ -516,7 +630,7 @@ request.onsuccess = function() {
 We can also use `IDBKeyRange` to create ranges and looks for cheap/expensive books:
 
 ```js
-// find books where price < 5
+// find books where price <= 5
 let request = priceIndex.getAll(IDBKeyRange.upperBound(5));
 ```
 
