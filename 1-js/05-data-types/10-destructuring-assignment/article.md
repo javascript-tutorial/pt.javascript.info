@@ -117,6 +117,25 @@ for (let [key, value] of user.entries()) {
 }
 ```
 ````
+
+```smart header="Swap variables trick"
+A well-known trick for swapping values of two variables:
+
+```js run
+let guest = "Jane";
+let admin = "Pete";
+
+// Swap values: make guest=Pete, admin=Jane
+[guest, admin] = [admin, guest];
+
+alert(`${guest} ${admin}`); // Pete Jane (successfully swapped!)
+```
+
+Here we create a temporary array of two variables and immediately destructure it in swapped order.
+
+We can swap more than two variables this way.
+
+
 ### The rest '...'
 
 If we want not just to get first values, but also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
@@ -183,7 +202,7 @@ The destructuring assignment also works with objects.
 The basic syntax is:
 
 ```js
-let {var1, var2} = {var1:…, var2…}
+let {var1, var2} = {var1:…, var2:…}
 ```
 
 We have an existing object at the right side, that we want to split into variables. The left side contains a "pattern" for corresponding properties. In the simple case, that's a list of variable names in `{...}`.
@@ -337,7 +356,13 @@ The problem is that JavaScript treats `{...}` in the main code flow (not inside 
 }
 ```
 
+<<<<<<< HEAD
 To show JavaScript that it's not a code block, we can wrap the whole assignment in parentheses `(...)`:
+=======
+So here JavaScript assumes that we have a code block, that's why there's an error. We want destructuring instead.
+
+To show JavaScript that it's not a code block, we can wrap the expression in parentheses `(...)`:
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 ```js run
 let title, width, height;
@@ -383,9 +408,13 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
+<<<<<<< HEAD
 The whole `options` object except `extra` that was not mentioned, is assigned to corresponding variables.
 
 Note that `size` and `items` itself is not destructured.
+=======
+All properties of `options` object except `extra` that is absent in the left part, are assigned to corresponding variables:
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 ![](destructuring-complex.svg)
 
@@ -416,6 +445,10 @@ In real-life, the problem is how to remember the order of arguments. Usually IDE
 Like this?
 
 ```js
+<<<<<<< HEAD
+=======
+// undefined where default values are fine
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 

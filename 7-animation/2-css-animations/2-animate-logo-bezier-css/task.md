@@ -4,7 +4,11 @@ importance: 5
 
 # Anime o avião voador (CSS)
 
+<<<<<<< HEAD
 Modifique a tarefa anterior <info:task/animate-logo-css> para fazer com que o avião cresça mais que seu tamanho original 400x240px (*jump out*), e depois retornar ao tamanho original.
+=======
+Modify the solution of the previous task <info:task/animate-logo-css> to make the plane grow more than its original size 400x240px (jump out), and then return to that size.
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 Ele deve se comportar assim (clique no avião para ver):
 
