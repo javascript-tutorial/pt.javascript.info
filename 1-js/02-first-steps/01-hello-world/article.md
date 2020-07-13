@@ -45,8 +45,13 @@ A tag `<script>` contém código JavaScript que é executado automaticamente qua
 
 A tag `<script>` tem alguns atributos que raramente são usados hoje em dia, mas que ainda podem ser encontrados em códigos antigos:
 
+<<<<<<< HEAD
 O atributo `type`: <code>&lt;script <u>type</u>=...&gt;</code>
 : O antigo padrão HTML, HTML4, requeria um script para ter um `type`. Normalmente era `type="text/javascript"`. Não é mais necessário. Além disso, o moderno padrão HTML, HTML5, mudou totalmente o significado deste atributo. Agora, ele pode ser usado para módulos JavaScript. Mas esse é um tópico avançado; vamos falar sobre módulos em outra parte do tutorial. 
+=======
+The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
+: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic, we'll talk about modules in another part of the tutorial.
+>>>>>>> c3a11c85e54153ebb137b5541b1d1f751c804439
 
 O atributo `language`: <code>&lt;script <u>language</u>=...&gt;</code>
 : Este atributo foi criado para mostrar o idioma do script. Este atributo não faz mais sentido porque JavaScript é a linguagem padrão. Não há necessidade de usá-lo.
@@ -60,7 +65,11 @@ Comentários antes e depois dos scripts.
     //--></script>
     ```
 
+<<<<<<< HEAD
     Esse truque não é usado no JavaScript moderno. Esses comentários esconderam código JavaScript de navegadores antigos que não sabiam como processar a tag `<script>`. Como os navegadores lançados nos últimos 15 anos não têm esse problema, esse tipo de comentário pode ajudá-lo a identificar códigos realmente antigos.
+=======
+    This trick isn't used in modern JavaScript. These comments hide JavaScript code from old browsers that didn't know how to process the `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
+>>>>>>> c3a11c85e54153ebb137b5541b1d1f751c804439
 
 
 ## Scripts externos
@@ -80,7 +89,7 @@ Você também pode fornecer um caminho relativo a partir da página atual. Por e
 Nós também podemos dar uma URL completa. Por exemplo:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
 ```
 
 Para anexar vários scripts, use múltiplas tags:
