@@ -1,7 +1,7 @@
 
 # A sintaxe de "new Function"
 
-Existe mais uma maneira de criar uma funcção. Ela é raramente usada, mas as vezes não existe alternativas.
+Existe mais uma maneira de criar uma função. Ela é raramente usada, mas as vezes não existem alternativas.
 
 ## Sintaxe
 
