@@ -31,7 +31,7 @@ sayHi(); // Olá
 
 A maior diferença de outros métodos vistos é que a função é literalmente criada a partir de uma `string`, que é passada em tempo de execução. 
 
-Todas as declarações anteriores requeriam de nós, programadores, escrever o código da função dentro do `script`.
+Todas as declarações anteriores requeriam de nós, programadores, escrever o código da função dentro do *script*.
 
 Mas `new Function` permite transformar qualquer `string` em uma função. Por exemplo, nós podemos receber uma nova função de um servidor e executa-la:
 
@@ -42,7 +42,7 @@ let func = new Function(str);
 func();
 ```
 
-Ela é usada em casos muito específicos, como quando nós recebemos código de um servidor, ou para compilar dinamicamente a função a partir de um `template`. A necessidade disso geralmente surge em estágios avançados de desenvolvimento.
+Ela é usada em casos muito específicos, como quando nós recebemos código de um servidor, ou para compilar dinamicamente a função a partir de um *template*. A necessidade disso geralmente surge em estágios avançados de desenvolvimento.
 
 ## Closure
 
@@ -83,17 +83,17 @@ getFunc()(); // *!*"teste"*/!*, do escopo léxico de getFunc
 
 Essa caracteristica especial de `new Function` parece estranha, mas se apresenta muito útil na prática.
 
-Imagine que nós precisamos criar uma função a partir de uma `string`. O código dessa função é desconhecido durante a escrita do script (por esse motivo nós não usamos funções regulares), mas vai ser conhecido durante o processo de execução. Nós podemos recebe-lo do servidor ou de outra fonte.
+Imagine que nós precisamos criar uma função a partir de uma `string`. O código dessa função é desconhecido durante a escrita do *script* (por esse motivo nós não usamos funções regulares), mas vai ser conhecido durante o processo de execução. Nós podemos recebe-lo do servidor ou de outra fonte.
 
-Nossa nova função precisa interagir com o `script` principal.
+Nossa nova função precisa interagir com o *script* principal.
 
 Talvez nós queremos que ela consiga acessar variáveis locias externas?
 
-O problema é que antes do JavaScript ser publicado para produção, ele é comprimido usando um *minificador* -- um programa especial que encolhe código removendo comentários, espaços e -- o mais importante, renomeia variáveis locais em variáveis mais curtas.
+O problema é que antes do JavaScript ser publicado para produção, ele é comprimido usando um "minificador" -- um programa especial que encolhe código removendo comentários, espaços e -- o mais importante, renomeia variáveis locais em variáveis mais curtas.
 
 Por exemplo, se uma função tem `let userName`, o minificador o troca  por `let a` (ou outra letra se esta estiver ocupada), e ele faz isso em toda parte. Isso usualmente é uma coisa segura de se fazer, porque a variável é local, nada fora da função pode acessar ela. E dentro da função, o minificador troca todas as suas menções. Minificadores são inteligentes, eles analisam a estrutura do código, para que eles não quebrem nada. Eles não são um simples "encontra-e-repõem".
 
-Entretanto, se `new Function` pudesse acessar variáveis externas, então ele não conseguiria encontrar `userName`, pois ele é passado como uma string *depois* que o código é minificado.
+Entretanto, se `new Function` pudesse acessar variáveis externas, então ele não conseguiria encontrar `userName`, pois ele é passado como uma string **depois** que o código é minificado.
 
 **Mesmo se nós pudessemos acessar o escopo léxico externo na `new Function`, nós teriamos problemas com minificadores.**
 
@@ -124,7 +124,7 @@ A sintaxe:
 let func = new Function(arg1, arg2, ..., body);
 ```
 
-Por razões históricas, arguments can also be given as a comma-separated list. 
+Por razões históricas, argumentos também podem ser dados como uma lista separada por vírgulas. 
 
 Estes três significam o mesmo:
 
