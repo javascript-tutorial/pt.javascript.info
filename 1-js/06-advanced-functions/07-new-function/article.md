@@ -93,7 +93,7 @@ O problema é que antes do JavaScript ser publicado para produção, ele é comp
 
 Por exemplo, se uma função tem `let userName`, o minificador o troca  por `let a` (ou outra letra se esta estiver ocupada), e ele faz isso em toda parte. Isso usualmente é uma coisa segura de se fazer, porque a variável é local, nada fora da função pode acessar ela. E dentro da função, o minificador troca todas as suas menções. Minificadores são inteligentes, eles analisam a estrutura do código, para que eles não quebrem nada. Eles não são um simples "encontra-e-repõem".
 
-Entretanto, se `new Function` pudesse acessar variáveis externas, então ele não conseguiria encontrar `userName`, pois ele é passado como uma string **depois** que o código é minificado.
+Entretanto, se `new Function` pudesse acessar variáveis externas, então ele não conseguiria encontrar `userName`, pois ele é passado como uma `string` **depois** que o código é minificado.
 
 **Mesmo se nós pudessemos acessar o escopo léxico externo na `new Function`, nós teriamos problemas com minificadores.**
 
