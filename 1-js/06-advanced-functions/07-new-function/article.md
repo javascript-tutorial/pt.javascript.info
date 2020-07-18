@@ -53,7 +53,7 @@ Porém quando uma função é criada usando `new Function`, a sua `[[Environment
 ```js run
 
 function getFunc() {
-  let value = "test";
+  let value = "teste";
 
 *!*
   let func = new Function('alert(value)');
@@ -69,7 +69,7 @@ Compare-a com o comportamento padrão:
 
 ```js run 
 function getFunc() {
-  let value = "test";
+  let value = "teste";
 
 *!*
   let func = function() { alert(value); };
@@ -78,7 +78,7 @@ function getFunc() {
   return func;
 }
 
-getFunc()(); // *!*"test"*/!*, do escopo léxico de getFunc
+getFunc()(); // *!*"teste"*/!*, do escopo léxico de getFunc
 ```
 
 Essa caracteristica especial de `new Function` parece estranha, mas se apresenta muito útil na prática.
