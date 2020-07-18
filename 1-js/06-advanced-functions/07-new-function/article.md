@@ -13,7 +13,7 @@ let func = new Function ([arg1[, arg2[, ...argN]],] functionBody)
 
 Em outras palavras, os parâmetros da função (ou, mais precisamente, os nomes deles) vêm primeiro, e o corpo da função vem por último. Todos os argumentos são `strings`.
 
-É mais de compreender olhando um exemplo. Aqui está uma função com dois argumentos:
+É mais fácil de compreender olhando um exemplo. Aqui está uma função com dois argumentos:
 
 ```js run
 let sum = new Function('a', 'b', 'return a + b'); 
@@ -42,7 +42,7 @@ let func = new Function(str);
 func();
 ```
 
-Ela é usada em casos muito específicos, como quando nós recebemos código de um servidor, ou para compilar dinamicamente a função a partir de um template. A necessidade disso geralmente surge em estágios avançados de desenvolvimento.
+Ela é usada em casos muito específicos, como quando nós recebemos código de um servidor, ou para compilar dinamicamente a função a partir de um `template`. A necessidade disso geralmente surge em estágios avançados de desenvolvimento.
 
 ## Closure
 
@@ -83,25 +83,25 @@ getFunc()(); // *!*"test"*/!*, do escopo léxico de getFunc
 
 Essa caracteristica especial de `new Function` parece estranha, mas se apresenta muito útil na prática.
 
-Imagine that we must create a function from a string. The code of that function is not known at the time of writing the script (that's why we don't use regular functions), but will be known in the process of execution. We may receive it from the server or from another source.
+Imagine que nós precisamos criar uma função a partir de uma `string`. O código dessa função é desconhecida durante a escrita do script (por esse motivo nós não usamos funções regulares), mas vai ser conhecido durante o processo de execução. Nós podemos recebe-la do servidor ou de outra fonte.
 
-Our new function needs to interact with the main script.
+Nossa nova função precisa interagir com o `script` principal.
 
-Perhaps we want it to be able to access outer local variables?
+Talvez nós queremos que ela consiga acessar variáveis locias externas?
 
-The problem is that before JavaScript is published to production, it's compressed using a *minifier* -- a special program that shrinks code by removing extra comments, spaces and -- what's important, renames local variables into shorter ones.
+O Problema é que antes do JavaScript ser publicado para produção, ele é comprimido usando um *minificador* -- um programa especial que encolhe código removendo comentários, espaços e -- o mais importante, renomeia variáveis locais em variáveis mais curtas.
 
-For instance, if a function has `let userName`, minifier replaces it `let a` (or another letter if this one is occupied), and does it everywhere. That's usually a safe thing to do, because the variable is local, nothing outside the function can access it. And inside the function, minifier replaces every mention of it. Minifiers are smart, they analyze the code structure, so they don't break anything. They're not just a dumb find-and-replace.
+Por exemplo, se uma função tem `let userName`, o minificador o troca  por `let a` (ou outra letra se esta estiver ocupada), e ele faz isso em toda parte. Isso usualmente é uma coisa segura de se fazer, porque a variável é local, nada fora da função pode acessar ela. E dentro da função, o minificador troca todas as suas menções. Minificadores são inteligentes, eles analisam a estrutura do código, para que eles não quebrem nada. Eles não são um simples "encontra-e-repõem".
 
-But, if `new Function` could access outer variables, then it would be unable to find `userName`, since this is passed in as a string *after* the code is minified.
+Entretanto, se `new Function` pudesse acessar variáveis externas, então ele não conseguiria encontrar `userName`, pois ele é passado como uma string *depois* que o código é minificado.
 
-**Even if we could access outer lexical environment in `new Function`, we would have problems with minifiers.**
+**Mesmo se nós pudessemos acessar o escopo léxico externo na `new Function`, nós teriamos problemas com minificadores.**
 
-The "special feature" of `new Function` saves us from mistakes.
+A "característica especial" de `new Function` nos salva de erros.
 
-And it enforces better code. If we need to pass something to a function created by `new Function`, we should pass it explicitly as an argument.
+E ela assegura um código melhor. Se nós precisarmos passar algo para uma função criada por `new Function`, nós devemos passar ele explicitamente como um argumento.
 
-Our "sum" function actually does that right:
+A nossa função "sum" faz isso corretamente:
 
 ```js run 
 *!*
@@ -111,27 +111,27 @@ let sum = new Function('a', 'b', 'return a + b');
 let a = 1, b = 2;
 
 *!*
-// outer values are passed as arguments
+// variáveis externas são passdas como argumentos
 alert( sum(a, b) ); // 3
 */!*
 ```
 
-## Summary
+## Resumo
 
-The syntax:
+A sintaxe:
 
 ```js
 let func = new Function(arg1, arg2, ..., body);
 ```
 
-For historical reasons, arguments can also be given as a comma-separated list. 
+Por razões históricas, arguments can also be given as a comma-separated list. 
 
-These three mean the same:
+Estes três significam o mesmo:
 
 ```js 
-new Function('a', 'b', 'return a + b'); // basic syntax
-new Function('a,b', 'return a + b'); // comma-separated
-new Function('a , b', 'return a + b'); // comma-separated with spaces
+new Function('a', 'b', 'return a + b'); // sintaxe básica
+new Function('a,b', 'return a + b'); // separada por vírgula
+new Function('a , b', 'return a + b'); // separada por vírgula com espaços
 ```
 
-Functions created with `new Function`, have `[[Environment]]` referencing the global Lexical Environment, not the outer one. Hence, they cannot use outer variables. But that's actually good, because it saves us from errors. Passing parameters explicitly is a much better method architecturally and causes no problems with minifiers.
+Funções criadas com `new Function`, têm `[[Environment]]` referenciando o escopo léxico global, e não o escopo externo. Por isso, elas não podem usar variáveis externas. Porém isso na verdade é bom, porque isto nos salva de erros. Passar parametros explicitamente é um método muito melhor arquiteturamente e não causa problemas com minificadores.
