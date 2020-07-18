@@ -46,7 +46,7 @@ Ela é usada em casos muito específicos, como quando nós recebemos código de 
 
 ## Closure
 
-No geral, uma função se "lembra" de onde ela foi criada na propiedade especial `[[Environment]]`. Ela referencia o escopo léxico de onde ela foi criada.
+No geral, uma função se "lembra" de onde ela foi criada na propriedade especial `[[Environment]]`. Ela referencia o escopo léxico de onde ela foi criada.
 
 Porém quando uma função é criada usando `new Function`, a sua `[[Environment]]` não referencia o atual escopo léxico, mas sim o escopo global.
 
