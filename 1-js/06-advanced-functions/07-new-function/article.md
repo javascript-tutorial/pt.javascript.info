@@ -1,17 +1,17 @@
 
-# The "new Function" syntax
+# A sintaxe de "new Function"
 
-There's one more way to create a function. It's rarely used, but sometimes there's no alternative.
+Existe mais uma maneira de criar uma funcção. Ela é raramente usada, mas as vezes não existe alternativas.
 
-## Syntax
+## Sintaxe
 
-The syntax for creating a function:
+A sintaxe para criar uma função:
 
 ```js
 let func = new Function ([arg1[, arg2[, ...argN]],] functionBody)
 ```
 
-In other words, function parameters (or, more precisely, names for them) go first, and the body is last. All arguments are strings.
+Em outras palavras, os parâmetros da função (ou, mais precisamente, os nomes deles) vêm primeiro, e o corpo da função vem por último. Todos os argumentos são `strings`.
 
 It's easier to understand by looking at an example. Here's a function with two arguments:
 
