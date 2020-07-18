@@ -83,13 +83,13 @@ getFunc()(); // *!*"test"*/!*, do escopo léxico de getFunc
 
 Essa caracteristica especial de `new Function` parece estranha, mas se apresenta muito útil na prática.
 
-Imagine que nós precisamos criar uma função a partir de uma `string`. O código dessa função é desconhecida durante a escrita do script (por esse motivo nós não usamos funções regulares), mas vai ser conhecido durante o processo de execução. Nós podemos recebe-la do servidor ou de outra fonte.
+Imagine que nós precisamos criar uma função a partir de uma `string`. O código dessa função é desconhecido durante a escrita do script (por esse motivo nós não usamos funções regulares), mas vai ser conhecido durante o processo de execução. Nós podemos recebe-lo do servidor ou de outra fonte.
 
 Nossa nova função precisa interagir com o `script` principal.
 
 Talvez nós queremos que ela consiga acessar variáveis locias externas?
 
-O Problema é que antes do JavaScript ser publicado para produção, ele é comprimido usando um *minificador* -- um programa especial que encolhe código removendo comentários, espaços e -- o mais importante, renomeia variáveis locais em variáveis mais curtas.
+O problema é que antes do JavaScript ser publicado para produção, ele é comprimido usando um *minificador* -- um programa especial que encolhe código removendo comentários, espaços e -- o mais importante, renomeia variáveis locais em variáveis mais curtas.
 
 Por exemplo, se uma função tem `let userName`, o minificador o troca  por `let a` (ou outra letra se esta estiver ocupada), e ele faz isso em toda parte. Isso usualmente é uma coisa segura de se fazer, porque a variável é local, nada fora da função pode acessar ela. E dentro da função, o minificador troca todas as suas menções. Minificadores são inteligentes, eles analisam a estrutura do código, para que eles não quebrem nada. Eles não são um simples "encontra-e-repõem".
 
