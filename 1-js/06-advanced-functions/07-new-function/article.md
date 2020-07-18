@@ -13,7 +13,7 @@ let func = new Function ([arg1[, arg2[, ...argN]],] functionBody)
 
 Em outras palavras, os parâmetros da função (ou, mais precisamente, os nomes deles) vêm primeiro, e o corpo da função vem por último. Todos os argumentos são `strings`.
 
-It's easier to understand by looking at an example. Here's a function with two arguments:
+É mais de compreender olhando um exemplo. Aqui está uma função com dois argumentos:
 
 ```js run
 let sum = new Function('a', 'b', 'return a + b'); 
@@ -21,34 +21,34 @@ let sum = new Function('a', 'b', 'return a + b');
 alert( sum(1, 2) ); // 3
 ```
 
-If there are no arguments, then there's only a single argument, the function body:
+Se não existem argumentos, então somente existe um único argumento, que é o corpo da função:
 
 ```js run
-let sayHi = new Function('alert("Hello")');
+let sayHi = new Function('alert("Olá")');
 
-sayHi(); // Hello
+sayHi(); // Olá
 ```
 
-The major difference from other ways we've seen is that the function is created literally from a string, that is passed at run time. 
+A maior diferença de outros métodos vistos é que a função é literalmente criada a partir de uma `string`, que é passada em tempo de execução. 
 
-All previous declarations required us, programmers, to write the function code in the script.
+Todas as declarações anteriores requeriam de nós, programadores, escrever o código da função dentro do `script`.
 
-But `new Function` allows to turn any string into a function. For example, we can receive a new function from a server and then execute it:
+Mas `new Function` permite transformar qualquer `string` em uma função. Por exemplo, nós podemos receber uma nova função de um servidor e executa-la:
 
 ```js
-let str = ... receive the code from a server dynamically ...
+let str = ... recebe o código de um servidor dinamicamente ...
 
 let func = new Function(str);
 func();
 ```
 
-It is used in very specific cases, like when we receive code from a server, or to dynamically compile a function from a template. The need for that usually arises at advanced stages of development.
+Ela é usada em casos muito específicos, como quando nós recebemos código de um servidor, ou para compilar dinamicamente a função a partir de um template. A necessidade disso geralmente surge em estágios avançados de desenvolvimento.
 
 ## Closure
 
-Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Lexical Environment from where it's created.
+No geral, uma função se "lembra" de onde ela foi criada na propiedade especial `[[Environment]]`. Ela referencia o escopo léxico de onde ela foi criada.
 
-But when a function is created using `new Function`, its `[[Environment]]` references not the current Lexical Environment, but instead the global one.
+Porém quando uma função é criada usando `new Function`, a sua `[[Environment]]` não referencia o atual escopo léxico, mas sim o escopo global.
 
 ```js run
 
@@ -62,10 +62,10 @@ function getFunc() {
   return func;
 }
 
-getFunc()(); // error: value is not defined
+getFunc()(); // erro: value não foi definido
 ```
 
-Compare it with the regular behavior:
+Compare-a com o comportamento padrão:
 
 ```js run 
 function getFunc() {
@@ -78,10 +78,10 @@ function getFunc() {
   return func;
 }
 
-getFunc()(); // *!*"test"*/!*, from the Lexical Environment of getFunc
+getFunc()(); // *!*"test"*/!*, do escopo léxico de getFunc
 ```
 
-This special feature of `new Function` looks strange, but appears very useful in practice.
+Essa caracteristica especial de `new Function` parece estranha, mas se apresenta muito útil na prática.
 
 Imagine that we must create a function from a string. The code of that function is not known at the time of writing the script (that's why we don't use regular functions), but will be known in the process of execution. We may receive it from the server or from another source.
 
