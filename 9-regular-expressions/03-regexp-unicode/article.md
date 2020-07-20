@@ -93,7 +93,11 @@ Here's the main character categories and their subcategories:
   - control `Cc`,
   - format `Cf`,
   - not assigned `Cn`,
+<<<<<<< HEAD
   -- private use `Co`,
+=======
+  - private use `Co`,
+>>>>>>> ae1171069c2e50b932d030264545e126138d5bdc
   - surrogate `Cs`.
 
 
@@ -127,7 +131,11 @@ alert("number: xAF".match(regexp)); // xAF
 
 Let's look for Chinese hieroglyphs.
 
+<<<<<<< HEAD
 There's a unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list]("https://en.wikipedia.org/wiki/Script_(Unicode)").
+=======
+There's a unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list](https://en.wikipedia.org/wiki/Script_(Unicode)).
+>>>>>>> ae1171069c2e50b932d030264545e126138d5bdc
 
 To look for characters in a given writing system we should use `pattern:Script=<value>`, e.g. for Cyrillic letters: `pattern:\p{sc=Cyrillic}`, for Chinese hieroglyphs: `pattern:\p{sc=Han}`, and so on:
 
