@@ -78,7 +78,7 @@ Elas são muito convenientes para ações simples numa única-linha, quando esta
 
 Os exemplos acima tomaram os argumentos à esqerda de `=>` e avaliaram a expressão à direita com eles.
 
-Por vezes, precisamos de algo um pouco mais complexo, como múltiplas expressões ou instruções. Isso também é possível, mas deveríamos envolvê-las em chavetas. Depois, usamos um `return` normal com elas.
+Por vezes, precisamos de algo um pouco mais complexo, como múltiplas expressões ou instruções. Isso também é possível, mas deveríamos envolvê-las em chavetas. A seguir, usamos um `return` normal com elas.
 
 Desta forma:
 
