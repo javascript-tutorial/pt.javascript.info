@@ -1,8 +1,8 @@
 # A instrução "switch"
 
-Uma instrução `switch` pode substituir muitas comparações `se`.
+Uma instrução `switch` pode substituir muitas comparações `if` (se).
 
-Ela é uma forma mais descritiva de comparar um valor com múltiplas variantes.
+Ela fornece uma forma mais descritiva para comparar um valor a múltiplas variantes.
 
 ## A sintaxe
 
@@ -27,7 +27,7 @@ switch(x) {
 ```
 
 - O valor de `x` é comparado por meio de uma igualdade exata ao valor do primeiro `case` (isto é, ao `valor1`), a seguir ao do segundo (`valor2`) e assim sucessivamente.
-- Se uma igualdade é encontrada, o `switch` começa a executar o código a partir do início do `case` correspondente, até ao próximo `break` (ou até ao fim do `switch`).
+- Se uma igualdade for encontrada, o `switch` começa a executar o código a partir do início do `case` correspondente, até ao próximo `break` (ou até ao fim do `switch`).
 - Se nenhum `case` é equiparado então o código em `default` é executado (se existir).
 
 ## Um exemplo
@@ -58,7 +58,7 @@ Aqui o `switch` começa por comparar `a` à variante no primeiro `case`, que é 
 
 Então a `4`. Existe uma correspondência, e assim a execução começa a partir do `case 4` até ao próximo `break`.
 
-**Se não existir um `break` então a execução continua pelo próximo `case` sem quaisquer verificações.**
+**Se não existir um `break` então a execução continua pelo próximo `case` sem quaisquer comparações.**
 
 Um exemplo sem `break`:
 
@@ -87,7 +87,7 @@ alert( 'Muito alto' );
 alert( "Não conheço tais valores" );
 ```
 
-````smart header="Any expression can be a switch/case argument"
+````smart header="Qualquer expressão pode servir de argumento a switch/case"
 Ambos `switch` e `case` permitem expressões arbitrárias.
 
 Por exemplo:
@@ -99,12 +99,12 @@ let b = 0;
 switch (+a) {
 *!*
   case b + 1:
-    alert("isto executa, porque +a é 1, e é exatamente igual a b+1");
+    alert("isto é executado, porque +a é 1, e é exatamente igual a b+1");
     break;
 */!*
 
   default:
-    alert("isto não executa");
+    alert("isto não é executado");
 }
 ```
 Aqui `+a` dá `1`, o que é comparado a `b + 1` no `case`, e o código correspondente é executado.
@@ -133,7 +133,7 @@ switch (a) {
 */!*
 
   default:
-    alert('O resultado é stranho. Realmente.');
+    alert('O resultado é estranho. Realmente.');
 }
 ```
 
@@ -167,7 +167,7 @@ switch (arg) {
 }
 ```
 
-1. Para `0`, `1`, o primeiro `alert` executa.
+1. Para `0`, `1`, o primeiro `alert` é executado.
 2. Para `2` o segundo `alert` corre.
 3. Mas para `3`, o resultado do `prompt` á a string `"3"`, que não é estritamente igual `===` ao número `3`. Assim temos código não
 executável em `case 3`! A variante `default` será executada.
