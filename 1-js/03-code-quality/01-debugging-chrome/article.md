@@ -2,9 +2,9 @@
 
 Antes de escrevermos código mais complexo, falemos de debugging (depuração de erros).
 
-[Debugging](https://en.wikipedia.org/wiki/Debugging) é o processo de procura e correção de erros num programa. Todos os navegadores (*browsers*) modernos e muitas outras plataformas (*environments*) suportam ferramentas de *debugging* -- uma UI (Interface de Utilizador) disponível nas ferramentas do desenvolvedor (*developer tools*) que torna a depuração de erros muito mais fácil.
+[Debugging](https://en.wikipedia.org/wiki/Debugging) é o processo de procura e correção de erros num programa. Todos os navegadores (*browsers*) modernos e muitas outras plataformas (*environments*) suportam ferramentas de *debugging* -- uma UI (Interface de Utilizador) disponível nas ferramentas do desenvolvedor (*developer tools*) que torna a depuração de erros muito mais fácil. Ela também permite rastrear o código passo-a-passo para ver exactamente o que estará a decorrer.
 
-Aqui vamos utilizar o Chrome, porque tem funcionalidades suficientes, mas outros navegadores possuem um processo similar.
+Aqui vamos utilizar o Chrome porque tem funcionalidades suficientes, mas outros navegadores possuem um processo similar.
 
 ## O painel "*Sources*"
 
@@ -26,15 +26,15 @@ Cliquemos nele, e selecionemos `hello.js`  na vista de árvore de recursos apres
 
 O painel *Sources* possui 3 partes:
 
-1. O painel **File Navigator**, lista ficheiros em HTML, JavaScript, CSS e outros, incluindo imagens na página. Extensões ao Chrome (*Chrome extensions*) podem também aparecer aqui.
+1. O painel **File Navigator**, lista ficheiros de HTML, JavaScript, CSS e outros, incluindo imagens na página. Extensões ao Chrome (*Chrome extensions*) também podem  aparecer aqui.
 2. O painel **Code Editor**, mostra o código-fonte.
-3. O painel **JavaScript Debugging**, é para a depuração de erros (debugging); iremos explorá-lo em breve.
+3. O painel **JavaScript Debugging**, é para a depuração de erros; iremos explorá-lo em breve.
 
 Agora, poderia clicar novamente no mesmo botão de alternador <span class="devtools" style="background-position:-172px -122px"></span> para ocultar a lista de recursos e dar ao código algum espaço.
 
 ## Console
 
-Se pressionarmos `Esc`, uma consola abre-se abaixo. Podemos aí digitar comandos e pressionar `key:Enter` para os executar.
+Se pressionarmos `key:Esc`, uma consola se abre abaixo. Podemos aí digitar comandos e pressionar `key:Enter` para os executar.
 
 Depois de uma instrução ser executada, o seu resultado é mostrado abaixo.
 
@@ -46,32 +46,32 @@ Por exemplo, aqui `1+2` resulta em `3`, e `hello("debugger")` não retorna nada,
 
 Vamos examinar o que se passa dentro do código da  [página exemplo](debugging/index.html). Em `hello.js`, clique no número de linha `4`. Sim, exatamente sobre o dígito `4`, não sobre o código.
 
-Parabéns! Estabeleceu um ponto-de-interrupção (*breakpoint*). Por favor, clique também no número de linha 8.
+Parabéns! Estabeleceu um ponto-de-interrupção (*breakpoint*). Por favor, clique também no número de linha `8`.
 
-Deveria parecer-se com (a azul é onde deveria ter clicado):
+Deveria se parecer com (a azul é onde deveria ter clicado):
 
 ![](chrome-sources-breakpoint.svg)
 
-Um ponto-de-interrupção (*breakpoint*) é um ponto no código onde o depurador de erros (*debugger*) irá automáticamente suspender a execução do JavaScript.
+Um *breakpoint* é um ponto no código onde o *debugger* (depurador de erros) irá  suspender automáticamente a execução do JavaScript.
 
 Enquanto a execução do código estiver suspensa, podemos examinar variáveis correntes, executar comandos na consola, etc. Por outras palavras, podemos nele depurar erros (*debug it*).
 
-No painel à direita, podemos encontrar uma lista de pontos-de-interrupção (breakpoints). É útil quando temos muitos breakpoints em vários ficheiros. Ela permite-nos:
+Podemos sempre encontrar uma lista de *breakpoints* no painel à direita. É útil quando temos muitos *breakpoints* em vários ficheiros. Ela permite-nos:
 
 - Rápidamente saltar para a linha do breakpoint no código (ao clicar sobre ele no painel à direita).
-- Temporáriamente desativar o breakpoint, desmarcando-o (*unchecking it*).
+- Temporáriamente desativar o breakpoint, ao desmarcá-lo (*unchecking it*).
 - Remover o breakpoint, clicando com o botão direito do rato e selecionando *Remove*.
 - ...E assim por diante.
 
-```smart header="Breakpoints condicionais"
-*Clicando com o botão direito do rato* sobre o número de linha permite-nos criar um *breakpoint condicional*. Apenas será ativado quando a expressão em causa for verdadeira.
+```smart header="*Breakpoints* condicionais"
+*Clicando com o botão direito do rato* sobre um número de linha permite-nos criar um *breakpoint condicional*. Apenas será ativado quando a expressão inserida for verdadeira.
 
 É prático quando apenas precisarmos de parar para um certo valor numa variável, ou para certos parâmetros numa função.
 ```
 
 ## O comando *debugger*
 
-Podemos também suspender o código utilizando o comando  `debugger`, desta forma:
+Podemos também suspender o código utilizando o comando `debugger`, desta forma:
 
 ```js
 function hello(name) {
@@ -89,27 +89,27 @@ function hello(name) {
 
 ## Pause e dê uma vista de olhos
 
-No nosso exemplo, `hello()` é chamada durante o carregamento da página, assim a forma mais fácil para ativar o *debugger* (depois de termos establecido os *breakpoints*) é refrescar (*reload*) a página. Então, pressionemos `key:F5` (Windows, Linux) oo `key:Cmd+R` (Mac).
+No nosso exemplo, `hello()` é chamada durante o carregamento da página, assim a forma mais fácil para ativar o *debugger* (depois de termos colocado os *breakpoints*) é refrescar (*reload*) a página. Assim, pressionemos `key:F5` (Windows, Linux) oo `key:Cmd+R` (Mac).
 
-Se o breakpoint estiver marcado, a execução é suspensa na quarta linha:
+Como o breakpoint está estabelecido, a execução é suspensa na quarta linha:
 
 ![](chrome-sources-debugger-pause.svg)
 
-Por favor, abra as secções de dropdown informacionais à direita (com etiquetas em seta). Elas permitem examinar o estado atual do código:
+Por favor, abra as secções de dropdown informacionais à direita (possuem etiquetas em seta). Elas permitem examinar o estado atual do código:
 
 1. **`Watch` -- mostra valores correntes de expressões.**
 
-    Pode clicar no mais `+` e inserir uma expressão. O *debugger* mostrará o seu valor em qualquer momento, automáticamente o recalculando ao longo do processo de execução.
+    Pode clicar no mais `+` e inserir uma expressão. O *debugger* mostrará o seu valor em qualquer momento, e é automáticamente recalculado ao longo do processo de execução.
 
 2. **`Call Stack` -- mostra a sequência de chamadas de funções aninhadas.**
 
     No presente momento, o *debugger* está dentro da chamada a `hello()`, invocada por código em `index.html` (não a partir de uma função, por isso o nome "*anonymous*").
 
-    Se clicar num item nessa pilha (*stack*) (por  exemplo, em "*anonymous*"), o *debugger* saltará para o código correspondente, e todas as suas variáveis poderão ser também examinadas.
+    Se clicar num item nessa pilha (*stack*) (por exemplo, em "*anonymous*"), o *debugger* saltará para o código correspondente, e todas as suas variáveis poderão ser igualmente examinadas.
 
 3. **`Scope` -- variables atuais.**
 
-    `Local` mostra variáveis locais de funções. Poderá também ver os seus valores em destaque exatamente sobre o código-fonte.
+    `Local` mostra variáveis locais de funções. Também, poderá ver os seus valores em destaque exatamente sobre o código-fonte.
 
     `Global` possui variáveis globais (aquelas fora de qualquer função).
 
@@ -122,7 +122,7 @@ Agora, é altura para *rastrearmos* (*trace*) o código.
 Existem botões para isso no topo do painel direito. Vamos interagir com eles.
 
 <span class="devtools" style="background-position:-146px -160px"></span> -- "Resume": continue a execução, atalho (*hotkey*) `key:F8`.
-: Retome a execução. Se não houver *breakpoints* adicionais, a execução simplesmente prossegue e o *debugger* perde o controlo.
+: Retoma a execução. Se não houver *breakpoints* adicionais, a execução simplesmente prossegue e o *debugger* perde o controlo.
 
   Aqui está o que poderemos ver após um clique sobre ele:
 
@@ -131,7 +131,7 @@ Existem botões para isso no topo do painel direito. Vamos interagir com eles.
   A execução prosseguiu, atingiu outro *breakpoint* dentro de `say()` e foi suspensa lá. Dê uma vista de olhos sobre a "*Call stack*" à direita. Aumentou por mais uma chamada. Estamos dentro de `say()` agora.
 
 <span class="devtools" style="background-position:-200px -190px"></span> -- "Step": execute o próximo comando, atalho (*hotkey*) `key:F9`.
-: Execute a próxima instrução. Se o clicarmos agora, o `alert` será mostrado.
+: Executa a próxima instrução. Se o clicarmos agora, o `alert` será mostrado.
 
   Continuando a clicar nele, passará por todas as instruções do programa, uma por uma.
 
@@ -140,7 +140,7 @@ Existem botões para isso no topo do painel direito. Vamos interagir com eles.
 
   O comando "Step", vai para dentro dela e suspende a execução na sua primeira linha, enquanto "Step over" executa essa chamada de função aninhada invisívelmente, saltando o funcionamento interno da função.
 
-  A execução é então suspensa imediatemente depois dessa função.
+  Aí, execução é suspensa imediatemente depois dessa função.
 
   É bom, se não estivermos interessados em ver o que acontece dentro duma chamada de função.
 
@@ -156,7 +156,7 @@ Existem botões para isso no topo do painel direito. Vamos interagir com eles.
 : Esse botão não move a execução. Simplesmente liga/desliga *breakpoints* em massa.
 
 <span class="devtools" style="background-position:-90px -146px"></span> -- ative/desative a pausa automática em caso de erro.
-: Quando ativo, e as ferramentas do desenvolvedor estão abertas, um erro no código (*script*) automáticamente suspende a sua execução. Então, poderemos analizar variáveis para ver o que ocorreu de errado. Assim, se o código falhar por um erro, pode-se abrir o *debugger*, ativar esta opção e refrescar a página, afim de se observar onde falhou e qual o contexto nesse momento.
+: Quando ativo, e as ferramentas do desenvolvedor estão abertas, um erro no código automáticamente suspende a sua execução. Então, poderemos analizar variáveis para ver o que ocorreu de errado. Assim, se o código falhar por um erro, pode-se abrir o *debugger*, ativar esta opção e refrescar a página, afim de se observar onde falhou e qual o contexto nesse momento.
 
 ```smart header="Continue até aqui"
 Ao clicar com o botão direito do rato sobre uma linha de código, abre-se o menu de contexto com uma valiosa opção com o nome "Continue até aqui" (*Continue to here*).
@@ -177,7 +177,7 @@ for (let i = 0; i < 5; i++) {
 }
 ```
 
-Utilizadores comuns não vêm essa saída (*output*), ela estará na consola. Para a ver, abra o separador Console nas ferramentas do desenvolvedor ou, pressione `key:Esc` enquanto num outro separador - isso abre a consola abaixo nesse separador.
+Utilizadores comuns não vêm essa saída (*output*), ela estará na consola. Para a ver, abra o separador Console nas ferramentas do desenvolvedor, ou pressione `key:Esc` enquanto num outro separador - isso abre a consola abaixo nesse separador.
 
 Se mostrarmos mensagens (*logging*) suficientes no nosso código, então poderemos ver o que nele se passa a partir desses registos, dispensando o *debugger*.
 
@@ -185,13 +185,13 @@ Se mostrarmos mensagens (*logging*) suficientes no nosso código, então poderem
 
 Como podemos ver, existem três formas principais para suspender um *script*:
 1. Um *breakpoint* (ponto-de-interrupção).
-2. As instruções  `debugger`.
+2. As instruções `debugger`.
 3. Um erro (se as ferramentas do desenvolvedor [*dev tools*] estiverem abertas, e o botão <span class="devtools" style="background-position:-90px -146px"></span> estiver "ativo").
 
-Quando supenso, podemos depurar erros - examinar variáveis e rastear (*trace*) o código para ver onde a sua execução apresenta erros.
+Quando supenso, podemos depurar erros - examinar variáveis e rastear o código para ver onde a sua execução contém erros.
 
 Existem muitas mais opções nas ferramentas do desenvolvedor do que as cobertas aqui. O manual completo está em <https://developers.google.com/web/tools/chrome-devtools>.
 
-A informação neste capítulo é suficiente para iniciar a depuração de erros (o *debugging*), mas mais tarde, especialmente se trabalhar muito com o navegador (*browser*), por favor vá lá e procure por capacidades mais avançadas de ferramentas do desenvolvedor.
+A informação neste capítulo é suficiente para iniciar a depuração de erros (o *debugging*), mas mais tarde, especialmente se trabalhar muito com o navegador (*browser*), por favor o consulte e procure por capacidades mais avançadas de ferramentas do desenvolvedor.
 
 Oh, também pode clicar em vários locais nas *dev tools* e ver o que acontece. Provávelmente, é a rota mais rápida para aprender sobre as *dev tools*. Não se esqueça de também clicar com o botão direito do rato e de menus de contexto!
