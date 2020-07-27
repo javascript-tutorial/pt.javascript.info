@@ -309,7 +309,7 @@ JavaScript only gets the response to the main request or an error if there's no 
 
 ## Credentials
 
-A cross-origin request by default does not bring any credentials (cookies or HTTP authentication).
+A cross-origin request initiated by JavaScript code by default does not bring any credentials (cookies or HTTP authentication).
 
 That's uncommon for HTTP-requests. Usually, a request to `http://site.com` is accompanied by all cookies from that domain. But cross-origin requests made by JavaScript methods are an exception.
 
@@ -329,7 +329,11 @@ fetch('http://another.com', {
 });
 ```
 
+<<<<<<< HEAD
 Now `fetch` sends cookies originating from `another.com` without request to that site.
+=======
+Now `fetch` sends cookies originating from `another.com` with request to that site.
+>>>>>>> b0464bb32c8efc2a98952e05f363f61eca1a99a2
 
 If the server agrees to accept the request *with credentials*, it should add a header `Access-Control-Allow-Credentials: true` to the response, in addition to `Access-Control-Allow-Origin`.
 

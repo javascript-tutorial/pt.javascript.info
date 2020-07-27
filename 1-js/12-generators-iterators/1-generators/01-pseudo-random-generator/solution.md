@@ -35,4 +35,8 @@ alert(generator()); // 282475249
 alert(generator()); // 1622650073
 ```
 
+<<<<<<< HEAD
 That's fine for this context. But then we loose ability to iterate with `for..of` and to use generator composition, that may be useful elsewhere.
+=======
+That also works. But then we lose ability to iterate with `for..of` and to use generator composition, that may be useful elsewhere.
+>>>>>>> b0464bb32c8efc2a98952e05f363f61eca1a99a2

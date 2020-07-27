@@ -327,10 +327,13 @@ The full example:
 
 [codetabs src="postmessage" height=120]
 
+<<<<<<< HEAD
 ```smart header="There's no delay"
 There's totally no delay between `postMessage` and the `message` event. That happens synchronously, even faster than `setTimeout(...,0)`.
 ```
 
+=======
+>>>>>>> b0464bb32c8efc2a98952e05f363f61eca1a99a2
 ## Summary
 
 To call methods and access the content of another window, we should first have a reference to it.
