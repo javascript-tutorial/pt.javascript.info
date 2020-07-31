@@ -1,18 +1,18 @@
 # Eval: run a code string
 
-The built-in `eval` function allows to execute a string of code.
+A função interna `eval` permite executar uma string de código.
 
-The syntax is:
+A sintaxe é:
 
 ```js
-let result = eval(code);
+let resultado = eval(codigo);
 ```
 
-For example:
+Por exemplo:
 
 ```js run
-let code = 'alert("Hello")';
-eval(code); // Hello
+let codigo = 'alert("Olá")';
+eval(codigo); // Olá
 ```
 
 A string of code may be long, contain line breaks, function declarations, variables and so on.
