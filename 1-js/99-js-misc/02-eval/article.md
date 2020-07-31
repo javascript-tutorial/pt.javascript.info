@@ -105,7 +105,7 @@ f(5); // 5
 
 A construção `new Function` é explicada no capítulo <info:new-function>. Ele cria uma função a partir de uma string, também no escopo global. Portanto, ele não pode ver variáveis locais. Mas é muito mais claro passá-los explicitamente como argumentos, como no exemplo acima.
 
-## Summary
+## Resumo
 
 Uma chamada para `eval(codigo)` executa a string de código e retorna o resultado da última instrução.
 - Raramente usado no JavaScript moderno, pois geralmente não há necessidade.
