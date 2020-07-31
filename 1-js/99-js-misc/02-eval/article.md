@@ -15,22 +15,22 @@ let codigo = 'alert("Olá")';
 eval(codigo); // Olá
 ```
 
-A string of code may be long, contain line breaks, function declarations, variables and so on.
+A string código pode ser longa, conter quebras de linha, declarações de função, variáveis e assim por diante.
 
-The result of `eval` is the result of the last statement.
+O resultado de `eval` é o resultado da última declaração.
 
-For example:
+Por exemplo:
 ```js run
-let value = eval('1+1');
-alert(value); // 2
+let valor = eval('1+1');
+alert(valor); // 2
 ```
 
 ```js run
 let value = eval('let i = 0; ++i');
-alert(value); // 1
+alert(valor); // 1
 ```
 
-The eval'ed code is executed in the current lexical environment, so it can see outer variables:
+O código avaliado é executado no ambiente lexical atual, para que ele possa ver variáveis externas:
 
 ```js run no-beautify
 let a = 1;
@@ -46,26 +46,26 @@ function f() {
 f();
 ```
 
-It can change outer variables as well:
+Também pode alterar variáveis externas:
 
 ```js untrusted refresh run
 let x = 5;
 eval("x = 10");
-alert(x); // 10, value modified
+alert(x); // 10, valor modificado
 ```
 
-In strict mode, `eval` has its own lexical environment. So functions and variables, declared inside eval, are not visible outside:
+No modo estrito, o `eval` possui seu próprio ambiente lexical. Portanto, funções e variáveis, declaradas dentro de eval, não são visíveis fora:
 
 ```js untrusted refresh run
-// reminder: 'use strict' is enabled in runnable examples by default
+// lembrete: 'use strict' está ativado em exemplos executáveis por padrão
 
 eval("let x = 5; function f() {}");
 
-alert(typeof x); // undefined (no such variable)
-// function f is also not visible
+alert(typeof x); // undefined (não tal variável)
+// a função f também não é visível
 ```
 
-Without `use strict`, `eval` doesn't have its own lexical environment, so we would see `x` and `f` outside.
+Sem `use strict`,` eval` não possui seu próprio ambiente lexical, portanto veríamos `x` e` f` fora.
 
 ## Usando "eval"
 
@@ -110,5 +110,5 @@ A construção `new Function` é explicada no capítulo <info:new-function>. Ele
 Uma chamada para `eval(codigo)` executa a string de código e retorna o resultado da última instrução.
 - Raramente usado no JavaScript moderno, pois geralmente não há necessidade.
 - Pode acessar variáveis locais externas. Isso é considerado uma má prática.
-- Em vez disso, para executar um código com o `eval` no escopo global, use `window.eval(codigo)`.
+- Em vez disso, para `eval` o código no escopo global, use `window.eval(codigo)`.
 - Ou, se o seu código precisar de alguns dados do escopo externo, use `new Function` e passe-os como argumentos.
