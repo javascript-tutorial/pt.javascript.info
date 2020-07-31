@@ -71,13 +71,13 @@ Without `use strict`, `eval` doesn't have its own lexical environment, so we wou
 
 Na programação moderna `eval` é usado com moderação. Costuma-se dizer que "eval é mau".
 
-O motivo é simples: há muito, muito tempo, o JavaScript era uma linguagem muito mais fraca, muitas coisas só podiam ser feitas com o `eval`. Mas esse tempo passou uma década atrás.
+O motivo é simples: há muito, muito tempo, o JavaScript era uma linguagem muito mais fraca, muitas coisas só podiam ser feitas com o `eval`. Mas esse tempo passou há uma década atrás.
 
-No momento, quase não há razão para usar o `eval`. Se alguém o estiver usando, há uma boa chance de substituí-lo por uma construção de linguagem moderna ou um [JavaScript Module](info:modules).
+Neste momento, não há quase nenhuma razão para usar o `eval`. Se alguém o estiver a usar, há uma boa possibilidade de o substituir por uma construção de uma linguagem moderna ou por um [módulo JavaScript](info:modules).
 
 Observe que sua capacidade de acessar variáveis externas tem efeitos colaterais.
 
-Os minificadores de código (ferramentas usadas antes de JS chegar à produção, para compactá-lo) substituem as variáveis locais por outras mais curtas para otimização. Isso geralmente é seguro, mas não se o `eval` for usado, pois pode fazer referência a eles. Portanto, os minificadores não substituem todas as variáveis locais que podem ser visíveis em `eval`. Isso afeta negativamente a taxa de compactação de código.
+Os minificadores de código (ferramentas usadas antes de JS chegar à produção, para compactá-lo) substituem as variáveis locais por outras mais curtas para otimização. Isso geralmente é seguro, mas não se o `eval` for usado, pois pode fazer referência a elas. Portanto, os minificadores não substituem todas as variáveis locais que podem ser visíveis em `eval`. Isso afeta negativamente a taxa de compactação de código.
 
 Usar variáveis locais externas dentro de `eval` é uma prática ruim de programação, pois dificulta a manutenção do código.
 
@@ -107,8 +107,8 @@ A construção `new Function` é explicada no capítulo <info:new-function>. Ele
 
 ## Summary
 
-A call to `eval(code)` runs the string of code and returns the result of the last statement.
-- Rarely used in modern JavaScript, as there's usually no need.
-- Can access outer local variables. That's considered bad practice.
-- Instead, to `eval` the code in the global scope, use `window.eval(code)`.
-- Or, if your code needs some data from the outer scope, use `new Function` and pass it as arguments.
+Uma chamada para `eval(codigo)` executa a string de código e retorna o resultado da última instrução.
+- Raramente usado no JavaScript moderno, pois geralmente não há necessidade.
+- Pode acessar variáveis locais externas. Isso é considerado uma má prática.
+- Em vez disso, para executar um código com o `eval` no escopo global, use `window.eval(codigo)`.
+- Ou, se o seu código precisar de alguns dados do escopo externo, use `new Function` e passe-os como argumentos.
