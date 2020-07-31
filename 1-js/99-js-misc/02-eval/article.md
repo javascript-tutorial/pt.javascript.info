@@ -67,35 +67,35 @@ alert(typeof x); // undefined (no such variable)
 
 Without `use strict`, `eval` doesn't have its own lexical environment, so we would see `x` and `f` outside.
 
-## Using "eval"
+## Usando "eval"
 
-In modern programming `eval` is used very sparingly. It's often said that "eval is evil".
+Na programação moderna `eval` é usado com moderação. Costuma-se dizer que "eval é mau".
 
-The reason is simple: long, long time ago JavaScript was a much weaker language, many things could only be done with `eval`. But that time passed a decade ago.
+O motivo é simples: há muito, muito tempo, o JavaScript era uma linguagem muito mais fraca, muitas coisas só podiam ser feitas com o `eval`. Mas esse tempo passou uma década atrás.
 
-Right now, there's almost no reason to use `eval`. If someone is using it, there's a good chance they can replace it with a modern language construct or a [JavaScript Module](info:modules).
+No momento, quase não há razão para usar o `eval`. Se alguém o estiver usando, há uma boa chance de substituí-lo por uma construção de linguagem moderna ou um [JavaScript Module](info:modules).
 
-Please note that its ability to access outer variables has side-effects.
+Observe que sua capacidade de acessar variáveis externas tem efeitos colaterais.
 
-Code minifiers (tools used before JS gets to production, to compress it) replace local variables with shorter ones for optimization. That's usually safe, but not if `eval` is used, as it may reference them. So minifiers don't replace all local variables that might be visible from `eval`. That negatively affects code compression ratio.
+Os minificadores de código (ferramentas usadas antes de JS chegar à produção, para compactá-lo) substituem as variáveis locais por outras mais curtas para otimização. Isso geralmente é seguro, mas não se o `eval` for usado, pois pode fazer referência a eles. Portanto, os minificadores não substituem todas as variáveis locais que podem ser visíveis em `eval`. Isso afeta negativamente a taxa de compactação de código.
 
-Using outer local variables inside `eval` is a bad programming practice, as it makes maintaining the code more difficult.
+Usar variáveis locais externas dentro de `eval` é uma prática ruim de programação, pois dificulta a manutenção do código.
 
-There are two ways how to be totally safe from such problems.
+Existem duas maneiras de se proteger totalmente de tais problemas.
 
-**If eval'ed code doesn't use outer variables, please call `eval` as `window.eval(...)`:**
+**Se o código avaliado não usa variáveis externas, chame `eval` como `window.eval(...)`:**
 
-This way the code is executed in the global scope:
+Dessa forma, o código é executado no escopo global:
 
 ```js untrusted refresh run
 let x = 1;
 {
   let x = 5;
-  window.eval('alert(x)'); // 1 (global variable)
+  window.eval('alert(x)'); // 1 (variável global)
 }
 ```
 
-**If eval'ed code needs local variables, change `eval` to `new Function` and pass them as arguments:**
+**Se o código avaliado precisa de variáveis locais, mude `eval` para `new Function` e passe-os como argumentos:**
 
 ```js run
 let f = new Function('a', 'alert(a)');
@@ -103,7 +103,7 @@ let f = new Function('a', 'alert(a)');
 f(5); // 5
 ```
 
-The `new Function` construct is explained in the chapter <info:new-function>. It creates a function from a string, also in the global scope. So it can't see local variables. But it's so much clearer to pass them explicitly as arguments, like in the example above.
+A construção `new Function` é explicada no capítulo <info:new-function>. Ele cria uma função a partir de uma string, também no escopo global. Portanto, ele não pode ver variáveis locais. Mas é muito mais claro passá-los explicitamente como argumentos, como no exemplo acima.
 
 ## Summary
 
