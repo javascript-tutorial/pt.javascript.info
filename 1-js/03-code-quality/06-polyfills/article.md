@@ -19,7 +19,11 @@ Here Babel comes to the rescue.
 
 Actually, there are two parts in Babel:
 
+<<<<<<< HEAD
 1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build system like [webpack](http://webpack.github.io/) or [brunch](http://brunch.io/) provide means to run transpiler automatically on every code change, so that doesn't involve any time loss from our side.
+=======
+1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build systems like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that it's very easy to integrate into development process.
+>>>>>>> cdf382de4cf3ed39ca70cb7df60c4c4886f2d22e
 
 2. Second, the polyfill.
 
