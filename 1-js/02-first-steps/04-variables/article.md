@@ -12,7 +12,11 @@ Uma [variável](https://pt.wikipedia.org/wiki/Variável_(programação)) é um "
 
 Para criar uma variável em JavaScript, use a palavra-chave `let`.
 
+<<<<<<< HEAD
 A declaração abaixo cria (em outras palavras: * declara * ou * define *) uma variável com o nome "message":
+=======
+The statement below creates (in other words: *declares*) a variable with the name "message":
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ```js
 let message;
@@ -80,7 +84,6 @@ let user = 'John'
 
 Tecnicamente, todas estas variantes fazem a mesma coisa. Então, é uma questão de gosto pessoal e estética.
 
-
 ````smart header="`var` instead of `let`"
 Em scripts antigos, você também pode encontrar outra palavra-chave: `var` em vez de `let`:
 
@@ -135,8 +138,27 @@ alert(hello); // Olá Mundo!
 alert(message); // Olá Mundo!
 ```
 
+<<<<<<< HEAD
 ```smart header="Linguagens funcionais"
 É interessante notar que linguagens de programação [funcional](https://en.wikipedia.org/wiki/Functional_programming), como [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/), proibem a modificação de valores de variáveis.
+=======
+````warn header="Declaring twice triggers an error"
+A variable should be declared only once.
+
+A repeated declaration of the same variable is an error:
+
+```js run
+let message = "This";
+
+// repeated 'let' leads to an error
+let message = "That"; // SyntaxError: 'message' has already been declared
+```
+So, we should declare a variable once and then refer to it without `let`.
+````
+
+```smart header="Functional languages"
+It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 Em tais linguagens, uma vez que o valor é armazenado "na box", ele está lá para sempre. Se precisarmos de armazenar algo mais, a linguagem nos obriga a criar uma nova box (declarar uma nova variável). Não podemos reutilizar a antiga.
 
@@ -190,7 +212,11 @@ let имя = '...';
 let 我 = '...';
 ```
 
+<<<<<<< HEAD
 Tecnicamente, não há erro aqui, tais nomes são permitidos, mas há uma tradição internacional de usar o inglês em nomes de variáveis. Mesmo que estejamos escrevendo um pequeno script, ele pode ter uma longa vida pela frente. Pessoas de outros países podem precisar lê-lo em algum momento.
+=======
+Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 ````
 
 ````warn header="Nomes reservados"
@@ -237,7 +263,11 @@ Para declarar uma variável constante (imutável), use `const` em vez de `let`:
 const myBirthday = '18.04.1982';
 ```
 
+<<<<<<< HEAD
 Variáveis declaradas usando `const` são chamadas de "constantes". Elas não podem ser alteradas. Uma tentativa de fazer isso causaria um erro:
+=======
+Variables declared using `const` are called "constants". They cannot be reassigned. An attempt to do so would cause an error:
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ```js run
 const myBirthday = '18.04.1982';
@@ -290,7 +320,11 @@ Em outras palavras, constantes com nomes maiúsculos são usadas apenas como pse
 
 Falando em variáveis, há mais uma coisa extremamente importante.
 
+<<<<<<< HEAD
 Por favor, nomeie as suas variáveis de forma sensata. Tome tempo para pensar sobre isso.
+=======
+A variable name should have a clean, obvious meaning, describing the data that it stores.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 A nomenclatura variável é uma das habilidades mais importantes e complexas em programação. Uma rápida olhada em nomes de variáveis pode revelar qual código foi escrito por um iniciante versus um desenvolvedor experiente.
 

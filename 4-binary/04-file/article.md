@@ -55,6 +55,15 @@ The main methods:
 - **`readAsDataURL(blob)`** -- encode the data as base64 data url.
 - **`abort()`** -- cancel the operation.
 
+<<<<<<< HEAD
+=======
+The choice of `read*` method depends on which format we prefer, how we're going to use the data.
+
+- `readAsArrayBuffer` -- for binary files, to do low-level binary operations. For high-level operations, like slicing, `File` inherits from `Blob`, so we can call them directly, without reading.
+- `readAsText` -- for text files, when we'd like to get a string.
+- `readAsDataURL` -- when we'd like to use this data in `src` for `img` or another tag. There's an alternative to reading a file for that, as discussed in chapter <info:blob>: `URL.createObjectURL(file)`.
+
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 As the reading proceeds, there are events:
 - `loadstart` -- loading started.
 - `progress` -- occurs during reading.

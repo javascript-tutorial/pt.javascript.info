@@ -1,11 +1,16 @@
 # Pointer events
 
+<<<<<<< HEAD
 Pointer events is a modern way to handle input from a variety of pointing devices, such as a mouse, a pen/stylus, a touchscreen and so on.
+=======
+Pointer events are a modern way to handle input from a variety of pointing devices, such as a mouse, a pen/stylus, a touchscreen, and so on.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ## The brief history
 
 Let's make a small overview, so that you understand the general picture and the place of Pointer Events among other event types.
 
+<<<<<<< HEAD
 - Long ago, in the past, there existed only mouse events.
 
     Then touch devices appeared. For the old code to work, they also generate mouse events. For instance, tapping generates `mousedown`. But mouse events were not good enough, as touch devices are more powerful in many aspects. For example, it's possible to touch multiple points at once, and mouse events don't have any properties for that.
@@ -23,6 +28,25 @@ That said, there are important peculiarities, one should know them to use them c
 ## Pointer event types
 
 Pointer events are named similar to mouse events:
+=======
+- Long ago, in the past, there were only mouse events.
+
+    Then touch devices appeared. For the old code to work, they also generate mouse events. For instance, tapping generates `mousedown`. But mouse events were not good enough, as touch devices are more powerful in many aspects. For example, it's possible to touch multiple points at once, and mouse events don't have any properties for that.
+
+- So touch events were introduced, such as `touchstart`, `touchend`, `touchmove`, that have touch-specific properties (we don't cover them in detail here, because pointer events are even better).
+
+    Still, it wasn't enough, as there are many other devices, such as pens, that have their own features. Also, writing code that listens for both touch and mouse events was cumbersome. 
+
+- To solve these issues, the new standard Pointer Events was introduced. It provides a single set of events for all kinds of pointing devices.
+
+As of now, [Pointer Events Level 2](https://www.w3.org/TR/pointerevents2/) specification is supported in all major browsers, while [Pointer Events Level 3](https://w3c.github.io/pointerevents/) is in the works. Unless you code for Internet Explorer 10, or for Safari 12 or below, there's no point in using mouse or touch events any more -- we can switch to pointer events.
+
+That being said, they have some important peculiarities that one should know in order to use them correctly and avoid surprises. We'll make note of them in this article.
+
+## Pointer event types
+
+Pointer events are named similarly to mouse events:
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 | Pointer Event | Mouse event |
 |---------------|-------------|
@@ -37,30 +61,54 @@ Pointer events are named similar to mouse events:
 | `gotpointercapture` | - |
 | `lostpointercapture` | - |
 
+<<<<<<< HEAD
 As we can see, for every `mouse<event>`, there's a `pointer<event>` that plays a similar role. Also there are 3 additional pointer events that don't have a corresponding `mouse...` counterpart, we'll soon explain about them. 
+=======
+As we can see, for every `mouse<event>`, there's a `pointer<event>` that plays a similar role. Also there are 3 additional pointer events that don't have a corresponding `mouse...` counterpart, we'll explain them soon. 
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ```smart header="Replacing `mouse<event>` with `pointer<event>` in our code"
 We can replace `mouse<event>` events with `pointer<event>` in our code and expect things to continue working fine with mouse.
 
+<<<<<<< HEAD
 The support for touch devices will also "magically" improve, but we'll probably need to add `touch-action: none` rule in CSS. See the details below in the section about `pointercancel`. 
+=======
+The support for touch devices will also "magically" improve, but we'll probably need to add `touch-action: none` in CSS. See the details below in the section about `pointercancel`. 
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 ```
 
 ## Pointer event properties
 
+<<<<<<< HEAD
 Pointer events have the same properties as mouse events, such as `clientX/Y`, `target` etc, plus some extra:
 
 - `pointerId` - the unique identifier of the pointer causing the event.
     
     Allows to handle multiple pointers, such as a touchscreen with stylus and multi-touch (explained below).
 - `pointerType` - the pointing device type, must be a string, one of: "mouse", "pen" or "touch". 
+=======
+Pointer events have the same properties as mouse events, such as `clientX/Y`, `target`, etc., plus some others:
+
+- `pointerId` - the unique identifier of the pointer causing the event.
+    
+    Allows us to handle multiple pointers, such as a touchscreen with stylus and multi-touch (explained below).
+- `pointerType` - the pointing device type. Must be a string, one of: "mouse", "pen" or "touch". 
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
     We can use this property to react differently on various pointer types.
 - `isPrimary` - `true` for the primary pointer (the first finger in multi-touch).
 
+<<<<<<< HEAD
 For pointers that measure a contact area and pressure, e.g. a finger on the touchscreen, the additional properties can be useful:
 
 - `width` - the width of of the area where the pointer touches the device. Where unsupported, e.g. for mouse it's always `1`. 
 - `height` - the height of of the area where the pointer touches the device. Where unsupported, always `1`.
+=======
+For pointers that measure contact area and pressure, e.g. a finger on the touchscreen, the additional properties can be useful:
+
+- `width` - the width of the area where the pointer touches the device. Where unsupported, e.g. for a mouse, it's always `1`. 
+- `height` - the height of the area where the pointer touches the device. Where unsupported, it's always `1`.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 - `pressure` - the pressure of the pointer tip, in range from 0 to 1. For devices that don't support pressure must be either `0.5` (pressed) or `0`.
 - `tangentialPressure` - the normalized tangential pressure.
 - `tiltX`, `tiltY`, `twist` - pen-specific properties that describe how the pen is positioned relative the surface.
@@ -69,29 +117,49 @@ These properties aren't very well supported across devices, so they are rarely u
 
 ## Multi-touch
 
+<<<<<<< HEAD
 One of the things that mouse events totally don't support is multi-touch: a user can touch them in several places at once at their phone or tablet, perform special gestures.
 
 Pointer Events allow to handle multi-touch with the help of `pointerId` and `isPrimary` properties.
 
 Here's what happens when a user touches a screen at one place, and then puts another finger somewhere else on it:
+=======
+One of the things that mouse events totally don't support is multi-touch: a user can touch in several places at once on their phone or tablet, or perform special gestures.
+
+Pointer Events allow handling multi-touch with the help of the `pointerId` and `isPrimary` properties.
+
+Here's what happens when a user touches a screen in one place, then puts another finger somewhere else on it:
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 1. At the first touch:
     - `pointerdown` with `isPrimary=true` and some `pointerId`.
 2. For the second finger and further touches:
     - `pointerdown` with `isPrimary=false` and a different `pointerId` for every finger.
 
+<<<<<<< HEAD
 Please note: there `pointerId` is assigned not to the whole device, but for each touching finger. If we use 5 fingers to simultaneously touch the screen, we have 5 `pointerdown` events with respective coordinates and different `pointerId`.
 
 The events associated with the first finger always have `isPrimary=true`.
 
 We can track multiple touching fingers using their `pointerId`. When the user moves move and then detouches a finger, we get `pointermove` and `pointerup` events with the same `pointerId` as we had in `pointerdown`.
+=======
+Please note: the `pointerId` is assigned not to the whole device, but for each touching finger. If we use 5 fingers to simultaneously touch the screen, we have 5 `pointerdown` events, each with their respective coordinates and a different `pointerId`.
+
+The events associated with the first finger always have `isPrimary=true`.
+
+We can track multiple touching fingers using their `pointerId`. When the user moves and then removes a finger, we get `pointermove` and `pointerup` events with the same `pointerId` as we had in `pointerdown`.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ```online
 Here's the demo that logs `pointerdown` and `pointerup` events:
 
 [iframe src="multitouch" edit height=200]
 
+<<<<<<< HEAD
 Please note: you must be using a touchscreen device, such as a phone or a tablet to actually see the difference. For single-touch devices, such as a mouse, there'll be always same `pointerId` with `isPrimary=true`, for all pointer events.
+=======
+Please note: you must be using a touchscreen device, such as a phone or a tablet, to actually see the difference. For single-touch devices, such as a mouse, there'll be always same `pointerId` with `isPrimary=true`, for all pointer events.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 ```
 
 ## Event: pointercancel
@@ -109,7 +177,11 @@ We'll demonstrate `pointercancel` on a practical example to see how it affects u
 
 Let's say we're impelementing drag'n'drop for a ball, just as in the beginning of the article <info:mouse-drag-and-drop>.
 
+<<<<<<< HEAD
 Here are the flow of user actions and corresponding events:
+=======
+Here is the flow of user actions and the corresponding events:
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 1) The user presses the mouse button on an image, to start dragging
     - `pointerdown` event fires
@@ -134,13 +206,21 @@ We'd like to implement our own drag'n'drop, so let's tell the browser not to tak
 We need to do two things:
 
 1. Prevent native drag'n'drop from happening:
+<<<<<<< HEAD
     - Can do it by setting `ball.ondragstart = () => false`, just as described in the article <info:mouse-drag-and-drop>.
+=======
+    - We can do this by setting `ball.ondragstart = () => false`, just as described in the article <info:mouse-drag-and-drop>.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
     - That works well for mouse events.
 2. For touch devices, there are also touch-related browser actions. We'll have problems with them too.
     - We can prevent them by setting `#ball { touch-action: none }` in CSS. 
     - Then our code will start working on touch devices.
 
+<<<<<<< HEAD
 After we do that, the events will work as intended, the browser won't hijack the process and emit no `pointercancel`.
+=======
+After we do that, the events will work as intended, the browser won't hijack the process and doesn't emit `pointercancel`.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ```online
 This demo adds these lines:
@@ -177,7 +257,11 @@ But we continue tracking track `pointermove` events and move the thumb until `po
 
 [Previously](info:mouse-drag-and-drop), to handle `pointermove` events that happen outside of the slider, we listened for `pointermove` events on the whole `document`. 
 
+<<<<<<< HEAD
 Pointer capturing provides an alternative solution: we can call `thumb.setPointerCapture(event.pointerId)` in `pointerdown` handler, and then all future pointer events until `pointerup` will be retarteted to `thumb`.
+=======
+Pointer capturing provides an alternative solution: we can call `thumb.setPointerCapture(event.pointerId)` in `pointerdown` handler, and then all future pointer events until `pointerup` will be retargeted to `thumb`.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 That is: events handlers on `thumb` will be called, and `event.target` will always be `thumb`, even if the user moves their pointer around the whole document. So we can listen at `thumb` for `pointermove`, no matter where it happens.
 
@@ -214,16 +298,31 @@ There are two associated pointer events:
 
 ## Summary
 
+<<<<<<< HEAD
 Pointer events allow to handle mouse, touch and pen events simultaneously.
 
 Pointer events extend mouse events. We can replace `mouse` with `pointer` in event names and expect our code to continue working for mouse, with better support for other device types.
 
 Remember to set `touch-events: none` in CSS for elements that we engage, otherwise the browser hijacks many types of touch interactions and pointer events won't be generated.
+=======
+Pointer events allow handling mouse, touch and pen events simultaneously.
+
+Pointer events extend mouse events. We can replace `mouse` with `pointer` in event names and expect our code to continue working for mouse, with better support for other device types.
+
+Remember to set `touch-events: none` in CSS for elements that we engage, otherwise the browser will hijack many types of touch interactions, and pointer events won't be generated.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 Additional abilities of Pointer events are:
 
 - Multi-touch support using `pointerId` and `isPrimary`.
+<<<<<<< HEAD
 - Device-specific properties, such as `pressure`, `width/height` and others.
 - Pointer capturing: we can retarget all pointer events to a specific element until `pointerup`/`pointercancel`.
 
 As of now, pointer events are supported in all major browsers, so we can safely switch to them, if IE10- and Safari 12- are not needed. And even with those browsers, there are polyfills that enable the support of pointer events.
+=======
+- Device-specific properties, such as `pressure`, `width/height`, and others.
+- Pointer capturing: we can retarget all pointer events to a specific element until `pointerup`/`pointercancel`.
+
+As of now, pointer events are supported in all major browsers, so we can safely switch to them, as long as IE10- and Safari 12- are not needed. And even with those browsers, there are polyfills that enable the support of pointer events.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c

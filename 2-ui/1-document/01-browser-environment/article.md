@@ -1,12 +1,16 @@
 # Browser environment, specs
 
-The JavaScript language was initially created for web browsers. Since then, it has evolved and become a language with many uses and platforms.
+The JavaScript language was initially created for web browsers. Since then it has evolved and become a language with many uses and platforms.
 
+<<<<<<< HEAD
 A platform may be a browser, or a web-server, or a washing machine, or another *host*. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
+=======
+A platform may be a browser, or a web-server or another *host*, even a "smart" coffee machine, if it can run JavaScript. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 A host environment provides platform-specific objects and functions additional to the language core. Web browsers give a means to control web pages. Node.js provides server-side features, and so on.
 
-Here's a bird's-eye view of what we have when JavaScript runs in a web-browser:
+Here's a bird's-eye view of what we have when JavaScript runs in a web browser:
 
 ![](windowObjects.svg)
 
@@ -47,6 +51,7 @@ document.body.style.background = "red";
 setTimeout(() => document.body.style.background = "", 1000);
 ```
 
+<<<<<<< HEAD
 Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification. There happen to be two working groups who develop it:
 
 1. [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) -- the documentation is at <https://www.w3.org/TR/dom>.
@@ -61,6 +66,9 @@ In the ancient past, there was no standard at all -- each browser implemented ho
 Even now we can sometimes meet old code that uses browser-specific properties and works around incompatibilities. But, in this tutorial we'll use modern stuff: there's no need to learn old things until you really need to (chances are high that you won't).
 
 Then the DOM standard appeared, in an attempt to bring everyone to an agreement. The first version was "DOM Level 1", then it was extended by DOM Level 2, then DOM Level 3, and now it's reached DOM Level 4. People from WhatWG group got tired of version numbers and are calling it just "DOM", without a number. So we'll do the same.
+=======
+Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification: [DOM Living Standard](https://dom.spec.whatwg.org).
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ```smart header="DOM is not only for browsers"
 The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use it too.
@@ -69,14 +77,23 @@ For instance, server-side tools that download HTML pages and process them use th
 ```
 
 ```smart header="CSSOM for styling"
+<<<<<<< HEAD
 CSS rules and stylesheets are not structured like HTML. There's a separate specification [CSSOM](https://www.w3.org/TR/cssom-1/) that explains how they are represented as objects, and how to read and write them.
 
 CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because usually CSS rules are static. We rarely need to add/remove CSS rules from JavaScript, so we won't cover it right now.
 ```
 
 ## BOM (part of HTML spec)
+=======
+There's also a separate specification, [CSS Object Model (CSSOM)](https://www.w3.org/TR/cssom-1/) for CSS rules and stylesheets, that explains how they are represented as objects, and how to read and write them.
 
-Browser Object Model (BOM) are additional objects provided by the browser (host environment) to work with everything except the document.
+CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because we rarely need to modify CSS rules from JavaScript (usually we just add/remove CSS classes, not modify their CSS rules), but that's also possible.
+```
+
+## BOM (Browser Object Model)
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+
+The Browser Object Model (BOM) represents additional objects provided by the browser (host environment) for working with everything except the document.
 
 For instance:
 

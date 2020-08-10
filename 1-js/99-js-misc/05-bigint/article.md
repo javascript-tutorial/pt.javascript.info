@@ -50,7 +50,11 @@ The conversion operations are always silent, never give errors, but if the bigin
 ````smart header="The unary plus is not supported on bigints"
 The unary plus operator `+value` is a well-known way to convert `value` to a number.
 
+<<<<<<< HEAD
 On bigints it's not supported, to avoid confusion:
+=======
+In order to avoid confusion, it's not supported on bigints:
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 ```js run
 let bigint = 1n;
 
