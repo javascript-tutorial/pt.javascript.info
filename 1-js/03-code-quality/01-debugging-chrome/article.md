@@ -1,10 +1,10 @@
 # Depuração de erros no Chrome
 
-Antes de escrevermos código mais complexo, falemos de debugging (depuração de erros).
+Antes de escrevermos código mais complexo, vamos falar de debugging (depuração de erros).
 
-[Debugging](https://en.wikipedia.org/wiki/Debugging) é o processo de procura e correção de erros num programa. Todos os navegadores (*browsers*) modernos e muitas outras plataformas (*environments*) suportam ferramentas de *debugging* -- uma UI (Interface de Utilizador) disponível nas ferramentas do desenvolvedor (*developer tools*) que torna a depuração de erros muito mais fácil. Ela também permite rastrear o código passo-a-passo para ver exactamente o que estará a decorrer.
+[Depuração](https://pt.wikipedia.org/wiki/Depura%C3%A7%C3%A3o) é o processo de procura e correção de erros num programa. Todos os navegadores (*browsers*) modernos e muitas outras plataformas (*environments*) suportam ferramentas de *debugging* -- uma UI (Interface de Utilizador) disponível nas ferramentas do desenvolvedor (*developer tools*) que torna a depuração de erros muito mais fácil. Ela também permite rastrear o código passo-a-passo para ver exactamente o que está a ser executado.
 
-Aqui vamos utilizar o Chrome porque tem funcionalidades suficientes, mas outros navegadores possuem um processo similar.
+Aqui, vamos utilizar o Chrome porque tem bastantes funcionalidades, mas a maioria dos outros navegadores possuem um processo similar.
 
 ## O painel "*Sources*"
 
@@ -20,13 +20,13 @@ Aqui está o que poderá ver, se o estiver a fazer pela primeira vez:
 
 O botão de alternador <span class="devtools" style="background-position:-172px -98px"></span> abre o separador com os ficheiros.
 
-Cliquemos nele, e selecionemos `hello.js`  na vista de árvore de recursos apresentada. Aqui está o que deveria ser mostrado:
+Vamos clicar nele, e selecionar `hello.js`  na vista de árvore de recursos apresentada. Aqui está o que deveria ser mostrado:
 
 ![](chrome-tabs.svg)
 
 O painel *Sources* possui 3 partes:
 
-1. O painel **File Navigator**, lista ficheiros de HTML, JavaScript, CSS e outros, incluindo imagens na página. Extensões ao Chrome (*Chrome extensions*) também podem  aparecer aqui.
+1. O painel **File Navigator**, lista ficheiros de HTML, JavaScript, CSS e outros, incluindo imagens anexadas à página. Extensões ao Chrome (*Chrome extensions*) também podem aparecer aqui.
 2. O painel **Code Editor**, mostra o código-fonte.
 3. O painel **JavaScript Debugging**, é para a depuração de erros; iremos explorá-lo em breve.
 
@@ -52,7 +52,7 @@ Deveria se parecer com (a azul é onde deveria ter clicado):
 
 ![](chrome-sources-breakpoint.svg)
 
-Um *breakpoint* é um ponto no código onde o *debugger* (depurador de erros) irá  suspender automáticamente a execução do JavaScript.
+Um *breakpoint* é um ponto no código onde o *debugger* (depurador de erros) irá automáticamente efetuar uma pausa na execução do JavaScript.
 
 Enquanto a execução do código estiver suspensa, podemos examinar variáveis correntes, executar comandos na consola, etc. Por outras palavras, podemos nele depurar erros (*debug it*).
 
@@ -89,9 +89,9 @@ function hello(name) {
 
 ## Pause e dê uma vista de olhos
 
-No nosso exemplo, `hello()` é chamada durante o carregamento da página, assim a forma mais fácil para ativar o *debugger* (depois de termos colocado os *breakpoints*) é refrescar (*reload*) a página. Assim, pressionemos `key:F5` (Windows, Linux) oo `key:Cmd+R` (Mac).
+No nosso exemplo, `hello()` é chamada durante o carregamento da página, assim a forma mais fácil para ativar o *debugger* (depois de termos colocado os *breakpoints*) é refrescar (*reload*) a página. Assim, vamos pressionar `key:F5` (Windows, Linux) ou `key:Cmd+R` (Mac).
 
-Como o breakpoint está estabelecido, a execução é suspensa na quarta linha:
+Como o breakpoint está estabelecido, é feita uma pausa na execução na quarta linha:
 
 ![](chrome-sources-debugger-pause.svg)
 
@@ -138,22 +138,22 @@ Existem botões para isso no topo do painel direito. Vamos interagir com eles.
 <span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": execute o próximo comando, mas *mas não vá para dentro de uma função*, atalho `key:F10`.
 : Similar ao comando "Step" anterior, mas com um comportamento diferente se a próxima instrução for uma chamada de função. Isto é: não uma incorporada (*built-in*), como `alert`, mas uma função sua.
 
-  O comando "Step", vai para dentro dela e suspende a execução na sua primeira linha, enquanto "Step over" executa essa chamada de função aninhada invisívelmente, saltando o funcionamento interno da função.
+  O comando "Step", vai para dentro dela e suspende a execução na sua primeira linha, ao contrário de "Step over" que executa essa chamada de função aninhada invisívelmente, saltando sobre o funcionamento interno da função.
 
-  Aí, execução é suspensa imediatemente depois dessa função.
+  É feita uma pausa na execução imediatemente depois dessa função.
 
-  É bom, se não estivermos interessados em ver o que acontece dentro duma chamada de função.
+  É bom, se não estivermos interessados em ver o que acontece dentro da chamada de função.
 
 <span class="devtools" style="background-position:-4px -194px"></span> -- "Step into", atalho `key:F11`.
 : Similar a "Step", mas com um comportamento diferente no caso de chamadas de funções assíncronas. Se estiver a começar a aprender JavaScript, então poderá ignorar a diferença, porque ainda não temos chamadas assíncronas.
 
   Futuramente, apenas tome nota que o comando "Step" ignora ações assíncronas, tais como `setTimeout` (chamada de função agendada), que são executadas mais tarde. O "Step into", vai para dentro do seu código, esperando pela sua execução se necessário. Para mais detalhes, veja o [DevTools manual](https://developers.google.com/web/updates/2018/01/devtools#async).
 
-<span class="devtools" style="background-position:-32px -194px"></span> -- "Step out": continue a execução até ao fim da função atual, atalho  `key:Shift+F11`.
-: Continue a execução e a suspenda na última linha da função atual. É útil quando acidentalmente entrámos para uma chamada aninhada usando <span class="devtools" style="background-position:-200px -190px"></span>, mas ela não nos interessa, e queremos prosseguir para o seu final o mais rápidamente possível.
+<span class="devtools" style="background-position:-32px -194px"></span> -- "Step out": continue a execução até ao fim da função atual, atalho `key:Shift+F11`.
+: Continue a execução e a faça uma pausa na última linha da função atual. É útil quando acidentalmente entrámos para uma chamada aninhada usando <span class="devtools" style="background-position:-200px -190px"></span>, mas ela não nos interessa, e queremos prosseguir para o seu final o mais rápidamente possível.
 
 <span class="devtools" style="background-position:-61px -74px"></span> -- ative/desative todos os *breakpoints*.
-: Esse botão não move a execução. Simplesmente liga/desliga *breakpoints* em massa.
+: Esse botão não move a execução. Simplesmente liga/desliga *breakpoints* em grupo.
 
 <span class="devtools" style="background-position:-90px -146px"></span> -- ative/desative a pausa automática em caso de erro.
 : Quando ativo, e as ferramentas do desenvolvedor estão abertas, um erro no código automáticamente suspende a sua execução. Então, poderemos analizar variáveis para ver o que ocorreu de errado. Assim, se o código falhar por um erro, pode-se abrir o *debugger*, ativar esta opção e refrescar a página, afim de se observar onde falhou e qual o contexto nesse momento.
@@ -173,25 +173,25 @@ Por exemplo, isto mostra os valores de `0` a `4` na consola:
 ```js run
 // abra a consola para visualizar
 for (let i = 0; i < 5; i++) {
-  console.log("valor", i);
+  console.log("valor,", i);
 }
 ```
 
-Utilizadores comuns não vêm essa saída (*output*), ela estará na consola. Para a ver, abra o separador Console nas ferramentas do desenvolvedor, ou pressione `key:Esc` enquanto num outro separador - isso abre a consola abaixo nesse separador.
+Utilizadores comuns não vêm essa saída (*output*), ela estará na consola. Para a ver, abra o separador Console nas ferramentas do desenvolvedor, ou pressione `key:Esc` se estiver num outro separador - isso abre a consola abaixo nesse separador.
 
 Se mostrarmos mensagens (*logging*) suficientes no nosso código, então poderemos ver o que nele se passa a partir desses registos, dispensando o *debugger*.
 
 ## Resumo
 
-Como podemos ver, existem três formas principais para suspender um *script*:
+Como podemos ver, existem três formas principais para efetuar uma pausa num *script*:
 1. Um *breakpoint* (ponto-de-interrupção).
 2. As instruções `debugger`.
 3. Um erro (se as ferramentas do desenvolvedor [*dev tools*] estiverem abertas, e o botão <span class="devtools" style="background-position:-90px -146px"></span> estiver "ativo").
 
-Quando supenso, podemos depurar erros - examinar variáveis e rastear o código para ver onde a sua execução contém erros.
+Enquanto suspenso, podemos depurar erros - examinar variáveis e rastear o código para ver onde a sua execução contém erros.
 
-Existem muitas mais opções nas ferramentas do desenvolvedor do que as cobertas aqui. O manual completo está em <https://developers.google.com/web/tools/chrome-devtools>.
+Existem muitas mais opções nas ferramentas do desenvolvedor do que as cobertas aqui. O manual completo está em <https://developers.google.com/web/tools/chrome-devtools> (no topo, à direita, poderá escolher o idioma).
 
-A informação neste capítulo é suficiente para iniciar a depuração de erros (o *debugging*), mas mais tarde, especialmente se trabalhar muito com o navegador (*browser*), por favor o consulte e procure por capacidades mais avançadas de ferramentas do desenvolvedor.
+A informação neste capítulo é suficiente para iniciar a depuração de erros (o *debugging*), mas mais tarde, especialmente se trabalhar muito com o navegador (*browser*), por favor consulte o manual e procure por capacidades mais avançadas de ferramentas do desenvolvedor.
 
-Oh, também pode clicar em vários locais nas *dev tools* e ver o que acontece. Provávelmente, é a rota mais rápida para aprender sobre as *dev tools*. Não se esqueça de também clicar com o botão direito do rato e de menus de contexto!
+Oh, também pode clicar em vários locais nas *dev tools* e ver o que acontece. Provávelmente, é a rota mais rápida para aprender sobre as *dev tools*. Não se esqueça de também clicar com o botão direito do rato e dos menus de contexto!
