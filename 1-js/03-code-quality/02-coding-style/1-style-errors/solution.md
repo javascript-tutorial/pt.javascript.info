@@ -1,17 +1,17 @@
 
-Poderia notar no seguinte:
+Poderia notar o seguinte:
 
 ```js no-beautify
 function pow(x,n)  // <- nenhum espaço entre argumentos
 {  // <- chaveta de abertura numa linha em separado
-  let result=1;   // <- nenhum espaço antes ou depois do =
+  let result=1;   // <- nenhum espaço antes ou depois de =
   for(let i=0;i<n;i++) {result*=x;}   // <- nenhum espaço
   // o conteúdo de { ... } deveria estar numa nova linha
   return result;
 }
 
 let x=prompt("x?",''), n=prompt("n?",'') // <-- tecnicamente possível,
-// mas o melhor é torná-la em 2 linhas, também não existem espaços e falta o ;
+// mas o melhor é torná-la em 2 linhas, também não existem espaços, e falta o ;
 if (n<0)  // <- nenhum espaço dentro (n < 0), e deveria existir uma linha extra sobre a condição
 {   // <- chaveta de abertura numa linha em separado
   // abaixo - linhas longas podem ser repartidas por múltiplas linhas para melhorar a legíbilidade
@@ -23,7 +23,7 @@ else // <- poderia ser escrito numa única linha, como "} else {"
 }
 ```
 
-A variante modificada:
+A variante corrigida:
 
 ```js
 function pow(x, n) {
