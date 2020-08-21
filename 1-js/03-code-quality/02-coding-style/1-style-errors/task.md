@@ -1,4 +1,4 @@
-importance: 4
+importância: 4
 
 ---
 
@@ -25,4 +25,4 @@ else
 }
 ```
 
-Modifique-o.
+Efetue a sua correção.
