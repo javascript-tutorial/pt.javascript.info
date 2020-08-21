@@ -1,4 +1,4 @@
-# Edtilo de Código
+# Estilo de Código
 
 O nosso código, deve ser o mais limpo e fácil de ler o quanto possível.
 
