@@ -264,6 +264,7 @@ No futuro, nós podemos adicionar mais `it` e `describe` ao nível de topo com o
 
 ````smart header="`before/after` e `beforeEach/afterEach`"
 Nós podemos definir funções `before/after`, que corram antes/após os testes serem executados, e também funções `beforeEach/afterEach` que corram antes/após *cada* `it`.
+````
 
 Por exemplo:
 
@@ -298,7 +299,6 @@ Testes terminados – após todos os testes (after)
 [edit src="beforeafter" title="Open the example in the sandbox."]
 
 Geralmente, `beforeEach/afterEach` e `before/after` são usadas para executar a  inicialização, zerar contadores ou fazer mais alguma coisa entre os testes (ou grupos de testes).
-````
 
 ## Aumentando a *spec*
 
