@@ -4,7 +4,7 @@ Teste automatizado será utilizado nos exercícios seguintes, e também é ampla
 
 ## Porque precisamos de testes?
 
-Quando escrevemos uma função, nós geralmente podemos imaginar o que ela deveria fazer: que parâmetros dariam que resultadoados.
+Quando escrevemos uma função, nós geralmente podemos imaginar o que ela deveria fazer: que parâmetros dariam que resultados.
 
 Durante o desenvolvimento, podemos analisar a função executando-a e comparando o resultado obtido ao esperado. Por exemplo, podemos fazê-lo na consola.
 
@@ -59,7 +59,7 @@ Uma *spec* tem três principais blocos construtores, como pode ver acima:
 `assert.equal(valor1, valor2)`
 : O código dentro do bloco `it`, se a implementação estiver correta, não deverá mostrar erros.
 
-    Funções `assert.*` são usadas para verificar se `pow` funciona como esperado. Aqui mesmo, estamos a usar uma delas -- `assert.equal`, que compara argumentos e dá como resultadoado um erro se eles não forem iguais. Aqui, ela verifica se o resultado de `pow(2, 3)` é `8`. Existem outros tipos de comparações e verificações, que adicionaremos mais adiante.
+    Funções `assert.*` são usadas para verificar se `pow` funciona como esperado. Aqui mesmo, estamos a usar uma delas -- `assert.equal`, que compara argumentos e dá como resultado um erro se eles não forem iguais. Aqui, ela verifica se o resultado de `pow(2, 3)` é `8`. Existem outros tipos de comparações e verificações, que adicionaremos mais adiante.
 
 A especificação pode ser executada, e irá correr o teste especificado no bloco `it`. O que veremos mais adiante.
 
@@ -71,7 +71,7 @@ Geralmente, o fluxo de desenvolvimento se assemelha a:
 2. Uma implementação inicial é criada.
 3. Para verificar se ela funciona, nós corremos a infraestrutura de teste [Mocha](http://mochajs.org/) (mais detalhes em breve) que corre a *spec*. Enquanto a funcionalidade não estiver completa, erros são mostrados. Nós a corrigimos até que tudo funcione.
 4. Agora, temos uma implementação inicial a funcionar com testes.
-5. Adicionamos mais casos exemplo (*use cases*) à *spec*, provávelmente ainda não suportedos pelas implementações. Testes começam a falhar.
+5. Adicionamos mais casos exemplo (*use cases*) à *spec*, provávelmente ainda não suportados pelas implementações. Testes começam a falhar.
 6. Vamos para 3, atualizamos a implementação até que os testes nâo forneçam erros.
 7. Repetimos os passos 3-6 até que a funcionalidade esteja pronta.
 
@@ -79,7 +79,7 @@ Assim, o desenvolvimento é *iterativo*. Nós escrevemos a *spec*, a implementam
 
 Vejamos este fluxo de desenvolvimento no nosso caso prático.
 
-O primeiro passo já está completo: nós temos uma *spec* inicial para `pow`. Agora, antes de fazer a implementação, vamos utilizar umas poucas bibliotecas (*bibliotecas*) de JavaScript para executar os testes, apenas para ver se eles estão a funcionar (todos irão falhar).
+O primeiro passo já está completo: nós temos uma *spec* inicial para `pow`. Agora, antes de fazer a implementação, vamos utilizar umas poucas bibliotecas (*libraries*) de JavaScript para executar os testes, apenas para ver se eles estão a funcionar (todos irão falhar).
 
 ## A *spec* em ação
 
@@ -98,7 +98,7 @@ A página HTML completa, com estas infraestruturas e a *spec* `pow`:
 
 A página pode ser dividida em cinco partes:
 
-1. A `<head>` -- adiciona bibliotecas de terceiros (*third-party») e estilos para testes.
+1. A `<head>` -- adiciona bibliotecas de terceiros (*third-party*) e estilos para testes.
 2. O `<script>` com a função para o teste, no nosso caso -- com o código para `pow`.
 3. Os testes -- no nosso caso um programa externo `test.js`, que tem o `describe("pow", ...)` visto acima.
 4. O elemento HTML `<div id="mocha">`, será usado por Mocha para a saída dos resultados.
@@ -108,7 +108,7 @@ O resultado:
 
 [iframe height=250 src="pow-1" border=1 edit]
 
-Por ora, o teste falha, existe um erro. O que é lógico: nós temos uma função sem código em `pow`;assim, `pow(2,3)` retorna `undefined` em vez de `8`.
+Por ora, o teste falha, existe um erro. O que é lógico: nós temos uma função sem código em `pow`; assim, `pow(2,3)` retorna `undefined` em vez de `8`.
 
 Para o futuro, vamos tomar nota de que existem executadores de testes (*test-runners*) de nível mais elevado, como [karma](https://karma-runner.github.io/) e outros, que tornam fácil correr automáticamente (*autorun*) muitos testes diferentes.
 
@@ -191,13 +191,13 @@ Vamos escrever algo mais real para os testes passarem:
 
 ```js
 function pow(x, n) {
-  let resultado = 1;
+  let result = 1;
 
   for (let i = 0; i < n; i++) {
-    resultado *= x;
+    result *= x;
   }
 
-  return resultado;
+  return result;
 }
 ```
 
@@ -297,7 +297,7 @@ Testes terminados – após todos os testes (after)
 
 [edit src="beforeafter" title="Open the example in the sandbox."]
 
-Geralmente, `beforeEach/afterEach` e `before/after` são usadas para executar a  inicialização, zerar countadores ou fazer mais alguma coisa entre os testes (ou grupos de testes).
+Geralmente, `beforeEach/afterEach` e `before/after` são usadas para executar a  inicialização, zerar contadores ou fazer mais alguma coisa entre os testes (ou grupos de testes).
 ````
 
 ## Aumentando a *spec*
@@ -398,7 +398,7 @@ Sem testes, as pessoas têm duas formas:
 
 Se o projeto estiver coberto por testes, simplesmente não existe tal problema. Depois de quaisquer alterações, nós podemos correr testes e observar muitas análises numa questão de segundos.
 
-**Adicionalmente, um código bem testado tem melhor architecture.**
+**Adicionalmente, um código bem testado tem melhor arquitetura.**
 
 Naturalmente, isto porque código auto-testado é mais fácil de modificar e melhorar. Mas, também há outro motivo.
 
