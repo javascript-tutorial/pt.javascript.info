@@ -6,7 +6,7 @@ Por vezes, é mais fácil escrever desta forma mas, se ocorrer um erro, é menos
 
 Se houver um erro dentro de um fluxo de execução complexo, então teremos que procurar entender os dados nessa altura. Teremos, na verdade, que *debug o teste*.
 
-Seria muito melhor repartir o teste em múltiplos blocos `it`, com claramente escritas entrdas e saídas.
+Seria muito melhor repartir o teste em múltiplos blocos `it`, com claramente escritas entradas e saídas.
 
 Desta forma:
 ```js
