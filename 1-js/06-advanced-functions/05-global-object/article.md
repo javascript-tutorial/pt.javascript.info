@@ -5,7 +5,11 @@ O objeto global fornece variáveis e funções que estão disponíveis em qualqu
 
 No navegador ele é chamado de `window`, no Node.js é `global`, em outros ambientes pode ter outro nome.
 
+<<<<<<< HEAD
 Recentemente, `globalThis` foi adicionado a linguagem como um nome padrão para o objeto global, que deve ser suportado em todos os ambientes. Em alguns navegadores, como o "non-Chromium Edge", `globalThis` ainda não é suportado, mas pode ser facilmente utilizado através de um polyfill.
+=======
+Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. In some browsers, namely non-Chromium Edge, `globalThis` is not yet supported, but can be easily polyfilled.
+>>>>>>> b85413d0bdd6f4f468fcadeacb4c4056e3671ce1
 
 Usamos `window` aqui, assumindo que nosso ambiente seja um navegador. Se o seu script puder ser executado em outros ambientes, é melhor utilizar o `globalThis`.
 
