@@ -285,7 +285,7 @@ describe("test", function() {
 
 A sequência da execução será:
 
-```md
+```
 Testes iniciados – antes de todos os testes (before)
 Antes de um teste - entrando para um teste (beforeEach)
 1
