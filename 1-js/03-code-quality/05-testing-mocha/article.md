@@ -59,7 +59,9 @@ Uma *spec* tem três principais blocos construtores, como pode ver acima:
 `assert.equal(valor1, valor2)`
 : O código dentro do bloco `it`, se a implementação estiver correta, não deverá mostrar erros.
 
-    Funções `assert.*` são usadas para verificar se `pow` funciona como esperado. Aqui mesmo, estamos a usar uma delas -- `assert.equal`, que compara argumentos e dá como resultado um erro se eles não forem iguais. Aqui, ela verifica se o resultado de `pow(2, 3)` é `8`. Existem outros tipos de comparações e verificações, que adicionaremos mais adiante.
+```text
+Funções `assert.*` são usadas para verificar se `pow` funciona como esperado. Aqui mesmo, estamos a usar uma delas -- `assert.equal`, que compara argumentos e dá como resultado um erro se eles não forem iguais. Aqui, ela verifica se o resultado de `pow(2, 3)` é `8`. Existem outros tipos de comparações e verificações, que adicionaremos mais adiante.
+```
 
 A especificação pode ser executada, e irá correr o teste especificado no bloco `it`. O que veremos mais adiante.
 
@@ -93,7 +95,8 @@ Estas bibliotecas, são adequadas a testes quer usando um navegador (*in-browser
 
 A página HTML completa, com estas infraestruturas e a *spec* `pow`:
 
-```html src="index.html"
+```html
+  src="index.html"
 ```
 
 A página pode ser dividida em cinco partes:
@@ -191,13 +194,13 @@ Vamos escrever algo mais real para os testes passarem:
 
 ```js
 function pow(x, n) {
-  let result = 1;
+  let resultado = 1;
 
   for (let i = 0; i < n; i++) {
-    result *= x;
+    resultado *= x;
   }
 
-  return result;
+  return resultado;
 }
 ```
 
@@ -262,9 +265,10 @@ O `describe` aninhado define um novo "subgrupo" de testes. No resultado mostrado
 
 No futuro, nós podemos adicionar mais `it` e `describe` ao nível de topo com outras funções auxiliares, elas não irão ver `makeTest`.
 
-````smart header="`before/after` e `beforeEach/afterEach`"
+```smart header="'before/after' e 'beforeEach/afterEach'"
 Nós podemos definir funções `before/after`, que corram antes/após os testes serem executados, e também funções `beforeEach/afterEach` que corram antes/após *cada* `it`.
-````
+
+```
 
 Por exemplo:
 
@@ -285,7 +289,7 @@ describe("test", function() {
 
 A sequência da execução será:
 
-```
+```text
 Testes iniciados – antes de todos os testes (before)
 Antes de um teste - entrando para um teste (beforeEach)
 1
