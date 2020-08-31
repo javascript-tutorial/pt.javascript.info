@@ -4,7 +4,11 @@ As we'll be using the browser as our demo environment, let's see a couple of fun
 
 ## alert
 
+<<<<<<< HEAD:1-js/02-first-steps/06-alert-prompt-confirm/article.md
 This one we've seen already. It shows a message and waits for the user to presses "OK".
+=======
+This one we've seen already. It shows a message and waits for the user to press "OK".
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a:1-js/02-first-steps/06-alert-prompt-confirm/article.md
 
 For example:
 
