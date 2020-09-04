@@ -14,4 +14,3 @@ function multiplyNumeric(obj) {
 multiplyNumeric(menu);
 
 alert( "largura do menu=" + menu.width + " altura=" + menu.height + " título=" + menu.title );
-
