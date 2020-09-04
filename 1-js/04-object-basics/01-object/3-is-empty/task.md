@@ -1,4 +1,4 @@
-importance: 5
+importância: 5
 
 ---
 
@@ -6,7 +6,8 @@ importance: 5
 
 Escreva a função `isEmpty(obj)`, que retorna `true` se o  objeto não tiver propriedades, e `false` caso contrário.
 
-Deve assim funcionar:
+Deve funcionar desta forma:
+
 ```js
 let schedule = {};
 
@@ -16,4 +17,3 @@ schedule["8:30"] = "levante-se";
 
 alert( isEmpty(schedule) ); // falso
 ```
-

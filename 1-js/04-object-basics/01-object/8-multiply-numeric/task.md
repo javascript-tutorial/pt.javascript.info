@@ -1,10 +1,10 @@
-importance: 3
+importância: 3
 
 ---
 
 # Multiplica as propriedades numéricas por 2
 
-Crie uma função `multiplyNumeric(obj)` que multiplica todas as proriedades numéricas de `obj` por `2`.
+Crie uma função `multiplyNumeric(obj)` que multiplique todas as propriedades numéricas de `obj` por `2`.
 
 Por exemplo:
 
@@ -28,4 +28,4 @@ menu = {
 
 Por favor, note que `multiplyNumeric` não precisa de retornar nada. Deve modificar o próprio objecto.
 
-P.S. Use `typeof` para verificar por um número aqui.
+P.S. Use `typeof` aqui para verificar se é um número.

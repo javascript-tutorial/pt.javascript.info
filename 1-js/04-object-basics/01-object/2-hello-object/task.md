@@ -1,4 +1,4 @@
-importance: 5
+importância: 5
 
 ---
 
@@ -11,4 +11,3 @@ Escreva o código, uma ação por linha:
 3. Adicione a propriedade `surname` com o valor `Smith`.
 4. Altere o valor de `name` para `Pete`.
 5. Remova a propriedade `name` do objeto.
-
