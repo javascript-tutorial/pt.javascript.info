@@ -19,6 +19,11 @@ Both storage objects provide same methods and properties:
 - `key(index)` -- get the key on a given position.
 - `length` -- the number of stored items.
 
+<<<<<<< HEAD
+=======
+As you can see, it's like a `Map` collection (`setItem/getItem/removeItem`), but also allows access by index with `key(index)`.
+
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 Let's see how it works.
 
 ## localStorage demo
@@ -200,7 +205,7 @@ Now if both windows are listening for `window.onstorage`, then each one will rea
 
 ```js run
 // triggers on updates made to the same storage from other documents
-window.onstorage = event => {
+window.onstorage = event => { // same as window.addEventListener('storage', () => {
   if (event.key != 'now') return;
   alert(event.key + ':' + event.newValue + " at " + event.url);
 };
@@ -220,7 +225,7 @@ Modern browsers also support [Broadcast channel API](https://developer.mozilla.o
 
 Web storage objects `localStorage` and `sessionStorage` allow to store key/value in the browser.
 - Both `key` and `value` must be strings.
-- The limit is 2mb+, depends on the browser.
+- The limit is 5mb+, depends on the browser.
 - They do not expire.
 - The data is bound to the origin (domain/port/protocol).
 

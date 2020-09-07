@@ -25,8 +25,13 @@ let x = prompt("x?", "");
 let n = prompt("n?", "");
 
 if (n < 0) {
+<<<<<<< HEAD
   alert(`A potência de ${n} não é suportada,
     por favor insira um número inteiro positivo`);
+=======
+  alert(`Power ${n} is not supported,
+    please enter a non-negative integer number`);
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 } else {
   alert( pow(x, n) );
 }
@@ -87,8 +92,14 @@ Por exemplo:
 ```js
 // o acento grave (*backtick*) ` permite repartir uma *string* por múltiplas linhas
 let str = `
+<<<<<<< HEAD
   O TC39 da ECMA International, é um grupo de desenvolvedores e implementadores de  JavaScript, académicos, e outros, colaborando com a comunidade para manter e
   evoluir a definição de JavaScript.
+=======
+  ECMA International's TC39 is a group of JavaScript developers,
+  implementers, academics, and more, collaborating with the community
+  to maintain and evolve the definition of JavaScript.
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 `;
 ```
 

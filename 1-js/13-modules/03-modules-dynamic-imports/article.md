@@ -51,4 +51,9 @@ Like this:
 
 So, dynamic imports are very simple to use.
 
+<<<<<<< HEAD
 Also, dynamic imports work in regular scripts, they don't require `script type="module"`.
+=======
+So we can't copy `import` to a variable or use `call/apply` with it. It's not a function.
+```
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017

@@ -124,6 +124,7 @@ Descreva a arquitetura
 Documente os parâmetros e o uso da função
 : Existe uma sintaxe especial, [JSDoc](http://en.wikipedia.org/wiki/JSDoc), para documentar uma função: o seu uso, parâmetros, e valor retornado.
 
+<<<<<<< HEAD
 Por exemplo:
 
 ```js
@@ -133,17 +134,35 @@ Por exemplo:
  * @param {number} x O número a elevar.
  * @param {number} n A potência, deve ser um número natural.
  * @return {number} x elevado à n-ésima potência.
+=======
+For instance:
+```js
+/**
+ * Returns x raised to the n-th power.
+ *
+ * @param {number} x The number to raise.
+ * @param {number} n The power, must be a natural number.
+ * @return {number} x raised to the n-th power.
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
  */
 function pow(x, n) {
   ...
 }
 ```
 
+<<<<<<< HEAD
 Tais comentários, nos permitem compreender o propósito da função e a usar de forma correta, sem olhar para o seu código.
 
 A propósito, muitos editores, como o [WebStorm](https://www.jetbrains.com/webstorm/, podem também os perceber e os usar para fornecer completação automática de palavras (*autocomplete*), e algumas verificações de código (*code-checking*) automáticas.
 
 Também, existem ferramentas como o [JSDoc 3](https://github.com/jsdoc3/jsdoc), que podem gerar documentação HTML a partir de comentários. Pode ler mais informação sobre o JSDoc em <http://usejsdoc.org/>.
+=======
+Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+
+By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 
 Porque é a tarefa solucionada dessa forma?
 : O que está escrito é importante. Mas, o que *não* está escrito pode ser ainda mais importante, para se compreender o que se passa. Porque é a tarefa solucionada exatamente dessa forma? O código não dá resposta alguma.
@@ -174,7 +193,12 @@ Bons comentários, nos permitem manter o código saudável, voltar a ele após u
 
 **Evite comentários:**
 
+<<<<<<< HEAD
 - Que digam "como o código funciona" e "o que faz".
 - Coloque-os apenas se for impossível tornar o código tão simples e auto-descritivo que não precise deles.
+=======
+- That tell "how code works" and "what it does".
+- Put them in only if it's impossible to make the code so simple and self-descriptive that it doesn't require them.
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 
 Comentários também são utilizados por ferramentas de auto-documentação, como o JSDoc3: elas os lêm e geram documentos em HTML (ou documentos num outro formato).

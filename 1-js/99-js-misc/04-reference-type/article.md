@@ -106,9 +106,12 @@ That's for the subsequent method call `()` to get the object and set `this` to i
 For all other operations, the reference type automatically becomes the property value (a function in our case).
 
 The whole mechanics is hidden from our eyes. It only matters in subtle cases, such as when a method is obtained dynamically from the object, using an expression.
+<<<<<<< HEAD
 
 
 
 
 
  result of dot `.` isn't actually a method, but a value of `` needs a way to pass the information about `obj`
+=======
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
