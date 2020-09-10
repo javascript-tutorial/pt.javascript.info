@@ -6,26 +6,26 @@ O que acontece quando algo não é mais necessário? Como o interpretador de Jav
 
 ## Acessibilidade
 
-O principal conceito para gestão de memória em JavaScript é o de *acessibilidade* (*reachability*).
+O principal conceito para a gestão de memória em JavaScript é o de *acessibilidade* (*reachability*).
 
-Simplesmente dito, valores "acessíveis" (reachable) são aqueles que de alguma forma podem ser acedidos ou utilizados. Eles têm a garantia de poderem estar armazenados em memória.
+Simplesmente dito, valores "alcançáveis" (reachable) são aqueles que de alguma forma podem ser acedidos ou utilizados. Eles têm a garantia de estar armazenados em memória.
 
-1. Existe um conjunto básico de valores inerentemente acessíveis, que não podem ser apagados por razões óbvias.
+1. Existe um conjunto básico de valores inerentemente alcançáveis, que não podem ser apagados por razões óbvias.
 
     Por exemplo:
 
-    - Variáveis locais e parâmetros da função atual.
-    - Variáveis e parâmetros para outras funções, na atual cadeia de chamadas aninhadas (*nested calls*).
+    - Variáveis locais e parâmetros da função em execução.
+    - Variáveis e parâmetros de outras funções, na presente sequência de chamadas aninhadas (*nested calls*).
     - Variáveis globais.
     - (existem outros, incluindo internos)
 
     Estes valores são chamados de *raízes* (*roots*).
 
-2. Qualquer outro valor é considerado acessível, se puder ser acedido a partir de um valor *root* por meio de uma referência ou cadeia de referências.
+2. Qualquer outro valor é considerado alcançável, se puder ser acedido a partir de um valor *root* por meio de uma referência ou sequência de referências.
 
-    Por exemplo, se existir um objeto numa variável local, e esse objeto tiver uma propriedade a referenciar um outro objeto, este objeto é considerado acessível. E aqueles que ele referenciar também o são. Exemplos detalhados a seguir.
+    Por exemplo, se existir um objeto numa variável local, e esse objeto tiver uma propriedade a referenciar um outro objeto, este objeto é considerado alcançável. E aqueles aos quais ele referenciar também o são. Exemplos detalhados a seguir.
 
-Existe um processo de fundo (*background process*) no interpretador de JavaScript (*JavaScript  engine*) chamado de [coletor de lixo](https://pt.wikipedia.org/wiki/Coletor_de_lixo_(inform%C3%A1tica)). Ele monitora todos os objetos e remove aqueles que se tornaram inacessíveis.
+Existe um processo de fundo (*background process*) no interpretador de JavaScript, chamado de [coletor de lixo](https://pt.wikipedia.org/wiki/Coletor_de_lixo_(inform%C3%A1tica)) (*garbage collector*). Ele monitora todos os objetos, e remove aqueles que se tornaram inalcançáveis.
 
 ## Um exemplo simples
 
@@ -40,7 +40,7 @@ let user = {
 
 ![](memory-user-john.svg)
 
-Aqui, a seta mostra uma referência para um objeto. A variável global `"user"` referencia o objeto `{name: "John"}` (vamos o chamar de John para abreviar). A propriedade `"name"` de John armazena um primitivo, por isso é pintada dentro do objeto.
+Aqui, a seta mostra uma referência para um objeto. A variável global `"user"` referencia o objeto `{name: "John"}` (vamos o chamar de John para abreviar). A propriedade `"name"` de John armazena um primitivo, por isso é desenhada dentro do objeto.
 
 Se o valor de `user` for substituído, a referência é perdida:
 
@@ -50,7 +50,7 @@ user = null;
 
 ![](memory-user-john-lost.svg)
 
-Agora, John torna-se inalcançável. Não há forma de o aceder, nenhuma referência para ele. O coletor de lixo (*garbage collector*) irá por os dados na lixeira e libertar a memória.
+Agora, John se torna inalcançável. Não há forma de o aceder, nenhuma referência para ele. O coletor de lixo irá por os dados na lixeira, e libertar a memória.
 
 ## Duas referências
 
@@ -99,7 +99,7 @@ let family = marry({
 });
 ```
 
-A função `marry` "casa" dois objetos dando referências recíprocas, e retorna um novo objeto contendo ambos.
+A função `marry` "casa" dois objetos dando-lhes referências recíprocas, e retorna um novo objeto contendo ambos.
 
 A estrutura resultante em memória :
 
@@ -118,11 +118,11 @@ delete family.mother.husband;
 
 Não é suficiente eliminar apenas uma destas duas referências, porque todos os objetos ainda estariam acessíveis.
 
-Mas se eliminarmos ambas, então poderemos ver que John já não tem nenhuma referência para ele (de entrada - *incoming*):
+Mas se eliminarmos ambas, então poderemos ver que John já não tem nenhuma referência para ele (*incoming*):
 
 ![](family-no-father.svg)
 
-Referências de saída (*outgoing*) não interessam. Apenas as de entrada (*incoming*) podem tornar um objeto acessível. Portanto, John está agora inacessível e será removido da memória, com todos os seus dados porque também se tornaram inacessíveis.
+Referências de saída (*outgoing*) não interessam. Apenas as de entrada (*incoming*) podem tornar um objeto alcançável. Portanto, John está agora inalcançável e será removido da memória, com todos os seus dados porque também se tornaram inacessíveis.
 
 Após a coleta de lixo (*garbage collection*):
 
@@ -130,7 +130,7 @@ Após a coleta de lixo (*garbage collection*):
 
 ## Ilha inacessível
 
-É possível que toda a ilha de objetos interligados se torne inacessível e seja removida da memória.
+É possível que toda a ilha de objetos interligados se torne inalcançável e seja removida da memória.
 
  O objeto fonte é o mesmo de acima. Se:
 
@@ -146,17 +146,17 @@ Este exemplo demonstra o quão importante é o conceito de acessibilidade.
 
 É óbvio que John e Ann ainda estão conetados, ambos têm referências de entrada (*incoming*). Mas, isso não é o suficiente.
 
-O objeto anterior `"family"` foi desconetado da raiz (*root*), não existe mais alguma referência para ele, assim toda a ilha se torna inalcançável e será removida.
+O presente objeto `"family"` foi desconetado da raiz, não existe mais alguma referência para ele, assim toda a ilha se torna inalcançável e será removida.
 
 ## Algoritmos internos
 
 O  algoritmo básico de coleta de lixo é chamado de "marcar-e-varrer" ("*mark-and-sweep*").
 
-Os passos seguintes para a "coleta de lixo" são executados periódicamente:
+Os passos seguintes, para a "coleta de lixo" são executados periódicamente:
 
-- O coletor de lixo toma raízes e as "marca" (recorda-se delas).
-- Depois, visita e "marca" todas as referências a sair delas.
-- A seguir, ele visita objetos já marcados e marca as referências *deles*. Todos os objetos visitados são recordados, para não visitar o mesmo objeto no futuro.
+- O coletor de lixo toma raízes e as "marca" (se recorda delas).
+- Depois, visita e "marca" todas as referências que saiam delas.
+- A seguir, ele visita os objetos marcados e marca as referências *destes*. Todos os objetos visitados são recordados, para não visitar o mesmo objeto no futuro.
 - ...E assim por diante, até que todas as referências alcançáveis (a partir das *roots*) sejam visitadas.
 - Todos os objetos, com exceção dos marcados, são removidos.
 
@@ -164,7 +164,7 @@ Por exemplo, se a nossa estrutura de objetos se parecer a esta:
 
 ![](garbage-collection-1.svg)
 
-Claramente, vemos uma "ilha inacessível" no lado direito. Agora, vamos ver como o *garbage collector* "*mark-and-sweep*" lida com ela.
+Claramente, vemos uma "ilha inalcançável" no lado direito. Agora, vamos ver como o *garbage collector* "*mark-and-sweep*" lida com ela.
 
 O primeiro passo, marca as raízes (*roots*):
 
@@ -182,32 +182,32 @@ Agora, os objetos que não puderam ser visitados no processo são considerados i
 
 ![](garbage-collection-5.svg)
 
-Podemos também imaginar o processo como derramar um enorme balde de tinta a partir das raízes, e que corre por todas as referências e marca todos os objetos que alcança. Os não marcados, são então removidos.
+Podemos também imaginar o processo como derramar um enorme balde de tinta a partir das raízes,  que corre por todas as referências e marca todos os objetos que alcança. Os não marcados, são então removidos.
 
-Esse, é o conceito de como funciona a coleta de lixo. Interpretadores de JavaScript (*JavaScript engines*) aplicam muitas optimizações para a fazer correr mais rapidamente, e não afetar a execução do programa.
+Este, é o conceito de como funciona a coleta de lixo. Interpretadores de JavaScript (*JavaScript engines*) aplicam muitas optimizações para a fazer correr mais rapidamente, e não afetar a execução do programa.
 
 Algumas das optimizações:
 
 - **Generational collection** (coleta geracional) -- objetos são separados em dois grupos: "novos" e "velhos". Muitos objetos aparecem, fazem o seu trabalho e terminam depressa, eles podem ser limpos agressivamente. Aqueles que sobrevivem por mais tempo, tornam-se "velhos" e são examinados com menos frequência.
-- **Incremental collection** (coleta incremental) -- se existirem muitos objetos, e tentarmos percorrer e marcar todo o conjunto de objetos de uma só vez, pode levar algum tempo e introduzir visíveis atrasos na execução do programa. Assim, o interpretador (*engine*) tentar repartir a coleta de lixo em pedaços. Então, os pedaços são executados um por um, separadamente. Isso, requere alguma anotação (*bookkeeping*) extra entre eles para rastrear alterações, mas temos muitos pequeninos atrasos em vez de um único grande.
+- **Incremental collection** (coleta incremental) -- se existirem muitos objetos, e tentarmos percorrer e marcar todo o conjunto de objetos de uma só vez, pode levar algum tempo e introduzir visíveis atrasos na execução do programa. Assim, o interpretador tenta repartir a coleta de lixo em pedaços. Então, os pedaços são executados um por um, separadamente. Isso, requere alguma anotação (*bookkeeping*) extra entre eles para rastrear alterações, mas temos muitos pequeninos atrasos em vez de um único grande.
 - **Idle-time collection** (coleta no tempo ocioso) -- o coletor de lixo tenta apenas correr quando o CPU estiver parado, para reduzir possíveis efeitos sobre a execução do programa.
 
-Existem outras optimizações e sabores de algoritmos para coleta de lixo. Embora gostasse de os descrever aqui, tenho de parar porque interpretadores diferentes implementam diferentes adaptações (*tweaks*) e técnicas. E, ainda mais importante, as coisas mudam à medida que os interpretadores evoluem, assim estudar em pormenor "adiantadamente", sem uma necessidade real provavelmente não vale o esforço. A não ser claro, por puro interesse, e para isso haverão alguns links para si abaixo.
+Existem outras optimizações e sabores de algoritmos para a coleta de lixo. Embora gostasse de os descrever aqui, tenho de parar porque interpretadores diferentes implementam diferentes adaptações (*tweaks*) e técnicas. E ainda mais importante, as coisas mudam à medida que os interpretadores evoluem, assim estudar em pormenor "adiantadamente", sem uma necessidade real provavelmente não vale o esforço. A não ser claro, por puro interesse, e para isso haverão alguns links para si abaixo.
 
 ## Sumário
 
 As principais coisas a saber:
 
 - A coleta de lixo é executada automaticamente. Não a podemos forçar nem evitar.
-- Objetos são retidos em memória enquanto forem acessíveis.
+- Objetos são retidos em memória enquanto forem alcançáveis.
 - Ser referenciado não é o mesmo que ser alcançável (a partir de uma raíz): um grupo de objetos interligados pode se tornar inacessível no seu todo.
 
 Interpretadores modernos implementam algoritmos avançados para a coleta de lixo.
 
 O livro geral "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones et al), cobre alguns deles.
 
-Se tiver familiaridade com programação a baixo-nível, mais detalhada informação sobre o coletor de lixo de V8 está no artigo [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
+Se tiver familiaridade com programação de baixo-nível, mais detalhada informação sobre o coletor de lixo de V8 está no artigo [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
 
-O [V8 blog](http://v8project.blogspot.com/) também publica artigos sobre alterações na gestão de memória de tempos em tempos. Naturalmente, para aprender sobre a coleta de lixo, seria melhor preparar-se aprendendo sobre o funcionamento interno do V8 em geral, e ler o blog de [Vyacheslav Egorov](http://mrale.ph) que trabalhou como um dos engenheiros do V8. Digo: "V8", porque é o que contém melhores artigos na internet. Para outros interpretadores, muitas abordagens são similares, porém a coleta de lixo difere em muitos aspetos.
+O [V8 blog](http://v8project.blogspot.com/) também publica artigos sobre alterações na gestão de memória de tempos em tempos. Naturalmente, para aprender sobre a coleta de lixo, melhor seria  preparar-se aprendendo sobre o funcionamento interno do V8 em geral, e ler o blog de [Vyacheslav Egorov](http://mrale.ph) que trabalhou como um dos engenheiros do V8. Digo: "V8", porque é o que contém melhores artigos na internet. Para outros interpretadores, muitas abordagens são similares, porém a coleta de lixo difere em muitos aspetos.
 
-Conhecimento aprofundado sobre interpretadores é bom quando precisar de optimizações a baixo-nível. Seria sábio planear isso como próximo passo, depois de se familiarizar com a linguagem.  
+Conhecimento aprofundado sobre interpretadores é bom para quando precisar de optimizações de baixo-nível. Seria sábio planear isso como próximo passo, depois de se familiarizar com a linguagem.  
