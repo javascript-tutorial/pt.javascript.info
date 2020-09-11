@@ -1,6 +1,6 @@
-**Error**!
+**Erro**!
 
-Try it:
+Tente isto:
 
 ```js run
 let user = {
@@ -8,22 +8,22 @@ let user = {
   go: function() { alert(this.name) }
 }
 
-(user.go)() // error!
+(user.go)() // erro!
 ```
 
-The error message in most browsers does not give understanding what went wrong.
+A mensagem de erro, na maior parte dos navegadores (*browsers*), não nos dá uma compreensão do que ocorre de errado.
 
-**The error appears because a semicolon is missing after `user = {...}`.**
+**O erro aparece porque falta um ponto-e-vírgula depois de `user = {...}`.**
 
-JavaScript does not assume a semicolon before a bracket `(user.go)()`, so it reads the code like:
+JavaScript não assume um ponto-e-vírgula antes do parêntese de `(user.go)()`, por isso lê o código como:
 
 ```js no-beautify
 let user = { go:... }(user.go)()
 ```
 
-Then we can also see that such a joint expression is syntactically a call of the object `{ go: ... }` as a function with the argument `(user.go)`. And that also happens on the same line with `let user`, so the `user` object has not yet even been defined, hence the error. 
+Assim, podemos também observar que, tal expressão conjunta é sintáticamente uma chamada do objeto `{ go: ... }` como uma função, tomando `(user.go)` como argumento. E, isso também ocorre na mesma linha que `let user`, então o objeto `user` ainda não foi definido, e por isto o erro.
 
-If we insert the semicolon, all is fine:
+Se inserirmos o ponto-e-vírgula, tudo estará bem:
 
 ```js run
 let user = {
@@ -31,13 +31,7 @@ let user = {
   go: function() { alert(this.name) }
 }*!*;*/!*
 
-(user.go)() // John
+(user.go)() // 'John'
 ```
 
-Please note that brackets around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
-
-
-
-
-
-
+Por favor, note que os parênteses em `(user.go)` nada aqui fazem. Geralmente, eles estabelecem a ordem das operações, mas aqui o ponto `.` já funciona à partida, então não têm efeito algum. Apenas, aquele ponto-e-vírgula importa.
