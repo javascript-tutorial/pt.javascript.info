@@ -257,7 +257,7 @@ The window that wants to send a message calls [postMessage](mdn:api/Window.postM
 Arguments:
 
 `data`
-: The data to send. Can be any object, the data is cloned using the "structured cloning algorithm". IE supports only strings, so we should `JSON.stringify` complex objects to support that browser.
+: The data to send. Can be any object, the data is cloned using the "structured serialization algorithm". IE supports only strings, so we should `JSON.stringify` complex objects to support that browser.
 
 `targetOrigin`
 : Specifies the origin for the target window, so that only a window from the given origin will get the message.
@@ -327,10 +327,13 @@ The full example:
 
 [codetabs src="postmessage" height=120]
 
+<<<<<<< HEAD
 ```smart header="There's no delay"
 There's totally no delay between `postMessage` and the `message` event. That happens synchronously, even faster than `setTimeout(...,0)`.
 ```
 
+=======
+>>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 ## Summary
 
 To call methods and access the content of another window, we should first have a reference to it.
