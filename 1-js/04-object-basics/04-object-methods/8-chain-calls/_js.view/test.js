@@ -1,5 +1,5 @@
 
-describe('Ladder', function() {
+describe('Escada', function() {
   before(function() {
     window.alert = sinon.stub(window, "alert");
   });

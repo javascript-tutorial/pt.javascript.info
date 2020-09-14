@@ -6,7 +6,7 @@ importância: 5
 
 Aqui, a função `makeUser` retorna um objeto.
 
-Qual o resultado de aceder à sua `ref`? Porquê?
+Qual é o resultado de aceder à sua `ref`? Porquê?
 
 ```js
 function makeUser() {
@@ -18,5 +18,5 @@ function makeUser() {
 
 let user = makeUser();
 
-alert( user.ref.name ); // Qual o resultado?
+alert( user.ref.name ); // Qual é o resultado?
 ```
