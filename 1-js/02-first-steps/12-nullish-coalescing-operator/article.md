@@ -1,22 +1,22 @@
-# Nullish coalescing operator '??'
+# Operador "nullish coalescing" '??'
 
 [recent browser="new"]
 
-The nullish coalescing operator `??` provides a short syntax for selecting a first "defined" variable from the list.
+O operador "nullish coalescing" `??` disponibiliza uma sintaxe curta para obter a primeira variável "definida" em uma lista.
 
-The result of `a ?? b` is:
-- `a` if it's not `null` or `undefined`,
-- `b`, otherwise.
+O resultado de `a ?? b` é:
+- `a` se ele não é `null` ou `undefined`,
+- `b`, nos demais casos.
 
-So, `x = a ?? b` is a short equivalent to:
+Então, `x = a ?? b` é um equivalente curto a:
 
 ```js
 x = (a !== null && a !== undefined) ? a : b;
 ```
 
-Here's a longer example.
+Veja um exemplo mais longo.
 
-Let's say, we have a `firstName`, `lastName` or `nickName`, all of them optional.
+Digamos que temos `firstName`, `lastName` ou `nickName`, todos opcionais.
 
 Let's choose the defined one and show it (or "Anonymous" if nothing is set):
 
