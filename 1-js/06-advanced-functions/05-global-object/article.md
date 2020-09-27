@@ -5,7 +5,11 @@ O objeto global fornece variáveis e funções que estão disponíveis em qualqu
 
 No navegador ele é chamado de `window`, no Node.js é `global`, em outros ambientes pode ter outro nome.
 
+<<<<<<< HEAD
 Recentemente, `globalThis` foi adicionado a linguagem como um nome padrão para o objeto global, que deve ser suportado em todos os ambientes. Em alguns navegadores, como o "non-Chromium Edge", `globalThis` ainda não é suportado, mas pode ser facilmente utilizado através de um polyfill.
+=======
+Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. It's supported in all major  browsers.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Usamos `window` aqui, assumindo que nosso ambiente seja um navegador. Se o seu script puder ser executado em outros ambientes, é melhor utilizar o `globalThis`.
 
@@ -81,7 +85,14 @@ if (!window.Promise) {
     Isso inclui objetos nativos Javascript, como `Array` e valores específicos do ambiente, como `window.innerHeight` -- a altura da janela no navegador.
 - O objeto global tem o nome universal `globalThis`.
 
+<<<<<<< HEAD
     ...Porém é mais frequentemente referido pelos seu nomes específicos de ambientes "old-school", como `window` (navegador) e `global` (Node.js). Como `globalThis` é uma proposta recente, não é suportado pelo "non-Chromium Edge" (mas pode ser usado com um polyfill).
 - Devemos salvar valores no objeto global apenas se eles forem realmente globais em nosso projeto. E manter sua quantidade no mínimo.
 - No navegador, ao menos que estejamos usando [modules](info:modules), funções e variáveis globais declaradas com `var` tornam-se uma propriedade do objeto global.
 - Para tornar nosso código à prova de mudanças no futuro e mais fácil de entender, devemos acessar as propriedades do objeto global diretamente, como `window.x`.
+=======
+    ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js).
+- We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
+- In-browser, unless we're using [modules](info:modules), global functions and variables declared with `var` become a property of the global object.
+- To make our code future-proof and easier to understand, we should access properties of the global object directly, as `window.x`.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3

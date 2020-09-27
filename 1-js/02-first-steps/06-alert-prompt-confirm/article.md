@@ -4,7 +4,11 @@ As we'll be using the browser as our demo environment, let's see a couple of fun
 
 ## alert
 
+<<<<<<< HEAD:1-js/02-first-steps/06-alert-prompt-confirm/article.md
 This one we've seen already. It shows a message and waits for the user to presses "OK".
+=======
+This one we've seen already. It shows a message and waits for the user to press "OK".
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3:1-js/02-first-steps/06-alert-prompt-confirm/article.md
 
 For example:
 
@@ -31,7 +35,11 @@ It shows a modal window with a text message, an input field for the visitor, and
 : An optional second parameter, the initial value for the input field.
 
 ```smart header="The square brackets in syntax `[...]`"
+<<<<<<< HEAD:1-js/02-first-steps/06-alert-prompt-confirm/article.md
 The square brackets around `default` in the syntax above denote that the parameter as optional, not required.
+=======
+The square brackets around `default` in the syntax above denote that the parameter is optional, not required.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3:1-js/02-first-steps/06-alert-prompt-confirm/article.md
 ```
 
 The visitor can type something in the prompt input field and press OK. Then we get that text in the `result`. Or they can cancel the input by pressing Cancel or hitting the `key:Esc` key, then we get `null` as the `result`.
