@@ -170,10 +170,14 @@ That is:
 - The script that loads first -- runs first ("load-first" order).
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 We can change the load-first order into the document order by explicitly setting `async` to `false`:
 =======
 This can be changed if we explicitly set `script.async=true`. Then scripts will be executed in the document order, just like `defer`.
 >>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+=======
+This can be changed if we explicitly set `script.async=false`. Then scripts will be executed in the document order, just like `defer`.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 In this example, `loadScript(src)` function adds a script and also sets `async` to `false`.
 

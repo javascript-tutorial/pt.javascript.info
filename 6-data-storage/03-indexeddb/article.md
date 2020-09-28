@@ -17,6 +17,7 @@ That power is usually excessive for traditional client-server apps. IndexedDB is
 The native interface to IndexedDB, described in the specification <https://www.w3.org/TR/IndexedDB>, is event-based.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 We can also use `async/await` with the help of a promise-based wrapper, like <https://github.com/jakearchibald/idb>. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases, so we'll start with events, and then use the wrapper.
 
 ## Open database
@@ -24,6 +25,9 @@ We can also use `async/await` with the help of a promise-based wrapper, like <ht
 To start working with IndexedDB, we need to open a database.
 =======
 We can also use `async/await` with the help of a promise-based wrapper, like <https://github.com/jakearchibald/idb>. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases. So we'll start with events, and then, after we gain understanding of IndexedDb, we'll use the wrapper.
+=======
+We can also use `async/await` with the help of a promise-based wrapper, like <https://github.com/jakearchibald/idb>. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases. So we'll start with events, and then, after we gain an understanding of IndexedDb, we'll use the wrapper.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 ## Open database
 
@@ -39,6 +43,7 @@ let openRequest = indexedDB.open(name, version);
 - `name` -- a string, the database name.
 - `version` -- a positive integer version, by default `1` (explained below).
 
+<<<<<<< HEAD
 We can have many databases with different names, all within the current origin (domain/protocol/port). So different websites can't access databases of each other.
 
 <<<<<<< HEAD
@@ -48,6 +53,9 @@ After the call, we need to listen to events on `openRequest` object:
 - `upgradeneeded`: database version is outdated (see below).
 
 **IndexedDB has a built-in mechanism of "schema versioning", absent in server-side databases.**
+=======
+We can have many databases with different names, but all of them exist within the current origin (domain/protocol/port). Different websites can't access each other's databases.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Unlike server-side databases, IndexedDB is client-side, we don't have the data at hands. But when we publish a new version of our app, we may need to update the database.
 =======
@@ -58,20 +66,28 @@ The call returns `openRequest` object, we should listen to events on it:
 
 **IndexedDB has a built-in mechanism of "schema versioning", absent in server-side databases.**
 
+<<<<<<< HEAD
 Unlike server-side databases, IndexedDB is client-side, the data is stored in the browser, so we, developers, don't have "any time" access to it. So, when we published a new version of our app, and the user visits our webpage, we may need to update the database.
 >>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+=======
+Unlike server-side databases, IndexedDB is client-side, the data is stored in the browser, so we, developers, don't have full-time access to it. So, when we have published a new version of our app, and the user visits our webpage, we may need to update the database.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 If the local database version is less than specified in `open`, then a special event `upgradeneeded` is triggered, and we can compare versions and upgrade data structures as needed.
 
-The `upgradeneeded` event also triggers when the database did not exist yet (technically, it's version is `0`), so we can perform initialization.
+The `upgradeneeded` event also triggers when the database doesn't yet exist (technically, it's version is `0`), so we can perform the initialization.
 
 <<<<<<< HEAD
 For instance, when we first publish our app, we open it with version `1` and perform the initialization in `upgradeneeded` handler:
 =======
 Let's say we published the first version of our app.
 
+<<<<<<< HEAD
 Then we can open the database with version `1` and perform the initialization in `upgradeneeded` handler like this:
 >>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+=======
+Then we can open the database with version `1` and perform the initialization in an `upgradeneeded` handler like this:
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 ```js
 let openRequest = indexedDB.open("store", *!*1*/!*);
@@ -87,7 +103,7 @@ openRequest.onerror = function() {
 
 openRequest.onsuccess = function() {
   let db = openRequest.result;
-  // continue to work with database using db object
+  // continue working with database using db object
 };
 ```
 
@@ -120,9 +136,13 @@ openRequest.onupgradeneeded = function(event) {
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 After `openRequest.onsuccess` we have the database object in `openRequest.result`, that we'll use for further operations.
 =======
 Please note: as our current version is `2`, `onupgradeneeded` handler has a code branch for version `0`, suitable for users that come for the first time and have no database, and also for version `1`, for upgrades.
+=======
+Please note: as our current version is `2`, `onupgradeneeded` handler has a code branch for version `0`, suitable for users that are accessing for the first time and have no database, and also for version `1`, for upgrades.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 And then, only if `onupgradeneeded` handler finishes without errors, `openRequest.onsuccess` triggers, and the database is considered successfully opened.
 >>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
@@ -142,9 +162,9 @@ let deleteRequest = indexedDB.deleteDatabase(name)
 ```warn header="We can't open an older version of the database"
 If the current user database has a higher version than in the `open` call, e.g. the existing DB version is `3`, and we try to `open(...2)`, then that's an error, `openRequest.onerror` triggers.
 
-That's odd, but such thing may happen when a visitor loaded an outdated JavaScript code, e.g. from a proxy cache. So the code is old, but his database is new.
+That's rare, but such a thing may happen when a visitor loads outdated JavaScript code, e.g. from a proxy cache. So the code is old, but his database is new.
 
-To protect from errors, we should check `db.version` and suggest him to reload the page. Use proper HTTP caching headers to avoid loading the old code, so that you'll never have such problem.
+To protect from errors, we should check `db.version` and suggest a page reload. Use proper HTTP caching headers to avoid loading the old code, so that you'll never have such problems.
 ```
 
 ### Parallel update problem
@@ -160,13 +180,13 @@ So there's a tab with an open connection to DB version `1`, while the second tab
 
 The problem is that a database is shared between two tabs, as it's the same site, same origin. And it can't be both version `1` and `2`. To perform the update to version `2`, all connections to version 1 must be closed, including the one in the first tab.
 
-In order to organize that, the `versionchange` event triggers in such case on the "outdated" database object. We should listen to it and close the old database connection (and probably suggest the visitor to reload the page, to load the updated code).
+In order to organize that, the `versionchange` event triggers on the "outdated" database object. We should listen for it and close the old database connection (and probably suggest a page reload, to load the updated code).
 
-If we don't listen to `versionchange` event and don't close the old connection, then the second, new connection won't be made. The `openRequest` object will emit the `blocked` event instead of `success`. So the second tab won't work.
+If we don't listen for the `versionchange` event and don't close the old connection, then the second, new connection won't be made. The `openRequest` object will emit the `blocked` event instead of `success`. So the second tab won't work.
 
 Here's the code to correctly handle the parallel upgrade.
 
-It installs `onversionchange` handler after the database is opened, that closes the old connection:
+It installs an `onversionchange` handler after the database is opened, that closes the old connection:
 
 ```js
 let openRequest = indexedDB.open("store", 2);
@@ -202,9 +222,9 @@ Here we do two things:
 1. Add `db.onversionchange` listener after a successful opening, to be informed about a parallel update attempt.
 2. Add `openRequest.onblocked` listener to handle the case when an old connection wasn't closed. This doesn't happen if we close it in `db.onversionchange`.
 
-There are other variants. For example, we can take time to close things gracefully in `db.onversionchange`, prompt the visitor to save the data before the connection is closed. The new updating connection will be blocked immediatelly after `db.onversionchange` finished without closing, and we can ask the visitor in the new tab to close other tabs for the update.
+There are other variants. For example, we can take the time to close things gracefully in `db.onversionchange`, and prompt the visitor to save the data before the connection is closed. The new updating connection will be blocked immediately after `db.onversionchange` has finished without closing, and we can ask the visitor in the new tab to close other tabs for the update.
 
-Such update collision happens rarely, but we should at least have some handling for it, e.g. `onblocked` handler, so that our script doesn't surprise the user by dying silently.
+These update collisions happen rarely, but we should at least have some handling for them, e.g. `onblocked` handler, so that our script doesn't surprise the user by dying silently.
 
 ## Object store
 
@@ -219,15 +239,27 @@ Despite being named an "object store", primitives can be stored too.
 
 IndexedDB uses the [standard serialization algorithm](https://www.w3.org/TR/html53/infrastructure.html#section-structuredserializeforstorage) to clone-and-store an object. It's like `JSON.stringify`, but more powerful, capable of storing much more datatypes.
 
-An example of object that can't be stored: an object with circular references. Such objects are not serializable. `JSON.stringify` also fails for such objects.
+An example of an object that can't be stored: an object with circular references. Such objects are not serializable. `JSON.stringify` also fails for such objects.
 
 **There must be an unique `key` for every value in the store.**     
 
+<<<<<<< HEAD
 A key must have a type one of: number, date, string, binary, or array. It's a unique object identifier: we can search/remove/update values by the key.
 
 ![](indexeddb-structure.svg)
 
 We can provide a key when we add an value to the store, similar to `localStorage`. That's good for storing primitive values. But when we store objects, IndexedDB allows to setup an object property as the key, that's much more convenient. Or we can auto-generate keys.
+=======
+A key must be one of the these types - number, date, string, binary, or array. It's a unique identifier, so we can search/remove/update values by the key.
+
+![](indexeddb-structure.svg)
+
+
+As we'll see very soon, we can provide a key when we add a value to the store, similar to `localStorage`. But when we store objects, IndexedDB allows setting up an object property as the key, which is much more convenient. Or we can auto-generate keys.
+
+But we need to create an object store first.
+
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 The syntax to create an object store:
 ```js
@@ -250,11 +282,21 @@ db.createObjectStore('books', {keyPath: 'id'});
 
 **An object store can only be created/modified while updating the DB version, in `upgradeneeded` handler.**
 
+<<<<<<< HEAD
 That's a technical limitation. Outside of the handler we'll be able to add/remove/update the data, but object stores are changed only during version update.
 
 To do an upgrade, there are two main ways:
 1. We can compare versions and run per-version operations.
 2. Or we can get a list of existing object stores as `db.objectStoreNames`. That object is a [DOMStringList](https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#domstringlist), and it provides `contains(name)` method to check for the existance. And then we can do updates depending on what exists.
+=======
+That's a technical limitation. Outside of the handler we'll be able to add/remove/update the data, but object stores can only be created/removed/altered during a version update.
+
+To perform a database version upgrade, there are two main approaches:
+1. We can implement per-version upgrade functions: from 1 to 2, from 2 to 3, from 3 to 4 etc. Then, in `upgradeneeded` we can compare versions (e.g. old 2, now 4) and run per-version upgrades step by step, for every intermediate version (2 to 3, then 3 to 4).
+2. Or we can just examine the database: get a list of existing object stores as `db.objectStoreNames`. That object is a [DOMStringList](https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#domstringlist) that provides `contains(name)` method to check for existance. And then we can do updates depending on what exists and what doesn't.
+
+For small databases the second variant may be simpler.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Here's the demo of the second approach:
 
@@ -283,7 +325,7 @@ The term "transaction" is generic, used in many kinds of databases.
 
 A transaction is a group operations, that should either all succeed or all fail.
 
-For instance, when a person buys something, we need:
+For instance, when a person buys something, we need to:
 1. Subtract the money from their account.
 2. Add the item to their inventory.
 
@@ -295,7 +337,7 @@ Transactions can guarantee that.
 
 To start a transaction:
 
-```js run
+```js
 db.transaction(store[, type]);
 ```
 
@@ -306,10 +348,17 @@ db.transaction(store[, type]);
 
 There'is also `versionchange` transaction type: such transactions can do everything, but we can't create them manually. IndexedDB automatically creates a `versionchange` transaction when opening the database, for `updateneeded` handler. That's why it's a single place where we can update the database structure, create/remove object stores.
 
+<<<<<<< HEAD
 ```smart header="What are transaction types for?"
 Performance is the reason why transactions need to be labeled either `readonly` and `readwrite`.
 
 Many `readonly` transactions can access concurrently the same store, but `readwrite` transactions can't. A `readwrite` transaction "locks" the store for writing. The next transaction must wait before the previous one finishes before accessing the same store.
+=======
+```smart header="Why are there different types of transactions?"
+Performance is the reason why transactions need to be labeled either `readonly` and `readwrite`.
+
+Many `readonly` transactions are able to access the same store concurrently, but `readwrite` transactions can't. A `readwrite` transaction "locks" the store for writing. The next transaction must wait before the previous one finishes before accessing the same store.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 ```
 
 After the transaction is created, we can add an item to the store, like this:
@@ -343,7 +392,7 @@ request.onerror = function() {
 
 There are basically four steps:
 
-1. Create a transaction, mention all stores it's going to access, at `(1)`.
+1. Create a transaction, mentioning all the stores it's going to access, at `(1)`.
 2. Get the store object using `transaction.objectStore(name)`, at `(2)`.
 3. Perform the request to the object store `books.add(book)`, at `(3)`.
 4. ...Handle request success/error `(4)`, make other requests if needed, etc.
@@ -351,7 +400,7 @@ There are basically four steps:
 Object stores support two methods to store a value:
 
 - **put(value, [key])**
-    Add the `value` to the store. The `key` is supplied only if the object store did not have `keyPath` or `autoIncrement` option. If there's already a value with same key, it will be replaced.
+    Add the `value` to the store. The `key` is supplied only if the object store did not have `keyPath` or `autoIncrement` option. If there's already a value with the same key, it will be replaced.
 
 - **add(value, [key])**
     Same as `put`, but if there's already a value with the same key, then the request fails, and an error with the name `"ConstraintError"` is generated.
@@ -363,7 +412,11 @@ Just like when opening a database, we send a request: `books.add(book)`, and the
 
 ## Transactions autocommit
 
+<<<<<<< HEAD
 In the example above we started the transaction and made `add` request. We could make more requests. How do we finish ("commit") the transaction?
+=======
+In the example above we started the transaction and made `add` request. But as we stated previously, a transaction may have multiple associated requests, that must either all succeed or all fail. How do we mark the transaction as finished, with no more requests to come?
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 The short answer is: we don't.
 
@@ -383,7 +436,7 @@ So, in the example above no special code is needed to finish the transaction.
 
 Transactions auto-commit principle has an important side effect. We can't insert an async operation like `fetch`, `setTimeout` in the middle of transaction. IndexedDB will not keep the transaction waiting till these are done.
 
-In the code below `request2` in line `(*)` fails, because the transaction is already committed, can't make any request in it:
+In the code below, `request2` in line `(*)` fails, because the transaction is already committed, and can't make any request in it:
 
 ```js
 let request1 = books.add(book);
