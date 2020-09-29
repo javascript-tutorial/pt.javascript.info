@@ -2,7 +2,7 @@
 
 Uma variável em JavaScript é sempre de um certo tipo. Por exemplo, uma string ou um número.
 
-Há sete tipos de dados básicos em JavaScript. Aqui, vamos cobri-los em geral e nos próximos capítulos vamos falar sobre cada um deles em detalhe.
+Há oito tipos de dados básicos em JavaScript. Aqui, vamos cobri-los em geral e nos próximos capítulos vamos falar sobre cada um deles em detalhe.
 
 Podemos por qualquer tipo numa variável. Por exemplo, uma variável pode em um momento ser uma string e em outro um número:
 
