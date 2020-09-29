@@ -9,13 +9,8 @@ if (userName === 'Admin') {
 
   if (pass === 'TheMaster') {
     alert( 'Welcome!' );
-<<<<<<< HEAD
   } else if (pass == '' || pass == null) {
     alert( 'Canceled.' );
-=======
-  } else if (pass === '' || pass === null) {
-    alert( 'Canceled' );
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
   } else {
     alert( 'Wrong password' );
   }
