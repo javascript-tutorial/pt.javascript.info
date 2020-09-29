@@ -140,9 +140,7 @@ alert( +"" );   // 0
 
 It actually does the same thing as `Number(...)`, but is shorter.
 
-The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings.
-
-What if we want to sum them?
+The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings. What if we want to sum them?
 
 The binary plus would add them as strings:
 
@@ -234,14 +232,9 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-In the example above, the result of `(a = b + 1)` is the value which is assigned to `a` (that is `3`). It is then used to subtract from `3`.
+In the example above, the result of `(a = b + 1)` is the value which is assigned to `a` (that is `3`). It is then used for further evaluations.
 
-<<<<<<< HEAD:1-js/02-first-steps/08-operators/article.md
-Funny code, isn't it? We should understand how it works, because sometimes we see it in 3rd-party libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make code clearer or readable.
-````
-=======
 Funny code, isn't it? We should understand how it works, because sometimes we see it in JavaScript libraries.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3:1-js/02-first-steps/08-operators/article.md
 
 Although, please don't write the code like that. Such tricks definitely don't make code clearer or readable.
 
