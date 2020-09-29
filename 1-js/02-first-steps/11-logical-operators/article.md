@@ -64,7 +64,7 @@ if (hour < 10 || hour > 18 || isWeekend) {
 }
 ```
 
-## OR finds the first truthy value
+## OR "||" finds the first truthy value
 
 The logic described above is somewhat classical. Now, let's bring in the "extra" features of JavaScript.
 
@@ -84,11 +84,7 @@ The OR `||` operator does the following:
 
 A value is returned in its original form, without the conversion.
 
-<<<<<<< HEAD
-In other words, a chain of OR `"||"` returns the first truthy value or the last one if no such value is found.
-=======
 In other words, a chain of OR `||` returns the first truthy value or the last one if no truthy value is found.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 For instance:
 
@@ -105,15 +101,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
 1. **Getting the first truthy value from a list of variables or expressions.**
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    Imagine we have several variables which can either contain data or be `null/undefined`. How can we find the first one with data?
-=======
-    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
-=======
-    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional (i.e. can be undefined or have falsy values).
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+   For instance, we have `firstName`, `lastName` and `nickName` variables, all optional (i.e. can be undefined or have falsy values).
 
     Let's use OR `||` to choose the one that has the data and show it (or `"Anonymous"` if nothing set):
 
@@ -144,11 +132,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     *!*false*/!* || alert("printed");
     ```
 
-<<<<<<< HEAD
-    An assignment is a simple case. Other side effects can also be involved.
-=======
     In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
     Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
 
