@@ -193,11 +193,7 @@ An array is a special kind of object. The square brackets used to access a prope
 
 They extend objects providing special methods to work with ordered collections of data and also the `length` property. But at the core it's still an object.
 
-<<<<<<< HEAD
-Remember, there are only 7 basic types in JavaScript. Array is an object and thus behaves like an object. 
-=======
 Remember, there are only eight basic data types in JavaScript (see the [Data types](info:types) chapter for more info). Array is an object and thus behaves like an object.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For instance, it is copied by reference:
 
@@ -511,13 +507,8 @@ To loop over the elements of the array:
   - `for (let item of arr)` -- the modern syntax for items only,
   - `for (let i in arr)` -- never use.
 
-<<<<<<< HEAD
-We will return to arrays and study more methods to add, remove, extract elements and sort arrays in the chapter <info:array-methods>.
-
-=======
 To compare arrays, don't use the `==` operator (as well as `>`, `<` and others), as they have no special treatment for arrays. They handle them as any objects, and it's not what we usually want.
 
 Instead you can use `for..of` loop to compare arrays item-by-item.
 
 We will continue with arrays and study more methods to add, remove, extract elements and sort arrays in the next chapter <info:array-methods>.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
