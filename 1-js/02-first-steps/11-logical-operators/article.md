@@ -64,7 +64,7 @@ if (hour < 10 || hour > 18 || isWeekend) {
 }
 ```
 
-## OR finds the first truthy value
+## OR "||" finds the first truthy value
 
 The logic described above is somewhat classical. Now, let's bring in the "extra" features of JavaScript.
 
@@ -84,7 +84,7 @@ The OR `||` operator does the following:
 
 A value is returned in its original form, without the conversion.
 
-In other words, a chain of OR `"||"` returns the first truthy value or the last one if no such value is found.
+In other words, a chain of OR `||` returns the first truthy value or the last one if no truthy value is found.
 
 For instance:
 
@@ -101,13 +101,9 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
 1. **Getting the first truthy value from a list of variables or expressions.**
 
-<<<<<<< HEAD
-    Imagine we have several variables which can either contain data or be `null/undefined`. How can we find the first one with data?
-=======
-    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+   For instance, we have `firstName`, `lastName` and `nickName` variables, all optional (i.e. can be undefined or have falsy values).
 
-    Let's use OR `||` to choose the one that has the data and show it (or `anonymous` if nothing set):
+    Let's use OR `||` to choose the one that has the data and show it (or `"Anonymous"` if nothing set):
 
     ```js run
     let firstName = "";
@@ -119,7 +115,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     */!*
     ```
 
-    If all variables were falsy, `Anonymous` would show up.
+    If all variables were falsy, `"Anonymous"` would show up.
 
 2. **Short-circuit evaluation.**
 
@@ -136,11 +132,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     *!*false*/!* || alert("printed");
     ```
 
-<<<<<<< HEAD
-    An assignment is a simple case. Other side effects can also be involved.
-=======
     In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
     Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
 
@@ -231,7 +223,7 @@ The precedence of AND `&&` operator is higher than OR `||`.
 So the code `a && b || c && d` is essentially the same as if the `&&` expressions were in parentheses: `(a && b) || (c && d)`.
 ````
 
-````warn header="Don't replace `if` with || or &&"
+````warn header="Don't replace `if` with `||` or `&&`"
 Sometimes, people use the AND `&&` operator as a "shorter way to write `if`".
 
 For instance:
@@ -252,7 +244,7 @@ let x = 1;
 if (x > 0) alert( 'Greater than zero!' );
 ```
 
-Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want if and use `&&` if we want AND.
+Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want `if` and use `&&` if we want AND.
 ````
 
 

@@ -22,7 +22,11 @@ function showMessage() {
 
 A palavra-chave `function` vem primeiro, depois vem o *nome da função*, e uma lista de *parâmetros* entre os parêntesis (vazio no exemplo acima) e finalmente o código da função, também chamado de "o corpo da função", entre chaves.
 
-![](function_basics.png)
+```js
+function name(parameters) {
+  ...corpo...
+}
+```
 
 Nossa nova função pode ser chamada pelo seu nome: `showMessage()`.
 
@@ -128,7 +132,7 @@ Variables declared outside of any function, such as the outer `userName` in the 
 
 Global variables are visible from any function (unless shadowed by locals).
 
-Usually, a function declares all variables specific to its task. Global variables only store project-level data, and it's important that these variables are accessible from anywhere. Modern code has few or no globals. Most variables reside in their functions.
+It's a good practice to minimize the use of global variables. Modern code has few or no globals. Most variables reside in their functions. Sometimes though, they can be useful to store project-level data.
 ```
 
 ## Parameters
@@ -181,7 +185,7 @@ For instance, the aforementioned function `showMessage(from, text)` can be calle
 showMessage("Ann");
 ```
 
-That's not an error. Such a call would output `"Ann: undefined"`. There's no `text`, so it's assumed that `text === undefined`.
+That's not an error. Such a call would output `"*Ann*: undefined"`. There's no `text`, so it's assumed that `text === undefined`.
 
 If we want to use a "default" `text` in this case, then we can specify it after `=`:
 
@@ -205,18 +209,12 @@ function showMessage(from, text = anotherFunction()) {
 ```
 
 ```smart header="Evaluation of default parameters"
+In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter.
 
-In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter. In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter. This is in contrast to some other languages like Python, where any default parameters are evaluated only once during the initial interpretation.
-
+In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter.
 ```
 
-<<<<<<< HEAD:1-js/02-first-steps/15-function-basics/article.md
-
-````smart header="Default parameters old-style"
-Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
-=======
 ### Alternative default parameters
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3:1-js/02-first-steps/15-function-basics/article.md
 
 Sometimes it makes sense to set default values for parameters not in the function declaration, but at a later stage, during its execution.
 
@@ -352,7 +350,19 @@ That doesn't work, because JavaScript assumes a semicolon after `return`. That'l
 return*!*;*/!*
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
-So, it effectively becomes an empty return. We should put the value on the same line instead.
+So, it effectively becomes an empty return.
+````
+
+If we want the returned expression to wrap across multiple lines, we should start it at the same line as `return`. Or at least put the opening parentheses there as follows:
+
+```js
+return (
+  some + long + expression
+  + or +
+  whatever * f(a) + f(b)
+  )
+```
+And it will work just as we expect it to.
 ````
 
 ## Naming a function [#function-naming]

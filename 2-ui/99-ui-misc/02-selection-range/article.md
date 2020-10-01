@@ -259,7 +259,7 @@ Click buttons to run methods on the selection, "resetExample" to reset it.
 </script>
 ```
 
-There also exist methods to compare ranges, but these are rarely used. When you need them, please refer to the [spec](https://dom.spec.whatwg.org/#interface-range) or [MDN manual](https://developer.mozilla.org/en-US/docs/Web/API/Range).
+There also exist methods to compare ranges, but these are rarely used. When you need them, please refer to the [spec](https://dom.spec.whatwg.org/#interface-range) or [MDN manual](mdn:/api/Range).
 
 
 ## Selection
@@ -632,11 +632,7 @@ The most used recipes are probably:
     }
     ```
 2. Setting the selection:
-<<<<<<< HEAD
-    ```js run
-=======
     ```js
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
     let selection = document.getSelection();
 
     // directly:

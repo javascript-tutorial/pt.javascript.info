@@ -66,7 +66,7 @@ The possible values of `event.button` are:
 
 Most mouse devices only have the left and right buttons, so possible values are `0` or `2`. Touch devices also generate similar events when one taps on them.
 
-Also there's `event.buttons` property that has all currently pressed buttons as an integer, one bit per button. In practice this property is very rarely used, you can find details at [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons) if you ever need it.
+Also there's `event.buttons` property that has all currently pressed buttons as an integer, one bit per button. In practice this property is very rarely used, you can find details at [MDN](mdn:/api/MouseEvent/buttons) if you ever need it.
 
 ```warn header="The outdated `event.which`"
 Old code may use `event.which` property that's an old non-standard way of getting a button, with possible values:
@@ -124,14 +124,9 @@ For JS-code it means that we should check `if (event.ctrlKey || event.metaKey)`.
 ```
 
 ```warn header="There are also mobile devices"
-<<<<<<< HEAD
-Keyboard combinations are good as an addition to the workflow. So that if the visitor has a
- keyboard -- it works. And if your device doesn't have it -- then there's another way to do the same.
-=======
 Keyboard combinations are good as an addition to the workflow. So that if the visitor uses a keyboard -- they work. 
 
 But if their device doesn't have it -- then there should be a way to live without modifier keys.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ```
 
 ## Coordinates: clientX/Y, pageX/Y
@@ -141,9 +136,6 @@ All mouse events provide coordinates in two flavours:
 1. Window-relative: `clientX` and `clientY`.
 2. Document-relative: `pageX` and `pageY`.
 
-<<<<<<< HEAD
-For instance, if we have a window of the size 500x500, and the mouse is in the left-upper corner, then `clientX` and `clientY` are `0`. And if the mouse is in the center, then `clientX` and `clientY` are `250`, no matter what place in the document it is. They are similar to `position:fixed`.
-=======
 We already covered the difference between them in the chapter <info:coordinates>.
 
 In short, document-relative coordinates `pageX/Y` are counted from the left-upper corner of the document, and do not change when the page is scrolled, while `clientX/Y` are counted from the current window left-upper corner. When the page is scrolled, they change.
@@ -151,7 +143,6 @@ In short, document-relative coordinates `pageX/Y` are counted from the left-uppe
 For instance, if we have a window of the size 500x500, and the mouse is in the left-upper corner, then `clientX` and `clientY` are `0`, no matter how the page is scrolled. 
 
 And if the mouse is in the center, then `clientX` and `clientY` are `250`, no matter what place in the document it is. They are similar to `position:fixed` in that aspect.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ````online
 Move the mouse over the input field to see `clientX/clientY` (the example is in the `iframe`, so coordinates are relative to that `iframe`):
@@ -163,19 +154,7 @@ Move the mouse over the input field to see `clientX/clientY` (the example is in 
 
 ## Preventing selection on mousedown
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## No selection on mousedown
-
-Mouse clicks have a side-effect that may be disturbing. A double click selects the text.
-
-If we want to handle click events ourselves, then the "extra" selection doesn't look good.
-=======
-Double mouse click has a side-effect that may be disturbing in some interfaces: it selects the text.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
-=======
 Double mouse click has a side-effect that may be disturbing in some interfaces: it selects text.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For instance, double-clicking on the text below selects it in addition to our handler:
 
@@ -197,26 +176,7 @@ Before...
 ...After
 ```
 
-<<<<<<< HEAD
-Now the bold element is not selected on double clicks.
-
-The text inside it is still selectable. However, the selection should start not on the text itself, but before or after it. Usually that's fine though.
-
-````smart header="Canceling the selection"
-Instead of *preventing* the selection, we can cancel it "post-factum" in the event handler.
-
-Here's how:
-
-```html autorun height=50
-Before...
-<b ondblclick="*!*getSelection().removeAllRanges()*/!*">
-  Double-click me
-</b>
-...After
-```
-=======
 Now the bold element is not selected on double clicks, and pressing the left button on it won't start the selection.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 Please note: the text inside it is still selectable. However, the selection should start not on the text itself, but before or after it. Usually that's fine for users.
 
@@ -246,15 +206,6 @@ Mouse events have the following properties:
 - Window-relative coordinates: `clientX/clientY`.
 - Document-relative coordinates: `pageX/pageY`.
 
-<<<<<<< HEAD
-It's also important to deal with text selection as an unwanted side-effect of clicks.
-
-There are several ways to do this, for instance:
-1. The CSS-property `user-select:none` (with browser prefixes) completely disables text-selection.
-2. Cancel the selection post-factum using `getSelection().removeAllRanges()`.
-3. Handle `mousedown` and prevent the default action (usually the best).
-=======
 The default browser action of `mousedown` is text selection, if it's not good for the interface, then it should be prevented.
 
 In the next chapter we'll see more details about events that follow pointer movement and how to track element changes under it.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
