@@ -2,23 +2,11 @@
 
 How do we find the width and height of the browser window? How do we get the full width and height of the document, including the scrolled out part? How do we scroll the page using JavaScript?
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-From the DOM point of view, the root document element is `document.documentElement`. That element corresponds to `<html>` and has geometry properties described in the [previous chapter](info:size-and-scroll). For some cases we can use it, but there are additional methods and peculiarities important enough to consider.
-=======
-For most such requests, we can use the root document element `document.documentElement`, that corresponds to the `<html>` tag. But there are additional methods and peculiarities important enough to consider.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
-
-## Width/height of the window
-
-Properties `clientWidth/clientHeight` of `document.documentElement` is exactly what we want here:
-=======
 For this type of information, we can use the root document element `document.documentElement`, that corresponds to the `<html>` tag. But there are additional methods and peculiarities to consider.
 
 ## Width/height of the window
 
 To get window width and height, we can use the `clientWidth/clientHeight` of `document.documentElement`:
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 ![](document-client-width-height.svg)
 
@@ -28,21 +16,12 @@ For instance, this button shows the height of your window:
 <button onclick="alert(document.documentElement.clientHeight)">alert(document.documentElement.clientHeight)</button>
 ```
 
-<<<<<<< HEAD
-````warn header="Not `window.innerWidth/Height`"
-Browsers also support properties `window.innerWidth/innerHeight`. They look like what we want. So what's the difference?
-
-If there's a scrollbar occupying some space, `clientWidth/clientHeight` provide the width/height inside it. In other words, they return width/height of the visible part of the document, available for the content.
-
-And `window.innerWidth/innerHeight` ignore the scrollbar.
-=======
 ````warn header="Not `window.innerWidth/innerHeight`"
 Browsers also support properties like `window.innerWidth/innerHeight`. They look like what we want, so why not to use them instead?
 
 If there exists a scrollbar, and it occupies some space, `clientWidth/clientHeight` provide the width/height without it (subtract it). In other words, they return the width/height of the visible part of the document, available for the content.
 
 `window.innerWidth/innerHeight` includes the scrollbar.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 If there's a scrollbar, and it occupies some space, then these two lines show different values:
 ```js run
@@ -56,26 +35,16 @@ In most cases, we need the *available* window width in order to draw or position
 ```warn header="`DOCTYPE` is important"
 Please note: top-level geometry properties may work a little bit differently when there's no `<!DOCTYPE HTML>` in HTML. Odd things are possible.
 
-In modern HTML we should always write `DOCTYPE`. Generally that's not a JavaScript question, but here it affects JavaScript as well.
+In modern HTML we should always write `DOCTYPE`.
 ```
 
 ## Width/height of the document
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-Theoretically, as the root document element is `documentElement.clientWidth/Height`, and it encloses all the content, we could measure its full size as `documentElement.scrollWidth/scrollHeight`.
-=======
-Theoretically, as the root document element is `document.documentElement`, and it encloses all the content, we could measure document full size as `document.documentElement.scrollWidth/scrollHeight`.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
-
-These properties work well for regular elements. But for the whole page these properties do not work as intended. In Chrome/Safari/Opera if there's no scroll, then `documentElement.scrollHeight` may be even less than  `documentElement.clientHeight`! For regular elements that's a nonsense.
-=======
 Theoretically, as the root document element is `document.documentElement`, and it encloses all the content, we could measure the document's full size as `document.documentElement.scrollWidth/scrollHeight`.
 
 But on that element, for the whole page, these properties do not work as intended. In Chrome/Safari/Opera, if there's no scroll, then `documentElement.scrollHeight` may be even less than `documentElement.clientHeight`! Weird, right?
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
-To have a reliable result on the full document height, we should take the maximum of these properties:
+To reliably obtain the full document height, we should take the maximum of these properties:
 
 ```js run
 let scrollHeight = Math.max(
@@ -91,19 +60,11 @@ Why so? Better don't ask. These inconsistencies come from ancient times, not a "
 
 ## Get the current scroll [#page-scroll]
 
-<<<<<<< HEAD
-Regular elements have their current scroll state in `elem.scrollLeft/scrollTop`.
-
-What's with the page? Most browsers provide `documentElement.scrollLeft/Top` for the document scroll, but Chrome/Safari/Opera have bugs (like [157855](https://code.google.com/p/chromium/issues/detail?id=157855), [106133](https://bugs.webkit.org/show_bug.cgi?id=106133)) and we should use  `document.body` instead of `document.documentElement` there.
-
-Luckily, we don't have to remember these peculiarities at all, because of the special properties `window.pageXOffset/pageYOffset`:
-=======
 DOM elements have their current scroll state in their `scrollLeft/scrollTop` properties.
 
 For document scroll, `document.documentElement.scrollLeft/scrollTop` works in most browsers, except older WebKit-based ones, like Safari (bug [5991](https://bugs.webkit.org/show_bug.cgi?id=5991)), where we should use `document.body` instead of `document.documentElement`.
 
 Luckily, we don't have to remember these peculiarities at all, because the scroll is available in the special properties, `window.pageXOffset/pageYOffset`:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js run
 alert('Current scroll from the top: ' + window.pageYOffset);
@@ -122,26 +83,18 @@ For instance, if we try to scroll the page with a script in `<head>`, it won't w
 
 Regular elements can be scrolled by changing `scrollTop/scrollLeft`.
 
-<<<<<<< HEAD
-We can do the same for the page:
-- For all browsers except Chrome/Safari/Opera: modify  `document.documentElement.scrollTop/Left`.
-- In Chrome/Safari/Opera: use `document.body.scrollTop/Left` instead.
-
-It should work, but smells like cross-browser incompatibilities. Not good. Fortunately, there's a simpler, more universal solution: special methods  [window.scrollBy(x,y)](mdn:api/Window/scrollBy) and [window.scrollTo(pageX,pageY)](mdn:api/Window/scrollTo).
-=======
 We can do the same for the page using `document.documentElement.scrollTop/scrollLeft` (except Safari, where `document.body.scrollTop/Left` should be used instead).
 
 Alternatively, there's a simpler, universal solution: special methods [window.scrollBy(x,y)](mdn:api/Window/scrollBy) and [window.scrollTo(pageX,pageY)](mdn:api/Window/scrollTo).
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
-- The method `scrollBy(x,y)` scrolls the page relative to its current position. For instance, `scrollBy(0,10)` scrolls the page `10px` down.
+- The method `scrollBy(x,y)` scrolls the page *relative to its current position*. For instance, `scrollBy(0,10)` scrolls the page `10px` down.
 
     ```online
     The button below demonstrates this:
 
     <button onclick="window.scrollBy(0,10)">window.scrollBy(0,10)</button>
     ```
-- The method `scrollTo(pageX,pageY)` scrolls the page relative to the document's top-left corner. It's like setting `scrollLeft/scrollTop`.
+- The method `scrollTo(pageX,pageY)` scrolls the page *to absolute coordinates*, so that the top-left corner of the visible part has coordinates `(pageX, pageY)` relative to the document's top-left corner. It's like setting `scrollLeft/scrollTop`.
 
     To scroll to the very beginning, we can use `scrollTo(0,0)`.
 
