@@ -1,6 +1,6 @@
 # Olá, mundo!
 
-O tutorial que você está lendo é sobre a core do JavaScript, que é independente de plataforma. Mais tarde, você vai aprender sobre Node.js e outras plataformas que o usam.
+Esta parte do tutorial é sobre a core do JavaScript, a própria linguagem.
 
 Mas precisamos de um ambiente de trabalho para rodar nossos scripts e, como esse livro está online, o navegador é uma boa escolha. Vamos manter a quantidade de comandos específicos do navegador (como `alert`) no mínimo para que você não gaste tempo com eles se você planeja se concentrar em outro ambiente (como Node.js). Vamos focar em JavaScript no navegador na [próxima parte](/ui) do tutorial.
 
@@ -45,16 +45,11 @@ A tag `<script>` contém código JavaScript que é executado automaticamente qua
 
 A tag `<script>` tem alguns atributos que raramente são usados hoje em dia, mas que ainda podem ser encontrados em códigos antigos:
 
-<<<<<<< HEAD
 O atributo `type`: <code>&lt;script <u>type</u>=...&gt;</code>
 : O antigo padrão HTML, HTML4, requeria um script para ter um `type`. Normalmente era `type="text/javascript"`. Não é mais necessário. Além disso, o moderno padrão HTML, HTML5, mudou totalmente o significado deste atributo. Agora, ele pode ser usado para módulos JavaScript. Mas esse é um tópico avançado; vamos falar sobre módulos em outra parte do tutorial. 
-=======
-The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
-: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic, we'll talk about modules in another part of the tutorial.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 O atributo `language`: <code>&lt;script <u>language</u>=...&gt;</code>
-: Este atributo foi criado para mostrar o idioma do script. Este atributo não faz mais sentido porque JavaScript é a linguagem padrão. Não há necessidade de usá-lo.
+: Este atributo foi criado para mostrar o idioma do script. Este atributo não faz mais sentido porque JavaScript é a linguagem padrão. Não há necessidade de o usar.
 
 Comentários antes e depois dos scripts.
 : Em livros e guias realmente antigos, você pode encontrar comentários dentro de tags `<script>`, assim:
@@ -65,11 +60,7 @@ Comentários antes e depois dos scripts.
     //--></script>
     ```
 
-<<<<<<< HEAD
     Esse truque não é usado no JavaScript moderno. Esses comentários esconderam código JavaScript de navegadores antigos que não sabiam como processar a tag `<script>`. Como os navegadores lançados nos últimos 15 anos não têm esse problema, esse tipo de comentário pode ajudá-lo a identificar códigos realmente antigos.
-=======
-    This trick isn't used in modern JavaScript. These comments hide JavaScript code from old browsers that didn't know how to process the `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 
 ## Scripts externos
@@ -82,9 +73,7 @@ Os arquivos de script são anexados ao HTML com o atributo `src`:
 <script src="/path/to/script.js"></script>
 ```
 
-Aqui, `/path/to/script.js` é um caminho absoluto para o arquivo script (da raiz do site).
-
-Você também pode fornecer um caminho relativo a partir da página atual. Por exemplo, `src="script.js"` significaria um arquivo `"script.js"` na pasta atual.
+Aqui, `/path/to/script.js` é um caminho absoluto para o arquivo script (da raiz do site). Você também pode fornecer um caminho relativo a partir da página atual. Por exemplo, `src="script.js"` significaria um arquivo `"script.js"` na pasta atual.
 
 Nós também podemos dar uma URL completa. Por exemplo:
 
