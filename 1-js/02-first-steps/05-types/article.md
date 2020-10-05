@@ -35,7 +35,7 @@ Além dos números regulares, existem os chamados "valores numéricos especiais"
     alert( 1 / 0 ); // Infinito
     ```
 
-     Ou apenas referi-lo directamente:
+     Ou apenas referi-lo diretamente:
 
     ```js run
     alert( Infinity ); // Infinito
@@ -178,7 +178,7 @@ O valor especial `undefined` também se diferencia. Faz um tipo próprio, tal co
 
 O significado de `undefined` é "o valor não é atribuído".
 
-Se uma variável é declarada, mas não atribuida, então seu valor é `undefined`:
+Se uma variável é declarada, mas não atribuída, então seu valor é `undefined`:
 
 ```js run
 let age;
@@ -252,7 +252,7 @@ As três últimas linhas podem precisar de explicações adicionais:
 
 1. `Math` é um objeto embutido que fornece operações matemáticas. Nós o vamos aprender no capítulo <info:number>. Aqui, ele serve apenas como um exemplo de um objeto.
 2. O resultado de `typeof null` é `"object"`. É um erro oficialmente reconhecido no comportamento de `typeof` e mantido para compatibilidade. Naturalmente, `null` não é um objeto. É um valor especial com um tipo separado próprio.
-3. O resultado de `typeof alert` é `"function"`, porque `alert` é uma função. Vamos estudar as funções nos próximos capítulos onde veremos tambémm que não há nenhum tipo especial "função" em JavaScript. As funções pertencem ao tipo objecto. Mas o `typeof` as trata de forma diferente, retornando `"function"`. Isto, também vem dos primeiros dias do JavaScript. Tecnicamente, é incorrecto, mas muito conveniente na prática.
+3. O resultado de `typeof alert` é `"function"`, porque `alert` é uma função. Vamos estudar as funções nos próximos capítulos onde veremos também que não há nenhum tipo especial "função" em JavaScript. As funções pertencem ao tipo objecto. Mas o `typeof` as trata de forma diferente, retornando `"function"`. Isto, também vem dos primeiros dias do JavaScript. Tecnicamente, é incorreto, mas muito conveniente na prática.
 
 ## Resumo
 
