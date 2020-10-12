@@ -32,11 +32,11 @@ user.sayHi = function() {
 user.sayHi(); // Hello!
 ```
 
-Here we've just used a Function Expression to create the function and assign it to the property `user.sayHi` of the object.
+Here we've just used a Function Expression to create a function and assign it to the property `user.sayHi` of the object.
 
-Then we can call it. The user can now speak!
+Then we can call it as `user.sayHi()`. The user can now speak!
 
-A function that is the property of an object is called its *method*.
+A function that is a property of an object is called its *method*.
 
 So, here we've got a method `sayHi` of the object `user`.
 
@@ -163,7 +163,9 @@ let user = {
 let admin = user;
 user = null; // overwrite to make things obvious
 
-admin.sayHi(); // Whoops! inside sayHi(), the old name is used! error!
+*!*
+admin.sayHi(); // TypeError: Cannot read property 'name' of null
+*/!*
 ```
 
 If we used `this.name` instead of `user.name` inside the `alert`, then the code would work.
@@ -171,10 +173,14 @@ If we used `this.name` instead of `user.name` inside the `alert`, then the code 
 ## "this" is not bound
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 In JavaScript, "this" keyword behaves unlike most other programming languages. First, it can be used in any function.
 =======
 In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function.
 >>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+=======
+In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function, even if it's not a method of an object.
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 There's no syntax error in the following example:
 

@@ -102,7 +102,11 @@ alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 
 As you can see, we have to prepend the inner quote by the backslash `\'`, because otherwise it would indicate the string end.
 
+<<<<<<< HEAD
 Of course, that refers only to the quotes that are same as the enclosing ones. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+=======
+Of course, only the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
@@ -305,8 +309,14 @@ if (str.indexOf("Widget") != -1) {
 }
 ```
 
+<<<<<<< HEAD
 ````smart header="The bitwise NOT trick"
 One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
+=======
+#### The bitwise NOT trick
+
+One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 For 32-bit integers the call `~n` means exactly the same as `-(n+1)` (due to IEEE-754 format).
 
@@ -338,7 +348,14 @@ if (~str.indexOf("Widget")) {
 It is usually not recommended to use language features in a non-obvious way, but this particular trick is widely used in old code, so we should understand it.
 
 Just remember: `if (~str.indexOf(...))` reads as "if found".
+<<<<<<< HEAD
 ````
+=======
+
+To be precise though, as big numbers are truncated to 32 bits by `~` operator, there exist other numbers that give `0`, the smallest is `~4294967295=0`. That makes such check correct only if a string is not that long.
+
+Right now we can see this trick only in the old code, as modern JavaScript provides `.includes` method (see below).
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 ### includes, startsWith, endsWith
 
