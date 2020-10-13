@@ -1,10 +1,6 @@
 # Uma Introdução ao JavaScript
 
-<<<<<<< HEAD
 Vamos ver o que há de tão especial no JavaScript, o que podemos fazer com ele, e que outras tecnologias funcionam bem com ele.
-=======
-Let's see what's so special about JavaScript, what we can achieve with it, and what other technologies play well with it.
->>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 ## O que é JavaScript?
 
@@ -71,13 +67,8 @@ Exemplos de tais restrições incluem:
 
     Os navegadores modernos permitem que ele trabalhe com arquivos, mas o acesso é limitado e fornecido apenas se o usuário executar determinadas ações, como "dropping" de um arquivo em uma janela do navegador ou selecioná-lo por meio de uma tag `<input>`.
 
-<<<<<<< HEAD
    Existem maneiras de interagir com a câmera / microfone e outros dispositivos, mas eles exigem permissão explícita do usuário. Assim, uma página habilitada para JavaScript pode não habilmente habilitar uma câmera web, observar os arredores e enviar as informações para a [NSA](https://pt.wikipedia.org/wiki/Ag%C3%AAncia_de_Seguran%C3%A7a_Nacional).
 - Diferentes abas/janelas geralmente não se conhecem mutuamente. Às vezes sim, por exemplo, quando uma janela usa JavaScript para abrir a outra. Mas mesmo neste caso, JavaScript de uma página pode não acessar a outra se eles vierem de sites diferentes (de um domínio, protocolo ou porta diferente).
-=======
-    There are ways to interact with camera/microphone and other devices, but they require a user's explicit permission. So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to the [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
-- Different tabs/windows generally do not know about each other. Sometimes they do; for example when one window uses JavaScript to open the other one. But even in this case, JavaScript from one page may not access the other if they come from different sites (from a different domain, protocol or port).
->>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
     Isso é chamado de "Política de mesma origem ". Para contornar isso, *ambas as páginas* devem conter um código JavaScript especial que lida com a troca de dados.
 
@@ -125,12 +116,6 @@ Há mais. Claro que, mesmo que usemos uma dessas linguagens transpiladas, també
 
 ## Resumo
 
-<<<<<<< HEAD
 - O JavaScript foi inicialmente criado como uma linguagem somente de navegador, mas agora é usado em muitos outros ambientes também.
 - Hoje, o JavaScript tem uma posição única como a linguagem de navegador mais amplamente adotada, com integração total com HTML/CSS.
 - Existem muitas linguagens que são "transpiladas" para JavaScript e que oferecem certas funcionalidades. Recomenda-se dar uma olhada nelas, pelo menos brevemente, depois de dominar o JavaScript.
-=======
-- JavaScript was initially created as a browser-only language, but it is now used in many other environments as well.
-- Today, JavaScript has a unique position as the most widely-adopted browser language with full integration in HTML/CSS.
-- There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
->>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
