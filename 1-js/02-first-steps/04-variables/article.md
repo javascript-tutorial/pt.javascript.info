@@ -35,7 +35,7 @@ let message;
 message = 'Olá!';
 
 *!*
-alert(message); // mostra o conteúdo variável
+alert(message); // mostra o conteúdo da variável
 */!*
 ```
 
@@ -94,13 +94,13 @@ Existem diferenças sutis entre `let` e `var`, mas elas ainda não são importan
 
 ## Uma analogia da vida real
 
-Podemos facilmente compreender o conceito de uma "variável" se a imaginarmos como uma "box" de dados, com um adesivo de nome exclusivo.
+Podemos facilmente compreender o conceito de uma "variável" se a imaginarmos como uma "caixa" para dados, com um adesivo de nome exclusivo.
 
-Por exemplo, a variável `mensagem` pode ser imaginada como uma box chamada `"message"`com o valor `"Olá"`!:
+Por exemplo, a variável `mensagem` pode ser imaginada como uma caixa chamada `"message"`com o valor `"Olá"`!:
 
 ![](variable.svg)
 
-Podemos pôr qualquer valor na box.
+Podemos pôr qualquer valor na caixa.
 
 Também podemos mudá-lo quantas vezes quisermos:
 ```js run
@@ -129,7 +129,7 @@ let message;
 message = hello;
 */!*
 
-// agora duas variáveis mantêm os mesmos dados
+// agora duas variáveis contêm os mesmos dados
 alert(hello); // Olá Mundo!
 alert(message); // Olá Mundo!
 ```
@@ -151,7 +151,7 @@ Assim, devemos declarar uma variável apenas uma vez e depois fazer referência 
 ```smart header="Linguagens funcionais"
 É interessante notar que existem linguagens de programação [funcionais](https://en.wikipedia.org/wiki/Functional_programming), como [Scala](http://www.scala-lang.org/) ou [Erlang](http://www.erlang.org/), que proíbem a modificação de valores de variáveis.
 
-Em tais linguagens, uma vez que o valor é armazenado "na box", ele está lá para sempre. Se precisarmos de armazenar algo mais, a linguagem nos obriga a criar uma nova box (declarar uma nova variável). Não podemos reutilizar a antiga.
+Em tais linguagens, uma vez que o valor é armazenado "na caixa", ele está lá para sempre. Se precisarmos de armazenar algo mais, a linguagem nos obriga a criar uma nova caixa (declarar uma nova variável). Não podemos reutilizar a antiga.
 
 Embora possa parecer um pouco estranho à primeira vista, estas linguagens são bastante capazes de um desenvolvimento sério. Mais do que isso, há áreas como cálculos paralelos onde essa limitação confere certos benefícios. Estudar alguma dessas linguagens (mesmo que você não esteja planejando usá-la em breve) é recomendado para ampliar a mente.
 ```
@@ -195,8 +195,8 @@ let my-name; // hífens '-' não são permitidos no nome
 Variáveis chamadas `apple` e `AppLE` são duas variáveis diferentes.
 ```
 
-````smart header="Letras de alfabeto não-Latin são permitidas, mas não são recomendadas"
-É possível usar qualquer idioma, incluindo letras cirílicas ou até hieróglifos, como este:
+````smart header="Letras não-Latin são permitidas, mas não são recomendadas"
+É possível usar qualquer idioma, incluindo letras cirílicas ou até hieróglifos, como estes:
 
 ```js
 let имя = '...';
@@ -237,7 +237,7 @@ Esta é uma má prática e causaria um erro no modo estrito:
 "use strict";
 
 *!*
-num = 5; // erro: o número não está definido
+num = 5; // erro: 'num' não está definido
 */!*
 ```
 ````
@@ -303,7 +303,7 @@ Em outras palavras, constantes com nomes maiúsculos são usadas apenas como pse
 
 Falando em variáveis, há mais uma coisa extremamente importante.
 
-O nome de uma variável deve ter um significado claro e óbvio, descrevendo os dados que ela armazena.
+O nome de uma variável deveria ter um significado claro e óbvio, descrevendo os dados que ela armazena.
 
 A nomenclatura variável é uma das habilidades mais importantes e complexas em programação. Uma rápida olhada em nomes de variáveis pode revelar que código foi escrito por um iniciante versus um desenvolvedor experiente.
 
@@ -336,7 +336,7 @@ Os minificadores e navegadores JavaScript modernos otimizam o código o suficien
 
 Podemos declarar variáveis para armazenar dados usando as palavras-chave `var`, `let`, ou `const`.
 
-- `let` -- é uma declaração de variável moderna. O código deve estar em modo estrito para usar `let` no Chrome (V8).
+- `let` -- é uma declaração de variável moderna.
 - `var` -- é uma declaração de variável da velha escola. Normalmente não a usamos de todo, mas vamos cobrir diferenças sutis de `let` no capítulo <info:var>, para o caso de você precisar delas.
 - `const` -- é como `let`, mas o valor da variável não pode ser alterado.
 
