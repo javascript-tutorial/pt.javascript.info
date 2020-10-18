@@ -1,6 +1,6 @@
 # Variáveis
 
-Na maioria das vezes, um aplicativo JavaScript precisa trabalhar com informações. Aqui estão dois exemplos:
+Na maioria das vezes, um aplicativo JavaScript precisa de trabalhar com informações. Aqui estão dois exemplos:
 1. Uma loja online -- a informação pode incluir mercadorias vendidas e um carrinho de compras.
 2. Uma aplicação de chat -- a informação pode incluir usuários, mensagens e muito mais.
 
@@ -80,7 +80,7 @@ let user = 'John'
 
 Tecnicamente, todas estas variantes fazem a mesma coisa. Então, é uma questão de gosto pessoal e estética.
 
-````smart header="`var` instead of `let`"
+````smart header="`var` em vez de `let`"
 Em scripts antigos, você também pode encontrar outra palavra-chave: `var` em vez de `let`:
 
 ```js
@@ -125,7 +125,7 @@ let hello = 'Olá Mundo!';
 let message;
 
 *!*
-// copiar 'Olá Mundo' do hello para message
+// copiar 'Olá Mundo' de hello para message
 message = hello;
 */!*
 
@@ -143,9 +143,9 @@ Uma declaração repetida da mesma variável é um erro:
 let message = "Isto";
 
 // um 'let' repetido conduz a um erro
-let message = "Aquilo"; // SyntaxError: 'message' has already been declared (Erro-de-sintaxe: 'message' já foi declarado)
+let message = "Aquilo"; // SyntaxError: 'message' has already been declared (Erro-de-sintaxe: 'message' já foi declarada)
 ```
-Assim, nós devemos declarar uma variável uma única vez e depois fazer referência a ela sem o `let`.
+Assim, devemos declarar uma variável apenas uma vez e depois fazer referência a ela sem o `let`.
 ````
 
 ```smart header="Linguagens funcionais"
@@ -153,7 +153,7 @@ Assim, nós devemos declarar uma variável uma única vez e depois fazer referê
 
 Em tais linguagens, uma vez que o valor é armazenado "na caixa", ele está lá para sempre. Se precisarmos de armazenar algo mais, a linguagem nos obriga a criar uma nova caixa (declarar uma nova variável). Não podemos reutilizar a antiga.
 
-Embora possa parecer um pouco estranho à primeira vista, estas linguagens são bastante capazes de um desenvolvimento sério. Mais do que isso, há áreas como cálculos paralelos onde essa limitação confere certos benefícios. Estudar uma linguagem dessas (mesmo que você não esteja planejando usá-la em breve) é recomendado para ampliar a mente.
+Embora possa parecer um pouco estranho à primeira vista, estas linguagens são bastante capazes de um desenvolvimento sério. Mais do que isso, há áreas como cálculos paralelos onde essa limitação confere certos benefícios. Estudar alguma dessas linguagens (mesmo que você não esteja planejando usá-la em breve) é recomendado para ampliar a mente.
 ```
 
 ## Nomeação de variável [#variable-naming]
@@ -170,7 +170,7 @@ let userName;
 let test123;
 ```
 
-Quando o nome contém várias palavras, [camelCase](https://en.wikipedia.org/wiki/CamelCase) é normalmente utilizado. Isto é: as palavras vão uma após a outra, cada palavra exceto a primeira que começa com uma letra maiúscula: `myVeryLongName`.
+Quando o nome contém várias palavras, o [camelCase](https://en.wikipedia.org/wiki/CamelCase) é normalmente utilizado. Isto é: as palavras vão uma após a outra, e cada palavra exceto a primeira começa com uma letra maiúscula: `myVeryLongName`.
 
 O que é interessante -- o sinal de dólar `'$'` e o sublinhado `'_'` também podem ser usados em nomes. Eles são símbolos regulares, assim como letras, sem nenhum significado especial.
 
@@ -203,11 +203,11 @@ let имя = '...';
 let 我 = '...';
 ```
 
-Tecnicamente, não há erro aqui, tais nomes são permitidos, mas há uma tradição internacional de usar o inglês em nomes de variáveis. Mesmo que estejamos escrevendo um pequeno script, ele pode ter uma longa vida pela frente. Pessoas de outros países podem precisar lê-lo em algum momento.
+Tecnicamente, não há erro aqui.  Tais nomes são permitidos, mas há uma tradição internacional de usar o inglês em nomes de variáveis. Mesmo que estejamos escrevendo um pequeno script, ele pode ter uma longa vida pela frente. Pessoas de outros países podem precisar de o ler em algum momento.
 ````
 
 ````warn header="Nomes reservados"
-Existe uma [lista de palavras reservadas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), que não pode ser usada como nomes de variáveis porque elas são usadas pela própria linguagem.
+Existe uma [lista de palavras reservadas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), que não podem ser usadas como nomes de variáveis porque elas são usadas pela própria linguagem.
 
 Por exemplo: `let`, `class`, `return`, e `function` são reservadas.
 
@@ -221,7 +221,7 @@ let return = 5; // também não pode nomear como "return", erro!
 
 ````warn header="Uma atribuição sem `use strict`"
 
-Normalmente, precisamos definir uma variável antes de usá-la. Mas nos velhos tempos, era tecnicamente possível criar uma variável através de uma mera atribuição do valor sem usar `let`. Isso ainda funciona se não colocarmos `use strict` em nossos scripts para manter a compatibilidade com scripts antigos.
+Normalmente, precisamos definir uma variável antes de a usar. Mas nos velhos tempos, era tecnicamente possível criar uma variável através de uma mera atribuição de valor, sem usar `let`. Isso ainda funciona se não colocarmos `use strict` em nossos scripts para manter a compatibilidade com scripts antigos.
 
 ```js run no-strict
 // nota: nenhum "use strict" neste exemplo
@@ -258,7 +258,7 @@ const myBirthday = '18.04.1982';
 myBirthday = '01.01.2001'; // erro, não é possível reatribuir a constante!
 ```
 
-Quando um programador está certo que uma variável nunca mudará, ele pode declará-la com `const` para garantir e comunicar claramente esse fato a todos.
+Quando um programador está certo de que uma variável nunca mudará, ele pode declará-la com `const` para garantir e comunicar claramente esse fato a todos.
 
 
 ### Constantes maiúsculas
@@ -297,7 +297,7 @@ const pageLoadTime = /* tempo necessário para carregar uma página web */;
 
 O valor de `pageLoadTime` não é conhecido antes do carregamento da página, portanto é nomeado normalmente. Mas ainda é uma constante porque não muda após a atribuição.
 
-Em outras palavras, constantes com nomes maiúsculos são usadas apenas como pseudônimos para valores "codificação rígida". 
+Em outras palavras, constantes com nomes maiúsculos são usadas apenas como pseudônimos para valores de "codificação rígida".
 
 ## Nomeie as coisas como devem ser
 
@@ -305,9 +305,9 @@ Falando em variáveis, há mais uma coisa extremamente importante.
 
 O nome de uma variável deveria ter um significado claro e óbvio, descrevendo os dados que ela armazena.
 
-A nomenclatura variável é uma das habilidades mais importantes e complexas em programação. Uma rápida olhada em nomes de variáveis pode revelar qual código foi escrito por um iniciante versus um desenvolvedor experiente.
+A nomenclatura variável é uma das habilidades mais importantes e complexas em programação. Uma rápida olhada em nomes de variáveis pode revelar que código foi escrito por um iniciante versus um desenvolvedor experiente.
 
-Em um projeto real, a maior parte do tempo é gasto modificando e estendendo uma base de código existente ao invés de escrever algo completamente separado do zero. Quando voltamos a algum código depois de fazer outra coisa por um tempo, é muito mais fácil encontrar informações bem rotuladas. Ou, em outras palavras, quando as variáveis têm bons nomes.
+Em um projeto real, a maior parte do tempo é gasto modificando e estendendo uma base de código existente ao invés de escrever algo completamente separado do zero. Quando voltamos a algum código depois de fazer outra coisa por um tempo, é muito mais fácil encontrar informação se for bem rotulada. Ou, em outras palavras, quando as variáveis têm bons nomes.
 
 Por favor, gaste tempo pensando sobre o nome certo para uma variável antes de declará-lo. Fazê-lo irá recompensá-lo generosamente.
 
@@ -327,7 +327,7 @@ Como resultado, suas variáveis são como caixas em que as pessoas jogam coisas 
 
 Tais programadores economizam um pouco na declaração de variáveis, mas perdem dez vezes mais na depuração.
 
-Uma variável extra é o bom, não ruim.
+Uma variável extra é bom, não ruim.
 
 Os minificadores e navegadores JavaScript modernos otimizam o código o suficiente para que ele não crie problemas de desempenho. Usar variáveis diferentes para valores diferentes pode até mesmo ajudar o mecanismo a otimizar seu código.
 ```

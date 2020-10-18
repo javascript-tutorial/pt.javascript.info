@@ -101,7 +101,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
 1. **Getting the first truthy value from a list of variables or expressions.**
 
-   For instance, we have `firstName`, `lastName` and `nickName` variables, all optional (i.e. can be undefined or have falsy values).
+    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional (i.e. can be undefined or have falsy values).
 
     Let's use OR `||` to choose the one that has the data and show it (or `"Anonymous"` if nothing set):
 
@@ -173,7 +173,7 @@ if (1 && 0) { // evaluated as true && false
 ```
 
 
-## AND finds the first falsy value
+## AND "&&" finds the first falsy value
 
 Given multiple AND'ed values:
 

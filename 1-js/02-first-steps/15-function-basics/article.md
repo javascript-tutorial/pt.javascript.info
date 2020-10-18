@@ -105,7 +105,7 @@ showMessage();
 alert( userName ); // *!*Bob*/!*, the value was modified by the function
 ```
 
-The outer variable is only used if there's no local one. So an occasional modification may happen if we forget `let`.
+The outer variable is only used if there's no local one.
 
 If a same-named variable is declared inside the function then it *shadows* the outer one. For instance, in the code below the function uses the local `userName`. The outer one is ignored:
 
@@ -185,7 +185,7 @@ For instance, the aforementioned function `showMessage(from, text)` can be calle
 showMessage("Ann");
 ```
 
-That's not an error. Such a call would output `"*Ann*: undefined"`. There's no `text`, so it's assumed that `text === undefined`.
+That's not an error. Such a call would output `"Ann: undefined"`. There's no `text`, so it's assumed that `text === undefined`.
 
 If we want to use a "default" `text` in this case, then we can specify it after `=`:
 
@@ -350,8 +350,8 @@ That doesn't work, because JavaScript assumes a semicolon after `return`. That'l
 return*!*;*/!*
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
+
 So, it effectively becomes an empty return.
-````
 
 If we want the returned expression to wrap across multiple lines, we should start it at the same line as `return`. Or at least put the opening parentheses there as follows:
 
@@ -403,7 +403,7 @@ A few examples of breaking this rule:
 - `createForm` -- would be bad if it modifies the document, adding a form to it (should only create it and return).
 - `checkPermission` -- would be bad if it displays the `access granted/denied` message (should only perform the check and return the result).
 
-These examples assume common meanings of prefixes. What they mean for you is determined by you and your team. Maybe it's pretty normal for your code to behave differently. But you should have a firm understanding of what a prefix means, what a prefixed function can and cannot do. All same-prefixed functions should obey the rules. And the team should share the knowledge.
+These examples assume common meanings of prefixes. You and your team are free to agree on other meanings, but usually they're not much different. In any case, you should have a firm understanding of what a prefix means, what a prefixed function can and cannot do. All same-prefixed functions should obey the rules. And the team should share the knowledge.
 ```
 
 ```smart header="Ultrashort function names"
