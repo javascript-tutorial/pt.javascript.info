@@ -122,28 +122,19 @@ user.name = "Pete"; // Error: Cannot assign to read only property 'name'...
 
 Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
 
-<<<<<<< HEAD
-Here's the same operation, but for the case when a property doesn't exist:
-=======
 ```smart header="Errors appear only in strict mode"
 In the non-strict mode, no errors occur when writing to non-writable properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
 ```
 
 Here's the same example, but the property is created from scratch:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js run
 let user = { };
 
 Object.defineProperty(user, "name", {
 *!*
-<<<<<<< HEAD
-  value: "Pete",
-  // for new properties need to explicitly list what's true
-=======
   value: "John",
   // for new properties we need to explicitly list what's true
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
   enumerable: true,
   configurable: true
 */!*
@@ -273,12 +264,6 @@ delete user.name;
 Object.defineProperty(user, "name", { value: "Pete" });
 ```
 
-<<<<<<< HEAD
-```smart header="Errors appear only in use strict"
-In the non-strict mode, no errors occur when writing to read-only properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
-```
-=======
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Object.defineProperties
 

@@ -1,10 +1,5 @@
 # Numbers
 
-<<<<<<< HEAD
-All numbers in JavaScript are stored in 64-bit format [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), also known as "double precision".
-
-Let's recap and expand upon what we currently know about them.
-=======
 In modern JavaScript, there are two types of numbers:
 
 1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
@@ -12,7 +7,6 @@ In modern JavaScript, there are two types of numbers:
 2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
 
 So here we'll talk about regular numbers. Let's expand our knowledge of them.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## More ways to write a number
 

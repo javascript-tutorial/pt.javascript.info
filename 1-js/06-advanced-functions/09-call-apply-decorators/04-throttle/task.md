@@ -18,14 +18,8 @@ Let's check the real-life application to better understand that requirement and 
 
 **For instance, we want to track mouse movements.**
 
-<<<<<<< HEAD
-In browser we can setup a function to run at every mouse micro-movement and get the pointer location as it moves. During an active mouse usage, this function usually runs very frequently, can be something like 100 times per second (every 10 ms).
-
-**The tracking function should update some information on the web-page.**
-=======
 In a browser we can setup a function to run at every mouse movement and get the pointer location as it moves. During an active mouse usage, this function usually runs very frequently, can be something like 100 times per second (every 10 ms).
 **We'd like to update some information on the web-page when the pointer moves.**
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Updating function `update()` is too heavy to do it on every micro-movement. There is also no sense in making it more often than once per 100ms.
 

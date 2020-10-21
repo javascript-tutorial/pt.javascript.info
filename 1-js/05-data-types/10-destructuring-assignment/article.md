@@ -356,13 +356,9 @@ The problem is that JavaScript treats `{...}` in the main code flow (not inside 
 }
 ```
 
-<<<<<<< HEAD
-To show JavaScript that it's not a code block, we can wrap the whole assignment in parentheses `(...)`:
-=======
 So here JavaScript assumes that we have a code block, that's why there's an error. We want destructuring instead.
 
 To show JavaScript that it's not a code block, we can wrap the expression in parentheses `(...)`:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js run
 let title, width, height;
@@ -408,13 +404,7 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
-<<<<<<< HEAD
-The whole `options` object except `extra` that was not mentioned, is assigned to corresponding variables.
-
-Note that `size` and `items` itself is not destructured.
-=======
 All properties of `options` object except `extra` that is absent in the left part, are assigned to corresponding variables:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ![](destructuring-complex.svg)
 
@@ -445,10 +435,7 @@ In real-life, the problem is how to remember the order of arguments. Usually IDE
 Like this?
 
 ```js
-<<<<<<< HEAD
-=======
 // undefined where default values are fine
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 

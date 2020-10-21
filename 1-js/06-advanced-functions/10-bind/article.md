@@ -205,8 +205,6 @@ for (let key in user) {
 JavaScript libraries also provide functions for convenient mass binding , e.g. [_.bindAll(object, methodNames)](http://lodash.com/docs#bindAll) in lodash.
 ````
 
-<<<<<<< HEAD
-=======
 ## Partial functions
 
 Until now we have only been talking about binding `this`. Let's take it a step further.
@@ -319,7 +317,6 @@ So easy to do it with the spread syntax, right?
 
 Also there's a ready [_.partial](https://lodash.com/docs#partial) implementation from lodash library.
 
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ## Summary
 
 Method `func.bind(context, ...args)` returns a "bound variant" of function `func` that fixes the context `this` and first arguments if given.

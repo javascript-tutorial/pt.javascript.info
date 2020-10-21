@@ -3,11 +3,7 @@
 
 There are two kinds of object properties.
 
-<<<<<<< HEAD
-The first kind is *data properties*. We already know how to work with them. Actually, all properties that we've been using till now were data properties.
-=======
 The first kind is *data properties*. We already know how to work with them. All properties that we've been using until now were data properties.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 The second type of properties is something new. It's *accessor properties*. They are essentially functions that execute on getting and setting a value, but look like regular properties to an external code.
 
@@ -86,21 +82,7 @@ alert(user.name); // Alice
 alert(user.surname); // Cooper
 ```
 
-<<<<<<< HEAD
-Now we have a "virtual" property. It is readable and writable, but in fact does not exist.
-
-```smart header="Accessor properties are only accessible with get/set"
-Once a property is defined with `get prop()` or `set prop()`, it's an accessor property, not a data properety any more.
-
-- If there's a getter -- we can read `object.prop`, othrewise we can't.
-- If there's a setter -- we can set `object.prop=...`, othrewise we can't.
-
-And in either case we can't `delete` an accessor property.
-```
-
-=======
 As the result, we have a "virtual" property `fullName`. It is readable and writable.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Accessor descriptors
 
@@ -140,11 +122,7 @@ alert(user.fullName); // John Smith
 for(let key in user) alert(key); // name, surname
 ```
 
-<<<<<<< HEAD
-Please note once again that a property can be either an accessor or a data property, not both.
-=======
 Please note that a property can be either an accessor (has `get/set` methods) or a data property (has a `value`), not both.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 If we try to supply both `get` and `value` in the same descriptor, there will be an error:
 
@@ -193,15 +171,9 @@ Technically, the external code may still access the name directly by using `user
 
 ## Using for compatibility
 
-<<<<<<< HEAD
-One of the great ideas behind getters and setters -- they allow to take control over a "normal" data property and tweak it at any moment.
-
-For instance, we started implementing user objects using data properties `name` and `age`:
-=======
 One of the great uses of accessors is that they allow to take control over a "regular" data property at any moment by replacing it with a getter and a setter and tweak its behavior.
 
 Imagine we started implementing user objects using data properties `name` and `age`:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js
 function User(name, age) {
