@@ -191,20 +191,9 @@ The parent is available as `parentNode`.
 
 The next node in the same parent (next sibling) is `nextSibling`, and the previous one is `previousSibling`.
 
-<<<<<<< HEAD
-For instance:
-
-```html run
-<html><head></head><body><script>
-  // HTML is "dense" to evade extra "blank" text nodes.
-
-  // parent of <body> is <html>
-  alert( document.body.parentNode === document.documentElement ); // true
-=======
 ```js run
 // parent of <body> is <html>
 alert( document.body.parentNode === document.documentElement ); // true
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
   // after <head> goes <body>
   alert( document.head.nextSibling ); // HTMLBodyElement
@@ -241,11 +230,7 @@ alert( document.documentElement.parentNode ); // document
 alert( document.documentElement.parentElement ); // null
 ```
 
-<<<<<<< HEAD
-In other words, the `documentElement` (`<html>`) is the root node. Formally, it has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
-=======
 The reason is that the root node `document.documentElement` (`<html>`) has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 This loop travels up from an arbitrary element `elem` to `<html>`, but not to the `document`:
 ```js

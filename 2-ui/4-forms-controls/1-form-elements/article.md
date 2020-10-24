@@ -167,28 +167,18 @@ input.checked = true; // for a checkbox or radio button
 ```
 
 ```warn header="Use `textarea.value`, not `textarea.innerHTML`"
-<<<<<<< HEAD
-Please note that we should never use `textarea.innerHTML`: it stores only the HTML that was initially on the page, not the current value.
-=======
 Please note that even though `<textarea>...</textarea>` holds its value as nested HTML, we should never use `textarea.innerHTML` to access it.
 
 It stores only the HTML that was initially on the page, not the current value.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ```
 
 ### select and option
 
 A `<select>` element has 3 important properties:
 
-<<<<<<< HEAD
-1. `select.options` -- the collection of `<option>` elements,
-2. `select.value` -- the value of the chosen option,
-3. `select.selectedIndex` -- the number of the selected option.
-=======
 1. `select.options` -- the collection of `<option>` subelements,
 2. `select.value` -- the value of the currently selected `<option>`,
 3. `select.selectedIndex` -- the number of the currently selected `<option>`.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 They provide three different ways of setting a value for a `<select>`:
 
@@ -240,13 +230,9 @@ The full specification of the `<select>` element is available at <https://html.s
 
 ### new Option
 
-<<<<<<< HEAD
-In the specification of [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create `<option>` elements:
-=======
 This is rarely used on its own. But there's still an interesting thing.
 
 In the [specification](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create `<option>` elements:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js
 option = new Option(text, value, defaultSelected, selected);
@@ -304,14 +290,8 @@ Form navigation:
 
 Value is available as `input.value`, `textarea.value`, `select.value` etc, or `input.checked` for checkboxes and radio buttons.
 
-<<<<<<< HEAD
-For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`. The full specification of this and other elements is at <https://html.spec.whatwg.org/multipage/forms.html>.
-
-These are the basics to start working with forms. In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.
-=======
 For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`.
 
 These are the basics to start working with forms. We'll meet many examples further in the tutorial.
 
 In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3

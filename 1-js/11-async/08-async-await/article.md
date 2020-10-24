@@ -14,11 +14,7 @@ async function f() {
 
 The word "async" before a function means one simple thing: a function always returns a promise. Even If a function actually returns a non-promise value, prepending the function definition with the "async" keyword directs JavaScript to automatically wrap that value in a resolved promise.
 
-<<<<<<< HEAD
-For instance, the code above returns a resolved promise with the result of `1`, let's test it:
-=======
 For instance, this function returns a resolved promise with the result of `1`; let's test it:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js run
 async function f() {
@@ -28,11 +24,7 @@ async function f() {
 f().then(alert); // 1
 ```
 
-<<<<<<< HEAD
-...We could explicitly return a promise, that would be the same as:
-=======
 ...We could explicitly return a promise, which would be the same:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js run
 async function f() {
@@ -332,13 +324,8 @@ The `async` keyword before a function has two effects:
 
 The `await` keyword before a promise makes JavaScript wait until that promise settles, and then:
 
-<<<<<<< HEAD
-1. If it's an error, the exception is generated, same as if `throw error` were called at that very place.
-2. Otherwise, it returns the result, so we can assign it to a value.
-=======
 1. If it's an error, the exception is generated — same as if `throw error` were called at that very place.
 2. Otherwise, it returns the result.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Together they provide a great framework to write asynchronous code that is easy to both read and write.
 

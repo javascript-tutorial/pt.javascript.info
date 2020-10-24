@@ -160,11 +160,7 @@ button.onclick = sayThanks;
 button.onclick = sayThanks();
 ```
 
-<<<<<<< HEAD
-If we add brackets, then `sayThanks()` --  will be the *result* of the function execution, so `onclick` in the last code becomes `undefined` (the function returns nothing). That won't work.
-=======
 If we add parentheses, then `sayThanks()` becomes is a function call. So the last line actually takes the *result* of the function execution, that is `undefined` (as the function returns nothing), and assigns it to `onclick`. That doesn't work.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ...But in the markup we do need the brackets:
 
@@ -172,11 +168,7 @@ If we add parentheses, then `sayThanks()` becomes is a function call. So the las
 <input type="button" id="button" onclick="sayThanks()">
 ```
 
-<<<<<<< HEAD
-The difference is easy to explain. When the browser reads the attribute, it creates a handler function with the body from its content.
-=======
 The difference is easy to explain. When the browser reads the attribute, it creates a handler function with body from the attribute content.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 So the last example is the same as:
 ```js
@@ -232,14 +224,8 @@ element.addEventListener(event, handler, [options]);
 `options`
 : An additional optional object with properties:
     - `once`: if `true`, then the listener is automatically removed after it triggers.
-<<<<<<< HEAD
-    - `capture`: the phrase where to handle the event, to be covered later in the chapter <info:bubbling-and-capturing>. For historical reasons, `options` can also be `false/true`, that's the same as `{capture: false/true}`.
-    - `passive`: if `true`, then the handler will not `preventDefault()`, we'll cover that later in <info:default-browser-action>.
-
-=======
     - `capture`: the phase where to handle the event, to be covered later in the chapter <info:bubbling-and-capturing>. For historical reasons, `options` can also be `false/true`, that's the same as `{capture: false/true}`.
     - `passive`: if `true`, then the handler will not call `preventDefault()`, we'll explain that later in <info:default-browser-action>.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 To remove the handler, use `removeEventListener`:
 
@@ -385,11 +371,7 @@ For instance:
 </script>
 ```
 
-<<<<<<< HEAD
-In other words, when `addEventListener` receives an object as the handler, it calls `object.handleEvent(event)` in case of an event.
-=======
 As we can see, when `addEventListener` receives an object as the handler, it calls `obj.handleEvent(event)` in case of an event.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 We could also use a class for that:
 

@@ -2,15 +2,9 @@
 
 Antes de escrevermos código mais complexo, vamos falar de debugging (depuração de erros).
 
-<<<<<<< HEAD
-[Depuração](https://pt.wikipedia.org/wiki/Depura%C3%A7%C3%A3o) é o processo de procura e correção de erros num programa. Todos os navegadores (*browsers*) modernos e muitas outras plataformas (*environments*) suportam ferramentas de *debugging* -- uma UI (Interface de Utilizador) disponível nas ferramentas do desenvolvedor (*developer tools*) que torna a depuração de erros muito mais fácil. Ela também permite rastrear o código passo-a-passo para ver exactamente o que está a ser executado.
+[Depuração](https://pt.wikipedia.org/wiki/Depura%C3%A7%C3%A3o) é o processo de procura e correção de erros num programa. Todos os navegadores (*browsers*) modernos e muitas outras plataformas (*environments*) suportam ferramentas de *debugging* -- uma UI (Interface de Utilizador) especial disponível nas ferramentas do desenvolvedor (*developer tools*) que torna a depuração de erros muito mais fácil. Ela também permite rastrear o código passo-a-passo para ver exatamente o que está a ser executado.
 
-Aqui, vamos utilizar o Chrome porque tem bastantes funcionalidades, mas a maioria dos outros navegadores possuem um processo similar.
-=======
-[Debugging](https://en.wikipedia.org/wiki/Debugging) is the process of finding and fixing errors within a script. All modern browsers and most other environments support debugging tools -- a special UI in developer tools that makes debugging much easier. It also allows to trace the code step by step to see what exactly is going on.
-
-We'll be using Chrome here, because it has enough features, most other browsers have a similar process.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+Aqui, vamos utilizar o Chrome porque tem muitas funcionalidades, mas a maioria dos outros navegadores possuem um processo similar.
 
 ## O painel "*Sources*"
 
@@ -24,17 +18,12 @@ Aqui está o que poderá ver, se o estiver a fazer pela primeira vez:
 
 ![](chrome-open-sources.svg)
 
-<<<<<<< HEAD
 O botão de alternador <span class="devtools" style="background-position:-172px -98px"></span> abre o separador com os ficheiros.
-=======
-The toggler button <span class="devtools" style="background-position:-172px -98px"></span> opens the tab with files.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Vamos clicar nele, e selecionar `hello.js`  na vista de árvore de recursos apresentada. Aqui está o que deveria ser mostrado:
 
 ![](chrome-tabs.svg)
 
-<<<<<<< HEAD
 O painel *Sources* possui 3 partes:
 
 1. O painel **File Navigator**, lista ficheiros de HTML, JavaScript, CSS e outros, incluindo imagens anexadas à página. Extensões ao Chrome (*Chrome extensions*) também podem aparecer aqui.
@@ -42,15 +31,6 @@ O painel *Sources* possui 3 partes:
 3. O painel **JavaScript Debugging**, é para a depuração de erros; iremos explorá-lo em breve.
 
 Agora, poderia clicar novamente no mesmo botão de alternador <span class="devtools" style="background-position:-172px -122px"></span> para ocultar a lista de recursos e dar ao código algum espaço.
-=======
-The Sources panel has 3 parts:
-
-1. The **File Navigator** pane lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
-2. The **Code Editor** pane shows the source code.
-3. The **JavaScript Debugging** pane is for debugging, we'll explore it soon.
-
-Now you could click the same toggler <span class="devtools" style="background-position:-172px -122px"></span> again to hide the resources list and give the code some space.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Console
 

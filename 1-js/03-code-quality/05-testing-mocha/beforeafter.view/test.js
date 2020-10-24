@@ -1,20 +1,12 @@
-<<<<<<< HEAD
 describe("teste", function() {
+  // Mocha, geralmente espera pelos testes por 2 segundos antes de os considerar errados
+
+  this.timeout(200000); // Com este código nós aumentamos esse tempo - neste caso, para 200,000 
+  
+  // Isto, por causa da função "alert", porque se você se demorar a pressionar o botão "OK" oos testes não irão passar!
 
   before(() => alert("Testes iniciados – antes de todos os testes"));
   after(() => alert("Testes terminados – depois de todos os testes"));
-=======
-describe("test", function() {
-  
-   // Mocha usually waits for the tests for 2 seconds before considering them wrong
-  
-  this.timeout(200000); // With this code we increase this - in this case to 200,000 milliseconds
-
-  // This is because of the "alert" function, because if you delay pressing the "OK" button the tests will not pass!
-  
-  before(() => alert("Testing started – before all tests"));
-  after(() => alert("Testing finished – after all tests"));
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
   beforeEach(() => alert("antes de um teste – entrando para um teste"));
   afterEach(() => alert("depois de um teste – saindo de um teste"));

@@ -8,13 +8,6 @@ libs:
 
 The backbone of an HTML document is tags.
 
-<<<<<<< HEAD
-According to Document Object Model (DOM), every HTML-tag is an object. Nested tags are called "children" of the enclosing one.
-
-The text inside a tag it is an object as well.
-
-All these objects are accessible using JavaScript.
-=======
 According to the Document Object Model (DOM), every HTML tag is an object. Nested tags are  "children" of the enclosing one. The text inside a tag is an object as well.
 
 All these objects are accessible using JavaScript, and we can use them to modify the page.
@@ -30,7 +23,6 @@ setTimeout(() => document.body.style.background = '', 3000); // return back
 ```
 
 Here we used `style.background` to change the background color of `document.body`, but there are many other properties, such as:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 - `innerHTML` -- HTML contents of the node.
 - `offsetWidth` -- the node width (in pixels)
@@ -40,11 +32,7 @@ Soon we'll learn more ways to manipulate the DOM, but first we need to know abou
 
 ## An example of the DOM
 
-<<<<<<< HEAD
-For instance, let's explore the DOM for this document:
-=======
 Let's start with the following simple document:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```html run no-beautify
 <!DOCTYPE HTML>
@@ -72,13 +60,9 @@ drawHtmlTree(node1, 'div.domtree', 690, 320);
 On the picture above, you can click on element nodes and their children will open/collapse.
 ```
 
-<<<<<<< HEAD
-Tags are called *element nodes* (or just elements). Nested tags become children of the enclosing ones. As a result we have a tree of elements: `<html>` is at the root, then `<head>` and `<body>` are its children, etc.
-=======
 Every tree node is an object.
 
 Tags are *element nodes* (or just elements) and form the tree structure: `<html>` is at the root, then `<head>` and `<body>` are its children, etc.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 The text inside elements forms *text nodes*, labelled as `#text`. A text node contains only a string. It may not have children and is always a leaf of the tree.
 
@@ -89,11 +73,7 @@ Please note the special characters in text nodes:
 - a newline: `↵` (in JavaScript known as `\n`)
 - a space: `␣`
 
-<<<<<<< HEAD
-Spaces and newlines -- are totally valid characters, they form text nodes and become a part of the DOM. So, for instance, in the example above the `<head>` tag contains some spaces before `<title>`, and that text becomes a `#text` node (it contains a newline and some spaces only).
-=======
 Spaces and newlines are totally valid characters, like letters and digits. They form text nodes and become a part of the DOM. So, for instance, in the example above the `<head>` tag contains some spaces before `<title>`, and that text becomes a `#text` node (it contains a newline and some spaces only).
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 There are only two top-level exclusions:
 1. Spaces and newlines before `<head>` are ignored for historical reasons.
@@ -144,11 +124,7 @@ drawHtmlTree(node3, 'div.domtree', 690, 150);
 
 While generating the DOM, browsers automatically process errors in the document, close tags and so on.
 
-<<<<<<< HEAD
-Such an "invalid" document:
-=======
 A document with unclosed tags:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```html no-beautify
 <p>Hello
@@ -280,11 +256,7 @@ We can run commands on them. For instance, `$0.style.background = 'red'` makes t
 
 From the other side, if we're in console and have a variable referencing a DOM node, then we can use the command `inspect(node)` to see it in the Elements pane.
 
-<<<<<<< HEAD
-Or we can just output it in the console and explore "at-place", like `document.body` below:
-=======
 Or we can just output the DOM node in the console and explore "in-place", like `document.body` below:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ![](domconsole1.svg)
 

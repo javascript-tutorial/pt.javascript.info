@@ -8,11 +8,7 @@ The `mouseover` event occurs when a mouse pointer comes over an element, and `mo
 
 ![](mouseover-mouseout.svg)
 
-<<<<<<< HEAD
-These events are special, because they have a `relatedTarget`.
-=======
 These events are special, because they have property `relatedTarget`. This property complements `target`. When a mouse leaves one element for another, one of them becomes `target`, and the other one - `relatedTarget`.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 For `mouseover`:
 
@@ -21,13 +17,8 @@ For `mouseover`:
 
 For `mouseout` the reverse:
 
-<<<<<<< HEAD
-- `event.target` -- is the element that mouse left.
-- `event.relatedTarget` -- is the new under-the-pointer element (that mouse left for).
-=======
 - `event.target` -- is the element that the mouse left.
 - `event.relatedTarget` -- is the new under-the-pointer element, that mouse left for (`target` -> `relatedTarget`).
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 ```online
 In the example below each face and its features are separate elements. When you move the mouse, you can see mouse events in the text area.

@@ -155,27 +155,15 @@ Script error.
 , 0:0
 ```
 
-<<<<<<< HEAD
-Details may vary depeding on the browser, but the idea is same: any information about the internals of a script is hidden. Exactly because it's from another domain.
-=======
 Details may vary depending on the browser, but the idea is the same: any information about the internals of a script, including error stack traces, is hidden. Exactly because it's from another domain.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Why do we need the details?
 
-<<<<<<< HEAD
-There are many services (and we can build our own) that listen to `window.onerror`, save errors at the server and provide an interface to access and analyze them. That's great, as we can see real errors, triggered by our users. But we can't see any error information for scripts from other domains.
-
-Similar cross-origin policy (CORS) is enforced for other types of resources as well.
-
-**To allow cross-origin access, we need `crossorigin` attribute, plus the remote server must provide special headers.**
-=======
 There are many services (and we can build our own) that listen for global errors using `window.onerror`, save errors and provide an interface to access and analyze them. That's great, as we can see real errors, triggered by our users. But if a script comes from another origin, then there's not much information about errors in it, as we've just seen.
 
 Similar cross-origin policy (CORS) is enforced for other types of resources as well.
 
 **To allow cross-origin access, the `<script>` tag needs to have the `crossorigin` attribute, plus the remote server must provide special headers.**
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 There are three levels of cross-origin access:
 
