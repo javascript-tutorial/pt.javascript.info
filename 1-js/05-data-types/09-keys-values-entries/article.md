@@ -63,13 +63,6 @@ for (let value of Object.values(user)) {
 }
 ```
 
-<<<<<<< HEAD
-## Object.keys/values/entries ignore symbolic properties
-
-Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
-
-Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, the method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) returns *all* keys.
-=======
 ```warn header="Object.keys/values/entries ignore symbolic properties"
 Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
 
@@ -107,4 +100,3 @@ alert(doublePrices.meat); // 8
 ```   
 
 It may look difficult from the first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way. 
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3

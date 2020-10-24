@@ -2,15 +2,9 @@
 
 The lifecycle of an HTML page has three important events:
 
-<<<<<<< HEAD
-- `DOMContentLoaded` -- the browser fully loaded HTML, and the DOM tree is built, but external resources like pictures `<img>` and stylesheets may be not yet loaded.  
-- `load` -- the browser loaded all resources (images, styles etc).
-- `beforeunload/unload` -- when the user is leaving the page.
-=======
 - `DOMContentLoaded` -- the browser fully loaded HTML, and the DOM tree is built, but external resources like pictures `<img>` and stylesheets may not yet have loaded.  
 - `load` -- not only HTML is loaded, but also all the external resources: images, styles etc.
 - `beforeunload/unload` -- the user is leaving the page.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Each event may be useful:
 
@@ -79,18 +73,10 @@ So DOMContentLoaded definitely happens after such scripts:
 
 In the example above, we first see "Library loaded...", and then "DOM ready!" (all scripts are executed).
 
-<<<<<<< HEAD
-```warn header="Scripts with `async`, `defer` or `type=\"module\"` don't block DOMContentLoaded"
-
-Script attributes `async` and `defer`, that we'll cover [a bit later](info:script-async-defer), don't block DOMContentLoaded. [JavaScript modules](info:modules) behave like `defer`,  they don't block it too.
-
-So here we're talking about "regular" scripts, like `<script>...</script>`, or `<script src="..."></script>`.
-=======
 ```warn header="Scripts that don't block DOMContentLoaded"
 There are two exceptions from this rule:
 1. Scripts with the `async` attribute, that we'll cover [a bit later](info:script-async-defer), don't block `DOMContentLoaded`.
 2. Scripts that are generated dynamically with `document.createElement('script')` and then added to the webpage also don't block this event.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ```
 
 ### DOMContentLoaded and styles

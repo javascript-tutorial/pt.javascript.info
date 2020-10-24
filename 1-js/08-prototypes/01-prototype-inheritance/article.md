@@ -250,12 +250,6 @@ The resulting picture:
 
 ![](proto-animal-rabbit-walk-3.svg)
 
-<<<<<<< HEAD
-If we had other objects like `bird`, `snake` etc inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
-
-As a result, methods are shared, but the object state is not.
-
-=======
 If we had other objects, like `bird`, `snake`, etc., inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method call would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
 
 As a result, methods are shared, but the object state is not.
@@ -328,18 +322,12 @@ Almost all other key/value-getting methods, such as `Object.keys`, `Object.value
 They only operate on the object itself. Properties from the prototype are *not* taken into account.
 ```
 
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ## Summary
 
 - In JavaScript, all objects have a hidden `[[Prototype]]` property that's either another object or `null`.
 - We can use `obj.__proto__` to access it (a historical getter/setter, there are other ways, to be covered soon).
 - The object referenced by `[[Prototype]]` is called a "prototype".
-<<<<<<< HEAD
-- If we want to read a property of `obj` or call a method, and it doesn't exist, then JavaScript tries to find it in the prototype. Write/delete operations work directly on the object, they don't use the prototype (unless the property is actually a setter).
-- If we call `obj.method()`, and the `method` is taken from the prototype, `this` still references `obj`. So methods always work with the current object even if they are inherited.
-=======
 - If we want to read a property of `obj` or call a method, and it doesn't exist, then JavaScript tries to find it in the prototype.
 - Write/delete operations act directly on the object, they don't use the prototype (assuming it's a data property, not a setter).
 - If we call `obj.method()`, and the `method` is taken from the prototype, `this` still references `obj`. So methods always work with the current object even if they are inherited.
 - The `for..in` loop iterates over both its own and its inherited properties. All other key/value-getting methods only operate on the object itself.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3

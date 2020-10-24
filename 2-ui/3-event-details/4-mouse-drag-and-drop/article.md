@@ -2,23 +2,11 @@
 
 Drag'n'Drop is a great interface solution. Taking something and dragging and dropping it is a clear and simple way to do many things, from copying and moving documents (as in file managers) to ordering (dropping items into a cart).
 
-<<<<<<< HEAD
-In the modern HTML standard there's a [section about Drag Events](https://html.spec.whatwg.org/multipage/interaction.html#dnd).
-
-They are interesting, because they allow to solve simple tasks easily, and also allow to handle drag'n'drop of "external" files into the browser. So we can take a file in the OS file-manager and drop it into the browser window. Then JavaScript gains access to its contents.
-
-<<<<<<< HEAD
-But native Drag Events also have limitations. For instance, we can limit dragging by a certain area. Also we can't make it "horizontal" or "vertical" only. There are other drag'n'drop tasks that can't be implemented using that API.
-=======
-But native Drag Events also have limitations. For instance, we can't limit dragging by a certain area. Also we can't make it "horizontal" or "vertical" only. There are other drag'n'drop tasks that can't be done using that API.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
-=======
 In the modern HTML standard there's a [section about Drag and Drop](https://html.spec.whatwg.org/multipage/interaction.html#dnd) with special events such as `dragstart`, `dragend`, and so on.
 
 These events allow us to support special kinds of drag'n'drop, such as handling dragging a file from OS file-manager and dropping it into the browser window. Then JavaScript can access the contents of such files.
 
 But native Drag Events also have limitations. For instance, we can't prevent dragging from a certain area. Also we can't make the dragging "horizontal" or "vertical" only. And there are many other drag'n'drop tasks that can't be done using them. Also, mobile device support for such events is very weak.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 So here we'll see how to implement Drag'n'Drop using mouse events.
 
@@ -105,18 +93,14 @@ So we should listen on `document` to catch it.
 
 ## Correct positioning
 
-In the examples above the ball is always centered under the pointer:
+In the examples above the ball is always moved so, that it's center is under the pointer:
 
 ```js
 ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
 ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
 ```
 
-<<<<<<< HEAD
-Not bad, but there's a side-effect. To initiate the drag'n'drop can we `mousedown` anywhere on the ball. If do it at the edge, then the ball suddenly "jumps" to become centered.
-=======
 Not bad, but there's a side-effect. To initiate the drag'n'drop, we can `mousedown` anywhere on the ball. But if "take" it from its edge, then the ball suddenly "jumps" to become centered under the mouse pointer.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 It would be better if we keep the initial shift of the element relative to the pointer.
 
@@ -135,8 +119,6 @@ Let's update our algorithm:
     let shiftX = event.clientX - ball.getBoundingClientRect().left;
     let shiftY = event.clientY - ball.getBoundingClientRect().top;
     ```
-
-    Please note that there's no method to get document-relative coordinates in JavaScript, so we use window-relative coordinates here.
 
 2. Then while dragging we position the ball on the same shift relative to the pointer, like this:
 
@@ -163,7 +145,8 @@ ball.onmousedown = function(event) {
 
   moveAt(event.pageX, event.pageY);
 
-  // centers the ball at (pageX, pageY) coordinates
+  // moves the ball at (pageX, pageY) coordinates
+  // taking initial shifts into account
   function moveAt(pageX, pageY) {
     ball.style.left = pageX - *!*shiftX*/!* + 'px';
     ball.style.top = pageY - *!*shiftY*/!* + 'px';
@@ -173,10 +156,10 @@ ball.onmousedown = function(event) {
     moveAt(event.pageX, event.pageY);
   }
 
-  // (3) move the ball on mousemove
+  // move the ball on mousemove
   document.addEventListener('mousemove', onMouseMove);
 
-  // (4) drop the ball, remove unneeded handlers
+  // drop the ball, remove unneeded handlers
   ball.onmouseup = function() {
     document.removeEventListener('mousemove', onMouseMove);
     ball.onmouseup = null;
@@ -197,19 +180,10 @@ In action (inside `<iframe>`):
 
 The difference is especially noticeable if we drag the ball by its right-bottom corner. In the previous example the ball "jumps" under the pointer. Now it fluently follows the pointer from the current position.
 
-## Detecting droppables
+## Potential drop targets (droppables)
 
 In previous examples the ball could be dropped just "anywhere" to stay. In real-life we usually take one element and drop it onto another. For instance, a "file" into a "folder" or something else.
 
-<<<<<<< HEAD
-Abstractly, we take a "draggable" element and drop it onto "droppable" element.
-
-We need to know the target droppable at the end of Drag'n'Drop -- to do the corresponding action, and, preferably, during the dragging process, to highlight it.
-
-The solution is kind-of interesting and just a little bit tricky, so let's cover it here.
-
-What's the first idea? Probably to put `onmouseover/mouseup` handlers on potential droppables and detect when the mouse pointer appears over them. And then we know that we are dragging/dropping on that element.
-=======
 Speaking abstract, we take a "draggable" element and drop it onto "droppable" element.
 
 We need to know:
@@ -219,7 +193,6 @@ We need to know:
 The solution is kind-of interesting and just a little bit tricky, so let's cover it here.
 
 What may be the first idea? Probably to set `mouseover/mouseup` handlers on potential droppables?
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 But that doesn't work.
 
@@ -240,13 +213,13 @@ For instance, below are two `<div>` elements, red one on top of the blue one (fu
 <div style="background:red" onmouseover="alert('over red!')"></div>
 ```
 
-The same with a draggable element. The ball in always on top over other elements, so events happen on it. Whatever handlers we set on lower elements, they won't work.
+The same with a draggable element. The ball is always on top over other elements, so events happen on it. Whatever handlers we set on lower elements, they won't work.
 
 That's why the initial idea to put handlers on potential droppables doesn't work in practice. They won't run.
 
 So, what to do?
 
-There's a method called `document.elementFromPoint(clientX, clientY)`. It returns the most nested element on given window-relative coordinates (or `null` if coordinates are out of the window).
+There's a method called `document.elementFromPoint(clientX, clientY)`. It returns the most nested element on given window-relative coordinates (or `null` if given coordinates are out of the window).
 
 We can use it in any of our mouse event handlers to detect the potential droppable under the pointer, like this:
 
@@ -255,19 +228,14 @@ We can use it in any of our mouse event handlers to detect the potential droppab
 ball.hidden = true; // (*) hide the element that we drag
 
 let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-<<<<<<< HEAD
-ball.hidden = false;
-// elemBelow is the element below the ball. If it's droppable, we can handle it.
-=======
 // elemBelow is the element below the ball, may be droppable
 
 ball.hidden = false;
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 ```
 
 Please note: we need to hide the ball before the call `(*)`. Otherwise we'll usually have a ball on these coordinates, as it's the top element under the pointer: `elemBelow=ball`. So we hide it and immediately show again.
 
-We can use that code to check what we're "flying over" at any time. And handle the drop when it happens.
+We can use that code to check what element we're "flying over" at any time. And handle the drop when it happens.
 
 An extended code of `onMouseMove` to find "droppable" elements:
 
@@ -292,7 +260,7 @@ function onMouseMove(event) {
   if (currentDroppable != droppableBelow) {
     // we're flying in or out...
     // note: both values can be null
-    //   currentDroppable=null if we were not over a droppable (e.g over an empty space)
+    //   currentDroppable=null if we were not over a droppable before this event (e.g over an empty space)
     //   droppableBelow=null if we're not over a droppable now, during this event
 
     if (currentDroppable) {
@@ -312,11 +280,11 @@ In the example below when the ball is dragged over the soccer goal, the goal is 
 
 [codetabs height=250 src="ball4"]
 
-Now we have the current "drop target" in the variable `currentDroppable` during the whole process and can use it to highlight or any other stuff.
+Now we have the current "drop target", that we're flying over, in the variable `currentDroppable` during the whole process and can use it to highlight or any other stuff.
 
 ## Summary
 
-We considered a basic `Drag'n'Drop` algorithm.
+We considered a basic Drag'n'Drop algorithm.
 
 The key components:
 
@@ -332,8 +300,4 @@ We can lay a lot on this foundation.
 - We can use event delegation for `mousedown/up`. A large-area event handler that checks  `event.target` can manage Drag'n'Drop for hundreds of elements.
 - And so on.
 
-<<<<<<< HEAD
-There are frameworks that build architecture over it: `DragZone`, `Droppable`, `Draggable` and other classes. Most of them do the similar stuff to described above, so it should be easy to understand them now. Or roll our own, because you already know how to handle the process, and it may be more flexible than to adapt something else.
-=======
 There are frameworks that build architecture over it: `DragZone`, `Droppable`, `Draggable` and other classes. Most of them do the similar stuff to what's described above, so it should be easy to understand them now. Or roll your own, as you can see that that's easy enough to do, sometimes easier than adapting a third-party solution.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3

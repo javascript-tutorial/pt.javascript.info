@@ -343,11 +343,7 @@ As we can see, when our function gets a department to sum, there are two possibl
 
 The (1) is the base of recursion, the trivial case.
 
-<<<<<<< HEAD
-The (2) is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
-=======
 The 2nd case when we get an object is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 The algorithm is probably even easier to read from the code:
 

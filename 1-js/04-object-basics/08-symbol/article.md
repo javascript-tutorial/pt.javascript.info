@@ -74,13 +74,9 @@ alert(id.description); // id
 
 Symbols allow us to create "hidden" properties of an object, that no other part of code can accidentally access or overwrite.
 
-<<<<<<< HEAD
-For instance, if we want to store an "identifier" for the object `user`, we can use a symbol as a key for it:
-=======
 For instance, if we're working with `user` objects, that belong to a third-party code. We'd like to add identifiers to them.
 
 Let's use a symbol key for it:
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 ```js run
 let user = { // belongs to another code
@@ -96,11 +92,7 @@ alert( user[id] ); // we can access the data using the symbol as the key
 
 What's the benefit of using `Symbol("id")` over a string `"id"`?
 
-<<<<<<< HEAD:1-js/04-object-basics/08-symbol/article.md
-Let's make the example a bit deeper to see that.
-=======
 As `user` objects belongs to another code, and that code also works with them, we shouldn't just add any fields to it. That's unsafe. But a symbol cannot be accessed accidentally, the third-party code probably won't even see it, so it's probably all right to do.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3:1-js/04-object-basics/08-symbol/article.md
 
 Imagine that another script wants to have its own "id" property inside `user`, for its own purposes. That may be another JavaScript library, so the scripts are completely unaware of each other.
 
@@ -271,11 +263,7 @@ Symbols are always different values, even if they have the same name. If we want
 Symbols have two main use cases:
 
 1. "Hidden" object properties.
-<<<<<<< HEAD:1-js/04-object-basics/08-symbol/article.md
-    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be occasionally listed. Also it won't be accessed directly, because another script does not have our symbol, so it will not occasionally intervene into its actions.
-=======
     If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be accidentally processed together with other properties. Also it won't be accessed directly, because another script does not have our symbol. So the property will be protected from accidental use or overwrite.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3:1-js/04-object-basics/08-symbol/article.md
 
     So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
 

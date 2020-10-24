@@ -241,84 +241,7 @@ There are many solutions possible:
 
 For many practical applications, the 3rd variant is good enough, so we'll stick to it.
 
-<<<<<<< HEAD
-The second task to solve is how to pass many arguments to `func`. Currently, the wrapper `function(x)` assumes a single argument, and `func.call(this, x)` passes it.
-
-Here we can use another built-in method [func.apply](mdn:js/Function/apply).
-
-The syntax is:
-
-```js
-func.apply(context, args)
-```
-
-It runs the `func` setting `this=context` and using an array-like object `args` as the list of arguments.
-
-
-For instance, these two calls are almost the same:
-
-```js
-func(1, 2, 3);
-func.apply(context, [1, 2, 3])
-```
-
-Both run `func` giving it arguments `1,2,3`. But `apply` also sets `this=context`.
-
-For instance, here `say` is called with `this=user` and `messageData` as a list of arguments:
-
-```js run
-function say(time, phrase) {
-  alert(`[${time}] ${this.name}: ${phrase}`);
-}
-
-let user = { name: "John" };
-
-let messageData = ['10:00', 'Hello']; // become time and phrase
-
-*!*
-// user becomes this, messageData is passed as a list of arguments (time, phrase)
-say.apply(user, messageData); // [10:00] John: Hello (this=user)
-*/!*
-```
-
-The only syntax difference between `call` and `apply` is that `call` expects a list of arguments, while `apply` takes an array-like object with them.
-
-We already know the spread operator `...` from the chapter <info:rest-parameters-spread-operator> that can pass an array (or any iterable) as a list of arguments. So if we use it with `call`, we can achieve almost the same as `apply`.
-
-These two calls are almost equivalent:
-
-```js
-let args = [1, 2, 3];
-
-*!*
-func.call(context, ...args); // pass an array as list with spread operator
-func.apply(context, args);   // is same as using apply
-*/!*
-```
-
-If we look more closely, there's a minor difference between such uses of `call` and `apply`.
-
-- The spread operator `...` allows to pass *iterable* `args` as the list to `call`.
-- The `apply` accepts only *array-like* `args`.
-
-So, these calls complement each other. Where we expect an iterable, `call` works, where we expect an array-like, `apply` works.
-
-And if `args` is both iterable and array-like, like a real array, then we technically could use any of them, but `apply` will probably be faster, because it's a single operation. Most JavaScript engines internally optimize it better than a pair `call + spread`.
-
-One of the most important uses of `apply` is passing the call to another function, like this:
-
-```js
-let wrapper = function() {
-  return anotherFunction.apply(this, arguments);
-};
-```
-
-That's called *call forwarding*. The `wrapper` passes everything it gets: the context `this` and arguments to `anotherFunction` and returns back its result.
-
-When an external code calls such `wrapper`, it is indistinguishable from the call of the original function.
-=======
 Also we need to pass not just `x`, but all arguments in `func.call`. Let's recall that in a `function()` we can get a pseudo-array of its arguments as `arguments`, so `func.call(this, x)` should be replaced with `func.call(this, ...arguments)`.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Now let's bake it all into the more powerful `cachingDecorator`:
 
@@ -359,19 +282,13 @@ alert( worker.slow(3, 5) ); // works
 alert( "Again " + worker.slow(3, 5) ); // same (cached)
 ```
 
-<<<<<<< HEAD
-Now the wrapper operates with any number of arguments.
-=======
 Now it works with any number of arguments (though the hash function would also need to be adjusted to allow any number of arguments. An interesting way to handle this will be covered below).
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 There are two changes:
 
 - In the line `(*)` it calls `hash` to create a single key from `arguments`. Here we use a simple "joining" function that turns arguments `(3, 5)` into the key `"3,5"`. More complex cases may require other hashing functions.
 - Then `(**)` uses `func.apply` to pass both the context and all arguments the wrapper got (no matter how many) to the original function.
 
-<<<<<<< HEAD
-=======
 ## func.apply
 
 Instead of `func.call(this, ...arguments)` we could use `func.apply(this, arguments)`.
@@ -413,7 +330,6 @@ let wrapper = function() {
 ```
 
 When an external code calls such `wrapper`, it is indistinguishable from the call of the original function `func`.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Borrowing a method [#method-borrowing]
 

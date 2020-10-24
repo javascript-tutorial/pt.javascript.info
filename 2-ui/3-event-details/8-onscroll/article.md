@@ -30,12 +30,8 @@ We can't prevent scrolling by using `event.preventDefault()` in `onscroll` liste
 
 But we can prevent scrolling by `event.preventDefault()` on an event that causes the scroll, for instance `keydown` event for `key:pageUp` and `key:pageDown`.
 
-<<<<<<< HEAD
-Sometimes that may help. But there are more ways to scroll, so it's quite hard to handle all of them. So it's more reliable to use CSS to make something unscrollable, like `overflow` property.
-=======
 If we add an event handler to these events and `event.preventDefault()` in it, then the scroll won't start.
 
 There are many ways to initiate a scroll, so it's more reliable to use CSS, `overflow` property.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 Here are few tasks that you can solve or look through to see applications of `onscroll`.

@@ -46,11 +46,7 @@ alert( arr instanceof Object ); // true
 
 Please note that `arr` also belongs to the `Object` class. That's because `Array` prototypically inherits from `Object`.
 
-<<<<<<< HEAD
-The `instanceof` operator examines the prototype chain for the check, and is also fine-tunable using the static method `Symbol.hasInstance`.
-=======
 Normally, `instanceof` examines the prototype chain for the check. We can also set a custom logic in the static method `Symbol.hasInstance`.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 The algorithm of `obj instanceof Class` works roughly as follows:
 
@@ -68,11 +64,7 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) is called
     ```
 
-<<<<<<< HEAD
-2. Most classes do not have `Symbol.hasInstance`. In that case, check if `Class.prototype` equals to one of prototypes in the `obj` prototype chain.
-=======
 2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceOf Class` checks whether `Class.prototype` is equal to one of the prototypes in the `obj` prototype chain.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
     In other words, compare:
     ```js
@@ -106,11 +98,7 @@ By the way, there's also a method [objA.isPrototypeOf(objB)](mdn:js/object/isPro
 
 It's funny, but the `Class` constructor itself does not participate in the check! Only the chain of prototypes and `Class.prototype` matters.
 
-<<<<<<< HEAD
-That can lead to interesting consequences when `prototype` is changed.
-=======
 That can lead to interesting consequences when a `prototype` property is changed after the object is created.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Like here:
 
@@ -194,13 +182,8 @@ alert( {}.toString.call(user) ); // [object User]
 For most environment-specific objects, there is such a property. Here are some browser specific examples:
 
 ```js run
-<<<<<<< HEAD
-// toStringTag for the envinronment-specific object and class:
-alert( window[Symbol.toStringTag]); // window
-=======
 // toStringTag for the environment-specific object and class:
 alert( window[Symbol.toStringTag]); // Window
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 alert( XMLHttpRequest.prototype[Symbol.toStringTag] ); // XMLHttpRequest
 
 alert( {}.toString.call(window) ); // [object Window]

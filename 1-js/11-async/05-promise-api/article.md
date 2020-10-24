@@ -75,15 +75,9 @@ The syntax is:
 let promise = Promise.all([...promises...]);
 ```
 
-<<<<<<< HEAD
-It takes an array of promises (technically can be any iterable, but usually an array) and returns a new promise.
-
-The new promise resolves when all listed promises are settled and has an array of their results.
-=======
 `Promise.all` takes an array of promises (it technically can be any iterable, but is usually an array) and returns a new promise.
 
 The new promise resolves when all listed promises are settled, and the array of their results becomes its result.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For instance, the `Promise.all` below settles after 3 seconds, and then its result is an array `[1, 2, 3]`:
 
@@ -95,11 +89,7 @@ Promise.all([
 ]).then(alert); // 1,2,3 when promises are ready: each promise contributes an array member
 ```
 
-<<<<<<< HEAD
-Please note that the relative order is the same. Even though the first promise takes the longest time to resolve, it is still first in the array of results.
-=======
 Please note that the order of the resulting array members is the same as in its source promises. Even though the first promise takes the longest time to resolve, it's still first in the array of results.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 A common trick is to map an array of job data into an array of promises, and then wrap that into `Promise.all`.
 
@@ -122,11 +112,7 @@ Promise.all(requests)
   ));
 ```
 
-<<<<<<< HEAD
-A more real-life example with fetching user information for an array of github users by their names (or we could fetch an array of goods by their ids, the logic is same):
-=======
 A bigger example with fetching user information for an array of GitHub users by their names (we could fetch an array of goods by their ids, the logic is identical):
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js run
 let names = ['iliakan', 'remy', 'jeresig'];
@@ -166,11 +152,7 @@ Here the second promise rejects in two seconds. That leads to an immediate rejec
 
 The important detail is that promises provide no way to "cancel" or "abort" their execution. So other promises continue to execute, and then eventually settle, but all their results are ignored.
 
-<<<<<<< HEAD
-There are ways to avoid this: we can either write additional code to `clearTimeout` (or otherwise cancel) the promises in case of an error, or we can make errors show up as members in the resulting array (see the task below this chapter about it).
-=======
 For example, if there are multiple `fetch` calls, like in the example above, and one fails, the others will still continue to execute, but `Promise.all` won't watch them anymore. They will probably settle, but their results will be ignored.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ````smart header="`Promise.all(...)` allows non-promise items in `iterable`"
 Normally, `Promise.all(...)` accepts an iterable (in most cases an array) of promises. But if any of those objects is not a promise, it's wrapped in `Promise.resolve`.
@@ -182,25 +164,13 @@ Promise.all([
   new Promise((resolve, reject) => {
     setTimeout(() => resolve(1), 1000)
   }),
-<<<<<<< HEAD
-  2, // treated as Promise.resolve(2)
-  3  // treated as Promise.resolve(3)
-=======
   2,
   3
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ]).then(alert); // 1, 2, 3
 ```
 
 So we are able to pass non-promise values to `Promise.all` where convenient.
 
-<<<<<<< HEAD
-````
-
-## Promise.race
-
-Similar to `Promise.all`, it takes an iterable of promises, but instead of waiting for all of them to finish, it waits for the first result (or error), and goes on with it.
-=======
 `Promise.all` rejects as a whole if any promise rejects. That's good for "all or nothing" cases, when we need *all* results successful to proceed:
 
 ```js
@@ -278,7 +248,6 @@ Now we can use `Promise.allSettled` to get the results of *all* given promises, 
 ## Promise.race
 
 Similar to `Promise.all`, but waits only for the first settled promise and gets its result (or error).
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 The syntax is:
 
@@ -296,9 +265,6 @@ Promise.race([
 ]).then(alert); // 1
 ```
 
-<<<<<<< HEAD
-So, the first result/error becomes the result of the whole `Promise.race`. After the first settled promise "wins the race", all further results/errors are ignored.
-=======
 The first promise here was fastest, so it became the result. After the first settled promise "wins the race", all further results/errors are ignored.
 
 
@@ -354,18 +320,11 @@ let promise = new Promise((resolve, reject) => reject(error));
 ```
 
 In practice, this method is almost never used.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Summary
 
 There are 4 static methods of `Promise` class:
 
-<<<<<<< HEAD
-1. `Promise.resolve(value)` -- makes a resolved promise with the given value.
-2. `Promise.reject(error)` -- makes a rejected promise with the given error.
-3. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, then it becomes the error of `Promise.all`, and all other results are ignored.
-4. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
-=======
 1. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, it becomes the error of `Promise.all`, and all other results are ignored.
 2. `Promise.allSettled(promises)` (recently added method) -- waits for all promises to settle and returns their results as an array of objects with:
     - `status`: `"fulfilled"` or `"rejected"`
@@ -373,6 +332,5 @@ There are 4 static methods of `Promise` class:
 3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
 4. `Promise.resolve(value)` -- makes a resolved promise with the given value.
 5. `Promise.reject(error)` -- makes a rejected promise with the given error.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Of these four, `Promise.all` is the most common in practice.

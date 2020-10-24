@@ -28,11 +28,7 @@ On the other hand, it's important to understand differences when migrating old s
 
 ## "var" has no block scope
 
-<<<<<<< HEAD
-`var` variables are either function-wide or global, they are visible through blocks.
-=======
 Variables, declared with `var`, are either function-scoped or global-scoped. They are visible through blocks.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For instance:
 
@@ -96,14 +92,10 @@ var user = "Pete";
 var user = "John"; // this "var" does nothing (already declared)
 // ...it doesn't trigger an error
 
-<<<<<<< HEAD
-## "var" are processed at the function start
-=======
 alert(user); // John
 ```
 
 ## "var" variables can be declared below their use
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 `var` declarations are processed when the function starts (or script starts for globals).
 
@@ -272,13 +264,8 @@ In all the above cases we declare a Function Expression and run it immediately. 
 
 There are two main differences of `var`:
 
-<<<<<<< HEAD
-1. Variables have no block scope, they are visible minimum at the function level.
-2. Variable declarations are processed at function start.
-=======
 1. `var` variables have no block scope; their visibility is scoped to current function, or global, if declared outside function.
 2. `var` declarations are processed at function start (script start for globals).
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 There's one more very minor difference related to the global object, that we'll cover in the next chapter.
 

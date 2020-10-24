@@ -52,13 +52,9 @@ There are three variants:
 `"default"`
 : Occurs in rare cases when the operator is "not sure" what type to expect.
 
-<<<<<<< HEAD:1-js/04-object-basics/09-object-toprimitive/article.md
-    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. Or when an object is compared using `==` with a string, number or a symbol.
-=======
     For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. So if a binary plus gets an object as an argument, it uses the `"default"` hint to convert it.
 
     Also, if an object is compared using `==` with a string, number or a symbol, it's also unclear which conversion should be done, so the `"default"` hint is used.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3:1-js/04-object-basics/09-object-toprimitive/article.md
 
     ```js
     // binary plus uses the "default" hint
@@ -204,16 +200,6 @@ An operation that initiated the conversion gets that primitive, and then continu
 
 For instance:
 
-<<<<<<< HEAD:1-js/04-object-basics/09-object-toprimitive/article.md
-- Mathematical operations (except binary plus) perform `ToNumber` conversion:
-
-    ```js run
-    let obj = {
-      toString() { // toString handles all conversions in the absence of other methods
-        return "2";
-      }
-    };
-=======
 ## Further conversions
 
 As we know already, many operators and functions perform type conversions, e.g. multiplication `*` converts operands to numbers.
@@ -221,36 +207,10 @@ As we know already, many operators and functions perform type conversions, e.g. 
 If we pass an object as an argument, then there are two stages:
 1. The object is converted to a primitive (using the rules described above).
 2. If the resulting primitive isn't of the right type, it's converted.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3:1-js/04-object-basics/09-object-toprimitive/article.md
 
     alert(obj * 2); // 4, ToPrimitive gives "2", then it becomes 2
     ```
 
-<<<<<<< HEAD:1-js/04-object-basics/09-object-toprimitive/article.md
-- Binary plus checks the primitive -- if it's a string, then it does concatenation, otherwise it performs `ToNumber` and works with numbers.
-
-    String example:
-    ```js run
-    let obj = {
-      toString() {
-        return "2";
-      }
-    };
-
-    alert(obj + 2); // 22 (ToPrimitive returned string => concatenation)
-    ```
-
-    Number example:
-    ```js run
-    let obj = {
-      toString() {
-        return true;
-      }
-    };
-
-    alert(obj + 2); // 3 (ToPrimitive returned boolean, not string => ToNumber)
-    ```
-=======
 ```js run
 let obj = {
   // toString handles all conversions in the absence of other methods
@@ -276,7 +236,6 @@ let obj = {
 
 alert(obj + 2); // 22 ("2" + 2), conversion to primitive returned a string => concatenation
 ```
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3:1-js/04-object-basics/09-object-toprimitive/article.md
 
 ```smart header="Historical notes"
 For historical reasons, methods `toString` or `valueOf` *should* return a primitive: if any of them returns an object, then there's no error, but that object is ignored (like if the method didn't exist).

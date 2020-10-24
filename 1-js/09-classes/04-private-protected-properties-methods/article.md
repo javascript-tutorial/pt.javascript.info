@@ -262,11 +262,7 @@ Unlike protected ones, private fields are enforced by the language itself. That'
 But if we inherit from `CoffeeMachine`, then we'll have no direct access to `#waterAmount`. We'll need to rely on `waterAmount` getter/setter:
 
 ```js
-<<<<<<< HEAD
-class CoffeeMachine extends CoffeeMachine() {
-=======
 class MegaCoffeeMachine extends CoffeeMachine {
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
   method() {
 *!*
     alert( this.#waterAmount ); // Error: can only access from CoffeeMachine
@@ -275,11 +271,7 @@ class MegaCoffeeMachine extends CoffeeMachine {
 }
 ```
 
-<<<<<<< HEAD
-In many scenarios such limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reason to access its internals. That's why protected fields are used most of the time, even though they are not supported by the language syntax.
-=======
 In many scenarios such limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reasons to access its internals. That's why protected fields are used more often, even though they are not supported by the language syntax.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ````warn
 Private fields are special.
@@ -330,11 +322,7 @@ Hiding complexity
 
     **It's always convenient when implementation details are hidden, and a simple, well-documented external interface is available.**
 
-<<<<<<< HEAD
-To hide internal interface we use either protected or public properties:
-=======
 To hide an internal interface we use either protected or private properties:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 - Protected fields start with `_`. That's a well-known convention, not enforced at the language level. Programmers should only access a field starting with `_` from its class and classes inheriting from it.
 - Private fields start with `#`. JavaScript makes sure we can only access those from inside the class.

@@ -118,11 +118,7 @@ Previous methods were searching the DOM.
 
 The [elem.matches(css)](http://dom.spec.whatwg.org/#dom-element-matches) does not look for anything, it merely checks if `elem` matches the given CSS-selector. It returns `true` or `false`.
 
-<<<<<<< HEAD
-The method comes handy when we are iterating over elements (like in array or something) and trying to filter those that interest us.
-=======
 The method comes in handy when we are iterating over elements (like in an array or something) and trying to filter out those that interest us.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For instance:
 
@@ -181,13 +177,8 @@ Today, they are mostly history, as `querySelector` is more powerful and shorter 
 So here we cover them mainly for completeness, while you can still find them in the old scripts.
 
 - `elem.getElementsByTagName(tag)` looks for elements with the given tag and returns the collection of them. The `tag` parameter can also be a star `"*"` for "any tags".
-<<<<<<< HEAD
-- `elem.getElementsByClassName(className)` returns elements that have the given CSS class. Elements may have other classes too.
-- `document.getElementsByName(name)` returns elements with the given `name` attribute, document-wide. very rarely used.
-=======
 - `elem.getElementsByClassName(className)` returns elements that have the given CSS class.
 - `document.getElementsByName(name)` returns elements with the given `name` attribute, document-wide. Very rarely used.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For instance:
 ```js

@@ -25,23 +25,14 @@ try {
 It works like this:
 
 1. First, the code in `try {...}` is executed.
-<<<<<<< HEAD
-2. If there were no errors, then `catch(err)` is ignored: the execution reaches the end of `try` and then jumps over `catch`.
-3. If an error occurs, then `try` execution is stopped, and the control flows to the beginning of `catch(err)`. The `err` variable (can use any name for it) contains an error object with details about what's happened.
-=======
 2. If there were no errors, then `catch(err)` is ignored: the execution reaches the end of `try` and goes on, skipping `catch`.
 3. If an error occurs, then the `try` execution is stopped, and control flows to the beginning of `catch(err)`. The `err` variable (we can use any name for it) will contain an error object with details about what happened.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ![](try-catch-flow.svg)
 
 So, an error inside the `try {…}` block does not kill the script -- we have a chance to handle it in `catch`.
 
-<<<<<<< HEAD
-Let's see more examples.
-=======
 Let's look at some examples.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 - An errorless example: shows `alert` `(1)` and `(2)`:
 
@@ -347,11 +338,7 @@ Now `catch` became a single place for all error handling: both for `JSON.parse` 
 
 ## Rethrowing
 
-<<<<<<< HEAD
-In the example above we use `try..catch` to handle incorrect data. But is it possible that *another unexpected error* occurs within the `try {...}` block? Like a variable is undefined or something else, not just that "incorrect data" thing.
-=======
 In the example above we use `try..catch` to handle incorrect data. But is it possible that *another unexpected error* occurs within the `try {...}` block? Like a programming error (variable is not defined) or something else, not just this "incorrect data" thing.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For example:
 
@@ -607,11 +594,7 @@ Let's imagine we've got a fatal error outside of `try..catch`, and the script di
 
 Is there a way to react on such occurrences? We may want to log the error, show something to the user (normally they don't see error messages), etc.
 
-<<<<<<< HEAD
-There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.js has [process.on('uncaughtException')](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property. It will run in case of an uncaught error.
-=======
 There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.js has [`process.on("uncaughtException")`](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to the special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property, that will run in case of an uncaught error.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 The syntax:
 

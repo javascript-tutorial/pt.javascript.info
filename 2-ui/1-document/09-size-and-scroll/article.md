@@ -58,13 +58,9 @@ Let's start exploring them from the outside of the element.
 
 These properties are rarely needed, but still they are the "most outer" geometry properties, so we'll start with them.
 
-<<<<<<< HEAD
-The `offsetParent` is the nearest ancestor that is:
-=======
 The `offsetParent` is the nearest ancestor that the browser uses for calculating coordinates during rendering.
 
 That's the nearest ancestor that is one of the following:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 1. CSS-positioned (`position` is `absolute`, `relative`, `fixed` or `sticky`),  or
 2. `<td>`, `<th>`, or `<table>`,  or
@@ -112,11 +108,7 @@ For our sample element:
 ````smart header="Geometry properties for not shown elements are zero/null"
 Geometry properties are calculated only for shown elements.
 
-<<<<<<< HEAD
-If an element (or any of its ancestors) has `display:none` or is not in the document, then all geometry properties are zero or `null` depending on what it is.
-=======
 If an element (or any of its ancestors) has `display:none` or is not in the document, then all geometry properties are zero (or `null` for `offsetParent`).
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For example, `offsetParent` is `null`, and `offsetWidth`, `offsetHeight` are `0`.
 
@@ -277,11 +269,7 @@ Elements have the following geometry properties:
 - `offsetParent` -- is the nearest positioned ancestor or `td`, `th`, `table`, `body`.
 - `offsetLeft/offsetTop` -- coordinates relative to the upper-left edge of `offsetParent`.
 - `offsetWidth/offsetHeight` -- "outer" width/height of an element including borders.
-<<<<<<< HEAD
-- `clientLeft/clientTop` -- the distance from the upper-left outer corner to its upper-left inner corner. For left-to-right OS they are always the widths of left/top borders. For right-to-left OS the vertical scrollbar is on the left so `clientLeft` includes its width too.
-=======
 - `clientLeft/clientTop` -- the distances from the upper-left outer corner to the upper-left inner (content + padding) corner. For left-to-right OS they are always the widths of left/top borders. For right-to-left OS the vertical scrollbar is on the left so `clientLeft` includes its width too.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 - `clientWidth/clientHeight` -- the width/height of the content including paddings, but without the scrollbar.
 - `scrollWidth/scrollHeight` -- the width/height of the content including the scrolled out parts. Also includes paddings, but not the scrollbar.
 - `scrollLeft/scrollTop` -- width/height of the scrolled out part of the element, starting from its upper-left corner.

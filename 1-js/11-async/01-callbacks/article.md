@@ -39,11 +39,7 @@ loadScript('/my/script.js');
 
 The script is executed "asynchronously", as it starts loading now, but runs later, when the function has already finished.
 
-<<<<<<< HEAD
-The call initiates the script loading, then the execution continues. While the script is loading, the code below may finish executing, and if the loading takes time, other scripts may run meanwhile too.
-=======
 If there's any code below `loadScript(…)`, it doesn't wait until the script loading finishes.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js
 loadScript('/my/script.js');
@@ -51,11 +47,7 @@ loadScript('/my/script.js');
 // ...
 ```
 
-<<<<<<< HEAD
-Now let's say we want to use the new script when it loads. It probably declares new functions, so we'd like to run them.
-=======
 Let's say we need to use the new script as soon as it loads. It declares new functions, and we want to run them.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 But if we do that immediately after the `loadScript(…)` call, that wouldn't work:
 

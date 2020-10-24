@@ -19,13 +19,8 @@ User.staticMethod(); // true
 
 That actually does the same as assigning it as a function property:
 
-<<<<<<< HEAD
-```js
-function User() { }
-=======
 ```js run
 class User { }
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 User.staticMethod = function() {
   alert(this === User);
@@ -130,15 +125,9 @@ That is the same as a direct assignment to `Article`:
 Article.publisher = "Ilya Kantor";
 ```
 
-<<<<<<< HEAD
-## Statics and inheritance
-
-Statics are inherited, we can access `Parent.method` as `Child.method`.
-=======
 ## Inheritance of static properties and methods
 
 Static properties and methods are inherited.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For instance, `Animal.compare` and `Animal.planet` in the code below are inherited and accessible as `Rabbit.compare` and `Rabbit.planet`:
 
@@ -185,22 +174,14 @@ rabbits[0].run(); // Black Rabbit runs with speed 5.
 alert(Rabbit.planet); // Earth
 ```
 
-<<<<<<< HEAD
-Now we can call `Rabbit.compare` assuming that the inherited `Animal.compare` will be called.
-=======
 Now when we call `Rabbit.compare`, the inherited `Animal.compare` will be called.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 How does it work? Again, using prototypes. As you might have already guessed, extends also gives `Rabbit` the `[[Prototype]]` reference to `Animal`.
 
 
 ![](animal-rabbit-static.svg)
 
-<<<<<<< HEAD
-So, `Rabbit` function now inherits from `Animal` function. And `Animal` function normally has `[[Prototype]]` referencing `Function.prototype`, because it doesn't `extend` anything.
-=======
 As a result, inheritance works both for regular and static methods.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Here, let's check that:
 
@@ -211,16 +192,6 @@ class Rabbit extends Animal {}
 // for static properties and methods
 alert(Rabbit.__proto__ === Animal); // true
 
-<<<<<<< HEAD
-// and the next step is Function.prototype
-alert(Animal.__proto__ === Function.prototype); // true
-
-// that's in addition to the "normal" prototype chain for object methods
-alert(Rabbit.prototype.__proto__ === Animal.prototype);
-```
-
-This way `Rabbit` has access to all static methods of `Animal`.
-=======
 // for regular methods
 alert(Rabbit.prototype.__proto__ === Animal.prototype); // true
 ```
@@ -228,7 +199,6 @@ alert(Rabbit.prototype.__proto__ === Animal.prototype); // true
 ## Summary
 
 Static methods are used for the functionality that belongs to the class "as a whole". It doesn't relate to a concrete class instance.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Summary
 

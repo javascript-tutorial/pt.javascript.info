@@ -36,11 +36,7 @@ To get field-relative `left` coordinate of the click, we can substract the field
 let left = event.clientX - fieldCoords.left - field.clientLeft;
 ```
 
-<<<<<<< HEAD
-Normally, `ball.style.position.left` means the "left edge of the element" (the ball). So if we assign that `left`, then the ball edge would be under the mouse cursor.
-=======
 Normally, `ball.style.left` means the "left edge of the element" (the ball). So if we assign that `left`, then the ball edge, not center, would be under the mouse cursor.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 We need to move the ball half-width left and half-height up to make it center.
 

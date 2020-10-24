@@ -15,11 +15,7 @@ If we handle an event in JavaScript, we may not want the corresponding browser a
 There are two ways to tell the browser we don't want it to act:
 
 - The main way is to use the `event` object. There's a method `event.preventDefault()`.
-<<<<<<< HEAD
-- If the handler is assigned using `on<event>` (not by `addEventListener`), then we can just return `false` from it.
-=======
 - If the handler is assigned using `on<event>` (not by `addEventListener`), then returning `false` also works the same.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 In this HTML a click on a link doesn't lead to navigation, browser doesn't do anything:
 
@@ -36,11 +32,7 @@ The value returned by an event handler is usually ignored.
 
 The only exception is `return false` from a handler assigned using `on<event>`.
 
-<<<<<<< HEAD
-In all other cases, the return is not needed and it's not processed anyhow.
-=======
 In all other cases, `return` value is ignored. In particular, there's no sense in returning `true`.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ```
 
 ### Example: the menu
@@ -216,11 +208,7 @@ As we can clearly see, `event.stopPropagation()` and `event.preventDefault()` (a
 ```
 
 ```smart header="Nested context menus architecture"
-<<<<<<< HEAD
-There are also alternative ways to implement nested context menus. One of them is to have a special global object with a method that handles `document.oncontextmenu`, and also methods that allow to store various "lower-level" handlers in it.
-=======
 There are also alternative ways to implement nested context menus. One of them is to have a single global object with a handler for `document.oncontextmenu`, and also methods that allow us to store other handlers in it.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 The object will catch any right-click, look through stored handlers and run the appropriate one.
 

@@ -142,13 +142,7 @@ for (let char of str) {
 
 Normally, internals of iterables are hidden from the external code. There's a `for..of` loop, that works, that's all it needs to know.
 
-<<<<<<< HEAD
-But to understand things a little bit deeper let's see how to create an iterator explicitly.
-
-We'll iterate over a string the same way as `for..of`, but with direct calls. This code gets a string iterator and calls it "manually":
-=======
 We'll iterate over a string in exactly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js run
 let str = "Hello";
@@ -233,11 +227,7 @@ The full syntax for `Array.from` also allows us to provide an optional "mapping"
 Array.from(obj[, mapFn, thisArg])
 ```
 
-<<<<<<< HEAD
-The second argument `mapFn` should be the function to apply to each element before adding to the array, and `thisArg` allows to set `this` for it.
-=======
 The optional second argument `mapFn` can be a function that will be applied to each element before adding it to the array, and `thisArg` allows us to set `this` for it.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For instance:
 
