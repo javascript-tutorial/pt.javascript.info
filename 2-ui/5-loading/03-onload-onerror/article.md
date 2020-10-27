@@ -41,8 +41,8 @@ document.head.append(script);
 
 *!*
 script.onload = function() {
-  // the script creates a helper function "_"
-  alert(_); // the function is available
+  // the script creates a variable "_"
+  alert( _.VERSION ); // shows library version
 };
 */!*
 ```
@@ -92,7 +92,7 @@ img.onload = function() {
 };
 
 img.onerror = function() {
-  alert("Error occured while loading image");
+  alert("Error occurred while loading image");
 };
 ```
 
@@ -113,13 +113,13 @@ This rule also affects resources from other domains.
 
 If we're using a script from another domain, and there's an error in it, we can't get error details.
 
-For example, let's take a script with a single (bad) function call:
+For example, let's take a script `error.js` that consists of a single (bad) function call:
 ```js
 // 📁 error.js
 noSuchFunction();
 ```
 
-Now load it from our domain:
+Now load it from the same site where it's located:
 
 ```html run height=0
 <script>
@@ -157,7 +157,7 @@ Script error.
 
 Details may vary depending on the browser, but the idea is the same: any information about the internals of a script, including error stack traces, is hidden. Exactly because it's from another domain.
 
-Why do we need the details?
+Why do we need error details?
 
 There are many services (and we can build our own) that listen for global errors using `window.onerror`, save errors and provide an interface to access and analyze them. That's great, as we can see real errors, triggered by our users. But if a script comes from another origin, then there's not much information about errors in it, as we've just seen.
 

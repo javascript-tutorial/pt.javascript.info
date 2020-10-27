@@ -15,7 +15,7 @@ Actions are represented in JavaScript by functions in properties.
 
 ## Method examples
 
-For the start, let's teach the `user` to say hello:
+For a start, let's teach the `user` to say hello:
 
 ```js run
 let user = {
@@ -32,11 +32,11 @@ user.sayHi = function() {
 user.sayHi(); // Hello!
 ```
 
-Here we've just used a Function Expression to create the function and assign it to the property `user.sayHi` of the object.
+Here we've just used a Function Expression to create a function and assign it to the property `user.sayHi` of the object.
 
-Then we can call it. The user can now speak!
+Then we can call it as `user.sayHi()`. The user can now speak!
 
-A function that is the property of an object is called its *method*.
+A function that is a property of an object is called its *method*.
 
 So, here we've got a method `sayHi` of the object `user`.
 
@@ -72,14 +72,14 @@ There exists a shorter syntax for methods in an object literal:
 ```js
 // these objects do the same
 
-let user = {
+user = {
   sayHi: function() {
     alert("Hello");
   }
 };
 
 // method shorthand looks better, right?
-let user = {
+user = {
 *!*
   sayHi() { // same as "sayHi: function()"
 */!*
@@ -111,6 +111,7 @@ let user = {
 
   sayHi() {
 *!*
+    // "this" is the "current object"
     alert(this.name);
 */!*
   }
@@ -159,14 +160,16 @@ let user = {
 let admin = user;
 user = null; // overwrite to make things obvious
 
-admin.sayHi(); // Whoops! inside sayHi(), the old name is used! error!
+*!*
+admin.sayHi(); // TypeError: Cannot read property 'name' of null
+*/!*
 ```
 
 If we used `this.name` instead of `user.name` inside the `alert`, then the code would work.
 
 ## "this" is not bound
 
-In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function.
+In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function, even if it's not a method of an object.
 
 There's no syntax error in the following example:
 
@@ -176,9 +179,9 @@ function sayHi() {
 }
 ```
 
-The value of `this` is evaluated during the run-time. And it can be anything.
+The value of `this` is evaluated during the run-time, depending on the context.
 
-For instance, the same function may have different "this" when called from different objects:
+For instance, here the same function is assigned to two different objects and has different "this" in the calls:
 
 ```js run
 let user = { name: "John" };
@@ -189,7 +192,7 @@ function sayHi() {
 }
 
 *!*
-// use the same functions in two objects
+// use the same function in two objects
 user.f = sayHi;
 admin.f = sayHi;
 */!*
@@ -202,7 +205,10 @@ admin.f(); // Admin  (this == admin)
 admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)
 ```
 
-Actually, we can call the function without an object at all:
+The rule is simple: if `obj.f()` is called, then `this` is `obj` during the call of `f`. So it's either `user` or `admin` in the example above.
+
+````smart header="Calling without an object: `this == undefined`"
+We can even call the function without an object at all:
 
 ```js run
 function sayHi() {
@@ -258,7 +264,7 @@ That's a special feature of arrow functions, it's useful when we actually do not
 
 The value of `this` is defined at run-time.
 - When a function is declared, it may use `this`, but that `this` has no value until the function is called.
-- That function can be copied between objects.
+- A function can be copied between objects.
 - When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
 
 Please note that arrow functions are special: they have no `this`. When `this` is accessed inside an arrow function, it is taken from outside.
