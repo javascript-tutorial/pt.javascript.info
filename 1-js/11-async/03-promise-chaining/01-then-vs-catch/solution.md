@@ -17,4 +17,4 @@ promise
 
 Isso é devido ao erro ser propagado pela cadeia, e no segundo código não há cadeia após `f1`.
 
-Em outras palavras, `.then` passa resultados/erros para o próximo `.then/catch`. Então, no primeiro exemplo, há um `catch` em seguida, e no segundo exemplo não há, então o erro não é tratado. 
+Por outras palavras, `.then` passa resultados/erros para o próximo `.then/catch`. Então, no primeiro exemplo, há um `catch` embaixo, e no segundo exemplo não há, então o erro não é tratado.

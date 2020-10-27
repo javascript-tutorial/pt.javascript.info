@@ -1,6 +1,6 @@
 # Olá, mundo!
 
-O tutorial que você está lendo é sobre a core do JavaScript, que é independente de plataforma. Mais tarde, você vai aprender sobre Node.js e outras plataformas que o usam.
+Esta parte do tutorial é sobre a core do JavaScript, a própria linguagem.
 
 Mas precisamos de um ambiente de trabalho para rodar nossos scripts e, como esse livro está online, o navegador é uma boa escolha. Vamos manter a quantidade de comandos específicos do navegador (como `alert`) no mínimo para que você não gaste tempo com eles se você planeja se concentrar em outro ambiente (como Node.js). Vamos focar em JavaScript no navegador na [próxima parte](/ui) do tutorial.
 
@@ -49,7 +49,7 @@ O atributo `type`: <code>&lt;script <u>type</u>=...&gt;</code>
 : O antigo padrão HTML, HTML4, requeria um script para ter um `type`. Normalmente era `type="text/javascript"`. Não é mais necessário. Além disso, o moderno padrão HTML, HTML5, mudou totalmente o significado deste atributo. Agora, ele pode ser usado para módulos JavaScript. Mas esse é um tópico avançado; vamos falar sobre módulos em outra parte do tutorial. 
 
 O atributo `language`: <code>&lt;script <u>language</u>=...&gt;</code>
-: Este atributo foi criado para mostrar o idioma do script. Este atributo não faz mais sentido porque JavaScript é a linguagem padrão. Não há necessidade de usá-lo.
+: Este atributo foi criado para mostrar o idioma do script. Este atributo não faz mais sentido porque JavaScript é a linguagem padrão. Não há necessidade de o usar.
 
 Comentários antes e depois dos scripts.
 : Em livros e guias realmente antigos, você pode encontrar comentários dentro de tags `<script>`, assim:
@@ -73,14 +73,12 @@ Os arquivos de script são anexados ao HTML com o atributo `src`:
 <script src="/path/to/script.js"></script>
 ```
 
-Aqui, `/path/to/script.js` é um caminho absoluto para o arquivo script (da raiz do site).
-
-Você também pode fornecer um caminho relativo a partir da página atual. Por exemplo, `src="script.js"` significaria um arquivo `"script.js"` na pasta atual.
+Aqui, `/path/to/script.js` é um caminho absoluto para o arquivo script (da raiz do site). Você também pode fornecer um caminho relativo a partir da página atual. Por exemplo, `src="script.js"` significaria um arquivo `"script.js"` na pasta atual.
 
 Nós também podemos dar uma URL completa. Por exemplo:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
 ```
 
 Para anexar vários scripts, use múltiplas tags:
