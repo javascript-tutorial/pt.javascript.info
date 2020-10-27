@@ -1,15 +1,11 @@
 
 # Objeto global
 
-O objeto global fornece variáveis e funções que estão disponíveis em qualquer lugar. Em sua maioria, aqueles que são incorporados ao idioma ou ao ambiente.
+O objeto global fornece variáveis e funções que estão disponíveis em qualquer lugar. Na sua maioria, aquelas que são incorporadas ao idioma ou ao ambiente.
 
 No navegador ele é chamado de `window`, no Node.js é `global`, em outros ambientes pode ter outro nome.
 
-<<<<<<< HEAD
 Recentemente, `globalThis` foi adicionado à linguagem como um nome padrão para o objeto global, e que deve ser suportado em todos os ambientes. Ele é suportado em todos os principais navegadores.
-=======
-Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. It's supported in all major browsers.
->>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
 
 Usamos `window` aqui, assumindo que nosso ambiente seja um navegador. Se o seu script puder ser executado em outros ambientes, é melhor utilizar o `globalThis`.
 
@@ -29,13 +25,9 @@ var gVar = 5;
 alert(window.gVar); // 5 (se torna uma propriedade do objeto global)
 ```
 
-<<<<<<< HEAD
-Por favor, não confie nisso! Esse comportamento existe por motivos de compatibilidade. Scripts modernos usam [JavaScript modules](info:modules) onde tal coisa não acontece.
-=======
-The same effect have function declarations (statements with `function` keyword in the main code flow, not function expressions).
+O mesmo efeito têm declarações de função (instruções com a palavra-chave `function` no fluxo principal do código, não expressões de função).
 
-Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such thing doesn't happen.
->>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
+Por favor, não confie nisso! Esse comportamento existe por motivos de compatibilidade. Scripts modernos usam [JavaScript modules](info:modules) onde tal coisa não acontece.
 
 Se usássemos `let`, isso não aconteceria:
 
