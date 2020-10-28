@@ -1,7 +1,7 @@
 
 # Objeto global
 
-O objeto global fornece variáveis e funções que estão disponíveis em qualquer lugar. Em sua maioria, aqueles que são incorporados ao idioma ou ao ambiente.
+O objeto global fornece variáveis e funções que estão disponíveis em qualquer lugar. Na sua maioria, aquelas que são incorporadas ao idioma ou ao ambiente.
 
 No navegador ele é chamado de `window`, no Node.js é `global`, em outros ambientes pode ter outro nome.
 
@@ -24,6 +24,8 @@ var gVar = 5;
 
 alert(window.gVar); // 5 (se torna uma propriedade do objeto global)
 ```
+
+O mesmo efeito têm declarações de função (instruções com a palavra-chave `function` no fluxo principal do código, não expressões de função).
 
 Por favor, não confie nisso! Esse comportamento existe por motivos de compatibilidade. Scripts modernos usam [JavaScript modules](info:modules) onde tal coisa não acontece.
 
