@@ -2,11 +2,7 @@
 
 As diretivas export e import têm diversas variantes de sintaxe.
 
-<<<<<<< HEAD
 No artigo anterior vimos um uso simples, agora vamos explorar mais exemplos.
-=======
-In the previous article we saw a simple use, now let's explore more examples.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Export before declarations
 
@@ -29,13 +25,8 @@ Por exemplo, todas essas expressões são válidas:
 }
 ```
 
-<<<<<<< HEAD
 ````smart header="Sem ponto e vírgula depois de export class/function"
 Note que `export` antes de uma classe ou uma função não a torna uma [function expression](info:function-expressions-arrows). Ainda é uma declaração de função, embora exportada.
-=======
-````smart header="No semicolons after export class/function"
-Please note that `export` before a class or a function does not make it a [function expression](info:function-expressions). It's still a function declaration, albeit exported.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 A maioria dos guias de estilo não recomendam ponto e vírgula depois da declaração de funções ou de classes.
 
@@ -164,25 +155,14 @@ say.*!*bye*/!*('John'); // Tchau, John!
 
 Na prática, exitem principalmente dois tipos de módulos.
 
-<<<<<<< HEAD
 1. Módulos que contém uma biblioteca, pacote de funções, como `say.js` acima.
 2. Módulos que declaram uma única entidade, por exemplo um módulo `user.js` exportando apenas `class User`.
-=======
-1. Modules that contain a library, pack of functions, like `say.js` above.
-2. Modules that declare a single entity, e.g. a module `user.js` exports only `class User`.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Na maioria dos casos, a segunda abordagem é preferida, para que cada "coisa" tenha seu próprio módulo.
 
-<<<<<<< HEAD
 Naturalmente isso exige muitos arquivos porque tudo precisa do seu próprio módulo, mas isso não é problema. Na verdade a navegação do código se torna mais fácil se os arquivos forem bem nomeados e estruturados em pastas.
 
 Módulos fornecem a sintaxe especial `export default` ("a exportação default") para melhorar a aparência de "uma coisa por módulo".
-=======
-Naturally, that requires a lot of files, as everything wants its own module, but that's not a problem at all. Actually, code navigation becomes easier if files are well-named and structured into folders.
-
-Modules provide a special `export default` ("the default export") syntax to make the "one thing per module" way look better.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Coloque `export default` antes da entidade a ser exportada:
 
@@ -236,15 +216,9 @@ export default function(user) { // função sem nome
 export default ['Jan', 'Fev', 'Mar','Abr', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 ```
 
-<<<<<<< HEAD
-Não prover um nome é ok, porque deve ter apenas um `export default` por arquivo, então `import` - sem as chaves - vai saber o que importar.
+Não prover um nome é ok, porque deve ter apenas um `export default` por arquivo, então `import` sem as chaves vai saber o que importar.
 
 Sem `default`, esse export causaria um erro:
-=======
-Not giving a name is fine, because there is only one `export default` per file, so `import` without curly braces knows what to import.
-
-Without `default`, such an export would give an error:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js
 export class { // Erro! (exports que não são default precisam de um nome)
@@ -267,11 +241,7 @@ function sayHi(user) {
 export {sayHi as default};
 ```
 
-<<<<<<< HEAD
-Ou, em outra situação, digamos que um módulo `user.js` tenha um export principal "default" e alguns outros nomeados (caso raro, mas acontece)::
-=======
-Or, another situation, let's say a module `user.js` exports one main "default" thing, and a few named ones (rarely the case, but it happens):
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+Ou, em outra situação, digamos que um módulo `user.js` tenha um export principal "default" e alguns outros nomeados (caso raro, mas acontece):
 
 ```js
 // 📁 user.js
@@ -305,19 +275,11 @@ let User = user.default; // o export default
 new User('John');
 ```
 
-<<<<<<< HEAD
 ### Uma palavra contra exports default
 
 Exports nomeados são explícitos. Eles nomeiam exatamente o que importam, então temos essas informações e isso é uma coisa boa.
 
 Exports nomeados nos forçam a usar exatamente o nome certo para importar:
-=======
-### A word against default exports
-
-Named exports are explicit. They exactly name what they import, so we have that information from them; that's a good thing.
-
-Named exports force us to use exactly the right name to import:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js
 import {User} from './user.js';
@@ -327,15 +289,9 @@ import {User} from './user.js';
 ...Enquanto para o export default, nós sempre escolhemos o nome ao importar:
 
 ```js
-<<<<<<< HEAD
 import User from './user.js'; // funciona
 import MyUser from './user.js'; // Também funciona
 // pode ser import QualquerCoisa..., e ainda vai funcionar
-=======
-import User from './user.js'; // works
-import MyUser from './user.js'; // works too
-// could be import Anything... and it'll still work
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ```
 
 Membros da mesma equipe podem usar nomes diferentes para importar a mesma coisa, e isso não é bom.
@@ -349,11 +305,7 @@ import func from '/path/to/func.js';
 ...
 ```
 
-<<<<<<< HEAD
 Ainda assim, algumas equipes consideram isso uma séria desvantagem dos exports default. Então, eles preferem usar sempre exports com nomes. Mesmo se apenas uma coisa é exportada, ela ainda será exportada com um nome, sem `default`.
-=======
-Still, some teams consider it a serious drawback of default exports. So they prefer to always use named exports. Even if only a single thing is exported, it's still exported under a name, without `default`.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Isso também facilita a a reexportação (veja abaixo).
 
@@ -367,15 +319,9 @@ export {sayHi} from './say.js'; // reexporta sayHi
 export {default as User} from './user.js'; // reexporta o default
 ```
 
-<<<<<<< HEAD
 Por que isso seria necessário? Vamos ver um caso de uso prático.
 
 Imagine que estamos escrevendo um "pacote": uma pasta com muitos módulos, com algumas funcionalidades exportadas (ferramentas como NPM permitem publicar e distribuir esses pacotes), e muitos módulos são apenas "auxiliares", para uso interno em outro pacote de módulos.
-=======
-Why would that be needed? Let's see a practical use case.
-
-Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow us to publish and distribute such packages), and many modules are just "helpers", for internal use in other package modules.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 A estrutura de arquivos pode ser assim:
 ```
@@ -432,8 +378,7 @@ export {default as User} from './user.js';
 
 O export default precisa de um tratamento separado ao reexportar.
 
-
-Vamos dizer que temos `user.js`, e gostaríamos de reexportar a classe `User`
+Vamos dizer que temos `user.js` com o `export default class User`, e gostaríamos de o reexportar:
 
 ```js
 // 📁 user.js
@@ -442,17 +387,13 @@ export default class User {
 }
 ```
 
-1. `export User from './user.js'` não funcionará. O que pode dar errado? ... Mas isso é um erro de sintaxe!
+Podemos encontrar dois problemas:
 
-<<<<<<< HEAD
+1. `export User from './user.js'` não funcionará. Isso levaria a um erro de sintaxe.
+
     Para reexportar o export default, nós temos que escrever `export {default as User}`, como no exemplo acima.
 
 2. `export * from './user.js'` reexporta apenas os exports com nome, mas ignora o default.
-=======
-    To re-export the default export, we have to write `export {default as User}`, as in the example above.    
-
-2. `export * from './user.js'` re-exports only named exports, but ignores the default one.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
     Se desejarmos reexportar tanto os export com nome e o export default, serão necessárias duas declarações:
     ```js
@@ -460,19 +401,11 @@ export default class User {
     export {default} from './user.js'; // para reexportar o export default
     ```
 
-<<<<<<< HEAD
-Essas esquisitices de reexportar o export default são um dos motivos pelos quais alguns desenvolvedores não gostam deles.
-=======
-Such oddities of re-exporting the default export are one of the reasons why some developers don't like them.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+Essas esquisitices de reexportar o export default são um dos motivos pelos quais alguns desenvolvedores não gostam de default exports e preferem os nomeados.
 
 ## Resumo
 
-<<<<<<< HEAD
 Aqui estão todos os tipos de `export` que abordamos neste e em artigos anteriores.
-=======
-Here are all types of `export` that we covered in this and previous articles.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Você pode verificar lendo-os e relembrando o que eles significam:
 
@@ -508,11 +441,7 @@ sayHi();
 import {sayHi} from './say.js'; // import no final do arquivo
 ```
 
-<<<<<<< HEAD
 Na prática, as importações normalmente ficam no início do arquivo, mas isso é apenas por conveniência.
-=======
-In practice imports are usually at the start of the file, but that's only for more convenience.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 **Observe que as declarações de importação e exportação não funcionam dentro de `{...}`.**
 
@@ -525,8 +454,4 @@ if (something) {
 
 ... Mas e se realmente precisarmos importar algo condicionalmente? Ou na hora certa? Como, carregar um módulo mediante solicitação, quando é realmente necessário?
 
-<<<<<<< HEAD
-Veremos importações dinâmicas no próximo capítulo.
-=======
-We'll see dynamic imports in the next article.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+Veremos importações dinâmicas no próximo artigo.
