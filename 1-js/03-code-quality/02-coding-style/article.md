@@ -329,8 +329,13 @@ Aqui está um exemplo de um ficheiro `.eslintrc`:
   },
   "rules": {
     "no-console": 0,
+<<<<<<< HEAD
   },
   "indent": 2
+=======
+    "indent": 2
+  }
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 }
 ```
 

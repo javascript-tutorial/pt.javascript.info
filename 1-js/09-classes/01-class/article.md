@@ -221,7 +221,7 @@ function makeClass(phrase) {
   return class {
     sayHi() {
       alert(phrase);
-    };
+    }
   };
 }
 
