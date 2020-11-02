@@ -19,15 +19,9 @@ Possui 3 modos:
     alert( result[1] );     // Script (primeira captura de grupo)
     alert( result.length ); // 2
 
-<<<<<<< HEAD
     // Informação adicional:
-    alert( result.index );  // 0 (posição da correspondÊncia)
+    alert( result.index );  // 0 (posição da correspondência)
     alert( result.input );  // Eu amo JavaScript (string original)
-=======
-    // Additional information:
-    alert( result.index );  // 7 (match position)
-    alert( result.input );  // I love JavaScript (source string)
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
     ```
 
 2. Se a `regexp` tiver a flag `padrão:g`, ela retornará uma matriz de todas as correspondências como strings, sem capturar grupos e outros detalhes.

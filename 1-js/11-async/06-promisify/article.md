@@ -46,11 +46,7 @@ let loadScriptPromise = function(src) {
 // loadScriptPromise('path/script.js').then(...)
 ```
 
-<<<<<<< HEAD
-Now `loadScriptPromise` fits well in our promise-based code.
-=======
 As we can see, the new function is a wrapper around the original `loadScript` function. It calls it providing its own callback that translates to promise `resolve/reject`.
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 Now `loadScriptPromise` fits well in promise-based code. If we like promises more than callbacks (and soon we'll see more reasons for that), then we will use it instead.
 
@@ -90,14 +86,10 @@ Here, `promisiefy` assumes that the original function expects a callback with ex
 
 But what if the original `f` expects a callback with more arguments `callback(err, res1, res2)`?
 
-<<<<<<< HEAD
-Here's a modification of `promisify` that returns an array of multiple callback results:
-=======
 We can improve our helper. Let's make a more advanced version of `promisify`.
 
 - When called as `promisify(f)` it should work similar to the version above.
 - When called as `promisify(f, true)`, it should return the promise that resolves with the array of callback results. That's exactly for callbacks with many arguments.
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 ```js
 // promisify(f, true) to get array of results

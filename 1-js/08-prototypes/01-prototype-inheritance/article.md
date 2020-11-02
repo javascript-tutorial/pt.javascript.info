@@ -12,11 +12,7 @@ In JavaScript, objects have a special hidden property `[[Prototype]]` (as named 
 
 ![prototype](object-prototype-empty.svg)
 
-<<<<<<< HEAD
-That `[[Prototype]]` has a "magical" meaning. When we want to read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, such thing is called "prototypal inheritance". Many cool language features and programming techniques are based on it.
-=======
 When we  read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, such thing is called "prototypal inheritance". And soon we'll study many examples of such inheritance, as well as cooler language features built upon it.
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 The property `[[Prototype]]` is internal and hidden, but there are many ways to set it.
 
@@ -127,13 +123,9 @@ alert(longEar.jumps); // true (from rabbit)
 
 ![](proto-animal-rabbit-chain.svg)
 
-<<<<<<< HEAD
-There are actually only two limitations:
-=======
 Now if we read something from `longEar`, and it's missing, JavaScript will look for it in `rabbit`, and then in `animal`.
 
 There are only two limitations:
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 1. The references can't go in circles. JavaScript will throw an error if we try to assign `__proto__` in a circle.
 2. The value of `__proto__` can be either an object or `null`, other types (like primitives) are ignored.
