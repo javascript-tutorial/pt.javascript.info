@@ -321,7 +321,7 @@ export {default as User} from './user.js'; // reexporta o default
 
 Por que isso seria necessário? Vamos ver um caso de uso prático.
 
-Imagine que estamos escrevendo um "pacote": uma pasta com muitos módulos, com algumas funcionalidades exportadas (ferramentas como NPM permitem publicar e distribuir esses pacotes), e muitos módulos são apenas "auxiliares", para uso interno em outro pacote de módulos.
+Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow us to publish and distribute such packages, but we don't have to use them), and many modules are just "helpers", for internal use in other package modules.
 
 A estrutura de arquivos pode ser assim:
 ```
@@ -378,7 +378,7 @@ export {default as User} from './user.js';
 
 O export default precisa de um tratamento separado ao reexportar.
 
-Vamos dizer que temos `user.js` com o `export default class User`, e gostaríamos de o reexportar:
+Let's say we have `user.js` with the `export default class User` and would like to re-export it:
 
 ```js
 // 📁 user.js
@@ -387,7 +387,7 @@ export default class User {
 }
 ```
 
-Podemos encontrar dois problemas:
+We can come across two problems with it:
 
 1. `export User from './user.js'` não funcionará. Isso levaria a um erro de sintaxe.
 
@@ -401,7 +401,7 @@ Podemos encontrar dois problemas:
     export {default} from './user.js'; // para reexportar o export default
     ```
 
-Essas esquisitices de reexportar o export default são um dos motivos pelos quais alguns desenvolvedores não gostam de default exports e preferem os nomeados.
+Essas esquisitices de reexportar um default export são um dos motivos pelos quais alguns desenvolvedores não gostam de default exports e preferem os nomeados.
 
 ## Resumo
 

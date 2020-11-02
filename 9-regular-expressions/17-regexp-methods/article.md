@@ -4,7 +4,7 @@ Neste artigo, abordaremos vários métodos que funcionam com regexps em profundi
 
 ## str.match(regexp)
 
-O método `str.macth(regexp)` pesquisa correspondências para `regexp` na string `str`.
+O método `str.match(regexp)` pesquisa correspondências para `regexp` na string `str`.
 
 Possui 3 modos:
 
@@ -20,7 +20,7 @@ Possui 3 modos:
     alert( result.length ); // 2
 
     // Informação adicional:
-    alert( result.index );  // 0 (posição da correspondÊncia)
+    alert( result.index );  // 0 (posição da correspondência)
     alert( result.input );  // Eu amo JavaScript (string original)
     ```
 
