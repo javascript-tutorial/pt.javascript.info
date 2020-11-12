@@ -118,7 +118,6 @@ Aqui precisamos criar as variáveis adicionais `args` e `ctx` para que a funçã
 
 *Arrow functions* (funções seta):
 
-- Não possuem `this`.
 - Não possuem `arguments`.
 - Não podem ser chamadas com `new`.
 - (Elas também não possuem `super`, mas ainda não a estudamos. Veremos no capítulo <info:class-inheritance>).

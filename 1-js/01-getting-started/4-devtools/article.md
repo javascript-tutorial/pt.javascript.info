@@ -1,6 +1,6 @@
 # Console do desenvolvedor
 
-O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está * inevitavelmente * cometendo erros, pelo menos se você for um humano, não um [robô] (https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).
+O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está *inevitavelmente* cometendo erros, pelo menos se você for um humano, não um [robô] (<https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).>
 
 Mas no navegador, os usuários não vêem os erros por padrão. Assim, se algo correr mal no script, não veremos de onde está partindo e não poderemos corrigir.
 
@@ -29,9 +29,15 @@ O aspecto exato das ferramentas de desenvolvimento depende da sua versão do Chr
 - Aqui podemos ver a mensagem de erro de cor vermelha. Neste caso, o script contém um comando "lalala" desconhecido.
 - À direita, há um link clicável para o código-fonte `bug.html:12` com o número da linha onde o erro ocorreu.
 
-Abaixo da mensagem de erro, há um símbolo azul `>`. Ele marca uma "linha de comando" onde podemos digitar comandos JavaScript. Pressione `key:Enter` para executá-los (`key:Shift+Enter` para introduzir comandos multi-linha).
+Abaixo da mensagem de erro, há um símbolo azul `>`. Ele marca uma "linha de comando" onde podemos digitar comandos JavaScript. Pressione `key:Enter` para executá-los.
 
 Agora podemos ver erros, e isso é suficiente para começar. Voltaremos mais tarde às ferramentas de desenvolvedor e abordaremos a depuração mais profundamente no capítulo <info:debugging-chrome>.
+
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
 
 ## Firefox, Edge, e outros
 
@@ -48,12 +54,6 @@ Abra Preferências e vá para o painel "Avançado". Há uma caixa de seleção n
 ![safari](safari.png)
 
 Agora o `key:Cmd+Opt+C` pode alternar o console. Além disso, note que o novo item do menu superior chamado "Develop" apareceu. Ele tem muitos comandos e opções.
-
-## Entrada multi-linha
-
-Normalmente, quando colocamos uma linha de código no console, e então pressionamos `key:Enter`, ele executa.
-
-Para inserir várias linhas, pressione `key:Shift+Enter`.
 
 ## Resumo
 

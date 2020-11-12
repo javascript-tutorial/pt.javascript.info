@@ -7,7 +7,7 @@ Em contraste, objetos são usados para armazenar, por meio de uma chave, coleç�
 
 Um objeto pode ser criado por chavetas `{…}`, com uma lista opcional de *propriedades*. Uma propriedade é um par "key: value" (chave: valor), onde `key` é uma *string* (também chamada de "nome da propriedade"), e `value` pode ser qualquer coisa.
 
-Podemos imaginar um objeto como um fichário com ficheiros assinados. Cada peça de informação, é armazenada no seu ficheiro por meio de uma chave. É fácil quer encontrar um ficheiro através do seu nome, como adicionar/remover um ficheiro.
+Podemos imaginar um objeto como um fichário com ficheiros assinados. Cada peça de informação, é armazenada no seu ficheiro por meio de uma chave. É fácil encontrar um ficheiro através do seu nome, ou adicionar/remover um ficheiro.
 
 ![](object.svg)
 
@@ -90,7 +90,6 @@ let user = {
   age: 30*!*,*/!*
 }
 ```
-
 Esta é chamada de vírgula à direita (*trailing comma*) ou "vírgula pendurada" (*hanging comma*). Ela facilita o adicionar/remover/mover propriedades, porque todas as linhas se tornam semelhantes.
 
 ````smart header="Objeto com const pode ser alterado"
@@ -126,7 +125,7 @@ Para propriedades com múltiplas palavras, o acesso por ponto não funciona:
 user.likes birds = true
 ```
 
-JavaScript não compreende isso. Pensa que acedemos a `user.likes`, e depois fornece um erro de sintaxe quando encontra a inesperada `birds`.
+O JavaScript não compreende isso. Ele pensa que acedemos a `user.likes`, e depois fornece um erro de sintaxe quando encontra a inesperada `birds`.
 
 O ponto requere que a chave seja um identificador de variável válido. Isso implica: que não contenha espaços, não comece por um dígito e não inclua carateres especiais (`$` e `_` são permitidos).
 
@@ -147,7 +146,7 @@ delete user["likes birds"];
 
 Agora, tudo está bem. Por favor, verifique se a *string* dentro dos parênteses retos está adequadamente encerrada entre aspas (qualquer tipo de aspas serve).
 
-Os parênteses retos também fornecem uma forma de se obter o nome de uma propriedade, tomado de uma expressão -- em vez de uma *string* literal  -- como a partir de uma variável, por exemplo:
+Os parênteses retos também fornecem uma forma de se obter o nome de uma propriedade a partir de uma expressão -- em vez de uma *string* literal  -- como por meio de uma variável, por exemplo:
 
 ```js
 let key = "likes birds";
@@ -156,7 +155,7 @@ let key = "likes birds";
 user[key] = true;
 ```
 
-Aqui, a variável `key` pode ser calculada em tempo de execução (*run-time*) ou depender de uma entrada pelo utilizador (*user input*). E depois a usamos para aceder à propriedade. Isso, dá-nos um grande grau de flexibilidade.
+Aqui, a variável `key` pode ser calculada em tempo de execução (*run-time*) ou depender de uma entrada pelo utilizador (*user input*). E depois a usamos para aceder à propriedade. Isso, nos dá um grande grau de flexibilidade.
 
 Por exemplo:
 
@@ -168,7 +167,7 @@ let user = {
 
 let key = prompt("O que quer saber acerca do utilizador?", "name");
 
-// aceda à variável
+// aceda por meio da variável
 alert( user[key] ); // John (se a entrada tiver sido "name")
 ```
 
@@ -186,7 +185,7 @@ alert( user.key ) // undefined
 
 ### Propriedades computadas
 
-Podemos utilizar os parênteses retos num object literal, ao criarmos o objeto. Chamam-se de *propriedades computadas*.
+Podemos utilizar os parênteses retos num object literal, quando criamos o objeto. Chamam-se de *propriedades computadas*.
 
 Por exemplo:
 
@@ -207,7 +206,6 @@ O significado de uma propriedade computada é simples: `[fruit]` diz que o nome 
 Assim, se um visitante inserir `"apple"`, `bag` se tornará em `{apple: 5}`.
 
 Essencialmente, isso é o mesmo que:
-
 ```js run
 let fruit = prompt("Que fruta comprar?", "apple");
 let bag = {};
@@ -216,7 +214,7 @@ let bag = {};
 bag[fruit] = 5;
 ```
 
-...Mas, com  melhor apresentação.
+...Mas, tem melhor apresentação.
 
 Podemos usar expressões mais complexas dentro dos parênteses retos:
 
@@ -229,7 +227,7 @@ let bag = {
 
 Parênteses retos, são mais poderosos que a notação por ponto. Eles permitem quaisquer nomes de propriedades e variáveis. Mas, eles também dão mais trabalho para escrever.
 
-Assim, a maior parte as vezes, quando nomes de propriedades são conhecidos e simples, o ponto é utilizado. E, se precisarmos de algo mais complexo, mudamos para os parênteses retos.
+Assim, na maior parte as vezes, quando os nomes de propriedades são conhecidos e simples, o ponto é utilizado. E, se precisarmos de algo mais complexo, mudamos para os parênteses retos.
 
 ## Abreviação do valor da propriedade
 
@@ -250,7 +248,7 @@ let user = makeUser("John", 30);
 alert(user.name); // John
 ```
 
-No exemplo acima, propriedades têm os mesmos nomes que as variáveis. O caso prático (*use-case*) de construir uma propriedade com base numa variável é tão comum, que existe uma especial *abreviação do valor da propriedade* (*property value shorthand*) para a tornar mais curta.
+No exemplo acima, as propriedades têm os mesmos nomes que as variáveis. O caso prático (*use-case*) de construir uma propriedade com base numa variável é tão comum, que existe uma especial *abreviação do valor da propriedade* (*property value shorthand*) para a tornar mais curta.
 
 Em vez de `name:name`, podemos simplesmente escrever `name`, como abaixo:
 
@@ -274,6 +272,7 @@ let user = {
   age: 30
 };
 ```
+
 
 ## Limitações dos nomes de propriedades
 
@@ -335,7 +334,6 @@ alert( user.noSuchProperty === undefined ); // true, significa que é uma "propr
 Também existe o operador especial `"in"`, para isso.
 
 A sintaxe é:
-
 ```js
 "key" in object
 ```
@@ -357,14 +355,14 @@ Se omitirmos as aspas, isso terá o significado de uma variável que contém o n
 let user = { age: 30 };
 
 let key = "age";
-alert( *!*key*/!* in user ); // true, a propriedade 'key' existe
+alert( *!*key*/!* in user ); // true, a propriedade "age" existe
 ```
 
 Porque o operador `in` existe? Não é suficiente comparar a `undefined`?
 
 A maior parte das vezes comparar a `undefined` funciona bem. Mas há um caso especial em que falha, mas `in` funciona corretamente.
 
-É quando uma propriedade de objeto existe, mas está nela armazenada `undefined`:
+É quando uma propriedade de objeto existe, mas está nela armazenado `undefined`:
 
 ```js run
 let obj = {
@@ -373,22 +371,23 @@ let obj = {
 
 alert( obj.test ); // é 'undefined', então - não existe essa  propriedade?
 
-alert( "test" in obj ); // true (verdadeiro), a propriedade na realidade existe!
+alert( "test" in obj ); // true (verdadeiro), a propriedade realmente existe!
 ```
 
 No código acima, a propriedade `obj.test` tecnicamente existe. Assim, o operador `in` funciona corretamente.
 
 Situações como esta muito raramente ocorrem, porque `undefined` não deveria ser explicitamente atribuído. Em geral, empregamos `null` para valores "desconhecidos" ou "vazios". Assim, o operador `in` é um convidado exótico na codificação.
 
+
 ## O laço "for..in"
 
-Para navegar por todas as chaves (*keys*) de um objeto, existe uma forma especial de laço (*loop*): `for..in`. Esta, é uma construção completamente diferente da do `for(;;)`, que estudámos antes.
+Para navegar por todas as chaves (*keys*) de um objeto, existe uma forma especial de laço (*loop*): `for..in`. Esta, é uma coisa completamente diferente da construção `for(;;)` que estudámos antes.
 
 A sintaxe:
 
 ```js
 for (key in object) {
-  // executa o corpo do laço, por cada chave nas propriedades do objeto
+  // executa o corpo do ciclo, por cada chave nas propriedades do objeto
 }
 ```
 
@@ -404,14 +403,14 @@ let user = {
 for (let key in user) {
   // chave
   alert( key );  // 'name', 'age', isAdmin'
-  // valor por chave
+  // valores para as chaves
   alert( user[key] ); // John, 30, true
 }
 ```
 
 Note, que todas as construções "for" nos permitem declarar a variável do laço dentro do *loop*, como `let key` aqui.
 
-De igual modo, poderíamos usar aqui um nome de variável diferente de `key`. Por exemplo, `"for (let prop in obj)"` também é largamente utilizado.
+De igual modo, nós poderíamos usar aqui um nome de variável diferente de `key`. Por exemplo, `"for (let prop in obj)"` também é largamente utilizado.
 
 ### Ordenado como um objeto
 
@@ -437,9 +436,9 @@ for (let code in codes) {
 */!*
 ```
 
-O objeto pode ser usado como sugestão, para uma lista de opções para o utilizador. Se, estivermos a construir um *site* maioritariamente para uma audiência Alemã, então provavelmente queremos `49` como o primeiro.
+O objeto pode ser usado para sugerir uma lista de opções para o utilizador. Se, estivermos a construir um *site* maioritariamente para uma audiência Alemã, então provavelmente queremos `49` como o primeiro.
 
-Mas, ao correr o código, vemos uma imagem totalmente diferente:
+Mas, ao correr o código, temos uma imagem totalmente diferente:
 
 - EUA (1) vem em primeiro lugar,
 - depois a Suíça (41), e assim por adiante.
@@ -447,17 +446,14 @@ Mas, ao correr o código, vemos uma imagem totalmente diferente:
 Os indicativos telefónicos, são ordenados por ordem ascendente, porque são inteiros. Por isso, vemos `1, 41, 44, 49`.
 
 ````smart header="Propriedades inteiras? O que é isso?"
-O termo "propriedade inteira" aqui, significa que uma *string* pode ser convertida para inteiro ('integer'), e reconvertida de volta sem qualquer alteração.
+O termo "propriedade inteira" aqui, significa que uma *string* pode ser convertida para inteiro ('integer'), e convertida de volta sem qualquer alteração.
 
-Assim, "49" é um nome de propriedade inteiro porque, ao ser transformado num número inteiro e reconvertido de volta, continua o mesmo. Mas, "+49" e "1.2" não são:
+Assim, "49" é um nome de propriedade inteiro porque, ao ser transformado num número inteiro e reconvertido, continua o mesmo. Mas, "+49" e "1.2" não são:
 
 ```js run
 // Math.trunc é uma função incorporada (*built-in function*) que remove a parte decimal
-
 alert( String(Math.trunc(Number("49"))) ); // "49", inalterado ⇒ propriedade inteira
-
 alert( String(Math.trunc(Number("+49"))) ); // "49", não o mesmo que "+49" ⇒ não é uma propriedade inteira
-
 alert( String(Math.trunc(Number("1.2"))) ); // "1", não o mesmo que "1.2" ⇒ não é uma propriedade inteira
 ```
 ````
@@ -504,17 +500,14 @@ Agora, funciona como pretendido.
 Objetos são *arrays* associativos (*associative arrays*), com várias funcionalidades especiais.
 
 Eles armazenam propriedades (pares chave-valor), onde:
-
 - As chaves das propriedades devem ser *strings* ou símbolos (geralmente *strings*).
 - Os valores podem ser de qualquer tipo.
 
 Para aceder a uma propriedade, podemos utilizar:
-
 - A notação por ponto: `obj.property`.
 - A notação por parênteses retos `obj["property"]`. Os parênteses retos permitem receber a chave a partir de uma variável, como por exemplo `obj[varWithKey]`.
 
 Operadores adicionais:
-
 - Para remover uma propriedade: `delete obj.prop`.
 - Para verificar se uma propriedade com uma dada chave existe: `"key" in obj`.
 - Para iterar sobre um objeto: o ciclo `for (let key in obj)`.
@@ -528,7 +521,6 @@ Existem muitos outros tipos de objetos em JavaScript:
 - `Error` para armazenar informação sobre um erro.
 - ...E outros mais.
 
-Eles têm as suas funcionalidades especiais, que iremos estudar mais adiante. Por vezes, as pessoas dizem algo como "o tipo
-Array" ou "o tipo Data" (*Date*), mas formalmente eles não são própriamente tipos, eles pertencem a um único tipo de dados "objeto". E eles o estendem de várias formas.
+Eles têm as suas funcionalidades especiais, que vamos estudar mais adiante. Por vezes, as pessoas dizem algo como "o tipo Array" ou "o tipo Data" (*Date*), mas formalmente eles não são própriamente tipos, eles pertencem a um único tipo de dados "objeto". E eles o estendem de várias formas.
 
 Objetos em JavaScript são muito poderosos. Aqui, apenas analisamos a superfície de um tópico que é realmente amplo. Nós vamos, mais especificamente, trabalhar e aprender sobre objetos em futuras partes do tutorial.

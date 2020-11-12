@@ -4,7 +4,7 @@ Neste artigo, abordaremos vários métodos que funcionam com regexps em profundi
 
 ## str.match(regexp)
 
-O método `str.macth(regexp)` pesquisa correspondências para `regexp` na string `str`.
+O método `str.match(regexp)` pesquisa correspondências para `regexp` na string `str`.
 
 Possui 3 modos:
 
@@ -20,7 +20,7 @@ Possui 3 modos:
     alert( result.length ); // 2
 
     // Informação adicional:
-    alert( result.index );  // 0 (posição da correspondÊncia)
+    alert( result.index );  // 0 (posição da correspondência)
     alert( result.input );  // Eu amo JavaScript (string original)
     ```
 
@@ -120,7 +120,7 @@ Se precisarmos de posições de correspondências mais distantes, devemos usar o
 
 ## str.replace(str|regexp, str|func)
 
-Esse é um método genério para buscar e substituir, um dos mais úteis. O canivete suíço para procurar e substituir.
+Esse é um método genérico para buscar e substituir, um dos mais úteis. O canivete suíço para procurar e substituir.
 
 Podemos usá-lo sem regexps, para buscar e substituir uma substring:
 
@@ -327,7 +327,7 @@ alert( regexp.test(str) ); // false (sem correspondência)
 ```
 
 ````warn header="A mesma regexp global testada repetidamente em diferentes fontes pode falhar"
-Se aplicarmos a mesma regexp global em diferentes entradas, isso poderá levar a resultados incorreto, porque a chamada `regexp.test` avança a propriedade `regexp.lastIndex`, portanto a pesquisa em outra string pode ter um início numa posição diferente de zero.
+Se aplicarmos a mesma regexp global em diferentes entradas, isso poderá levar a resultados incorretos, porque a chamada `regexp.test` avança a propriedade `regexp.lastIndex`, portanto a pesquisa em outra string pode ter um início numa posição diferente de zero.
 
 Por exemplo, aqui chamamos `regexp.test` duas vezes no mesmo texto e a segunda vez falha:
 

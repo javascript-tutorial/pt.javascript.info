@@ -53,11 +53,7 @@ For instance, we'd like to find HTML tags `pattern:<.*?>`, and process them.
 
 Let's wrap the inner content into parentheses, like this: `pattern:<(.*?)>`.
 
-<<<<<<< HEAD
-We'll get them into an array:
-=======
 Then we'll get both the tag as a whole and its content:
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 ```js run
 let str = '<h1>Hello, world!</h1>';
