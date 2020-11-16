@@ -120,11 +120,7 @@ alert( "CS-4".match(regexp) ); // CS-4
 alert( "CS 4".match(regexp) ); // CS 4 (o espaço é também um caractere)
 ```
 
-<<<<<<< HEAD
 Observe que um ponto significa "qualquer caractere", mas não a "ausência de um caractere". Deve haver um caractere para corresponder a ele:
-=======
-Please note that a dot means "any character", but not the "absence of a character". There must be a character to match it:
->>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 ```js run
 alert( "CS4".match(/CS.4/) ); // null, sem correspondência porque não há caractere para o ponto
