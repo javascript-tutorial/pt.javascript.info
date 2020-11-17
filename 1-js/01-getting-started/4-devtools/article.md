@@ -8,7 +8,7 @@ Para que possamos visualizar erros e obter muitas outras informações úteis so
 
 A maioria dos desenvolvedores escolhem o Chrome ou o Firefox para o desenvolvimento porque esses navegadores têm as melhores ferramentas de desenvolvedor. Outros navegadores também fornecem ferramentas de desenvolvedor, às vezes com recursos especiais, mas geralmente estão jogando "catch-up" no Chrome ou Firefox. Assim, a maioria dos desenvolvedores tem um navegador "favorito" e muda para outros se um problema é específico do navegador.
 
-As ferramentas do desenvolvedor são potentes; elas têm muitos recursos. Para começar, vamos aprender como abri-las, olhar para erros e executar comandos JavaScript.
+As ferramentas do desenvolvedor são potentes; elas têm muitos recursos. Para começar, vamos aprender como as abrir, olhar para erros e executar comandos JavaScript.
 
 ## Google Chrome
 
