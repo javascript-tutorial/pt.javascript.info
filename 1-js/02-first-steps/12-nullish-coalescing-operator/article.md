@@ -104,8 +104,8 @@ alert(x); // 2
 
 ## Resumo
 
-- O operador de coalescência nula `??` disponibiliza uma sintaxe curta para obter a primeira variável "definida" em uma lista.
-
+- O operador de coalescência nula `??` disponibiliza uma sintaxe curta para obter um valor "definido" em uma lista.
+  
   É usado para atribuir valores a variáveis:
 
   ```js
