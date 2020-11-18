@@ -30,6 +30,7 @@ alert(nome ?? sobrenome ?? apelido ?? "Anônimo"); // Supercoder
 ```
 
 ## Comparação com ||
+
 É muito parecido com o operador OU `||`. Na verdade, podemos substituir `??` por `||` no código acima e obter o mesmo resultado.
 
 A principal diferença é:
