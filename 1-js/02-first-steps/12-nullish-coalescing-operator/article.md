@@ -12,7 +12,7 @@ O resultado de `a ?? b` é:
 Então, `x = a ?? b` é um equivalente curto a:
 
 ```js
-x = a !== null && a !== undefined ? a : b;
+x = (a !== null && a !== undefined) ? a : b;
 ```
 
 Veja um exemplo mais longo.
@@ -84,7 +84,7 @@ Caso contrário, se omitirmos os parênteses, `*` tem a precedência e será exe
 
 ```js
 // incorreto
-let area = altura ?? 100 * largura ?? 50;
+let area = altura ?? (100 * largura) ?? 50;
 ```
 
 Há ainda uma limitação da linguagem relacionada. Por razões de segurança, é proibido o uso de `??` juntamente com os operadores `&&` e `||`.
