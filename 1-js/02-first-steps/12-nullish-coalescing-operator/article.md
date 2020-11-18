@@ -1,8 +1,8 @@
-# Operador "nullish coalescing" '??'
+# Operador de coalescência nula '??'
 
 [recent browser="new"]
 
-O operador "nullish coalescing" `??` disponibiliza uma sintaxe curta para obter a primeira variável "definida" em uma lista.
+O operador de coalescência nula `??` disponibiliza uma sintaxe curta para obter a primeira variável "definida" em uma lista.
 
 O resultado de `a ?? b` é:
 - `a` se ele não é `null` ou `undefined`,
@@ -104,7 +104,7 @@ alert(x); // 2
 
 ## Resumo
 
-- O operador "nullish coalescing" `??` disponibiliza uma sintaxe curta para obter a primeira variável "definida" em uma lista.
+- O operador de coalescência nula `??` disponibiliza uma sintaxe curta para obter a primeira variável "definida" em uma lista.
 
   É usado para atribuir valores a variáveis:
 
