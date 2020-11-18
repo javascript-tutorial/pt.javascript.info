@@ -106,12 +106,12 @@ alert(x); // 2
 
 - O operador de coalescência nula `??` disponibiliza uma sintaxe curta para obter um valor "definido" em uma lista.
   
-  É usado para atribuir valores a variáveis:
+    É usado para atribuir valores a variáveis:
 
-  ```js
-  // grava altura=100, se altura é null ou undefined
-  altura = altura ?? 100;
-  ```
+    ```js
+    // grava altura=100, se altura é null ou undefined
+    altura = altura ?? 100;
+    ```
 
 - O operador `??` possui uma precedência muito baixa, um pouco maior que `?` e `=`.
 - É proibido usá-lo com `||` ou `&&` sem parênteses explícitos.
