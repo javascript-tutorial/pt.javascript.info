@@ -5,7 +5,6 @@
 O operador "nullish coalescing" `??` disponibiliza uma sintaxe curta para obter a primeira variável "definida" em uma lista.
 
 O resultado de `a ?? b` é:
-
 - `a` se ele não é `null` ou `undefined`,
 - `b`, nos demais casos.
 
@@ -31,11 +30,9 @@ alert(nome ?? sobrenome ?? apelido ?? "Anônimo"); // Supercoder
 ```
 
 ## Comparação com ||
-
 É muito parecido com o operador OU `||`. Na verdade, podemos substituir `??` por `||` no código acima e obter o mesmo resultado.
 
 A principal diferença é:
-
 - `||` retorna o primeiro valor avaliado como `true` (_truthy_).
 - `??` retorna o primeiro valor _definido_.
 
