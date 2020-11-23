@@ -92,35 +92,7 @@ let user = {
 ```
 Esta é chamada de vírgula à direita (*trailing comma*) ou "vírgula pendurada" (*hanging comma*). Ela facilita o adicionar/remover/mover propriedades, porque todas as linhas se tornam semelhantes.
 
-<<<<<<< HEAD
-````smart header="Objeto com const pode ser alterado"
-Por favor, note: um objeto declarado como `const` *pode* ser modificado.
-
-Por exemplo:
-
-```js run
-const user = {
-  name: "John"
-};
-
-*!*
-user.name = "Pete"; // (*)
-*/!*
-
-alert(user.name); // Pete
-```
-
-Poderá parecer que a linha `(*)` irá causar um erro, mas não. A `const` fixa o valor de `user`, mas não o seu conteúdo.
-
-A `const` dará um erro apenas se tentarmos mudar `user=...` como um todo.
-
-Há outra forma para tornar constantes as propriedades de um objeto, que iremos ver mais adiante no capítulo <info:property-descriptors>.
-````
-
 ## Parênteses retos
-=======
-## Square brackets
->>>>>>> 23da191b58643387783f38e999f5b05be87d3d93
 
 Para propriedades com múltiplas palavras, o acesso por ponto não funciona:
 
