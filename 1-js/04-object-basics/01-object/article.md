@@ -92,6 +92,7 @@ let user = {
 ```
 Esta é chamada de vírgula à direita (*trailing comma*) ou "vírgula pendurada" (*hanging comma*). Ela facilita o adicionar/remover/mover propriedades, porque todas as linhas se tornam semelhantes.
 
+<<<<<<< HEAD
 ````smart header="Objeto com const pode ser alterado"
 Por favor, note: um objeto declarado como `const` *pode* ser modificado.
 
@@ -117,6 +118,9 @@ Há outra forma para tornar constantes as propriedades de um objeto, que iremos 
 ````
 
 ## Parênteses retos
+=======
+## Square brackets
+>>>>>>> 23da191b58643387783f38e999f5b05be87d3d93
 
 Para propriedades com múltiplas palavras, o acesso por ponto não funciona:
 

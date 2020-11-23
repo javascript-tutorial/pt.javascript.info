@@ -9,7 +9,11 @@ Então, primeiro, vamos ver como anexar um script a uma página. Para ambientes 
 
 ## A tag "script"
 
+<<<<<<< HEAD
 Os programas JavaScript podem ser inseridos em qualquer parte de um documento HTML com a ajuda da tag `<script>`.
+=======
+JavaScript programs can be inserted almost anywhere into an HTML document using the `<script>` tag.
+>>>>>>> 23da191b58643387783f38e999f5b05be87d3d93
 
 Por exemplo:
 
