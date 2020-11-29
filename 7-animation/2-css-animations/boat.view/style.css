@@ -4,7 +4,7 @@
   transition: margin-left 3s ease-in-out;
 }
 
-/* flipping the picture with CSS */
+/* virando a imagem com CSS */
 .back {
   transform: scaleX(-1);
   filter: fliph;

@@ -19,11 +19,12 @@ Quando usamos funcionalidades modernas da linguagem, alguns interpretadores (_en
 
 Atualmente, o Babel possui duas partes:
 
-1. Primeiro, o programa responsável pelo _transpile_, onde o código é reescrito. O desenvolvedor roda o programa na própria máquina, o Babel reescreve o código em um padrão antigo e, após isso, o codigo é entregue ao website para os usuários. Sistemas de _build_ modernos como [webpack](http://webpack.github.io/) ou [brunch](http://brunch.io/) fornecem meios para executar o _transpiler_ automaticamente em todas as mudanças realizadas no código, de forma a não perdermos tempo do nosso lado.
+1. Primeiro, o programa responsável pelo _transpile_. O desenvolvedor roda o programa na própria máquina, onde o código é reescrito para um padrão mais antigo. Após isso, o codigo é entregue ao website para os usuários. Sistemas de _build_ modernos como [webpack](http://webpack.github.io/) fornecem meios para executar o _transpiler_ automaticamente em todas as mudanças realizadas no código, de forma a tornar fácil de integrar com um processo de desenvolvimento.
 
 2. Segundo, o _polyfill_.
 
-    O _transpiler_ reescreve o código, então funcionalidades de sintaxe são cobertas. Porém, para novas funcionalidades, precisamos de escrever um script especial que cuida dessa implementação. O JavaScript é uma linguagem altamente dinâmica, onde _scripts_ podem não apenas adicionar novas funcionalidades, mas também modificar as já incorporadas (_built-in_) na linguagem, de forma a que elas se comportem de acordo com o padrão moderno.
+    Novas funcionalidades na linguagem podem incluir não apenas estruturas de sintaxe, mas também funcionalidades embutidas.
+    O _transpiler_ reescreve o código, transformando estruturas de sintaxe em outras mais antigas. Porém, para novas funcionalidades, precisamos implementá-los. O JavaScript é uma linguagem altamente dinâmica, onde _scripts_ podem não apenas adicionar novas funcionalidades, mas também modificar as já incorporadas na linguagem, de forma a que elas se comportem de acordo com o padrão moderno.
 
     Existe o termo "polyfill" para _scripts_ que "preenchem" essa lacuna e adicionam as implementações que faltam.
 
