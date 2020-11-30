@@ -140,11 +140,7 @@ for (let char of str) {
 
 ## Calling an iterator explicitly
 
-<<<<<<< HEAD
-Normally, internals of iterables are hidden from the external code. There's a `for..of` loop, that works, that's all it needs to know.
-=======
 For deeper understanding, let's see how to use an iterator explicitly.
->>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 We'll iterate over a string in exactly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
 
@@ -174,13 +170,9 @@ Two official terms look similar, but are very different. Please make sure you un
 - *Iterables* are objects that implement the `Symbol.iterator` method, as described above.
 - *Array-likes* are objects that have indexes and `length`, so they look like arrays.
 
-<<<<<<< HEAD
-Naturally, these properties can combine. For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
-=======
 When we use JavaScript for practical tasks in a browser or any other environment, we may meet objects that are iterables or array-likes, or both.
 
 For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
->>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 But an iterable may not be array-like. And vice versa an array-like may not be iterable.
 
