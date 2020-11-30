@@ -106,11 +106,19 @@ Ferramentas modernas tornam a transpilação muito rápida e transparente, permi
 
 Exemplos de tais linguagens:
 
+<<<<<<< HEAD
 - [CoffeeScript](http://coffeescript.org/) é um "açúcar sintático" para JavaScript. Ele introduz uma sintaxe mais curta, permitindo-nos escrever um código mais claro e preciso. Normalmente, Ruby devs gostam dele.
 - [TypeScript](http://www.typescriptlang.org/) está concentrado em adicionar "dados estritos de digitação" para simplificar o desenvolvimento e suporte de sistemas complexos. É desenvolvido pela Microsoft.
 - [Flow](http://flow.org/) também adiciona dados de digitação, mas de uma forma diferente. Desenvolvido pela Facebook.
 - [Dart](https://www.dartlang.org/) é uma linguagem autônoma que tem seu próprio mecanismo que roda em ambientes sem navegador (como aplicativos móveis), mas também pode ser transpilada para JavaScript. Desenvolvido pela Google.
 - [Brython](https://brython.info/) é um transpilador de Python para JavaScript que permite escrever aplicativos em puro Python, sem JavaScript.
+=======
+- [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
+- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
+- [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
+- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
+- [Brython](https://brython.info/) is a Python transpiler to JavaScript that enables the writing of applications in pure Python without JavaScript.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 Há mais. Claro que, mesmo que usemos uma dessas linguagens transpiladas, também devemos saber JavaScript para entender o que estamos fazendo.
 
