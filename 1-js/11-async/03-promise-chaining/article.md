@@ -315,7 +315,7 @@ fetch('/article/promise-chaining/user.json')
 */!*
     }, 3000);
   }))
-  // disparado após 3 segundoss
+  // disparado após 3 segundos
   .then(githubUser => alert(`Finalizou exibição de ${githubUser.name}`));
 ```
 
