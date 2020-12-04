@@ -1,12 +1,17 @@
-describe("test", function() {
+describe("teste", function() {
+  // Mocha, geralmente espera pelos testes por 2 segundos antes de os considerar errados
 
-  before(() => alert("Testing started – before all tests"));
-  after(() => alert("Testing finished – after all tests"));
+  this.timeout(200000); // Com este código nós aumentamos esse tempo - neste caso, para 200,000 
+  
+  // Isto, por causa da função "alert", porque se você se demorar a pressionar o botão "OK" oos testes não irão passar!
 
-  beforeEach(() => alert("Before a test – enter a test"));
-  afterEach(() => alert("After a test – exit a test"));
+  before(() => alert("Testes iniciados – antes de todos os testes"));
+  after(() => alert("Testes terminados – depois de todos os testes"));
 
-  it('test 1', () => alert(1));
-  it('test 2', () => alert(2));
+  beforeEach(() => alert("antes de um teste – entrando para um teste"));
+  afterEach(() => alert("depois de um teste – saindo de um teste"));
+
+  it('teste 1', () => alert(1));
+  it('teste 2', () => alert(2));
 
 });

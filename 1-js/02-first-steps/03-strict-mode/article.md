@@ -19,10 +19,10 @@ For example:
 ...
 ```
 
-Nós vamos aprender sobre funções, uma forma de agupar comandos, em breve.
+Muito em breve, nós vamos aprender sobre funções (uma forma de agrupar comandos), assim vamos pré-anotar que `"use strict"` pode ser colocado no início de uma função. Fazer isso habilita o modo estrito apenas nessa função. Mas geralmente, as pessoas usam no script inteiro.
 
-
-Vamos apenas observar que "use strict" pode ser colocado no início da maioria dos tipos de funções em vez do script inteiro. Fazer isso habilita o modo estrito apenas nessa função. Mas geralmente, as pessoas usam no script inteiro.
+````warn header="Se assegure que \"use strict\" está no topo"
+Por favor, se assegure que `"use strict"` está no topo dos seus scripts, de contrário o modo estrito pode não estar ativado.
 
 O modo estrito não está ativado aqui:
 
@@ -35,35 +35,55 @@ alert("algum código");
 // modo estrito não está ativado
 ```
 
-Apenas comentários devem aparecer acima de `"use strict"`.
+Apenas comentários podem aparecer acima de `"use strict"`.
+````
+
+```warn header="Não há forma de cancelar `use strict`"
+Não existe uma diretiva como `"no use strict"` para reverter o interpretador (*engine*) para o comportamento antigo.
+
+Assim que entramos para o modo estrito, não podemos voltar atrás.
+```
 
 ## Console do navegador
 
-Para o futuro, quando você usar o console do navegador para testar funcionalidades, observe que ele não "usa strict" por padrão.
+Quando você usar o [console do navegador](info:devtools) para testar funcionalidades, por favor observe que ele não "usa strict" por padrão.
 
-As vezes, quando usar `use strict` faz alguma diferença, você terá resultados incorretos.
+As vezes, quando usar `use strict` fizer alguma diferença, você terá resultados incorretos.
 
-Mesmo se pressionarmos `key: Shift + Enter` para inserir várias linhas e colocar` use strict` no topo, isso não funcionará. Isso é por causa de como o console executa o código internamente.
+Assim, como ativar `use strict` no console?
 
-A maneira confiável de garantir `use strict` seria inserir o código no console da seguinte forma:
+Primeiro, podemos tentar pressionar `key: Shift + Enter` para inserir várias linhas, e colocar` use strict` no topo, assim:
+
+```js
+'use strict'; <Shift+Enter para uma nova linha>
+//  ...seu código
+<Enter para executar>
+```
+
+Funciona em vários navegadores, nomeadamente Firefox and Chrome.
+
+Se não funcionar, ex. num navegador antigo, existe uma maneira feia, mas confiável, de garantir `use strict`. Coloque ele dentro deste tipo de contentor (*wrapper*):
 
 ```js
 (function() {
   'use strict';
 
-  // ...seu código...
+  // ...seu código aqui...
 })()
 ```
 
-## Sempre "use strict"
+## Devemos usar "use strict"?
 
-Ainda precisamos cobrir as diferenças entre o modo estrito e o modo "padrão".
+A questão pode parecer óbvia, mas não é tanto.
 
-Nos próximos capítulos, assim como nós vamos aprender novas funcinalidades, vamos aprender as diferenças entre o modo estrito e os modos padrões. Felizmente, não há muitos e eles realmente tornam nossas vidas melhores.
+Pode-se recomendar iniciar scripts com `" use strict "`... Mas sabe o que é legal?
 
-Por agora, de um momento geral, basta saber sobre isso:
+O JavaScript moderno suporta "classes" e "módulos" - estruturas avançadas da linguagem (vamos seguramente chegar até elas), que ativam `use strict` automaticamente. Assim, não precisamos de adicionar a diretiva `" use strict "`, quando as usamos.
 
-1. A diretiva `" use strict "` alterna o mecanismo para o modo "moderno", alterando o comportamento de alguns recursos internos. Vamos ver os detalhes mais tarde no tutorial.
-2. O modo estrito é ativado colocando `" use strict "` no topo de um script ou função. Vários recursos de idioma, como "classes" e "módulos", ativam o modo estrito automaticamente.
-3. Modo estrito é suportado por todos os navegadores modernos.
-4. Recomendamos sempre iniciar scripts com `" use strict "`. Todos os exemplos neste tutorial assumem o modo estrito, a menos que (muito raramente) seja especificado de outra forma.
+**Assim, por agora `" use strict "` é um convidado bem-vindo no topo dos seus scripts. Mais adiante, quando todo o seu código  estiver em classes e módulos, você pode omitir**
+
+Por agora, nós temos de saber sobre `use strict` de um modo geral.
+
+Nos próximos capítulos, à medida que aprendermos novas funcionalidades, vamos ver as diferenças entre o modo estrito e os modos padrões. Felizmente, não há muitos e eles realmente tornam nossas vidas melhores.
+
+Todos os exemplos neste tutorial assumem o modo estrito, a menos que (muito raramente) seja especificado de outra forma.

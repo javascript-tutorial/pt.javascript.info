@@ -1,30 +1,30 @@
-# Arrow functions revisited
+# Revisitando Arrow Functions (funções seta)
 
-Let's revisit arrow functions.
+Vamos revisitar as *arrow functions*.
 
-Arrow functions are not just a "shorthand" for writing small stuff.
+As *arrow functions* não são somente uma "abreviação" para escrevermos menos código.
 
-JavaScript is full of situations where we need to write a small function, that's executed somewhere else.
+O *JavaScript* está cheio de situações onde precisamos escrever uma pequena função que será executada em um outro lugar.
 
-For instance:
+Por exemplo:
 
-- `arr.forEach(func)` -- `func` is executed by `forEach` for every array item.
-- `setTimeout(func)` -- `func` is executed by the built-in scheduler.
-- ...there are more.
+- `arr.forEach(func)` -- `func` é executada por `forEach` para cada item do *array*.
+- `setTimeout(func)` -- `func` é executada pelo agendador embutido.
+- ...entre outros.
 
-It's in the very spirit of JavaScript to create a function and pass it somewhere.
+Uma das características mais marcantes do *JavaScript* é criar uma função e passá-la para outro lugar.
 
-And in such functions we usually don't want to leave the current context.
+E, nessas funções, geralmente não queremos sair de nosso contexto atual.
 
-## Arrow functions have no "this"
+## Arrow functions não possuem "this"
 
-As we remember from the chapter <info:object-methods>, arrow functions do not have `this`. If `this` is accessed, it is taken from the outside.
+Assim como vimos no capítulo <info:object-methods>, *arrow functions* não possuem `this`. Se `this` é acessada, ela vem do contexto externo em que está inserida.
 
-For instance, we can use it to iterate inside an object method:
+Por exemplo, podemos usá-la para iterar dentro de um método de objeto:
 
 ```js run
 let group = {
-  title: "Our Group",
+  title: "Nosso Grupo",
   students: ["John", "Pete", "Alice"],
 
   showList() {
@@ -39,13 +39,13 @@ let group = {
 group.showList();
 ```
 
-Here in `forEach`, the arrow function is used, so `this.title` in it is exactly the same as in the outer method `showList`. That is: `group.title`.
+Aqui em `forEach`, a *arrow function* é usada, então `this.title` dentro dela é a mesma que a da função em que está inserida `showList`. Ou seja: `group.title`.
 
-If we used a "regular" function, there would be an error:
+Se usássemos uma função "regular", haveria um erro:
 
 ```js run
 let group = {
-  title: "Our Group",
+  title: "Nosso Grupo",
   students: ["John", "Pete", "Alice"],
 
   showList() {
@@ -61,28 +61,28 @@ let group = {
 group.showList();
 ```
 
-The error occurs because `forEach` runs functions with `this=undefined` by default, so the attempt to access `undefined.title` is made.
+O erro acontece porque `forEach` executa funções com `this=undefined` por padrão. Então, a tentativa de acessar `undefined.title` é feita.
 
-That doesn't affect arrow functions, because they just don't have `this`.
+Isso não acontece com *arrow functions*, porque elas não possuem `this`.
 
-```warn header="Arrow functions can't run with `new`"
-Not having `this` naturally means another limitation: arrow functions can't be used as constructors. They can't be called with `new`.
+```warn header="Arrow functions não podem ser executadas com `new`"
+Não possuir `this` traz naturalmente outra limitação: *arrow functions* não podem ser usadas com construtores. Elas não podem ser chamadas com `new`.
 ```
 
 ```smart header="Arrow functions VS bind"
-There's a subtle difference between an arrow function `=>` and a regular function called with `.bind(this)`:
+Existe uma diferença sutil entre uma *arrow function* `=>` e uma função regular chamada com `.bind(this)`:
 
-- `.bind(this)` creates a "bound version" of the function.
-- The arrow `=>` doesn't create any binding. The function simply doesn't have `this`. The lookup of `this` is made exactly the same way as a regular variable search: in the outer lexical environment.
+- `.bind(this)` cria uma "versão vinculada" da função.
+- A *arrow* `=>` não cria nenhum vínculo. A função simplesmente não possui `this`. A  busca por `this` é feita exatamente da mesma maneira que uma busca por uma variável regular: em seu contexto léxico onde está inserida.
 ```
 
-## Arrows have no "arguments"
+## Arrows não possuem "arguments" (argumentos)
 
-Arrow functions also have no `arguments` variable.
+*Arrow functions* também não possuem a variável `arguments`.
 
-That's great for decorators, when we need to forward a call with the current `this` and `arguments`.
+Isso é ótimo para *decorators*, quando precisamos encaminhar uma chamada com os atuais `this` e `arguments`.
 
-For instance, `defer(f, ms)` gets a function and returns a wrapper around it that delays the call by `ms` milliseconds:
+Por exemplo, `defer(f, ms)` recebe uma função e retorna um *wrapper* (invólucro) ao seu redor que atrasa a chamada por `ms` milissegundos:
 
 ```js run
 function defer(f, ms) {
@@ -92,14 +92,14 @@ function defer(f, ms) {
 }
 
 function sayHi(who) {
-  alert('Hello, ' + who);
+  alert('Olá, ' + who);
 }
 
 let sayHiDeferred = defer(sayHi, 2000);
-sayHiDeferred("John"); // Hello, John after 2 seconds
+sayHiDeferred("John"); // Olá, John depois de 2 segundos
 ```
 
-The same without an arrow function would look like:
+O mesmo sem uma *arrow function* seria algo assim:
 
 ```js
 function defer(f, ms) {
@@ -112,15 +112,14 @@ function defer(f, ms) {
 }
 ```
 
-Here we had to create additional variables `args` and `ctx` so that the function inside `setTimeout` could take them.
+Aqui precisamos criar as variáveis adicionais `args` e `ctx` para que a função chamada dentro de `setTimeout` possam acessá-las.
 
-## Summary
+## Resumo
 
-Arrow functions:
+*Arrow functions* (funções seta):
 
-- Do not have `this`.
-- Do not have `arguments`.
-- Can't be called with `new`.
-- (They also don't have `super`, but we didn't study it. Will be in the chapter <info:class-inheritance>).
+- Não possuem `arguments`.
+- Não podem ser chamadas com `new`.
+- (Elas também não possuem `super`, mas ainda não a estudamos. Veremos no capítulo <info:class-inheritance>).
 
-That's because they are meant for short pieces of code that do not have their own "context", but rather works in the current one. And they really shine in that use case.
+Isso porque elas são feitas para pequenos trechos de código que não possuem seus próprios "contextos", mas sim utilizam o contexto em que estão inseridas. E elas realmente brilham nesses casos.

@@ -2,15 +2,15 @@ importance: 5
 
 ---
 
-# Animated circle
+# Círculo animado
 
-Create a function `showCircle(cx, cy, radius)` that shows an animated growing circle.
+Crie uma função `showCircle(cx, cy, radius)` que mostre um círculo animado crescendo.
 
-- `cx,cy` are window-relative coordinates of the center of the circle,
-- `radius` is the radius of the circle.
+- `cx,cy` são coordenadas do centro do círculo relativas à janela do navegador,
+- `radius` é o raio do círculo.
 
-Click the button below to see how it should look like:
+Clique no botão abaixo para ver como a animação se comporta:
 
 [iframe src="solution" height=260]
 
-The source document has an example of a circle with right styles, so the task is precisely to do the animation right.
+A fonte do documento possui um exemplo de um círculo com os estilos certos, a tarefa é justamente fazer a animação corretamente.

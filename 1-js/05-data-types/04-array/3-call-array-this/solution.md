@@ -9,7 +9,7 @@ arr.push(function() {
   alert( this );
 })
 
-arr[2](); // "a","b", function(){...}
+arr[2](); // a,b,function(){...}
 ```
 
 O *array* tem 3 valores: inicialmente dois, mais a função.
