@@ -33,7 +33,7 @@ Por exemplo, para `[-1, 2, 3, -9, 11]`:
 11
 ```
 
-Na verdade, o código é um laço aninhado (*nested loop*): o externo percorre os elementos do *array*, e o interno calcula as subsomas que comecem pelo elemento atual.
+Na verdade, o código é um laço aninhado (*nested loop*): o externo percorre os elementos do *array*, e o interno calcula as subsomas que começam pelo elemento atual.
 
 ```js run
 function getMaxSubSum(arr) {
@@ -65,7 +65,7 @@ Para grandes *arrays* (1000, 10000 ou mais itens) tais algoritmos podem levar a 
 
 Vamos percorrer o *array* e guardar a atual soma partial dos elementos na variável `s`. Se, a certa altura, `s` se tornar negativo, então faça a atribuição `s=0`. O máximo desses `s` será a resposta.
 
-Se, a descrição for demasiado vaga, por favor veja o código; é realmente curto:
+Se a descrição for demasiado vaga, por favor veja o código, é realmente curto:
 
 ```js run demo
 function getMaxSubSum(arr) {
@@ -89,6 +89,6 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([-1, -2, -3]) ); // 0
 ```
 
-O algoritmo requere exatamente 1 passagem sobre o *array*, portanto o tempo de complexidade é O(n).
+O algoritmo requere exatamente 1 passagem pelo *array*, portanto o tempo de complexidade é O(n).
 
-Pode encontrar informação mais detalhada sobre o algoritmo aqui: [Sublista contígua de soma máxima](https://pt.wikipedia.org/wiki/Sublista_cont%C3%ADgua_de_soma_m%C3%A1xima). Se, ainda não for óbvio como isso funciona, então por favor percorra cada algoritmo nos exemplos acima e veja como trabalha, é melhor do que quaisquer palavras.
+Pode encontrar informação mais detalhada sobre o algoritmo aqui: [Sublista contígua de soma máxima](https://pt.wikipedia.org/wiki/Sublista_cont%C3%ADgua_de_soma_m%C3%A1xima). Se, ainda não for óbvio porque isso funciona, então por favor rasteie cada algoritmo nos exemplos acima e veja como trabalha, é melhor do que quaisquer palavras.

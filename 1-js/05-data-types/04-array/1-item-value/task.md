@@ -1,10 +1,10 @@
-importância: 3
+importance: 3
 
 ---
 
 # Foi o *array* copiado?
 
-O que irá mostrar este código?
+O que irá este código mostrar?
 
 ```js
 let fruits = ["Maçã", "Pêra", "Laranja"];

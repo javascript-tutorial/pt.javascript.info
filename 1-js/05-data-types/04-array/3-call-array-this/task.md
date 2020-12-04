@@ -1,4 +1,4 @@
-importância: 5
+importance: 5
 
 ---
 
@@ -15,3 +15,4 @@ arr.push(function() {
 
 arr[2](); // ?
 ```
+
