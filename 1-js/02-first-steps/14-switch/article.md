@@ -8,7 +8,7 @@ Ela fornece uma forma mais descritiva para comparar um valor a múltiplas varian
 
 O `switch` tem um ou mais blocos `case` (caso) e um `default` (padrão) opcional.
 
-Tem uma apresentação similar a:
+Tem uma apresentação semelhante a:
 
 ```js no-beautify
 switch(x) {
@@ -112,7 +112,7 @@ Aqui `+a` dá `1`, o que é comparado a `b + 1` no `case`, e o código correspon
 
 ## Grupos de "case"
 
-Múltiplas variantes de `case` que partihem o mesmo código podem ser agrupadas.
+Múltiplas variantes de `case` que partilhem o mesmo código podem ser agrupadas.
 
 Por exemplo, se quisermos que o mesmo código corra por `case 3` e `case 5`:
 
@@ -139,7 +139,7 @@ switch (a) {
 
 Agora ambos `3` e `5` mostram a mesma mensagem.
 
-A habilidade para "agrupar" cases é um efeito secundário de como `switch/case` funciona sem `break`. Aqui a execução do `case 3` começa pela linha `(*)` e prossegue pelo `case 5`, por não existir `break`.
+A habilidade para "agrupar" cases é um efeito secundário de como o `switch/case` funciona sem `break`. Aqui a execução do `case 3` começa pela linha `(*)` e prossegue pelo `case 5`, por não existir `break`.
 
 ## O tipo importa
 
@@ -169,5 +169,4 @@ switch (arg) {
 
 1. Para `0`, `1`, o primeiro `alert` é executado.
 2. Para `2` o segundo `alert` corre.
-3. Mas para `3`, o resultado do `prompt` á a string `"3"`, que não é estritamente igual `===` ao número `3`. Assim temos código não
-executável em `case 3`! A variante `default` será executada.
+3. Mas para `3`, o resultado do `prompt` á a string `"3"`, que não é estritamente igual `===` ao número `3`. Assim temos código inútil em `case 3`! A variante `default` será executada.

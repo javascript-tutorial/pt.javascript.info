@@ -1,10 +1,10 @@
-importância: 5
+importance: 5
 
 ---
 
 # Transforme o "switch" num "if"
 
-Escreva empregando `if..else` o código que corresponda ao seguinte `switch`:
+Escreva empregando `if..else` código que corresponda ao seguinte `switch`:
 
 ```js
 switch (browser) {
@@ -23,3 +23,4 @@ switch (browser) {
     alert( 'Esperamos que esta página tenha uma boa apresentação!' );
 }
 ```
+

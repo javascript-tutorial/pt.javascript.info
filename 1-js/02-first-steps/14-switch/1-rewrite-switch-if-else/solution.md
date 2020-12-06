@@ -17,4 +17,4 @@ if(browser == 'Edge') {
 
 Por favor, note: a construção `browser == 'Chrome' || browser == 'Firefox' …` está repartida por múltiplas linhas para melhor leitura.
 
-Mas a construção `switch` ainda é mais clara e mais descritiva.
+Mas a construção `switch` ainda é mais clara e descritiva.
