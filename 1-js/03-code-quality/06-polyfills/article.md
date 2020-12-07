@@ -26,17 +26,6 @@ A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) is a spe
 
 E.g. JavaScript before year 2020 didn't have the "nullish coalescing operator" `??`. So, if a visitor uses an outdated browser, it may fail to understand the code like `height = height ?? 100`.
 
-<<<<<<< HEAD
-    There's a term "polyfill" for scripts that "fill in" the gap and add missing implementations.
-
-    Two interesting polyfills are:
-    - [babel polyfill](https://babeljs.io/docs/usage/polyfill/) that supports a lot, but is big.
-    - [polyfill.io](http://polyfill.io) service that allows to load/construct polyfills on-demand, depending on the features we need.
-
-So, we need to setup the transpiler and add the polyfill for old engines to support modern features.
-
-If we orient towards modern engines and do not use features except those supported everywhere, then we don't need to use Babel.
-=======
 A transpiler would analyze our code and rewrite `height ?? 100` into `(height !== undefined && height !== null) ? height : 100`.
 
 ```js
@@ -46,7 +35,6 @@ height = height ?? 100;
 // after running the transpiler
 height = (height !== undefined && height !== null) ? height : 100;
 ```
->>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Now the rewritten code is suitable for older JavaScript engines.
 
@@ -64,15 +52,6 @@ For example, `Math.trunc(n)` is a function that "cuts off" the decimal part of a
 
 In some (very outdated) JavaScript engines, there's no `Math.trunc`, so such code will fail.
 
-<<<<<<< HEAD
-```offline
-As you're reading the offline version, examples are not runnable. But they usually work :)
-```
-
-[Chrome Canary](https://www.google.com/chrome/browser/canary.html) is good for all examples, but other modern browsers are mostly fine too.
-
-Note that on production we can use Babel to translate the code into suitable for less recent browsers, so there will be no such limitation, the code will run everywhere.
-=======
 As we're talking about new functions, not syntax changes, there's no need to transpile anything here. We just need to declare the missing function.
 
 A script that updates/adds new functions is called "polyfill". It "fills in" the gap and adds missing implementations.
@@ -111,4 +90,3 @@ Good resources that show the current state of support for various features:
 
 P.S. Google Chrome is usually the most up-to-date with language features, try it if a tutorial demo fails. Most tutorial demos work with any modern browser though.
 
->>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b

@@ -285,11 +285,7 @@ O primeiro argumento de `steps(9, start)` é o número de passos. A transformaç
 
 O segundo argumento é umas das duas palavras: `start`("início") ou `end`("fim").
 
-<<<<<<< HEAD
 O `start` significa que, no início da animação, precisamos executar o primeiro passo imediatamente.
-=======
-The `start` means that in the beginning of animation we need to make the first step immediately.
->>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Nós podemos observar isso na animação: quando clicamos no dígito, ele muda para `1` (o primeiro passo) imediatamente, e depois muda para o início do segundo passo.
 
