@@ -2,9 +2,13 @@ To bounce we can use CSS property `top` and `position:absolute` for the ball ins
 
 The bottom coordinate of the field is `field.clientHeight`. But the `top` property gives coordinates for the top of the ball, the edge position is `field.clientHeight - ball.clientHeight`.
 
+<<<<<<< HEAD
 So we animate the `top` from `0` to `field.clientHeight - ball.clientHeight`.
 
 Now to get the "bouncing" effect we can use the timing function `bounce` in `easeOut` mode.
+=======
+To get the "bouncing" effect we can use the timing function `bounce` in `easeOut` mode.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Here's the final code for the animation:
 
