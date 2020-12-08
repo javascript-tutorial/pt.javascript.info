@@ -46,7 +46,7 @@ Como o resultado é passado através da cadeia de tratadores, podemos observar a
 
 A coisa toda funciona pois a chamada ao `promise.then` retorna uma promessa, assim podemos chamar o próximo `.then` nesse retorno.
 
-Quando um tratador retorna um valor, ele se torna o resultado da promessa, então o próximo `.then` é chamado com ele. 
+Quando um tratador retorna um valor, ele se torna o resultado da promessa, então o próximo `.then` é chamado com ele.
 
 **Um erro clássico de novatos: tecnicamente, podemos chamar vários `.then` em uma única promessa. Isso não é encadeamento.**
 
@@ -72,7 +72,7 @@ promise.then(function(result) {
 });
 ```
 
-O que fizemos aqui é apenas utilizar uma série de tratadores em uma promessa. Eles não passam o resultado uns aos outros; pelo contrário, eles o processam de maneira independente.
+O que fizemos aqui é apenas utilizar uma série de tratadores em uma promessa. Eles não passam o resultado uns para os outros; pelo contrário, eles o processam de maneira independente.
 
 Aqui está uma imagem (compare-a com a cadeia acima):
 
@@ -86,7 +86,7 @@ Na prática, raramente precisamos de múltiplos tratadores para uma promessa. O 
 
 Um tratador "handler", utilizado em `.then(handler)` pode criar e retornar uma promessa.
 
-Nessa caso, tratadores seguintes aguardarão até que essa seja estabelecida, e então pegarão o seu resultado.
+Neste caso, tratadores seguintes aguardarão até que essa seja terminada, e então pegarão o seu resultado.
 
 Por exemplo:
 
@@ -119,7 +119,7 @@ new Promise(function(resolve, reject) {
 
 });
 ```
- 
+
 Aqui o primeiro `.then` exibe `1` e retorna `new Promise(…)` na linha `(*)`. Após 1 segundo ele é resolvido, e o resultado (o argumento de `resolve`, no caso é `result * 2`) é passado ao tratador do segundo `.then`. O tratador está na linha `(**)`, ele exibe `2` e faz a mesma coisa.
 
 Então a saída é a mesma que no exemplo anterior: 1 -> 2 -> 4, mas agora com 1 segundo de atraso entre as chamadas `alert`.
@@ -147,7 +147,7 @@ loadScript("/article/promise-chaining/one.js")
   });
 ```
 
-Esse código pode ser resumido utilizando arrow functions: 
+Esse código pode ser resumido utilizando arrow functions:
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
@@ -164,7 +164,7 @@ loadScript("/article/promise-chaining/one.js")
 
 Aqui cada chamada `loadScript` retorna uma promessa, e o próximo `.then` é executado quando ela é resolvida. Então, é iniciado o carregamento do próximo script. Assim, os scripts são carregados um após o outro.
 
-Podemos adicionar mais ações assíncronas à cadeia. Por favor note que o código ainda está "flat" — ele cresce para baixo, não para direita. Não há sinais da "pyramid of doom". 
+Podemos adicionar mais ações assíncronas à cadeia. Por favor note que o código ainda está "flat" — ele cresce para baixo, não para direita. Não há sinais da "pyramid of doom".
 
 Tecnicamente, poderíamos chamar `.then` diretamente em cada `loadScript`, desta maneira:
 
@@ -218,13 +218,13 @@ new Promise(resolve => resolve(1))
 
 JavaScript verifica o objeto retornado pelo tratador de `.then` na linha `(*)`: se ele possuir um método executável que possa ser chamado e possua nome `then`, então ele chama o método provendo funções nativas `resolve`, `reject` como argumentos (similar a um executor) e aguarda até que uma delas seja chamada. No exemplo acima, `resolve(2)` é chamada depois de 1 segundo `(**)`. Então o resultado é passado adiante pela cadeia.
 
-Essa funcionalidade nos permite integrar objetos customizáveis com cadeias de promessas sem termos que herdar de `Promise`. 
+Essa funcionalidade nos permite integrar objetos customizáveis com cadeias de promessas sem termos que herdar de `Promise`.
 ````
 
 
 ## Maior exemplo: fetch
 
-Em programação frontend, promessas são utilizadas para requisições de rede com frequência. Então vamos ver um exemplo estendido disso.
+Em programação frontend, promessas são com frequência utilizadas em requisições de rede. Então vamos ver um exemplo estendido disso.
 
 Vamos usar o método [fetch](info:fetch) para carregar de um servidor remoto informações sobre o usuário. Ele possui vários parâmetros opcionais abordados em [separate chapters](info:fetch), mas a sintaxe básica é bem simples:
 
@@ -232,7 +232,7 @@ Vamos usar o método [fetch](info:fetch) para carregar de um servidor remoto inf
 let promise = fetch(url);
 ```
 
-Isso faz uma requisição de rede para a `url` e retorna uma promessa. A promessa é resolvida com um objeto `response` quando o servidor remoto responder com os cabeçalhos, mas *antes do download completo da resposta*.  
+Isso faz uma requisição de rede para a `url` e retorna uma promessa. A promessa é resolvida com um objeto `response` quando o servidor remoto responde com os cabeçalhos, mas *antes do download completo da resposta*.  
 
 Para ler a resposta completa, devemos chamar o método `response.text()`: isso retorna uma promessa que é resolvida quando o texto completo é baixado do servidor remoto, com esse texto como resultado.
 
@@ -265,7 +265,7 @@ fetch('/article/promise-chaining/user.json')
 
 Agora, vamos fazer algo com o usuário carregado.
 
-Por exemplo, podemos fazer mais uma requisição ao GitHub, carregar o perfil do usuário e exibir o seu avatar. 
+Por exemplo, podemos fazer mais uma requisição ao GitHub, carregar o perfil do usuário e exibir o seu avatar.
 
 ```js run
 // Fazer uma requisição para user.json
@@ -315,7 +315,7 @@ fetch('/article/promise-chaining/user.json')
 */!*
     }, 3000);
   }))
-  // disparado após 3 segundoss
+  // disparado após 3 segundos
   .then(githubUser => alert(`Finalizou exibição de ${githubUser.name}`));
 ```
 

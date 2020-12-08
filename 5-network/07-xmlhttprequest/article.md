@@ -129,12 +129,8 @@ xhr.abort(); // terminate the request
 
 That triggers `abort` event.
 
-<<<<<<< HEAD:5-network/07-xmlhttprequest/article.md
-We can also specify a timeout using the corresponding property:
-=======
 ````smart header="URL search parameters"
 To add parameters to URL, like `?name=value`, and ensure the proper encoding, we can use [URL](info:url) object:
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923:5-network/08-xmlhttprequest/article.md
 
 ```js
 xhr.timeout = 10000; // timeout in ms, 10 seconds
@@ -208,13 +204,7 @@ xhr.onreadystatechange = function() {
 };
 ```
 
-<<<<<<< HEAD:5-network/07-xmlhttprequest/article.md
-You can find `readystatechange` listeners in really old code, for historical reasons.
-
-Nowadays, `load/error/progress` handlers deprecate it.
-=======
 You can find `readystatechange` listeners in really old code, it's there for historical reasons, as there was a time when there were no `load` and other events. Nowadays, `load/error/progress` handlers deprecate it.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923:5-network/08-xmlhttprequest/article.md
 
 ## Synchronous requests
 
@@ -336,11 +326,7 @@ let formData = new FormData([form]); // creates an object, optionally fill from 
 formData.append(name, value); // appends a field
 ```
 
-<<<<<<< HEAD:5-network/07-xmlhttprequest/article.md
-Create it, optionally from a form, `append` more fields if needed, and then:
-=======
 We create it, optionally fill from a form, `append` more fields if needed, and then:
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923:5-network/08-xmlhttprequest/article.md
 
 1. `xhr.open('POST', ...)` – use `POST` method.
 2. `xhr.send(formData)` to submit the form to the server.
@@ -389,11 +375,7 @@ xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhr.send(json);
 ```
 
-<<<<<<< HEAD:5-network/07-xmlhttprequest/article.md
-The `.send(body)` method is pretty omnivore. It can send almost everything, including Blob and BufferSource objects.
-=======
 The `.send(body)` method is pretty omnivore. It can send almost any `body`, including `Blob` and `BufferSource` objects.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923:5-network/08-xmlhttprequest/article.md
 
 ## Upload progress
 
@@ -405,11 +387,7 @@ If we're uploading something big, then we're surely more interested in tracking 
 
 There's another object, without methods, exclusively to track upload events: `xhr.upload`.
 
-<<<<<<< HEAD:5-network/07-xmlhttprequest/article.md
-Here's the list:
-=======
 It generates events, similar to `xhr`, but `xhr.upload` triggers them solely on uploading:
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923:5-network/08-xmlhttprequest/article.md
 
 - `loadstart` -- upload started.
 - `progress` -- triggers periodically during the upload.
@@ -524,11 +502,7 @@ There are actually more events, the [modern specification](http://www.w3.org/TR/
 - `timeout` -- the request was canceled due to timeout (only happens if it was set).
 - `loadend` -- the request has finished (succeffully or not).
 
-<<<<<<< HEAD:5-network/07-xmlhttprequest/article.md
-The most used events are load completion (`load`), load failure (`error`), and also `progress` to track the progress.
-=======
 The most used events are load completion (`load`), load failure (`error`), or we can use a single `loadend` handler and check the properties of the request object `xhr` to see what happened.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923:5-network/08-xmlhttprequest/article.md
 
 We've already seen another event: `readystatechange`. Historically, it appeared long ago, before the specification settled. Nowadays, there's no need to use it, we can replace it with newer events, but it can often be found in older scripts.
 
