@@ -1,14 +1,14 @@
-# Funções seta, o básico
+# Arrow functions, o básico
 
-Existe outra sintaxe, muito simples e concisa, para criar funções, e que frequentemente é melhor do que Expressões de Funções.
+Há outra sintaxe muito simples e abreviada para criar funções, e que frequentemente é melhor do que Function Expressions (Expressões de Função).
 
-É chamada de "funções seta" (*"arrow functions"*), porque se assemelha a:
+É chamada de "*arrow functions*" (funções seta), porque é parecida com:
 
 ```js
 let func = (arg1, arg2, ...argN) => expression
 ```
 
-...Isto, cria a função `func` com os argumentos `arg1..argN`, depois avalia a `expression` no lado direito utilizando os mesmos, e retorna o seu resultado.
+...Isto cria a função `func` com os argumentos `arg1..argN`, a seguir avalia a `expression` no lado direito com eles, e retorna o resultado.
 
 Por outras palavras, é a versão mais curta de:
 
@@ -33,11 +33,11 @@ let sum = function(a, b) {
 alert( sum(1, 2) ); // 3
 ```
 
-Como pode ver, `(a, b) => a + b` significa uma função que aceita dois argumentos, nomeadamente `a` e `b`. No momento da execução, esta avalia a expressão `a + b` e retorna o resultado.
+Como pode ver `(a, b) => a + b` significa uma função que aceita dois argumentos, nomeadamente `a` e `b`. No momento da execução, a expressão `a + b` é avaliada e o resultado retornado.
 
-- Se tivermos apenas um argumento, então os parênteses à sua volta podem ser omitidos, tornando-a ainda mais curta.
+- Se tivermos um só argumento, então os parênteses à sua volta podem ser omitidos, ficando ela ainda mais curta.
 
-    Por examplo:
+    Por exemplo:
 
     ```js run
     *!*
@@ -48,7 +48,7 @@ Como pode ver, `(a, b) => a + b` significa uma função que aceita dois argument
     alert( double(3) ); // 6
     ```
 
-- Se não houver argumentos, os parênteses estarão vazios (mas devem estar presentes):
+- Se não houver argumentos, os parênteses estão vazios (mas devem estar presentes):
 
     ```js run
     let sayHi = () => alert("Olá!");
@@ -56,7 +56,7 @@ Como pode ver, `(a, b) => a + b` significa uma função que aceita dois argument
     sayHi();
     ```
 
-Funções seta podem ser empregues da mesma forma que Expressões de Função.
+*Arrow functions* podem ser utilizadas da mesma forma que *Function Expressions*.
 
 Por exemplo, para criar dinamicamente uma função:
 
@@ -70,15 +70,15 @@ let welcome = (age < 18) ?
 welcome();
 ```
 
-Funções seta podem parecer não familiares e não muito legíveis a princípio, mas isso rápidamente muda à medida que os olhos se habituam à estrutura.
+*Arrow functions* podem parecer estranhas e não muito legíveis a princípio, mas isso rápidamente muda à medida que os olhos se habituam à estrutura.
 
-Elas são muito convenientes para ações simples numa única-linha, quando estamos preguiçosos demais para escrever muitas palavras.
+Elas são muito convenientes para ações simples com uma única-linha, quando estamos algo ociosos para escrever muitas palavras.
 
-## Funções seta de múltiplas linhas
+## *Arrow functions* com múltiplas linhas
 
-Os exemplos acima tomaram os argumentos à esqerda de `=>` e avaliaram a expressão à direita com eles.
+Os exemplos acima tomaram os argumentos à esquerda de `=>` e avaliaram a expressão à direita com eles.
 
-Por vezes, precisamos de algo um pouco mais complexo, como múltiplas expressões ou instruções. Isso também é possível, mas deveríamos envolvê-las em chavetas. A seguir, usamos um `return` normal com elas.
+Por vezes, precisamos de algo um pouco mais complexo, como múltiplas expressões ou instruções. Isso também é possível, mas temos de as envolver em chavetas. Depois, usamos um `return` normal com elas.
 
 Desta forma:
 
@@ -94,16 +94,18 @@ alert( sum(1, 2) ); // 3
 ```
 
 ```smart header="Mais adiante"
-Aqui, enaltecemos funções seta pela sua brevidade. Mas não é tudo!
+Aqui, enaltecemos arrow functions pela sua brevidade. Mas não é tudo!
 
-Para as estudar mais detalhadamente, primeiro precisamos de saber alguns outros aspetos de JavaScript, e desta forma retornaremos a funções seta mais adiante no capitulo <info:arrow-functions>.
+Arrow functions têm outras particularidades interessantes.
 
-Por ora, podemos já usar funções seta para ações numa única-linha e *callbacks*.
+Para as estudar mais em detalhe, primeiro precisamos de saber alguns outros aspetos de JavaScript, e desta forma iremos retornar a funções seta mais adiante no capitulo <info:arrow-functions>.
+
+Por ora, já podemos usar arrow functions para ações com uma única-linha e *callbacks*.
 ```
 
 ## Resumo
 
-Funções seta são apropriadas para ações única-linha. Elas vêm em dois sabores:
+*Arrow functions* são apropriadas para ações com uma única-linha. Elas vêm em dois sabores:
 
 1. Sem chavetas: `(...args) => expression` -- o lado direito é uma expressão; a função a avalia e retorna o resultado.
-2. Com chavetas: `(...args) => { body }` -- chavetas permitem-nos escrever múltiplas instruções dentro da função, mas precisamos de um explícito `return` para retornar alguma coisa.
+2. Com chavetas: `(...args) => { body }` -- chavetas nos possibilitam escrever múltiplas instruções dentro da função, mas precisamos de um explícito `return` para retornar alguma coisa.
