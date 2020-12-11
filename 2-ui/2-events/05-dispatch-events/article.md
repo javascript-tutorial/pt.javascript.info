@@ -2,23 +2,23 @@
 
 We can not only assign handlers, but also generate events from JavaScript.
 
-Custom events can be used to create "graphical components". For instance, a root element of our own JS-based menu may trigger events telling what happens with the menu: `open` (menu open), `select` (an item is selected) and so on. Another code may listen to the events and observe what's happening with the menu.
+Custom events can be used to create "graphical components". For instance, a root element of our own JS-based menu may trigger events telling what happens with the menu: `open` (menu open), `select` (an item is selected) and so on. Another code may listen for the events and observe what's happening with the menu.
 
 We can generate not only completely new events, that we invent for our own purposes, but also built-in ones, such as `click`, `mousedown` etc. That may be helpful for automated testing.
 
 ## Event constructor
 
-Events form a hierarchy, just like DOM element classes. The root is the built-in [Event](http://www.w3.org/TR/dom/#event) class.
+Build-in event classes form a hierarchy, similar to DOM element classes. The root is the built-in [Event](http://www.w3.org/TR/dom/#event) class.
 
 We can create `Event` objects like this:
 
 ```js
-let event = new Event(event type[, options]);
+let event = new Event(type[, options]);
 ```
 
 Arguments:
 
-- *event type* -- may be any string, like `"click"` or our own like `"hey-ho!"`.
+- *type* -- event type, a string like `"click"` or our own like `"my-event"`.
 - *options* -- the object with two optional properties:
   - `bubbles: true/false` -- if `true`, then the event bubbles.
   - `cancelable: true/false` -- if `true`, then the "default action"  may be prevented. Later we'll see what it means for custom events.
@@ -66,8 +66,12 @@ All we need is to set `bubbles` to `true`:
   // ...dispatch on elem!
   let event = new Event("hello", {bubbles: true}); // (2)
   elem.dispatchEvent(event);
+
+  // the handler on document will activate and display the message.
+
 </script>
 ```
+
 
 Notes:
 
@@ -158,19 +162,11 @@ Besides, the event class describes "what kind of event" it is, and if the event 
 
 ## event.preventDefault()
 
-Many browser events have a "default action", such as nagivating to a link, starting a selection, and so on.
+Many browser events have a "default action", such as navigating to a link, starting a selection, and so on.
 
-<<<<<<< HEAD
-Of course, if the event has a non-standard name, then it's not known to the browser, and there's no "default browser action" for it.
-
-But the event-generating code may plan some actions after `dispatchEvent`.
-
-The call of `event.preventDefault()` is a way for the handler to send a signal that those actions shouldn't be performed.
-=======
 For new, custom events, there are definitely no default browser actions, but a code that dispatches such event may have its own plans what to do after triggering the event.
 
 By calling `event.preventDefault()`, an event handler may send a signal that those actions should be canceled.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 In that case the call to `elem.dispatchEvent(event)` returns `false`. And the code that dispatched it knows that it shouldn't continue.
 
@@ -178,7 +174,7 @@ Let's see a practical example - a hiding rabbit (could be a closing menu or some
 
 Below you can see a `#rabbit` and `hide()` function that dispatches `"hide"` event on it, to let all interested parties know that the rabbit is going to hide.
 
-Any handler can listen to that event with `rabbit.addEventListener('hide',...)` and, if needed, cancel the action using `event.preventDefault()`. Then the rabbit won't disappear:
+Any handler can listen for that event with `rabbit.addEventListener('hide',...)` and, if needed, cancel the action using `event.preventDefault()`. Then the rabbit won't disappear:
 
 ```html run refresh autorun
 <pre id="rabbit">
@@ -191,7 +187,6 @@ Any handler can listen to that event with `rabbit.addEventListener('hide',...)` 
 <button onclick="hide()">Hide()</button>
 
 <script>
-  // hide() will be called automatically in 2 seconds
   function hide() {
     let event = new CustomEvent("hide", {
       cancelable: true // without that flag preventDefault doesn't work
@@ -211,17 +206,18 @@ Any handler can listen to that event with `rabbit.addEventListener('hide',...)` 
 </script>
 ```
 
-Обратите внимание: событие должно иметь флаг `cancelable: true`, иначе вызов `event.preventDefault()` будет проигнорирован.
+Please note: the event must have the flag `cancelable: true`, otherwise the call `event.preventDefault()` is ignored.
 
 ## Events-in-events are synchronous
 
-Usually events are processed asynchronously. That is: if the browser is processing `onclick` and in the process a new event occurs, then it awaits till `onclick` processing is finished.
+Usually events are processed in a queue. That is: if the browser is processing `onclick` and a new event occurs, e.g. mouse moved, then it's handling is queued up, corresponding `mousemove` handlers will be called after `onclick` processing is finished.
 
-The exception is when one event is initiated from within another one.
+The notable exception is when one event is initiated from within another one, e.g. using `dispatchEvent`. Such events are processed immediately: the new event handlers are called, and then the current event handling is resumed.
 
-Then the control jumps to the nested event handler, and after it goes back.
+For instance, in the code below the `menu-open` event is triggered during the `onclick`.
 
-For instance, here the nested `menu-open` event is processed synchronously, during the `onclick`:
+It's processed immediately, without waiting for `onclick` handler to end:
+
 
 ```html run autorun
 <button id="menu">Menu (click me)</button>
@@ -230,7 +226,6 @@ For instance, here the nested `menu-open` event is processed synchronously, duri
   menu.onclick = function() {
     alert(1);
 
-    // alert("nested")
     menu.dispatchEvent(new CustomEvent("menu-open", {
       bubbles: true
     }));
@@ -238,55 +233,46 @@ For instance, here the nested `menu-open` event is processed synchronously, duri
     alert(2);
   };
 
-  document.addEventListener('menu-open', () => alert('nested'))
+  // triggers between 1 and 2
+  document.addEventListener('menu-open', () => alert('nested'));
 </script>
-```    
+```
 
 The output order is: 1 -> nested -> 2.
 
-Please note that the nested event `menu-open` fully bubbles up and is handled on the `document`. The propagation and handling of the nested event must be fully finished before the processing gets back to the outer code (`onclick`).
+Please note that the nested event `menu-open` is caught on the `document`. The propagation and handling of the nested event is finished before the processing gets back to the outer code (`onclick`).
 
-That's not only about `dispatchEvent`, there are other cases. JavaScript in an event handler can call methods that lead to other events -- they are too processed synchronously.
+That's not only about `dispatchEvent`, there are other cases. If an event handler calls methods that trigger other events -- they are processed synchronously too, in a nested fashion.
 
-<<<<<<< HEAD
-If we don't like it, we can either put the `dispatchEvent` (or other event-triggering call) at the end of `onclick` or, if inconvenient, wrap it in `setTimeout(...,0)`:
-=======
-If we don't like it, we can either put the `dispatchEvent` (or other event-triggering call) at the end of `onclick` or, maybe better, wrap it in zero-delay `setTimeout`:
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
+Let's say we don't like it. We'd want `onclick` to be fully processed first, independently from `menu-open` or any other nested events.
+
+Then we can either put the `dispatchEvent` (or another event-triggering call) at the end of `onclick` or, maybe better, wrap it in the zero-delay `setTimeout`:
 
 ```html run
 <button id="menu">Menu (click me)</button>
 
 <script>
-<<<<<<< HEAD
-  // 1 -> 2 -> nested
-=======
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
   menu.onclick = function() {
     alert(1);
 
-    // alert(2)
     setTimeout(() => menu.dispatchEvent(new CustomEvent("menu-open", {
       bubbles: true
-    })), 0);
+    })));
 
     alert(2);
   };
 
-  document.addEventListener('menu-open', () => alert('nested'))
+  document.addEventListener('menu-open', () => alert('nested'));
 </script>
-```    
+```
 
-<<<<<<< HEAD
-=======
-Now `dispatchEvent` runs asynchronously after the current code execution is finished, including `mouse.onclick`, so event handlers are totally separate.
+Now `dispatchEvent` runs asynchronously after the current code execution is finished, including `menu.onclick`, so event handlers are totally separate.
 
 The output order becomes: 1 -> 2 -> nested.
 
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 ## Summary
 
-To generate an event, we first need to create an event object.
+To generate an event from code, we first need to create an event object.
 
 The generic `Event(name, options)` constructor accepts an arbitrary event name and the `options` object with two properties:
 - `bubbles: true` if the event should bubble.
@@ -296,9 +282,9 @@ Other constructors of native events like `MouseEvent`, `KeyboardEvent` and so on
 
 For custom events we should use `CustomEvent` constructor. It has an additional option named `detail`, we should assign the event-specific data to it. Then all handlers can access it as `event.detail`.
 
-Despite the technical possibility to generate browser events like `click` or `keydown`, we should use with the great care.
+Despite the technical possibility of generating browser events like `click` or `keydown`, we should use them with great care.
 
-We shouldn't generate browser events as it's a hacky way to run handlers. That's a bad architecture most of the time.
+We shouldn't generate browser events as it's a hacky way to run handlers. That's bad architecture most of the time.
 
 Native events might be generated:
 
