@@ -1,11 +1,11 @@
 
 # Property getters and setters
 
-There are two kinds of properties.
+There are two kinds of object properties.
 
-The first kind is *data properties*. We already know how to work with them. Actually, all properties that we've been using till now were data properties.
+The first kind is *data properties*. We already know how to work with them. All properties that we've been using until now were data properties.
 
-The second type of properties is something new. It's *accessor properties*. They are essentially functions that work on getting and setting a value, but look like regular properties to an external code.
+The second type of properties is something new. It's *accessor properties*. They are essentially functions that execute on getting and setting a value, but look like regular properties to an external code.
 
 ## Getters and setters
 
@@ -27,7 +27,7 @@ The getter works when `obj.propName` is read, the setter -- when it is assigned.
 
 For instance, we have a `user` object with `name` and `surname`:
 
-```js run
+```js
 let user = {
   name: "John",
   surname: "Smith"
@@ -53,7 +53,7 @@ alert(user.fullName); // John Smith
 */!*
 ```
 
-From outside, an accessor property looks like a regular one. That's the idea of accessor properties. We don't *call* `user.fullName` as a function, we *read* it normally: the getter runs behind the scenes.
+From the outside, an accessor property looks like a regular one. That's the idea of accessor properties. We don't *call* `user.fullName` as a function, we *read* it normally: the getter runs behind the scenes.
 
 As of now, `fullName` has only a getter. If we attempt to assign `user.fullName=`, there will be an error.
 
@@ -82,23 +82,13 @@ alert(user.name); // Alice
 alert(user.surname); // Cooper
 ```
 
-Now we have a "virtual" property. It is readable and writable, but in fact does not exist.
-
-```smart header="Accessor properties are only accessible with get/set"
-Once a property is defined with `get prop()` or `set prop()`, it's an accessor property, not a data properety any more.
-
-- If there's a getter -- we can read `object.prop`, othrewise we can't.
-- If there's a setter -- we can set `object.prop=...`, othrewise we can't.
-
-And in either case we can't `delete` an accessor property.
-```
-
+As the result, we have a "virtual" property `fullName`. It is readable and writable.
 
 ## Accessor descriptors
 
-Descriptors for accessor properties are different -- as compared with data properties.
+Descriptors for accessor properties are different from those for data properties.
 
-For accessor properties, there is no `value` and `writable`, but instead there are `get` and `set` functions.
+For accessor properties, there is no `value` or `writable`, but instead there are `get` and `set` functions.
 
 So an accessor descriptor may have:
 
@@ -132,7 +122,7 @@ alert(user.fullName); // John Smith
 for(let key in user) alert(key); // name, surname
 ```
 
-Please note once again that a property can be either an accessor or a data property, not both.
+Please note that a property can be either an accessor (has `get/set` methods) or a data property (has a `value`), not both.
 
 If we try to supply both `get` and `value` in the same descriptor, there will be an error:
 
@@ -181,9 +171,9 @@ Technically, the external code may still access the name directly by using `user
 
 ## Using for compatibility
 
-One of the great ideas behind getters and setters -- they allow to take control over a "normal" data property and tweak it at any moment.
+One of the great uses of accessors is that they allow to take control over a "regular" data property at any moment by replacing it with a getter and a setter and tweak its behavior.
 
-For instance, we started implementing user objects using data properties `name` and `age`:
+Imagine we started implementing user objects using data properties `name` and `age`:
 
 ```js
 function User(name, age) {

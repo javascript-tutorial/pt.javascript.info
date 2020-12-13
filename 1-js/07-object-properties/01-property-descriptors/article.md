@@ -3,7 +3,7 @@
 
 As we know, objects can store properties.
 
-Till now, a property was a simple "key-value" pair to us. But an object property is actually a more flexible and powerful thing.
+Until now, a property was a simple "key-value" pair to us. But an object property is actually a more flexible and powerful thing.
 
 In this chapter we'll study additional configuration options, and in the next we'll see how to invisibly turn them into getter/setter functions.
 
@@ -11,7 +11,7 @@ In this chapter we'll study additional configuration options, and in the next we
 
 Object properties, besides a **`value`**, have three special attributes (so-called "flags"):
 
-- **`writable`** -- if `true`, can be changed, otherwise it's read-only.
+- **`writable`** -- if `true`, the value can be changed, otherwise it's read-only.
 - **`enumerable`** -- if `true`, then listed in loops, otherwise not listed.
 - **`configurable`** -- if `true`, the property can be deleted and these attributes can be modified, otherwise not.
 
@@ -66,7 +66,7 @@ Object.defineProperty(obj, propertyName, descriptor)
 : The object and property to work on.
 
 `descriptor`
-: Property descriptor to apply.
+: Property descriptor object to apply.
 
 If the property exists, `defineProperty` updates its flags. Otherwise, it creates the property with the given value and flags; in that case, if a flag is not supplied, it is assumed `false`.
 
@@ -100,9 +100,9 @@ Compare it with "normally created" `user.name` above: now all flags are falsy. I
 
 Now let's see effects of the flags by example.
 
-## Read-only
+## Non-writable
 
-Let's make `user.name` read-only by changing `writable` flag:
+Let's make `user.name` non-writable (can't be reassigned) by changing `writable` flag:
 
 ```js run
 let user = {
@@ -122,15 +122,19 @@ user.name = "Pete"; // Error: Cannot assign to read only property 'name'...
 
 Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
 
-Here's the same operation, but for the case when a property doesn't exist:
+```smart header="Errors appear only in strict mode"
+In the non-strict mode, no errors occur when writing to non-writable properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
+```
+
+Here's the same example, but the property is created from scratch:
 
 ```js run
 let user = { };
 
 Object.defineProperty(user, "name", {
 *!*
-  value: "Pete",
-  // for new properties need to explicitly list what's true
+  value: "John",
+  // for new properties we need to explicitly list what's true
   enumerable: true,
   configurable: true
 */!*
@@ -145,7 +149,7 @@ user.name = "Alice"; // Error
 
 Now let's add a custom `toString` to `user`.
 
-Normally, a built-in `toString` for objects is non-enumerable, it does not show up in `for..in`. But if we add `toString` of our own, then by default it shows up in `for..in`, like this:
+Normally, a built-in `toString` for objects is non-enumerable, it does not show up in `for..in`. But if we add a `toString` of our own, then by default it shows up in `for..in`, like this:
 
 ```js run
 let user = {
@@ -159,7 +163,7 @@ let user = {
 for (let key in user) alert(key); // name, toString
 ```
 
-If we don't like it, then we can set `enumerable:false`. Then it won't appear in `for..in` loop, just like the built-in one:
+If we don't like it, then we can set `enumerable:false`. Then it won't appear in a `for..in` loop, just like the built-in one:
 
 ```js run
 let user = {
@@ -191,9 +195,9 @@ alert(Object.keys(user)); // name
 
 The non-configurable flag (`configurable:false`) is sometimes preset for built-in objects and properties.
 
-A non-configurable property can not be deleted or altered with `defineProperty`.
+A non-configurable property can not be deleted.
 
-For instance, `Math.PI` is read-only, non-enumerable and non-configurable:
+For instance, `Math.PI` is non-writable, non-enumerable and non-configurable:
 
 ```js run
 let descriptor = Object.getOwnPropertyDescriptor(Math, 'PI');
@@ -216,32 +220,50 @@ Math.PI = 3; // Error
 // delete Math.PI won't work either
 ```
 
-Making a property non-configurable is a one-way road. We cannot change it back, because `defineProperty` doesn't work on non-configurable properties.
+Making a property non-configurable is a one-way road. We cannot change it back with `defineProperty`.
 
-Here we are making `user.name` a "forever sealed" constant:
+To be precise, non-configurability imposes several restrictions on `defineProperty`:
+1. Can't change `configurable` flag.
+2. Can't change `enumerable` flag.
+3. Can't change `writable: false` to `true` (the other way round works).
+4. Can't change `get/set` for an accessor property (but can assign them if absent).
+
+**The idea of "configurable: false" is to prevent changes of property flags and its deletion, while allowing to change its value.**
+
+Here `user.name` is non-configurable, but we can still change it (as it's writable):
 
 ```js run
-let user = { };
+let user = {
+  name: "John"
+};
 
 Object.defineProperty(user, "name", {
-  value: "John",
+  configurable: false
+});
+
+user.name = "Pete"; // works fine
+delete user.name; // Error
+```
+
+And here we make `user.name` a "forever sealed" constant:
+
+```js run
+let user = {
+  name: "John"
+};
+
+Object.defineProperty(user, "name", {
   writable: false,
   configurable: false
 });
 
-*!*
 // won't be able to change user.name or its flags
 // all this won't work:
-//   user.name = "Pete"
-//   delete user.name
-//   defineProperty(user, "name", ...)
-Object.defineProperty(user, "name", {writable: true}); // Error
-*/!*
+user.name = "Pete";
+delete user.name;
+Object.defineProperty(user, "name", { value: "Pete" });
 ```
 
-```smart header="Errors appear only in use strict"
-In the non-strict mode, no errors occur when writing to read-only properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
-```
 
 ## Object.defineProperties
 
@@ -305,6 +327,7 @@ There are also methods that limit access to the *whole* object:
 
 [Object.freeze(obj)](mdn:js/Object/freeze)
 : Forbids adding/removing/changing of properties. Sets `configurable: false, writable: false` for all existing properties.
+
 And also there are tests for them:
 
 [Object.isExtensible(obj)](mdn:js/Object/isExtensible)
