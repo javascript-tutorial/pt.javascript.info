@@ -70,7 +70,6 @@ let admin = user;
 ![](memory-user-john-admin.svg)
 
 Agora, se fizermos o mesmo:
-
 ```js
 user = null;
 ```
@@ -146,7 +145,7 @@ Este exemplo demonstra o quão importante é o conceito de acessibilidade.
 
 É óbvio que John e Ann ainda estão conetados, ambos têm referências de entrada (*incoming*). Mas, isso não é o suficiente.
 
-O presente objeto `"family"` foi desconetado da raiz, não existe mais alguma referência para ele, assim toda a ilha se torna inalcançável e será removida.
+O antigo objeto `"family"` foi desconectado da raiz, não existe mais alguma referência para ele, assim toda a ilha se torna inalcançável e será removida.
 
 ## Algoritmos internos
 
