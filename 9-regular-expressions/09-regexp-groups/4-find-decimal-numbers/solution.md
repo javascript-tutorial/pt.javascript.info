@@ -1,4 +1,4 @@
-A positive number with an optional decimal part is (per previous task): `pattern:\d+(\.\d+)?`.
+A positive number with an optional decimal part is: `pattern:\d+(\.\d+)?`.
 
 Let's add an optional `-` in the beginning:
 
