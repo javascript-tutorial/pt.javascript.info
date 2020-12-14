@@ -8,11 +8,7 @@ Uma *classe de caracteres* é uma notação especial que corresponde a qualquer 
 
 Para começar, vamos explorar a classe "digit". Está escrito como `padrão: \d` e corresponde a "qualquer dígito único".
 
-<<<<<<< HEAD
 Por exemplo, vamos encontrar o primeiro dígito no número de telefone:
-=======
-For instance, let's find the first digit in the phone number:
->>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 ```js run
 let str = "+7(903)-123-45-67";
@@ -148,17 +144,10 @@ Há muitas situações em que gostaríamos que um ponto significasse literalment
 alert( "A\nB".match(/A.B/s) ); // A\nB (correspondência!)
 ```
 
-<<<<<<< HEAD
-````warn header="Não suportado no Firefox, IE, Edge"
-Verifique <https://caniuse.com/#search=dotall> para obter o estado de suporte mais recente. No momento da redação deste documento, não inclui o Firefox, IE, Edge.
+````warn header="Não suportado no IE"
+A flag `padrão:s` não é suportada no IE.
 
-Felizmente, há uma alternativa, que funciona em qualquer lugar. Podemos usar uma regexp como `padrão:[\s\S]` para corresponder a "qualquer caractere".
-=======
-````warn header="Not supported in IE"
-The `pattern:s` flag is not supported in IE.
-
-Luckily, there's an alternative, that works everywhere. We can use a regexp like `pattern:[\s\S]` to match "any character" (this pattern will be covered in the article <info:regexp-character-sets-and-ranges>).
->>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
+Felizmente, há uma alternativa, que funciona em qualquer lugar. Podemos usar uma regexp como `padrão:[\s\S]` para corresponder a "qualquer caractere" (este padrão irá ser estudado no artigo <info:regexp-character-sets-and-ranges>).
 
 ```js run
 alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
@@ -190,11 +179,7 @@ alert( "1 - 5".match(/\d\s-\s\d/) ); // 1 - 5, também funciona
 
 **Um espaço é um caractere. Igual em importância com qualquer outro caractere.**
 
-<<<<<<< HEAD
-Não podemos adicionar ou remover espaços de uma expressão regular e esperamos funcionar da mesma maneira.
-=======
-We can't add or remove spaces from a regular expression and expect it to work the same.
->>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
+Não podemos adicionar ou remover espaços de uma expressão regular e esperar que funcione da mesma maneira.
 
 Em outras palavras, em uma expressão regular, todos os caracteres são importantes, espaços também.
 ````
@@ -213,10 +198,6 @@ Existem as seguintes classes de caracteres:
 
 ...Mas isso não é tudo!
 
-<<<<<<< HEAD
-A codificação unicode, usada pelo JavaScript para strings, fornece muitas propriedades para caracteres, como: a qual idioma a letra pertence (se é uma letra), é um sinal de pontuação etc.
-=======
-Unicode encoding, used by JavaScript for strings, provides many properties for characters, like: which language the letter belongs to (if it's a letter), is it a punctuation sign, etc.
->>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
+A codificação unicode, usada pelo JavaScript para strings, fornece muitas propriedades para caracteres, como: a qual idioma a letra pertence (se é uma letra), será que é um sinal de pontuação, etc.
 
 Também podemos pesquisar por essas propriedades. Isso requer a flag `padrão:u`, abordada no próximo artigo.
