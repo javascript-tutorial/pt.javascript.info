@@ -87,8 +87,7 @@ Por exemplo:
 ```js
 // o acento grave (*backtick*) ` permite repartir uma *string* por múltiplas linhas
 let str = `
-  O TC39 da ECMA International, é um grupo de desenvolvedores e implementadores de  JavaScript, académicos, e outros, colaborando com a comunidade para manter e
-  evoluir a definição de JavaScript.
+  O TC39 da ECMA International, é um grupo de desenvolvedores e implementadores de JavaScript, académicos, e outros, colaborando com a comunidade para manter e evoluir a definição de JavaScript.
 `;
 ```
 
@@ -271,7 +270,7 @@ Se estiver a escrever várias funções "auxiliares" (*"helper" functions*) acom
     }
     ```
 
-3. Mista: uma função é declarada onde for empregue pela primeir vez.
+3. Mista: uma função é declarada onde for empregue pela primeira vez.
 
 A maior parte da vezes, a segunda variante é a preferida.
 
@@ -293,7 +292,7 @@ Algumas opções populares:
 - [StandardJS](https://standardjs.com/)
 - (e muitas mais)
 
-Se for um programador iniciante, começe pela cábula (*cheatsheet*) dísponivel no início deste capítulo. Depois, poderá procurar por outros guias de estilo afim de colher mais ideias e decidir qual prefere.
+Se for um programador iniciante, começe pela cábula (*cheatsheet*) disponível no início deste capítulo. Depois, poderá procurar por outros guias de estilo afim de colher mais ideias e decidir qual prefere.
 
 ## *Linters* Automatizados
 
@@ -330,8 +329,8 @@ Aqui está um exemplo de um ficheiro `.eslintrc`:
   },
   "rules": {
     "no-console": 0,
-  },
-  "indent": 2
+    "indent": 2
+  }
 }
 ```
 

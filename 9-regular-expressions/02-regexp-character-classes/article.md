@@ -44,7 +44,7 @@ As mais usadas são:
 : Um símbolo de espaço: inclui espaços, tabulações `\t`, novas linhas `\n` e alguns outros caracteres raros, como `\v`, `\f` and `\r`.
 
 `padrão:\w` ("w" é de "word")
-: Um caractere de texto: uma letra do alfabeto latino ou um dígito ou um sublinhado `_`. Letras não latinas (como cirílico ou hindu) não pertecem ao `padrão:\w`.
+: Um caractere de texto: uma letra do alfabeto latino ou um dígito ou um sublinhado `_`. Letras não latinas (como cirílico ou hindu) não pertencem ao `padrão:\w`.
 
 Por exemplo, `padrão:\d\s\w` significa um "dígito" seguido de um "caractere de espaço" seguido de um "caractere de texto", como `correspondência:1 a`.
 
@@ -82,7 +82,7 @@ O "inverso" significa que ele corresponde a todos os outros caracteres, por exem
 : Sem espaço: qualquer caractere, exceto `padrão:\s`, por exemplo, uma letra.
 
 `padrão:\W`
-: Caractere não verbal: qualquer coisa, exceto `padrão:\w`, por exemploo uma letra não latina ou um espaço.
+: Caractere não verbal: qualquer coisa, exceto `padrão:\w`, por exemplo uma letra não latina ou um espaço.
 
 No início do capítulo, vimos como criar um número de telefone somente para números a partir de uma string como `subject:+7(903)-123-45-67`: encontre todos os dígitos e junte-se a eles.
 
