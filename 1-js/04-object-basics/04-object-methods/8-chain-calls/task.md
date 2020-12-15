@@ -1,4 +1,4 @@
-importância: 2
+importance: 2
 
 ---
 
@@ -9,19 +9,19 @@ Existe um objeto `ladder` (escada) que permite subir e descer:
 ```js
 let ladder = {
   step: 0,
-  up() { 
+  up() {
     this.step++;
   },
-  down() { 
+  down() {
     this.step--;
   },
-  showStep: function() { // mostra o atual degrau
+  showStep: function() { // mostra o degrau atual
     alert( this.step );
   }
 };
 ```
 
-Agora, se precisarmos de fazer várias chamadas em sequência, podemos fazê-las desta forma:
+Agora, se precisarmos de fazer várias chamadas em sequência, podemos as efetuar desta forma:
 
 ```js
 ladder.up();

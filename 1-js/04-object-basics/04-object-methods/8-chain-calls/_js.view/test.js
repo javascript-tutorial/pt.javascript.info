@@ -16,7 +16,7 @@ describe('Escada', function() {
     assert.equal(ladder.down(), ladder);
   });
 
-  it('showStep() deveria chamar alert', function() {
+  it('showStep() deveria invocar alert', function() {
     ladder.showStep();
     assert(alert.called);
   });
