@@ -1,6 +1,6 @@
 A solução será retornar o próprio objeto em cada invocação.
 
-```js execute demo
+```js run demo
 let ladder = {
   step: 0,
   up() {
