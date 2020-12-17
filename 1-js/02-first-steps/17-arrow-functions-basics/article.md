@@ -1,14 +1,14 @@
 # Funções seta, o básico
 
-Existe outra sintaxe, muito simples e concisa, para criar funções, e que frequentemente é melhor do que Expressões de Funções.
+Existe outra sintaxe, muito simples e concisa, para criar funções, e que geralmente é melhor do que Expressões de Função.
 
-É chamada de "funções seta" (*"arrow functions"*), porque se assemelha a:
+É chamada de "funções seta" (*"arrow functions"*), porque tem este aspeto:
 
 ```js
 let func = (arg1, arg2, ...argN) => expression
 ```
 
-...Isto, cria a função `func` com os argumentos `arg1..argN`, depois avalia a `expression` no lado direito utilizando os mesmos, e retorna o seu resultado.
+...Isto, cria a função `func` com os argumentos `arg1..argN`, depois avalia a `expression` no lado direito usando os mesmos, e retorna o seu resultado.
 
 Por outras palavras, é a versão mais curta de:
 
@@ -35,9 +35,9 @@ alert( sum(1, 2) ); // 3
 
 Como pode ver, `(a, b) => a + b` significa uma função que aceita dois argumentos, nomeadamente `a` e `b`. No momento da execução, esta avalia a expressão `a + b` e retorna o resultado.
 
-- Se tivermos apenas um argumento, então os parênteses à sua volta podem ser omitidos, tornando-a ainda mais curta.
+- Se tivermos apenas um argumento, então os parênteses à sua volta podem ser omitidos, tornando ela ainda mais curta.
 
-    Por examplo:
+    Por exemplo:
 
     ```js run
     *!*
@@ -48,7 +48,7 @@ Como pode ver, `(a, b) => a + b` significa uma função que aceita dois argument
     alert( double(3) ); // 6
     ```
 
-- Se não houver argumentos, os parênteses estarão vazios (mas devem estar presentes):
+- Se não houver argumentos, os parênteses irão estar vazios (mas devem estar presentes):
 
     ```js run
     let sayHi = () => alert("Olá!");
@@ -76,9 +76,9 @@ Elas são muito convenientes para ações simples numa única-linha, quando esta
 
 ## Funções seta de múltiplas linhas
 
-Os exemplos acima tomaram os argumentos à esqerda de `=>` e avaliaram a expressão à direita com eles.
+Os exemplos acima tomaram os argumentos à esquerda de `=>` e avaliaram a expressão à direita com eles.
 
-Por vezes, precisamos de algo um pouco mais complexo, como múltiplas expressões ou instruções. Isso também é possível, mas deveríamos envolvê-las em chavetas. A seguir, usamos um `return` normal com elas.
+Por vezes, precisamos de algo um pouco mais complexo, como de múltiplas expressões ou instruções. Isso também é possível, mas devemos colocar elas dentro de chavetas. Depois, usamos um `return` normal com elas.
 
 Desta forma:
 
@@ -93,17 +93,19 @@ let sum = (a, b) => {  // a chaveta abre uma função multi-linha
 alert( sum(1, 2) ); // 3
 ```
 
-```smart header="Mais adiante"
-Aqui, enaltecemos funções seta pela sua brevidade. Mas não é tudo!
+```smart header="Mais à frente"
+Aqui, enaltecemos funções seta pela sua brevidade. Mas não é só!
 
-Para as estudar mais detalhadamente, primeiro precisamos de saber alguns outros aspetos de JavaScript, e desta forma retornaremos a funções seta mais adiante no capitulo <info:arrow-functions>.
+Funções seta têm outras funcionalidades interessantes.
+
+Para as estudar com mais detalhe, primeiro precisamos de saber alguns outros aspetos de JavaScript, e desta forma vamos retornar a funções seta mais adiante no capitulo <info:arrow-functions>.
 
 Por ora, podemos já usar funções seta para ações numa única-linha e *callbacks*.
 ```
 
 ## Resumo
 
-Funções seta são apropriadas para ações única-linha. Elas vêm em dois sabores:
+Funções seta são práticas para ações numa única-linha. Elas vêm em dois sabores:
 
-1. Sem chavetas: `(...args) => expression` -- o lado direito é uma expressão; a função a avalia e retorna o resultado.
-2. Com chavetas: `(...args) => { body }` -- chavetas permitem-nos escrever múltiplas instruções dentro da função, mas precisamos de um explícito `return` para retornar alguma coisa.
+1. Sem chavetas: `(...args) => expression` -- o lado direito é uma expressão: a função a avalia e retorna o resultado.
+2. Com chavetas: `(...args) => { body }` -- chavetas nos permitem escrever múltiplas instruções dentro da função, mas precisamos de um explícito `return` para retornar alguma coisa.
