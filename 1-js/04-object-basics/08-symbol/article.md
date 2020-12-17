@@ -1,22 +1,22 @@
 
 # O tipo Symbol
 
-Segundo a especificação, as chaves das propriedades dos objetos podem ser quer do tipo *string* como do tipo *symbol*. Não números, não booleanos, apenas *strings* (cadeias-de-carateres) ou *symbols* (símbolos), estes dois tipos.
+Segundo a especificação, as chaves das propriedades dos objetos podem ser quer do tipo *string* como do tipo *symbol*. Não números, nem booleanos, mas apenas *strings* ou *symbols* (símbolos), estes dois tipos.
 
-Até agora, vimos apenas utilizando *strings*. Então, vejamos os benefícios que *symbols* nos podem dar.
+Até agora, apenas utilizámos *strings*. Então, vamos ver os benefícios que *symbols* nos podem dar.
 
 ## Símbolos
 
-Um "símbolo" representa um único identificador.
+Um "símbolo" representa um identificador único .
 
-Um valor deste tipo, pode ser criado utilizando `Symbol()`:
+Um valor deste tipo pode ser criado usando `Symbol()`:
 
 ```js
 // 'id' é um novo símbolo
 let id = Symbol();
 ```
 
-Quando o criamos, podemos dar ao símbolo uma descrição (também chamada de nome do símbolo), que é mais útil para fins de *debugging* (depuração de erros):
+Quando o criamos, podemos dar ao símbolo uma descrição (também chamada de nome do símbolo), sendo ela mais útil para propósitos de *debugging* (depuração de erros):
 
 ```js run
 // 'id' é um símbolo com a descrição "id"
@@ -36,7 +36,7 @@ alert(id1 == id2); // false (falso)
 */!*
 ```
 
-Se você tiver familiaridade com Ruby, ou outra linguagem que também tenha algum tipo de "símbolos" -- por favor, não se confunda. Em JavaScript, os símbolos são diferentes.
+Se você tiver familiaridade com Ruby, ou outra linguagem que também tenha alguma espécie de "símbolos" -- por favor, não se confunda. Os símbolos em JavaScript,  são diferentes.
 
 ````warn header="Símbolos não são auto-convertidos para strings"
 A maior parte dos valores em JavaScript suporta conversão implícita para *string*. Por exemplo, podemos usar `alert` com quase qualquer valor, e irá funcionar. Símbolos são especiais. Eles não são automaticamente convertidos.
@@ -46,15 +46,13 @@ Por exemplo, este `alert` irá mostrar um erro:
 ```js run
 let id = Symbol("id");
 *!*
-alert(id); // TypeError: Cannot convert a Symbol value to a string
-           // (TypeError: Não é possível converter um valor 'Symbol' para uma 'string')
+alert(id); // TypeError: Cannot convert a Symbol value to a string (ErroDeTipo: Não é possível converter um valor 'Symbol' para uma 'string')
 */!*
 ```
 
-Existe uma "salvaguarda na linguagem" contra a confusão, porque *strings* e *symbols* são fundamentalmente diferentes, e não deveriam ser acidentalmente convertidos de um destes tipos para o outro.
+Esta é uma "salvaguarda na linguagem" contra tal mistura, porque *strings* e *symbols* são fundamentalmente diferentes, e não deveriam ser acidentalmente convertidos de um tipo para o outro.
 
-Se realmente quisermos mostrar um *symbol*, teremos que explicitamente invocar `.toString()` sobre ele, como aqui:
-
+Se realmente quisermos exibir um *symbol*, teremos que explicitamente invocar `.toString()` sobre ele, como aqui:
 ```js run
 let id = Symbol("id");
 *!*
@@ -63,7 +61,6 @@ alert(id.toString()); // 'Symbol(id)', agora funciona
 ```
 
 Ou usar a propriedade `symbol.description` para mostrar apenas a sua descrição:
-
 ```js run
 let id = Symbol("id");
 *!*
@@ -77,7 +74,7 @@ alert(id.description); // 'id'
 
 Símbolos nos permitem criar propriedades "ocultas" num objeto, que nenhuma outra parte do código possa acidentalmente aceder ou alterar.
 
-Por exemplo, se estivermos a trabalhar com um objeto `user`, que pertence a um código de terceiros, e quisermos adicionar identificadores a ele.
+Por exemplo, se estivermos a trabalhar com um objeto `user`, que pertença a um código de terceiros, e quisermos adicionar identificadores a ele.
 
 Vamos utilizar uma chave *symbol* para isso:
 
@@ -95,9 +92,9 @@ alert( user[id] ); // podemos aceder aos dados usando o 'symbol' como chave (key
 
 Qual o benefício de se usar `Symbol("id")` sobre uma *string* `"id"`?
 
-Como o objeto `user` pertence a outro código, e aquele código trabalha bem com ele, não deveríamos sómente adicionar quaisquer propriedades a ele. Isso não é seguro. Mas, um símbolo não pode ser acedido acidentalmente, o código de terceiros provavelmente nem o irá ver, então talvez seja a coisa certa a fazer.
+Como o objeto `user` pertence a outro código, e aquele código funciona bem com ele, não deveríamos sómente adicionar quaisquer propriedades a ele. Isso não é seguro. Mas, um símbolo não pode ser acedido acidentalmente, o código de terceiros provavelmente nem o irá ver, então talvez seja a coisa certa a fazer.
 
-De igual modo, imagine que ainda um outro programa (*script*) quer ter o seu próprio identificador dentro de `user`, para seus próprios fins. Isto pode estar noutra biblioteca (*library*) de JavaScript, por isso os *scripts* podem não ter nenhum conhecimento um do outro.
+De igual modo, imagine que ainda um outro programa (*script*) quer ter o seu próprio identificador dentro de `user`, para seus próprios fins. Isto pode estar noutra biblioteca (*library*) de JavaScript, por isso estes *scripts* podem não ter nenhum conhecimento um do outro.
 
 Então, aquele programa pode criar o seu próprio `Symbol("id")`, desta forma:
 
@@ -105,7 +102,7 @@ Então, aquele programa pode criar o seu próprio `Symbol("id")`, desta forma:
 // ...
 let id = Symbol("id");
 
-user[id] = "O valor 'id' do outro programa";
+user[id] = "O valor 'id' dos outros";
 ```
 
 Não haverá conflito entre o nosso identificador e o dos outros, porque símbolos são sempre diferentes, mesmo que tenham o mesmo nome.
@@ -140,7 +137,6 @@ let user = {
 */!*
 };
 ```
-
 Isto, porque precisamos do valor que está na variável `id` como chave, não da *string* "id".
 
 ### Símbolos são saltados num *for..in*
@@ -165,7 +161,7 @@ for (let key in user) alert(key); // 'name', 'age' (nenhum símbolo)
 alert( "Direct: " + user[id] );
 ```
 
-`Object.keys(user)` também os ignora. Isto, é uma parte do conceito geral de "ocultação de propriedades simbólicas". Se, um outro programa ou uma biblioteca percorrer o nosso objeto com um ciclo (*loop*), não irá inadvertidamente aceder a uma propriedade simbólica.
+`Object.keys(user)` também os ignora. Isto, faz uma parte do conceito geral de "ocultação de propriedades simbólicas". Se, um outro programa ou uma biblioteca percorrer o nosso objeto com um ciclo (*loop*), não irá inadvertidamente aceder a uma propriedade simbólica.
 
 Em contraste, [Object.assign](mdn:js/Object/assign) copia ambas as propriedades *string* e *symbol*:
 
@@ -180,17 +176,17 @@ let clone = Object.assign({}, user);
 alert( clone[id] ); // 123
 ```
 
-Não existe nenhum paradoxo aqui. Essa é a implementação. A ideia é que ao clonar ou fundir (*merge*) objetos, queremos geralmente *todas* as propriedades copiadas (incluindo símbolos como `id`).
+Não existe nenhum paradoxo aqui. Assim está concebido. A ideia é que ao clonar um objeto ou fundir (*merge*) objetos, geralmente queremos *todas* as propriedades copiadas (incluindo símbolos como `id`).
 
 ## Símbolos globais
 
-Como vimos, geralmente todos os *symbols* são diferentes, mesmo que tenham o mesmo nome. Mas, por vezes queremos que *symbols* com o mesmo nome se refiram às mesmas entidades. Por exemplo, diferentes partes na nossa aplicação pretendem aceder ao *symbol* `"id"`, sendo este exatamente a mesma propriedade.
+Como nós vimos, geralmente todos os *symbols* são diferentes, mesmo que tenham o mesmo nome. Mas, por vezes queremos que *symbols* com o mesmo nome sejam entidades únicas. Por exemplo, diferentes partes da nossa aplicação querem aceder ao *symbol* `"id"`, sendo este exatamente a mesma propriedade.
 
-Para alcançar isso, existe um  *registo global de símbolos* (*global symbol registry*). Podemos criar *symbols* nele e os aceder mais tarde, e ele garante que acessos repetidos ao mesmo nome retornem exatamente o mesmo *symbol*.
+Para alcançar isto, existe um  *registo global de símbolos* (*global symbol registry*). Nós podemos criar *symbols* nele e os aceder mais tarde, e ele garante que acessos repetidos ao mesmo nome retornem exatamente o mesmo *symbol*.
 
-Para ler (e criar, se ausente) um *symbol* do registo, use `Symbol.for(key)`.
+Para ler (criar, se ausente) um *symbol* do registo, use `Symbol.for(key)`.
 
-Essa chamada verifica o registo global, e se houver um *symbol* descrito como `key`, ele o retorna, senão cria um novo *symbol* com `Symbol(key)` e o armazena no registo sob a chave `key`.
+Esta chamada verifica o registo global, e se houver um *symbol* descrito como `key`, ele o retorna, senão cria um novo *symbol* com `Symbol(key)` e o armazena no registo sob a chave `key`.
 
 Por exemplo:
 
@@ -205,9 +201,9 @@ let idAgain = Symbol.for("id");
 alert( id === idAgain ); // true (verdadeiro)
 ```
 
-Símbolos dentro do registo são chamados de *símbolos globais* (*global symbols*). Quando queremos um *symbol* para toda a aplicação, acessível em qualquer parte do código -- é para isso que eles servem.
+Símbolos dentro do registo são chamados de *símbolos globais* (*global symbols*). Quando queremos um *symbol* para toda a aplicação, acessível em qualquer lugar no código -- é para isso que eles servem.
 
-```smart header="Isto parece Ruby"
+```smart header="Isso parece Ruby"
 Em algumas linguagens de programação, como Ruby, existe um único *symbol* por nome.
 
 Em JavaScript, como podemos ver, esses são os símbolos globais.
@@ -215,7 +211,7 @@ Em JavaScript, como podemos ver, esses são os símbolos globais.
 
 ### Symbol.keyFor
 
-Para símbolos globais, não apenas `Symbol.for(key)` retorna um *symbol* por nome, mas existe uma chamada inversa: `Symbol.keyFor(sym)`, que faz ao contrário - retorna um nome de um símbolo global.
+Para símbolos globais, não apenas `Symbol.for(key)` retorna um *symbol* por nome, mas existe uma chamada inversa: `Symbol.keyFor(sym)`, que faz ao contrário - retorna o nome de um símbolo global.
 
 Por exemplo:
 
@@ -257,25 +253,25 @@ Eles vêm listados na especificação, na tabela [Well-known symbols](https://tc
 - `Symbol.toPrimitive`
 - ... e assim por diante.
 
-Por exemplo, `Symbol.toPrimitive` nos permite descrever a conversão objeto-para-primitivo. Veremos o seu uso muito em breve.
+Por exemplo, `Symbol.toPrimitive` nos permite descrever a conversão objeto-para-primitivo. Iremos ver o seu uso muito em breve.
 
-Outros *symbols* também se tornarão familiares quando estudarmos as funcionalidades correspondentes na linguagem.
+Outros *symbols* também se irão tornar familiares quando estudarmos as funcionalidades correspondentes na linguagem.
 
 ## Resumo
 
 `Symbol`, é um tipo primitivo para identificadores únicos.
 
-Símbolos são criados pela chamada a `Symbol()`, com uma descrição opcional.
+Símbolos são criados pela chamada a `Symbol()`, com uma descrição (nome) opcional.
 
 Símbolos são sempre valores diferentes, mesmo que tenham o mesmo nome. Se quisermos que símbolos com o mesmo nome sejam iguais, teremos de utilizar o registo global: `Symbol.for(key)` retorna (cria, se necessário) um símbolo global com `key` como nome. Múltiplas chamadas a `Symbol.for` com a mesma `key` retornam exatamente o mesmo símbolo.
 
 Símbolos têm dois principais casos práticos:
 
 1. "Ocultação" de propriedades de objetos.
-    Se quisermos adicionar uma propriedade a um objeto, "pertencendo" este a outro programa ou biblioteca, podemos criar um símbolo e o usar como a chave dessa propriedade. Uma propriedade simbólica não aparece num `for..in`, por isso não será acidentalmente processada juntamente com outras  propriedades. Também, não será acedida diretamente, porque um outro programa não terá o nosso símbolo. Assim, a propriedade estará protegida contra uso acidental ou alteração.
+    Se quisermos adicionar uma propriedade a um objeto, "pertencendo" este a outro programa ou biblioteca, podemos criar um símbolo e o usar como a chave dessa propriedade. Uma propriedade simbólica não aparece num `for..in`, por isso não será acidentalmente processada juntamente com outras  propriedades. Também, não será acedida diretamente, porque um outro programa não terá o nosso símbolo. Assim, a propriedade estará protegida contra uso ou alteração acidentais.
 
-    Assim, podemos "secretamente" esconder nos objetos algo que precisemos, que outros não devam ver, empregando propriedades simbólicas.
+    Assim, nós podemos "secretamente" esconder nos objetos algo que precisamos, mas que outros não devam ver, empregando propriedades simbólicas.
 
-2. Existem muitos símbolos de sistema usados por JavaScript que podem ser acedidos com `Symbol.*`. Podemos os utilizar para alterar alguns comportamentos pré-definidos (*built-in*). Por exemplo, mais adiante no tutorial iremos usar `Symbol.iterator` para [iterables](info:iterable) (iteráveis), `Symbol.toPrimitive` para configurar a [object-to-primitive conversion](info:object-toprimitive) (conversão objeto-para-primitivo), e assim por diante.
+2. Existem muitos símbolos do sistema usados pelo JavaScript que podem ser acedidos com `Symbol.*`. Podemos os utilizar para alterar alguns comportamentos pré-definidos (*built-in*). Por exemplo, mais adiante no tutorial iremos usar `Symbol.iterator` para [iterables](info:iterable) (iteráveis), `Symbol.toPrimitive` para configurar a [object-to-primitive conversion](info:object-toprimitive) (conversão objeto-para-primitivo), e assim por diante.
 
-Tecnicamente, símbolos não são 100% ocultados. Existe um método incorporado (*built-in*) [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) que nos permite obter todos os  símbolos. Também, existe um método chamado [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) que retorna *todas* as chaves de um objeto, incluindo as simbólicas. Assim, eles não estão realmente ocultos. Mas, tanto muitas bibliotecas, como métodos e construções sintáticas incorporados não usam esses métodos.
+Tecnicamente, símbolos não são 100% ocultados. Existe um método incorporado (*built-in*) [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) que nos permite obter todos os símbolos. Também, existe um método chamado [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) que retorna *todas* as chaves de um objeto, incluindo as simbólicas. Assim, eles não estão realmente ocultos. Mas, muitas bibliotecas, assim como métodos e construções sintáticas incorporados não usam esses métodos.
