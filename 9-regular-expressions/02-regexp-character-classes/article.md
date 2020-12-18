@@ -144,10 +144,10 @@ Há muitas situações em que gostaríamos que um ponto significasse literalment
 alert( "A\nB".match(/A.B/s) ); // A\nB (correspondência!)
 ```
 
-````warn header="Não suportado no Firefox, IE, Edge"
-Verifique <https://caniuse.com/#search=dotall> para obter o estado de suporte mais recente. No momento da redação deste documento, não inclui o Firefox, IE, Edge.
+````warn header="Não suportado no IE"
+A flag `padrão:s` não é suportada no IE.
 
-Felizmente, há uma alternativa, que funciona em qualquer lugar. Podemos usar uma regexp como `padrão:[\s\S]` para corresponder a "qualquer caractere".
+Felizmente, há uma alternativa, que funciona em qualquer lugar. Podemos usar uma regexp como `padrão:[\s\S]` para corresponder a "qualquer caractere" (este padrão irá ser estudado no artigo <info:regexp-character-sets-and-ranges>).
 
 ```js run
 alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
@@ -179,7 +179,7 @@ alert( "1 - 5".match(/\d\s-\s\d/) ); // 1 - 5, também funciona
 
 **Um espaço é um caractere. Igual em importância com qualquer outro caractere.**
 
-Não podemos adicionar ou remover espaços de uma expressão regular e esperamos funcionar da mesma maneira.
+Não podemos adicionar ou remover espaços de uma expressão regular e esperar que funcione da mesma maneira.
 
 Em outras palavras, em uma expressão regular, todos os caracteres são importantes, espaços também.
 ````
@@ -198,6 +198,6 @@ Existem as seguintes classes de caracteres:
 
 ...Mas isso não é tudo!
 
-A codificação unicode, usada pelo JavaScript para strings, fornece muitas propriedades para caracteres, como: a qual idioma a letra pertence (se é uma letra), é um sinal de pontuação etc.
+A codificação unicode, usada pelo JavaScript para strings, fornece muitas propriedades para caracteres, como: a qual idioma a letra pertence (se é uma letra), será que é um sinal de pontuação, etc.
 
 Também podemos pesquisar por essas propriedades. Isso requer a flag `padrão:u`, abordada no próximo artigo.
