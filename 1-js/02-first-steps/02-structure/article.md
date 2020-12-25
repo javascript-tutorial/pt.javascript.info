@@ -36,9 +36,10 @@ alert('Mundo')
 
 Aqui, o JavaScript interpreta a quebra de linha como um ponto-e-vírgula "implícito". Isso é chamado de [inserção automática de ponto-e-vírgula](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
 
-**Na maioria dos casos, uma nova linha implica um ponto e vírgula. Mas "na maioria dos casos" não significa "sempre"!
+**Na maioria dos casos, uma nova linha implica um ponto e vírgula. Mas "na maioria dos casos" não significa "sempre"!**
 
 Há casos em que uma nova linha não significa ponto e vírgula. Por exemplo:
+
 ```js run no-beautify
 alert(3 +
 1
@@ -93,7 +94,7 @@ Mas devem ser duas declarações separadas, não uma. Tal fusão neste caso é c
 
 Recomendamos colocar ponto e vírgula entre as frases, mesmo que estejam separadas por novas linhas. Esta regra é amplamente adotada pela comunidade. Vamos notar mais uma vez -- *é possível* deixar de fora os pontos e vírgulas na maior parte do tempo. Mas é mais seguro -- especialmente para um iniciante -- usá-los.
 
-## Comentários
+## Comentários [#code-comments]
 
 Com o passar do tempo, os programas tornam-se cada vez mais complexos. Torna-se necessário adicionar *comentários* que descrevem o que o código faz e porquê.
 
@@ -135,11 +136,11 @@ alert('Mundo');
 ```
 
 ```smart header="Use hotkeys!"
-Na maioria dos editores, uma linha de código pode ser comentada pressionando a tecla de atalho `key:Ctrl+/` para um comentário de linha única e algo como `key:Ctrl+Shift+/` -- para comentários multilinha (selecione um pedaço de código e pressione a tecla de atalho). Para Mac, tente `key:Cmd` em vez de `key:Ctrl`.
+Na maioria dos editores, uma linha de código pode ser comentada pressionando a tecla de atalho `key:Ctrl+/` para um comentário de linha única e algo como `key:Ctrl+Shift+/` -- para comentários multilinha (selecione um pedaço de código e pressione a tecla de atalho). Para Mac, tente `key:Cmd` em vez de `key:Ctrl` e `key:Option` em vez de `key:Shift`.
 ```
 
 ````warn header="Comentários aninhados não são suportados!"
-Pode não haver `/*...*/` dentro de outro `/*...*/`.
+Não pode haver `/*...*/` dentro de outro `/*...*/`.
 
 Tal código morrerá com um erro:
 
