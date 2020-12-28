@@ -102,7 +102,7 @@ alert(altura ?? 100); // 0
 - `altura || 100` verifica  se `altura` é um valor avaliado como falso, e de fato é.
     - então o resultado é o segundo argumento, `100`.
 - `altura ?? 100` verifica  se `altura` é `null/undefined`, e não é,
-    - então o resultado é o valor atual de `altura`, que é `100`.
+    - então o resultado é o valor atual de `altura`, que é `0`.
 
 Se altura igual a zero é um valor válido que não deve ser substituído pelo valor padrão, então usar `??` é o correto.
 
