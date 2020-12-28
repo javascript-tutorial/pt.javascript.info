@@ -72,7 +72,7 @@ let nome = null;
 let sobrenome = null;
 let apelido = "Supercoder";
 
-// exibe primeiro valor avaliado como verdadeiro:
+// exibe o primeiro valor avaliado como verdadeiro:
 *!*
 alert(nome || sobrenome || apelido || "Anônimo"); // Supercoder
 */!*
