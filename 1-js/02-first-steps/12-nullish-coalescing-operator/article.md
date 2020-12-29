@@ -41,9 +41,6 @@ alert(usuario ?? "Anônimo"); // João
 
 Podemos também usar uma sequência de `??` para selecionar o primeiro valor em uma lista que não seja `null/undefined`.
 
-
- 
-
 Digamos que temos dados de um usuário nas variáveis `nome`, `sobrenome` ou `apelido`. Todos eles podem ser indefinidos, se o usuário optar por não entrar com um valor.
 
 Gostaríamos de exibir o nome do usuário usando uma dessas variáveis, ou exibir "Anônimo" se todas elas forem indefinidas.
