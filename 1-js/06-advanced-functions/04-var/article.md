@@ -42,7 +42,19 @@ alert(test); // true, the variable lives after if
 */!*
 ```
 
-If we used `let test` on the 2nd line, then it wouldn't be visible to `alert`. But `var` ignores code blocks, so we've got a global `test`.
+As `var` ignores code blocks, we've got a global variable `test`.
+
+If we used `let test` instead of `var test`, then the variable would only be visible inside `if`:
+
+```js run
+if (true) {
+  let test = true; // use "let"
+}
+
+*!*
+alert(test); // ReferenceError: test is not defined
+*/!*
+```
 
 The same thing for loops: `var` cannot be block- or loop-local:
 
@@ -70,7 +82,7 @@ function sayHi() {
 }
 
 sayHi();
-alert(phrase); // Error: phrase is not defined
+alert(phrase); // ReferenceError: phrase is not defined
 ```
 
 As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript, blocks had no Lexical Environments, and `var` is a remnant of that.
@@ -216,7 +228,7 @@ The Function Expression is wrapped with parenthesis `(function {...})`, because 
 
 ```js run
 // Tries to declare and immediately call a function
-function() { // <-- Error: Function statements require a function name
+function() { // <-- SyntaxError: Function statements require a function name
 
   var message = "Hello";
 
