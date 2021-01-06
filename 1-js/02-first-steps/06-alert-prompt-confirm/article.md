@@ -1,6 +1,6 @@
 # Interação: alert, prompt, confirm
 
-Como usuaremos o navegador como nosso ambiente  de demonstração, vamos ver algumas funções para interagir com o usuário: `alert`, `prompt` e `confirm`.
+Como usuaremos o navegador como nosso ambiente de demonstração, vamos ver algumas funções para interagir com o usuário: `alert`, `prompt` e `confirm`.
 
 ## alert
 
@@ -9,10 +9,10 @@ Este já vimos. Ele mostra uma mensagem e aguarda o usuário pressionar "OK".
 Por exemplo:
 
 ```js run
-alert("Ola");
+alert('Ola');
 ```
 
-A mini-janela com a mensagem é chamada de *modal window*. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc, até que ele tenha lidado com a janela. Nesse caso -- até pressionar "OK".
+A mini-janela com a mensagem é chamada de _modal window_. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc, até que ele tenha lidado com a janela. Nesse caso -- até pressionar "OK".
 
 ## prompt
 
@@ -30,9 +30,9 @@ Mostra uma janela modal com uma mensagem de texto, um campo de entrada para o vi
 `default`
 : Um parâmetro opcional, o valor inicial para o campo de entrada.
 
-```smart header="Os colchetes na sintaxe `[...]`"
-Os colchetes ao redor de `default` na sintaxe acima denota que o parâmetro como opcional, não é obrigatório.
-```
+```smart header="Os colchetes na sintaxe `[...]`" Os colchetes ao redor de `default` na sintaxe acima denota que o parâmetro como opcional, não é obrigatório.
+
+````
 
 O visitante pode digitar algo no campo de entrada do prompt e pressionar OK. Então nós temos esse texto no `result`  Ou ele pode cancelar a entrada pressionando Cancelar ou `key:Esc`, então nos temos `null` como o `result`.
 
@@ -44,22 +44,22 @@ Por exemplo:
 let age = prompt('Qual a sua idade?', 100);
 
 alert(`Você tem ${age} anos!`); //Você tem 100 anos!
-```
+````
 
-````warn header="No IE: sempre forneça um `default`"
-O segundo parâmetro é opcional, mas se não o fornecermos, o Internet Explorer irá inserir o texto `"undefined"` no prompt.
+````warn header="No IE: sempre forneça um `default`" O segundo parâmetro é opcional, mas se não o fornecermos, o Internet Explorer irá inserir o texto `"undefined"` no prompt.
 
 Execute este código no Internet Explorer para visualizar:
 
 ```js run
-let test = prompt("Teste");
+let test = prompt('Teste');
 ```
 
 Portanto, para que os prompts tenham boa aparência no IE, recomendamos que sempre forneça o segundo argumento:
 
 ```js run
-let test = prompt("Teste", ''); // <-- para o IE
+let test = prompt('Teste', ''); // <-- para o IE
 ```
+
 ````
 
 ## confirm
@@ -103,3 +103,4 @@ Existem duas limitações compartilhadas entre esses metódos acima:
 2. A aparência exata da janela também depende do navegador. Nós não podemos modificá-la.
 
 Este é o preço da simplicidade. Existem outras maneiras de mostrar janelas mais agradáveis e interações mais ricas aos visitantes, mas se "sinos e assobios" não importam muito, esses métodos funcionam bem.
+````
