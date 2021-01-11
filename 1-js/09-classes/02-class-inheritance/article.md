@@ -151,7 +151,11 @@ class Rabbit extends Animal {
 let rabbit = new Rabbit("White Rabbit");
 
 rabbit.run(5); // White Rabbit runs with speed 5.
+<<<<<<< HEAD
 rabbit.stop(); // White Rabbit stopped. White rabbit hides!
+=======
+rabbit.stop(); // White Rabbit stands still. White Rabbit hides!
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 ```
 
 Now `Rabbit` has the `stop` method that calls the parent `super.stop()` in the process.
