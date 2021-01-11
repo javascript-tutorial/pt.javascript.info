@@ -134,13 +134,8 @@ Existem botões para isso no topo do painel direito. Vamos interagir com eles.
 
     Continuando a clicar nele, passará por todas as instruções do programa, uma por uma.
 
-<<<<<<< HEAD
 <span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": execute o próximo comando, mas *mas não vá para dentro de uma função*, atalho `key:F10`.
-: Similar ao comando "Step" anterior, mas com um comportamento diferente se a próxima instrução for uma chamada de função. Isto é: não uma incorporada (*built-in*), como `alert`, mas uma função sua.
-=======
-<span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": run the next command, but *don't go into a function*, hotkey `key:F10`.
-: Similar to the previous "Step" command, but behaves differently if the next statement is a function call. That is: not a built-in, like `alert`, but a function of our own.
->>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
+: Similar ao comando "Step" anterior, mas com um comportamento diferente se a próxima instrução for uma chamada de função. Isto é: não uma incorporada (*built-in*), como `alert`, mas uma função nossa.
 
     O comando "Step", vai para dentro dela e suspende a execução na sua primeira linha, ao contrário de "Step over" que executa essa chamada de função aninhada invisívelmente, saltando sobre o funcionamento interno da função.
 
