@@ -4,7 +4,7 @@ Como usuaremos o navegador como nosso ambiente de demonstração, vamos ver algu
 
 ## alert
 
-Este já vimos. Ele mostra uma mensagem e aguarda o usuário pressionar "OK".
+Esta já vimos. Ela mostra uma mensagem e aguarda o usuário pressionar "OK".
 
 Por exemplo:
 
@@ -30,8 +30,8 @@ Mostra uma janela modal com uma mensagem de texto, um campo de entrada para o vi
 `default`
 : Um parâmetro opcional, o valor inicial para o campo de entrada.
 
-```smart header="Os colchetes na sintaxe `[...]`" Os colchetes ao redor de `default` na sintaxe acima denota que o parâmetro como opcional, não é obrigatório.
-
+```smart header="Os colchetes na sintaxe `[...]`"
+ Os colchetes ao redor de `default` na sintaxe acima denotam que o parâmetro é opcional, não é obrigatório.
 ````
 
 O visitante pode digitar algo no campo de entrada do prompt e pressionar OK. Então nós temos esse texto no `result`  Ou ele pode cancelar a entrada pressionando Cancelar ou `key:Esc`, então nos temos `null` como o `result`.
@@ -46,7 +46,8 @@ let age = prompt('Qual a sua idade?', 100);
 alert(`Você tem ${age} anos!`); //Você tem 100 anos!
 ````
 
-````warn header="No IE: sempre forneça um `default`" O segundo parâmetro é opcional, mas se não o fornecermos, o Internet Explorer irá inserir o texto `"undefined"` no prompt.
+````warn header="No IE: sempre forneça um `default`"
+O segundo parâmetro é opcional, mas se não o fornecermos, o Internet Explorer irá inserir o texto `"undefined"` no prompt.
 
 Execute este código no Internet Explorer para visualizar:
 
