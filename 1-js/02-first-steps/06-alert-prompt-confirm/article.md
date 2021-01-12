@@ -9,7 +9,7 @@ Esta já vimos. Ela mostra uma mensagem e aguarda o usuário pressionar "OK".
 Por exemplo:
 
 ```js run
-alert('Ola');
+alert('Olá');
 ```
 
 A mini-janela com a mensagem é chamada de _modal window_. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc, até que ele tenha lidado com a janela. Nesse caso -- até pressionar "OK".
