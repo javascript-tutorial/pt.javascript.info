@@ -34,7 +34,7 @@ Mostra uma janela modal com uma mensagem de texto, um campo de entrada para o vi
  Os colchetes ao redor de `default` na sintaxe acima denotam que o parâmetro é opcional, não é obrigatório.
 ````
 
-O visitante pode digitar algo no campo de entrada do prompt e pressionar OK. Então nós temos esse texto no `result`  Ou ele pode cancelar a entrada pressionando Cancelar ou `key:Esc`, então nos temos `null` como o `result`.
+O visitante pode digitar algo no campo de entrada do prompt e pressionar OK. Então nós temos esse texto no `result`.  Ou ele pode cancelar a entrada pressionando Cancelar ou `key:Esc`, então nos temos `null` como o `result`.
 
 A chamada do `prompt` retorna o texto do campo de entrada ou `null` se a entrada for cancelada.
 
@@ -60,7 +60,6 @@ Portanto, para que os prompts tenham boa aparência no IE, recomendamos que semp
 ```js run
 let test = prompt('Teste', ''); // <-- para o IE
 ```
-
 ````
 
 ## confirm
@@ -104,4 +103,3 @@ Existem duas limitações compartilhadas entre esses metódos acima:
 2. A aparência exata da janela também depende do navegador. Nós não podemos modificá-la.
 
 Este é o preço da simplicidade. Existem outras maneiras de mostrar janelas mais agradáveis e interações mais ricas aos visitantes, mas se "sinos e assobios" não importam muito, esses métodos funcionam bem.
-````
