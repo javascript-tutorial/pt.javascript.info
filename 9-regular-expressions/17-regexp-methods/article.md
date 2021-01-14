@@ -95,13 +95,13 @@ Divide a string usando regexp (ou uma substring) como um delimitador.
 Podemos usar `split` com strings, desse jeito:
 
 ```js run
-alert('12-34-56'.split('-')) // matriz de [12, 34, 56]
+alert('12-34-56'.split('-')) // matriz de ['12', '34', '56']
 ```
 
 Mas podemos dividir por uma expressão regular, do mesmo modo:
 
 ```js run
-alert('12, 34, 56'.split(/,\s*/)) // matriz de [12, 34, 56]
+alert('12, 34, 56'.split(/,\s*/)) // matriz de ['12', '34', '56']
 ```
 
 ## str.search(regexp)
