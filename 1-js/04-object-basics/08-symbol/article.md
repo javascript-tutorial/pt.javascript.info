@@ -109,7 +109,7 @@ There will be no conflict, because symbols are always different, even if they ha
 
 Now note that if we used a string `"id"` instead of a symbol for the same purpose, then there *would* be a conflict:
 
-```js run
+```js
 let user = { name: "John" };
 
 // Our script uses "id" property

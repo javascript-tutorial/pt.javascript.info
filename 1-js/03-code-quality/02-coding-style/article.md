@@ -115,7 +115,11 @@ Existem dois tipos de indentação:
 
     Uma vantagem dos espaços sobre *tabs*, é que espaços permitem configurações de indentação mais flexíveis do que o símbolo "Tab".
 
+<<<<<<< HEAD
     Por exemplo, podemos alinhar os argumentos com o parêntese de abertura, desta forma:
+=======
+    For instance, we can align the parameters with the opening bracket, like this:
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
     ```js no-beautify
     show(parameters,
