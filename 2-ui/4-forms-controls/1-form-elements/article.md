@@ -2,13 +2,13 @@
 
 Forms and control elements, such as `<input>` have a lot of special properties and events.
 
-Working with forms can be much more convenient if we know them.
+Working with forms will be much more convenient when we learn them.
 
 ## Navigation: form and elements
 
 Document forms are members of the special collection `document.forms`.
 
-That's a *named* collection: we can use both the name and the number to get the form.
+That's a so-called "named collection": it's both named and ordered. We can use both the name or the number in the document to get the form.
 
 ```js no-beautify
 document.forms.my - the form with name="my"
@@ -155,7 +155,7 @@ Let's talk about form controls.
 
 ### input and textarea
 
-Normally, we can access the value as `input.value` or `input.checked` for checkboxes.
+We can access their value as `input.value` (string) or `input.checked` (boolean) for checkboxes.
 
 Like this:
 
@@ -227,7 +227,7 @@ Here's an example of how to get selected values from a multi-select:
 </script>
 ```
 
-The full specification of the `<select>` element is available at <https://html.spec.whatwg.org/multipage/forms.html#the-select-element>.
+The full specification of the `<select>` element is available in the specification <https://html.spec.whatwg.org/multipage/forms.html#the-select-element>.
 
 ### new Option
 
@@ -241,7 +241,7 @@ This syntax is optional. We can use `document.createElement('option')` and set a
 
 - `text` -- the text inside the option,
 - `value` -- the option value,
-- `defaultSelected` -- if `true`, then `selected` attribute is created,
+- `defaultSelected` -- if `true`, then `selected` HTML-attribute is created,
 - `selected` -- if `true`, then the option is selected.
 
 The difference between `defaultSelected` and `selected` is that `defaultSelected` sets the HTML-attribute (that we can get using `option.getAttribute('selected')`, while `selected` sets whether the option is selected or not.

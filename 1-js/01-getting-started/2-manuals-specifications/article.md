@@ -13,33 +13,17 @@ Uma nova versão dessa especificação é lançada todos os anos. Entre estes la
 
 Para ler sobre as mais novas funcionalidades (*bleeding-edge features*), incluindo as que estão em fase de padronização (chamadas também de "estágio 3"), veja as suas propostas em <https://github.com/tc39/proposals>.
 
-<<<<<<< HEAD
 E mais, se você está desenvolvendo para browsers, há outras especificações que cobrem esta demanda na [segunda parte](info:browser-environment) do tutorial.
-=======
-Also, if you're in developing for the browser, then there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
->>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 ## Manuais
 
-<<<<<<< HEAD
-- **MDN (Mozilla) JavaScript Reference**  é um manual com exemplos e outras informações. É ótimo para um entendimento sobre funções, métodos da linguagem, etc.
-=======
-- **MDN (Mozilla) JavaScript Reference** is the main manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
->>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
+- **MDN (Mozilla) JavaScript Reference**  é um manual com exemplos e outras informações. É ótimo para um entendimento sobre funções da linguagem, métodos , etc.
 
 	Pode ser encontrado em <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
 
-<<<<<<< HEAD
 	Porém, às vezes é melhor fazer uma busca na internet. Apenas use "MDN [termo]" na busca, por exemplo: <https://google.com/search?q=MDN+parseInt> para procurar pela função `parseInt`.
 
-- **MSDN** - Manual da Microsoft com muitas informações, incluindo JavaScript (frequentemente referido como JScript). Se precisar de algo específico para o Internet Explorer, é melhor ir por aqui: <http://msdn.microsoft.com/>.
-
-	Assim como para o manual da Mozilla, também podemos fazer uma busca na internet com frases do tipo "RegExp MSDN" ou "RegExp MSDN jscript".
-
 ## Tabelas de compatibilidade
-=======
-Although, it's often best to use an internet search instead. Just use "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for `parseInt` function.
->>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 JavaScript é uma linguagem em desenvolvimento, novas funcionalidades são adicionadas regularmente.
 
