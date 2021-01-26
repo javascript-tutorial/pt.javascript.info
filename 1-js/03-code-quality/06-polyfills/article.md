@@ -11,7 +11,7 @@ Uma boa página para se ver o estágio atual de suporte de funcionalidades da li
 
 Como programadores, nós gostaríamos de usar as funcionalidades mais recentes. Quantas mais forem as coisas boas - melhor!
 
-Por outro lado, como fazer o nosso código moderno funcionar em interpretadores antigos que ainda não compreendem as funcionalidades recentes?
+Por outro lado, como fazer o nosso código moderno funcionar em interpretadores antigos que ainda não compreendam as funcionalidades recentes?
 
 Existem duas ferramentas para isso:
 
