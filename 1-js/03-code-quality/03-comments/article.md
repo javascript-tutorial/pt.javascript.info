@@ -1,30 +1,30 @@
-# Comments
+# Comentários
 
-As we know from the chapter <info:structure>, comments can be single-line: starting with `//` and multiline: `/* ... */`.
+Como o sabemos pelo capítulo <info:structure>, comentários podem ser de linha-única: começando por `//`, e de múltiplas linhas: `/* ... */`.
 
-We normally use them to describe how and why the code works.
+Normalmente, os usamos para descrever como e porque o código funciona.
 
-From the first sight, commenting might be obvious, but novices in programming usually get it wrong.
+Na primeira leitura, os comentários devem ser óbvios, mas programadores inexperientes frequentemente os usam de forma errada.
 
-## Bad comments
+## Maus comentários
 
-Novices tend to use comments to explain "what is going on in the code". Like this:
+Inexperientes, tendem a usar comentários para explicar "o que se passa no código". Desta forma:
 
 ```js
-// This code will do this thing (...) and that thing (...)
-// ...and who knows what else...
-very;
-complex;
-code;
+// Este código fará isto (...) e aquilo (...)
+// ...e quem sabe o que mais...
+código;
+muito;
+complexo;
 ```
 
-But in good code the amount of such "explanatory" comments should be minimal. Seriously, code should be easy to understand without them.
+Mas, em bom código, a quantidade de tais comentários "explanatórios" deveria ser mínima. A sério, o código deveria ser fácil de se compreender sem eles.
 
-There's a great rule about that: "if the code is so unclear that it requires a comment, then maybe it should be rewritten instead".
+Existe uma grande regra sobre isso: "se o código for tão pouco claro que requeira um comentário, então talvez devesse ser re-escrito".
 
-### Recipe: factor out functions
+### Receita: dê relevo a funções
 
-Sometimes it's beneficial to replace a code piece with a function, like here:
+Por vezes, é benéfico substituir uma peça de código por uma função, como aqui:
 
 ```js
 function showPrimes(n) {
@@ -32,7 +32,7 @@ function showPrimes(n) {
   for (let i = 2; i < n; i++) {
 
 *!*
-    // check if i is a prime number
+    // verifica se i é um número primo
     for (let j = 2; j < i; j++) {
       if (i % j == 0) continue nextPrime;
     }
@@ -43,8 +43,7 @@ function showPrimes(n) {
 }
 ```
 
-The better variant, with a factored out function `isPrime`:
-
+A melhor variante, com uma função `isPrime` em relevo:
 
 ```js
 function showPrimes(n) {
@@ -65,21 +64,21 @@ function isPrime(n) {
 }
 ```
 
-Now we can understand the code easily. The function itself becomes the comment. Such code is called *self-descriptive*.
+Agora, compreendemos o código mais fácilmente. A própria função torna-se num comentário. Código semelhante é chamado de auto-descritivo.
 
-### Recipe: create functions
+### Receita: crie funções
 
-And if we have a long "code sheet" like this:
+E, se tivermos uma longa "folha de código" como esta:
 
 ```js
-// here we add whiskey
+// aqui adicionamos whiskey
 for(let i = 0; i < 10; i++) {
   let drop = getWhiskey();
   smell(drop);
   add(drop, glass);
 }
 
-// here we add juice
+// aqui adicionamos sumo
 for(let t = 0; t < 3; t++) {
   let tomato = getTomato();
   examine(tomato);
@@ -90,7 +89,7 @@ for(let t = 0; t < 3; t++) {
 // ...
 ```
 
-Then it might be a better variant to refactor it into functions like:
+Então, poderá ser uma melhor variante reestruturar o código assim:
 
 ```js
 addWhiskey(glass);
@@ -111,70 +110,71 @@ function addJuice(container) {
 }
 ```
 
-Once again, functions themselves tell what's going on. There's nothing to comment. And also the code structure is better when split. It's clear what every function does, what it takes and what it returns.
+Mais uma vez, as próprias funções dizem o que se passa. Não há nada a comentar. E também a estrutura do código é melhorada, quando repartida. Está claro o que cada função faz, o que recebe e o que retorna.
 
-In reality, we can't totally avoid "explanatory" comments. There are complex algorithms. And there are smart "tweaks" for purposes of optimization. But generally we should try to keep the code simple and self-descriptive.
+Na realidade, não podemos evitar totalmente comentários "explanatórios". Existem algoritmos complexos. E existem "ajustes"  ("*tweaks*") inteligentes para fins de otimização. Mas, geralmente deveríamos tentar manter o código simples e auto-descritivo.
 
-## Good comments
+## Bons comentários
 
-So, explanatory comments are usually bad. Which comments are good?
+Assim, comentários explanatórios são geralmente maus. Que comentários são bons?
 
-Describe the architecture
-: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special diagram language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) for high-level architecture diagrams. Definitely worth studying.
+Descreva a arquitetura
+: Forneça uma visão dos componentes a alto-nível, como eles iteragem, qual o fluxo de controlo em várias situações... Em resumo -- uma visão panorâmica do código. Existe uma linguagem especial, [UML](https://pt.wikipedia.org/wiki/UML), para construir diagramas de estruturas de alto-nível que expliquem o código. Definitivamente, vale a pena a estudar.
 
-Document a function usage
-: There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
+Documente os parâmetros e o uso da função
+: Existe uma sintaxe especial, [JSDoc](http://en.wikipedia.org/wiki/JSDoc), para documentar uma função: o seu uso, parâmetros, e valor retornado.
 
-    For instance:
-    ```js
-    /**
-     * Returns x raised to the n-th power.
-     *
-     * @param {number} x The number to raise.
-     * @param {number} n The power, must be a natural number.
-     * @return {number} x raised to the n-th power.
-     */
-    function pow(x, n) {
-      ...
-    }
-    ```
+Por exemplo:
 
-    Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+```js
+/**
+ * Retorna x elevado à n-ésima potência.
+ *
+ * @param {number} x O número a elevar.
+ * @param {number} n A potência, deve ser um número natural.
+ * @return {number} x elevado à n-ésima potência.
+ */
+function pow(x, n) {
+  ...
+}
+```
 
-    By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+Tais comentários, nos permitem compreender o propósito da função e a usar de forma correta, sem olhar para o seu código.
 
-    Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+A propósito, muitos editores, como o [WebStorm](https://www.jetbrains.com/webstorm/, podem também os perceber e os usar para fornecer completação automática de palavras (*autocomplete*), e algumas verificações de código (*code-checking*) automáticas.
 
-Why is the task solved this way?
-: What's written is important. But what's *not* written may be even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
+Também, existem ferramentas como o [JSDoc 3](https://github.com/jsdoc3/jsdoc), que podem gerar documentação HTML a partir de comentários. Pode ler mais informação sobre o JSDoc em <http://usejsdoc.org/>.
 
-    If there are many ways to solve the task, why this one? Especially when it's not the most obvious one.
+Porque é a tarefa solucionada dessa forma?
+: O que está escrito é importante. Mas, o que *não* está escrito pode ser ainda mais importante, para se compreender o que se passa. Porque é a tarefa solucionada exatamente dessa forma? O código não dá resposta alguma.
 
-    Without such comments the following situation is possible:
-    1. You (or your colleague) open the code written some time ago, and see that it's "suboptimal".
-    2. You think: "How stupid I was then, and how much smarter I'm now", and rewrite using the "more obvious and correct" variant.
-    3. ...The urge to rewrite was good. But in the process you see that the "more obvious" solution is actually lacking. You even dimly remember why, because you already tried it long ago. You revert to the correct variant, but the time was wasted.
+    Se existirem muitas formas de se resolver uma tarefa, porque esta? Especialmente, quando não é a mais óbvia.
 
-    Comments that explain the solution are very important. They help to continue development the right way.
+    Sem tais comentários, a seguinte situação é possivel:
+    1. Você (ou o seu colega) abre o código escrito há algum tempo, e vê que é "subótimo".
+    2. Você pensa: "Quão estúpido fui naquela altura, e quão mais inteligente sou agora", e re-escreve o código empregando a variante "mais óbvia e correta".
+    3. ...A urgência para reescrever foi boa. Mas, durante o processo você vê que a "mais óbvia" é na verdade sofrível. Você vagamente lembra-se porquê, porque já a tentou há muito tempo. Você a reverte para a variante correta, mas o tempo já foi perdido.
 
-Any subtle features of the code? Where they are used?
-: If the code has anything subtle and counter-intuitive, it's definitely worth commenting.
+    Comentários que expliquem a solução são muito importantes. Eles ajudam a continuar o desenvolvimento de forma correta.
 
-## Summary
+Algumas particularidades subtis no código? Onde elas são empregues?
+: Se o código tem alguma coisa subtil e não-intuitiva, definitivamente vale a pena comentar.
 
-An important sign of a good developer is comments: their presence and even their absence.
+## Resumo
 
-Good comments allow us to maintain the code well, come back to it after a delay and use it more effectively.
+Sinais importantes de um bom desenvolvedor, são comentários: a sua presença e até a sua ausência.
 
-**Comment this:**
+Bons comentários, nos permitem manter o código saudável, voltar a ele após uma demora e o usar com mais eficácia.
 
-- Overall architecture, high-level view.
-- Function usage.
-- Important solutions, especially when not immediately obvious.
+**Comente isto:**
 
-**Avoid comments:**
+- A arquitetutaem geral, numa visão de alto-nível.
+- O uso das funções.
+- Soluções importantes, especialmente quando não imediatamente óbvias.
 
-- That tell "how code works" and "what it does".
-- Put them only if it's impossible to make the code so simple and self-descriptive that it doesn't require those.
+**Evite comentários:**
 
-Comments are also used for auto-documenting tools like JSDoc3: they read them and generate HTML-docs (or docs in another format).
+- Que digam "como o código funciona" e "o que faz".
+- Coloque-os apenas se for impossível tornar o código tão simples e auto-descritivo que não precise deles.
+
+Comentários também são utilizados por ferramentas de auto-documentação, como o JSDoc3: elas os lêm e geram documentos em HTML (ou documentos num outro formato).

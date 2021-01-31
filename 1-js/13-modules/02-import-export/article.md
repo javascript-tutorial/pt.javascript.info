@@ -216,7 +216,7 @@ export default function(user) { // função sem nome
 export default ['Jan', 'Fev', 'Mar','Abr', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 ```
 
-Não prover um nome é ok, porque deve ter apenas um `export default` por arquivo, então `import` - sem as chaves - vai saber o que importar.
+Não prover um nome é ok, porque deve ter apenas um `export default` por arquivo, então `import` sem as chaves vai saber o que importar.
 
 Sem `default`, esse export causaria um erro:
 
@@ -241,7 +241,7 @@ function sayHi(user) {
 export {sayHi as default};
 ```
 
-Ou, em outra situação, digamos que um módulo `user.js` tenha um export principal "default" e alguns outros nomeados (caso raro, mas acontece)::
+Ou, em outra situação, digamos que um módulo `user.js` tenha um export principal "default" e alguns outros nomeados (caso raro, mas acontece):
 
 ```js
 // 📁 user.js
@@ -321,7 +321,7 @@ export {default as User} from './user.js'; // reexporta o default
 
 Por que isso seria necessário? Vamos ver um caso de uso prático.
 
-Imagine que estamos escrevendo um "pacote": uma pasta com muitos módulos, com algumas funcionalidades exportadas (ferramentas como NPM permitem publicar e distribuir esses pacotes), e muitos módulos são apenas "auxiliares", para uso interno em outro pacote de módulos.
+Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow us to publish and distribute such packages, but we don't have to use them), and many modules are just "helpers", for internal use in other package modules.
 
 A estrutura de arquivos pode ser assim:
 ```
@@ -378,8 +378,7 @@ export {default as User} from './user.js';
 
 O export default precisa de um tratamento separado ao reexportar.
 
-
-Vamos dizer que temos `user.js`, e gostaríamos de reexportar a classe `User`
+Let's say we have `user.js` with the `export default class User` and would like to re-export it:
 
 ```js
 // 📁 user.js
@@ -388,7 +387,9 @@ export default class User {
 }
 ```
 
-1. `export User from './user.js'` não funcionará. O que pode dar errado? ... Mas isso é um erro de sintaxe!
+We can come across two problems with it:
+
+1. `export User from './user.js'` não funcionará. Isso levaria a um erro de sintaxe.
 
     Para reexportar o export default, nós temos que escrever `export {default as User}`, como no exemplo acima.
 
@@ -400,7 +401,7 @@ export default class User {
     export {default} from './user.js'; // para reexportar o export default
     ```
 
-Essas esquisitices de reexportar o export default são um dos motivos pelos quais alguns desenvolvedores não gostam deles.
+Essas esquisitices de reexportar um default export são um dos motivos pelos quais alguns desenvolvedores não gostam de default exports e preferem os nomeados.
 
 ## Resumo
 
@@ -453,4 +454,4 @@ if (something) {
 
 ... Mas e se realmente precisarmos importar algo condicionalmente? Ou na hora certa? Como, carregar um módulo mediante solicitação, quando é realmente necessário?
 
-Veremos importações dinâmicas no próximo capítulo.
+Veremos importações dinâmicas no próximo artigo.
