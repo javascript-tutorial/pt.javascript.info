@@ -12,7 +12,7 @@ async function f() {
 }
 ```
 
-The word "async" before a function means one simple thing: a function always returns a promise. Even If a function actually returns a non-promise value, prepending the function definition with the "async" keyword directs JavaScript to automatically wrap that value in a resolved promise.
+The word "async" before a function means one simple thing: a function always returns a promise. Other values are wrapped in a resolved promise automatically.
 
 For instance, this function returns a resolved promise with the result of `1`; let's test it:
 
@@ -139,6 +139,8 @@ But we can wrap it into an anonymous async function, like this:
   ...
 })();
 ```
+
+P.S. New feature: starting from V8 engine version 8.9+, top-level await works in [modules](info:modules).
 ````
 
 ````smart header="`await` accepts \"thenables\""
@@ -170,7 +172,7 @@ f();
 If `await` gets a non-promise object with `.then`, it calls that method providing the built-in functions `resolve` and `reject` as arguments (just as it does for a regular `Promise` executor). Then `await` waits until one of them is called (in the example above it happens in the line `(*)`) and then proceeds with the result.
 ````
 
-````smart header="Async methods"
+````smart header="Async class methods"
 To declare an async class method, just prepend it with `async`:
 
 ```js run
@@ -213,7 +215,7 @@ async function f() {
 }
 ```
 
-In real situations, the promise may take some time before it rejects. So `await` will wait, and then throw an error.
+In real situations, the promise may take some time before it rejects. In that case there will be a delay before `await` throws an error.
 
 We can catch that error using `try..catch`, the same way as a regular `throw`:
 
@@ -286,34 +288,6 @@ let results = await Promise.all([
 In the case of an error, it propagates as usual, from the failed promise to `Promise.all`, and then becomes an exception that we can catch using `try..catch` around the call.
 
 ````
-
-## Microtask queue [#microtask-queue]
-
-As we've seen in the chapter <info:microtask-queue>, promise handlers are executed asynchronously. Every `.then/catch/finally` handler first gets into the "microtask queue" and executed after the current code is complete.
-
-`Async/await` is based on promises, so it uses the same microtask queue internally, and has the similar priority over macrotasks.
-
-For instance, we have:
-- `setTimeout(handler, 0)`, that should run `handler` with zero delay.
-- `let x = await f()`, function `f()` is async, but returns immediately.
-
-Which one runs first if `await` is *below* `setTimeout` in the code?
-
-```js run
-async function f() {
-  return 1;
-}
-
-(async () => {
-    setTimeout(() => alert('timeout'), 0);
-
-    await f();
-
-    alert('await');
-})();
-```
-
-There's no ambiguity here: `await` always finishes first, because (as a microtask) it has a higher priority than `setTimeout` handling.
 
 ## Summary
 
