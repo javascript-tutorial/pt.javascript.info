@@ -11,7 +11,7 @@ A good page to see the current state of support for language features is <https:
 
 As programmers, we'd like to use most recent features. The more good stuff - the better!
 
-From the other hand, how to make out modern code work on older engines that don't understand recent features yet?
+On the other hand, how to make our modern code work on older engines that don't understand recent features yet?
 
 There are two tools for that:
 
@@ -78,7 +78,7 @@ Two interesting libraries of polyfills are:
 
 ## Summary
 
-In this chapter we'd like to motivate you to study modern and even "bleeding-edge" langauge features, even if they aren't yet well-supported by JavaScript engines.
+In this chapter we'd like to motivate you to study modern and even "bleeding-edge" language features, even if they aren't yet well-supported by JavaScript engines.
 
 Just don't forget to use transpiler (if using modern syntax or operators) and polyfills (to add functions that may be missing). And they'll ensure that the code works.
 

@@ -273,7 +273,7 @@ Vimos três formas para criar uma função em JavaScript:
   ```
 
 
-- Funções podem ter variáveis locais: aquelas declaradas no seu corpo. Tais variáveis só são visíveis dentro da função.
+- Funções podem ter variáveis locais: aquelas declaradas no seu corpo ou entre a lista dos seus parâmetros. Tais variáveis só são visíveis dentro da função.
 - Parâmetros podem ter valores por defeito: `function sum(a = 1, b = 2) {...}`.
 - Funções sempre retornam algo. Se não houver uma instrução `return`, então o resultado é `undefined`.
 
