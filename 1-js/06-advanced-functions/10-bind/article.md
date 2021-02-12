@@ -5,13 +5,13 @@ libs:
 
 # Function binding
 
-When using `setTimeout` with object methods or passing object methods along, there's a known problem: "losing `this`".
+When passing object methods as callbacks, for instance to `setTimeout`, there's a known problem: "losing `this`".
 
-Suddenly, `this` just stops working right. The situation is typical for novice developers, but happens with experienced ones as well.
+In this chapter we'll see the ways to fix it.
 
 ## Losing "this"
 
-We already know that in JavaScript it's easy to lose `this`. Once a method is passed somewhere separately from the object -- `this` is lost.
+We've already seen examples of losing `this`. Once a method is passed somewhere separately from the object -- `this` is lost.
 
 Here's how it may happen with `setTimeout`:
 
@@ -37,7 +37,7 @@ let f = user.sayHi;
 setTimeout(f, 1000); // lost user context
 ```
 
-The method `setTimeout` in-browser is a little special: it sets `this=window` for the function call (for Node.js, `this` becomes the timer object, but doesn't really matter here). So for `this.firstName` it tries to get `window.firstName`, which does not exist. In other similar cases as we'll see, usually `this` just becomes `undefined`.
+The method `setTimeout` in-browser is a little special: it sets `this=window` for the function call (for Node.js, `this` becomes the timer object, but doesn't really matter here). So for `this.firstName` it tries to get `window.firstName`, which does not exist. In other similar cases, usually `this` just becomes `undefined`.
 
 The task is quite typical -- we want to pass an object method somewhere else (here -- to the scheduler) where it will be called. How to make sure that it will be called in the right context?
 
@@ -102,7 +102,7 @@ The basic syntax is:
 ```js
 // more complex syntax will come a little later
 let boundFunc = func.bind(context);
-````
+```
 
 The result of `func.bind(context)` is a special function-like "exotic object", that is callable as function and transparently passes the call to `func` setting `this=context`.
 
@@ -247,7 +247,7 @@ The call to `mul.bind(null, 2)` creates a new function `double` that passes call
 
 That's called [partial function application](https://en.wikipedia.org/wiki/Partial_application) -- we create a new function by fixing some parameters of the existing one.
 
-Please note that here we actually don't use `this` here. But `bind` requires it, so we must put in something like `null`.
+Please note that we actually don't use `this` here. But `bind` requires it, so we must put in something like `null`.
 
 The function `triple` in the code below triples the value:
 
@@ -321,4 +321,8 @@ Also there's a ready [_.partial](https://lodash.com/docs#partial) implementation
 
 Method `func.bind(context, ...args)` returns a "bound variant" of function `func` that fixes the context `this` and first arguments if given.
 
-Usually we apply `bind` to fix `this` in an object method, so that we can pass it somewhere. For example, to `setTimeout`. There are more reasons to `bind` in the modern development, we'll meet them later.
+Usually we apply `bind` to fix `this` for an object method, so that we can pass it somewhere. For example, to `setTimeout`.
+
+When we fix some arguments of an existing function, the resulting (less universal) function is called *partially applied* or *partial*.
+
+Partials are convenient when we don't want to repeat the same argument over and over again. Like if we have a `send(from, to)` function, and `from` should always be the same for our task, we can get a partial and go on with it.
