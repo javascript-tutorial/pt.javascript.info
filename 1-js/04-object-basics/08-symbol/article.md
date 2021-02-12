@@ -94,7 +94,7 @@ Qual o benefício de se usar `Symbol("id")` sobre uma *string* `"id"`?
 
 Como o objeto `user` pertence a outro código, e aquele código funciona bem com ele, não deveríamos sómente adicionar quaisquer propriedades a ele. Isso não é seguro. Mas, um símbolo não pode ser acedido acidentalmente, o código de terceiros provavelmente nem o irá ver, então talvez seja a coisa certa a fazer.
 
-De igual modo, imagine que ainda um outro programa (*script*) quer ter o seu próprio identificador dentro de `user`, para seus próprios fins. Isto pode estar noutra biblioteca (*library*) de JavaScript, por isso estes *scripts* podem não ter nenhum conhecimento um do outro.
+De igual modo, imagine ainda que um outro programa (*script*) quer ter o seu próprio identificador dentro de `user`, para seus próprios fins. Isto pode estar noutra biblioteca (*library*) de JavaScript, por isso estes *scripts* podem não ter nenhum conhecimento um do outro.
 
 Então, aquele programa pode criar o seu próprio `Symbol("id")`, desta forma:
 
@@ -109,7 +109,7 @@ Não haverá conflito entre o nosso identificador e o dos outros, porque símbol
 
 ...Mas, se tivéssemos usado uma *string* `"id"` em vez de um *symbol* para o mesmo propósito, então *haveria* um conflito:
 
-```js run
+```js
 let user = { name: "John" };
 
 // O nosso script utiliza uma propriedade "id"
@@ -123,7 +123,7 @@ user.id = "O valor 'id' dos outros"
 
 ### Símbolos num objeto literal
 
-Se quisermos utilizar um *symbol* num objeto literal `{...}`, precisamos de parênteses retos.
+Se quisermos utilizar um *symbol* num objeto literal `{...}`, precisamos de parênteses retos à sua volta.
 
 Desta forma:
 
@@ -161,7 +161,7 @@ for (let key in user) alert(key); // 'name', 'age' (nenhum símbolo)
 alert( "Direct: " + user[id] );
 ```
 
-`Object.keys(user)` também os ignora. Isto, faz uma parte do conceito geral de "ocultação de propriedades simbólicas". Se, um outro programa ou uma biblioteca percorrer o nosso objeto com um ciclo (*loop*), não irá inadvertidamente aceder a uma propriedade simbólica.
+`Object.keys(user)` também os ignora. Isto, faz parte do conceito geral de "ocultação de propriedades simbólicas". Se, um outro programa ou uma biblioteca percorrer o nosso objeto com um ciclo (*loop*), não irá inadvertidamente aceder a uma propriedade simbólica.
 
 Em contraste, [Object.assign](mdn:js/Object/assign) copia ambas as propriedades *string* e *symbol*:
 
@@ -180,7 +180,7 @@ Não existe nenhum paradoxo aqui. Assim está concebido. A ideia é que ao clona
 
 ## Símbolos globais
 
-Como nós vimos, geralmente todos os *symbols* são diferentes, mesmo que tenham o mesmo nome. Mas, por vezes queremos que *symbols* com o mesmo nome sejam entidades únicas. Por exemplo, diferentes partes da nossa aplicação querem aceder ao *symbol* `"id"`, sendo este exatamente a mesma propriedade.
+Como nós vimos, geralmente todos os *symbols* são diferentes, mesmo que tenham o mesmo nome. Mas, por vezes queremos que *symbols* com o mesmo nome sejam a mesma entidade. Por exemplo, diferentes partes da nossa aplicação querem aceder ao *symbol* `"id"`, sendo este exatamente a mesma propriedade.
 
 Para alcançar isto, existe um  *registo global de símbolos* (*global symbol registry*). Nós podemos criar *symbols* nele e os aceder mais tarde, e ele garante que acessos repetidos ao mesmo nome retornem exatamente o mesmo *symbol*.
 
