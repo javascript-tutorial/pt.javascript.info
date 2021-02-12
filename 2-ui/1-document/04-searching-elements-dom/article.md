@@ -50,7 +50,7 @@ Also, there's a global variable named by `id` that references the element:
 <script>
   let elem = 5; // now elem is 5, not a reference to <div id="elem">
 
-  alert(elem); // the variable overrides the element
+  alert(elem); // 5
 </script>
 ```
 
@@ -110,7 +110,7 @@ Pseudo-classes in the CSS selector like `:hover` and `:active` are also supporte
 
 The call to `elem.querySelector(css)` returns the first element for the given CSS selector.
 
-In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but the latter is looking for *all* elements and picking one, while `elem.querySelector` just looks for one. So it's faster and shorter to write.
+In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but the latter is looking for *all* elements and picking one, while `elem.querySelector` just looks for one. So it's faster and also shorter to write.
 
 ## matches
 
@@ -142,7 +142,7 @@ For instance:
 
 *Ancestors* of an element are: parent, the parent of parent, its parent and so on. The ancestors together form the chain of parents from the element to the top.
 
-The method `elem.closest(css)` looks the nearest ancestor that matches the CSS-selector. The `elem` itself is also included in the search.
+The method `elem.closest(css)` looks for the nearest ancestor that matches the CSS-selector. The `elem` itself is also included in the search.
 
 In other words, the method `closest` goes up from the element and checks each of parents. If it matches the selector, then the search stops, and the ancestor is returned.
 
@@ -310,8 +310,6 @@ If we use it instead, then both scripts output `1`:
 
 Now we can easily see the difference. The static collection did not increase after the appearance of a new `div` in the document.
 
-Here we used separate scripts to illustrate how the element addition affects the collection, but any DOM manipulations affect them. Soon we'll see more of them.
-
 ## Summary
 
 There are 6 main methods to search for nodes in DOM:
@@ -372,5 +370,5 @@ Besides that:
 - There is `elem.matches(css)` to check if `elem` matches the given CSS selector.
 - There is `elem.closest(css)` to look for the nearest ancestor that matches the given CSS-selector. The `elem` itself is also checked.
 
-And let's mention one more method here to check for the child-parent relationship:
+And let's mention one more method here to check for the child-parent relationship, as it's sometimes useful:
 -  `elemA.contains(elemB)` returns true if `elemB` is inside `elemA` (a descendant of `elemA`) or when `elemA==elemB`.

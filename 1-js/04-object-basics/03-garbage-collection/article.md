@@ -14,8 +14,8 @@ Simplesmente dito, valores "alcançáveis" (reachable) são aqueles que de algum
 
     Por exemplo:
 
-    - Variáveis locais e parâmetros da função em execução.
-    - Variáveis e parâmetros de outras funções, na presente sequência de chamadas aninhadas (*nested calls*).
+    - A função no momento em execução, e as suas variáveis locais e parâmetros.
+    - Outras funções no momento na cadeia de chamadas aninhadas (*nested calls*), e as suas variáveis locais e parâmetros.
     - Variáveis globais.
     - (existem outros, incluindo internos)
 
@@ -207,6 +207,6 @@ O livro geral "The Garbage Collection Handbook: The Art of Automatic Memory Mana
 
 Se tiver familiaridade com programação de baixo-nível, mais detalhada informação sobre o coletor de lixo de V8 está no artigo [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
 
-O [V8 blog](http://v8project.blogspot.com/) também publica artigos sobre alterações na gestão de memória de tempos em tempos. Naturalmente, para aprender sobre a coleta de lixo, melhor seria  preparar-se aprendendo sobre o funcionamento interno do V8 em geral, e ler o blog de [Vyacheslav Egorov](http://mrale.ph) que trabalhou como um dos engenheiros do V8. Digo: "V8", porque é o que contém melhores artigos na internet. Para outros interpretadores, muitas abordagens são similares, porém a coleta de lixo difere em muitos aspetos.
+O [V8 blog](https://v8.dev/) também publica artigos sobre alterações na gestão de memória de tempos em tempos. Naturalmente, para aprender sobre a coleta de lixo, melhor seria preparar-se aprendendo sobre o funcionamento interno do V8 em geral, e ler o blog de [Vyacheslav Egorov](http://mrale.ph) que trabalhou como um dos engenheiros do V8. Digo "V8", porque é o que contém melhores artigos na internet. Para outros interpretadores, muitas abordagens são similares, porém a coleta de lixo difere em muitos aspetos.
 
 Conhecimento aprofundado sobre interpretadores é bom para quando precisar de optimizações de baixo-nível. Seria sábio planear isso como próximo passo, depois de se familiarizar com a linguagem.  
