@@ -8,7 +8,7 @@ let i = 0;
 
 setTimeout(() => alert(i), 100); // 100000000
 
-// assume that the time to execute this function is >100ms
+// suponha que o tempo para executar esta função seja >100ms
 for(let j = 0; j < 100000000; j++) {
   i++; 
 }
