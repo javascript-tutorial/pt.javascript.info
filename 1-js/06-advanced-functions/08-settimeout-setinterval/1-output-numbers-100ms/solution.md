@@ -1,5 +1,5 @@
 
-Using `setInterval`:
+Usando `setInterval`:
 
 ```js run
 function printNumbers(from, to) {
@@ -18,7 +18,7 @@ function printNumbers(from, to) {
 printNumbers(5, 10);
 ```
 
-Using nested `setTimeout`:
+Usando encadeado `setTimeout`:
 
 
 ```js run
@@ -38,5 +38,4 @@ function printNumbers(from, to) {
 printNumbers(5, 10);
 ```
 
-Note that in both solutions, there is an initial delay before the first output. Sometimes we need to add a line to make the first output immediately, that's easy to do.
-
+Note que em ambas as soluções, existe um atraso inicial antes da primeira saída. Às vezes, precisamos adicionar uma linha para fazer a primeira saída imediatamente, isso é fácil de fazer.
