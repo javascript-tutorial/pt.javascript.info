@@ -69,13 +69,13 @@ setTimeout(() => alert('Hello'), 1000);
 ```
 
 ````smart header="Pass a function, but don't run it"
-Novice developers sometimes make a mistake by adding brackets `()` after the function:
+Os desenvolvedores novatos às vezes cometem um erro ao adicionar aspas `()` após a função:
 
 ```js
 // wrong!
 setTimeout(sayHi(), 1000);
 ```
-That doesn't work, because `setTimeout` expects a reference to function. And here `sayHi()` runs the function, and the *result of its execution* is passed to `setTimeout`. In our case the result of `sayHi()` is `undefined` (the function returns nothing), so nothing is scheduled.
+Isso não funciona, porque `setTimeout` espera uma referência para funcionar. E aqui `sayHi()` executa a função, e o *resultado da execução* é passado a `setTimeout`. No nosso caso o resultado de `sayHi()` é `undefined` (a função não retorna nada), então nada é agendado.
 ````
 
 ### Canceling with clearTimeout
