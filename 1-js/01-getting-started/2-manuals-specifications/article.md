@@ -13,7 +13,11 @@ Uma nova versão dessa especificação é lançada todos os anos. Entre estes la
 
 Para ler sobre as mais novas funcionalidades (*bleeding-edge features*), incluindo as que estão em fase de padronização (chamadas também de "estágio 3"), veja as suas propostas em <https://github.com/tc39/proposals>.
 
+<<<<<<< HEAD
 E mais, se você está desenvolvendo para browsers, há outras especificações que cobrem esta demanda na [segunda parte](info:browser-environment) do tutorial.
+=======
+Also, if you're developing for the browser, then there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 ## Manuais
 
