@@ -111,7 +111,7 @@ Algumas linguagens de programação (isto é, PHP), tratam `\"0\"` como `false`.
 
 ```js run
 alert( Boolean("0") ); // true
-alert( Boolean(" ") ); // espaços também são true (any non-empty string is true)
+alert( Boolean(" ") ); // espaços também são true (toda string não-vazia se torna true)
 ```
 ````
 
