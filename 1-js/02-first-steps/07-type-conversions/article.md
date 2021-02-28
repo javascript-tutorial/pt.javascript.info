@@ -91,7 +91,7 @@ Conversões booleanas são as mais simples de todas.
 
 Acontecem em uma operação lógica (depois veremos testes de condição e outras coisas similares), mas também podem acontecer explicitamente ao usar a função `Boolean(valor)`.
 
-A rerga de conversão:
+A regra de conversão:
 
 - Valores que são intuitivamente "vazios", como "0", uma string vazia (""), `null`, `undefined` e `NaN`, viram `false`.
 - Outras valores viram `true`.
