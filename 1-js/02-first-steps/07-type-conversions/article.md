@@ -63,7 +63,7 @@ let age = Number("uma string ao invés de um number");
 alert(age); // NaN, conversão falhou
 ```
 
-Numeric conversion rules:
+Regras de conversões numéricas:
 
 | Valor |  Se torna... |
 |-------|-------------|
