@@ -136,7 +136,7 @@ A conversão segue as seguintes regras:
 
 Seguem as regras:
 
-| Value |  Se torna... |
+| Valor |  Se torna... |
 |-------|-------------|
 |`0`, `null`, `undefined`, `NaN`, `""` |`false`|
 |qualquer outro valor| `true` |
