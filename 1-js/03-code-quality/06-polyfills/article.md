@@ -11,7 +11,7 @@ Uma boa página para se ver o estágio atual de suporte de funcionalidades da li
 
 Como programadores, nós gostaríamos de usar as funcionalidades mais recentes. Quantas mais forem as coisas boas - melhor!
 
-Por outro lado, como fazer o nosso código moderno funcionar em interpretadores antigos que ainda não compreendem as funcionalidades recentes?
+Por outro lado, como fazer o nosso código moderno funcionar em interpretadores antigos que ainda não compreendam as funcionalidades recentes?
 
 Existem duas ferramentas para isso:
 
@@ -42,7 +42,7 @@ Geralmente, um desenvolvedor corre o transpiler na sua própria máquina, e depo
 
 Falando em nomes, o [Babel](https://babeljs.io) é um dos mais prominentes transpilers por aí.
 
-Sistemas para a construção de projetos modernos, tais como o [webpack](http://webpack.github.io/), fornecem meios para automaticamente correr o transpiler em cada alteração do código, assim é muito fácil o integrar no processo de desenvolvimento.
+Sistemas para a construção de projetos modernos, tais como o [webpack](http://webpack.github.io/), fornecem meios para automaticamente correr o transpiler em cada alteração do código, e assim é muito fácil o integrar no processo de desenvolvimento.
 
 ## Polyfills
 
@@ -50,7 +50,7 @@ Novas funcionalidades da linguagem podem incluir não só construções sintáti
 
 Por exemplo, `Math.trunc(n)` é uma função que "corta" a parte decimal de um número, ex. `Math.trunc(1.23) = 1`.
 
-Em alguns (muito desatualizados) interpretadores de JavaScript, não existe `Math.trunc`, por isso tal código irá falhar.
+Em alguns (muito desatualizados) interpretadores de JavaScript, não existe `Math.trunc`, por isto esse código irá falhar.
 
 Como estamos a falar de novas funções, e não de alterações sintáticas, não é necessário transpilar nada aqui. Nós, apenas precisamos de declarar a função em falta.
 
