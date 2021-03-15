@@ -428,14 +428,14 @@ Você pode verificar lendo-os e relembrando o que eles significam:
 
 Import:
 
-- Exports com nome do módulo:
+- Importando exports com nome:
   - `import {x [as y], ...} from "module"`
-- Export default:  
+- Importando o export default:  
   - `import x from "module"`
   - `import {default as x} from "module"`
-- Tudo:
+- Importar tudo:
   - `import * as obj from "module"`
-- Importar o módulo (seu código executado), sem o atribuir a uma variável:
+- Importar o módulo (o seu código é executado), sem atribuir nenhum dos seus exports a variáveis:
   - `import "module"`
 
 Podemos colocar as declarações `import/export` no início ou no final de um script, isso não importa.
