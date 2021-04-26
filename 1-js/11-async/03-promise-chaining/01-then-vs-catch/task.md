@@ -1,6 +1,6 @@
-# Promise: then versus catch
+# Promessa: then versus catch
 
-Are these code fragments equal? In other words, do they behave the same way in any circumstances, for any handler functions?
+Estes fragmentos de código são iguais? Em outras palavras, eles se comportam da mesma maneira, em quaisquer circunstâncias, para qualquer função tratadora?
 
 ```js
 promise.then(f1).catch(f2);

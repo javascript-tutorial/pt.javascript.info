@@ -2,30 +2,44 @@
 
 # Introdução: callbacks
 
-Muitas ações em JavaScript são *assíncronas*.
+```warn header="Nós usamos métodos do navegador aqui nos exemplos"
+Para demonstrar o uso de callbacks, promises e outros conceitos abstratos, nós vamos usar alguns métodos do navegador: especificamente, carregar scripts e fazer manipulações simples de documentos.
 
-Por exemplo, veja a função `loadScript(src)`:
+Se você não está familiarizado com esses métodos, e o uso deles nos exemplos parece confuso, pode ser que você queira ler alguns capítulos da [próxima parte](/document) do tutorial.
+
+Mas nós vamos tentar deixar as coisas claras de qualquer jeito. Não vai ter nada muito complexo em relação ao navegador.
+```
+
+Muitas funções providas pelo JavaScript permitem que você agende ações *assíncronas*. Em outras palavras, ações que nós iniciamos agora, mas elas terminam mais tarde.
+
+Por exemplo, uma dessas funções é a função `setTimeout`.
+
+Existem outros exemplos práticos de ações assíncronas, por exemplo: carregar scripts e módulos (nós vamos ver nos capítulos adiante).
+
+Veja a função `loadScript(src)`, que carrega um script com um dado `src`:
 
 ```js
 function loadScript(src) {
+  // creates a <script> tag and append it to the page
+  // this causes the script with given src to start loading and run when complete
   let script = document.createElement('script');
   script.src = src;
   document.head.append(script);
 }
 ```
 
-O objetivo da função é carregar um novo script. Quando ela adiciona o `<script src="…">` no documento, o navegador carrega e executa esse script.
+Ela acrescenta ao documento a nova, dinamicamente criada, tag `<script src="…">` com o `src` passado. O navegador começa a carregar ele automaticamente e o executa quando terminar.
 
 Podemos usar essa função assim:
 
 ```js
-// carrega e executa o script
+// carrega e executa o script no caminho dado
 loadScript('/my/script.js');
 ```
 
-A função é chamada "assincronamente" porque a ação (carregar o script) não termina no mesmo instante. Ela termina mais tarde.
+O script é executado "assincronamente", porque ele começa a carregar agora, mas executa mais tarde, quando a função já terminou.
 
-A chamada inicia o carregamento do script, e depois a execução continua. Enquanto o script está carregando, o código que está embaixo pode terminar de executar. E se o carregamento demorar, outros scripts podem executar enquanto isso.
+Se tiver algum código abaixo de `loadScript(…)`, ele não espera até que o script termine de carregar.
 
 ```js
 loadScript('/my/script.js');
@@ -33,7 +47,7 @@ loadScript('/my/script.js');
 // ...
 ```
 
-Agora, vamos imaginar que queremos usar o novo script quando ele terminar de carregar. Ele provavelmente declara novas funções, e queremos executar elas.
+Agora, vamos imaginar que queremos usar o novo script assim que ele terminar de carregar. Ele provavelmente declara novas funções, e queremos executar elas.
 
 Mas se nós fizermos isso imediatamente depois da chamada `loadScript(…)`, não iria funcionar.
 
@@ -86,7 +100,7 @@ function loadScript(src, callback) {
 
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
-  alert(`Legal, o ${script.src} está carregado`);
+  alert(`Legal, o script ${script.src} está carregado`);
   alert( _ ); // função declarada no script carregado
 });
 */!*
@@ -131,7 +145,7 @@ loadScript('/my/script.js', function(script) {
     });
 */!*
 
-  })
+  });
 
 });
 ```
@@ -144,7 +158,7 @@ No exemplo acima nós não consideramos erros. E se o carregamento do script fal
 
 Abaixo temos uma versão melhorada do `loadScript` que pega os erros de carregamento:
 
-```js run
+```js
 function loadScript(src, callback) {
   let script = document.createElement('script');
   script.src = src;
@@ -208,7 +222,7 @@ loadScript('1.js', function(error, script) {
         });
 
       }
-    })
+    });
   }
 });
 ```
@@ -241,7 +255,7 @@ loadScript('1.js', function(error, script) {
           }
         });
       }
-    })
+    });
   }
 });
 -->
@@ -281,7 +295,7 @@ function step3(error, script) {
   } else {
     // ...continua depois que todos os scripts são carregados (*)
   }
-};
+}
 ```
 
 Viu? Isso faz a mesma coisa, e não tem um aninhamento profundo agora porque nós fizemos cada ação em uma função separada no mesmo nível.

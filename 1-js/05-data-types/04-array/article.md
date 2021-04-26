@@ -1,12 +1,12 @@
-# Arrays 
+# Arrays
 
 Objects allow you to store keyed collections of values. That's fine.
 
-But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on. For example, we need that to store a list of something: users, goods, HTML elements etc. 
+But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on. For example, we need that to store a list of something: users, goods, HTML elements etc.
 
 It is not convenient to use an object here, because it provides no methods to manage the order of elements. We can’t insert a new property “between” the existing ones. Objects are just not meant for such use.
 
-There exists a special data structure named `Array`, to store ordered collections. 
+There exists a special data structure named `Array`, to store ordered collections.
 
 ## Declaration
 
@@ -81,10 +81,10 @@ arr[3](); // hello
 
 ````smart header="Trailing comma"
 An array, just like an object, may end with a comma:
-```js 
+```js
 let fruits = [
-  "Apple", 
-  "Orange", 
+  "Apple",
+  "Orange",
   "Plum"*!*,*/!*
 ];
 ```
@@ -95,7 +95,7 @@ The "trailing comma" style makes it easier to insert/remove items, because all l
 
 ## Methods pop/push, shift/unshift
 
-A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of most common uses of an array. In computer science, this means an ordered collection of elements which supports two operations:
+A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of the most common uses of an array. In computer science, this means an ordered collection of elements which supports two operations:
 
 - `push` appends an element to the end.
 - `shift` get an element from the beginning, advancing the queue, so that the 2nd element becomes the 1st.
@@ -106,7 +106,7 @@ Arrays support both operations.
 
 In practice we need it very often. For example, a queue of messages that need to be shown on-screen.
 
-There's another use case for arrays -- the data structure named [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)). 
+There's another use case for arrays -- the data structure named [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
 
 It supports two operations:
 
@@ -121,9 +121,9 @@ A stack is usually illustrated as a pack of cards: new cards are added to the to
 
 For stacks, the latest pushed item is received first, that's also called LIFO (Last-In-First-Out) principle. For queues, we have FIFO (First-In-First-Out).
 
-Arrays in JavaScript can work both as a queue and as a stack. They allow you to add/remove elements both to/from the beginning or the end. 
+Arrays in JavaScript can work both as a queue and as a stack. They allow you to add/remove elements both to/from the beginning or the end.
 
-In computer science the data structure that allows it is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+In computer science the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
 
 **Methods that work with the end of the array:**
 
@@ -156,7 +156,7 @@ In computer science the data structure that allows it is called [deque](https://
 `shift`
 : Extracts the first element of the array and returns it:
 
-    ```js
+    ```js run
     let fruits = ["Apple", "Orange", "Pear"];
 
     alert( fruits.shift() ); // remove Apple and alert it
@@ -167,7 +167,7 @@ In computer science the data structure that allows it is called [deque](https://
 `unshift`
 : Add the element to the beginning of the array:
 
-    ```js
+    ```js run
     let fruits = ["Orange", "Pear"];
 
     fruits.unshift('Apple');
@@ -189,11 +189,11 @@ alert( fruits );
 
 ## Internals
 
-An array is a special kind of object. The square brackets used to access a property `arr[0]` actually come from the object syntax. Numbers are used as keys. 
+An array is a special kind of object. The square brackets used to access a property `arr[0]` actually come from the object syntax. That's essentially the same as `obj[key]`, where `arr` is the object, while numbers are used as keys.
 
 They extend objects providing special methods to work with ordered collections of data and also the `length` property. But at the core it's still an object.
 
-Remember, there are only 7 basic types in JavaScript. Array is an object and thus behaves like an object. 
+Remember, there are only eight basic data types in JavaScript (see the [Data types](info:types) chapter for more info). Array is an object and thus behaves like an object.
 
 For instance, it is copied by reference:
 
@@ -203,13 +203,13 @@ let fruits = ["Banana"]
 let arr = fruits; // copy by reference (two variables reference the same array)
 
 alert( arr === fruits ); // true
- 
+
 arr.push("Pear"); // modify the array by reference
 
 alert( fruits ); // Banana, Pear - 2 items now
 ```
 
-...But what makes arrays really  special is their internal representation. The engine tries to store its elements in the contiguous memory area, one after another, just as depicted on the illustrations in this chapter, and there are other optimizations as well, to make arrays work really fast.
+...But what makes arrays really special is their internal representation. The engine tries to store its elements in the contiguous memory area, one after another, just as depicted on the illustrations in this chapter, and there are other optimizations as well, to make arrays work really fast.
 
 But they all break if we quit working with an array as with an "ordered collection" and start working with it as if it were a regular object.
 
@@ -229,7 +229,7 @@ But the engine will see that we're working with the array as with a regular obje
 
 The ways to misuse an array:
 
-- Add a non-numeric property like `arr.test = 5`. 
+- Add a non-numeric property like `arr.test = 5`.
 - Make holes, like: add `arr[0]` and then `arr[1000]` (and nothing between them).
 - Fill the array in the reverse order, like `arr[1000]`, `arr[999]` and so on.
 
@@ -296,7 +296,7 @@ let fruits = ["Apple", "Orange", "Plum"];
 
 // iterates over array elements
 for (let fruit of fruits) {
-  alert( fruit ); 
+  alert( fruit );
 }
 ```
 
@@ -320,7 +320,7 @@ But that's actually a bad idea. There are potential problems with it:
 
     There are so-called "array-like" objects in the browser and in other environments, that *look like arrays*. That is, they have `length` and indexes properties, but they may also have other non-numeric properties and methods, which we usually don't need. The `for..in` loop will list them though. So if we need to work with array-like objects, then these "extra" properties can become a problem.
 
-2. The `for..in` loop is optimized for generic objects, not arrays, and thus is 10-100 times slower. Of course, it's still very fast. The speedup may only matter in bottlenecks or seem irrelevant. But still we should be aware of the difference.
+2. The `for..in` loop is optimized for generic objects, not arrays, and thus is 10-100 times slower. Of course, it's still very fast. The speedup may only matter in bottlenecks. But still we should be aware of the difference.
 
 Generally, we shouldn't use `for..in` for arrays.
 
@@ -338,7 +338,7 @@ fruits[123] = "Apple";
 alert( fruits.length ); // 124
 ```
 
-Note that we usually don't use arrays like that. 
+Note that we usually don't use arrays like that.
 
 Another interesting thing about the `length` property is that it's writable.
 
@@ -385,7 +385,7 @@ To evade such surprises, we usually use square brackets, unless we really know w
 
 ## Multidimensional arrays
 
-Arrays can have items that are also arrays. We can use it for multidimensional arrays, to store matrices:
+Arrays can have items that are also arrays. We can use it for multidimensional arrays, for example to store matrices:
 
 ```js run
 let matrix = [
@@ -394,7 +394,7 @@ let matrix = [
   [7, 8, 9]
 ];
 
-alert( matrix[1][1] ); // the central element
+alert( matrix[1][1] ); // 5, the central element
 ```
 
 ## toString
@@ -429,6 +429,53 @@ alert( "1" + 1 ); // "11"
 alert( "1,2" + 1 ); // "1,21"
 ```
 
+## Don't compare arrays with ==
+
+Arrays in JavaScript, unlike some other programming languages, shouldn't be compared with operator `==`.
+
+This operator has no special treatment for arrays, it works with them as with any objects.
+
+Let's recall the rules:
+
+- Two objects are equal `==` only if they're references to the same object.
+- If one of the arguments of `==` is an object, and the other one is a primitive, then the object gets converted to primitive, as explained in the chapter <info:object-toprimitive>.
+- ...With an exception of `null` and `undefined` that equal `==` each other and nothing else.
+
+The strict comparison `===` is even simpler, as it doesn't convert types. 
+
+So, if we compare arrays with `==`, they are never the same, unless we compare two variables that reference exactly the same array.
+
+For example:
+```js run
+alert( [] == [] ); // false
+alert( [0] == [0] ); // false
+```
+
+These arrays are technically different objects. So they aren't equal. The `==` operator doesn't do item-by-item comparison.
+
+Comparison with primitives may give seemingly strange results as well:
+
+```js run
+alert( 0 == [] ); // true
+
+alert('0' == [] ); // false
+```
+
+Here, in both cases, we compare a primitive with an array object. So the array `[]` gets converted to primitive for the purpose of comparison and becomes an empty string `''`. 
+
+Then the comparison process goes on with the primitives, as described in the chapter <info:type-conversions>:
+
+```js run
+// after [] was converted to ''
+alert( 0 == '' ); // true, as '' becomes converted to number 0
+
+alert('0' == '' ); // false, no type conversion, different strings
+```
+
+So, how to compare arrays?
+
+That's simple: don't use the `==` operator. Instead, compare them item-by-item in a loop or using iteration methods explained in the next chapter.
+
 ## Summary
 
 Array is a special kind of object, suited to storing and managing ordered data items.
@@ -445,7 +492,7 @@ Array is a special kind of object, suited to storing and managing ordered data i
 
     The call to `new Array(number)` creates an array with the given length, but without elements.
 
-- The `length` property is the array length or, to be precise, its last numeric index plus one. It is auto-adjusted by array methods. 
+- The `length` property is the array length or, to be precise, its last numeric index plus one. It is auto-adjusted by array methods.
 - If we shorten `length` manually, the array is truncated.
 
 We can use an array as a deque with the following operations:
@@ -453,12 +500,15 @@ We can use an array as a deque with the following operations:
 - `push(...items)` adds `items` to the end.
 - `pop()` removes the element from the end and returns it.
 - `shift()` removes the element from the beginning and returns it.
-- `unshift(...items)` adds items to the beginning.
+- `unshift(...items)` adds `items` to the beginning.
 
 To loop over the elements of the array:
   - `for (let i=0; i<arr.length; i++)` -- works fastest, old-browser-compatible.
   - `for (let item of arr)` -- the modern syntax for items only,
   - `for (let i in arr)` -- never use.
 
-We will return to arrays and study more methods to add, remove, extract elements and sort arrays in the chapter <info:array-methods>.
+To compare arrays, don't use the `==` operator (as well as `>`, `<` and others), as they have no special treatment for arrays. They handle them as any objects, and it's not what we usually want.
 
+Instead you can use `for..of` loop to compare arrays item-by-item.
+
+We will continue with arrays and study more methods to add, remove, extract elements and sort arrays in the next chapter <info:array-methods>.

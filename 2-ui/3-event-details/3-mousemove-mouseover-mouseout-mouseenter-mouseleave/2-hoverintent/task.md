@@ -14,11 +14,7 @@ Make a universal object `new HoverIntent(options)` for it.
 
 Its `options`:
 - `elem` -- element to track.
-<<<<<<< HEAD
-- `over` -- a function to call if the mouse is slowly moving the element.
-=======
 - `over` -- a function to call if the mouse came to the element: that is, it moves slowly or stopped over it.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 - `out` -- a function to call when the mouse leaves the element (if `over` was called).
 
 An example of using such object for the tooltip:
