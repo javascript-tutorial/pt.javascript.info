@@ -6,6 +6,6 @@ importance: 4
 
 Crie uma calculadora que solicite uma expressão aritmética e retorne seu resultado.
 
-Não há necessidade de verificar a expressão para correção nesta tarefa. Apenas avalie e retorne o resultado.
+Não há necessidade de verificar se a expressão está correta nesta tarefa. Apenas avalie e retorne o resultado.
 
 [demo]
