@@ -103,7 +103,7 @@ let f = new Function('a', 'alert(a)');
 f(5); // 5
 ```
 
-A construção `new Function` é explicada no capítulo <info:new-function>. Ele cria uma função a partir de uma string, também no escopo global. Portanto, ele não pode ver variáveis locais. Mas é muito mais claro passá-los explicitamente como argumentos, como no exemplo acima.
+A construção `new Function` é explicada no capítulo <info:new-function>. Ela cria uma função a partir de uma string, também no escopo global. Portanto, ele não pode ver variáveis locais. Mas é muito mais claro passá-las explicitamente como argumentos, como no exemplo acima.
 
 ## Resumo
 
