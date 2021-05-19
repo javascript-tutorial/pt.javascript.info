@@ -1,4 +1,4 @@
-# Eval: run a code string
+# Eval: execute uma string de código
 
 A função interna `eval` permite executar uma string de código.
 
