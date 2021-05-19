@@ -15,7 +15,7 @@ let code = 'alert("Olá")';
 eval(code); // Olá
 ```
 
-A string código pode ser longa, conter quebras de linha, declarações de função, variáveis e assim por diante.
+A string de código pode ser longa, conter quebras de linha, declarações de função, variáveis e assim por diante.
 
 O resultado de `eval` é o resultado da última instrução.
 
@@ -71,7 +71,7 @@ Sem `use strict`, `eval` não possui seu próprio ambiente léxico, portanto ver
 
 Na programação moderna `eval` é usado com moderação. Costuma-se dizer que "eval é mau".
 
-O motivo é simples: há muito, muito tempo, o JavaScript era uma linguagem muito mais fraca, muitas coisas só podiam ser feitas com o `eval`. Mas esse tempo passou uma década atrás.
+O motivo é simples: há muito, muito tempo, o JavaScript era uma linguagem muito mais fraca, muitas coisas só podiam ser feitas com o `eval`. Mas esse tempo passou há uma década atrás.
 
 No momento, quase não há razão para usar o `eval`. Se alguém o estiver usando, há uma boa chance de o poder substituir por uma construção de linguagem moderna ou um [módulo JavaScript](info:modules).
 
