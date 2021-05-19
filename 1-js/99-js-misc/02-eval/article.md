@@ -12,7 +12,7 @@ Por exemplo:
 
 ```js run
 let code = 'alert("Olá")';
-eval(codigo); // Olá
+eval(code); // Olá
 ```
 
 A string código pode ser longa, conter quebras de linha, declarações de função, variáveis e assim por diante.
