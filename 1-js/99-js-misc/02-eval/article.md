@@ -73,7 +73,7 @@ Na programação moderna `eval` é usado com moderação. Costuma-se dizer que "
 
 O motivo é simples: há muito, muito tempo, o JavaScript era uma linguagem muito mais fraca, muitas coisas só podiam ser feitas com o `eval`. Mas esse tempo passou uma década atrás.
 
-No momento, quase não há razão para usar o `eval`. Se alguém o estiver usando, há uma boa chance de substituí-lo por uma construção de linguagem moderna ou um [módulo JavaScript](info:modules).
+No momento, quase não há razão para usar o `eval`. Se alguém o estiver usando, há uma boa chance de o poder substituir por uma construção de linguagem moderna ou um [módulo JavaScript](info:modules).
 
 Observe que sua capacidade de acessar variáveis externas tem efeitos colaterais.
 
