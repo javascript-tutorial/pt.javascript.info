@@ -17,7 +17,7 @@ eval(code); // Olá
 
 A string código pode ser longa, conter quebras de linha, declarações de função, variáveis e assim por diante.
 
-O resultado de `eval` é o resultado da última declaração.
+O resultado de `eval` é o resultado da última instrução.
 
 Por exemplo:
 ```js run
