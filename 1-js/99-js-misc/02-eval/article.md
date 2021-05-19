@@ -65,7 +65,7 @@ alert(typeof x); // undefined (não existe tal variável)
 // a função f também não é visível
 ```
 
-Sem `use strict`,` eval` não possui seu próprio ambiente lexical, portanto veríamos `x` e` f` fora.
+Sem `use strict`, `eval` não possui seu próprio ambiente léxico, portanto veríamos `x` e` f` fora.
 
 ## Usando "eval"
 
