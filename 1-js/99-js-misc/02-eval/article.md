@@ -21,7 +21,7 @@ O resultado de `eval` é o resultado da última instrução.
 
 Por exemplo:
 ```js run
-let valor = eval('1+1');
+let value = eval('1+1');
 alert(valor); // 2
 ```
 
