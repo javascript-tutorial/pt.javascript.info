@@ -95,7 +95,7 @@ let x = 1;
 }
 ```
 
-**Se o código avaliado precisa de variáveis locais, mude `eval` para `new Function` e passe-os como argumentos:**
+**Se o código avaliado precisar de variáveis locais, mude `eval` para `new Function` e passe-as como argumentos:**
 
 ```js run
 let f = new Function('a', 'alert(a)');
