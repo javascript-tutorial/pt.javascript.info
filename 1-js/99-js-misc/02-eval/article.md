@@ -54,7 +54,7 @@ eval("x = 10");
 alert(x); // 10, valor modificado
 ```
 
-No modo estrito, o `eval` possui seu próprio ambiente lexical. Portanto, funções e variáveis, declaradas dentro de eval, não são visíveis fora:
+No modo estrito, o `eval` possui seu próprio ambiente léxico. Portanto, funções e variáveis, declaradas dentro de eval, não são visíveis fora:
 
 ```js untrusted refresh run
 // lembrete: 'use strict' está ativado em exemplos executáveis por padrão
