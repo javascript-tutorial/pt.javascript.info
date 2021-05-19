@@ -5,7 +5,7 @@ A função interna `eval` permite executar uma string de código.
 A sintaxe é:
 
 ```js
-let resultado = eval(codigo);
+let resultado = eval(code);
 ```
 
 Por exemplo:
