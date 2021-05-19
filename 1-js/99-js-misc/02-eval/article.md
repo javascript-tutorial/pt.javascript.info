@@ -110,5 +110,5 @@ A construção `new Function` é explicada no capítulo <info:new-function>. Ela
 Uma chamada para `eval(code)` executa a string de código e retorna o resultado da última instrução.
 - Raramente usado no JavaScript moderno, pois geralmente não há necessidade.
 - Pode acessar variáveis locais externas. Isso é considerado uma má prática.
-- Em vez disso, para `eval` o código no escopo global, use `window.eval(codigo)`.
+- Em vez disso, para `eval` o código no escopo global, use `window.eval(code)`.
 - Ou, se o seu código precisar de alguns dados do escopo externo, use `new Function` e passe-os como argumentos.
