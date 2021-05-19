@@ -61,7 +61,7 @@ No modo estrito, o `eval` possui seu próprio ambiente léxico. Portanto, funç�
 
 eval("let x = 5; function f() {}");
 
-alert(typeof x); // undefined (não tal variável)
+alert(typeof x); // undefined (não existe tal variável)
 // a função f também não é visível
 ```
 
