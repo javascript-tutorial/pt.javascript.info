@@ -30,7 +30,7 @@ let value = eval('let i = 0; ++i');
 alert(value); // 1
 ```
 
-O código avaliado é executado no ambiente lexical atual, para que ele possa ver variáveis externas:
+O código avaliado é executado no ambiente léxico atual, para que ele possa ver variáveis externas:
 
 ```js run no-beautify
 let a = 1;
