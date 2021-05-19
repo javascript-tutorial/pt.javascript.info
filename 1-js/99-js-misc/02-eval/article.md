@@ -27,7 +27,7 @@ alert(value); // 2
 
 ```js run
 let value = eval('let i = 0; ++i');
-alert(valor); // 1
+alert(value); // 1
 ```
 
 O código avaliado é executado no ambiente lexical atual, para que ele possa ver variáveis externas:
