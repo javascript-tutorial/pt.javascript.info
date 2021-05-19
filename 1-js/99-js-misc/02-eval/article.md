@@ -11,7 +11,7 @@ let resultado = eval(codigo);
 Por exemplo:
 
 ```js run
-let codigo = 'alert("Olá")';
+let code = 'alert("Olá")';
 eval(codigo); // Olá
 ```
 
