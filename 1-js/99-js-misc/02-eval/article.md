@@ -77,7 +77,7 @@ No momento, quase não há razão para usar o `eval`. Se alguém o estiver usand
 
 Observe que sua capacidade de acessar variáveis externas tem efeitos colaterais.
 
-Os minificadores de código (ferramentas usadas antes de JS chegar à produção, para compactá-lo) substituem as variáveis locais por outras mais curtas para otimização. Isso geralmente é seguro, mas não se o `eval` for usado, pois pode fazer referência a eles. Portanto, os minificadores não substituem todas as variáveis locais que podem ser visíveis em `eval`. Isso afeta negativamente a taxa de compactação de código.
+Os minificadores de código (ferramentas usadas antes de JS chegar à produção, para compactá-lo) renomeiam as variáveis locais por outras mais curtas para otimização. Isso geralmente é seguro, mas não se o `eval` for usado, pois pode fazer referência a elas. Portanto, os minificadores não renomeiam todas as variáveis que possam ser visíveis em `eval`. Isso afeta negativamente a taxa de compactação de código.
 
 Usar variáveis locais externas dentro de `eval` é uma prática ruim de programação, pois dificulta a manutenção do código.
 
