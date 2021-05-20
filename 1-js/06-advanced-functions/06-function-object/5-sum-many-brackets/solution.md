@@ -52,4 +52,4 @@ function f(b) {
 }
 ```
 
-Esta `f` será usada na próxima chamada, retornando novamente a si própria, tantas vezes quantas necessárias. Assim, quando usada como  um numero ou uma string -- o `toString` retorna a `currentSum`. Nós poderíamos também usar `Symbol.toPrimitive` ou `valueOf` aqui para a conversão.
+Esta `f` será usada na próxima chamada, retornando novamente ela mesma, tantas vezes quantas necessárias. Assim, quando usada como  um numero ou uma string -- o `toString` retorna a `currentSum`. Nós poderíamos também usar `Symbol.toPrimitive` ou `valueOf` aqui para a conversão.

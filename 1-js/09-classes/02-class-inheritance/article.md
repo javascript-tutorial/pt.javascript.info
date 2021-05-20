@@ -21,7 +21,7 @@ class Animal {
   }
   stop() {
     this.speed = 0;
-    alert(`${this.name} stopped.`);
+    alert(`${this.name} stands still.`);
   }
 }
 
@@ -55,7 +55,7 @@ rabbit.run(5); // White Rabbit runs with speed 5.
 rabbit.hide(); // White Rabbit hides!
 ```
 
-Object of `Rabbit` class have access to both `Rabbit` methods, such as `rabbit.hide()`, and also to `Animal` methods, such as `rabbit.run()`.
+Object of `Rabbit` class have access both to `Rabbit` methods, such as `rabbit.hide()`, and also to `Animal` methods, such as `rabbit.run()`.
 
 Internally, `extends` keyword works using the good old prototype mechanics. It sets `Rabbit.prototype.[[Prototype]]` to `Animal.prototype`. So, if a method is not found in `Rabbit.prototype`, JavaScript takes it from `Animal.prototype`.
 
@@ -130,7 +130,7 @@ class Animal {
 
   stop() {
     this.speed = 0;
-    alert(`${this.name} stopped.`);
+    alert(`${this.name} stands still.`);
   }
 
 }
@@ -151,7 +151,7 @@ class Rabbit extends Animal {
 let rabbit = new Rabbit("White Rabbit");
 
 rabbit.run(5); // White Rabbit runs with speed 5.
-rabbit.stop(); // White Rabbit stopped. White rabbit hides!
+rabbit.stop(); // White Rabbit stands still. White Rabbit hides!
 ```
 
 Now `Rabbit` has the `stop` method that calls the parent `super.stop()` in the process.
@@ -183,7 +183,7 @@ With constructors it gets a little bit tricky.
 
 Until now, `Rabbit` did not have its own `constructor`.
 
-According to the [specification](https://tc39.github.io/ecma262/#sec-runtime-semantics-classdefinitionevaluation), if a class extends another class and has no `constructor`, then the following `constructor` is generated:
+According to the [specification](https://tc39.github.io/ecma262/#sec-runtime-semantics-classdefinitionevaluation), if a class extends another class and has no `constructor`, then the following "empty" `constructor` is generated:
 
 ```js
 class Rabbit extends Animal {
@@ -387,15 +387,17 @@ It's about the internal mechanisms behind inheritance and `super`.
 
 Let's get a little deeper under the hood of `super`. We'll see some interesting things along the way.
 
-First to say, from all that we've learned till now, it's impossible for `super` to work.
+First to say, from all that we've learned till now, it's impossible for `super` to work at all!
 
-Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, how to retrieve the `method`? Naturally, we need to take the `method` from the prototype of the current object. How, technically, we (or a JavaScript engine) can do it?
+Yeah, indeed, let's ask ourselves, how it should technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, the engine needs to get the `method` from the prototype of the current object. But how?
 
-Maybe we can get the method from `[[Prototype]]` of `this`, as `this.__proto__.method`? Unfortunately, that doesn't work.
+The task may seem simple, but it isn't. The engine knows the current object `this`, so it could get the parent `method` as `this.__proto__.method`. Unfortunately, such a "naive" solution won't work.
 
-Let's try to do it. Without classes, using plain objects for the sake of simplicity.
+Let's demonstrate the problem. Without classes, using plain objects for the sake of simplicity.
 
-Here, `rabbit.eat()` should call `animal.eat()` method of the parent object:
+You may skip this part and go below to the `[[HomeObject]]` subsection if you don't want to know the details. That won't harm. Or read on if you're interested in understanding things in-depth.
+
+In the example below, `rabbit.__proto__ = animal`. Now let's try: in `rabbit.eat()` we'll call `animal.eat()`, using `this.__proto__`:
 
 ```js run
 let animal = {
@@ -492,18 +494,16 @@ The problem can't be solved by using `this` alone.
 
 To provide the solution, JavaScript adds one more special internal property for functions: `[[HomeObject]]`.
 
-**When a function is specified as a class or object method, its `[[HomeObject]]` property becomes that object.**
+When a function is specified as a class or object method, its `[[HomeObject]]` property becomes that object.
 
-This actually violates the idea of "unbound" functions, because methods remember their objects. And `[[HomeObject]]` can't be changed, so this bound is forever. So that's a very important change in the language.
+Then `super` uses it to resolve the parent prototype and its methods.
 
-But this change is safe. `[[HomeObject]]` is used only for calling parent methods in `super`, to resolve the prototype. So it doesn't break compatibility.
-
-Let's see how it works for `super` -- again, using plain objects:
+Let's see how it works, first with plain objects:
 
 ```js run
 let animal = {
   name: "Animal",
-  eat() {         // [[HomeObject]] == animal
+  eat() {         // animal.eat.[[HomeObject]] == animal
     alert(`${this.name} eats.`);
   }
 };
@@ -511,7 +511,7 @@ let animal = {
 let rabbit = {
   __proto__: animal,
   name: "Rabbit",
-  eat() {         // [[HomeObject]] == rabbit
+  eat() {         // rabbit.eat.[[HomeObject]] == rabbit
     super.eat();
   }
 };
@@ -519,17 +519,18 @@ let rabbit = {
 let longEar = {
   __proto__: rabbit,
   name: "Long Ear",
-  eat() {         // [[HomeObject]] == longEar
+  eat() {         // longEar.eat.[[HomeObject]] == longEar
     super.eat();
   }
 };
 
 *!*
+// works correctly
 longEar.eat();  // Long Ear eats.
 */!*
 ```
 
-Every method remembers its object in the internal `[[HomeObject]]` property. Then `super` uses it to resolve the parent prototype.
+It works as intended, due to `[[HomeObject]]` mechanics. A method, such as `longEar.eat`, knows its `[[HomeObject]]` and takes the parent method from its prototype. Without any use of `this`.
 
 ### Methods are not "free"
 

@@ -9,7 +9,6 @@ Em JavaScript, as funções são objetos.
 
 Uma boa forma de imaginar funções é como "objetos que atuam" invocáveis. Nós, não só as podemos chamar, como também as tratar como objetos: adicionar/remover propriedades, passar por referencia, etc.
 
-
 ## A propriedade "name"
 
 Os objetos Function contêm algumas propriedades úteis.
@@ -24,12 +23,12 @@ function sayHi() {
 alert(sayHi.name); // sayHi
 ```
 
-O engraçado, é que a lógica de atribuição do nome é inteligente. Ela, de igual modo, atribui o nome correto a uma função mesmo que ela seja criada sem um, e a seguir atribuída:
+O engraçado, é que a lógica de atribuição do nome é inteligente. Ela também atribui o nome correto a uma função mesmo que ela seja criada sem um, e a seguir é imediatamente atribuída:
 
 ```js run
 let sayHi = function() {
   alert("Hi");
-}
+};
 
 alert(sayHi.name); // sayHi (aí está o nome!)
 ```
@@ -153,8 +152,7 @@ alert( `Called ${sayHi.counter} times` ); // Chamada 2 vezes
 ```warn header="Uma propriedade não é uma variável"
 Uma propriedade atribuída a uma função como `sayHi.counter = 0` *não* define uma variável local `counter` dentro dela. Por outras palavras, uma propriedade `counter` e uma variável `let counter` são duas coisas não relacionadas.
 
-Nós podemos tratar uma função como um objeto, e guardar propriedades nela, mas isso não tem nenhum efeito na sua execução. As variáveis nunca usam propriedades de função, e vice-versa. Estes, são apenas mundos paralelos.
-```
+Nós podemos tratar uma função como um objeto, e guardar propriedades nela, mas isso não tem nenhum efeito na sua execução. Variáveis não são propriedades de função, e vice-versa. Estes, são simplesmente mundos paralelos.
 
 Por vezes, propriedades de funções podem substituir clausuras (*closures*). Por exemplo, nós podemos re-escrever a função *counter* do capítulo  <info:closure> para usar uma propriedade de função:
 
@@ -241,7 +239,7 @@ let sayHi = function *!*func*/!*(who) {
 sayHi("John"); // Olá, John
 ```
 
-Existem duas coisas especiais sobre o nome `func`, que são a sua razão de ser:
+Existem duas coisas especiais sobre o nome `func`, e que são a sua razão de ser:
 
 1. Ele permite à função fazer referência a si mesma internamente.
 2. Ele não é visível fora da função.
@@ -282,7 +280,7 @@ let sayHi = function(who) {
 };
 ```
 
-O problema com esse código, é que `sayHi` pode mudar no código exterior. Se a função for lá atribuída a outra variável, o código começará a apresentar erros:
+O problema com esse código, é que `sayHi` pode mudar no código exterior. Se a função for atribuída a outra variável, o código começará a apresentar erros:
 
 ```js run
 let sayHi = function(who) {
@@ -326,7 +324,7 @@ welcome(); // Olá, Convidado (a chamada aninhada funciona)
 
 Agora ela funciona, porque o nome `"func"` é local à função. Não é tomado do exterior (e também não é visível lá). A especificação garante que ele irá sempre fazer referencia à função corrente.
 
-O código exterior continua a ter a sua variável `sayHi` ou `welcome`. E `func` é um "nome de função interno", que permite que a função possa internamente chamar a si própria.
+O código exterior continua a ter a sua variável `sayHi` ou `welcome`. E `func` é um "nome de função interno", permitindo à função chamar internamente a si mesma.
 
 ```smart header="Isso não existe para a Function Declaration"
 A particularidade de "nome interno" descrita aqui apenas está disponível para Function Expressions, não para Function Declarations. Para Function Declarations, não há nenhuma sintaxe para adicionar um nome "interno".
@@ -340,7 +338,7 @@ Funções são objetos.
 
 Aqui, nós vimos as suas propriedades:
 
-- `name` -- o nome da função. Existe não só quando dado na definição da função, mas também em atribuições e propriedades de objetos.
+- `name` -- o nome da função. Geralmente, tomado da definição da função, mas se não houver nenhum, o JavaScript tenta adivinhar a partir do contexto (por exempmlo: numa atribuição).
 - `length` -- o numero de argumentos na definição da função. Parâmetros *rest* não contam.
 
 Se a função for declarada como uma Function Expression (não no fluxo principal do código), e tiver um nome, então é chamada de Function Expression com Nome. O nome pode ser usado dentro dela para fazer referencia a si mesma, para chamadas recursivas ou similares.
