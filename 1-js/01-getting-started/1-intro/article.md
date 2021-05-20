@@ -109,8 +109,9 @@ Exemplos de tais linguagens:
 - [CoffeeScript](http://coffeescript.org/) é um "açúcar sintático" para JavaScript. Ele introduz uma sintaxe mais curta, permitindo-nos escrever um código mais claro e preciso. Normalmente, Ruby devs gostam dele.
 - [TypeScript](http://www.typescriptlang.org/) está concentrado em adicionar "estritos tipos de dados" para simplificar o desenvolvimento e suporte de sistemas complexos. É desenvolvido pela Microsoft.
 - [Flow](http://flow.org/) também adiciona tipos de dados, mas de uma forma diferente. Desenvolvido pela Facebook.
-- [Dart](https://www.dartlang.org/) é uma linguagem autônoma que tem seu próprio interpretador que roda em ambientes fora do navegador (como aplicativos móveis), mas também pode ser transpilada para JavaScript. Desenvolvido pela Google.
+- [Dart](https://www.dartlang.org/) é uma linguagem autônoma que tem seu próprio interpretador que roda em ambientes fora do navegador (como aplicativos móveis), mas também pode ser transpilada para JavaScript. Desenvolvida pela Google.
 - [Brython](https://brython.info/) é um transpilador de Python para JavaScript que permite escrever aplicativos em puro Python, sem JavaScript.
+- [Kotlin](https://kotlinlang.org/docs/js-overview.html) é uma linguagem de programação moderna, concisa e segura, que pode ser usada no navegador ou no Node.
 
 Há mais. Claro que, mesmo que usemos uma dessas linguagens transpiladas, também devemos saber JavaScript para entender o que estamos fazendo.
 
