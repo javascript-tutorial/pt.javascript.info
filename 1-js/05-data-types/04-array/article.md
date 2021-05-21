@@ -17,7 +17,7 @@ let arr = new Array();
 let arr = [];
 ```
 
-Quase sempre é usada a segunda sintaxe. Podemos fornecer elementos iniciais entre os parênteses:
+Quase sempre é usada a segunda sintaxe. Também podemos fornecer elementos iniciais entre os parênteses:
 
 ```js
 let fruits = ["Maçã", "Laranja", "Ameixa"];
@@ -95,7 +95,7 @@ O estilo de "vírgula final" torna mais fácil inserir/remover itens, porque tod
 
 ## Métodos pop/push, shift/unshift
 
-Uma [fila](https://pt.wikipedia.org/wiki/FIFO) (*queue*) é um dos usos mais comuns de um *array*. Em ciência dos computadores, isto significa uma coleção ordenada de elementos que suporta duas operações:
+Uma [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) (*fila*) é um dos usos mais comuns de um *array*. Em ciência dos computadores, isto significa uma coleção ordenada de elementos que suporta duas operações:
 
 - `push` adiciona um elemento ao final.
 - `shift` obtém um elemento do início, avançando a fila, de modo que o 2º elemento se torne no 1º.
@@ -104,16 +104,16 @@ Uma [fila](https://pt.wikipedia.org/wiki/FIFO) (*queue*) é um dos usos mais com
 
 Os *arrays* suportam ambas as operações.
 
-Na prática, nós as precisamos com muita frequência. Por exemplo, uma fila de mensagens que precisa de ser mostrada no ecrã.
+Na prática, nós a precisamos com muita frequência. Por exemplo, uma fila de mensagens que precisa de ser mostrada no ecrã.
 
-Existe um outro caso prático para *arrays* -- a estrutura de dados chamada [pilha](https://pt.wikipedia.org/wiki/Pilha_(inform%C3%A1tica)) (stack).
+Existe um outro caso prático para *arrays* -- a estrutura de dados chamada [pilha](https://pt.wikipedia.org/wiki/Pilha_(inform%C3%A1tica)) (*stack*).
 
 Ela suporta duas operações:
 
 - `push` adiciona um elemento ao final.
 - `pop` toma um elemento do final.
 
-Assim, novos elementos são adicionados ou tomados sempre a partir do "final".
+Assim, novos elementos são adicionados ou tomados sempre ao/do "final".
 
 Uma pilha (*stack*) é geralmente ilustrada como um baralho de cartas: novas cartas são adicionadas ao topo ou tiradas do topo:
 
@@ -121,7 +121,7 @@ Uma pilha (*stack*) é geralmente ilustrada como um baralho de cartas: novas car
 
 Para pilhas, o último item inserido é recebido primeiro, o que também é chamado de princípio *LIFO* (*Last-In-First-Out*) (o-Último-a-Entrar-é-o-Primeiro-a-Sair). Para filas (*queues*), nós temos *FIFO* (*First-In-First-Out*) (o-Primeiro-a-Entrar-é-o-Primeiro-a-Sair).
 
-Os *arrays* em JavaScript podem tanto trabalhar como uma fila, quer como uma pilha. Eles permitem-lhe adicionar/remover elementos quer ao/do início como ao/do final.
+Os *arrays* em JavaScript tanto podem  trabalhar como uma fila, como também uma pilha. Eles permitem-lhe adicionar/remover elementos quer ao/do início como ao/do final.
 
 Em ciência dos computadores, a estrutura de dados que permite isto é chamada de [deque](https://pt.wikipedia.org/wiki/Deque_(estruturas_de_dados)).
 
@@ -149,7 +149,7 @@ Em ciência dos computadores, a estrutura de dados que permite isto é chamada d
     alert( fruits ); // Maçã, Laranja, Pêra
     ```
 
-    A invocação `fruits.push(...)` é igual a `fruits[fruits.length] = ...`.
+    A chamada `fruits.push(...)` é igual a `fruits[fruits.length] = ...`.
 
 **Métodos que trabalham no início do _array_:**
 
@@ -225,7 +225,7 @@ fruits.age = 25; // cria uma propriedade com um nome arbitrário
 
 Isso é possível, porque *arrays* são objetos na sua base. Podemos adicionar qualquer propriedade a eles.
 
-Mas, o interpretador irá ver que nós estamos a trabalhar com o *array* como com um objeto regular. Optimizações especificas para *arrays* não são adequadas a estes casos e serão desativadas, os seus benefícios desaparecem.
+Mas, o interpretador irá ver que nós estamos a trabalhar com o *array* como com um objeto regular. Optimizações especificas para *arrays* não são adequadas a tais casos e serão desativadas, os seus benefícios desaparecem.
 
 Formas de má utilização de um *array*:
 
@@ -259,9 +259,9 @@ A operação `shift` deve efetuar 3 coisas:
 
 **Quantos mais elementos no *array*, mais tempo se leva para os mover, e mais operações em memória.**
 
-À semelhança acontece com `unshift`: para adicionar um elemento ao início do *array*, nós primeiro precisamos de mover os elementos existentes para à direita, e aumentar os seus indices.
+A semelhança acontece com `unshift`: para adicionar um elemento ao início do *array*, nós primeiro precisamos de mover os elementos existentes para à direita, aumentando os seus indices.
 
-E, o que se passa com `push/pop`? Eles, não precisam de mover nada. Para extrair um elemento do final, o método `pop` elimina o índice e diminui `length`.
+E, o que se passa com `push/pop`? Eles, não precisam de mover nada. Para extrair um elemento do final, o método `pop` limpa o índice e diminui `length`.
 
 As ações para a operação `pop`:
 
@@ -277,7 +277,7 @@ O semelhante se passa com o método `push`.
 
 ## *Loops*
 
-Uma das velhas formas para percorrer itens de um *array*, é o ciclo (*loop*) `for` sobre os seus indices:
+Uma das velhas formas para percorrer itens de um *array*, é o ciclo `for` sobre os seus indices:
 
 ```js run
 let arr = ["Maçã", "Laranja", "Pêra"];
@@ -289,7 +289,7 @@ for (let i = 0; i < arr.length; i++) {
 }
 ```
 
-Mas, para *arrays* existe um outro ciclo, o `for..of`:
+Mas, para *arrays* existe ainda um outro ciclo, o `for..of`:
 
 ```js run
 let fruits = ["Maçã", "Laranja", "Ameixa"];
@@ -318,9 +318,9 @@ Mas, na verdade é uma má ideia. Existem potenciais problemas com isso:
 
 1. O ciclo `for..in` itera sobre *todas as propriedades*, não apenas sobre as numéricas.
 
-    Existem os objetos chamados de "semelhantes-a-arrays" (*array-like*), no navegador e em outros ambientes, que *se parecem com _arrays_*. Isto é, eles têm as propriedades `length` e indices, mas também podem ter outras propriedades não-numéricas e métodos, que geralmente não precisamos. Contudo, o ciclo `for..in` irá listar todos elas. Assim, se precisarmos de trabalhar com objetos semelhantes-a-arrays, aí essas propriedades "extra" podem constituir um problema.
+    Existem os objetos chamados de "semelhantes-a-arrays" (*array-like*), no navegador e em outros ambientes, que *se parecem com arrays*. Isto é, eles têm as propriedades `length` e indices, mas também podem ter outras propriedades não-numéricas e métodos, que geralmente não precisamos. Contudo, o ciclo `for..in` irá listar todos elas. Assim, se precisarmos de trabalhar com objetos semelhantes-a-arrays, aí essas propriedades "extra" podem constituir um problema.
 
-2. O laço (*loop*) `for..in` está optimizado para objetos genéricos, não *arrays*, e desta forma é 10-100 vezes mais lento. Claro que ainda é muito rápido. A velocidade pode apenas ser importante em pontos cruciais (*bottlenecks*). Mas, deveríamos estar conscientes desta diferença.
+2. O laço (*loop*) `for..in` está optimizado para objetos genéricos, não *arrays*, e desta forma é 10-100 vezes mais lento. Claro que ainda assim é muito rápido. A velocidade pode apenas ser importante em pontos cruciais (*bottlenecks*). Mas, deveríamos estar conscientes desta diferença.
 
 Em geral, não deveríamos usar `for..in` para *arrays*.
 
@@ -378,8 +378,6 @@ alert( arr[0] ); // 'undefined!' nenhum elemento.
 
 alert( arr.length ); // comprimento 2
 ```
-
-No código acima, `new Array(number)` tem todos os elementos como `undefined`.
 
 Para evitar tais surpresas, nós geralmente utilizamos parênteses retos, a não ser que realmente saibamos o que estamos a fazer.
 
@@ -461,9 +459,9 @@ alert( 0 == [] ); // true
 alert('0' == [] ); // false
 ```
 
-Aqui, em ambos os casos, nós comparamos um primitivo a um objeto *array*. Portanto, o *array* `[]` é convertido para primitivo para os propósitos da comparação e se transforma numa *string* vazia `''`.
+Aqui, em ambos os casos, nós comparamos um primitivo a um objeto *array*. Assim, o *array* `[]` é convertido para primitivo para os propósitos da comparação e se transforma numa *string* vazia `''`.
 
-Então, a comparação continua entre primitivos, como é descrito no capítulo <info:type-conversions>:
+Então, a comparação continua entre primitivos, como é descrita no capítulo <info:type-conversions>:
 
 ```js run
 // depois de [] ser convertido para ''

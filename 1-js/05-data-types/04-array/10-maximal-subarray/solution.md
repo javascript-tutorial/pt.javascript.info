@@ -33,7 +33,7 @@ Por exemplo, para `[-1, 2, 3, -9, 11]`:
 11
 ```
 
-Na verdade, o código é um laço aninhado (*nested loop*): o externo percorre os elementos do *array*, e o interno calcula as subsomas que começam pelo elemento atual.
+Na verdade, o código é um laço aninhado (*nested loop*): o externo percorre os elementos do *array*, e o interno calcula as subsomas que começam pelo elemento corrente.
 
 ```js run
 function getMaxSubSum(arr) {
@@ -57,13 +57,13 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 ```
 
-A solução tem um tempo de complexidade de [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). Por outras palavras, se aumentarmos o tamanho do *array* para o dobro, o algoritmo demorará 4 vezes mais.
+A solução tem um tempo de complexidade de [O(n<sup>2</sup>)](https://pt.wikipedia.org/wiki/Grande-O). Por outras palavras, se aumentarmos o tamanho do *array* para o dobro, o algoritmo demorará 4 vezes mais.
 
 Para grandes *arrays* (1000, 10000 ou mais itens) tais algoritmos podem levar a sérias lentidões.
 
 # Solução rápida
 
-Vamos percorrer o *array* e guardar a atual soma partial dos elementos na variável `s`. Se, a certa altura, `s` se tornar negativo, então faça a atribuição `s=0`. O máximo desses `s` será a resposta.
+Vamos percorrer o *array* e guardar a corrente soma partial dos elementos na variável `s`. Se, a certa altura, `s` se tornar negativo, então faça a atribuição `s=0`. O máximo de todos os `s` será a resposta.
 
 Se a descrição for demasiado vaga, por favor veja o código, é realmente curto:
 
@@ -73,7 +73,7 @@ function getMaxSubSum(arr) {
   let partialSum = 0;
 
   for (let item of arr) { // por cada item de arr
-    partialSum += item; // o adicione a partialSum ('s' na descrição)
+    partialSum += item; // adicione-o a partialSum ('s' na descrição)
     maxSum = Math.max(maxSum, partialSum); // guarde o máximo
     if (partialSum < 0) partialSum = 0; // zero se negativo
   }
