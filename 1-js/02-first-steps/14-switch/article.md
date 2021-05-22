@@ -87,7 +87,7 @@ alert( 'Muito alto' );
 alert( "Não conheço tais valores" );
 ```
 
-````smart header="Qualquer expressão pode servir de argumento a `switch/case`"
+````smart header="Qualquer expressão pode servir de argumento a 'switch/case'"
 Ambos `switch` e `case` permitem expressões arbitrárias.
 
 Por exemplo:

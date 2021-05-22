@@ -4,7 +4,7 @@ importance: 5
 
 # Transforme o "switch" num "if"
 
-Escreva empregando `if..else` código que corresponda ao seguinte `switch`:
+Escreva o código empregando `if..else` que corresponda ao seguinte `switch`:
 
 ```js
 switch (browser) {
