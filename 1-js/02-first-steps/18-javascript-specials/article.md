@@ -45,7 +45,7 @@ Mais em: <info:structure>.
 
 ## Modo *strict*
 
-Para ativar completamente todas as funcionalidades do JavaScript moderno, devemos começar os programas (*scripts*) com `"use strict"`.
+Para ativar completamente todas as funcionalidades do JavaScript moderno, devemos começar os programas com `"use strict"`.
 
 ```js
   'use strict';
@@ -53,7 +53,7 @@ Para ativar completamente todas as funcionalidades do JavaScript moderno, devemo
   ...
 ```
 
-A diretiva deve estar no topo de um *script* ou no início do corpo de uma função.
+A diretiva deve estar no topo de um *script* (programa) ou no início do corpo de uma função.
 
 Sem `"use strict"`, tudo ainda funciona, mas algumas funcionalidades se comportam de maneira antiga, de uma forma "compatível". Nós geralmente iriamos preferir o comportamento moderno.
 
