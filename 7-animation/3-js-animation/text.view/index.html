@@ -15,18 +15,18 @@
     E ficou um pouco em pensamento.
   </textarea>
 
-  <button onclick="animateText(textExample)">Execute a animação em texto!</button>
+  <button onclick="animateText(textExample)">Run the animated typing!</button>
 
   <script>
     function animateText(textArea) {
-      let text = textArea.value
+      let text = textArea.value;
       let to = text.length,
         from = 0;
 
       animate({
         duration: 5000,
         timing: bounce,
-        draw: function (progress) {
+        draw: function(progress) {
           let result = (to - from) * progress + from;
           textArea.value = text.substr(0, Math.ceil(result))
         }

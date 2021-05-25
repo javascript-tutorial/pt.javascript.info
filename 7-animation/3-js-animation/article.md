@@ -8,7 +8,7 @@ Por exemplo, movimentação por um caminho complexo, com uma função de tempo d
 
 A animação pode ser implementada como uma sequência de frames (quadros) -- geralmente pequenas modificações nas propriedades de HTML/CSS.
 
-Por exemplo, modificando `style.left` de `0px` para `100px` movimenta o elemento. E se aumentarmos em `setInterval`, mudando por `2px` com um pequeno atraso, como 50 vezes por segundo, parecerá suave. Este é o mesmo princípio do cinema: 24 quadros por segundo é o suficiente para fazer com que pareça suave.
+Por exemplo, modificando `style.left` de `0px` para `100px` move o elemento. E se aumentarmos em `setInterval`, mudando por `2px` com um pequeno atraso, como 50 vezes por segundo, parecerá suave. Este é o mesmo princípio do cinema: 24 quadros por segundo é o suficiente para fazer com que pareça suave.
 
 O pseudo-código pode ficar assim:
 
@@ -61,18 +61,18 @@ Em outras palavras, isso:
 
 ```js
 setInterval(function () {
-  animate1()
-  animate2()
-  animate3()
+  animate1();
+  animate2();
+  animate3();
 }, 20)
 ```
 
 ...É mais leve que três referências independentes:
 
 ```js
-setInterval(animate1, 20) // animações independentes
-setInterval(animate2, 20) // em diferentes lugares do script
-setInterval(animate3, 20)
+setInterval(animate1, 20); // animações independentes
+setInterval(animate2, 20); // em diferentes lugares do script
+setInterval(animate3, 20);
 ```
 
 Esses diferentes redesenhos deveriam ser agrupados juntos, para fazer com o que o redesenho seja mais fácil para o navegador (e, portanto, mais suave para as pessoas).
@@ -82,7 +82,6 @@ Tem mais uma coisa a ser manter em mente. Às vezes, quando a CPU está sobrecar
 Mas como sabemos disso em JavaScript? Existe uma especificação [Tempo de animação](http://www.w3.org/TR/animation-timing/) que fornece a função `requestAnimationFrame`. Ela aborda todos esses problemas e mais.
 
 A sintaxe:
-
 ```js
 let requestId = requestAnimationFrame(callback)
 ```
@@ -92,7 +91,6 @@ Isso agenda a função `callback` para ser executado no momento mais próximo qu
 Se modificarmos os elementos na `callback`, então eles serão agrupados juntos com outras `requestAnimationFrame` callbacks e com animações em CSS. Então haverá apenas um recálculo geométrico e repintura ao invés de várias.
 
 O valor retornado `requesId` pode ser utilizado para cancelar a chamada:
-
 ```js
 // cancela a execução agendada da callback
 cancelAnimationFrame(requestId)
@@ -110,7 +108,7 @@ O código abaixo mostra o tempo entre as 10 primeiras chamadas de `requestAnimat
   let times = 0;
 
   requestAnimationFrame(function measure(time) {
-    document.body.insertAdjacentHTML('beforeEnd', Math.floor(time - prev) + ' ');
+    document.body.insertAdjacentHTML("beforeEnd", Math.floor(time - prev) + " ");
     prev = time;
 
     if (times++ < 10) requestAnimationFrame(measure);
@@ -123,7 +121,7 @@ O código abaixo mostra o tempo entre as 10 primeiras chamadas de `requestAnimat
 Agora podemos fazer uma função de animação mais universal baseada em `requestAnimationFrame`:
 
 ```js
-function animate({ timing, draw, duration }) {
+function animate({timing, draw, duration}) {
 
   let start = performance.now();
 
@@ -140,6 +138,7 @@ function animate({ timing, draw, duration }) {
     if (timeFraction < 1) {
       requestAnimationFrame(animate);
     }
+    
   });
 }
 ```
@@ -179,6 +178,7 @@ Função `animate` aceita 3 parâmetros que essencialmente descrevem a animaçã
 
     ...Ou fazer qualquer outra coisa, podemos animar qualquer coisa, de qualquer jeito.
 
+
 Vamos animar o elemento `width` de `0` a `100%` usando nossa função.
 
 Clique no elemento para a demo:
@@ -191,7 +191,7 @@ O código:
 animate({
   duration: 1000,
   timing(timeFraction) {
-    return timeFraction
+    return timeFraction;
   },
   draw(progress) {
     elem.style.width = progress * 100 + '%';
@@ -331,7 +331,7 @@ Em outras palavras, temos uma função de "transformar" `makeEaseOut` que recebe
 ```js
 // aceita a função de tempo, returna a variante transformada
 function makeEaseOut(timing) {
-  return function (timeFraction) {
+  return function(timeFraction) {
     return 1 - timing(1 - timeFraction);
   }
 }
@@ -376,7 +376,7 @@ O código do wrapper:
 
 ```js
 function makeEaseInOut(timing) {
-  return function (timeFraction) {
+  return function(timeFraction) {
     if (timeFraction < 0.5) 
       return timing(2 * timeFraction) / 2;
     else
@@ -397,9 +397,9 @@ O efeito é claramente visto se compararmos os gráficos de `easeIn`, `easeOut` 
 
 ![](circ-ease.svg)
 
-- <span style="color:#EE6B47">Vermelha</span> é a variante regular de `circ` (`easeIn`).
-- <span style="color:#8DB173">Verde</span> -- `easeOut`.
-- <span style="color:#62C0DC">Azul</span> -- `easeInOut`.
+- <span style="color:#EE6B47">Red</span> é a variante regular de `circ` (`easeIn`).
+- <span style="color:#8DB173">Greed</span> -- `easeOut`.
+- <span style="color:#62C0DC">Blue</span> -- `easeInOut`.
 
 Como podemos ver, o gráfico da primeira metade da animação é a reduzida `easeIn`, e a segunda metade é a reduzida `easeOut`. Como resultado, a animação começa e termina com o mesmo efeito.
 
@@ -417,10 +417,10 @@ Para animação que CSS não lida bem, ou aquelas que precisam de controle rígi
 
 Quando uma página está em segundo plano, não ocorrem repinturas, então a callback não será executada: a animação será suspensa e não consumirá recursos. Isso é ótimo.
 
-Aqui está a função helper `animate` para configura a maioria das animações:
+Aqui está uma função de ajuda `animate` para configurar a maioria das animações:
 
 ```js
-function animate({ timing, draw, duration }) {
+function animate({timing, draw, duration}) {
 
   let start = performance.now();
 
