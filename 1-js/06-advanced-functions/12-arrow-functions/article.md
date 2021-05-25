@@ -52,7 +52,7 @@ let group = {
 *!*
     this.students.forEach(function(student) {
       // Error: Cannot read property 'title' of undefined
-      alert(this.title + ': ' + student)
+      alert(this.title + ': ' + student);
     });
 */!*
   }
@@ -87,7 +87,7 @@ Por exemplo, `defer(f, ms)` recebe uma função e retorna um *wrapper* (invóluc
 ```js run
 function defer(f, ms) {
   return function() {
-    setTimeout(() => f.apply(this, arguments), ms)
+    setTimeout(() => f.apply(this, arguments), ms);
   };
 }
 
@@ -118,7 +118,6 @@ Aqui precisamos criar as variáveis adicionais `args` e `ctx` para que a funçã
 
 *Arrow functions* (funções seta):
 
-- Não possuem `this`.
 - Não possuem `arguments`.
 - Não podem ser chamadas com `new`.
 - (Elas também não possuem `super`, mas ainda não a estudamos. Veremos no capítulo <info:class-inheritance>).

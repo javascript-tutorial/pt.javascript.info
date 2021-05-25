@@ -5,7 +5,7 @@ A coordenada inferior do campo é `field.clientHeight`. Mas a propriedade `top` 
 Então animamos a propriedade `top` a partir de `0` até `field.clientHeight - ball.clientHeight`.
 
 Para obter o efeito de "quique", podemos usar a função de tempo `bounce` no modo `easeOut`
-.
+
 Aqui está o código final para a animação:
 
 ```js
