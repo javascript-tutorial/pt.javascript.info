@@ -2,7 +2,7 @@
 
 Em JavaScript, uma função não é uma "estrutura mágica da linguagem", mas uma espécie de valor especial.
 
-A sintaxe que empregámos antes é chamada de *Function Declaration* (Declaração de Função):
+A sintaxe que empregámos antes é chamada de Declaração de Função (*Function Declaration*):
 
 ```js
   function sayHi() {
@@ -10,7 +10,7 @@ A sintaxe que empregámos antes é chamada de *Function Declaration* (Declaraç�
   }
 ```
 
-Existe outra sintaxe para criar uma função que é chamada de *Function Expression* (Expressão de Função).
+Existe outra sintaxe para criar uma função que é chamada de Expressão de Função (*Function Expression*).
 
 Ela se parece com:
 
@@ -157,7 +157,7 @@ ask(
 
 Aqui, as funções são declaradas justamente dentro da chamada a `ask(...)`. Elas não têm nome, e por isso são chamadas de *anónimas*. Não é possível o acesso a tais funções fora de `ask` (porque elas não estão atribuídas a variáveis), mas é só o que queremos aqui neste caso.
 
-Tal código ocorre muito naturalmente nos nossos programas (*scripts*); ele está no espírito do JavaScript.
+Tal código ocorre muito naturalmente nos nossos programas (*scripts*), ele está no espírito do JavaScript.
 
 ```smart header="Uma função é um valor que representa uma \"ação\""
 Valores comuns como strings ou números representam os *dados*.
