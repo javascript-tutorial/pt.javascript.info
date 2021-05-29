@@ -33,7 +33,7 @@ let sum = function(a, b) {
 alert( sum(1, 2) ); // 3
 ```
 
-Como pode ver `(a, b) => a + b` significa uma função que aceita dois argumentos, nomeadamente `a` e `b`. No momento da execução, a expressão `a + b` é avaliada e o resultado retornado.
+Como você pode ver `(a, b) => a + b` significa uma função que aceita dois argumentos, nomeadamente `a` e `b`. No momento da execução, a expressão `a + b` é avaliada e o resultado retornado.
 
 - Se tivermos um só argumento, então os parênteses à sua volta podem ser omitidos, ficando ela ainda mais curta.
 
@@ -48,7 +48,7 @@ Como pode ver `(a, b) => a + b` significa uma função que aceita dois argumento
     alert( double(3) ); // 6
     ```
 
-- Se não houver argumentos, os parênteses estão vazios (mas devem estar presentes):
+- Se não houver argumentos, os parênteses estarão vazios (mas devem estar presentes):
 
     ```js run
     let sayHi = () => alert("Olá!");
