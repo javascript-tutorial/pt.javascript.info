@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Depuração de erros no Chrome
+=======
+# Debugging in the browser
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Antes de escrevermos código mais complexo, vamos falar de debugging (depuração de erros).
 
