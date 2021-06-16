@@ -20,19 +20,11 @@ function showMessage() {
 }
 ```
 
-<<<<<<< HEAD
-A palavra-chave `function` vem primeiro, depois vem o *nome da função*, e uma lista de *parâmetros* entre os parêntesis (vazio no exemplo acima) e finalmente o código da função, também chamado de "o corpo da função", entre chaves.
-
-```js
-function name(parameters) {
-  ...corpo...
-=======
-The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (comma-separated, empty in the example above, we'll see examples later) and finally the code of the function, also named "the function body", between curly braces.
+A palavra-chave `function` vem primeiro, depois vem o *nome da função*, e uma lista de *parâmetros* entre os parêntesis (separados por vírgulas, vazia no exemplo acima, veremos exemplos mais tarde) e finalmente o código da função, também chamado de "o corpo da função", entre chaves.
 
 ```js
 function name(parameter1, parameter2, ... parameterN) {
-  ...body...
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
+  ...corpo...
 }
 ```
 
@@ -202,11 +194,7 @@ For instance, the aforementioned function `showMessage(from, text)` can be calle
 showMessage("Ann");
 ```
 
-<<<<<<< HEAD
-That's not an error. Such a call would output `"Ann: undefined"`. There's no `text`, so it's assumed that `text === undefined`.
-=======
 That's not an error. Such a call would output `"*Ann*: undefined"`. As the value for `text` isn't passed, it becomes `undefined`.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 We can specify the so-called "default" (to use if omitted) value for a parameter in the function declaration, using `=`:
 

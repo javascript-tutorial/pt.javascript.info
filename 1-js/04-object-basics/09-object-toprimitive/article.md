@@ -3,9 +3,6 @@
 
 What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
 
-<<<<<<< HEAD
-There are special methods in objects that do the conversion.
-=======
 JavaScript doesn't exactly allow to customize how operators work on objects. Unlike some other programming languages, such as Ruby or C++, we can't implement a special object method to handle an addition (or other operators).
 
 In case of such operations, objects are auto-converted to primitives, and then the operation is carried out over these primitives and results in a primitive value.
@@ -24,7 +21,6 @@ We have two purposes:
 2. There are exceptions, where such operations are possible and look good. E.g. subtracting or comparing dates (`Date` objects). We'll come across them later.
 
 ## Conversion rules
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to close it.
 
@@ -34,23 +30,11 @@ The numeric conversion happens when we subtract objects or apply mathematical fu
 
 As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
 
-<<<<<<< HEAD
-## ToPrimitive
-
-When an object is used in the context where a primitive is required, for instance, in an `alert` or mathematical operations, it's converted to a primitive value using the `ToPrimitive` algorithm ([specification](https://tc39.github.io/ecma262/#sec-toprimitive)).
-
-That algorithm allows us to customize the conversion using a special object method.
-
-Depending on the context, the conversion has a so-called "hint".
-
-There are three variants:
-=======
 We can fine-tune string and numeric conversion, using special object methods.
 
 There are three variants of type conversion, that happen in various situations.
 
 They're called "hints", as described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive):
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 `"string"`
 : When an operation expects a string, for object-to-string conversions, like `alert`:
@@ -117,12 +101,8 @@ Let's start from the first method. There's a built-in symbol named `Symbol.toPri
 
 ```js
 obj[Symbol.toPrimitive] = function(hint) {
-<<<<<<< HEAD
-  // return a primitive value
-=======
   // here goes the code to convert this object to a primitive
   // it must return a primitive value
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
   // hint = one of "string", "number", "default"
 }
 ```
@@ -223,12 +203,7 @@ alert(user + 500); // toString -> John500
 
 In the absence of `Symbol.toPrimitive` and `valueOf`, `toString` will handle all primitive conversions.
 
-<<<<<<< HEAD
-
-## ToPrimitive and ToString/ToNumber
-=======
 ### A conversion can return any primitive type
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 The important thing to know about all primitive-conversion methods is that they do not necessarily return the "hinted" primitive.
 

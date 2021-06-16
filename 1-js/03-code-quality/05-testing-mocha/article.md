@@ -2,11 +2,7 @@
 
 Teste automatizado será utilizado nos exercícios seguintes, e também é amplamente usado em projetos reais.
 
-<<<<<<< HEAD
 ## Porque precisamos de testes?
-=======
-## Why do we need tests?
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Quando escrevemos uma função, nós geralmente podemos imaginar o que ela deveria fazer: que parâmetros dariam que resultados.
 

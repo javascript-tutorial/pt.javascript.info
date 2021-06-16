@@ -46,11 +46,7 @@ alert(3 +
 + 2);
 ```
 
-<<<<<<< HEAD
-O código produz `6` porque o Javascript não insere pontos e virgulas aqui. É intuitivamente óbvio que se a linha termina com um sinal de mais `"+"`, então é uma "expressão incompleta", logo o ponto e vírgula não é necessário. E neste caso isso funciona como pretendido.
-=======
-The code outputs `6` because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", so a semicolon there would be incorrect. And in this case, that works as intended.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
+O código produz `6` porque o Javascript não insere pontos e virgulas aqui. É intuitivamente óbvio que se a linha termina com um sinal de mais `"+"`, então é uma "expressão incompleta", logo o ponto e vírgula aí seria incorreto. E neste caso isso funciona como pretendido.
 
 **Mas há situações em que o JavaScript "falha" em assumir um ponto e vírgula onde ele é realmente necessário.**
 
@@ -65,63 +61,31 @@ alert("Hello");
 [1, 2].forEach(alert);
 ```
 
-<<<<<<< HEAD
-Não há necessidade de pensar sobre o significado dos parênteses `[]` e `forEach` ainda. Nós vamos estudá-los mais tarde. Por enquanto, apenas lembre-se que o resultado do código: mostra `1` e depois` 2`.
+Não há necessidade de pensar sobre o significado dos parênteses `[]` e também do `forEach`. Nós vamos estudá-los mais tarde. Por enquanto, apenas lembre-se do resultado da execução do código: ele mostra `Hello`, depois `1`, e depois` 2`.
 
-Agora, vamos adicionar um `alert` antes do código e * não * terminá-lo com um ponto e vírgula:
-
-```js run no-beautify
-alert("Haverá um erro")
-=======
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of running the code: it shows `Hello`, then `1`, then `2`.
-
-Now let's remove the semicolon after the `alert`:
+Agora, vamos remover o ponto e vírgula depois do `alert`:
 
 ```js run no-beautify
 alert("Hello")
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 [1, 2].forEach(alert);
 ```
 
-<<<<<<< HEAD
-Agora, se nós executarmos o código, apenas o primeiro `alert` é mostrado e então temos um erro!
+A diferença em comparação com o código acima é de apenas um caractere: o ponto e vírgula da primeira linha se foi.
 
-Mas tudo está bem novamente se adicionarmos um ponto e vírgula após `alert`:
-```js run
-alert("Tudo bem agora");
-=======
-The difference compared to the code above is only one character: the semicolon at the end of the first line is gone.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
+Se nós executarmos esse código, apenas o primeiro `Hello` é mostrado (e então há um erro, você pode precisar de abrir a consola para o ver). Já não existem mais números.
 
-If we run this code, only the first `Hello` shows (and there's an error, you may need to open the console to see it). There are no numbers any more.
+Isso ocorre porque o JavaScript não assume um ponto e vírgula antes dos colchetes `[...]`. Portanto, o código no último exemplo é tratado como uma única instrução. 
 
-<<<<<<< HEAD
-Agora temos a mensagem "Tudo bem agora" seguida por "1" e "2".
-
-
-O erro na variante sem ponto e vírgula ocorre porque o JavaScript não assume um ponto e vírgula antes dos colchetes `[...]`.
-
-Portanto, como o ponto e vírgula não é inserido automaticamente, o código no primeiro exemplo é tratado como uma única instrução. Veja como o mecanismo vê isso:
-
-```js run no-beautify
-alert("Haverá um erro")[1, 2].forEach(alert)
-```
-
-Mas devem ser duas declarações separadas, não uma. Tal fusão neste caso é completamente errado, daí o erro. Isso pode acontecer em outras situações.
-=======
-That's because JavaScript does not assume a semicolon before square brackets `[...]`. So, the code in the last example is treated as a single statement.
-
-Here's how the engine sees it:
+Veja como o mecanismo vê isso:
 
 ```js run no-beautify
 alert("Hello")[1, 2].forEach(alert);
 ```
 
-Looks weird, right? Such merging in this case is just wrong. We need to put a semicolon after `alert` for the code to work correctly.
+Parece estranho, não? Tal fusão neste caso é completamente errada. Nós precisamos de colocar um ponto e vírgula depois de `alert` para o código funcionar corretamente.
 
-This can happen in other situations also.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
+Isso também pode acontecer em outras situações.
 ````
 
 Recomendamos colocar ponto e vírgula entre as frases, mesmo que estejam separadas por novas linhas. Esta regra é amplamente adotada pela comunidade. Vamos notar mais uma vez -- *é possível* deixar de fora os pontos e vírgulas na maior parte do tempo. Mas é mais seguro -- especialmente para um iniciante -- usá-los.

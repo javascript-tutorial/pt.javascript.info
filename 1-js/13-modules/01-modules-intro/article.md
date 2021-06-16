@@ -69,11 +69,7 @@ There are core features, valid both for browser and server-side JavaScript.
 
 ### Always "use strict"
 
-<<<<<<< HEAD
-Modules always `use strict`. E.g. assigning to an undeclared variable will give an error.
-=======
 Modules always work in strict mode. E.g. assigning to an undeclared variable will give an error.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```html run
 <script type="module">
@@ -93,26 +89,18 @@ In the example below, two scripts are imported, and `hello.js` tries to use `use
 
 Modules should `export` what they want to be accessible from outside and `import` what they need.
 
-<<<<<<< HEAD
-So we should import `user.js` directly into `hello.js` instead of `index.html`.
-=======
 - `user.js` should export the `user` variable.
 - `hello.js` should import it from `user.js` module.
 
 In other words, with modules we use import/export instead of relying on global variables.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 This is the correct variant:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
-<<<<<<< HEAD
-In the browser, independant top-level scope also exists for each `<script type="module">`:
-=======
 In the browser, if we talk about HTML pages, independent top-level scope also exists for each `<script type="module">`.
 
 Here are two scripts on the same page, both `type="module"`. They don't see each other's top-level variables:
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```html run
 <script type="module">
@@ -127,9 +115,6 @@ Here are two scripts on the same page, both `type="module"`. They don't see each
 </script>
 ```
 
-<<<<<<< HEAD
-If we really need to make a "global" in-browser variable, we can explicitly assign it to `window` and access as `window.user`. But that's an exception requiring a good reason.
-=======
 ```smart
 In the browser, we can make a variable window-level global by explicitly assigning it to a `window` property, e.g. `window.user = "John"`. 
 
@@ -137,7 +122,6 @@ Then all scripts will see it, both with `type="module"` and without it.
 
 That said, making such global variables is frowned upon. Please try to avoid them.
 ```
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ### A module code is evaluated only the first time when imported
 
@@ -164,11 +148,7 @@ import `./alert.js`; // Module is evaluated!
 import `./alert.js`; // (nothing)
 ```
 
-<<<<<<< HEAD
-In practice, top-level module code is mostly used for initialization. We create data structures, pre-fill them, and if we want something to be reusable -- export it.
-=======
 The second import shows nothing, because the module has already been evaluated.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 There's a rule: top-level module code should be used for initialization, creation of module-specific internal data structures. If we need to make something callable multiple times - we should export it as a function, like we did with `sayHi` above.
 
@@ -202,13 +182,9 @@ alert(admin.name); // Pete
 */!*
 ```
 
-<<<<<<< HEAD
-So, let's reiterate -- the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that .
-=======
 As you can see, when `1.js` changes the `name` property in the imported `admin`, then `2.js` can see the new `admin.name`.
 
 That's exactly because the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 **Such behavior is actually very convenient, because it allows us to *configure* modules.**
 
@@ -230,13 +206,9 @@ export function sayHi() {
 }
 ```
 
-<<<<<<< HEAD
-Now, in `init.js`, the first script of our app, we set `admin.name`. Then everyone will see it, including calls made from inside `admin.js` itself:
-=======
 Here, `admin.js` exports the `config` object (initially empty, but may have default properties too).
 
 Then in `init.js`, the first script of our app, we import `config` from it and set `config.user`:
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js
 // 📁 init.js
@@ -244,15 +216,9 @@ import {config} from './admin.js';
 config.user = "Pete";
 ```
 
-<<<<<<< HEAD
-```js
-// 📁 other.js
-import {admin, sayHi} from './admin.js';
-=======
 ...Now the module `admin.js` is configured. 
 
 Further importers can call it, and it correctly shows the current user:
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js
 // 📁 another.js
