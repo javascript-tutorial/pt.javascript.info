@@ -12,13 +12,13 @@ Se algo estiver errado -- então corrigimos o código, executamos de novo, verif
 
 Mas, tais "re-execuções" manuais são imperfeitas.
 
-**Ao testar código com re-execuções manuais, é fácil olvidar alguma coisa.**
+**Ao testar código com re-execuções manuais, é fácil esquecer alguma coisa.**
 
 Por exemplo, estamos a criar uma função `f`. Escrevemos algum código, e testamos: `f(1)` funciona, mas `f(2)` não. Corrigimos o código e agora `f(2)` funciona. Parece completo? Mas, nos esquecemos de re-testar `f(1)`. Que pode estar agora a produzir um erro.
 
 Isso é muito comum. Quando desenvolvemos algo, mantemos uma quantidade de possíveis casos exemplo (*use cases*) em mente. Mas, é difícil esperar que um programador os verifique todos manualmente após cada alteração. Assim, torna-se fácil corrigir uma coisa e quebrar outra.
 
-**Teste automatizado significa que testes são escritos separadamente, adicionalmente ao código. Eles correm as nossas funções de várias maneiras e comparam os resultados obtidos aos esperados.**
+**Teste automatizado significa que testes são escritos separadamente, \ ao código. Eles correm as nossas funções de várias maneiras e comparam os resultados obtidos aos esperados.**
 
 ## Desenvolvimento Guiado por Comportamento (Behavior Driven Desenvolvimento [BDD])
 
@@ -59,9 +59,7 @@ Uma *spec* tem três principais blocos construtores, como pode ver acima:
 `assert.equal(valor1, valor2)`
 : O código dentro do bloco `it`, se a implementação estiver correta, não deverá mostrar erros.
 
-```text
-Funções `assert.*` são usadas para verificar se `pow` funciona como esperado. Aqui mesmo, estamos a usar uma delas -- `assert.equal`, que compara argumentos e dá como resultado um erro se eles não forem iguais. Aqui, ela verifica se o resultado de `pow(2, 3)` é `8`. Existem outros tipos de comparações e verificações, que adicionaremos mais adiante.
-```
+    Funções `assert.*` são usadas para verificar se `pow` funciona como esperado. Aqui mesmo, estamos a usar uma delas -- `assert.equal`, que compara argumentos e dá como resultado um erro se eles não forem iguais. Aqui, ela verifica se o resultado de `pow(2, 3)` é `8`. Existem outros tipos de comparações e verificações, que adicionaremos mais adiante.
 
 A especificação pode ser executada, e irá correr o teste especificado no bloco `it`. O que veremos mais adiante.
 
@@ -73,7 +71,7 @@ Geralmente, o fluxo de desenvolvimento se assemelha a:
 2. Uma implementação inicial é criada.
 3. Para verificar se ela funciona, nós corremos a infraestrutura de teste [Mocha](http://mochajs.org/) (mais detalhes em breve) que corre a *spec*. Enquanto a funcionalidade não estiver completa, erros são mostrados. Nós a corrigimos até que tudo funcione.
 4. Agora, temos uma implementação inicial a funcionar com testes.
-5. Adicionamos mais casos exemplo (*use cases*) à *spec*, provávelmente ainda não suportados pelas implementações. Testes começam a falhar.
+5. Adicionamos mais casos exemplo (*use cases*) à *spec*, provávelmente ainda não suportados pelas implementações. Os testes começam a falhar.
 6. Vamos para 3, atualizamos a implementação até que os testes nâo forneçam erros.
 7. Repetimos os passos 3-6 até que a funcionalidade esteja pronta.
 
@@ -88,20 +86,19 @@ O primeiro passo já está completo: nós temos uma *spec* inicial para `pow`. A
 Aqui, no tutorial, nós iremos usar as seguintes bibliotecas de JavaScript para testes:
 
 - [Mocha](http://mochajs.org/) -- a infraestrutura principal: ela fornece funções de teste comuns, incluindo `describe` e `it` e a principal função que executa os testes.
-- [Chai](http://chaijs.com) -- a biblioteca (*library*) com muitas *asserções*. Ela permite usar muitas diferentes *asserções*; por ora, nós precisamos de apenas `assert.equal`.
+- [Chai](http://chaijs.com) -- a biblioteca (*library*) com muitas *asserções*. Ela permite usar muitas diferentes *asserções*; por ora, nós apenas precisamos de `assert.equal`.
 - [Sinon](http://sinonjs.org/) -- a biblioteca para espiar sobre funções, simular funções incorporadas (built-in) e mais; nós a vamos precisar muito mais tarde.
 
-Estas bibliotecas, são adequadas a testes quer usando um navegador (*in-browser*) como efetuados num servidor (*server-side*). Aqui, nós vamos considerar a variante do navegador.
+Estas bibliotecas, são adequadas a testes quer num navegador (*in-browser*) como num servidor (*server-side*). Aqui, nós vamos considerar a variante do navegador.
 
 A página HTML completa, com estas infraestruturas e a *spec* `pow`:
 
-```html
-  src="index.html"
+```html src="index.html"
 ```
 
 A página pode ser dividida em cinco partes:
 
-1. A `<head>` -- adiciona bibliotecas de terceiros (*third-party*) e estilos para testes.
+1. A `<head>` -- adiciona bibliotecas de terceiros (*third-party*) e estilos para os testes.
 2. O `<script>` com a função para o teste, no nosso caso -- com o código para `pow`.
 3. Os testes -- no nosso caso um programa externo `test.js`, que tem o `describe("pow", ...)` visto acima.
 4. O elemento HTML `<div id="mocha">`, será usado por Mocha para a saída dos resultados.
@@ -117,7 +114,7 @@ Para o futuro, vamos tomar nota de que existem executadores de testes (*test-run
 
 ## Implementação inicial
 
-Vamos fazer uma implementação simples de `pow`, para passar os testes:
+Vamos fazer uma implementação simples de `pow`, para passar nos testes:
 
 ```js
 function pow(x, n) {
@@ -153,7 +150,6 @@ Aqui, nós podemos selecionar uma das duas formas para organizar o teste:
 
     });
     ```
-
 2. A segunda -- faça dois testes:
 
     ```js
@@ -180,7 +176,7 @@ E para além disso, é mais uma boa regra para se seguir.
 
 Se olharmos para o teste e virmos duas verificações independentes, o melhor é reparti-lo em dois mais simples.
 
-Assim, vamos prosseguir pela segunda variante.
+Assim, vamos prosseguir com a segunda variante.
 
 O resultado:
 
@@ -229,7 +225,7 @@ O resultado:
 
 ## describe aninhados
 
-Agora, vamos adicionar ainda mais testes. Mas, antes tomemos nota de que a função auxiliar `makeTest` e o `for` deveriam estar juntos agrupados. Nós não precisaremos de `makeTest` em outros testes, apenas é necessária no `for`: a sua tarefa comum é verificar como `pow` eleva à potência pretendida.
+Agora, vamos adicionar ainda mais testes. Mas, antes tomemos nota de que a função auxiliar `makeTest` e o `for` deveriam estar agrupados juntos. Nós não precisaremos de `makeTest` em outros testes, apenas é necessária no `for`: a sua tarefa comum é verificar como `pow` eleva à potência pretendida.
 
 O agrupamento é feito com `describe` aninhados:
 
@@ -265,10 +261,8 @@ O `describe` aninhado define um novo "subgrupo" de testes. No resultado mostrado
 
 No futuro, nós podemos adicionar mais `it` e `describe` ao nível de topo com outras funções auxiliares, elas não irão ver `makeTest`.
 
-```smart header="'before/after' e 'beforeEach/afterEach'"
+````smart header="`before/after` and `beforeEach/afterEach`"
 Nós podemos definir funções `before/after`, que corram antes/após os testes serem executados, e também funções `beforeEach/afterEach` que corram antes/após *cada* `it`.
-
-```
 
 Por exemplo:
 
@@ -289,7 +283,7 @@ describe("test", function() {
 
 A sequência da execução será:
 
-```text
+```
 Testes iniciados – antes de todos os testes (before)
 Antes de um teste - entrando para um teste (beforeEach)
 1
@@ -300,19 +294,20 @@ Após um teste - saindo de um teste   (afterEach)
 Testes terminados – após todos os testes (after)
 ```
 
-[edit src="beforeafter" title="Open the example in the sandbox."]
+[edit src="beforeafter" title="Abra o exemplo no ambiente isolado de processos (*sandbox*)."]
 
-Geralmente, `beforeEach/afterEach` e `before/after` são usadas para executar a  inicialização, zerar contadores ou fazer mais alguma coisa entre os testes (ou grupos de testes).
+Geralmente, `beforeEach/afterEach` e `before/after` são usadas para executar a inicialização, zerar contadores ou fazer mais alguma coisa entre os testes (ou grupos de testes).
+````
 
-## Aumentando a *spec*
+## Estendendo a *spec*
 
-A funcionalidade básica de `pow` está completa. A primeira parte do desenvolvimento está feita. Quando acabarmos de celebrar e de beber champagne -- vamos a tornar melhor.
+A funcionalidade básica de `pow` está completa. A primeira iteração do desenvolvimento está feita. Quando acabarmos de celebrar e de beber champagne -- vamos a tornar melhor.
 
 Como foi dito, a função `pow(x, n)` foi feita para trabalhar com valores inteiros positivos de `n`.
 
 Para indicar um erro matemático, geralmente as funções de JavaScript retornam `NaN`. Vamos fazer o mesmo para valores inválidos de `n`.
 
-Primeiro vamos adicionar a funcionalidade à spec(!):
+Primeiro vamos adicionar esse comportamento à spec(!):
 
 ```js
 describe("pow", function() {
@@ -341,13 +336,12 @@ O resultado com novos testes:
 Os testes agora adicionados falham, porque a nossa implementação não possui suporte para eles. É assim como BDD é feito: primeiro nós escrevemos testes que falham, e depois fazemos uma implementação para eles.
 
 ```smart header="Outras asserções"
-
 Por favor, observe a asserção `assert.isNaN`: ela verifica por `NaN`.
 
 Existem ainda outras asserções em [Chai](http://chaijs.com), como por exemplo:
 
 - `assert.equal(valor1, valor2)` -- verifica a igualdade `valor1 == valor2`.
-- `assert.strictEqual(valor1, valor2)` -- verifica a igualdade exata (*strict*) `valor1 === valor2`.
+- `assert.strictEqual(valor1, valor2)` -- verifica a igualdade exata (estrita) `valor1 === valor2`.
 - `assert.notEqual`, `assert.notStrictEqual` -- verificação inversa às de acima.
 - `assert.isTrue(valor)` -- verifica se `valor === true`
 - `assert.isFalse(valor)` -- verifica se `valor === false`
@@ -389,18 +383,18 @@ A *spec* pode ser usada de três formas:
 2. Como **Docs** -- os títulos de `describe` e `it` dizem o que a função faz.
 3. Como **Exemplos** -- os testes são, na verdade, exemplos práticos mostrando como a função pode ser usada.
 
-Com a *spec*, nós podemos com segurança melhorar, alterar, e até reescrever a função do início e ter a certeza de que ainda funciona corretamente.
+Com a *spec*, nós podemos com segurança melhorar, alterar, e até reescrever a função do início e ter a certeza de que ela ainda funciona corretamente.
 
 Isso é especialmente importante em grandes projetos, quando uma função é usada em muitos lugares. Quando nós alteramos essa função, simplesmente não há forma de manualmente verificar se ainda funciona corretamente em cada lugar em que é usada.
 
 Sem testes, as pessoas têm duas formas:
 
-1. Executar a alteração, não importa o que aconteça. E aí, os nossos utilizadores encontram *bugs*, porque provavelmente falhámos ao não testar algo manualmente.
+1. Executar a alteração, não importa o que aconteça. E aí, os nossos utilizadores encontram *bugs*, porque provavelmente nós falhámos ao não testar algo manualmente.
 2. Ou, se a punição por erros for severa, como não existem testes, as pessoas ficam com receio de modificar tais funções, e aí o código se torna obsoleto, ninguém quer se involver nele. Nada bom para o desenvolvimento.
 
 **Testes automáticos ajudam a evitar estes problemas!**
 
-Se o projeto estiver coberto por testes, simplesmente não existe tal problema. Depois de quaisquer alterações, nós podemos correr testes e observar muitas análises numa questão de segundos.
+Se o projeto estiver coberto por testes, simplesmente não existe tal problema. Depois de quaisquer alterações, nós podemos correr testes e efetuar muitas verificações numa questão de segundos.
 
 **Adicionalmente, um código bem testado tem melhor arquitetura.**
 
@@ -410,6 +404,6 @@ Para se escrever testes, o código deverá estar organizado de tal forma que cad
 
 Na vida real, por vezes isto não é tão fácil. Ás vezes, é dificil escrever uma *spec* antes do respetivo código, por ainda não estar claro como ele se deveria comportar. Mas, em geral, escrever testes torna o desenvolvimento mais rápido e mais estável.
 
-Mais adiante, no tutorial, você irá encontrar muitas tarefas com testes preparados. Assim, poderá ver mais exemplos práticos.
+Mais adiante, no tutorial, você irá encontrar muitas tarefas com testes preparados. Desta forma, poderá ver mais exemplos práticos.
 
-Escrever testes, requere um bom conhecimento de JavaScript. Mas, estamos a começar a aprender. Assim, para facilitar, por ora não se pede que escreva testes, mas você já deveria ser capaz de os ler, mesmo que sejam um pouco mais complexos que os deste capítulo.
+Escrever testes, requere um bom conhecimento de JavaScript. Mas, estamos a começar a aprender. Deste modo, para facilitar, por ora não se lhe pede que escreva testes, contudo você já deveria ser capaz de os ler, mesmo que eles sejam um pouco mais complexos que os deste capítulo.
