@@ -337,11 +337,17 @@ auth/
         ...
 ```
 
-Gostaríamos de exportar a funcionalidade do pacote via um único ponto de entrada, o arquivo principal `auth/index.js`, para ser usado assim:
+Gostaríamos de exportar a funcionalidade do pacote via um único ponto de entrada.
+
+Por outras palavras, uma pessoa que quisesse usar o nosso pacote, deveria importar o arquivo principal `auth/index.js`.
+
+Desta forma:
 
 ```js
 import {login, logout} from 'auth/index.js'
 ```
+
+O "arquivo principal" `auth/index.js`, exporta todas as funcionalidades que gostaríamos de fornecer no nosso pacote.
 
 A ideia é que os desenvolvedores que utilizarem nosso pacote não possam interferir na sua estrutura interna. Eles não devem procurar por arquivos dentro da pasta do nosso pacote. Apenas exportamos o que for necessário no `auth/index.js` e mantemos o resto escondido de olhos curiosos.
 
@@ -366,28 +372,30 @@ A sintaxe `export ... from ...` é apenas uma notação mais curta para essa imp
 
 ```js
 // 📁 auth/index.js
-// importar login/logout e imediatamente exportá-los
+// re-exportar login/logout
 export {login, logout} from './helpers.js';
 
-// importar default como User e exportá-lo
+// re-exportar o 'export default' como User
 export {default as User} from './user.js';
 ...
 ```
+
+Uma diferença notável entre `export ... from` e `import/export` está em que módulos re-exportados não estão disponíveis no arquivo corrente. Assim, dentro do exemplo acima de `auth/index.js` nós não podemos utilizar funções `login/logout` re-exportadas.
 
 ### Reexportando o export default
 
 O export default precisa de um tratamento separado ao reexportar.
 
-Let's say we have `user.js` with the `export default class User` and would like to re-export it:
+Digamos que nós temos `user.js` com o `export default class User` e gostaríamos de o re-exportar:
 
 ```js
 // 📁 user.js
 export default class User {
   // ...
 }
-```
+```   
 
-We can come across two problems with it:
+Podemos nos deparar com dois problemas para isso:
 
 1. `export User from './user.js'` não funcionará. Isso levaria a um erro de sintaxe.
 
@@ -420,14 +428,14 @@ Você pode verificar lendo-os e relembrando o que eles significam:
 
 Import:
 
-- Exports com nome do módulo:
+- Importando exports com nome:
   - `import {x [as y], ...} from "module"`
-- Export default:  
+- Importando o export default:  
   - `import x from "module"`
   - `import {default as x} from "module"`
-- Tudo:
+- Importar tudo:
   - `import * as obj from "module"`
-- Importar o módulo (seu código executado), sem o atribuir a uma variável:
+- Importar o módulo (o seu código é executado), sem atribuir nenhum dos seus exports a variáveis:
   - `import "module"`
 
 Podemos colocar as declarações `import/export` no início ou no final de um script, isso não importa.
