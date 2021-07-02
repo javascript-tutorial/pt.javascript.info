@@ -41,8 +41,8 @@ Objetos são "mais pesados" que primitivos. Eles exigem recursos adicionais para
 
 Aqui está o paradoxo enfrentado pelo criador do JavaScript:
 
-- Há muitas coisas que alguém poderia querer fazer com um primitivo como uma string ou um número. Seria ótimo acessá-los como métodos.
-- Primitivos devem ser o mais rápido e leve possível.
+- Há muitas coisas que alguém poderia querer fazer com um primitivo como uma string ou um número. Seria ótimo acessá-los usando métodos.
+- Primitivos devem ser o mais rápidos e leves possível.
 
 A solução parece um pouco estranha, mas aqui está:
 
