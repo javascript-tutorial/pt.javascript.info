@@ -48,7 +48,7 @@ Sistemas para a construção de projetos modernos, tais como o [webpack](http://
 
 Novas funcionalidades da linguagem podem incluir não só construções sintáticas e operadores, mas também funções incorporadas.
 
-Por exemplo, `Math.trunc(n)` é uma função que "corta" a parte decimal de um número, ex. `Math.trunc(1.23) = 1`.
+Por exemplo, `Math.trunc(n)` é uma função que "corta" a parte decimal de um número, ex. `Math.trunc(1.23) = 1` retorna 1.
 
 Em alguns (muito desatualizados) interpretadores de JavaScript, não existe `Math.trunc`, por isto esse código irá falhar.
 
