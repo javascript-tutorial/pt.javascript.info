@@ -1,4 +1,9 @@
 describe("teste", function() {
+  // Mocha, geralmente espera pelos testes por 2 segundos antes de os considerar errados
+
+  this.timeout(200000); // Com este código nós aumentamos esse tempo - neste caso, para 200,000 
+  
+  // Isto, por causa da função "alert", porque se você se demorar a pressionar o botão "OK" oos testes não irão passar!
 
   // Mocha geralmente espera pelos testes por 2 segundos, antes de os considerar errados
   

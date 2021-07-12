@@ -216,7 +216,7 @@ export default function(user) { // função sem nome
 export default ['Jan', 'Fev', 'Mar','Abr', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 ```
 
-Não prover um nome é ok, porque deve ter apenas um `export default` por arquivo, então `import` - sem as chaves - vai saber o que importar.
+Não prover um nome é ok, porque deve ter apenas um `export default` por arquivo, então `import` sem as chaves vai saber o que importar.
 
 Sem `default`, esse export causaria um erro:
 
@@ -241,7 +241,7 @@ function sayHi(user) {
 export {sayHi as default};
 ```
 
-Ou, em outra situação, digamos que um módulo `user.js` tenha um export principal "default" e alguns outros nomeados (caso raro, mas acontece)::
+Ou, em outra situação, digamos que um módulo `user.js` tenha um export principal "default" e alguns outros nomeados (caso raro, mas acontece):
 
 ```js
 // 📁 user.js
@@ -321,7 +321,7 @@ export {default as User} from './user.js'; // reexporta o default
 
 Por que isso seria necessário? Vamos ver um caso de uso prático.
 
-Imagine que estamos escrevendo um "pacote": uma pasta com muitos módulos, com algumas funcionalidades exportadas (ferramentas como NPM permitem publicar e distribuir esses pacotes), e muitos módulos são apenas "auxiliares", para uso interno em outro pacote de módulos.
+Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow us to publish and distribute such packages, but we don't have to use them), and many modules are just "helpers", for internal use in other package modules.
 
 A estrutura de arquivos pode ser assim:
 ```
@@ -337,11 +337,17 @@ auth/
         ...
 ```
 
-Gostaríamos de exportar a funcionalidade do pacote via um único ponto de entrada, o arquivo principal `auth/index.js`, para ser usado assim:
+Gostaríamos de exportar a funcionalidade do pacote via um único ponto de entrada.
+
+Por outras palavras, uma pessoa que quisesse usar o nosso pacote, deveria importar o arquivo principal `auth/index.js`.
+
+Desta forma:
 
 ```js
 import {login, logout} from 'auth/index.js'
 ```
+
+O "arquivo principal" `auth/index.js`, exporta todas as funcionalidades que gostaríamos de fornecer no nosso pacote.
 
 A ideia é que os desenvolvedores que utilizarem nosso pacote não possam interferir na sua estrutura interna. Eles não devem procurar por arquivos dentro da pasta do nosso pacote. Apenas exportamos o que for necessário no `auth/index.js` e mantemos o resto escondido de olhos curiosos.
 
@@ -366,29 +372,32 @@ A sintaxe `export ... from ...` é apenas uma notação mais curta para essa imp
 
 ```js
 // 📁 auth/index.js
-// importar login/logout e imediatamente exportá-los
+// re-exportar login/logout
 export {login, logout} from './helpers.js';
 
-// importar default como User e exportá-lo
+// re-exportar o 'export default' como User
 export {default as User} from './user.js';
 ...
 ```
+
+Uma diferença notável entre `export ... from` e `import/export` está em que módulos re-exportados não estão disponíveis no arquivo corrente. Assim, dentro do exemplo acima de `auth/index.js` nós não podemos utilizar funções `login/logout` re-exportadas.
 
 ### Reexportando o export default
 
 O export default precisa de um tratamento separado ao reexportar.
 
-
-Vamos dizer que temos `user.js`, e gostaríamos de reexportar a classe `User`
+Digamos que nós temos `user.js` com o `export default class User` e gostaríamos de o re-exportar:
 
 ```js
 // 📁 user.js
 export default class User {
   // ...
 }
-```
+```   
 
-1. `export User from './user.js'` não funcionará. O que pode dar errado? ... Mas isso é um erro de sintaxe!
+Podemos nos deparar com dois problemas para isso:
+
+1. `export User from './user.js'` não funcionará. Isso levaria a um erro de sintaxe.
 
     Para reexportar o export default, nós temos que escrever `export {default as User}`, como no exemplo acima.
 
@@ -400,7 +409,7 @@ export default class User {
     export {default} from './user.js'; // para reexportar o export default
     ```
 
-Essas esquisitices de reexportar o export default são um dos motivos pelos quais alguns desenvolvedores não gostam deles.
+Essas esquisitices de reexportar um default export são um dos motivos pelos quais alguns desenvolvedores não gostam de default exports e preferem os nomeados.
 
 ## Resumo
 
@@ -419,14 +428,14 @@ Você pode verificar lendo-os e relembrando o que eles significam:
 
 Import:
 
-- Exports com nome do módulo:
+- Importando exports com nome:
   - `import {x [as y], ...} from "module"`
-- Export default:  
+- Importando o export default:  
   - `import x from "module"`
   - `import {default as x} from "module"`
-- Tudo:
+- Importar tudo:
   - `import * as obj from "module"`
-- Importar o módulo (seu código executado), sem o atribuir a uma variável:
+- Importar o módulo (o seu código é executado), sem atribuir nenhum dos seus exports a variáveis:
   - `import "module"`
 
 Podemos colocar as declarações `import/export` no início ou no final de um script, isso não importa.
@@ -453,4 +462,4 @@ if (something) {
 
 ... Mas e se realmente precisarmos importar algo condicionalmente? Ou na hora certa? Como, carregar um módulo mediante solicitação, quando é realmente necessário?
 
-Veremos importações dinâmicas no próximo capítulo.
+Veremos importações dinâmicas no próximo artigo.

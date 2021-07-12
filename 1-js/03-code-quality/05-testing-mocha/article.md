@@ -59,7 +59,9 @@ Uma *spec* tem três principais blocos construtores, como pode ver acima:
 `assert.equal(valor1, valor2)`
 : O código dentro do bloco `it`, se a implementação estiver correta, não deverá mostrar erros.
 
-    Funções `assert.*` são usadas para verificar se `pow` funciona como esperado. Aqui mesmo, estamos a usar uma delas -- `assert.equal`, que compara argumentos e dá como resultado um erro se eles não forem iguais. Aqui, ela verifica se o resultado de `pow(2, 3)` é `8`. Existem outros tipos de comparações e verificações, que adicionaremos mais adiante.
+```text
+Funções `assert.*` são usadas para verificar se `pow` funciona como esperado. Aqui mesmo, estamos a usar uma delas -- `assert.equal`, que compara argumentos e dá como resultado um erro se eles não forem iguais. Aqui, ela verifica se o resultado de `pow(2, 3)` é `8`. Existem outros tipos de comparações e verificações, que adicionaremos mais adiante.
+```
 
 A especificação pode ser executada, e irá correr o teste especificado no bloco `it`. O que veremos mais adiante.
 
@@ -93,7 +95,8 @@ Estas bibliotecas, são adequadas a testes quer num navegador (*in-browser*) com
 
 A página HTML completa, com estas infraestruturas e a *spec* `pow`:
 
-```html src="index.html"
+```html
+  src="index.html"
 ```
 
 A página pode ser dividida em cinco partes:
@@ -159,8 +162,8 @@ Aqui, nós podemos selecionar uma das duas formas para organizar o teste:
         assert.equal(pow(2, 3), 8);
       });
 
-      it("3 elevado a 3 é 27", function() {
-        assert.equal(pow(3, 3), 27);
+      it("3 elevado a 4 é 81", function() {
+        assert.equal(pow(3, 4), 81);
       });
 
     });
@@ -182,7 +185,7 @@ O resultado:
 
 [iframe height=250 src="pow-2" edit border="1"]
 
-Como nós esperávamos, o segundo teste falhou. Seguramente, a nossa função retorna sempre `8`, enquanto o `assert` espera `27`.
+Como nós esperávamos, o segundo teste falhou. Seguramente, a nossa função retorna sempre `8`, enquanto o `assert` espera `81`.
 
 ## Melhorando a implementação
 
@@ -283,7 +286,7 @@ describe("test", function() {
 
 A sequência da execução será:
 
-```
+```text
 Testes iniciados – antes de todos os testes (before)
 Antes de um teste - entrando para um teste (beforeEach)
 1

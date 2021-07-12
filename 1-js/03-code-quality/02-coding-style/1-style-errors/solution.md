@@ -11,7 +11,7 @@ function pow(x,n)  // <- nenhum espaço entre argumentos
 }
 
 let x=prompt("x?",''), n=prompt("n?",'') // <-- tecnicamente possível,
-// mas o melhor é torná-la em 2 linhas, também não existem espaços, e falta o ;
+// mas o melhor é a tornar em 2 linhas, também não existem espaços, e falta o ;
 if (n<0)  // <- nenhum espaço dentro (n < 0), e deveria existir uma linha extra sobre a condição
 {   // <- chaveta de abertura numa linha em separado
   // abaixo - linhas longas podem ser repartidas por múltiplas linhas para melhorar a legíbilidade
