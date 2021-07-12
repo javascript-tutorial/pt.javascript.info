@@ -1,105 +1,105 @@
-# Interaction: alert, prompt, confirm
+# Interação: alert, prompt, confirm
 
-As we'll be using the browser as our demo environment, let's see a couple of functions to interact with the user: `alert`, `prompt` and `confirm`.
+Como usuaremos o navegador como nosso ambiente de demonstração, vamos ver algumas funções para interagir com o usuário: `alert`, `prompt` e `confirm`.
 
 ## alert
 
-This one we've seen already. It shows a message and waits for the user to press "OK".
+Esta já vimos. Ela mostra uma mensagem e aguarda o usuário pressionar "OK".
 
-For example:
+Por exemplo:
 
 ```js run
-alert("Hello");
+alert('Olá');
 ```
 
-The mini-window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons, etc, until they have dealt with the window. In this case -- until they press "OK".
+A mini-janela com a mensagem é chamada de _modal window_. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc, até que ele tenha lidado com a janela. Nesse caso -- até pressionar "OK".
 
 ## prompt
 
-The function `prompt` accepts two arguments:
+A função `prompt` aceita dois argumentos:
 
 ```js no-beautify
 result = prompt(title, [default]);
 ```
 
-It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.
+Mostra uma janela modal com uma mensagem de texto, um campo de entrada para o visitante, e os botões OK/Cancel.
 
 `title`
-: The text to show the visitor.
+: Texto para ser mostrado ao visitante.
 
 `default`
-: An optional second parameter, the initial value for the input field.
+: Um parâmetro opcional, o valor inicial para o campo de entrada.
 
-```smart header="The square brackets in syntax `[...]`"
-The square brackets around `default` in the syntax above denote that the parameter is optional, not required.
-```
+```smart header="Os colchetes na sintaxe `[...]`"
+ Os colchetes ao redor de `default` na sintaxe acima denotam que o parâmetro é opcional, não é obrigatório.
+````
 
-The visitor can type something in the prompt input field and press OK. Then we get that text in the `result`. Or they can cancel the input by pressing Cancel or hitting the `key:Esc` key, then we get `null` as the `result`.
+O visitante pode digitar algo no campo de entrada do prompt e pressionar OK. Então nós temos esse texto no `result`.  Ou ele pode cancelar a entrada pressionando Cancelar ou `key:Esc`, então nos temos `null` como o `result`.
 
-The call to `prompt` returns the text from the input field or `null` if the input was canceled.
+A chamada do `prompt` retorna o texto do campo de entrada ou `null` se a entrada for cancelada.
 
-For instance:
-
-```js run
-let age = prompt('How old are you?', 100);
-
-alert(`You are ${age} years old!`); // You are 100 years old!
-```
-
-````warn header="In IE: always supply a `default`"
-The second parameter is optional, but if we don't supply it, Internet Explorer will insert the text `"undefined"` into the prompt.
-
-Run this code in Internet Explorer to see:
+Por exemplo:
 
 ```js run
-let test = prompt("Test");
-```
+let age = prompt('Qual a sua idade?', 100);
 
-So, for prompts to look good in IE, we recommend always providing the second argument:
+alert(`Você tem ${age} anos!`); //Você tem 100 anos!
+````
+
+````warn header="No IE: sempre forneça um `default`"
+O segundo parâmetro é opcional, mas se não o fornecermos, o Internet Explorer irá inserir o texto `"undefined"` no prompt.
+
+Execute este código no Internet Explorer para visualizar:
 
 ```js run
-let test = prompt("Test", ''); // <-- for IE
+let test = prompt('Teste');
+```
+
+Portanto, para que os prompts tenham boa aparência no IE, recomendamos que sempre forneça o segundo argumento:
+
+```js run
+let test = prompt('Teste', ''); // <-- para o IE
 ```
 ````
 
 ## confirm
 
-The syntax:
+A sintaxe:
 
 ```js
 result = confirm(question);
 ```
 
-The function `confirm` shows a modal window with a `question` and two buttons: OK and Cancel.
+A função `confirm` mostra uma janela modal com uma `question` e dois botões: OK e Cancelar.
 
-The result is `true` if OK is pressed and `false` otherwise.
+O resultado é `true` se OK for pressionado e `false` caso contrário.
 
-For example:
+Por exemplo:
 
 ```js run
-let isBoss = confirm("Are you the boss?");
+let isBoss = confirm("Você é o chefe?");
 
-alert( isBoss ); // true if OK is pressed
+alert( isBoss ); // true se OK for pressionado
 ```
 
-## Summary
+## Sumário
 
-We covered 3 browser-specific functions to interact with visitors:
+Cobrimos 3 funções específicas do navegador para interagir com o visitante:
 
 `alert`
-: shows a message.
+: mostra uma mensagem.
 
 `prompt`
-: shows a message asking the user to input text. It returns the text or, if Cancel button or `key:Esc` is clicked, `null`.
+: mostra uma mensagem pedindo para o usuário inserir texto. Ela retorna o texto ou, se CANCEL ou `key:Esc` for clicado, `null`.
 
 `confirm`
-: shows a message and waits for the user to press "OK" or "Cancel". It returns `true` for OK and `false` for Cancel/`key:Esc`.
+: mostra uma mensagem e espera que o usuário pressione  "OK" ou "Cancel". Ela retorna `true` para OK e `false` para Cancel/`key:Esc`.
 
-All these methods are modal: they pause script execution and don't allow the visitor to interact with the rest of the page until the window has been dismissed.
+Todos esse métodos são modais: eles pausam a execução do script e não permitem ao visitante interagir com o resto da página até que a janela seja descartada.
 
-There are two limitations shared by all the methods above:
+Existem duas limitações compartilhadas entre esses metódos acima:
 
-1. The exact location of the modal window is determined by the browser. Usually, it's in the center.
-2. The exact look of the window also depends on the browser. We can't modify it.
+1. A localização exata da janela modal é determinada pelo navegador. Geralmente, está no centro.
+2. A aparência exata da janela também depende do navegador. Nós não podemos modificá-la.
 
-That is the price for simplicity. There are other ways to show nicer windows and richer interaction with the visitor, but if "bells and whistles" do not matter much, these methods work just fine.
+Este é o preço da simplicidade. Existem outras maneiras de mostrar janelas mais agradáveis e interações mais ricas aos visitantes, mas se "sinos e assobios" não importam muito, esses métodos funcionam bem.

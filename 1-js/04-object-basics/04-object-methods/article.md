@@ -81,7 +81,7 @@ let user = {
 // a abreviação de método tem um melhor aspeto, não é?
 let user = {
 *!*
-  sayHi() { // o mesmo que "sayHi: function()"
+  sayHi() { // o mesmo que "sayHi: function(){...}"
 */!*
     alert("Olá");
   }
