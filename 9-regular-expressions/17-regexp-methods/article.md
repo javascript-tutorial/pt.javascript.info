@@ -1,6 +1,6 @@
 # Métodos de RegExp e String
 
-Neste artigo, abordaremos vários métodos que funcionam com regexps em profundidade.
+Neste artigo, abordaremos em profundidade vários métodos que funcionam com regexps.
 
 ## str.match(regexp)
 
