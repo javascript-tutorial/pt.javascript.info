@@ -312,7 +312,7 @@ alert( /amo/i.test(str) ); // false
 alert( str.search(/love/i) != -1 ); // false
 ```
 
-Se a regexp tiver a flag `padrão:g`, o `regexp.test` procura na propriedade `regexp.lastIndex` e atualiza-a, assim como `regexp.exec`
+Se a regexp tiver a flag `padrão:g`, então `regexp.test` procura a partir da propriedade `regexp.lastIndex` e atualiza esta propriedade, assim como `regexp.exec`.
 
 Então podemos usar isso para buscar a partir de uma posição fornecida:
 
