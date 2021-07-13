@@ -327,7 +327,7 @@ alert( regexp.test(str) ); // false (sem correspondência)
 ```
 
 ````warn header="A mesma regexp global testada repetidamente em diferentes fontes pode falhar"
-Se aplicarmos a mesma regexp global em diferentes entradas, isso poderá levar a resultados incorreto, porque a chamada `regexp.test` avança a propriedade `regexp.lastIndex`, portanto a pesquisa em outra string pode ter um início numa posição diferente de zero.
+Se aplicarmos a mesma regexp global a diferentes entradas, isso poderá levar a um resultado incorreto, porque a chamada `regexp.test` avança a propriedade `regexp.lastIndex`, portanto a pesquisa em outra string pode ter um início numa posição diferente de zero.
 
 Por exemplo, aqui chamamos `regexp.test` duas vezes no mesmo texto e a segunda vez falha:
 
