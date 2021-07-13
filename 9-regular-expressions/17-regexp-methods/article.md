@@ -340,5 +340,5 @@ alert( regexp.test("javascript") ); // false
 
 Isso é exatamente porque `regexp.lastIndex` é diferente de zero no segundo teste.
 
-Para contornar isso, podemos definir `regexp.lastIndex = 0` antes de cada busca. Ou, em vez de chamar métodos no regexp, usar métodos de string `str.match/search/...`, eles não usam `lastIndex`.
+Para contornar isso, podemos definir `regexp.lastIndex = 0` antes de cada busca. Ou, em vez de chamar métodos com regexp, usar métodos com string `str.match/search/...`, eles não usam `lastIndex`.
 ````
