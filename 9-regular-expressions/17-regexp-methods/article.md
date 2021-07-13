@@ -44,7 +44,7 @@ Possui 3 modos:
     let result = str.match(/HTML/);
 
     alert(result); // null
-    alert(result.length); // Error: Cannot read property 'length' of null
+    alert(result.length); // Error: Cannot read property 'length' of null (Erro: Não é possivel ler a propriedade 'length' de null)
     ```
 
     Se desejamos que o resultado seja uma matriz, podemos escrever assim:
