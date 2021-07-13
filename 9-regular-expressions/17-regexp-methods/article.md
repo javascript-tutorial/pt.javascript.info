@@ -321,7 +321,7 @@ let regexp = /amo/gi;
 
 let str = "Eu amo JavaScript";
 
-// inicia a pesquisa da posição 10:
+// inicia a pesquisa na posição 10:
 regexp.lastIndex = 10;
 alert( regexp.test(str) ); // false (sem correspondência)
 ```
