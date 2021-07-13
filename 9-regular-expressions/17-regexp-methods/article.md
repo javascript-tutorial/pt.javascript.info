@@ -20,7 +20,7 @@ Possui 3 modos:
     alert( result.length ); // 2
 
     // Informação adicional:
-    alert( result.index );  // 0 (posição da correspondÊncia)
+    alert( result.index );  // 7 (posição da correspondÊncia)
     alert( result.input );  // Eu amo JavaScript (string original)
     ```
 
