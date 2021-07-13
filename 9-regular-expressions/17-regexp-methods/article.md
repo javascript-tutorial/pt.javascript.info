@@ -63,8 +63,8 @@ O método `str.matchAll(regexp)` é uma "nova, melhorada" variante do `str.match
 
 Existem 3 diferenças em relação ao `match`:
 
-1. Ela retorna um objeto iterável com correspondências em vez de uma matriz. Podemos fazer uma matriz regular usando `Array.from`.
-2. Cada correspondência é retornada como uma matriz com grupos de captura (o mesmo formate que `str.match` sem a flag `padrão:g`).
+1. Ela retorna um objeto iterável com correspondências em vez de uma matriz. Podemos fazer dele uma matriz regular usando `Array.from`.
+2. Cada correspondência é retornada como uma matriz com grupos de captura (o mesmo formato que `str.match` sem a flag `padrão:g`).
 3. Se não houver resultados, não retornará `null`, mas um objeto iterável vazio.
 
 Exemplo de uso:
@@ -230,7 +230,7 @@ O uso de uma função nos dá o poder de substituição definitivo, porque obté
 
 ## regexp.exec(str)
 
-O método `regexp.exec(str)` retorna uma correspondência para `regexp` na string `str`. Diferentes dos métodos anteriores, é chamado numa regexp, não em uma string.
+O método `regexp.exec(str)` retorna uma correspondência para `regexp` na string `str`. Ao contrário dos métodos anteriores, é chamado numa regexp, não em uma string.
 
 Se comporta de modo diferente dependendo se a regexp possui a flag `padrão:g`.
 

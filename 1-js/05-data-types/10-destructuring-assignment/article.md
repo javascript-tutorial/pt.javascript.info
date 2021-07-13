@@ -151,7 +151,7 @@ We can swap more than two variables this way.
 
 ### The rest '...'
 
-Usually, if the array is longer when the list at the left, the "extra" items are omitted.
+Usually, if the array is longer than the list at the left, the "extra" items are omitted.
 
 For example, here only two items are taken, and the rest is just ignored:
 
@@ -160,7 +160,7 @@ let [name1, name2] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 
 alert(name1); // Julius
 alert(name2); // Caesar
-// Furher items aren't assigned anywhere
+// Further items aren't assigned anywhere
 ```
 
 If we'd like also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
