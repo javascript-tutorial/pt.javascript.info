@@ -8,7 +8,7 @@ O método `str.macth(regexp)` pesquisa correspondências para `regexp` na string
 
 Possui 3 modos:
 
-1. Se a `regexp` não tiver a flag `padrão:g`, ela retornará a primeira correspondências como uma matriz com a captura de grupos e propriedades `index` (posição da correspondência), `input` (string de entrada, igual a `str`):
+1. Se a `regexp` não tiver a flag `padrão:g`, ela retornará a primeira correspondência como uma matriz com a captura de grupos e propriedades `index` (posição da correspondência), `input` (string de entrada, igual a `str`):
 
     ```js run
     let str = "Eu amo JavaScript";
