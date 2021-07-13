@@ -24,7 +24,7 @@ Possui 3 modos:
     alert( result.input );  // Eu amo JavaScript (string original)
     ```
 
-2. Se a `regexp` tiver a flag `padrão:g`, ela retornará uma matriz de todas as correspondências como strings, sem capturar grupos e outros detalhes.
+2. Se a `regexp` tiver a flag `padrão:g`, ela retornará uma matriz com todas as correspondências como strings, sem capturar grupos e outros detalhes.
     ```js run
     let str = "Eu amo JavaScript";
 
