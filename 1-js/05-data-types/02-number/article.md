@@ -16,21 +16,29 @@ Imagine we need to write 1 billion. The obvious way is:
 let billion = 1000000000;
 ```
 
-But in real life we usually avoid writing a long string of zeroes as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+We also can use underscore `_` as the separator:
 
-In JavaScript, we shorten a number by appending the letter `"e"` to the number and specifying the zeroes count:
+```js
+let billion = 1_000_000_000;
+```
+
+Here the underscore `_` plays the role of the "syntactic sugar", it makes the number more readable. The JavaScript engine simply ignores `_` between digits, so it's exactly the same one billion as above.
+
+In real life though, we try to avoid writing long sequences of zeroes. We're too lazy for that. We'll try to write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+
+In JavaScript, we can shorten a number by appending the letter `"e"` to it and specifying the zeroes count:
 
 ```js run
 let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
 
-alert( 7.3e9 );  // 7.3 billions (7,300,000,000)
+alert( 7.3e9 );  // 7.3 billions (same as 7300000000 or 7_300_000_000)
 ```
 
-In other words, `"e"` multiplies the number by `1` with the given zeroes count.
+In other words, `e` multiplies the number by `1` with the given zeroes count.
 
 ```js
-1e3 = 1 * 1000
-1.23e6 = 1.23 * 1000000
+1e3 = 1 * 1000 // e3 means *1000
+1.23e6 = 1.23 * 1000000 // e6 means *1000000
 ```
 
 Now let's write something very small. Say, 1 microsecond (one millionth of a second):
@@ -125,7 +133,7 @@ There are several built-in functions for rounding:
 : Rounds up: `3.1` becomes `4`, and `-1.1` becomes `-1`.
 
 `Math.round`
-: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
+: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4`, the middle case: `3.5` rounds up to `4` too.
 
 `Math.trunc` (not supported by Internet Explorer)
 : Removes anything after the decimal point without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
@@ -152,7 +160,7 @@ There are two ways to do so:
     ```js run
     let num = 1.23456;
 
-    alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
+    alert( Math.round(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
     ```
 
 2. The method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to `n` digits after the point and returns a string representation of the result.
@@ -180,7 +188,7 @@ There are two ways to do so:
 
 ## Imprecise calculations
 
-Internally, a number is represented in 64-bit format [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), so there are exactly 64 bits to store a number: 52 of them are used to store the digits, 11 of them store the position of the decimal point (they are zero for integer numbers), and 1 bit is for the sign.
+Internally, a number is represented in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), so there are exactly 64 bits to store a number: 52 of them are used to store the digits, 11 of them store the position of the decimal point (they are zero for integer numbers), and 1 bit is for the sign.
 
 If a number is too big, it would overflow the 64-bit storage, potentially giving an infinity:
 
@@ -208,7 +216,7 @@ Ouch! There are more consequences than an incorrect comparison here. Imagine you
 
 But why does this happen?
 
-A number is stored in memory in its binary form, a sequence of ones and zeroes. But fractions like `0.1`, `0.2` that look simple in the decimal numeric system are actually unending fractions in their binary form.
+A number is stored in memory in its binary form, a sequence of bits - ones and zeroes. But fractions like `0.1`, `0.2` that look simple in the decimal numeric system are actually unending fractions in their binary form.
 
 In other words, what is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
 
@@ -216,7 +224,7 @@ So, division by powers `10` is guaranteed to work well in the decimal system, bu
 
 There's just no way to store *exactly 0.1* or *exactly 0.2* using the binary system, just like there is no way to store one-third as a decimal fraction.
 
-The numeric format IEEE-754 solves this by rounding to the nearest possible number. These rounding rules normally don't allow us to see that "tiny precision loss", so the number shows up as `0.3`. But beware, the loss still exists.
+The numeric format IEEE-754 solves this by rounding to the nearest possible number. These rounding rules normally don't allow us to see that "tiny precision loss", but it exists.
 
 We can see this in action:
 ```js run
@@ -327,7 +335,7 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
 There is a special built-in method [`Object.is`](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
 
 1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
-2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, it rarely matters, but these values technically are different.
+2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's true, because internally the number has a sign bit that may be different even if all other bits are zeroes.
 
 In all other cases, `Object.is(a, b)` is the same as `a === b`.
 
@@ -383,7 +391,7 @@ JavaScript has a built-in [Math](https://developer.mozilla.org/en/docs/Web/JavaS
 A few examples:
 
 `Math.random()`
-: Returns a random number from 0 to 1 (not including 1)
+: Returns a random number from 0 to 1 (not including 1).
 
     ```js run
     alert( Math.random() ); // 0.1234567894322
@@ -400,7 +408,7 @@ A few examples:
     ```
 
 `Math.pow(n, power)`
-: Returns `n` raised the given power
+: Returns `n` raised to the given power.
 
     ```js run
     alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
