@@ -179,7 +179,7 @@ alert( "1 - 5".match(/\d\s-\s\d/) ); // 1 - 5, também funciona
 
 **Um espaço é um caractere. Igual em importância a qualquer outro caractere.**
 
-Não podemos adicionar ou remover espaços de uma expressão regular e esperamos funcionar da mesma maneira.
+Não podemos adicionar ou remover espaços de uma expressão regular e esperar que funcione da mesma maneira.
 
 Em outras palavras, em uma expressão regular, todos os caracteres são importantes, espaços também.
 ````
