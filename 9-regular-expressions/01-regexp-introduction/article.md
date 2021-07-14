@@ -59,7 +59,7 @@ Existem apenas 6 delas em JavaScript:
 : Ativa o suporte completo de Unicode. A flag permite o processamento correto de pares substitutos. Mais sobre isso no capítulo <info:regexp-unicode>.
 
 `padrão:y`
-: Modo "Fixo": pesquisando na posição exata no texto (abordado no capítulo <info:regexp-sticky>)
+: Modo "fixo": pesquisando na posição exata no texto (abordado no capítulo <info:regexp-sticky>)
 
 ```smart header="Cores"
 A partir daqui, o esquema de cores é:
