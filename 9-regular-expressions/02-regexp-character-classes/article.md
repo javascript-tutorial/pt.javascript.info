@@ -41,7 +41,7 @@ As mais usadas são:
 : Um dígito: um caractere de `0` a `9`.
 
 `padrão:\s` ("s" é de "space")
-: Um símbolo de espaço: inclui espaços, tabulações `\t`, novas linhas `\n` e alguns outros caracteres raros, como `\v`, `\f` and `\r`.
+: Um símbolo de espaço: inclui espaços, tabulações `\t`, novas linhas `\n` e alguns outros caracteres raros, como `\v`, `\f` e `\r`.
 
 `padrão:\w` ("w" é de "word")
 : Um caractere de texto: uma letra do alfabeto latino ou um dígito ou um sublinhado `_`. Letras não latinas (como cirílico ou hindu) não pertecem ao `padrão:\w`.
