@@ -25,7 +25,7 @@ regexp = /padrão/gmi; // com flags `g`, `m` e `i` (a ser abordado em breve)
 
 Barras `padrão:/.../` informam ao JavaScript que estamos criando uma expressão regular. Eles desempenham o mesmo papel que aspas para strings.
 
-Em ambos os casos, a `regexp` se torna uma instância da classe interna `RegExp`.
+Em ambos os casos, a `regexp` se torna numa instância da classe interna `RegExp`.
 
 A principal diferença entre essas duas sintaxes é que o padrão usando barras `/.../` não permite a inserção de expressões (como modelos de string literais com `${...}`). Eles são totalmente estáticos.
 
