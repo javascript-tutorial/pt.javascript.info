@@ -65,7 +65,7 @@ Existem apenas 6 delas em JavaScript:
 A partir daqui, o esquema de cores é:
 
 - regexp -- `padrão:vermelho`
-- string (onde pesquisamos) -- `sujeito:azul`
+- string (onde pesquisamos) -- `fonte:azul`
 - result -- `correspondência:verde`
 ```
 
