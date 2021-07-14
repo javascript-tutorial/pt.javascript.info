@@ -177,7 +177,7 @@ alert( "1 - 5".match(/\d - \d/) ); // 1 - 5, agora funciona
 alert( "1 - 5".match(/\d\s-\s\d/) ); // 1 - 5, também funciona
 ```
 
-**Um espaço é um caractere. Igual em importância com qualquer outro caractere.**
+**Um espaço é um caractere. Igual em importância a qualquer outro caractere.**
 
 Não podemos adicionar ou remover espaços de uma expressão regular e esperamos funcionar da mesma maneira.
 
