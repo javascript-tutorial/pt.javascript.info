@@ -198,6 +198,6 @@ Existem as seguintes classes de caracteres:
 
 ...Mas isso não é tudo!
 
-A codificação unicode, usada pelo JavaScript para strings, fornece muitas propriedades para caracteres, como: a qual idioma a letra pertence (se é uma letra), é um sinal de pontuação etc.
+A codificação unicode, usada pelo JavaScript para strings, fornece muitas propriedades para caracteres, como: a qual idioma a letra pertence (se for uma letra), é um sinal de pontuação etc.
 
 Também podemos pesquisar por essas propriedades. Isso requer a flag `padrão:u`, abordada no próximo artigo.
