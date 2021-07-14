@@ -189,7 +189,7 @@ Em outras palavras, em uma expressão regular, todos os caracteres são importan
 Existem as seguintes classes de caracteres:
 
 - `padrão:\d` - dígitos.
-- `padrão:\D` - sem dígitos.
+- `padrão:\D` - não-dígitos.
 - `padrão:\s` - símbolos de espaço, tabulações, novas linhas.
 - `padrão:\S` - todos, exceto `padrão:\s`.
 - `padrão:\w` - Letras latinas, dígitos, sublinhado `'_'`.
