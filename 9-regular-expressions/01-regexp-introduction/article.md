@@ -143,7 +143,7 @@ O segundo argumento é a string de `substituição`. Podemos usar combinações 
 |`$&`|insere toda a correspondência|
 |<code>$&#096;</code>|insere uma parte da string antes da correspondência|
 |`$'`|insere uma parte da string depois da correspondência|
-|`$n`|se `n` for um número de 1-2 dígitos, ela inserirá o conteúdo dos enésimos parênteses, mais sobre sso no capítulo <info:regexp-groups>|
+|`$n`|se `n` for um número de 1-2 dígitos, ela inserirá o conteúdo dos enésimos parênteses, mais sobre isso no capítulo <info:regexp-groups>|
 |`$<nome>`|insere o conteúdo dos parênteses com o `nome` fornecido, mais sobre isso no capítulo <info:regexp-groups>|
 |`$$`|insere o caractere `$` |
 
