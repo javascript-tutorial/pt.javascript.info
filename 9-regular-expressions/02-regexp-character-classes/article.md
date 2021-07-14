@@ -50,7 +50,7 @@ Por exemplo, `padrão:\d\s\w` significa um "dígito" seguido de um "caractere de
 
 **Uma regexp pode conter símbolos regulares e classes de caracteres.**
 
-Por exemplo, `padrão:CSS\d` corresponde a uma string `correspondência:CSS` com um dígito após:
+Por exemplo, `padrão:CSS\d` corresponde a uma string `correspondência:CSS` com um dígito a seguir:
 
 ```js run
 let str = "Existe CSS4?";
