@@ -71,7 +71,7 @@ A correspondência (cada classe de caracteres regexp possui o caractere de resul
 
 ## Classes inversas
 
-Para cada classe de caractere existe uma "classe inversa", denotada com a mesma letra, mas em maiúsculas.
+Para cada classe de caracteres existe uma "classe inversa", denotada com a mesma letra, mas em maiúsculas.
 
 O "inverso" significa que ele corresponde a todos os outros caracteres, por exemplo:
 
