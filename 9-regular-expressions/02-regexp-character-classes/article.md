@@ -1,6 +1,6 @@
 # Classes de caracteres
 
-Considere uma tarefa prática - temos um número de telefone como `"+7(903)-123-45-67"` e precisamos transformá-lo em números puros: `79031234567`.
+Considere uma tarefa prática - temos um número de telefone como `"+7(903)-123-45-67"` e precisamos transformá-lo em números apenas: `79031234567`.
 
 Para fazer isso, podemos encontrar e remover qualquer coisa que não seja um número. Classes de personagens podem ajudar com isso.
 
