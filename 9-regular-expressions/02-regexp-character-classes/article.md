@@ -43,7 +43,7 @@ As mais usadas são:
 `padrão:\s` ("s" é de "space")
 : Um símbolo de espaço: inclui espaços, tabulações `\t`, novas linhas `\n` e alguns outros caracteres raros, como `\v`, `\f` e `\r`.
 
-`padrão:\w` ("w" é de "word")
+`padrão:\w` ("w" é de "word" (*palavra*))
 : Um caractere de texto: uma letra do alfabeto latino ou um dígito ou um sublinhado `_`. Letras não latinas (como cirílico ou hindu) não pertecem ao `padrão:\w`.
 
 Por exemplo, `padrão:\d\s\w` significa um "dígito" seguido de um "caractere de espaço" seguido de um "caractere de texto", como `correspondência:1 a`.
