@@ -171,7 +171,7 @@ Informações completas sobre os métodos são fornecidas no artigo <info:regexp
 ## Resumo
 
 - Uma expressão regular consiste em um padrão e flags opcionais: `padrão:g`, `padrão:i`, `padrão:m`, `padrão:u`, `padrão:s`, `padrão:y`.
-- Sem flags e símbolos especiais (que estudaremos mais adiante), a pesquisa por uma regexp é igual à pesquisa de substring.
+- Sem flags e símbolos especiais (que estudaremos mais adiante), a pesquisa por uma regexp é igual à pesquisa com substring.
 - O método `str.match(regexp)` procura por correspondências: todas elas se houver flag `padrão:g`, caso contrário, apenas o primeiro.
 - O método `str.replace(regexp, substituição)` substitui as correspondências encontradas usando `regexp` por `replace`: todas elas se houver uma flag `padrão:g`, caso contrário, somente a primeira.
 - O método `regexp.test(str)` retorna `true` se houver pelo menos uma correspondência, caso contrário, retorna `false`.
