@@ -36,7 +36,7 @@ Conversões para string são as mais fáceis. `false` se torna `"false"`, `null`
 
 As conversões numéricas acontecem automaticamente em funções e expressões matemáticas.
 
-Por exemplo, quando `/` é usado em valores que não são number:
+Por exemplo, quando `/` é usado com valores que não são números:
 
 ```js run
 alert( "6" / "2" ); // 3, strings viram numbers
