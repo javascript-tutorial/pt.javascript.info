@@ -130,7 +130,7 @@ A conversão segue as seguintes regras:
 |`undefined`|`NaN`|
 |`null`|`0`|
 |`true` e `false` | `1` e `0` |
-| `string` | Espaços em branco do início e do fim são removidos. Se a string que sobrar for vazia, o resultado é `0`. Senão, o número é "lido" a partir da string. Um erro nos dá `NaN`|
+| `string` | A string é lida "como ela é", espaços em branco do início e do fim são ignorados. Uma string vazia, vira `0`. Um erro nos dá `NaN`|
 
 **`Conversões Booleanas`** -- Ocorrem em operações lógicas. Podem ser feitas com `Boolean(valor)`.
 
