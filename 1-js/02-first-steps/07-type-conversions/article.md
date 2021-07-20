@@ -60,7 +60,7 @@ Se a string não é um valor numérico válido, o resultado da conversão é `Na
 ```js run
 let age = Number("uma string ao invés de um número");
 
-alert(age); // NaN, conversão falhou
+alert(age); // NaN, a conversão falhou
 ```
 
 Regras de conversões numéricas:
