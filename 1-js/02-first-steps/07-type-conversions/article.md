@@ -6,7 +6,7 @@ Por exemplo, `alert` converte automaticamente qualquer valor para string antes d
 
 Também existem casos em que precisamos explicitamente de converter um valor para o tipo que precisamos.
 
-```smart header="Não vamos falar sobre objetos"
+```smart header="Não vamos falar de objetos"
 Nesse capítulo, não vamos falar sobre objetos. Por agora, vamos abordar apenas os tipos primitivos.
 
 Mais tarde, após abordarmos objetos no capítulo <info:object-toprimitive>, veremos como objetos se comportam em conversões de tipo.
