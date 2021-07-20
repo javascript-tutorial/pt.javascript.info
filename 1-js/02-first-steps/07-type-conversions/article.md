@@ -53,7 +53,7 @@ let num = Number(str); // vira o número 123
 alert(typeof num); // number
 ```
 
-Conversões explícitas geralmente são obrigatórias quando estamos obtendo um valor de uma fonte baseada em string - como um texto - mas esperamos um receber um valor numérico.
+Conversões explícitas geralmente são obrigatórias quando estamos a ler um valor de uma fonte baseada em string - como um texto - mas esperamos receber um valor numérico.
 
 Se a string não é um valor numérico válido, o resultado da conversão é `NaN`. Por exemplo:
 
