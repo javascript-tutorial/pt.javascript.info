@@ -119,7 +119,7 @@ alert( Boolean(" ") ); // espaços também são true (toda string não-vazia se 
 
 As três conversões mais comuns são para string, number e boolean.
 
-**`Conversões para String`** -- Ocorrem quando mostramos algum valor. Podem ser explicitamente feitas com `String(valor)`. As conversões para string geralmente é obvia em tipos primitivos.
+**`Conversões para String`** -- Ocorrem quando mostramos algum valor. Podem ser explicitamente feitas com `String(value)`. As conversões para string geralmente são óbvias com tipos primitivos.
 
 **`Conversões Numéricas`** -- Ocorrem em operações matemáticas. Podem ser feitas com `Number(value)`.
 
