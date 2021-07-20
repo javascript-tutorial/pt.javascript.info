@@ -145,6 +145,6 @@ Seguem as regras:
 A maior parte dessas regras são fáceis de entender e memorizar. Exceções notáveis em que as pessoas geralmente erram são:
 
 - `undefined` é `NaN` como número, não `0`.
-- `"0"` e strings só com espaço `"   "` são `true` como booleanos.
+- `"0"` e strings só com espaços `"   "` são `true` como booleanos.
 
 Objetos não são citados aqui. Retornaremos depois no capítulo <info:object-toprimitive> que é dedicado exclusivamente para objetos, após aprendermos coisas mais básicas de JavaScript.
