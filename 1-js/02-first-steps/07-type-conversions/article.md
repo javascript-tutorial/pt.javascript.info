@@ -83,7 +83,7 @@ alert( Number(false) );       // 0
 
 Note que `null` e `undefined` se comportam de maneira diferente: `null` se torna zero, enquanto `undefined` vira `NaN`.
 
-A maioria dos operadores matemáticos também performam essa conversão, na qual veremos no próximo capítulo.
+A maioria dos operadores matemáticos também executam essa conversão, o que veremos no próximo capítulo.
 
 ## Conversões Booleanas
 
