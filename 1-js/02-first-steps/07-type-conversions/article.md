@@ -48,7 +48,7 @@ Podemos usar a função Number(`value) para converter `value` para number.
 let str = "123";
 alert(typeof str); // string
 
-let num = Number(str); // vira um number: 123
+let num = Number(str); // vira o número 123
 
 alert(typeof num); // number
 ```
