@@ -42,7 +42,7 @@ Por exemplo, quando `/` é usado com valores que não são números:
 alert( "6" / "2" ); // 3, strings viram numbers
 ```
 
-Podemos usar a função Number(`valor`) para converter `valor` para number.
+Podemos usar a função Number(`value) para converter `value` para number.
 
 ```js run
 let str = "123";
