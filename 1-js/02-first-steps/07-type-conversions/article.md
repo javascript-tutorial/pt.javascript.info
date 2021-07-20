@@ -121,7 +121,7 @@ As três conversões mais comuns são para string, number e boolean.
 
 **`Conversões para String`** -- Ocorrem quando mostramos algum valor. Podem ser explicitamente feitas com `String(valor)`. As conversões para string geralmente é obvia em tipos primitivos.
 
-**`Conversões Numéricas`** -- Ocorrem em operações matemáticas. Podem ser feitas com `Number(valor)`.
+**`Conversões Numéricas`** -- Ocorrem em operações matemáticas. Podem ser feitas com `Number(value)`.
 
 A conversão segue as seguintes regras:
 
