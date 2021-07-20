@@ -16,7 +16,7 @@ Mais tarde, após abordarmos objetos no capítulo <info:object-toprimitive>, ver
 
 As conversões para string acontecem quando precisamos da forma string de um valor.
 
-Por exemplo, `alert(valor)` faz isso para mostrar `valor`.
+Por exemplo, `alert(value)` faz isso para mostrar o valor.
 
 Também podemos usar a função `String(value)` para converter um valor para string:
 
