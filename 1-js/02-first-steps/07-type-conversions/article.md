@@ -39,7 +39,7 @@ As conversões numéricas acontecem automaticamente em funções e expressões m
 Por exemplo, quando `/` é usado com valores que não são números:
 
 ```js run
-alert( "6" / "2" ); // 3, strings viram numbers
+alert( "6" / "2" ); // 3, strings viram números
 ```
 
 Podemos usar a função Number(`value) para converter `value` para number.
