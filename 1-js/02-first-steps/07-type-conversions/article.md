@@ -58,7 +58,7 @@ Conversões explícitas geralmente são obrigatórias quando estamos a ler um va
 Se a string não é um valor numérico válido, o resultado da conversão é `NaN`. Por exemplo:
 
 ```js run
-let age = Number("uma string ao invés de um number");
+let age = Number("uma string ao invés de um número");
 
 alert(age); // NaN, conversão falhou
 ```
