@@ -89,7 +89,7 @@ A maioria dos operadores matemáticos também executam essa conversão, o que ve
 
 Conversões booleanas são as mais simples de todas.
 
-Acontecem em uma operação lógica (depois veremos testes de condição e outras coisas similares), mas também podem acontecer explicitamente ao usar a função `Boolean(valor)`.
+Acontecem em operações lógicas (depois veremos testes de condição e outras coisas similares), mas também podem acontecer explicitamente ao usar a função `Boolean(value)`.
 
 A regra de conversão:
 
