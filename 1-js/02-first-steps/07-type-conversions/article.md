@@ -69,7 +69,7 @@ Regras de conversões numéricas:
 |-------|-------------|
 |`undefined`|`NaN`|
 |`null`|`0`|
-|`true` e `false` | `1` e `0` |
+|<code>true&nbsp;e&nbsp;false</code>| `1` e `0` |
 | `string` | Espaços em branco do início e do fim são removidos. Se a string que sobrar for vazia, o resultado é `0`. Senão, o número é "lido" a partir da string. Um erro nos dá `NaN`|
 
 Exemplos:
