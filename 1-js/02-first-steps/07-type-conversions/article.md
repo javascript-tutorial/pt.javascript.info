@@ -2,7 +2,7 @@
 
 Na maior parte do tempo, operadores e funções convertem os valores dados a eles para o tipo certo automaticamente.
 
-Por exemplo, `alert` converte automaticamente qualquer valor para string antes de mostrá-lo. Operações matemáticas convertem os valores para number.
+Por exemplo, `alert` converte automaticamente qualquer valor para string antes de mostrá-lo. Operações matemáticas convertem os valores para números.
 
 Também existem casos em que precisamos explicitamente converter um valor para o tipo que precisamos.
 
