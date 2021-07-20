@@ -29,10 +29,10 @@ function throttle(func, ms) {
 }
 ```
 
-A call to `throttle(func, ms)` returns `wrapper`.
+Uma chamada para `throttle(func, ms` retorna `wrapper`.
 
-1. During the first call, the `wrapper` just runs `func` and sets the cooldown state (`isThrottled = true`).
-2. In this state all calls are memorized in `savedArgs/savedThis`. Please note that both the context and the arguments are equally important and should be memorized. We need them simultaneously to reproduce the call.
-3. After `ms` milliseconds pass, `setTimeout` triggers. The cooldown state is removed (`isThrottled = false`) and, if we had ignored calls, `wrapper` is executed with the last memorized arguments and context.
+1. Durante a primeira chamada, o `wrapper` apenas executa a `func` e configura o estado de espera (`isThrottled = true`).
+2. Neste estado todas as chamadas são memorizadas em `savedArgs/savedThis`. Note que ambos o contexto e os argumentos são igualmente importante e devem ser memorizado. Nós precisamos deles simultaneamente reproduzir a chamada.
+3. Depois `ms` milissegundos passam, `setTimeout` é acionada. O estado de espera é removido (`isThrottled = false`) e, se nós tivemos ignorado as chamadas, `wrapper` é executado com os últimos argumentos e contexto memorizados.
 
-The 3rd step runs not `func`, but `wrapper`, because we not only need to execute `func`, but once again enter the cooldown state and setup the timeout to reset it.
+O terceiro passo executa não `func`, mas o `wrapper`, porque nós não só precisamos executar o `func`, mas mais uma vez, entra no estado de espera e configura o tempo limite para reconfigurá-lo.

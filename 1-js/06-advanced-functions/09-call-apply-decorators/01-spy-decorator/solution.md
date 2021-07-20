@@ -1,1 +1,1 @@
-The wrapper returned by `spy(f)` should store all arguments and then use `f.apply` to forward the call.
+O encapsulador retornado pelo `spy(f)` deve guardar todos argumentos e então usar `f.apply` para encaminhar a chamada.

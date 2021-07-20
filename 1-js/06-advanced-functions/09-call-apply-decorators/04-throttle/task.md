@@ -2,52 +2,52 @@ importance: 5
 
 ---
 
-# Throttle decorator
+# O Decorador Throttle
 
-Create a "throttling" decorator `throttle(f, ms)` -- that returns a wrapper.
+Crie um decorador de "throttling" `throttle(f, ms)` -- que retorna um encapsulador.
 
-When it's called multiple times, it passes the call to `f` at maximum once per `ms` milliseconds.
+Quando é chamada várias vezes, ela passa a chamada para `f` no máximo uma vez por `ms` milissegundos.
 
-The difference with debounce is that it's completely different decorator:
-- `debounce` runs the function once after the "cooldown" period. Good for processing the final result.
-- `throttle` runs it not more often than given `ms` time. Good for regular updates that shouldn't be very often.
+A diferença com debounce é que é um decorador completamente diferente:
+- `debounce` executa a função uma vez depois do período de "espera". Boa para o processamento final do resultado.
+- `throttle` executa-o não mais frequentemente do que no tempo `ms` determinado.
 
-In other words, `throttle` is like a secretary that accepts phone calls, but bothers the boss (calls the actual `f`) not more often than once per `ms` milliseconds.
+Em outras palavras, `throttle` é como uma secretária que aceita chamadas de telefone, mas incomonda o chefe (chama `f` atual) não mais do que uma vez por`ms` milissegundos.
 
-Let's check the real-life application to better understand that requirement and to see where it comes from.
+Vamos verificar a aplicação na vida real para melhor entender esse requesito e ver de onde ela vem.
 
-**For instance, we want to track mouse movements.**
+**Por exemplo, queremos rastrear os movimentos do mouse**
 
-In a browser we can setup a function to run at every mouse movement and get the pointer location as it moves. During an active mouse usage, this function usually runs very frequently, can be something like 100 times per second (every 10 ms).
-**We'd like to update some information on the web-page when the pointer moves.**
+Em um browser nós podemos configurar uma função para executar em todo movimento do mouse e receber a localização do ponteiro conforme ele se move. Durante o uso constante do mouse, esta função geralmente é executada com muita frequência, pode ser algo como 100 vezes por segundo (a cada 10 ms).
+**Gostariamos de atualizar algumas informações na página web sempre que o ponteiro se mover.**
 
-Updating function `update()` is too heavy to do it on every micro-movement. There is also no sense in making it more often than once per 100ms.
+A atualização da função `update()` é uma tarefa muito pesada de se fazer em todo micro-movimento. Também não há sentido em fazer isso mais do que uma vez por 100ms.
 
-So we'll assign `throttle(update, 100)` as the function to run on each mouse move instead of the original `update()`. The decorator will be called often, but `update()` will be called at maximum once per 100ms.
+Portanto, vamos atribuir `throttle(update, 100)` como a função a ser executar em cada movimento de mouse ao invés do `update()` original. O decorador será chamada sempre, porém o `update()` será chamado no máximo uma vez por 100ms.
 
-Visually, it will look like this:
+Visualmente, ela parecerá com algo como isso:
 
-1. For the first mouse movement the decorated variant passes the call to `update`. That's important, the user sees our reaction to their move immediately.
-2. Then as the mouse moves on, until `100ms` nothing happens. The decorated variant ignores calls.
-3. At the end of `100ms` -- one more `update` happens with the last coordinates. 
-4. Then, finally, the mouse stops somewhere. The decorated variant waits until `100ms` expire and then runs `update` with last coordinates. So, perhaps the most important, the final mouse coordinates are processed.
+1. Para o primeiro movimento do mouse a variante decorada passa a chamada para `update`. É importante, os usuários verem nossa reação aos seus movimentos imediatamente.
+2. Assim ao mover o mouse, até `100ms` nada acontece. A variante decorada é ignora chamadas.
+3. Ao final de `100ms` -- mais um `update` acontece com as últimas coordenadas.
+4. Assim, finalmente, o mouse para em algum lugar. A variante decorada espera até `100ms` expirar e depois executa o `update` com as últimas coordinadas. Então, talvez o mais importante, a coordenadas finais do mouse são processadas.
 
-A code example:
+Um código de exemplo:
 
 ```js
 function f(a) {
   console.log(a);
 }
 
-// f1000 passes calls to f at maximum once per 1000 ms
+// f1000 passa a chamada para f no máximo uma vez por 1000ms
 let f1000 = throttle(f, 1000);
 
-f1000(1); // shows 1
-f1000(2); // (throttling, 1000ms not out yet)
-f1000(3); // (throttling, 1000ms not out yet)
+f1000(1); // exibi 1
+f1000(2); // (throttling, 1000ms ainda não saiu)
+f1000(3); // (throttling, 1000ms ainda não saiu)
 
-// when 1000 ms time out...
-// ...outputs 3, intermediate value 2 was ignored
+// quando o tempo de 1000ms estiver esgotado...
+// ...exibi 3, o valor intermediário 2 foi ignorado
 ```
 
-P.S. Arguments and the context `this` passed to `f1000` should be passed to the original `f`.
+P.S. Os argumentos e o contexto `this` passados para `f1000` devem ser passados para a função original `f`.
