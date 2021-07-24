@@ -405,7 +405,7 @@ Existe uma maneira de criar decoradores que mantém o acesso às propriedades da
 
 ## Resumindo
 
-O *Decorador* é um encapsulador em volta de uma funçaõ que altera seu comportamento. O trabalho principal ainda é realizado pela função.
+O *Decorador* é um encapsulador à volta de uma funçaõ que altera o seu comportamento. O trabalho principal ainda é realizado pela função.
 
 Decoradores podem ser vistos como "funcionalidades" ou "aspectos" que podem ser adicionados a uma função. Podemos adicionar um ou vários. E tudo isso sem alterar o seu código.
 
