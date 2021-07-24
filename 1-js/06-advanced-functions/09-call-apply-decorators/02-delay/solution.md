@@ -26,7 +26,7 @@ function delay(f, ms) {
   return function(...args) {
     let savedThis = this; // guarde isto dentro de uma variável intermediador
     setTimeout(function() {
-      f.apply(savedThis, args); // use-o aqui
+      f.apply(savedThis, args); // use-a aqui
     }, ms);
   };
 
