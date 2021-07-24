@@ -24,7 +24,7 @@ Ainda podemos passar o `this` certo atráves do uso de uma variável intermediad
 function delay(f, ms) {
 
   return function(...args) {
-    let savedThis = this; // guarde isto dentro de uma variável intermediador
+    let savedThis = this; // guarde isto numa variável intermédia
     setTimeout(function() {
       f.apply(savedThis, args); // use-a aqui
     }, ms);
