@@ -16,7 +16,7 @@ Então se a função encapsulada for chamada aos 0ms, 200ms, e 500ms, e depois n
 
 ...E receberá os argumentos da última chamada, outras chamadas são ignoradas.
 
-Aqui estão o código para isto (que usa o decorador debounce da [biblioteca Lodash](https://lodash.com/docs/4.17.15#debounce)):
+Aqui está o código para isso (que usa o decorador debounce da [biblioteca Lodash](https://lodash.com/docs/4.17.15#debounce)):
 
 ```js
 let f = _.debounce(alert, 1000);
