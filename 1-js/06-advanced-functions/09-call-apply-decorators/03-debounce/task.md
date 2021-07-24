@@ -4,7 +4,7 @@ importance: 5
 
 # O decorador Debounce
 
-O resultado do decorador `debounce(f, ms)` é um encapsulador que suspende chamadas para `f` até haver `ms` milissegundos de inactividade (sem chamadas, "período de espera"), depois invoca `f` uma vez com os últimos argumentos.
+O resultado do decorador `debounce(f, ms)` é um encapsulador que suspende chamadas de `f` até haver `ms` milissegundos de inactividade (nenhuma chamada, "período de espera"), depois invoca `f` uma vez com os últimos argumentos.
 
 Em outras palavras, `debounce` é como uma secretária que aceita "chamadas de telefones", e espera até existir `ms` milissegundos de espera. E somente então transferir as últimas informações de chamadas para "o chefe" (chama a `f` atual).
 
