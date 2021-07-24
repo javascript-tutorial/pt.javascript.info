@@ -4,7 +4,7 @@ importance: 5
 
 # O Decorador Throttle
 
-Crie um decorador de "throttling" `throttle(f, ms)` -- que retorna um encapsulador.
+Crie um decorador de "estrangulamento" `throttle(f, ms)` -- que retorna um encapsulador.
 
 Quando é chamada várias vezes, ela passa a chamada para `f` no máximo uma vez por `ms` milissegundos.
 
