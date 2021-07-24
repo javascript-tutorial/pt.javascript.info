@@ -30,7 +30,7 @@ Visualmente, se parecerá com algo assim:
 1. Para o primeiro movimento do rato a variante decorada passa a chamada para `update`. É importante, o usuário vê a nossa reação aos seus movimentos imediatamente.
 2. Depois, ao mover do rato, até `100ms` nada acontece. A variante decorada ignora as chamadas.
 3. Ao final de `100ms` -- mais um `update` acontece com as últimas coordenadas.
-4. Assim, finalmente, o mouse para em algum lugar. A variante decorada espera até `100ms` expirar e depois executa o `update` com as últimas coordinadas. Então, talvez o mais importante, a coordenadas finais do mouse são processadas.
+4. Continuando, finalmente, o rato pára em algum lugar. A variante decorada espera até `100ms` expirarem e depois executa o `update` com as últimas coordinadas. Então, talvez o mais importante, as coordenadas finais do rato são processadas.
 
 Um código de exemplo:
 
