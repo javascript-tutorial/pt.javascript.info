@@ -25,7 +25,7 @@ A função de atualização `update()` é muito pesada de se fazer a cada micro-
 
 Portanto, vamos atribuir `throttle(update, 100)` como a função a ser executada a cada movimento de rato ao invés da `update()` original. O decorador será chamado com frequência, porém `update()` será chamada no máximo uma vez por 100ms.
 
-Visualmente, ela parecerá com algo como isso:
+Visualmente, se parecerá com algo assim:
 
 1. Para o primeiro movimento do mouse a variante decorada passa a chamada para `update`. É importante, os usuários verem nossa reação aos seus movimentos imediatamente.
 2. Assim ao mover o mouse, até `100ms` nada acontece. A variante decorada é ignora chamadas.
