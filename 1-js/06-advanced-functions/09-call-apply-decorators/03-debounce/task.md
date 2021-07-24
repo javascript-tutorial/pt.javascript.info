@@ -10,7 +10,7 @@ Por outras palavras, `debounce` é como uma secretária que aceita "chamadas tel
 
 Por exemplo, tinhamos uma função `f` e a substituimos por `f = debounce(f, 1000)`.
 
-Então se a função encapsulada é chamada aos 0ms, 200ms, e 500ms, e depois não houver chamadas, a `f` atual será somente chamada uma vez, aos 1500ms. Ou seja: depois do período de espera de 1000ms da última chamada.
+Então se a função encapsulada for chamada aos 0ms, 200ms, e 500ms, e depois não houver chamadas, a `f` atual será somente chamada uma vez, aos 1500ms. Ou seja, depois do período de espera de 1000ms após a última chamada.
 
 ![](debounce.svg)
 
