@@ -36,7 +36,7 @@ Num navegador, nós podemos configurar um gerenciador de eventos -- uma função
 
 ```online
 
-Neste exemplo funcionando, o manipulador coloca o resultado dentro da caixa abaixo, experimente:
+Neste exemplo online, o gerenciador coloca o resultado na caixa abaixo, experimente:
 
 [iframe border=1 src="debounce" height=200]
 
