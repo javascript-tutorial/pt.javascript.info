@@ -6,7 +6,7 @@ JavaScript oferece uma flexibilidade excepcional para lidar com funções. Elas 
 
 Digamos que temos uma função `slow(x)` que usa muita CPU, mas seus resultados são estáveis. Por outras palavras, para o mesmo `x` ela sempre retorna o mesmo resultado.
 
-Se a função for chamada várias vezes, nós podemos requer armazenar em cache (lembrar) os resultados para diferentes `x` para evitar gastar tempo extra em recalculações.
+Se a função for chamada com frequência, nós podemos querer armazenar em cache (lembrar) os resultados para diferentes `x` para evitar gastar tempo extra em recalculações.
 
 Mas ao invés de adicionar essa funcionalidade dentro de `slow()`, criaremos um encapsulador. Como veremos existem muitos benefícios em proceder deste modo.
 
