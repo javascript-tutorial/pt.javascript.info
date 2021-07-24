@@ -27,7 +27,7 @@ setTimeout( () => f("c"), 500);
 // a função de debounce espera 1000ms após a última chamada e depois executa: alert("c")
 ```
 
-Agora um exemplo prático. Vamos dizer, que usuário digite alguma coisa, e gostariamos enviar uma requisição para o servidor quando a entrada estiver terminda.
+Agora um exemplo prático. Vamos dizer, que o usuário digita alguma coisa, e gostaríamos de fazer um pedido ao servidor quando a entrada tiver terminado.
 
 
 Não adianta enviar uma requesição para character digitado. Ao invés disso gostariamos de esperar, e depois processar todo resultado.
