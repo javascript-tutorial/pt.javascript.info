@@ -40,7 +40,7 @@ Neste exemplo online, o gerenciador coloca o resultado na caixa abaixo, experime
 
 [iframe border=1 src="debounce" height=200]
 
-Vês? A segunda entrada chama a função na qual foi aplicada o debounce, então o seu conteúdo será processado depois de 1000ms da última entrada.
+Você vê? A segunda entrada chama a função de debounce, assim o seu conteúdo será processado após 1000ms depois da última entrada.
 ```
 
 Portanto, `debounce` é excelente maneira de processar uma sequência de eventos: seja ela uma sequência de pressões de teclas, movimentos de mouse ou alguma coisa do genero.
