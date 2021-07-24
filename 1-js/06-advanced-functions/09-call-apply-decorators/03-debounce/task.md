@@ -43,7 +43,7 @@ Neste exemplo online, o gerenciador coloca o resultado na caixa abaixo, experime
 Você vê? A segunda entrada chama a função de debounce, assim o seu conteúdo será processado após 1000ms depois da última entrada.
 ```
 
-Portanto, `debounce` é excelente maneira de processar uma sequência de eventos: seja ela uma sequência de pressões de teclas, movimentos de mouse ou alguma coisa do genero.
+Portanto, `debounce` é uma excelente maneira de processar uma sequência de eventos: seja ela uma sequência de teclas pressionadas, movimentos do rato ou alguma outra coisa.
 
 Isto espera o tempo dado depois da última chamada, e depois executa sua função, que pode processar o resultado.
 
