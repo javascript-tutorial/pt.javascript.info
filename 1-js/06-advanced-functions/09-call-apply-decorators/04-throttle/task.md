@@ -39,7 +39,7 @@ function f(a) {
   console.log(a);
 }
 
-// f1000 passa a chamada para f no máximo uma vez por 1000ms
+// f1000 passa chamadas para f no máximo uma vez por 1000 ms
 let f1000 = throttle(f, 1000);
 
 f1000(1); // exibi 1
