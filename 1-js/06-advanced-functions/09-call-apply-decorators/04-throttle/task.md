@@ -42,7 +42,7 @@ function f(a) {
 // f1000 passa chamadas para f no máximo uma vez por 1000 ms
 let f1000 = throttle(f, 1000);
 
-f1000(1); // exibi 1
+f1000(1); // exibe 1
 f1000(2); // (throttling, 1000ms ainda não saiu)
 f1000(3); // (throttling, 1000ms ainda não saiu)
 
