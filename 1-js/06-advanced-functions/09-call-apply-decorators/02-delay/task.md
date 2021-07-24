@@ -17,7 +17,7 @@ function f(x) {
 let f1000 = delay(f, 1000);
 let f1500 = delay(f, 1500);
 
-f1000("test"); // imprima "test" depois 1000ms
+f1000("test"); // imprime "test" depois de 1000ms
 f1500("test"); // imprima "test" depois 1500ms
 ```
 
