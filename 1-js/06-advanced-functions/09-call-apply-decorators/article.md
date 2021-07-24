@@ -37,7 +37,7 @@ function cachingDecorator(func) {
 slow = cachingDecorator(slow);
 
 alert( slow(1) ); // slow(1) é cacheada e o resultado retornado
-alert( "Again: " + slow(1) ); // slow(1) resultado retornado do cache
+alert( "Again: " + slow(1) ); // slow(1) o resultado é retornado da cache
 
 alert( slow(2) ); // slow(2) é cacheada e o resultado retornado
 alert( "Again: " + slow(2) ); // slow(2) resultado retornado do cache
