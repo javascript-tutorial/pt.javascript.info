@@ -4,7 +4,7 @@ importance: 5
 
 # Decorador Spy (espião)
 
-Criar um decorador `spy(func)` que deve retornar um encapsulador que guarda todas chamadas de uma função em sua propriedade `calls`.
+Crie um decorador `spy(func)` que deve retornar um encapsulador que guarde todas chamadas de uma função na sua propriedade `calls`.
 
 Todas chamadas são guardadas como um array de argumentos.
 
