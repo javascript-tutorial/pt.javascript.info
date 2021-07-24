@@ -47,6 +47,6 @@ Portanto, `debounce` é uma excelente maneira de processar uma sequência de eve
 
 Ela espera o tempo dado depois da última chamada, e depois executa sua tarefa, que pode processar o resultado.
 
-A tarefa está em implementar o decorador `debounce`.
+A tarefa é implementar o decorador `debounce`.
 
 Dica: são apenas uma poucas linhas se você pensar sobre ela :)
