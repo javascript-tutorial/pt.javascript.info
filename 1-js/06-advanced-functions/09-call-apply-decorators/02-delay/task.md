@@ -18,7 +18,7 @@ let f1000 = delay(f, 1000);
 let f1500 = delay(f, 1500);
 
 f1000("test"); // imprime "test" depois de 1000ms
-f1500("test"); // imprima "test" depois 1500ms
+f1500("test"); // imprime "test" depois de 1500ms
 ```
 
 Em outras palavras, `delay(f, ms)` retorna uma variante de `f` "atrasada em `ms`".
