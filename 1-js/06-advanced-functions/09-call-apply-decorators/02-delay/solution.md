@@ -11,7 +11,7 @@ function delay(f, ms) {
 
 let f1000 = delay(alert, 1000);
 
-f1000("test"); // imprima "test" depois 1000ms
+f1000("test"); // exibe "test" depois de 1000ms
 ```
 
 Por favor note como uma função em seta (arrow function) é usada aqui. Tal como sabemos, funções em setas não tem seu próprio `this` e `arguments`, então `f.apply(this, arguments)` recebem `this` e `arguments` a partir de um encapsulador.
