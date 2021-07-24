@@ -32,7 +32,7 @@ Agora um exemplo prático. Vamos dizer, que o usuário digita alguma coisa, e go
 
 Não adianta enviar um pedido por cada caractere digitado. Ao invés disso gostariamos de esperar, e então processar todo o resultado.
 
-Em um web-browser, nós podemos configurar um manipulador de evento -- uma função que é chamada em todas mundanças no campo de entrada. Normalmente, um manipulador de evento é chamado sempre, para toda tecla pressionada. Porém se nós `debounce` ela por 1000ms, logo ela será chamanda apenas uma vez, depois 1000ms depois da última entrada.
+Num navegador, nós podemos configurar um gerenciador de eventos -- uma função que é chamada em todas as alterações no campo de entrada. Normalmente, um gerenciador de eventos é chamado com frequência, a cada tecla pressionada. Porém, se nós fizermos o `debounce` dele por 1000ms, então ele será chamando apenas uma vez, depois de 1000ms após a última entrada.
 
 ```online
 
