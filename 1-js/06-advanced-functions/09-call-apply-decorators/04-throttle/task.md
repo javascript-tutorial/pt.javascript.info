@@ -16,7 +16,7 @@ Em outras palavras, `throttle` é como uma secretária que aceita chamadas telef
 
 Vamos verificar a aplicação na vida real para melhor compreender esse requesito e ver de onde ele vem.
 
-**Por exemplo, queremos rastrear os movimentos do mouse**
+**Por exemplo, queremos rastrear movimentos do rato**
 
 Em um browser nós podemos configurar uma função para executar em todo movimento do mouse e receber a localização do ponteiro conforme ele se move. Durante o uso constante do mouse, esta função geralmente é executada com muita frequência, pode ser algo como 100 vezes por segundo (a cada 10 ms).
 **Gostariamos de atualizar algumas informações na página web sempre que o ponteiro se mover.**
