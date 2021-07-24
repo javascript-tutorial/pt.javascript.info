@@ -43,7 +43,7 @@ function f(a) {
 let f1000 = throttle(f, 1000);
 
 f1000(1); // exibe 1
-f1000(2); // (throttling, 1000ms ainda não saiu)
+f1000(2); // (estrangulamento, 1000ms ainda não passaram)
 f1000(3); // (throttling, 1000ms ainda não saiu)
 
 // quando o tempo de 1000ms estiver esgotado...
