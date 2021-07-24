@@ -6,7 +6,7 @@ importance: 5
 
 O resultado do decorador `debounce(f, ms)` é um encapsulador que suspende chamadas de `f` até haver `ms` milissegundos de inactividade (nenhuma chamada, "período de espera"), depois invoca `f` uma vez com os últimos argumentos.
 
-Em outras palavras, `debounce` é como uma secretária que aceita "chamadas de telefones", e espera até existir `ms` milissegundos de espera. E somente então transferir as últimas informações de chamadas para "o chefe" (chama a `f` atual).
+Por outras palavras, `debounce` é como uma secretária que aceita "chamadas telefónicas", e espera até existirem `ms` milissegundos de inatividade. E, somente então transfere a informação da última chamada para "o chefe" (chama a `f` atual).
 
 Por exemplo, tinhamos uma função `f` e a substituimos com `f = debounce(f, 1000)`.
 
