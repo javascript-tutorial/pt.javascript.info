@@ -45,7 +45,7 @@ Você vê? A segunda entrada chama a função de debounce, assim o seu conteúdo
 
 Portanto, `debounce` é uma excelente maneira de processar uma sequência de eventos: seja ela uma sequência de teclas pressionadas, movimentos do rato ou alguma outra coisa.
 
-Isto espera o tempo dado depois da última chamada, e depois executa sua função, que pode processar o resultado.
+Ela espera o tempo dado depois da última chamada, e depois executa sua tarefa, que pode processar o resultado.
 
 A tarefa está em implementar o decorador `debounce`.
 
