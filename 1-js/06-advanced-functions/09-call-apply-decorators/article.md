@@ -14,7 +14,7 @@ Aqui está o código, e a seguir a sua explicação:
 
 ```js run
 function slow(x) {
-  // pode exigir um trabalho intensivo por parte da CPU
+  // pode existir um trabalho intensivo por parte da CPU aqui
   alert(`Called with ${x}`);
   return x;
 }
