@@ -4,7 +4,7 @@ importance: 5
 
 # Atrasando o decorador
 
-Criar um decorador `delay(f, ms)` que atrasa cada chamada de `f` por `ms` milissegundos.
+Crie um decorador `delay(f, ms)` que atrase cada chamada de `f` por `ms` milissegundos.
 
 Por exemplo:
 
