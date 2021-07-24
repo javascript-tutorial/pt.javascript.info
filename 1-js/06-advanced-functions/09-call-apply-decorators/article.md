@@ -27,7 +27,7 @@ function cachingDecorator(func) {
       return cache.get(x); // retorne-o
     }
 
-    let result = func(x); // caso não estiver, chame a func
+    let result = func(x); // se não estiver, chame func
 
     cache.set(x, result); // e faz cache (lembrar) do resultado
     return result;
