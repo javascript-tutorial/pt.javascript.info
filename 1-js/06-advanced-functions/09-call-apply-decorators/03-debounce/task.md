@@ -24,7 +24,7 @@ let f = _.debounce(alert, 1000);
 f("a");
 setTimeout( () => f("b"), 200);
 setTimeout( () => f("c"), 500);
-// função tratada pelo debounce espera 1000ms depois da última chamada e depois executa: alert("*")
+// a função de debounce espera 1000ms após a última chamada e depois executa: alert("c")
 ```
 
 Agora um exemplo prático. Vamos dizer, que usuário digite alguma coisa, e gostariamos enviar uma requisição para o servidor quando a entrada estiver terminda.
