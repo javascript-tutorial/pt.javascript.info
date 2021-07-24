@@ -9,4 +9,4 @@ function debounce(func, ms) {
 
 ```
 
-Uma chamada para `debounce` retorna um encapsulador. Quando chamado, ela agenda a função original chama depois de receber `ms` e cancela o tempo limite anterior.
+Uma chamada de `debounce` retorna um encapsulador. Quando chamada, ela agenda a chamada original da função depois de certos `ms` e cancela o tempo de espera (timeout) anterior.
