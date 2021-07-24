@@ -47,7 +47,7 @@ f1000(2); // (estrangulamento, 1000ms ainda não passaram)
 f1000(3); // (estrangulamento, 1000ms ainda não passaram)
 
 // quando o tempo de 1000ms estiver esgotado...
-// ...exibi 3, o valor intermediário 2 foi ignorado
+// ...exibe 3, o valor intermédio 2 foi ignorado
 ```
 
 P.S. Os argumentos e o contexto `this` passados para `f1000` devem ser passados para a função original `f`.
