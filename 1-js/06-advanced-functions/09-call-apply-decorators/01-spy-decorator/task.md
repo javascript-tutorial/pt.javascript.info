@@ -12,7 +12,7 @@ Por exemplo:
 
 ```js
 function work(a, b) {
-  alert( a + b ); // work é uma função ou método arbitrário
+  alert( a + b ); // work é uma função ou método arbitrários
 }
 
 *!*
