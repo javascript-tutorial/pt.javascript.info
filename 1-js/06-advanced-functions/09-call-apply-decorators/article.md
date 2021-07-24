@@ -8,7 +8,7 @@ Digamos que temos uma função `slow(x)` que usa muita CPU, mas seus resultados 
 
 Se a função for chamada com frequência, nós podemos querer armazenar em cache (lembrar) os resultados para diferentes `x` para evitar gastar tempo extra em recalculações.
 
-Mas ao invés de adicionar essa funcionalidade dentro de `slow()`, criaremos um encapsulador. Como veremos existem muitos benefícios em proceder deste modo.
+Mas ao invés de adicionar essa funcionalidade a`slow()`, iremos criar um encapsulador. Como veremos, existem muitos benefícios em proceder deste modo.
 
 Abaixo está o código de exemplo, e a seguir a sua explicação:
 
