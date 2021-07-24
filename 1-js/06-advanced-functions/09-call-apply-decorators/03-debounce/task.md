@@ -30,7 +30,7 @@ setTimeout( () => f("c"), 500);
 Agora um exemplo prático. Vamos dizer, que o usuário digita alguma coisa, e gostaríamos de fazer um pedido ao servidor quando a entrada tiver terminado.
 
 
-Não adianta enviar uma requesição para character digitado. Ao invés disso gostariamos de esperar, e depois processar todo resultado.
+Não adianta enviar um pedido por cada caractere digitado. Ao invés disso gostariamos de esperar, e então processar todo o resultado.
 
 Em um web-browser, nós podemos configurar um manipulador de evento -- uma função que é chamada em todas mundanças no campo de entrada. Normalmente, um manipulador de evento é chamado sempre, para toda tecla pressionada. Porém se nós `debounce` ela por 1000ms, logo ela será chamanda apenas uma vez, depois 1000ms depois da última entrada.
 
