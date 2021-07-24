@@ -409,7 +409,7 @@ O *Decorador* é um encapsulador à volta de uma funçaõ que altera o seu compo
 
 Decoradores podem ser vistos como "funcionalidades" ou "aspectos" que podem ser adicionados a uma função. Podemos adicionar um ou vários. E tudo isso sem alterar o seu código.
 
-Para implementar `cachingDecorator`, estudamos os métodos:
+Para implementar `cachingDecorator`, estudámos métodos:
 
 - [func.call(context, arg1, arg2...)](mdn:js/Function/call) -- chama `func` com o seu contexto e argumentos dados.
 - [func.apply(context, args)](mdn:js/Function/apply) -- chama `func` passando `context` como `this` e um objeto `args` parecido com array dentro de uma lista de argumentos.
