@@ -33,6 +33,6 @@ Uma chamada de `throttle(func, ms)` retorna `wrapper`.
 
 1. Durante a primeira chamada, o `wrapper` apenas executa `func` e configura o estado de espera (`isThrottled = true`).
 2. Neste estado todas as chamadas são memorizadas em `savedArgs/savedThis`. Note que ambos, o contexto e os argumentos, são igualmente importante e devem ser memorizados. Nós precisamos deles simultaneamente para reproduzir a chamada.
-3. Depois `ms` milissegundos passam, `setTimeout` é acionada. O estado de espera é removido (`isThrottled = false`) e, se nós tivemos ignorado as chamadas, `wrapper` é executado com os últimos argumentos e contexto memorizados.
+3. Depois que `ms` milissegundos passam, `setTimeout` é acionada. O estado de espera é removido (`isThrottled = false`) e, se nós tivermos chamadas ignoradas , o `wrapper` é executado com os últimos argumentos e contexto memorizados.
 
 O terceiro passo executa não `func`, mas o `wrapper`, porque nós não só precisamos executar o `func`, mas mais uma vez, entra no estado de espera e configura o tempo limite para reconfigurá-lo.
