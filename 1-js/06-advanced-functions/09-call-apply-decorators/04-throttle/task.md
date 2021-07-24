@@ -18,7 +18,7 @@ Vamos verificar a aplicação na vida real para melhor compreender esse requesit
 
 **Por exemplo, queremos rastrear movimentos do rato**
 
-Em um browser nós podemos configurar uma função para executar em todo movimento do mouse e receber a localização do ponteiro conforme ele se move. Durante o uso constante do mouse, esta função geralmente é executada com muita frequência, pode ser algo como 100 vezes por segundo (a cada 10 ms).
+Num navegador, nós podemos configurar uma função para ser executada a cada movimento do rato e receber a localização do ponteiro à medida que ele se move. Num período de uso constante do rato, esta função geralmente é executada com muita frequência, pode ser algo como 100 vezes por segundo (a cada 10 ms).
 **Gostariamos de atualizar algumas informações na página web sempre que o ponteiro se mover.**
 
 A atualização da função `update()` é uma tarefa muito pesada de se fazer em todo micro-movimento. Também não há sentido em fazer isso mais do que uma vez por 100ms.
