@@ -23,7 +23,7 @@ Num navegador, nós podemos configurar uma função para ser executada a cada mo
 
 A função de atualização `update()` é muito pesada de se fazer a cada micro-movimento. Também não faz sentido executar isso mais de uma vez por 100ms.
 
-Portanto, vamos atribuir `throttle(update, 100)` como a função a ser executar em cada movimento de mouse ao invés do `update()` original. O decorador será chamada sempre, porém o `update()` será chamado no máximo uma vez por 100ms.
+Portanto, vamos atribuir `throttle(update, 100)` como a função a ser executada a cada movimento de rato ao invés da `update()` original. O decorador será chamado com frequência, porém `update()` será chamada no máximo uma vez por 100ms.
 
 Visualmente, ela parecerá com algo como isso:
 
