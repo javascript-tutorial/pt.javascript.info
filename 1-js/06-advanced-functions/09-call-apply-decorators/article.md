@@ -4,7 +4,7 @@ JavaScript oferece uma flexibilidade excepcional para lidar com funções. Elas 
 
 ## Cache Transparente
 
-Digamos que temos uma função `slow(x)` que usa muita CPU, mas seus resultados estáveis. Em outras palavras para o mesmo `x` ele sempre retorna o resultado.
+Digamos que temos uma função `slow(x)` que usa muita CPU, mas seus resultados são estáveis. Por outras palavras, para o mesmo `x` ela sempre retorna o mesmo resultado.
 
 Se a função for chamada várias vezes, nós podemos requer armazenar em cache (lembrar) os resultados para diferentes `x` para evitar gastar tempo extra em recalculações.
 
