@@ -1,6 +1,6 @@
 # Decoradores e Repassamento, call/apply
 
-JavaScript oferece uma flexibilidade excepcional ao lidar com funções. Elas podem ser repassadas, usadas como objetos, e agora iremos ver como *repassar* suas chamas entre elas e *decorá-las*.
+JavaScript oferece uma flexibilidade excepcional para lidar com funções. Elas podem ser repassadas, usadas como objetos, e agora iremos ver como *repassar* chamadas entre elas e *decorá-las*.
 
 ## Cache Transparente
 
