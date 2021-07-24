@@ -16,7 +16,7 @@ f1000("test"); // exibe "test" depois de 1000ms
 
 Por favor note como uma função seta (arrow function) é usada aqui. Tal como sabemos, funções seta não têm seus próprios `this` e `arguments`, então `f.apply(this, arguments)` recebe `this` e `arguments` a partir do encapsulador.
 
-Se passassemos uma função normal, `setTimeout` a chamaria sem argumentos e `this=window` (assumindo que estamos no browser).
+Se passássemos uma função normal, `setTimeout` a chamaria sem argumentos nem `this=window` (assumindo que estávamos no browser).
 
 Ainda podemos passar o `this` certo atráves do uso de uma variável intermediador, porém é um pouco mais difícil:
 
