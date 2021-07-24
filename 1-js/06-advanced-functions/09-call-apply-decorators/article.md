@@ -10,7 +10,7 @@ Se a função for chamada com frequência, nós podemos querer armazenar em cach
 
 Mas ao invés de adicionar essa funcionalidade a`slow()`, iremos criar um encapsulador. Como veremos, existem muitos benefícios em proceder deste modo.
 
-Abaixo está o código de exemplo, e a seguir a sua explicação:
+Aqui está o código, e a seguir a sua explicação:
 
 ```js run
 function slow(x) {
