@@ -29,7 +29,6 @@ setTimeout( () => f("c"), 500);
 
 Agora um exemplo prático. Vamos dizer, que o usuário digita alguma coisa, e gostaríamos de fazer um pedido ao servidor quando a entrada tiver terminado.
 
-
 Não adianta enviar um pedido por cada caractere digitado. Ao invés disso gostariamos de esperar, e então processar todo o resultado.
 
 Num navegador, nós podemos configurar um gerenciador de eventos -- uma função que é chamada em todas as alterações no campo de entrada. Normalmente, um gerenciador de eventos é chamado com frequência, a cada tecla pressionada. Porém, se nós fizermos o `debounce` dele por 1000ms, então ele será chamando apenas uma vez, depois de 1000ms após a última entrada.
