@@ -48,4 +48,4 @@ Ela espera o tempo dado depois da última chamada, e depois executa a sua tarefa
 
 A tarefa é implementar o decorador `debounce`.
 
-Dica: são apenas uma poucas linhas se você pensar sobre ela :)
+Dica: são apenas uma poucas linhas se você estiver a pensar nisso :)
