@@ -395,7 +395,7 @@ Retirado da especificação quase "como-é":
 6. ...Faça isso até que `this.length` itens estejam colados.
 7. Retorne `result`.
 
-Portanto, tecnicamente ele pega o `this` e combina `this[0]`, `this[1]` ...etc juntos. Foi intecionalmente escrito de uma maneira que permita qualquer objeto parecido com array `this` (não é uma conscidência, muitos métodos seguem esta prática). Aí está o porque isto também funciona com `this=arguments`.
+Portanto, tecnicamente ele pega o `this` e combina `this[0]`, `this[1]` ...etc juntos. Foi intencionalmente escrito de uma maneira que permita qualquer objeto parecido com array `this` (não é uma coincidência, muitos métodos seguem esta prática). Aí está o porque isto também funciona com `this=arguments`.
 
 ## Propriedades de decoradores e de funções
 
