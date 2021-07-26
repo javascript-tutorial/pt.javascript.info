@@ -10,7 +10,7 @@ Quando for chamado várias vezes, ela passa a chamada para `f` no máximo uma ve
 
 A diferença de debounce é que é um decorador completamente diferente:
 - `debounce` executa a função uma vez depois do período de "espera". Boa para processar o resultado final.
-- `throttle` não é executada mais do que uma vez em `ms` de tempo. Boa para atualizações regulares que não sejam num intervalo de tempo pequeno.
+- `throttle` não é executada mais do que uma vez em `ms` de tempo. Boa para atualizações regulares que não sejam efectuadas num intervalo de tempo pequeno.
 
 Em outras palavras, `throttle` é como uma secretária que aceita chamadas telefónicas, mas incomonda o chefe (chama a `f` atual) não mais do que uma vez por`ms` milissegundos.
 
