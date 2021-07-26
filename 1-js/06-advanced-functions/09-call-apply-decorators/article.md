@@ -238,6 +238,7 @@ Existem muitas soluções possíveis:
 2. Use mapas aninhados: `cache.set(min)` será um `Map` que armazena o par `(max, result)`. Então, podemos receber `result` como `cache.get(min).get(max)`.
 3. Junte dois valores em um. No nosso caso particular podemos apenas usar uma string `"min,max"` como a chave do `Map`. Para flexibilidade, podemos permitir prover uma *função de hashing* ao decorador, que saiba como fazer um valor a partir de muitos.
 
+
 Para muitas aplicações práticas, a terceira variante é suficientemente boa, então vamos segui-la.
 
 Também precisamos de passar não apenas o `x`, mas todos argumentos em `func.call`. Vamos recapitular que em uma `function()` podemos receber um pseudo-array de seus argumentos como `arguments`, então `func.call(this, x)` deveria ser substituida por `func.call(this, ...arguments)`.
