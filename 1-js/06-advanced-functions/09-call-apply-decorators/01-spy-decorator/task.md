@@ -27,4 +27,4 @@ for (let args of work.calls) {
 }
 ```
 
-P.S. Que o decorador é algumas vezes útil para teste unitário. Sua forma avançada é `sinon.spy` na biblioteca [Sinon.JS](http://sinonjs.org).
+P.S. Esse decorador é algumas vezes útil para testes unitários. Sua forma avançada é `sinon.spy` na biblioteca [Sinon.JS](http://sinonjs.org).
