@@ -379,7 +379,7 @@ hash(1, 2);
 
 O truque é chamado de *emprestando método*.
 
-Pegamos (emprestamos) um método de combinação de um array comum (`[].join()`) e usamos `[].join.call` para executá-lo no contexto de `arguments`.
+Pegamos (emprestamos) um método de concatenação de um array comum (`[].join()`) e usamos `[].join.call` para executá-lo no contexto de `arguments`.
 
 Porque ele funciona?
 
