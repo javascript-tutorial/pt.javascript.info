@@ -426,4 +426,4 @@ let wrapper = function() {
 
 Também vimos um exemplo de *emprestimo de método* quando pegamos num método de um objeto e o chamamos (`call`) no contexto de outro objeto. É bem comum pegar em métodos de um array e aplicá-los aos argumentos. A alternativa é usar un objeto de parâmetros rest que seja um verdadeiro array.
 
-Existem muitos decoradores por aí na selva. Verifique como bem você os recebeu ao resolver as tarefas deste capítulo.
+Existem muitos decoradores por aí. Verifique como bem você os percebeu ao resolver as tarefas deste capítulo.
