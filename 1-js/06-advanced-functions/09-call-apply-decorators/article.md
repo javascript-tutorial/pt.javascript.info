@@ -278,7 +278,7 @@ function hash(args) {
 
 worker.slow = cachingDecorator(worker.slow, hash);
 
-alert( worker.slow(3, 5) ); // works
+alert( worker.slow(3, 5) ); // funciona
 alert( "Again " + worker.slow(3, 5) ); // o mesmo (cacheado)
 ```
 
