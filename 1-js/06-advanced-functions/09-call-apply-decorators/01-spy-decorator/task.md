@@ -6,7 +6,7 @@ importance: 5
 
 Crie um decorador `spy(func)` que deve retornar um encapsulador que guarde todas as chamadas de uma função na sua propriedade `calls`.
 
-Todas chamadas são guardadas como um array de argumentos.
+Todas as chamadas são guardadas num array de argumentos.
 
 Por exemplo:
 
