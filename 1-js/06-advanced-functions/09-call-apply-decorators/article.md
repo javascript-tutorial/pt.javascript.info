@@ -341,7 +341,7 @@ function hash(args) {
 }
 ```
 
-Até agora, ele funciona somente com dois argumentos. Seria melhor se pudesse colar qualquer número de `args`.
+Até agora, ela funciona somente com dois argumentos. Seria melhor se pudesse colar qualquer número de `args`.
 
 A solução natural seria usar o método [arr.join](mdn:js/Array/join) :
 
