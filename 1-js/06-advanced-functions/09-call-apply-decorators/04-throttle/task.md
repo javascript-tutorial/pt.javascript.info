@@ -12,7 +12,7 @@ A diferença de debounce é que é um decorador completamente diferente:
 - `debounce` executa a função uma vez depois do período de "espera". Boa para processar o resultado final.
 - `throttle` não é executada mais do que uma vez em `ms` de tempo. Boa para atualizações regulares que não sejam efectuadas num intervalo de tempo pequeno.
 
-Em outras palavras, `throttle` é como uma secretária que aceita chamadas telefónicas, mas incomonda o chefe (chama a `f` atual) não mais do que uma vez por`ms` milissegundos.
+Por outras palavras, `throttle` é como uma secretária que aceita chamadas telefónicas, mas incomonda o chefe (chama a `f` atual) não mais do que uma vez por`ms` milissegundos.
 
 Vamos verificar a aplicação na vida real para melhor compreender esse requesito e ver de onde ele vem.
 
