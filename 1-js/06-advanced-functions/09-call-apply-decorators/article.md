@@ -401,7 +401,7 @@ Portanto, tecnicamente ele pega o `this` e combina `this[0]`, `this[1]` ...etc j
 
 É geralmente seguro substituir uma função ou um método por outro decorados, exceto por uma pequena coisa. Se a função original tiver propriedades nela, como `func.calledCount` ou qualquer outra, a função decorada não as forncerá. Porque ela é um encapsulador. Portanto é preciso ser cuidadoso ao usá-los.
 
-
+E.g. in the example above if `slow` function had any properties on it, then `cachingDecorator(slow)` is a wrapper without them.
 
 Alguns decoradores podem fornecer suas próprias propriedades. Exemplo, um decorador pode contar quantas vezes uma função foi invocada e quanto tempo ela levou, e expor essa informação atráves das propriedades do encapsulador.
 
