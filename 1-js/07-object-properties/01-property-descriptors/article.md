@@ -145,6 +145,7 @@ alert(user.name); // John
 user.name = "Alice"; // Erro
 ```
 
+
 ## Não-enumerável
 
 Agora, vamos adicionar um `toString` customizado ao `user`.
