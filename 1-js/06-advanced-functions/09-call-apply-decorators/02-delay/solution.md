@@ -18,7 +18,7 @@ Por favor note como uma função seta (arrow function) é usada aqui. Tal como s
 
 Se passássemos uma função normal, `setTimeout` iria chamá-la sem argumentos nem `this=window` (assumindo que estávamos no browser).
 
-Ainda podemos passar o `this` certo atráves do uso de uma variável intermediador, porém é um pouco mais difícil:
+Ainda podemos passar o `this` certo atráves do uso de uma variável intermédia, porém é um pouco mais difícil:
 
 ```js
 function delay(f, ms) {
