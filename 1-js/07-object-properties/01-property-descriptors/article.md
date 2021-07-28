@@ -1,15 +1,15 @@
 
-# Sinalizadores e descritores de propriedade
+# Sinalizadores e descritores de propriedades
 
 Como sabemos, objetos podem armazenar propriedades.
 
 Até agora, para nós, uma propriedade era um simples par "chave-valor". Mas uma propriedade de objeto é na verdade uma coisa mais flexível e poderosa.
 
-Neste capítulo, nós vamos estudar opções de configuração adicional, e no próximo nós vamos ver como invisivelmente tornar elas em funções getter/setter.
+Neste capítulo, nós vamos estudar opções de configurações adicionais, e no próximo nós vamos ver como invisivelmente tornar elas em funções getter/setter.
 
 ## Sinalizadores de propriedade
 
-Propriedades de objeto, além do **`valor`** tem três atributos especiais (também chamados "sinalizadores"):
+Propriedades de objeto, além do **`valor`** têm três atributos especiais (também chamados "sinalizadores"):
 
 - **`gravável`** -- se `true`, o valor pode ser alterado, caso contrário, é apenas-leitura.
 - **`enúmeravel`** -- se `true`, então pode ser listado em loops, caso contrário, não pode.
@@ -63,14 +63,14 @@ Object.defineProperty(obj, propertyName, descriptor)
 ```
 
 `obj`, `propertyName`
-: O objeto e a propriedade nos quais  atuar.
+: O objeto e a propriedade nos quais atuar.
 
 `descriptor`
 : Descritor de propriedade de objeto a aplicar.
 
-Se a proprieade existe, `defineProperty` atualiza seu sinalizador. Caso contrário, é criada uma propriedade com os sinalizadores setados; neste caso, se um sinalizador não é enviado, seu valor é assumido como `false`.
+Se a proprieade existe, `defineProperty` atualiza o seu sinalizador. Caso contrário, é criada uma propriedade com os sinalizadores e valor dados; neste caso, se um sinalizador não é fornecido, seu valor é assumido como `false`.
 
-Por exemplo, aqui a propriedade `name` é criada com todos os sinalizadores falsos:
+Por exemplo, aqui a propriedade `name` é criada com todos os sinalizadores a falso:
 
 ```js run
 let user = {};
@@ -96,7 +96,7 @@ alert( JSON.stringify(descriptor, null, 2 ) );
  */
 ```
 
-Compare isso com o `user.name` "criado normalmente" acima: agora todos os sinalizadores são falsos. Se não é isso que queremos, então é melhor setá-los como `true` no `descriptor`.  
+Compare isso com o `user.name` "criado normalmente" acima: agora todos os sinalizadores são falsos. Se não é isso que queremos, então é melhor configurá-los como `true` no `descriptor`.  
 
 Agora vamos ver os efeitos dos sinalizadores, por exemplo:
 
@@ -116,14 +116,15 @@ Object.defineProperty(user, "name", {
 });
 
 *!*
-user.name = "Pete"; // Error: Cannot assign to read only property 'name'...
+user.name = "Pete";
+// Error: Cannot assign to read only property 'name'... (Erro: não é possível a atribuição à variável de apenas leitura 'name'...)
 */!*
 ```
 
 Agora, ninguém pode alterar o nome do nosso usuário, a não ser que eles apliquem seus próprios `defineProperty` para sobrescrever o nosso.
 
 ```smart header="Erros aparecem apenas em strict mode"
-No modo não-estrito, os erros não ocorrem quando gravando em propriedades não-graváveis, etc. Mas a operação ainda não terá sucesso. Ações que violam os sinalizadores são apenas ignoradas silenciosamentes em modo não-estrito. 
+No modo não-estrito, os erros não ocorrem quando escrevendo em propriedades não-graváveis, etc. Mas a operação ainda assim não terá sucesso. Ações que violam os sinalizadores são apenas ignoradas silenciosamentes em modo não-estrito. 
 ```
 
 Aqui está o mesmo exemplo, mas a propriedade é criada do zero.
@@ -134,7 +135,7 @@ let user = { };
 Object.defineProperty(user, "name", {
 *!*
   value: "John",
-  // para novas proprieades, precisamos explicitamente listar o que é true
+  // para novas proprieades, precisamos explicitamente de listar o que é true
   enumerable: true,
   configurable: true
 */!*
@@ -148,7 +149,7 @@ user.name = "Alice"; // Erro
 
 Agora, vamos adicionar um `toString` customizado ao `user`.
 
-Normalmente, um `toString` embutido em objetos é não-enumerável, e não aparece em `for...in`. Mas se nós adicionarmos um `toString` por nós mesmos, então por padrão ele aparece em `for...in`, desta forma:
+Normalmente, um `toString` embutido em objetos é não-enumerável, e não aparece em `for..in`. Mas se nós adicionarmos um `toString` por nós mesmos, então por padrão ele aparece em `for..in`, desta forma:
 
 ```js run
 let user = {
@@ -162,7 +163,7 @@ let user = {
 for (let key in user) alert(key); // name, toString
 ```
 
-Se nós não gostarmos disso, então podemos setar `enumerable:false`. Então ela não vai aparecer no loop `for...in`, assim como as propriedades embutidas:
+Se nós não gostarmos disso, então podemos configurar `enumerable:false`. Então ela não vai aparecer no loop `for..in`, tal como as propriedades embutidas:
 
 ```js run
 let user = {
@@ -192,7 +193,7 @@ alert(Object.keys(user)); // name
 
 ## Não-configurável
 
-O sinalizador não-configurável (`configurable:false`) algumas vezes é predefinido por objetos e propriedades embutidas.
+O sinalizador não-configurável (`configurable:false`) algumas vezes está predefinido para objetos e propriedades embutidas.
 
 Uma propriedade não-configurável não pode ser deletada.
 
@@ -221,13 +222,13 @@ Math.PI = 3; // Erro
 
 Deixar uma propriedade não-configurável, é um caminho só de ida. Nós não podemos alterar isso novamente com `defineProperty`.
 
-Para ser preciso, não-configurabilidade impões várias restrições em `defineProperty`:
+Para ser preciso, a não-configurabilidade impões várias restrições a `defineProperty`:
 1. Não poder mudar o sinalizador `configurable`.
-1. Não poder mudar o sinalizador `enumerable`.
+2. Não poder mudar o sinalizador `enumerable`.
 3. Não poder mudar `writable: false` para `true` (o contrário funciona).
 4. Não poder mudar `get/set` por um acessador de propriedade (mas pode atribuí-los se ausente).
 
-**A ideia de "configurable: false" é para prevenir mudanças de sinalizadores de propriedades e sua eliminação, enquanto permite alterar seu valor.**
+**A ideia de "configurable: false" é para prevenir a mudança de sinalizadores de propriedades e a sua eliminação, enquanto permite alterar o seu valor.**
 
 Aqui `user.name` é não-configurável, mas nós ainda podemos alterá-lo (pois é gravável):
 
@@ -256,7 +257,7 @@ Object.defineProperty(user, "name", {
   configurable: false
 });
 
-// não será possível alterar user.name ou seus sinalizadores
+// não será possível alterar user.name ou os seus sinalizadores
 // nada disso irá funcionar
 user.name = "Pete";
 delete user.name;
@@ -288,13 +289,13 @@ Object.defineProperties(user, {
 });
 ```
 
-Então, nós podemos setar várias propriedades de uma vez.
+Então, nós podemos configurar várias propriedades de uma vez.
 
 ## Object.getOwnPropertyDescriptors
 
 Para obter todos os sinalizadores de propriedade de uma vez, nós podemos usar o método [Object.getOwnPropertyDescriptors(obj)](mdn:js/Object/getOwnPropertyDescriptors).
 
-Juntamente com `Object.defineProperties` isso pode ser usado como um jeito "consciente-de-sinalizadores" de clonar objetos:
+Juntamente com `Object.defineProperties` isso pode ser usado como um jeito "incluindo-sinalizadores" de clonar objetos:
 
 ```js
 let clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
@@ -308,7 +309,7 @@ for (let key in user) {
 }
 ```
 
-...Mas isso não copia os sinalizadores. Então se nós quisermos um clone "melhor" então é preferível `Object.defineProperties`.
+...Mas isso não copia os sinalizadores. Assim, se nós quisermos um clone "melhor" então é preferível `Object.defineProperties`.
 
 Outra diferença é que `for..in` ignora propriedades simbólicas, mas `Object.getOwnPropertyDescriptors` returna *todas* as propriedades descritoras, incluindo as simbólicas.
 
@@ -322,10 +323,10 @@ Também existem métodos que limitam o acesso ao objeto *inteiro*:
 : Proíbe a adição de novas propriedades ao objeto.
 
 [Object.seal(obj)](mdn:js/Object/seal)
-: Proíbe a adição/remoção de propriedades. Seta `configurable: false` para todas as propriedades existentes.
+: Proíbe a adição/remoção de propriedades. Coloca `configurable: false` para todas as propriedades existentes.
 
 [Object.freeze(obj)](mdn:js/Object/freeze)
-: Proíbe adicionar/remover/alterar propriedades. Seta `configurable: false, writable: false` para todas as propriedades existentes.
+: Proíbe adicionar/remover/alterar propriedades. Coloca `configurable: false, writable: false` para todas as propriedades existentes.
 
 E também existem testes para eles:
 
