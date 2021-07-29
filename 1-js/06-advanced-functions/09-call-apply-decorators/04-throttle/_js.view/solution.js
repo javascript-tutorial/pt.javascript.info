@@ -18,7 +18,7 @@ function throttle(func, ms) {
 
     isThrottled = true;
 
-    // planea reiniciar isThrottled depois do atraso
+    // planeia reinicializar isThrottled depois do atraso
     setTimeout(function() {
       isThrottled = false;
       if (savedArgs) {
