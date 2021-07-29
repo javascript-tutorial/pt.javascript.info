@@ -23,7 +23,7 @@ function throttle(func, ms) {
       isThrottled = false;
       if (savedArgs) {
         // se houver chamadas, savedThis/saveArgs tem a última
-        // chamada recursiva executa a função e configur a espera novamente
+        // a chamada recursiva executa a função e configura a espera novamente
         wrapper.apply(savedThis, savedArgs);
         savedArgs = savedThis = null;
       }
