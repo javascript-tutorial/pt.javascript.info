@@ -7,7 +7,7 @@ describe("delay", function() {
     this.clock.restore();
   });
 
-  it("calls the function after the specified timeout", function() {
+  it("chama a função depois do limite do tempo especificado", function() {
     let start = Date.now();
 
     function f(x) {
@@ -18,10 +18,10 @@ describe("delay", function() {
     let f1000 = delay(f, 1000);
     f1000("test");
     this.clock.tick(2000);
-    assert(f.calledOnce, 'calledOnce check fails');
+    assert(f.calledOnce, 'A verificação do calledOnce falhou');
   });
 
-  it("passes arguments and this", function() {
+  it("passa os argumentos e this", function() {
     let start = Date.now();
     let user = {
       sayHi: function(phrase, who) {
@@ -41,6 +41,6 @@ describe("delay", function() {
 
     this.clock.tick(2000);
 
-    assert(spy.calledOnce, 'calledOnce check failed');
+    assert(spy.calledOnce, 'A verificação do calledOnce falhou');
   });
 });

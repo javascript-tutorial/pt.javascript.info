@@ -7,17 +7,17 @@ describe('debounce', function () {
     this.clock.restore();
   });
 
-  it('for one call - runs it after given ms', function () {
+  it('para uma chamada - executo-o depois de dado milissegundos', function () {
     const f = sinon.spy();
     const debounced = debounce(f, 1000);
 
     debounced('test');
-    assert(f.notCalled, 'not called immediately');
+    assert(f.notCalled, 'não é chamada imediatamente');
     this.clock.tick(1000);
-    assert(f.calledOnceWith('test'), 'called after 1000ms');
+    assert(f.calledOnceWith('test'), 'é chamada depois de 1000ms');
   });
 
-  it('for 3 calls - runs the last one after given ms', function () {
+  it('para 3 chamadas - execute a última depois de dado milissegundos', function () {
     const f = sinon.spy();
     const debounced = debounce(f, 1000);
 
@@ -26,14 +26,14 @@ describe('debounce', function () {
     setTimeout(() => debounced('c'), 500); // executa (1000ms passados)
     this.clock.tick(1000);
 
-    assert(f.notCalled, 'not called after 1000ms');
+    assert(f.notCalled, 'não é chamada depois de 1000ms');
 
     this.clock.tick(500);
 
-    assert(f.calledOnceWith('c'), 'called after 1500ms');
+    assert(f.calledOnceWith('c'), 'é chamada depois de 1500ms');
   });
 
-  it('keeps the context of the call', function () {
+  it('preserva o contexto da chamada', function () {
     let obj = {
       f() {
         assert.equal(this, obj);

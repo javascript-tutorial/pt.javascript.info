@@ -11,12 +11,12 @@ describe("throttle(f, 1000)", function() {
     f1000 = throttle(f, 1000);
   });
 
-  it("the first call runs now", function() {
+  it("a primeira chamada executa agora", function() {
     f1000(1); // executa agora
     assert.equal(log, "1");
   });
 
-  it("then calls are ignored till 1000ms when the last call works", function() {
+  it("então as chamadas são ignoradas até 1000ms quando a última chamada funcionar", function() {
     f1000(2); // (throttling - menos do que 1000ms desde a última execução)
     f1000(3); // (throttling - menos do que 1000ms desde a última execução)
     // depois de 1000ms f(3) a chamada é agendada
@@ -27,7 +27,7 @@ describe("throttle(f, 1000)", function() {
     assert.equal(log, "13"); // log==13, a chamada para f1000(3) é feita
   });
 
-  it("the third call waits 1000ms after the second call", function() {
+  it(" a terceira chamada espera 1000ms depois da segunda chamada", function() {
     this.clock.tick(100);
     f1000(4); // (throttling - menos do que 1000ms desde a última execução)
     this.clock.tick(100);
@@ -48,14 +48,14 @@ describe("throttle(f, 1000)", function() {
 
 describe('throttle', () => {
 
-  it('runs a forwarded call once', done => {
+  it('executa a chamada encaminhada uma vez', done => {
     let log = '';
     const f = str => log += str;
     const f10 = throttle(f, 10);
     f10('once');
 
     setTimeout(() => {
-      assert.equal(log, 'once');
+      assert.equal(log, 'uma vez');
       done();
     }, 20);
   });
