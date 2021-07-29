@@ -7,7 +7,7 @@ function throttle(func, ms) {
   function wrapper() {
 
     if (isThrottled) {
-      // memorizar os últimos argumentos para chamada depois da espera
+      // memorizar os últimos argumentos para a chamada depois da espera
       savedArgs = arguments;
       savedThis = this;
       return;
