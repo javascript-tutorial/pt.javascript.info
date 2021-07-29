@@ -23,7 +23,7 @@ describe("throttle(f, 1000)", function() {
 
     assert.equal(log, "1"); // agora somente a primeira chamada é feita
 
-    this.clock.tick(1000); // depois 1000ms...
+    this.clock.tick(1000); // depois de 1000ms...
     assert.equal(log, "13"); // log==13, a chamada para f1000(3) é feita
   });
 
