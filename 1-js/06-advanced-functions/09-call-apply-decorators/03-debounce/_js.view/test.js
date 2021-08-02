@@ -7,7 +7,7 @@ describe('debounce', function () {
     this.clock.restore();
   });
 
-  it('para uma chamada - executo-o depois de dado milissegundos', function () {
+  it('para uma chamada - executa-o depois de dados milissegundos', function () {
     const f = sinon.spy();
     const debounced = debounce(f, 1000);
 
