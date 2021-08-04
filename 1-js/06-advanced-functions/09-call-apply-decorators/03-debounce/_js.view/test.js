@@ -17,7 +17,7 @@ describe('debounce', function () {
     assert(f.calledOnceWith('test'), 'é chamada depois de 1000ms');
   });
 
-  it('para 3 chamadas - execute a última depois de dado milissegundos', function () {
+  it('para 3 chamadas - execute a última depois de dados milissegundos', function () {
     const f = sinon.spy();
     const debounced = debounce(f, 1000);
 
