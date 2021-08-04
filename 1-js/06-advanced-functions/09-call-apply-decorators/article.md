@@ -58,7 +58,7 @@ O resultado do `cachingDecorator(func)` é um "encapsulador": `function(x)` que 
 
 Como podemos ver, o encapsulador retorna o resultado da `func(x)` "como ele é". A partir de um código exterior, a função `slow` encapsulada ainda faz o mesmo. Ela apenas teve o aspecto de cache adicionado ao seu comportamento.
 
-Resumindo, existem muitos benefícios em usar um `cacheDecorator` separado ao invés de alterar o próprio  código de `slow`:
+Resumindo, existem muitos benefícios em usar um `cacheDecorator` separado ao invés de alterar o próprio código de `slow`:
 
 - O `cacheDecorator` é reusável. Nós o podemos aplicar a outras funções.
 - A lógica de cache está separada, ela não adicionou complexidade a `slow` (se havia alguma).
