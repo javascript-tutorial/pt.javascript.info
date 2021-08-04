@@ -7,7 +7,7 @@ describe("delay", function() {
     this.clock.restore();
   });
 
-  it("chama a função depois do limite do tempo especificado", function() {
+  it("chama a função depois do limite de tempo especificado", function() {
     let start = Date.now();
 
     function f(x) {
