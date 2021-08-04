@@ -6,7 +6,7 @@ importance: 5
 
 Crie um decorador de "estrangulamento" `throttle(f, ms)` -- que retorne um encapsulador.
 
-Quando for chamado várias vezes, ela passa a chamada para `f` no máximo uma vez por `ms` milissegundos.
+Quando for chamado várias vezes, ele passa a chamada para `f` no máximo uma vez por `ms` milissegundos.
 
 A diferença de debounce é que é um decorador completamente diferente:
 - `debounce` executa a função uma vez depois do período de "espera". Boa para processar o resultado final.
