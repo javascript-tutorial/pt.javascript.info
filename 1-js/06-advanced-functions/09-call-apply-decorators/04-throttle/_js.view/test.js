@@ -19,7 +19,7 @@ describe("throttle(f, 1000)", function() {
   it("então as chamadas são ignoradas até 1000ms quando a última chamada funcionar", function() {
     f1000(2); // (throttling - menos do que 1000ms desde a última execução)
     f1000(3); // (throttling - menos do que 1000ms desde a última execução)
-    // depois de 1000ms f(3) a chamada é agendada
+    // depois de 1000ms a chamada f(3) é agendada
 
     assert.equal(log, "1"); // agora somente a primeira chamada é feita
 
