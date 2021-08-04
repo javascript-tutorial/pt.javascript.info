@@ -333,7 +333,7 @@ Quando um código externo chama esse `encapsulador`, ele é indistinguível da c
 
 ## Emprestando um método [#method-borrowing]
 
-Agora vamos fazer mais uma pequena melhoria na função de hashing:
+Agora vamos fazer mais uma pequena melhoria à função de hashing:
 
 ```js
 function hash(args) {
