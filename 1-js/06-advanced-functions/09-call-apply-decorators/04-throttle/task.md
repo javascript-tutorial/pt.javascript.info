@@ -14,7 +14,7 @@ A diferença de debounce é que é um decorador completamente diferente:
 
 Por outras palavras, `throttle` é como uma secretária que aceita chamadas telefónicas, mas incomonda o chefe (chama a `f` atual) não mais do que uma vez por`ms` milissegundos.
 
-Vamos verificar a aplicação na vida real para melhor compreender esse requesito e ver de onde ele vem.
+Vamos verificar a aplicação na vida real para melhor compreender esse requisito e ver de onde ele vem.
 
 **Por exemplo, queremos rastrear movimentos do rato**
 
