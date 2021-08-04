@@ -66,7 +66,7 @@ Resumindo, existem muitos benefícios em usar um `cacheDecorator` separado ao in
 
 ## Usando "func.call" para o contexto
 
-O decorador de cache mencionado acima não é adequado para trabalhar com os métodos de objeto.
+O decorador de cache mencionado acima não é adequado para trabalhar com métodos de objeto.
 
 Por exemplo, no código abaixo `worker.slow()` pára de funcionar após a decoração:
 
