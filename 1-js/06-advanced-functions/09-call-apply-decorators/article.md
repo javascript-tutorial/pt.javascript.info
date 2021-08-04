@@ -329,7 +329,7 @@ let wrapper = function() {
 };
 ```
 
-Quando um código externo chama tal `encapsulador`, ele é indistinguível da chamada da função original `func`.
+Quando um código externo chama esse `encapsulador`, ele é indistinguível da chamada da função original `func`.
 
 ## Emprestando um método [#method-borrowing]
 
