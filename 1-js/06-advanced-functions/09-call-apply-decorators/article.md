@@ -165,7 +165,7 @@ function say(phrase) {
 
 let user = { name: "John" };
 
-// user se torna this, e "Hello" se torna o primeiro argumento
+// user se torna this, e "Hello" se torna no primeiro argumento
 say.call( user, "Hello" ); // John: Hello
 ```
 
