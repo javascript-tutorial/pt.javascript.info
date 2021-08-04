@@ -241,7 +241,7 @@ Existem muitas soluções possíveis:
 
 Para muitas aplicações práticas, a terceira variante é suficientemente boa, então vamos segui-la.
 
-Também precisamos de passar não apenas o `x`, mas todos argumentos em `func.call`. Vamos recapitular que em uma `function()` podemos receber um pseudo-array de seus argumentos como `arguments`, então `func.call(this, x)` deveria ser substituida por `func.call(this, ...arguments)`.
+Também precisamos de passar não apenas o `x`, mas todos argumentos em `func.call`. Vamos recapitular que em uma `function()` podemos receber um pseudo-array com os seus argumentos como `arguments`, então `func.call(this, x)` deveria ser substituida por `func.call(this, ...arguments)`.
 
 Agora vamos condensar tudo dentro do mais poderoso `cachingDecorator`:
 
