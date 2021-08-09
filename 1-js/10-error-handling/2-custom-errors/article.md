@@ -124,11 +124,7 @@ We could also look at `err.name`, like this:
 
 The `instanceof` version is much better, because in the future we are going to extend `ValidationError`, make subtypes of it, like `PropertyRequiredError`. And `instanceof` check will continue to work for new inheriting classes. So that's future-proof.
 
-<<<<<<< HEAD
-Also it's important that if `catch` meets an unknown error, then it rethrows it in the line `(**)`. The `catch`  only knows how to handle validation and syntax errors, other kinds (due to a typo in the code or such) should fall through.
-=======
 Also it's important that if `catch` meets an unknown error, then it rethrows it in the line `(**)`. The `catch` block only knows how to handle validation and syntax errors, other kinds (caused by a typo in the code or other unknown reasons) should fall through.
->>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b
 
 ## Further inheritance
 
