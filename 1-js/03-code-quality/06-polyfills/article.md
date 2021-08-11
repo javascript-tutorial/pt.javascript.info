@@ -22,7 +22,7 @@ Aqui, neste capítulo, o nosso propósito é obter o essencial de como elas func
 
 ## Transpilers
 
-Um [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) é uma peça especial de software que pode interpretar ("ler e compreender") código moderno, e o reescrever usando construções sintáticas antigas, mas de forma a que o resultado seja o mesmo.
+Um [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) é uma peça especial de software que traduz um código fonte para outro código fonte. Ele pode analisar ("ler e compreender") código moderno, e o reescrever usando construções sintáticas antigas, de tal forma que também funcione em interpretadores desatualizados.
 
 Por exemplo, o JavaScript antes de 2020 não tinha o "operador de coalescência nula" `??`. Assim, se um visitante usar um navegador desatualizado, este não conseguirá compreender código como `height = height ?? 100`.
 
