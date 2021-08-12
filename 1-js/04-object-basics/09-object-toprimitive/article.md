@@ -9,7 +9,7 @@ Para tais operações, os objetos são auto-convertidos para primitivos, e depoi
 
 Esta é uma importante limitação, pois o resultado de `obj1 + obj2` não pode ser um outro objeto.
 
-Por ex., nós não podemos criar objetos representando vetores ou matrizes (ou conquistas, ou outros), adicioná-los e esperar um objecto "soma" como resultado. Tais efeitos especiais estão automáticamente "fora de questão".
+Por ex., nós não podemos criar objetos representando vetores ou matrizes (ou conquistas, ou outros), adicioná-los e esperar um objecto "somado" como resultado. Tais efeitos especiais estão automáticamente "fora de questão".
 
 Portanto, como nós não podemos fazer muito neste campo, não há operações matemáticas com objetos em projetos reais. Quando isto acontece, geralmente é devido a um erro no código.
 
