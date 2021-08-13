@@ -229,6 +229,8 @@ Para ser preciso, a não-configurabilidade impões várias restrições a `defin
 3. Não poder mudar `writable: false` para `true` (o contrário funciona).
 4. Não poder mudar `get/set` por um acessador de propriedade (mas pode atribuí-los se ausente).
 
+
+
 **A ideia de "configurable: false" é para prevenir a mudança de sinalizadores de propriedades e a sua eliminação, enquanto permite alterar o seu valor.**
 
 Aqui `user.name` é não-configurável, mas nós ainda podemos alterá-lo (pois é gravável):
