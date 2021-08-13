@@ -196,7 +196,7 @@ alert(Object.keys(user)); // name
 
 O sinalizador não-configurável (`configurable:false`) algumas vezes está predefinido para objetos e propriedades embutidas.
 
-Uma propriedade não-configurável não pode ser deletada.
+Uma propriedade não-configurável não pode ser deletada e seus atributos não podem ser modificador.
 
 Por exemplo, `Math.PI` é não-gravável, não-enumerável e não-configurável:
 
@@ -216,7 +216,7 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 Então, um programador é impossibilitado de mudar o valor de `Math.PI` ou sobrescrevê-lo.
 
 ```js run
-Math.PI = 3; // Erro
+Math.PI = 3; // Erro, porque a propriedade tem gravável: false
 
 // deletar Math.PI também não irá funcionar
 ```
@@ -246,7 +246,7 @@ user.name = "Pete"; // funciona corretamente
 delete user.name; // Erro
 ```
 
-E aqui nós deixamos `user.name` uma constante "selada para sempre":
+E aqui nós deixamos `user.name` uma constante "selada para sempre", assim como a propriedade embutida `Math.PI`:
 
 ```js run
 let user = {
@@ -265,6 +265,11 @@ delete user.name;
 Object.defineProperty(user, "name", { value: "Pete" });
 ```
 
+```smart header="The only attribute change possible: writable true -> false"
+There's a minor exception about changing flags.
+
+We can change `writable: true` to `false` for a non-configurable property, thus preventing its value modification (to add another layer of protection). Not the other way around though.
+```
 
 ## Object.defineProperties
 
