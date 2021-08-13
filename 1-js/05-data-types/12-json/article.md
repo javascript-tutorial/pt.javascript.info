@@ -104,9 +104,9 @@ JSON é uma especificação multi linguagem apenas para dados, então algumas pr
 
 Por exemplo:
 
-- Propriedades do tipo função (métodos)
-- Propriedades do tipo Symbol
-- Propriedades que armazenam `undefined`
+- Propriedades do tipo função (métodos).
+- Chaves do tipo Symbol e valores.
+- Propriedades que armazenam `undefined`.
 
 ```js run
 let user = {
@@ -276,6 +276,7 @@ name:         John
 name:         Alice
 place:        [object Object]
 number:       23
+occupiedBy: [object Object]
 */
 ```
 
@@ -286,11 +287,11 @@ A primeira chamada é especial. Ela é feita usando um "objeto manipulador": `{"
 A ideia é fornecer a `replacer` tanto poder quanto possível: tem uma chance de analisar e substituir/pular o objeto todo se necessário.
 
 
-## Formatando: spacer
+## Formatando: espaço
 
-O terceiro argumento de `JSON.stringify(value, replacer, spaces)` é o número de espaços a usar para uma formatação bonita.
+O terceiro argumento de `JSON.stringify(value, replacer, space)` é o número de espaços a usar para uma formatação bonita.
 
-Anteriormente, todos os objetos serializados não tinham espaços extras de identação. Isso é bom se queremos enviar um objeto pela rede. O argumento `spacer` é usado exclusivamente para uma boa saida.
+Anteriormente, todos os objetos serializados não tinham identação nem espaços extra. Isso é bom se queremos enviar um objeto pela rede. O argumento `spacer` é usado exclusivamente para uma bonita saida.
 
 Aqui `spacer = 2` diz ao Javascript para mostrar objetos aninhados em multiplas linhas, com identação de 2 espaços dentro de um objeto:
 
@@ -328,7 +329,9 @@ alert(JSON.stringify(user, null, 2));
 */
 ```
 
-O parâmetro `spaces` é usado unicamente para propósitos de log e saida mais amigável.
+O terceiro argumento também pode ser uma *string*. neste caso, a *string* é usada para identação ao invés de um número de espaços.
+
+O parâmetro `space` é usado unicamente para propósitos de logging e saida mais bonita.
 
 ## "toJSON" personalizado
 
@@ -393,7 +396,7 @@ alert( JSON.stringify(meetup) );
 */
 ```
 
-Como podemos ver, `toJSON` é usado tanto para chamada direta `JSON.stringify(room)` quanto para objetos aninhados.
+Como podemos ver, `toJSON` é usado tanto para a chamada direta `JSON.stringify(room)`, quanto quando `room` está aninhado em um outro objeto codificado.
 
 
 ## JSON.parse
@@ -425,9 +428,9 @@ alert( numbers[1] ); // 1
 Ou para objetos aninhados:
 
 ```js run
-let user = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+let userData = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
 
-user = JSON.parse(user);
+let user = JSON.parse(userData);
 
 alert( user.friends[1] ); // 1
 ```

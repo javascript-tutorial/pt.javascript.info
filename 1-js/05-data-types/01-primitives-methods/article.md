@@ -9,7 +9,7 @@ Vejamos as principais diferenças entre primitivos e objetos.
 Um primitivo
 
 - É um valor de um tipo primitivo.
-- Existem 6 tipos primitivos: `string`, `number`, `boolean`, `symbol`, `null` e `undefined`.
+- Existem 7 tipos primitivos: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` e `undefined`.
 
 Um objeto
 
@@ -41,8 +41,8 @@ Objetos são "mais pesados" que primitivos. Eles exigem recursos adicionais para
 
 Aqui está o paradoxo enfrentado pelo criador do JavaScript:
 
-- Há muitas coisas que alguém poderia querer fazer com um primitivo como uma string ou um número. Seria ótimo acessá-los como métodos.
-- Primitivos devem ser o mais rápido e leve possível.
+- Há muitas coisas que alguém poderia querer fazer com um primitivo como uma string ou um número. Seria ótimo acessá-los usando métodos.
+- Primitivos devem ser o mais rápidos e leves possível.
 
 A solução parece um pouco estranha, mas aqui está:
 
@@ -52,7 +52,7 @@ A solução parece um pouco estranha, mas aqui está:
 
 Os "invólucros de objeto" são diferentes para cada tipo primitivo e são chamados: `String`, `Number`, `Boolean` e `Symbol`. Assim, eles fornecem diferentes conjuntos de métodos.
 
-Por exemplo, existe um método [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) que retorna uma string em letras maiúsculas.
+Por exemplo, existe um método para *strings* [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) que retorna `str` em letras maiúsculas.
 
 Veja como isso funciona:
 
