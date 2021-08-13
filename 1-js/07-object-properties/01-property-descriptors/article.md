@@ -116,8 +116,7 @@ Object.defineProperty(user, "name", {
 });
 
 *!*
-user.name = "Pete";
-// Error: Cannot assign to read only property 'name'... (Erro: não é possível a atribuição à variável de apenas leitura 'name'...)
+user.name = "Pete"; // Error: Cannot assign to read only property 'name'... (Erro: não é possível a atribuição à variável de apenas leitura 'name'...)
 */!*
 ```
 
@@ -144,7 +143,6 @@ Object.defineProperty(user, "name", {
 alert(user.name); // John
 user.name = "Alice"; // Erro
 ```
-
 
 ## Não-enumerável
 
@@ -221,15 +219,16 @@ Math.PI = 3; // Erro, porque a propriedade tem gravável: false
 // deletar Math.PI também não irá funcionar
 ```
 
+We also can't change `Math.PI` to be `writable` again:
+
+```js run
+// Error, because of configurable: false
+Object.defineProperty(Math, "PI", { writable: true });
+```
+
+There's absolutely nothing we can do with `Math.PI`.
+
 Deixar uma propriedade não-configurável, é um caminho só de ida. Nós não podemos alterar isso novamente com `defineProperty`.
-
-Para ser preciso, a não-configurabilidade impões várias restrições a `defineProperty`:
-1. Não poder mudar o sinalizador `configurable`.
-2. Não poder mudar o sinalizador `enumerable`.
-3. Não poder mudar `writable: false` para `true` (o contrário funciona).
-4. Não poder mudar `get/set` por um acessador de propriedade (mas pode atribuí-los se ausente).
-
-
 
 **A ideia de "configurable: false" é para prevenir a mudança de sinalizadores de propriedades e a sua eliminação, enquanto permite alterar o seu valor.**
 
