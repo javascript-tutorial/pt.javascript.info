@@ -27,7 +27,7 @@ alert(user.name); // Jack
 alert(user.isAdmin); // false
 ```
 
-When a function is executed as `new User(...)`, it does the following steps:
+When a function is executed with `new`, it does the following steps:
 
 1. A new empty object is created and assigned to `this`.
 2. The function body executes. Usually it modifies `this`, adds new properties to it.
@@ -51,7 +51,7 @@ function User(name) {
 }
 ```
 
-So the result of `new User("Jack")` is the same object as:
+So `let user = new User("Jack")` gives the same result as:
 
 ```js
 let user = {
@@ -64,13 +64,14 @@ Now if we want to create other users, we can call `new User("Ann")`, `new User("
 
 That's the main purpose of constructors -- to implement reusable object creation code.
 
-Let's note once again -- technically, any function can be used as a constructor. That is: any function can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
+Let's note once again -- technically, any function (except arrow functions, as they don't have `this`) can be used as a constructor. It can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
 
 ````smart header="new function() { ... }"
-If we have many lines of code all about creation of a single complex object, we can wrap them in constructor function, like this:
+If we have many lines of code all about creation of a single complex object, we can wrap them in an immediately called constructor function, like this:
 
 ```js
-let user = new function() {
+// create a function and immediately call it with new
+let user = new function() { 
   this.name = "John";
   this.isAdmin = false;
 
@@ -80,10 +81,10 @@ let user = new function() {
 };
 ```
 
-The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
+This constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
 ````
 
-## Dual-syntax constructors: new.target
+## Constructor mode test: new.target
 
 ```smart header="Advanced stuff"
 The syntax from this section is rarely used, skip it unless you want to know everything.
@@ -91,7 +92,7 @@ The syntax from this section is rarely used, skip it unless you want to know eve
 
 Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
 
-It is empty for regular calls and equals the function if called with `new`:
+It is undefined for regular calls and equals the function if called with `new`:
 
 ```js run
 function User() {
@@ -109,7 +110,9 @@ new User(); // function User { ... }
 */!*
 ```
 
-That can be used to allow both `new` and regular calls to work the same. That is, create the same object:
+That can be used inside the function to know whether it was called with `new`, "in constructor mode", or without it, "in regular mode".
+
+We can also make both `new` and regular calls to do the same, like this:
 
 ```js run
 function User(name) {
@@ -134,7 +137,7 @@ Usually, constructors do not have a `return` statement. Their task is to write a
 
 But if there is a `return` statement, then the rule is simple:
 
-- If `return` is called with object, then it is returned instead of `this`.
+- If `return` is called with an object, then the object is returned instead of `this`.
 - If `return` is called with a primitive, it's ignored.
 
 In other words, `return` with an object returns that object, in all other cases `this` is returned.
@@ -146,10 +149,10 @@ function BigUser() {
 
   this.name = "John";
 
-  return { name: "Godzilla" };  // <-- returns an object
+  return { name: "Godzilla" };  // <-- returns this object
 }
 
-alert( new BigUser().name );  // Godzilla, got that object ^^
+alert( new BigUser().name );  // Godzilla, got that object
 ```
 
 And here's an example with an empty `return` (or we could place a primitive after it, doesn't matter):
@@ -159,10 +162,7 @@ function SmallUser() {
 
   this.name = "John";
 
-  return; // finishes the execution, returns this
-
-  // ...
-
+  return; // <-- returns this
 }
 
 alert( new SmallUser().name );  // John
@@ -212,6 +212,8 @@ john = {
 }
 */
 ```
+
+To create complex objects, there's a more advanced syntax, [classes](info:classes), that we'll cover later.
 
 ## Summary
 

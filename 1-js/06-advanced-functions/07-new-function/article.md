@@ -91,7 +91,7 @@ Talvez nós queremos que ela consiga acessar variáveis locias externas?
 
 O problema é que antes do JavaScript ser publicado para produção, ele é comprimido usando um "minificador" -- um programa especial que encolhe código removendo comentários, espaços e -- o mais importante, renomeia variáveis locais em variáveis mais curtas.
 
-Por exemplo, se uma função tem `let userName`, o minificador o troca  por `let a` (ou outra letra se esta estiver ocupada), e ele faz isso em toda parte. Isso usualmente é uma coisa segura de se fazer, porque a variável é local, nada fora da função pode acessar ela. E dentro da função, o minificador troca todas as suas menções. Minificadores são inteligentes, eles analisam a estrutura do código, para que eles não quebrem nada. Eles não são um simples "encontra-e-repõem".
+Por exemplo, se uma função tem `let userName`, o minificador o troca  por `let a` (ou outra letra se esta estiver ocupada), e ele faz isso em toda parte. Isso usualmente é uma coisa segura de se fazer, porque a variável é local, nada fora da função pode acessar ela. E dentro da função, o minificador troca todas as suas menções. Minificadores são inteligentes, eles analisam a estrutura do código, para que eles não quebrem nada. Eles não são um simples não-inteligente "encontra-e-substitui".
 
 Entretanto, se `new Function` pudesse acessar variáveis externas, então ele não conseguiria encontrar `userName`, pois ele é passado como uma `string` **depois** que o código é minificado.
 
