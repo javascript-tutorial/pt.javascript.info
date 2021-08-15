@@ -28,7 +28,7 @@ function loadScript(src) {
 }
 ```
 
-Ela acrescenta ao documento a nova, dinamicamente criada, tag `<script src="…">` com o `src` passado. O navegador começa a carregar ele automaticamente e o executa quando terminar.
+Ela acrescenta ao documento uma nova, dinamicamente criada, tag `<script src="…">` com o `src` passado. O navegador começa a carregar ele automaticamente e o executa quando terminar.
 
 Podemos usar essa função assim:
 

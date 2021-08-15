@@ -39,7 +39,7 @@ We leave it as an exercise for the reader. Also, at the end of the chapter you'l
 
 ## Writing to document.cookie
 
-We can write to `document.cookie`. But it's not a data property, it's an accessor (getter/setter). An assignment to it is treated specially.
+We can write to `document.cookie`. But it's not a data property, it's an [accessor (getter/setter)](info:property-accessors). An assignment to it is treated specially.
 
 **A write operation to `document.cookie` updates only cookies mentioned in it, but doesn't touch other cookies.**
 
@@ -247,8 +247,11 @@ But anything more complicated, like a network request from another site or a for
 
 If that's fine for you, then adding `samesite=lax` will probably not break the user experience and add protection.
 
-Overall, `samesite` is a great option, but it has an important drawback:
-- `samesite` is ignored (not supported) by old browsers, year 2017 or so.
+Overall, `samesite` is a great option. 
+
+There's a drawback:
+
+- `samesite` is ignored (not supported) by very old browsers, year 2017 or so.
 
 **So if we solely rely on `samesite` to provide protection, then old browsers will be vulnerable.**
 
