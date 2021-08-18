@@ -25,7 +25,7 @@ class MyClass {
 }
 ```
 
-Then `new MyClass()` creates a new object with all the listed methods.
+Then use `new MyClass()` to create a new object with all the listed methods.
 
 The `constructor()` method is called automatically by `new`, so we can initialize the object there.
 
@@ -53,7 +53,7 @@ When `new User("John")` is called:
 1. A new object is created.
 2. The `constructor` runs with the given argument and assigns it to `this.name`.
 
-...Then we can call methods, such as `user.sayHi`.
+...Then we can call object methods, such as `user.sayHi()`.
 
 
 ```warn header="No comma between class methods"
@@ -64,7 +64,7 @@ The notation here is not to be confused with object literals. Within the class, 
 
 ## What is a class?
 
-So, what exactly is a `class`? That's not an entirely  new language-level entity, as one might think.
+So, what exactly is a `class`? That's not an entirely new language-level entity, as one might think.
 
 Let's unveil any magic and see what a class really is. That'll help in understanding many complex aspects.
 
@@ -85,11 +85,9 @@ alert(typeof User); // function
 ```
 
 What `class User {...}` construct really does is:
-1. Creates a function named `User`, that becomes the result of the class declaration.
-    - The function code is taken from the `constructor` method (assumed empty if we don't write such method).
-3. Stores all methods, such as `sayHi`, in `User.prototype`.
 
-Afterwards, for new objects, when we call a method, it's taken from the prototype, just as  described in the chapter <info:function-prototype>. So `new User` object has access to class methods.
+1. Creates a function named `User`, that becomes the result of the class declaration. The function code is taken from the `constructor` method (assumed empty if we don't write such method).
+2. Stores class methods, such as `sayHi`, in `User.prototype`.
 
 After `new User` object is created, when we call its method, it's taken from the prototype, just as described in the chapter <info:function-prototype>. So the object has access to class methods.
 
@@ -98,7 +96,6 @@ We can illustrate the result of `class User` declaration as:
 ![](class-user.svg)
 
 Here's the code to introspect it:
-
 
 ```js run
 class User {
@@ -113,7 +110,7 @@ alert(typeof User); // function
 alert(User === User.prototype.constructor); // true
 
 // The methods are in User.prototype, e.g:
-alert(User.prototype.sayHi); // alert(this.name);
+alert(User.prototype.sayHi); // the code of the sayHi method
 
 // there are exactly two methods in the prototype
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
@@ -147,7 +144,7 @@ The result of this definition is about the same. So, there are indeed reasons wh
 
 Still, there are important differences.
 
-1. First, a function created by `class` is labelled by a special internal property `[[FunctionKind]]:"classConstructor"`. So it's not entirely the same as creating it manually.
+1. First, a function created by `class` is labelled by a special internal property `[[IsClassConstructor]]: true`. So it's not entirely the same as creating it manually.
 
     The language checks for that property in a variety of places. For example, unlike a regular function, it must be called with `new`:
 
@@ -171,16 +168,15 @@ Still, there are important differences.
     ```
     There are other differences, we'll see them soon.
 
-2. Class methods are non-enumerable
+2. Class methods are non-enumerable.
     A class definition sets `enumerable` flag to `false` for all methods in the `"prototype"`.
 
     That's good, because if we `for..in` over an object, we usually don't want its class methods.
 
-3. Classes always `use strict`
+3. Classes always `use strict`.
     All code inside the class construct is automatically in strict mode.
 
-
-Also, in addition to its basic operation, the `class` syntax brings many other features with it which we'll explore later.
+Besides, `class` syntax brings many other features that we'll explore later.
 
 ## Class Expression
 
@@ -196,21 +192,22 @@ let User = class {
 };
 ```
 
-Similar to Named Function Expressions, class expressions may or may not have a name.
+Similar to Named Function Expressions, class expressions may have a name.
 
 If a class expression has a name, it's visible inside the class only:
 
 ```js run
-// "Named Class Expression" (alas, no such term, but that's what's going on)
+// "Named Class Expression"
+// (no such term in the spec, but that's similar to Named Function Expression)
 let User = class *!*MyClass*/!* {
   sayHi() {
-    alert(MyClass); // MyClass is visible only inside the class
+    alert(MyClass); // MyClass name is visible only inside the class
   }
 };
 
 new User().sayHi(); // works, shows MyClass definition
 
-alert(MyClass); // error, MyClass not visible outside of the class
+alert(MyClass); // error, MyClass name isn't visible outside of the class
 ```
 
 We can even make classes dynamically "on-demand", like this:
@@ -243,7 +240,7 @@ class User {
 
   constructor(name) {
     // invokes the setter
-    this._name = name;
+    this.name = name;
   }
 
 *!*
@@ -277,10 +274,11 @@ Technically, such class declaration works by creating getters and setters in `Us
 Here's an example with a computed method name using brackets `[...]`:
 
 ```js run
-function f() { return "sayHi"; }
-
 class User {
-  [f()]() {
+
+*!*
+  ['say' + 'Hi']() {
+*/!*
     alert("Hello");
   }
 
@@ -405,29 +403,11 @@ That's especially useful in browser environment, for event listeners.
 
 ## Summary
 
-JavaScript provides many ways to create a class.
-
-First, as per the general object-oriented terminology, a class is something that provides "object templates", allows to create same-structured objects.
-
-When we say "a class", that doesn't necessary means the `class` keyword.
-
-This is a class:
-
-```js
-function User(name) {
-  this.sayHi = function() {
-    alert(name);
-  }
-}
-```
-
-...But in most cases `class` keyword is used, as it provides great syntax and many additional features.
-
 The basic class syntax looks like this:
 
 ```js
 class MyClass {
-  prop = value; // field
+  prop = value; // property
 
   constructor(...) { // constructor
     // ...
@@ -438,7 +418,7 @@ class MyClass {
   get something(...) {} // getter method
   set something(...) {} // setter method
 
-  [Symbol.iterator]() {} // method with computed name/symbol name
+  [Symbol.iterator]() {} // method with computed name (symbol here)
   // ...
 }
 ```
