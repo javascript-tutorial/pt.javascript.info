@@ -19,7 +19,7 @@ Nós não vimos eles ainda, porque geralmente eles não aparecem. Quando criamos
 
 Primeiro, vamos ver como obter esses sinalizadores.
 
-O método [Object.getOwnPropertyDescriptor](mdn:js/Object/getOwnPropertyDescriptor) nos permite consultar a informação *completa* sobre a propriedade.
+O método [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) nos permite consultar a informação *completa* sobre a propriedade.
 
 A sintaxe é:
 ```js
@@ -54,7 +54,7 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 */
 ```
 
-Para mudar os sinalizadores, nós podemos usar o [Object.defineProperty](mdn:js/Object/defineProperty).
+Para mudar os sinalizadores, nós podemos usar o [Object.defineProperty](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty).
 
 A sintaxe é:
 
@@ -143,6 +143,7 @@ Object.defineProperty(user, "name", {
 alert(user.name); // John
 user.name = "Alice"; // Erro
 ```
+
 
 ## Não-enumerável
 
@@ -274,7 +275,7 @@ We can change `writable: true` to `false` for a non-configurable property, thus 
 
 ## Object.defineProperties
 
-Existe um método [Object.defineProperties(obj, descriptors)](mdn:js/Object/defineProperties) que permite definir várias propriedades de uma vez.
+Existe um método [Object.defineProperties(obj, descriptors)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) que permite definir várias propriedades de uma vez.
 
 A sintaxe é:
 
@@ -300,7 +301,7 @@ Então, nós podemos configurar várias propriedades de uma vez.
 
 ## Object.getOwnPropertyDescriptors
 
-Para obter todos os sinalizadores de propriedade de uma vez, nós podemos usar o método [Object.getOwnPropertyDescriptors(obj)](mdn:js/Object/getOwnPropertyDescriptors).
+Para obter todos os sinalizadores de propriedade de uma vez, nós podemos usar o método [Object.getOwnPropertyDescriptors(obj)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors).
 
 Juntamente com `Object.defineProperties` isso pode ser usado como um jeito "incluindo-sinalizadores" de clonar objetos:
 
@@ -326,24 +327,24 @@ Descritores de propriedade atuam no mesmo nível de propriedades individuais.
 
 Também existem métodos que limitam o acesso ao objeto *inteiro*:
 
-[Object.preventExtensions(obj)](mdn:js/Object/preventExtensions)
+[Object.preventExtensions(obj)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions)
 : Proíbe a adição de novas propriedades ao objeto.
 
-[Object.seal(obj)](mdn:js/Object/seal)
+[Object.seal(obj)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/seal)
 : Proíbe a adição/remoção de propriedades. Coloca `configurable: false` para todas as propriedades existentes.
 
-[Object.freeze(obj)](mdn:js/Object/freeze)
+[Object.freeze(obj)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)
 : Proíbe adicionar/remover/alterar propriedades. Coloca `configurable: false, writable: false` para todas as propriedades existentes.
 
 E também existem testes para eles:
 
-[Object.isExtensible(obj)](mdn:js/Object/isExtensible)
+[Object.isExtensible(obj)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible)
 : Retorna `false` se a adição de propriedades é proibida, caso contrátio `true`.
 
-[Object.isSealed(obj)](mdn:js/Object/isSealed)
+[Object.isSealed(obj)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed)
 : Retorna `true` se adição/remoção de propriedades são proibidas, e todas as propriedades existentes são `configurable: false`.
 
-[Object.isFrozen(obj)](mdn:js/Object/isFrozen)
+[Object.isFrozen(obj)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen)
 : Retorna `true` se adição/remoção/alteração de propriedades são proibidas, e todas as propriedades atuais são `configurable: false, writable: false`.
 
 Estes métodos são raramentes usados na prática.
