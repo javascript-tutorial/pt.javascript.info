@@ -5,7 +5,7 @@ Existe outra sintaxe, muito simples e concisa, para criar funções, e que geral
 É chamada de "funções seta" (*"arrow functions"*), porque tem este aspeto:
 
 ```js
-let func = (arg1, arg2, ...argN) => expression
+let func = (arg1, arg2, ..., argN) => expression
 ```
 
 ...Isto, cria a função `func` com os argumentos `arg1..argN`, depois avalia a `expression` no lado direito usando os mesmos, e retorna o seu resultado.
@@ -13,7 +13,7 @@ let func = (arg1, arg2, ...argN) => expression
 Por outras palavras, é a versão mais curta de:
 
 ```js
-let func = function(arg1, arg2, ...argN) {
+let func = function(arg1, arg2, ..., argN) {
   return expression;
 };
 ```

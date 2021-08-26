@@ -2,14 +2,13 @@
 
 [recent browser="new"]
 
-Neste artigo diremos que uma expressão é "definida" quando não é igual a `null` nem a `undefined`.
-
 O operador de coalescência nula é escrito usando dois sinais de interrogação `??`.
+
+Como ele trata  `null` e `undefined` da mesma forma, nós iremos usar um termo especial aqui, neste artigo. Diremos que uma expressão está definida quando não é `null` nem `undefined`.
 
 O resultado de `a ?? b` é:
 - se `a` é definido, então `a`,
 - se `a` não é definido, então `b`.
-
 
 Em outras palavras, `??` retorna o primeiro argumento se ele não for `null/undefined`. Caso contrário, o segundo.
 
@@ -21,6 +20,8 @@ Podemos reescrever `result = a ?? b` usando os operadores que já conhecemos, as
 result = (a !== null && a !== undefined) ? a : b;
 ```
 
+Agora, deveria estar completamente claro o que `??` faz. Vamos ver onde ele é útil.
+
 O caso de uso comum para `??` é obter um valor padrão para uma variável potencialmente indefinida.
 
 Por exemplo, aqui exibimos `Anônimo` se `usuario` não for definido:
@@ -28,15 +29,15 @@ Por exemplo, aqui exibimos `Anônimo` se `usuario` não for definido:
 ```js run
 let usuario;
 
-alert(usuario ?? "Anônimo"); // Anônimo
+alert(usuario ?? "Anônimo"); // Anônimo (usuario não definido)
 ```
 
-Claro, se `usuario` possuir qualquer valor diferente de `null/undefined`, então será ele que veremos:
+Aqui está o exemplo com um nome atribuido a `user`:
 
 ```js run
 let usuario = "João";
 
-alert(usuario ?? "Anônimo"); // João
+alert(usuario ?? "Anônimo"); // João (usuario está definido)
 ```
 
 Podemos também usar uma sequência de `??` para selecionar o primeiro valor em uma lista que não seja `null/undefined`.
@@ -75,7 +76,7 @@ alert(nome || sobrenome || apelido || "Anônimo"); // Supercoder
 */!*
 ```
 
-O operador OU `||` existe desde a criação do JavaScript, e vem sendo utilizado para este propósito desde então.
+Históricamente, o operador OU `||` foi o primeiro a existir. Ele existe desde a criação do JavaScript, e vem sendo utilizado para este propósito desde então.
 
 Por outro lado, o operador de coalescência nula `??` foi adicionado ao JavaScript recentemente, e a razão para isso foi o descontentamento com `||`.
 
@@ -96,16 +97,18 @@ alert(altura || 100); // 100
 alert(altura ?? 100); // 0
 ```
 
-- `altura || 100` verifica  se `altura` é um valor avaliado como falso, e de fato é.
-    - então o resultado é o segundo argumento, `100`.
+- `altura || 100` verifica  se `altura` é um valor avaliado como falso, e como é `0`, de fato é.
+    - então o resultado de  `||` é o segundo argumento, `100`.
 - `altura ?? 100` verifica  se `altura` é `null/undefined`, e não é,
     - então o resultado é o valor atual de `altura`, que é `0`.
 
-Se altura igual a zero é um valor válido que não deve ser substituído pelo valor padrão, então usar `??` é o correto.
+Na prática, a altura igual a zero é um valor válido que não deve ser substituído pelo valor padrão, então usar `??` é o correto.
 
 ## Precedência
 
-A precedência do operador `??` é bastante baixa: `5` na [tabela MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table). Portanto `??` é avaliado antes de `=` e `?`, mas após a maioria dos outros operadores, como `+` e `*`.
+A precedência do operador `??` é quase a mesma que a de `||`, apenas um pouco mais baixa: é igual a `5` na [tabela MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table), enquanto `||` é `6`. 
+
+Isto significa que, tal como `||`, o operador de coalescência nula `??` é avaliado antes de `=` e `?`, mas após a maioria dos outros operadores, como `+` e `*`.
 
 Então, se quiser selecionar um valor com `??` em uma expressão com outros operadores, considere o uso de parênteses:
 
