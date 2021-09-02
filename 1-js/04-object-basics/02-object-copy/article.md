@@ -13,7 +13,7 @@ let message = "Hello!";
 let phrase = message;
 ```
  
-Como resultado nos temos duas variáveis independentes, cada uma armazenando uma string `"Hello!".`
+Como resultado nós temos duas variáveis independentes, cada uma armazenando uma string `"Hello!".`
 
 ![](variable-copy-value.svg)
 
