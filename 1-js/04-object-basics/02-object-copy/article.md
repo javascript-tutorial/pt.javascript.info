@@ -1,29 +1,29 @@
-# Object references and copying
+# Referências de objetos e cópias
 
-One of the fundamental differences of objects versus primitives is that objects are stored and copied "by reference", whereas primitive values: strings, numbers, booleans, etc -- are always copied "as a whole value".
+Uma das diferenças fundamentais de objetos em relação aos primitivos é que objetos são armazenados e copiados por "referência", enquanto valores primitivos: strings, números, booleanos, etc - são sempre copiados por "valor".
 
-That's easy to understand if we look a bit under the hood of what happens when we copy a value.
+Isso é fácil de entender quando olhamos um pouco nos bastidores do que acontece quando copiamos um valor.
 
-Let's start with a primitive, such as a string.
+Vamos começar com um primitivo, como uma string.
 
-Here we put a copy of `message` into `phrase`:
+Aqui colocamos uma copia de `message` para `phrase`:
 
 ```js
 let message = "Hello!";
 let phrase = message;
 ```
 
-As a result we have two independent variables, each one storing the string `"Hello!"`.
+Como resultado nos temos duas variáveis independentes, cada uma armazenando uma string `"Hello!".`
 
 ![](variable-copy-value.svg)
 
-Quite an obvious result, right?
+Um resultado bastante óbvio, certo?
 
-Objects are not like that.
+Objetos não são assim.
 
-**A variable assigned to an object stores not the object itself, but its "address in memory" -- in other words "a reference" to it.**
+**Uma variável que foi atribuida um objeto armazena não apenas o próprio objeto, mas seu "endereço em memória" - em outras palavras "uma referência" a ele**
 
-Let's look at an example of such a variable:
+Vejamos um exemplo de tal variável:
 
 ```js
 let user = {
@@ -31,147 +31,144 @@ let user = {
 };
 ```
 
-And here's how it's actually stored in memory:
+E aqui está como ele é realmente armazenado na memória:
 
 ![](variable-contains-reference.svg)
 
-The object is stored somewhere in memory (at the right of the picture), while the `user` variable (at the left) has a "reference" to it.
+O objeto é armazenado em algum lugar na memória (figura a direita), enquanto a variável `user` (figura a esquerda) possui uma "referência" para ele.
 
-We may think of an object variable, such as `user`, as like a sheet of paper with the address of the object on it.
+Nós podemos pensar em uma variável objeto, como no exemplo `user`, como uma folha de papel com o endereço do objeto nela.
 
-When we perform actions with the object, e.g. take a property `user.name`, the JavaScript engine looks at what's at that address and performs the operation on the actual object.
+Quando realizamos ações com o objeto, por exemplo pegar a propriedade `user.name`, a engine do JavaScript olha para o que tem naquele endereço e realiza a operação no próprio objeto.
 
-Now here's why it's important.
+Agora aqui está o motivo da importância.
 
-**When an object variable is copied, the reference is copied, but the object itself is not duplicated.**
+**Quando uma variável objeto é copiada, a referência é copiada, mas o próprio objeto não é duplicado.**
 
-For instance:
+Por exemplo:
 
 ```js no-beautify
 let user = { name: "John" };
 
-let admin = user; // copy the reference
+let admin = user; // cópia por referência
 ```
 
-Now we have two variables, each storing a reference to the same object:
+Agora temos duas variáveis, cada uma armazenando a referência para o mesmo objeto:
 
 ![](variable-copy-reference.svg)
 
-As you can see, there's still one object, but now with two variables that reference it.
+Como você pode ver, ainda há um objeto, porém com duas variáveis referênciando ele.
 
-We can use either variable to access the object and modify its contents:
+Podemos usar qualquer uma das variáveis para acessar o objeto e modificar seu conteúdo:
+
 
 ```js run
 let user = { name: 'John' };
 
 let admin = user;
 
-*!*
-admin.name = 'Pete'; // changed by the "admin" reference
-*/!*
+admin.name = 'Pete'; // alterado pela referência de "admin"
 
-alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
+alert(user.name); // 'Pete', mudanças são vistas pela referência de "user"
 ```
+É como se tivéssemos um gabinete com duas chaves e usamos uma delas (`admin`) para acessa-lo e fazer mudanças. Então, se mais tarde usarmos a outra chave (`user`), ainda iremos estar abrindo o mesmo gabinete e podemos acessar os conteúdos alterados.
 
-It's as if we had a cabinet with two keys and used one of them (`admin`) to get into it and make changes. Then, if we later use another key (`user`), we are still opening the same cabinet and can access the changed contents.
 
-## Comparison by reference
+## Comparações por referência
 
-Two objects are equal only if they are the same object.
+Dois objetos são iguais apenas se eles são o mesmo objeto.
 
-For instance, here `a` and `b` reference the same object, thus they are equal:
+Por exemplo, aqui `a` e `b` referênciam o mesmo objeto, então eles são iguais: 
 
 ```js run
 let a = {};
-let b = a; // copy the reference
+let b = a; // cópia por referência
 
-alert( a == b ); // true, both variables reference the same object
-alert( a === b ); // true
+alert( a == b ); // verdade, ambas variáveis referênciam o mesmo objeto 
+alert( a === b ); // verdade
 ```
 
-And here two independent objects are not equal, even though they look alike (both are empty):
+E aqui dois objetos independentes não são iguais, embora sejam parecidos (ambos são vazios):
 
 ```js run
 let a = {};
-let b = {}; // two independent objects
+let b = {}; // dois objetos independentes
 
-alert( a == b ); // false
+alert( a == b ); // falso
 ```
 
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely -- usually they appear as a result of a programming mistake.
+Para comparações como `obj1 > obj2` ou para comparações com um primitivo `obj == 5`, objetos são convertidos para primitivos. Iremos estudar como conversões de objetos funcionam muito em breve, mas para falar a verdade, tais comparações são raramente necessárias - normalmente elas aparecem como resultado de um erro de programação.
 
-## Cloning and merging, Object.assign [#cloning-and-merging-object-assign]
 
-So, copying an object variable creates one more reference to the same object.
 
-But what if we need to duplicate an object? Create an independent copy, a clone?
+## Clonando e fundindo, Object.assign
 
-That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. But there is rarely a need -- copying by reference is good most of the time.
+Então, copiar uma varíavel objeto cria mais uma referência para o mesmo objeto.
 
-But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
+Mas e se precisarmos duplicar um objeto? Criar uma cópia independente, um clone?
 
-Like this:
+Isso também é factível, mas um pouco mais difícil, porque não há nenhum método embutido para isso no JavaScript. Mas a necessidade é rara - copiar por referência é o suficiente na maiorias das vezes.
 
+Mas se realmente quisermos isso, então precisamos criar um novo objeto e replicar a estrutura do objeto existente iterando por suas propriedades e copiando elas de um jeito primitivo.
+
+Tipo assim:
 ```js run
 let user = {
   name: "John",
   age: 30
 };
 
-*!*
-let clone = {}; // the new empty object
+let clone = {}; // o novo objeto vazio
 
-// let's copy all user properties into it
+// vamos copiar todas as propriedades de user para ele
 for (let key in user) {
   clone[key] = user[key];
 }
-*/!*
 
-// now clone is a fully independent object with the same content
-clone.name = "Pete"; // changed the data in it
+// agora clone é um objeto totalmente independente com o mesmo conteúdo
+clone.name = "Pete"; // alterada a informação nele
 
-alert( user.name ); // still John in the original object
+alert( user.name ); // ainda John no objeto original
 ```
 
-Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
+Também podemos usar o método [Object.assign](mdn:js/Object/assign) para isso.
 
-The syntax is:
+A sintaxe é:
 
-```js
-Object.assign(dest, [src1, src2, src3...])
+```js run
+Object.assign(dest, [fonte1, fonte2, fonte3...])
 ```
 
-- The first argument `dest` is a target object.
-- Further arguments `src1, ..., srcN` (can be as many as needed) are source objects.
-- It copies the properties of all source objects `src1, ..., srcN` into the target `dest`. In other words, properties of all arguments starting from the second are copied into the first object.
-- The call returns `dest`.
+- O primeiro argumento `dest` é o objeto destino.
+- Argumentos adicionais `fonte1, ..., fonteN` (pode ser quantos precisar) são os objetos fonte.
+- Ele copia as propriedades de todos os objetos fontes `fonte1, ..., fonteN` para o destino `dest`. Em outras palavras, propriedaes de todos os argumentos começando pelo segundo são copiadas para o primeiro objeto.
+- A chamada retorna `dest`.
 
-For instance, we can use it to merge several objects into one:
-```js
+Por exemplo, podemos usá-lo para fundir diversos objetos em um:
+
+```js run
 let user = { name: "John" };
 
 let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
-*!*
-// copies all properties from permissions1 and permissions2 into user
+// copia todas as propriedades de permissions1 e permissions2 para user 
 Object.assign(user, permissions1, permissions2);
-*/!*
 
-// now user = { name: "John", canView: true, canEdit: true }
+// agora user = { name: "John", canView: true, canEdit: true }
 ```
 
-If the copied property name already exists, it gets overwritten:
+Se o nome da propriedade copiada já existir, ela é sobrescrita:
 
 ```js run
 let user = { name: "John" };
 
 Object.assign(user, { name: "Pete" });
 
-alert(user.name); // now user = { name: "Pete" }
+alert(user.name); // agora user = { name: "Pete" }
 ```
 
-We also can use `Object.assign` to replace `for..in` loop for simple cloning:
+Podemos também utilizar `Object.assign` para substituir `for..in` loop para clonagem simples:
 
 ```js
 let user = {
@@ -179,20 +176,20 @@ let user = {
   age: 30
 };
 
-*!*
 let clone = Object.assign({}, user);
-*/!*
 ```
 
-It copies all properties of `user` into the empty object and returns it.
+Ele copia todas as propriedade de `user` para o objeto vazio e o retorna.
 
-There are also other methods of cloning an object, e.g. using the [spread syntax](info:rest-parameters-spread) `clone = {...user}`, covered later in the tutorial.
 
-## Nested cloning
+Também há outros métodos para clonagem de objeto, por exemplo usando a [sintaxe espalhada](info:rest-parameters-spread) `clone = {...user}`, coberto mais tarde no tutorial.
 
-Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
+## Clonagem aninhada
 
-Like this:
+Ate agora assumimos que todas as propriedades de `user` são primitivas.
+Mas propriedades podem ser referências para outros objetos. O que fazer com essas propriedades?
+
+Tipo assim:
 ```js run
 let user = {
   name: "John",
@@ -205,9 +202,8 @@ let user = {
 alert( user.sizes.height ); // 182
 ```
 
-Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes` is an object, it will be copied by reference. So `clone` and `user` will share the same sizes:
+Agora não é suficiente copiar `clone.sizes = user.sizes`, como `user.sizes` é um objeto, irá ser copiado por referência. Portanto,`clone` e `user` irão compartilhar os mesmos tamanhos: 
 
-Like this:
 
 ```js run
 let user = {
@@ -220,45 +216,42 @@ let user = {
 
 let clone = Object.assign({}, user);
 
-alert( user.sizes === clone.sizes ); // true, same object
+alert( user.sizes === clone.sizes ); // verdade, mesmo objeto
 
-// user and clone share sizes
-user.sizes.width++;       // change a property from one place
-alert(clone.sizes.width); // 51, see the result from the other one
+// user e clone compartilham tamanhos
+user.sizes.width++;       // altera a propriedade por um
+alert(clone.sizes.width); // 51, olhe o outro resultado
 ```
 
-To fix that, we should use a cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
+Para concertar isso, precisamos usar um ciclo de clonagem para examinar cada valor de `user[key]` e, se for um objeto, então replicar também sua estrutura. Isso é chamado de "clonagem profunda".
 
-We can use recursion to implement it. Or, to not reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
+Podemos implementar usando recursão. Ou, para não reinventar a roda, pegar uma implementação existente, por exemplo [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) da biblioteca do JavaScript [lodash](https://lodash.com).
 
 ````smart header="Const objects can be modified"
-An important side effect of storing objects as references is that an object declared as `const` *can* be modified.
+Um efeito colateral importante de armazenar objetos como referência é que objetos declarados como `const` podem ser modificados.
 
-For instance:
+Por exemplo:
 
 ```js run
 const user = {
   name: "John"
 };
 
-*!*
 user.name = "Pete"; // (*)
-*/!*
 
 alert(user.name); // Pete
 ```
+Pode parecer que a linha (*) causaria um erro, mas não causa. O valor de `user` é constante, precisa sempre referenciar o mesmo objeto, mas propriedades desse objeto são livres para serem alteradas.
 
-It might seem that the line `(*)` would cause an error, but it does not. The value of `user` is constant, it must always reference the same object, but properties of that object are free to change.
+Em outras palavras, o `const user` dá um erro apenas se tentarmos definir `user=...` como um todo
 
-In other words, the `const user` gives an error only if we try to set `user=...` as a whole.
-
-That said, if we really need to make constant object properties, it's also possible, but using totally different methods. We'll mention that in the chapter <info:property-descriptors>.
+Dito isso, se realmente precisarmos criar propriedades constantes no objeto, também é possível, mas usando métodos totalmente diferentes. Iremos menconar isso no capítulo <info:property-descriptors>.
 ````
 
-## Summary
+## Sumário
 
-Objects are assigned and copied by reference. In other words, a variable stores not the "object value", but a "reference" (address in memory) for the value. So copying such a variable or passing it as a function argument copies that reference, not the object itself.
+Objetos são atribuidos e copiados por referência. Em outras palavras, uma variável armazena não o "valor do objeto", mas sim sua "referência" (endereço na memória) para o valor. Então copiar tal variável ou passar ela como um argumento de uma função copia a referência, não o proprio objeto.
 
-All operations via copied references (like adding/removing properties) are performed on the same single object.
+Todas as operações por meio de referências copiadas(como adicionar/remover propriedades) são realizadas no mesmo objeto único.
 
-To make a "real copy" (a clone) we can use `Object.assign` for the so-called "shallow copy" (nested objects are copied by reference) or a "deep cloning" function, such as [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+Para criar uma "cópia real" (um clone) podemos usar `Object.assign` para o então chamado "cópia superficial" (objetos aninhados são copiados por referência) ou uma função de "clonagem profunda", como a [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
