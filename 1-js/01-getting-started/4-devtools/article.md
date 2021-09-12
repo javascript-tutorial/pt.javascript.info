@@ -1,6 +1,6 @@
 # Console do desenvolvedor
 
-O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está *inevitavelmente* cometendo erros, pelo menos se você for um humano, não um [robô] (<https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).>
+O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está *inevitavelmente* cometendo erros, pelo menos se você for um humano, não um [robô](https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).
 
 Mas no navegador, os usuários não vêem os erros por padrão. Assim, se algo correr mal no script, não veremos de onde está partindo e não poderemos corrigir.
 
