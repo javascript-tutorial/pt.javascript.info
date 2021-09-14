@@ -147,15 +147,16 @@ Object.assign(dest, [fonte1, fonte2, fonte3...])
 - A chamada retorna `dest`.
 
 Por exemplo, podemos usá-lo para fundir diversos objetos em um:
-
 ```js run
 let user = { name: "John" };
 
 let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
+*!*
 // copia todas as propriedades de permissions1 e permissions2 para user 
 Object.assign(user, permissions1, permissions2);
+*/!*
 
 // agora user = { name: "John", canView: true, canEdit: true }
 ```
@@ -178,18 +179,18 @@ let user = {
   age: 30
 };
 
+*!*
 let clone = Object.assign({}, user);
+*/!*
 ```
 
 Ele copia todas as propriedade de `user` para o objeto vazio e o retorna.
-
 
 Também há outros métodos para clonagem de objeto, por exemplo usando a [sintaxe espalhada](info:rest-parameters-spread) `clone = {...user}`, coberto mais tarde no tutorial.
 
 ## Clonagem aninhada
 
-Ate agora assumimos que todas as propriedades de `user` são primitivas.
-Mas propriedades podem ser referências para outros objetos. O que fazer com essas propriedades?
+Ate agora assumimos que todas as propriedades de `user` são primitivas. Mas propriedades podem ser referências para outros objetos. O que fazer com essas propriedades?
 
 Tipo assim:
 ```js run
@@ -204,8 +205,9 @@ let user = {
 alert( user.sizes.height ); // 182
 ```
 
-Agora não é suficiente copiar `clone.sizes = user.sizes`, como `user.sizes` é um objeto, irá ser copiado por referência. Portanto,`clone` e `user` irão compartilhar os mesmos tamanhos: 
+Agora não é suficiente copiar `clone.sizes = user.sizes`, como `user.sizes` é um objeto, irá ser copiado por referência. Portanto,`clone` e `user` irão compartilhar os mesmos tamanhos.
 
+Tipo assim:
 
 ```js run
 let user = {
@@ -239,10 +241,13 @@ const user = {
   name: "John"
 };
 
+*!*
 user.name = "Pete"; // (*)
+*/!*
 
 alert(user.name); // Pete
 ```
+
 Pode parecer que a linha (*) causaria um erro, mas não causa. O valor de `user` é constante, precisa sempre referenciar o mesmo objeto, mas propriedades desse objeto são livres para serem alteradas.
 
 Em outras palavras, o `const user` dá um erro apenas se tentarmos definir `user=...` como um todo
