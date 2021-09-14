@@ -66,8 +66,9 @@ Podemos usar qualquer uma das variáveis para acessar o objeto e modificar seu c
 let user = { name: 'John' };
 
 let admin = user;
-
+*!*
 admin.name = 'Pete'; // alterado pela referência de "admin"
+*!*
 
 alert(user.name); // 'Pete', mudanças são vistas pela referência de "user"
 ```
