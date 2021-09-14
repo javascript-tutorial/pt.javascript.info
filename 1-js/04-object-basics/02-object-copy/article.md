@@ -111,18 +111,21 @@ Isso também é factível, mas um pouco mais difícil, porque não há nenhum m�
 Mas se realmente quisermos isso, então precisamos criar um novo objeto e replicar a estrutura do objeto existente iterando por suas propriedades e copiando elas de um jeito primitivo.
 
 Tipo assim:
+
 ```js run
 let user = {
   name: "John",
   age: 30
 };
 
+*!*
 let clone = {}; // o novo objeto vazio
 
 // vamos copiar todas as propriedades de user para ele
 for (let key in user) {
   clone[key] = user[key];
 }
+*/!* 
 
 // agora clone é um objeto totalmente independente com o mesmo conteúdo
 clone.name = "Pete"; // alterada a informação nele
