@@ -72,6 +72,7 @@ admin.name = 'Pete'; // alterado pela referência de "admin"
 
 alert(user.name); // 'Pete', mudanças são vistas pela referência de "user"
 ```
+
 É como se tivéssemos um gabinete com duas chaves e usamos uma delas (`admin`) para acessa-lo e fazer mudanças. Então, se mais tarde usarmos a outra chave (`user`), ainda iremos estar abrindo o mesmo gabinete e podemos acessar os conteúdos alterados.
 
 
