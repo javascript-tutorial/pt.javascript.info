@@ -100,8 +100,6 @@ alert( a == b ); // falso
 
 Para comparações como `obj1 > obj2` ou para comparações com um primitivo `obj == 5`, objetos são convertidos para primitivos. Iremos estudar como conversões de objetos funcionam muito em breve, mas para falar a verdade, tais comparações são raramente necessárias - normalmente elas aparecem como resultado de um erro de programação.
 
-
-
 ## Clonando e fundindo, Object.assign
 
 Então, copiar uma varíavel objeto cria mais uma referência para o mesmo objeto.
