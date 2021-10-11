@@ -31,11 +31,18 @@ Na prática, os editores leves podem ter muitos plug-ins, incluindo analisadores
 
 As seguintes opções merecem sua atenção:
 
+<<<<<<< HEAD
 - [Atom](https://atom.io/) (plataforma cruzada, livre).
 - [Visual Studio Code](https://code.visualstudio.com/) (plataforma cruzada, livre).
 - [Sublime Text](http://www.sublimetext.com) (plataforma cruzada, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, livre).
 - [Vim](http://www.vim.org/) e [Emacs](https://www.gnu.org/software/emacs/) também são legais se você sabe como usá-los.
+=======
+- [Atom](https://atom.io/) (cross-platform, free).
+- [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
+- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 ## Não vamos discutir
 

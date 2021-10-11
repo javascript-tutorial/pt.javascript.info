@@ -302,11 +302,19 @@ O seu ponto-forte reside em, à medida que verificam o estilo, poderem encontrar
 
 Aqui estão algumas das mais conhecidas ferramentas de *linting*:
 
+<<<<<<< HEAD
 - [JSLint](http://www.jslint.com/) -- um dos primeiros *linters*.
 - [JSHint](http://www.jshint.com/) -- mais configurações do que *JSLint*.
 - [ESLint](http://eslint.org/) -- provávelmente o mais recente.
 
 Todos eles podem executar a tarefa. O autor utiliza [ESLint](http://eslint.org/).
+=======
+- [JSLint](https://www.jslint.com/) -- one of the first linters.
+- [JSHint](https://jshint.com/) -- more settings than JSLint.
+- [ESLint](https://eslint.org/) -- probably the newest one.
+
+All of them can do the job. The author uses [ESLint](https://eslint.org/).
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 Muitos *linters* estão integrados em editores populares: apenas ative a extensão (*plugin*) no editor e configure o estilo.
 
@@ -336,7 +344,11 @@ Aqui está um exemplo de um ficheiro `.eslintrc`:
 
 Aqui a diretiva `"extends"` denota que a configuração tem como base o conjunto de configurações em "eslint:recommended". Depois disso, podemos especificar as nossas próprias.
 
+<<<<<<< HEAD
 Também é possível descarregar conjuntos de regras de estilo da web e depois estendê-los. Veja em <http://eslint.org/docs/user-guide/getting-started> mais detalhes sobre a instalação.
+=======
+It is also possible to download style rule sets from the web and extend them instead. See <https://eslint.org/docs/user-guide/getting-started> for more details about installation.
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 De igual modo, certos *IDEs* (Ambientes de Desenvolvimento Integrado) têm *linting* incorporado (*built-in*), o que é conveniente mas não tão personalizável como o *ESLint*.
 

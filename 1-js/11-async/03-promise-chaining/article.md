@@ -34,17 +34,29 @@ new Promise(function(resolve, reject) {
 
 A ideia é que o resultado seja passado através de uma cadeia de tratadores `.then`.
 
+<<<<<<< HEAD
 O fluxo é o seguinte:
 1. A promessa inicial é resolvida em 1 segundo `(*)`,
 2. Então o tratador de `.then` é chamado `(**)`.
 3. O valor retornado por ele é passado ao próximo tratador de `.then` `(***)`
 4. ...e assim por diante.
+=======
+Here the flow is:
+1. The initial promise resolves in 1 second `(*)`,
+2. Then the `.then` handler is called `(**)`, which in turn creates a new promise (resolved with `2` value).
+3. The next `then` `(***)` gets the result of the previous one, processes it (doubles) and passes the next handler.
+4. ...and so on.
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 Como o resultado é passado através da cadeia de tratadores, podemos observar a sequência de chamadas `alert`: `1` -> `2` -> `4`.
 
 ![](promise-then-chain.svg)
 
+<<<<<<< HEAD
 A coisa toda funciona pois a chamada ao `promise.then` retorna uma promessa, assim podemos chamar o próximo `.then` nesse retorno.
+=======
+The whole thing works, because every call to a `.then` returns a new promise, so that we can call the next `.then` on it.
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 Quando um tratador retorna um valor, ele se torna o resultado da promessa, então o próximo `.then` é chamado com ele.
 

@@ -24,11 +24,19 @@ O navegador tem um interpretador(motor) incorporado, às vezes chamado de "máqu
 
 Interpretadores diferentes têm "codinomes" diferentes. Por exemplo:
 
+<<<<<<< HEAD
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- no Chrome e no Opera.
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- no Firefox.
 - ...Há outros codinomes como "Chakra" para o IE, "JavaScriptCore", "Nitro" e "SquirrelFish" para Safari, etc.
 
 Os termos acima são bons para lembrar, pois são usados em artigos de desenvolvedores na internet. Vamos usá-los também. Por exemplo, se "um recurso X é suportado pelo V8", então ele provavelmente funciona no Chrome e no Opera.
+=======
+- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- in Chrome, Opera and Edge.
+- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- in Firefox.
+- ...There are other codenames like "Chakra" for IE, "JavaScriptCore", "Nitro" and "SquirrelFish" for Safari, etc.
+
+The terms above are good to remember because they are used in developer articles on the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome, Opera and Edge.
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 ```smart header="Como funcionam os interpretadores?"
 
