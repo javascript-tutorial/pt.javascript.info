@@ -1,8 +1,6 @@
 # Métodos de primitivos
 
-JavaScript nos permite trabalhar com primitivos (strings, números, etc.) como se fossem objetos.
-
-Eles também fornecem métodos para chamar como se fossem objetos. Estudaremos isso em breve, mas primeiro veremos como isso funciona, porque, é claro, os primitivos não são objetos (e aqui deixaremos isso ainda mais claro).
+JavaScript nos permite trabalhar com primitivos (strings, números, etc.) como se fossem objetos. Eles também fornecem métodos para chamar como se fossem objetos. Estudaremos isso em breve, mas primeiro veremos como isso funciona, porque, é claro, os primitivos não são objetos (e aqui deixaremos isso ainda mais claro).
 
 Vejamos as principais diferenças entre primitivos e objetos.
 
@@ -50,13 +48,9 @@ A solução parece um pouco estranha, mas aqui está:
 2. A linguagem permite acesso a métodos e propriedades de strings, números, booleanos e símbolos.
 3. Quando isso acontece, um "invólucro de objeto" especial que fornece a funcionalidade extra é criado e, em seguida, é destruído.
 
-<<<<<<< HEAD
-Os "invólucros de objeto" são diferentes para cada tipo primitivo e são chamados: `String`, `Number`, `Boolean` e `Symbol`. Assim, eles fornecem diferentes conjuntos de métodos.
-=======
-The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean`, `Symbol` and `BigInt`. Thus, they provide different sets of methods.
->>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
+Os "invólucros de objeto" são diferentes para cada tipo primitivo e são chamados: `String`, `Number`, `Boolean`, `Symbol` e `BigInt`. Assim, eles fornecem diferentes conjuntos de métodos.
 
-Por exemplo, existe um método para *strings* [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) que retorna `str` em letras maiúsculas.
+Por exemplo, existe um método para *strings* [str.toUpperCase()](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) que retorna `str` em letras maiúsculas.
 
 Veja como isso funciona:
 
@@ -76,7 +70,7 @@ Portanto, os primitivos podem fornecer métodos, mas ainda permanecem leves.
 
 O mecanismo do JavaScript otimiza muito esse processo. Pode até ignorar a criação do objeto extra. Mas ainda deve seguir a especificação e se comportar como se criasse um.
 
-Um número tem métodos próprios, por exemplo, [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) arredonda o número para a precisão dada:
+Um número tem métodos próprios, por exemplo, [toFixed(n)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) arredonda o número para a precisão dada:
 
 ```js run
 let n = 1.23456;
