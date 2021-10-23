@@ -99,9 +99,9 @@ O atributo `async` significa que um script é completamente independente:
 
 - O navegador não bloqueia em scripts `async` (como `defer`).
 - Outros scripts não esperam por scripts `async`, e scripts `async` não esperam por eles.
-- o evento `DOMContentLoaded` e os scripts `async` não esperam um pelo outro:
-     - `DOMContentLoaded` pode acontecer antes de um script `async` (se um script `async` terminar de carregar depois que a página for concluída)
-     - ... ou após um script `async` (se um script `async` for curto ou estiver em cache HTTP)
+- O evento `DOMContentLoaded` e os scripts `async` não esperam um pelo outro:
+    - `DOMContentLoaded` pode acontecer antes de um script `async` (se um script `async` terminar de carregar depois que a página for concluída)
+    - ... ou após um script `async` (se um script `async` for curto ou estiver em cache HTTP)
 
 Em outras palavras, os scripts `async` são carregados em segundo plano e executados quando prontos. A DOM e outros scripts não esperam por eles e não esperam por nada. Um script totalmente independente que é executado quando carregado. Tão simples quanto parece, não é mesmo?
 
@@ -173,6 +173,7 @@ loadScript("/article/script-async-defer/small.js");
 ```
 
 Sem `script.async=false`, os scripts seriam executados na ordem padrão de carregamento primeiro (o `small.js` provavelmente primeiro).
+
 Novamente, como com o `defer`, a ordem importa se quisermos carregar uma biblioteca e depois outro script que dependa dela.
 
 ## Resumo
