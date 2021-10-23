@@ -93,51 +93,51 @@ O atributo `defer` é ignorado se a tag `<script>` não possui o atributo `src`.
 
 ## async
 
-The `async` attribute is somewhat like `defer`. It also makes the script non-blocking. But it has important differences in the behavior.
+O atributo `async` é parecido com o `defer`. Ele também não bloqueia a página, mas tem diferenças importantes no seu comportamento.
 
-The `async` attribute means that a script is completely independent:
+O atributo `async` significa que um script é completamente independente:
 
-- The browser doesn't block on `async` scripts (like `defer`).
-- Other scripts don't wait for `async` scripts, and `async` scripts don't wait for them.
-- `DOMContentLoaded` and async scripts don't wait for each other:
-    - `DOMContentLoaded` may happen both before an async script (if an async script finishes loading after the page is complete)
-    - ...or after an async script (if an async script is short or was in HTTP-cache)
+- O navegador não bloqueia em scripts `async` (como `defer`).
+- Outros scripts não esperam por scripts `async`, e scripts `async` não esperam por eles.
+- o evento `DOMContentLoaded` e os scripts `async` não esperam um pelo outro:
+     - `DOMContentLoaded` pode acontecer antes de um script `async` (se um script `async` terminar de carregar depois que a página for concluída)
+     - ... ou após um script `async` (se um script `async` for curto ou estiver em cache HTTP)
 
-In other words, `async` scripts load in the background and run when ready. The DOM and other scripts don't wait for them, and they don't wait for anything. A fully independent script that runs when loaded. As simple, as it can get, right?
+Em outras palavras, os scripts `async` são carregados em segundo plano e executados quando prontos. A DOM e outros scripts não esperam por eles e não esperam por nada. Um script totalmente independente que é executado quando carregado. Tão simples quanto parece, certo?
 
-Here's an example similar to what we've seen with `defer`: two scripts `long.js` and `small.js`, but now with `async` instead of `defer`.
+Aqui está um exemplo semelhante ao que vimos com o `defer`: dois scripts `long.js` e `small.js`, mas agora com `async` em vez de `defer`.
 
-They don't wait for each other. Whatever loads first (probably `small.js`) -- runs first:
+Eles não esperam um pelo outro. O que quer que carregue primeiro (provavelmente `small.js`) - é executado primeiro:
 
 ```html run height=100
-<p>...content before scripts...</p>
+<p>...conteúdo antes dos scripts...</p>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => alert("DOM ready!"));
+  document.addEventListener('DOMContentLoaded', () => alert("DOM pronta!"));
 </script>
 
 <script async src="https://javascript.info/article/script-async-defer/long.js"></script>
 <script async src="https://javascript.info/article/script-async-defer/small.js"></script>
 
-<p>...content after scripts...</p>
+<p>...conteúdo depois dos scripts...</p>
 ```
 
-- The page content shows up immediately: `async` doesn't block it.
-- `DOMContentLoaded` may happen both before and after `async`, no guarantees here.
-- A smaller script `small.js` goes second, but probably loads before `long.js`, so `small.js` runs first. Although, it might be that `long.js` loads first, if cached, then it runs first. In other words, async scripts run in the "load-first" order.
+- O conteúdo da página aparece imediatamente: `async` não o bloqueia.
+- `DOMContentLoaded` pode acontecer antes e depois de `async`, sem garantias aqui.
+- Um script menor `small.js` está em segundo lugar, mas provavelmente carrega antes de `long.js`, então `small.js` é executado primeiro. Embora, pode ser que `long.js` carregue primeiro, se armazenado em cache, ele executa primeiro. Em outras palavras, os scripts `async` são executados na ordem que "carregar primeiro".
 
-Async scripts are great when we integrate an independent third-party script into the page: counters, ads and so on, as they don't depend on our scripts, and our scripts shouldn't wait for them:
+Os scripts `async` são ótimos quando integramos um script independente de terceiros na página: contadores, anúncios e assim por diante, pois eles não dependem de nossos scripts, e nossos scripts não devem esperar por eles:
 
 ```html
-<!-- Google Analytics is usually added like this -->
+<!-- o Google Analytics geralmente é adicionado assim -->
 <script async src="https://google-analytics.com/analytics.js"></script>
 ```
 
-## Dynamic scripts
+## Scripts dinâmicos
  
-There's one more important way of adding a script to the page.
+Existe mais uma maneira importante de adicionar um script à página.
 
-We can create a script and append it to the document dynamically using JavaScript:
+Podemos criar um script e anexá-lo ao documento dinamicamente usando JavaScript:
 
 ```js run
 let script = document.createElement('script');
@@ -145,19 +145,19 @@ script.src = "/article/script-async-defer/long.js";
 document.body.append(script); // (*)
 ```
 
-The script starts loading as soon as it's appended to the document `(*)`.
+O script começa a carregar assim que é anexado ao documento `(*)`.
 
-**Dynamic scripts behave as "async" by default.**
+**Os scripts dinâmicos se comportam como "async" por padrão.**
 
-That is:
-- They don't wait for anything, nothing waits for them.
-- The script that loads first -- runs first ("load-first" order).
+Resumindo:
+- Eles não esperam nada, nada os espera.
+- O script que carrega primeiro -- é executado primeiro (ordem que "carregar primeiro").
 
-This can be changed if we explicitly set `script.async=false`. Then scripts will be executed in the document order, just like `defer`.
+Isso pode ser alterado se definirmos explicitamente `script.async=false`. Em seguida, os scripts serão executados na ordem do documento, assim como `defer`.
 
-In this example, `loadScript(src)` function adds a script and also sets `async` to `false`.
+Neste exemplo, a função `loadScript(src)` adiciona um script e também define `async` como `false`.
 
-So `long.js` always runs first (as it's added first):
+Portanto, `long.js` sempre executa primeiro (como é adicionado primeiro):
 
 ```js run
 function loadScript(src) {
@@ -172,10 +172,9 @@ loadScript("/article/script-async-defer/long.js");
 loadScript("/article/script-async-defer/small.js");
 ```
 
-Without `script.async=false`, scripts would execute in default, load-first order (the `small.js` probably first).
+Sem `script.async=false`, os scripts seriam executados na ordem padrão de carregamento primeiro (o `small.js` provavelmente primeiro).
 
-Again, as with the `defer`, the order matters if we'd like to load a library and then another script that depends on it.
-
+Novamente, como com o `defer`, a ordem importa se quisermos carregar uma biblioteca e depois outro script que dependa dela.
 
 ## Summary
 
