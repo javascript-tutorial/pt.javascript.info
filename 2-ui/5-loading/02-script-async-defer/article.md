@@ -1,14 +1,14 @@
 
 # Scripts: async, defer
 
-Em sites modernos, os scripts geralmente são "mais pesados" do que o HTML: seu tamanho de download é maior e o tempo de processamento também é maior.
+Em sites modernos, os scripts geralmente são "mais pesados" do que o HTML: seu tamanho para download é maior e o tempo de processamento também é maior.
 
-Quando o navegador carrega HTML e encontra uma tag `<script>...</script>`, ele não pode continuar construindo o DOM. Ele deve executar o script no momento exato que o encontra. O mesmo acontece com scripts externos `<script src="..."></script>`: o navegador deve aguardar o download do script, executar o script baixado e só então pode processar o resto da página em seguida.
+Quando o navegador carrega o HTML e encontra uma tag `<script>...</script>`, ele não pode continuar construindo o DOM. Ele deve executar o script no momento exato que o encontra. O mesmo acontece com scripts externos `<script src="..."></script>`: o navegador deve aguardar o download do script, executar o script baixado e só então pode processar o resto da página.
 
-Isso leva a duas questões importantes:
+Isso nos leva a duas questões importantes:
 
 1. Os scripts não conseguem ver os elementos da DOM abaixo deles, então não conseguem manipular eventos, etc.
-2. Se houver um script volumoso no topo da página, ele "bloqueia a página". Os usuários não podem ver o conteúdo da página até que ele faça o download e execute:
+2. Se houver um script volumoso no topo da página, ele vai "bloqueia a página". Os usuários não podem ver o conteúdo da página até que ele faça o download e execute:
 
 ```html run height=100
 <p>...conteúdo antes do script...</p>
@@ -18,7 +18,8 @@ Isso leva a duas questões importantes:
 <!-- Isso não se torna visível até que o script carregue -->
 <p>...conteúdo depois do script...</p>
 ```
-Existem algumas soluções alternativas para esses problemas. Por exemplo, podemos colocar um script no final da página. Assim, ele pode ver os elementos acima dele e consequentemente não bloqueia a exibição do conteúdo da página:
+
+Existem algumas soluções alternativas para esses problemas. Por exemplo, podemos colocar um script no final da página. Assim, ele pode ver os elementos acima dele e consequentemente, não bloqueia a exibição do conteúdo da página:
 
 ```html
 <body>
@@ -28,7 +29,7 @@ Existem algumas soluções alternativas para esses problemas. Por exemplo, podem
 </body>
 ```
 
-Mas essa solução está longe de ser perfeita. Por exemplo, o navegador percebe o script (e pode começar a baixá-lo) somente depois de baixar o documento HTML completo. Para documentos HTML longos, isso pode ser um atraso perceptível para o usuário.
+Mas essa solução está longe de ser perfeita. Por exemplo, o navegador percebe o script (e pode começar a baixá-lo) somente depois de baixar o documento HTML por completo. Para documentos HTML longos, isso pode ser um atraso perceptível para o usuário.
 
 Essas coisas são invisíveis para pessoas que usam conexões de internet muito rápidas, mas muitas pessoas no mundo ainda têm velocidades lentas e usam uma conexão de internet móvel longe de ser perfeita.
 
