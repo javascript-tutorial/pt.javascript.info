@@ -196,5 +196,6 @@ E `async` é usado para scripts independentes, como contadores ou anúncios. E s
 Atenção: se você estiver usando `defer` ou `async`, o usuário verá a página *antes* do script carregar.
 
 Nesse caso, alguns componentes podem não ter inicializado na tela ainda.
+
 Não se esqueça de indicar que eles estão "carregando" e desabilitar os botões que ainda não devem funcionar. Deixe o usuário ver claramente o que ele pode fazer na página e o que ainda está sendo preparado.
 ```
