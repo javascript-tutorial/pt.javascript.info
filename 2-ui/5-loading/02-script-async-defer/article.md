@@ -176,6 +176,7 @@ Sem `script.async=false`, os scripts seriam executados na ordem padrão de carre
 
 Novamente, como com o `defer`, a ordem importa se quisermos carregar uma biblioteca e depois outro script que dependa dela.
 
+
 ## Resumo
 
 Ambos `async` e `defer` têm uma coisa em comum: o download dos scripts não bloqueia a renderização da página. Assim, o usuário pode ler o conteúdo da página e familiarizar-se com a página imediatamente.
