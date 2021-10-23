@@ -167,7 +167,7 @@ function loadScript(src) {
   document.body.append(script);
 }
 
-// long.js runs first because of async=false
+// long.js roda primeiro por causa do async=false
 loadScript("/article/script-async-defer/long.js");
 loadScript("/article/script-async-defer/small.js");
 ```
@@ -176,25 +176,24 @@ Sem `script.async=false`, os scripts seriam executados na ordem padrão de carre
 
 Novamente, como com o `defer`, a ordem importa se quisermos carregar uma biblioteca e depois outro script que dependa dela.
 
-## Summary
+## Resumo
 
-Both `async` and `defer` have one common thing: downloading of such scripts doesn't block page rendering. So the user can read page content and get acquainted with the page immediately.
+Ambos `async` e `defer` têm uma coisa em comum: o download dos scripts não bloqueia a renderização da página. Assim, o usuário pode ler o conteúdo da página e familiarizar-se com a página imediatamente.
 
-But there are also essential differences between them:
+Mas também existem diferenças essenciais entre eles:
 
-|         | Order | `DOMContentLoaded` |
+|         | Ordem | `DOMContentLoaded` |
 |---------|---------|---------|
-| `async` | *Load-first order*. Their document order doesn't matter -- which loads first runs first |  Irrelevant. May load and execute while the document has not yet been fully downloaded. That happens if scripts are small or cached, and the document is long enough. |
-| `defer` | *Document order* (as they go in the document). |  Execute after the document is loaded and parsed (they wait if needed), right before `DOMContentLoaded`. |
+| `async` | *Ordem do que carregar primeiro*. A ordem dos documentos não importa - o que carrega primeiro é executado primeiro |  Irrelevante. Pode carregar e executar enquanto o documento ainda não foi totalmente baixado. Isso acontece se os scripts forem pequenos ou armazenados em cache e o documento for longo o suficiente. |
+| `defer` | *Ordem do documento* (conforme estão no documento). |  Executa depois que o documento é carregado e transformado (eles esperam se for preciso), logo antes do `DOMContentLoaded`. |
 
-In practice, `defer` is used for scripts that need the whole DOM and/or their relative execution order is important. 
+Na prática, `defer` é usado para scripts que precisam de todo a DOM e/ou sua ordem de execução relativa é importante.
 
-And  `async` is used for independent scripts, like counters or ads. And their relative execution order does not matter.
+E `async` é usado para scripts independentes, como contadores ou anúncios. E sua ordem de execução relativa não importa.
 
-```warn header="Page without scripts should be usable"
-Please note: if you're using `defer` or `async`, then user will see the page *before* the script loads.
+```warn header="A página sem scripts deve ser utilizável"
+Atenção: se você estiver usando `defer` ou `async`, o usuário verá a página *antes* do script carregar.
 
-In such case, some graphical components are probably not initialized yet.
-
-Don't forget to put "loading" indication and disable buttons that aren't functional yet. Let the user clearly see what he can do on the page, and what's still getting ready.
+Nesse caso, alguns componentes podem não ter inicializado na tela ainda.
+Não se esqueça de indicar que eles estão "carregando" e desabilitar os botões que ainda não devem funcionar. Deixe o usuário ver claramente o que ele pode fazer na página e o que ainda está sendo preparado.
 ```
