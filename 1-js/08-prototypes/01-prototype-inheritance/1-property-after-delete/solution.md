@@ -1,4 +1,4 @@
 
-1. `true`, taken from `rabbit`.
-2. `null`, taken from `animal`.
-3. `undefined`, there's no such property any more.
+1. `true`, obtido de `rabbit`.
+2. `null`, obtido de `animal`.
+3. `undefined`, essa proriedade não existe mais.
