@@ -1,12 +1,15 @@
 # Ambiente do Navegador, especificações
 
+
 A linguagem JavaScript foi inicialmente criada para navegadores para a web. Desde então, tem evoluído e se tornado uma linguagem com muitos usuários e plataformas.
 
 A plataforma pode ser um navegador, ou um servidor web, ou uma máquina de lavar, ou outro *hospedeiro* (host). Cada um deles fornece funcionalidades específicas para a plataforma. Na especificação JavaScript é conhecida como *ambiente de hospedagem* (host environment).
 
 Um ambente de hospedagem fornece objetos específicos para a platafoma e funções adicionais ao núcleo da linguagem. Navegadores web dão um meio paracontrolar páginas web. Node.js fornece funcionalidades para servidores (*server-side*), e assim por diante.
 
+
 Aqui uma visão rápida do que temos quando JavaScript roda em um navegador web:
+
 
 ![](windowObjects.svg)
 
@@ -17,7 +20,7 @@ Existe um objeto "raiz" chamado `window`. Ele tem  dois papéis:
 
 Por exemplo, nós o usamos como objeto global:
 
-```js run
+```js run global
 function sayHi() {
   alert("Olá");
 }
@@ -47,6 +50,7 @@ document.body.style.background = "red";
 setTimeout(() => document.body.style.background = "", 1000);
 ```
 
+
 Aqui nós usamos `document.body.style`, mas existe muito, muito mais. Propriedades e métodos são descritos na especificação. 
 Acontece que dois grupos de trabalho a desenvolveram:
 
@@ -63,11 +67,13 @@ Ainda hoje nós podemos nos deparar com código antigo que usa propriedades espe
 
 Então o padrão DOM surgiu, numa tentativa de fazer com que todod mundo concordasse. A primeira versão era "DOM Level 1", e então foi estendida para DOM Level 2, depois DOM Level 3, e agora chegou a DOM Level 4. Pessoas do grupo WhatWG ficaram cansadas do número de versões e estão chamando somente "DOM", sem um número. Então vamos fazer o mesmo.
 
+
 ```smart header="DOM não é somente para navegadores"
 A especificação DOM explica a estrutura de um documento e fornece objetos para manipulação. Existem instrumentos que não são de navegador que também usam-o.
 
 Por exemplo, ferramentas para servidor (*server-side*) que fazem download e processam páginas HTML usam DOM. Contudo, elas podem ter suporte apenas para uma parte da especificação.
 ```
+
 
 ```smart header="CSSOM para estilizar"
 Regras CSS e folhas de estilo não são estruturadas como HTML. Existe  uma especificação separada [CSSOM](https://www.w3.org/TR/cssom-1/) que explica como representá-las como objetos, e como ler e escrevê-las.
@@ -78,6 +84,7 @@ CSSOM é usado junto com DOM quando modificamoss regras de estilo para o documen
 ## BOM (parte da especicação HTML)
 
 Modelo de Objeto do Navegador (BOM) são objetos adicionais fornecidos pelo navegador (*host environment*) para trabalhar com tudo exceto o documento.
+
 
 Por exemplo:
 
@@ -96,11 +103,12 @@ if (confirm("Ir para wikipedia?")) {
 Funções `alert/confirm/prompt` também são parte do BOM: não são diretamente relacionadas ao documento, mas representam puros métodos do navegador para comunicação com o usuário.
 
 
+
 ```smart header="especificação HTML"
 BOM é parte da [Especificação HTML](https://html.spec.whatwg.org) geral.
 
 Sim, voce ouviu direito. A especificação HTML em <https://html.spec.whatwg.org> não é somente sobre a "Linguagem HTML" (*tags*, atributos), mas também abrange vários objetos, métodos e específicas extensões ao DOM específicas para navegadores. Isso é "HTML em termos gerais". Também, algumas partes tem especificações adicionais listadas em <https://spec.whatwg.org>.
-```
+
 
 ## Resumo
 
