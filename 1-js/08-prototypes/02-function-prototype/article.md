@@ -32,25 +32,25 @@ let rabbit = new Rabbit("Coelho Branco"); //  rabbit.__proto__ == animal
 alert( rabbit.eats ); // true
 ```
 
-Setando `Rabbit.prototype = animal` literalmente significa o seguinte: "Quando o `new Rabbit` for criado, atribua seu `[[Prototype]]` para `animal`".
+Configurando `Rabbit.prototype = animal` literalmente significa o seguinte: "Quando o `new Rabbit` for criado, atribua seu `[[Prototype]]` para `animal`".
 
 Essa é a imagem do resultado:
 
 ![](proto-constructor-animal-rabbit.svg)
 
-Na imagem, `"prototype"` é a seta na horizontal, indicando uma propriedade regular, e `[[Prototype]]` está na vertical, indicando a herança de `rabbit` vinda do `animal`.
+Na imagem, `"prototype"` é a seta na horizontal, indicando uma propriedade regular, e `[[Prototype]]` está na vertical, indicando a herança de `rabbit` vinda de `animal`.
 
-```smart header="`F.prototype` é usado apenas na chamada `new F`"
+```smart header="`F.prototype` é usada apenas na chamada `new F`"
 A propriedade `F.prototype` é usada apenas quando `new F` é chamado, e ela atribui um valor para o `[[Prototype]]` do novo objeto.
 
 Se, depois da criação, a propriedade `F.prototype` mudar (`F.prototype = <another object>`), então novos objetos criados com `new F` vão ter outro objeto como `[[Prototype]]`, enquanto os objetos que já existirem vão manter o antigo.
 ```
 
-## F.prototype default, propriedade do construtor
+## F.prototype padrão, propriedade do construtor
 
-Toda função tem a propriedade `"prototype"`, mesmo que não a use.
+Toda função tem a propriedade `"prototype"`, mesmo quando nós não a provermos.
 
-O `"prototype"` default é um objeto com apenas uma propriedade `constructor` que aponta para a própria função a que pertence.
+O `"prototype"` padrão é um objeto com apenas uma propriedade `constructor` que aponta para a própria função a que pertence.
 
 Assim:
 
@@ -98,10 +98,10 @@ function Rabbit(name) {
   alert(name);
 }
 
-let rabbit = new Rabbit("White Rabbit");
+let rabbit = new Rabbit("Coelho Branco");
 
 *!*
-let rabbit2 = new rabbit.constructor("Black Rabbit");
+let rabbit2 = new rabbit.constructor("Coelho Preto");
 */!*
 ```
 
@@ -111,9 +111,9 @@ Mas provavelmente a coisa mais importante sobre o `"constructor"` é que...
 
 **...O próprio JavaScript não garante qual é o valor correto do `"constructor"`.**
 
-Sim, existe um `"prototype"` default para funções, mas é só isso. O que acontece com ele depois -- está totalmente por nossa conta.
+Sim, existe um `"prototype"` padrão para funções, mas é só isso. O que acontece com ele depois -- está totalmente por nossa conta.
 
-Em particular, se nós substituirmos o `prototype` default como um todo, não vai haver um `"constructor"` nele.
+Em particular, se nós substituirmos o `prototype` padrão como um todo, não vai haver um `"constructor"` nele.
 
 Por exemplo:
 
