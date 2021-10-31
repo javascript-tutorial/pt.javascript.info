@@ -35,8 +35,8 @@ let lazy = {
 };
 
 // O Speedy acha a comida
-speedy.eat("apple");
-alert( speedy.stomach ); // apple
+speedy.eat("maçã");
+alert( speedy.stomach ); // maçã
 
 // O estômago do Lazy continua vazio
 alert( lazy.stomach ); // <vazio>
@@ -70,8 +70,8 @@ let lazy = {
 };
 
 // O Speedy acha a comida
-speedy.eat("apple");
-alert( speedy.stomach ); // apple
+speedy.eat("maçã");
+alert( speedy.stomach ); // maçã
 
 // O estômago do Lazy continua vazio
 alert( lazy.stomach ); // <vazio>

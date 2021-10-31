@@ -1,4 +1,4 @@
-importância: 5
+importance: 5
 
 ---
 
@@ -26,10 +26,10 @@ let lazy = {
 };
 
 // Esse aqui encontrou a comida
-speedy.eat("apple");
-alert( speedy.stomach ); // apple
+speedy.eat("maçã");
+alert( speedy.stomach ); // maçã
 
 // Esse aqui também comeu, por quê? Corrija, por favor.
-alert( lazy.stomach ); // apple
+alert( lazy.stomach ); // maçã
 ```
 

@@ -8,13 +8,13 @@ Herança Prototipada (*Prototypal inheritance*) é uma funcionalidade da linguag
 
 ## [[Prototype]]
 
-No Javascript, os objetos possuem uma propriedade escondida especial `[[Prototype]]` (como é chamada na especificação), cujo valor é `null` ou é uma referência de outro objeto. Esse objeto é chamado de "protótipo":
+No Javascript, os objetos possuem uma propriedade escondida especial `[[Prototype]]` (como é chamada na especificação), cujo valor é `null` ou referencia outro objeto. Esse objeto é chamado de "protótipo":
 
 ![prototype](object-prototype-empty.svg)
 
 Quando lemos uma propriedade de um `object`, e ela não está presente, o Javascript automaticamente obtém seu valor do protótipo. Na programação, isso é chamado de "herança prototipada". Em breve nós vamos ver vários exemplos dessa herança, bem como funcionalidades legais constrúidas em cima disso.
 
-A propriedade `[[Prototype]]` é interna e escondida, mas existem várias formas de setar um valor para ela. 
+A propriedade `[[Prototype]]` é interna e escondida, mas existem várias formas de configurar um valor para ela. 
 
 Uma delas é usar o nome especial `__proto__`, dessa forma:
 
@@ -54,7 +54,7 @@ alert( rabbit.eats ); // true (**)
 alert( rabbit.jumps ); // true
 ```
 
-A linha `(*)` do exemplo seta `animal` como o protótipo de `rabbit`.
+A linha `(*)` do exemplo configura `animal` como o protótipo de `rabbit`.
 
 Depois, quando o `alert` tenta ler a propriedade `rabbit.eats`, em `(**)`, ela não está no `rabbit`, então o Javascript segue a referência do `[[Prototype]]` e a encontra no `animal` (olhe de baixo pra cima):
 
@@ -71,7 +71,7 @@ let animal = {
   eats: true,
 *!*
   walk() {
-    alert("Animal walk");
+    alert("Animal caminha");
   }
 */!*
 };
@@ -83,7 +83,7 @@ let rabbit = {
 
 // walk é obtido do protótipo
 *!*
-rabbit.walk(); // Animal walk
+rabbit.walk(); // Animal caminha
 */!*
 ```
 
@@ -98,7 +98,7 @@ A cadeia de protótipos pode ser maior:
 let animal = {
   eats: true,
   walk() {
-    alert("Animal walk");
+    alert("Animal caminha");
   }
 };
 
@@ -117,7 +117,7 @@ let longEar = {
 };
 
 // walk é obtido da cadeia de protótipos
-longEar.walk(); // Animal walk
+longEar.walk(); // Animal caminha
 alert(longEar.jumps); // true (vindo de rabbit)
 ```
 
@@ -138,7 +138,7 @@ Além disso, só pode haver um `[[Prototype]]`. Um objeto não pode ser herdeiro
 
 Mas note que `__proto__` *não é o mesmo* que a propriedade interna `[[Prototype]]`. Ele é um getter/setter para o `[[Prototype]]`. Mais tarde veremos situações nas quais isso importa, por ora vamos apenar manter isso em mente enquanto contruímos nossa compreensão da linguagem Javascript.
 
-A proriedade `__proto__` está um pouco ultrapassada, ela existe por motivos históricos. O Javascript moderno sugere que nós usemos as funções `Object.getPrototypeOf/Object.setPrototypeOf` no lugar, que também fazem get/set do protótipo. Nós também vamos cobrir essas funções mais tarde. 
+A propriedade `__proto__` está um pouco ultrapassada, ela existe por motivos históricos. O Javascript moderno sugere que nós usemos as funções `Object.getPrototypeOf/Object.setPrototypeOf` no lugar, que também fazem get/set do protótipo. Nós também vamos cobrir essas funções mais tarde. 
 
 A especificação diz que o `__proto__` só pode ser suportado por browsers. Mas o fato é que todos os ambientes, incluindo o lado do servidor ("server-side") suportam o `__proto__`, então podemos usá-lo tranquilamente.
 
@@ -150,7 +150,7 @@ Como a notação `__proto__` é um pouco mais intuitiva, vamos usá-la nos exemp
 
 O protótipo é usado apenas para leitura de propriedades.
 
-As operações de escrita/deleção funcionam diretamente com o objeto.
+As operações de escrita/deleção trabalham diretamente com o objeto.
 
 No exemplo abaixo, nós criamos um método `walk` próprio para o `rabbit`:
 
@@ -168,18 +168,18 @@ let rabbit = {
 
 *!*
 rabbit.walk = function() {
-  alert("Rabbit! Bounce-bounce!");
+  alert("Coelho! Pula-pula!");
 };
 */!*
 
-rabbit.walk(); // Rabbit! Bounce-bounce!
+rabbit.walk(); // Coelho! Pula-pula!
 ```
 
 De agora em diante, chamar `rabbit.walk()` encontra o método imediatamente no objeto e o executa, sem usar o protótipo:
 
 ![](proto-animal-rabbit-walk-2.svg)
 
-Isso vale apenas para propriedades com dados, não para métodos de acesso (getter/setter). Se uma propriedade é um getter/setter, então ela irá se comportar como uma função: getters/setters são procurados no protótipo.
+Isso vale apenas para propriedades que são dados, não para métodos de acesso (getter/setter). Se uma propriedade é um getter/setter, então ela irá se comportar como uma função: getters/setters são procurados no protótipo.
 
 Por essa razão, `admin.fullName` funciona corretamente no código abaixo:
 
@@ -227,14 +227,14 @@ Na verdade isso é super importante, porque pode ser que a gente tenha um objeto
 
 Por exemplo, aqui `animal` representa um "armazenador de métodos", e `rabbit` faz uso deles.
 
-A chamada de `rabbit.sleep()` seta `this.isSleeping` no objeto `rabbit`:
+A chamada de `rabbit.sleep()` configura `this.isSleeping` no objeto `rabbit`:
 
 ```js run
 // animal tem métodos
 let animal = {
   walk() {
     if (!this.isSleeping) {
-      alert(`I walk`);
+      alert(`Eu caminho`);
     }
   },
   sleep() {
@@ -243,7 +243,7 @@ let animal = {
 };
 
 let rabbit = {
-  name: "White Rabbit",
+  name: "Coelho branco",
   __proto__: animal
 };
 
@@ -307,9 +307,9 @@ for(let prop in rabbit) {
   let isOwn = rabbit.hasOwnProperty(prop);
 
   if (isOwn) {
-    alert(`Our: ${prop}`); // Our: jumps
+    alert(`Nosso: ${prop}`); // Nosso: jumps
   } else {
-    alert(`Inherited: ${prop}`); // Inherited: eats
+    alert(`Herdado: ${prop}`); // Herdado: eats
   }
 }
 ```
