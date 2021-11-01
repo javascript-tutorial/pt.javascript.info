@@ -10,7 +10,7 @@ JavaScript tem herança prototipada desde o começo. Isso era uma das funcionali
 Mas antigamente não havia um acesso direto a ela. A única coisa que funcionava de forma confiável era uma propriedade `"prototype"` da função construtora, descrita nesse capítulo. Então, existem muitos scripts que ainda a utilizam.
 ```
 
-Note que o `F.prototype` aqui significa uma propriedade regular de nome `"prototype"` dentro de `F`. Isso soa um pouco similar ao termo "prototype" (protótipo), mas aqui nós estamos falando realmente de uma propriedade regular com esse nome.
+Note que o `F.prototype` aqui significa uma propriedade regular chamada `"prototype"` dentro de `F`. Isso soa um pouco similar ao termo "prototype" (protótipo), mas aqui nós estamos falando realmente de uma propriedade regular com esse nome.
 
 Aqui temos um exemplo:
 
