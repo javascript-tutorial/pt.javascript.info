@@ -1,4 +1,4 @@
-Nós podemos usar essa abordagem se nós temos certeza que a propriedade `"constructor"` tem o valor correto.
+Nós podemos usar essa abordagem se nós tivermos a certeza de que a propriedade `"constructor"` tem o valor correto.
 
 Por exemplo, se nós não tocarmos o `"prototype"` padrão, então esse código funciona com certeza:
 
