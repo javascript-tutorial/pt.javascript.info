@@ -36,15 +36,15 @@ A ideia é que o resultado seja passado através de uma cadeia de tratadores `.t
 
 O fluxo é o seguinte:
 1. A promessa inicial é resolvida em 1 segundo `(*)`,
-2. Então o tratador de `.then` é chamado `(**)`.
-3. O valor retornado por ele é passado ao próximo tratador de `.then` `(***)`
+2. Então o tratador de `.then` é chamado `(**)`, que por sua vez cria uma nova promessa (resolvida com o valor `2`).
+3. O próximo tratador `.then` `(***)` recebe o valor retornado pelo anterior, o processa (o duplica) e ele é passado ao próximo tratador.
 4. ...e assim por diante.
 
 Como o resultado é passado através da cadeia de tratadores, podemos observar a sequência de chamadas `alert`: `1` -> `2` -> `4`.
 
 ![](promise-then-chain.svg)
 
-A coisa toda funciona pois a chamada ao `promise.then` retorna uma promessa, assim podemos chamar o próximo `.then` nesse retorno.
+A coisa toda funciona, pois cada chamada ao `.then` retorna uma nova promessa, assim podemos chamar o próximo `.then` nesse retorno.
 
 Quando um tratador retorna um valor, ele se torna o resultado da promessa, então o próximo `.then` é chamado com ele.
 
