@@ -38,7 +38,7 @@ Por que `user2.name` está `undefined`?
 Abaixo está como o `new user.constructor('Pete')` funciona:
 
 1. Primeiro, ele procura o `constructor` do `user`. Não o encontra.
-2. Depois, ele segue a cadeia de protótipos. O protótipo de `user` é `User.prototype`, e ele também não tem um `constructor` (porque nós "esquecemos" de configurá-lo!).
+2. Depois, ele segue a cadeia de protótipos. O protótipo de `user` é `User.prototype`, e ele também não tem um `constructor` (porque nós nos "esquecemos" de configurá-lo!).
 3. Indo adiante na cadeia, `User.prototype` é um objeto vazio, cujo protótipo é o `Object.prototype` padrão.
 4. Por último, para o `Object.prototype` padrão existe um `Object.prototype.constructor == Object` padrão. Então, ele é usado.
 
