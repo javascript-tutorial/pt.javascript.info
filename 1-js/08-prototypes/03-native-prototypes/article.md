@@ -1,33 +1,33 @@
-# Native prototypes
+# Protótipos Nativos
 
-The `"prototype"` property is widely used by the core of JavaScript itself. All built-in constructor functions use it.
+A propriedade `"prototype"` é comumente utilizada pelo núcleo do próprio JavaScript. Toda função construtora embutida a usa.
 
-We'll see how it is for plain objects first, and then for more complex ones.
+Vamos ver como é para objetos vazios primeiro, e depois para objetos mais complexos.
 
 ## Object.prototype
 
-Let's say we output an empty object:
+Digamos que a gente imprima um objeto vazio:
 
 ```js run
 let obj = {};
 alert( obj ); // "[object Object]" ?
 ```
 
-Where's the code that generates the string `"[object Object]"`? That's a built-in `toString` method, but where is it? The `obj` is empty!
+Onde está o código que gera a string `"[object Object]"`? Isso é um método embutido `toString`, mas onde ele está? O `obj` está vazio!
 
-...But the short notation `obj = {}` is the same as `obj = new Object()`, where `Object` is a built-in object constructor function, with its own `prototype` referencing a huge object with `toString` and other methods.
+... Mas a notação abreviada `obj = {}` é o mesmo que `obj = new Object()`, onde `Object` é uma função construtora embutida, com seu próprio `prototype` referenciando um objeto enorme com `toString` e outros métodos.
 
-Here's what's going on:
+Veja o que está acontecendo:
 
 ![](object-prototype.svg)
 
-When `new Object()` is called (or a literal object `{...}` is created), the `[[Prototype]]` of it is set to `Object.prototype` according to the rule that we discussed in the previous chapter:
+Quando `new Object()` é chamado (ou um objeto literal `{...}` é criado), o seu `[[Prototype]]` é configurado para o `Object.prototype` de acordo com a regra que nós discutimos no capítulo anterior:
 
 ![](object-prototype-1.svg)
 
-So then when `obj.toString()` is called the method is taken from `Object.prototype`.
+Assim, quando `obj.toString()` é chamado, o método é obtido de `Object.prototype`.
 
-We can check it like this:
+Nós podemos conferir isso assim:
 
 ```js run
 let obj = {};
@@ -38,115 +38,114 @@ alert(obj.toString === obj.__proto__.toString); //true
 alert(obj.toString === Object.prototype.toString); //true
 ```
 
-Please note that there is no additional `[[Prototype]]` in the chain above `Object.prototype`:
+Note que não há um `[[Prototype]]` adicional na cadeia acima de `Object.prototype`:
 
 ```js run
 alert(Object.prototype.__proto__); // null
 ```
 
-## Other built-in prototypes
+## Outros protótipos embutidos
 
-Other built-in objects such as `Array`, `Date`, `Function` and others also keep methods in prototypes.
+Outros objetos embutidos, como `Array`, `Date`, `Function`, entre outros, também mantém métodos nos seus protótipos.
 
-For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is  used internally. So the array data is written into the new object, and `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
+Por exemplo, quando nós criamos um array `[1, 2, 3]`, a função construtura padrão `new Array()` é usada internamente. Dessa forma, os dados são escritos dentro do novo objeto, e `Array.prototype` se torna o seu protótipo e provê métodos. Isso é bem eficiente em termos de memória.
 
-By specification, all of the built-in prototypes have `Object.prototype` on the top. Sometimes people say that "everything inherits from objects".
+Pela especificação, todos os protótipos embutidos tem `Object.prototype` no topo. Algumas pessoas dizem que "tudo herda os objetos".
 
-Here's the overall picture (for 3 built-ins to fit):
+Aqui temos uma visão geral (para 3 protótipos embutidos):
 
 ![](native-prototypes-classes.svg)
 
-Let's check the prototypes manually:
+Vamos conferir os protótipos manualmente:
 
 ```js run
 let arr = [1, 2, 3];
 
-// it inherits from Array.prototype?
+// herda de Array.prototype?
 alert( arr.__proto__ === Array.prototype ); // true
 
-// then from Object.prototype?
+// e depois herda de Object.prototype?
 alert( arr.__proto__.__proto__ === Object.prototype ); // true
 
-// and null on the top.
+// e null no topo.
 alert( arr.__proto__.__proto__.__proto__ ); // null
 ```
 
-Some methods in prototypes may overlap, for instance, `Array.prototype` has its own `toString` that lists comma-delimited elements:
+Alguns métodos nos protótipos podem se sobrepor. Por exemplo, `Array.prototype` tem o seu próprio `toString` que lista os elementos separados por vírgula:
 
 ```js run
 let arr = [1, 2, 3]
-alert(arr); // 1,2,3 <-- the result of Array.prototype.toString
+alert(arr); // 1,2,3 <-- O resultado de Array.prototype.toString
 ```
 
-As we've seen before, `Object.prototype` has `toString` as well, but `Array.prototype` is closer in the chain, so the array variant is used.
+Como vimos antes, `Object.prototype` também tem o método `toString`, mas `Array.prototype` está mais perto na cadeia, então a variante da array é utilizada.
 
 
 ![](native-prototypes-array-tostring.svg)
 
-
-In-browser tools like Chrome developer console also show inheritance (`console.dir` may need to be used for built-in objects):
+Ferramentas embutidas em navegadores, como o console do desenvolvedor no Chrome, também mostram herança (objetos embutidos podem precisar usar o `console.dir`):
 
 ![](console_dir_array.png)
 
-Other built-in objects also work the same way. Even functions -- they are objects of a built-in `Function` constructor, and their methods (`call`/`apply` and others) are taken from `Function.prototype`. Functions have their own `toString` too.
+Outros objetos embutidos também trabalham da mesma forma. Até mesmo funções -- elas são objetos de um construtor `Function` embutido, e seus métodos (`call`/`apply` e outros) são obtidos de `Function.prototype`. Funções também têm seu próprio `toString`.
 
 ```js run
 function f() {}
 
 alert(f.__proto__ == Function.prototype); // true
-alert(f.__proto__.__proto__ == Object.prototype); // true, inherit from objects
+alert(f.__proto__.__proto__ == Object.prototype); // true, herdado de object
 ```
 
-## Primitives
+## Primitivos
 
-The most intricate thing happens with strings, numbers and booleans.
+As coisas mais complicadas acontecem com strings, números e boleanos.
 
-As we remember, they are not objects. But if we try to access their properties, temporary wrapper objects are created using built-in constructors `String`, `Number` and `Boolean`. They provide the methods and disappear.
+Como sabemos, eles não são objetos. Mas se nós tentarmos acessar as propriedades deles, temporariamente são criados objetos que contém os construtores embutidos `String`, `Number` and `Boolean`. Eles fornecem os métodos e disaparecem.
 
-These objects are created invisibly to us and most engines optimize them out, but the specification describes it exactly this way. Methods of these objects also reside in prototypes, available as `String.prototype`, `Number.prototype` and `Boolean.prototype`.
+Esses objetos são criados invisivelmente para nós e a maioria das engines otimizam esse processo, apesar da especificação descrevê-lo exatamente dessa forma. Os métodos desses objetos também residem nos protótipos, disponíveis como `String.prototype`, `Number.prototype` e `Boolean.prototype`.
 
-```warn header="Values `null` and `undefined` have no object wrappers"
-Special values `null` and `undefined` stand apart. They have no object wrappers, so methods and properties are not available for them. And there are no corresponding prototypes either.
+```warn header="Os valores `null` e `undefined` não têm objetos que os envolvam"
+O valores especiais `null` e `undefined` se destacam dos outros. Eles não tem objetos que os envolem, então métodos e propriedades não estão disponíveis para eles. Também não existem protótipos correspondentes.
 ```
 
-## Changing native prototypes [#native-prototype-change]
+## Mudando protótipos nativos [#native-prototype-change]
 
-Native prototypes can be modified. For instance, if we add a method to `String.prototype`,  it becomes available to all strings:
+Protótipos nativos podem ser modificados. Por exemplo, se nós adicionarmos um método a `String.prototype`, ele vai ficar disponível a todas as strings:
 
 ```js run
 String.prototype.show = function() {
   alert(this);
 };
 
-"BOOM!".show(); // BOOM!
+"BUM!".show(); // BUM!
 ```
 
-During the process of development, we may have ideas for new built-in methods we'd like to have, and we may be tempted to add them to native prototypes. But that is generally a bad idea.
+Durante o processo do desenvolvimento, nós podemos ter novas ideias de métodos embutidos que nós gostaríamos de ter, e podemos ficar tentados a adicioná-los nos protótipos nativos. Mas isso é geralmente uma má ideia.
 
 ```warn
-Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the other.
+Protótipos são globais, então é fácil gerar um conflito. Se duas bibliotecas adicionam um método `String.prototype.show`, uma delas estará sobrescrevendo a outra.
 
-So, generally, modifying a native prototype is considered a bad idea.
+Por isso, geralmente, modificar um protótipo nativo é considerado uma má ideia.
 ```
 
-**In modern programming, there is only one case where modifying native prototypes is approved. That's polyfilling.**
+**Na programação moderna, existe apenas um caso quando modificar protótipos nativos é aprovado: fazer polyfill (polyfilling).**
 
-Polyfilling is a term for making a substitute for a method that exists in the JavaScript specification, but is not yet supported by a particular JavaScript engine.
+*Polyfill* é um termpo para criar um substituto para um método que existe na especificação do JavaScript, mas ainda não tem suporte em alguma engine particular de JavaScript.
 
-We may then implement it manually and populate the built-in prototype with it.
+Nesse caso nós podemos implementar e popular o protótipo embutido com ele.
 
-For instance:
+Por exemplo:
 
 ```js run
-if (!String.prototype.repeat) { // if there's no such method
-  // add it to the prototype
+if (!String.prototype.repeat) { // Se não existe esse método
+  // adiciona no protótipo
 
   String.prototype.repeat = function(n) {
-    // repeat the string n times
+    // repete a string n vezes
 
-    // actually, the code should be a little bit more complex than that
-    // (the full algorithm is in the specification)
-    // but even an imperfect polyfill is often considered good enough
+    // na realidade, o código deveria ser um pouco mais complexo do que isso
+    // (o algoritmo completo está na especificação)
+    // mas mesmo imperfeito, o polyfill é geralmente considerado bom o suficiente
     return new Array(n + 1).join(this);
   };
 }
@@ -155,22 +154,22 @@ alert( "La".repeat(3) ); // LaLaLa
 ```
 
 
-## Borrowing from prototypes
+## Pegando emprestado dos protótipos
 
-In the chapter <info:call-apply-decorators#method-borrowing> we talked about method borrowing.
+No capítulo <info:call-apply-decorators#method-borrowing>, nós falamos sobre pegar métodos emprestado.
 
-That's when we take a method from one object and copy it into another.
+Isso é quando nós pegamos um método de um objeto e o copiamos para outro.
 
-Some methods of native prototypes are often borrowed.
+Alguns métodos de protótipos nativos são emprestados com muita frequência.
 
-For instance, if we're making an array-like object, we may want to copy some array methods to it.
+Por exemplo, se nós estamos fazendo um objeto parecido com um array, nós podemos querer copiar alguns métodos para ele.
 
-E.g.
+Veja um exemplo:
 
 ```js run
 let obj = {
-  0: "Hello",
-  1: "world!",
+  0: "Olá",
+  1: "mundo!",
   length: 2,
 };
 
@@ -178,21 +177,21 @@ let obj = {
 obj.join = Array.prototype.join;
 */!*
 
-alert( obj.join(',') ); // Hello,world!
+alert( obj.join(',') ); // Olá,mundo!
 ```
 
-It works because the internal algorithm of the built-in `join` method only cares about the correct indexes and the `length` property. It doesn't check if the object is indeed an array. Many built-in methods are like that.
+Ele funciona porque o algoritmo interno do método `join` embutido só precisa dos índices corretos e da propriedade `length`. Ele não confere se o objeto é de fato uma array. Muitos métodos enbutidos são assim.
 
-Another possibility is to inherit by setting `obj.__proto__` to `Array.prototype`, so all `Array` methods are automatically available in `obj`.
+Outra possibilidade é herdar configurando `obj.__proto__` para o `Array.prototype`, de forma que todos os métodos de `Array` fiquem automaticamente disponíveis em `obj`.
 
-But that's impossible if `obj` already inherits from another object. Remember, we only can inherit from one object at a time.
+Mas isso é impossível se `obj` já herda de outro objeto. Lembre-se, nós só podemos herdar de um objeto por vez.
 
-Borrowing methods is flexible, it allows to mix functionalities from different objects if needed.
+Pegar métodos emprestado é mais flexível, isso permite misturar as funcionalidades de diferentes objetos caso necessário.
 
-## Summary
+## Resumo
 
-- All built-in objects follow the same pattern:
-    - The methods are stored in the prototype (`Array.prototype`, `Object.prototype`, `Date.prototype`, etc.)
-    - The object itself stores only the data (array items, object properties, the date)
-- Primitives also store methods in prototypes of wrapper objects: `Number.prototype`, `String.prototype` and `Boolean.prototype`. Only `undefined` and `null` do not have wrapper objects
-- Built-in prototypes can be modified or populated with new methods. But it's not recommended to change them. The only allowable case is probably when we add-in a new standard, but it's not yet supported by the JavaScript engine
+- Todos os objetos enbutidos seguem o mesmo padrão:
+    - Os métodos são guardados no protótipo (`Array.prototype`, `Object.prototype`, `Date.prototype`, etc.)
+    - O objeto só guarda os dados nele mesmo (itens de array, propriedades de objetos, a data)
+- Tipos primitivos também guardam métodos em protótipos de objetos que os envolvem (como um invólucro): `Number.prototype`, `String.prototype` e `Boolean.prototype`. Apenas `undefined` e `null` que não tem objetos invólucros.
+- Protótipos embutidos podem ser modificados ou populados com novos métodos. Mas modificá-los não é recomendado. O único caso aceitável é provavelmente quando nós adicionamos um novo comportamento e ele ainda não tem suporte em alguma engine JavaScript.
