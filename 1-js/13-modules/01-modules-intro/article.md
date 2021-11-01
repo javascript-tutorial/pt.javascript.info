@@ -261,7 +261,11 @@ In a module, top-level `this` is undefined, as opposed to a global object in non
 
 There are also several browser-specific differences of scripts with `type="module"` compared to regular ones.
 
+<<<<<<< HEAD
 You may want skip those for now if you're reading for the first time, or if you don't use JavaScript in a browser.
+=======
+You may want to skip this section for now if you're reading for the first time, or if you don't use JavaScript in a browser.
+>>>>>>> 6989312841d843f2350803ab552d9082437be569
 
 ### Module scripts are deferred
 
