@@ -59,11 +59,7 @@ Por exemplo, o JavaScript no navegador é capaz de:
 
 ## O que o JavaScript no navegador não pode fazer?
 
-<<<<<<< HEAD
 As habilidades do JavaScript no navegador são limitadas por uma questão de segurança do usuário. O objetivo é evitar que uma página maléfica acesse informações privadas ou prejudique os dados do usuário.
-=======
-JavaScript's abilities in the browser are limited for the sake of a user's safety. The aim is to prevent an evil webpage from accessing private information or harming the user's data.
->>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 Exemplos de tais restrições incluem:
 
@@ -88,15 +84,9 @@ Esses limites não existem se o JavaScript for usado fora do navegador, por exem
 Há pelo menos *três* grandes aspectos do JavaScript:
 
 ```compare
-<<<<<<< HEAD
 + Integração total com HTML/CSS.
 + Coisas simples são feitas de forma simples.
 + Suporte para todos os principais navegadores e ativado por padrão.
-=======
-+ Full integration with HTML/CSS.
-+ Simple things are done simply.
-+ Supported by all major browsers and enabled by default.
->>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 ```
 JavaScript é a única tecnologia de navegador que combina estas três qualidades.
 
@@ -127,12 +117,6 @@ Há mais. Claro que, mesmo que usemos uma dessas linguagens transpiladas, també
 
 ## Resumo
 
-<<<<<<< HEAD
 - O JavaScript foi inicialmente criado como uma linguagem somente de navegador, mas agora é usado em muitos outros ambientes também.
 - Hoje, o JavaScript tem uma posição única como a linguagem de navegador mais amplamente adotada, com integração total com HTML/CSS.
 - Existem muitas linguagens que são "transpiladas" para JavaScript e que oferecem certas funcionalidades. Recomenda-se dar uma olhada nelas, pelo menos brevemente, depois de dominar o JavaScript.
-=======
-- JavaScript was initially created as a browser-only language, but it is now used in many other environments as well.
-- Today, JavaScript has a unique position as the most widely-adopted browser language, fully integrated with HTML/CSS.
-- There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
->>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
