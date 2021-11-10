@@ -24,15 +24,10 @@ The classes are:
 - [HTMLElement](https://html.spec.whatwg.org/multipage/dom.html#htmlelement) -- is finally the basic class for all HTML elements. It is inherited by concrete HTML elements:
     - [HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement) -- the class for `<input>` elements,
     - [HTMLBodyElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlbodyelement) -- the class for `<body>` elements,
-<<<<<<< HEAD
-    - [HTMLAnchorElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlanchorelement) -- the class for `<a>` elements
-    - ...and so on, each tag has its own class that may provide specific properties and methods.
-=======
     - [HTMLAnchorElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlanchorelement) -- the class for `<a>` elements,
     - ...and so on.
 
 There are many other tags with their own classes that may specific properties and methods, while some elements, such as `<span>`, `<section>`, `<article>` do not have any specific properties, so they are instances of `HTMLElement` class.
->>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 So, the full set of properties and methods of a given node comes as the result of the inheritance.
 
