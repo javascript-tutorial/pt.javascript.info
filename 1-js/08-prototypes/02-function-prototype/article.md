@@ -105,7 +105,7 @@ let rabbit2 = new rabbit.constructor("Coelho Preto");
 */!*
 ```
 
-Isso é prático quando nós temos um objeto, não sabemos qual construtor foi usado para ele (de uma biblioteca de terceiros, por exemplo), e nós precisamos criar outro objeto do mesmo tipo.
+Isso é prático quando nós temos um objeto, não sabemos que construtor foi usado para ele (de uma biblioteca de terceiros, por exemplo), e nós precisamos de criar outro objeto do mesmo tipo.
 
 Mas provavelmente a coisa mais importante sobre o `"constructor"` é que...
 
