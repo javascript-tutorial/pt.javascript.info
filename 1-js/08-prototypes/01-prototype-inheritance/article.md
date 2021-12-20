@@ -143,7 +143,6 @@ A propriedade `__proto__` está um pouco ultrapassada, ela existe por motivos hi
 A especificação diz que o `__proto__` só pode ser suportado por browsers. Mas o fato é que todos os ambientes, incluindo o lado do servidor ("server-side") suportam o `__proto__`, então podemos usá-lo tranquilamente.
 
 Como a notação `__proto__` é um pouco mais intuitiva, vamos usá-la nos exemplos.
-
 ```
 
 ## A Escrita não usa o protótipo
