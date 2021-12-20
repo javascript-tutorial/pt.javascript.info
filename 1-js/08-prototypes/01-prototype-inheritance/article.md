@@ -324,7 +324,6 @@ Note que existe uma coisa curiosa. De onde o método `rabbit.hasOwnProperty` est
 A resposta é simples: ele não é enumerável. Assim como todas as outras propriedades de `Object.prototype`, ele tem a flag `enumerable:false`. E `for..in` só lista aquelas que são enumeráveis. Aí está o porquê do resto das propriedades de `Object.prototype` não estarem listadas.
 
 ```smart header="Quase todas as outras chaves/métodos *value-gettting* ignoram propriedades herdadas."
-
 Quase todas as outras chaves/métodos *value-gettting*, como `Object.keys`, `Object.values`, entre outros, ignoram propriedades herdadas.
 
 Eles operam apenas no próprio objeto. Propriedades vindas do protótipo *não* são levadas em conta.
