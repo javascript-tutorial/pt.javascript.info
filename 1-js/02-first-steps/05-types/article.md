@@ -46,13 +46,23 @@ Além dos números regulares, existem os chamados "valores numéricos especiais"
     alert( "not a number" / 2 ); // NaN, tal divisão é errônea
     ```
 
+<<<<<<< HEAD
     `NaN` é pegajoso. Qualquer outra operação em `NaN` retorna `NaN`:
+=======
+    `NaN` is sticky. Any further mathematical operation on `NaN` returns `NaN`:
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
     ```js run
-    alert( "not a number" / 2 + 5 ); // NaN
+    alert( NaN + 1 ); // NaN
+    alert( 3 * NaN ); // NaN
+    alert( "not a number" / 2 - 1 ); // NaN
     ```
 
+<<<<<<< HEAD
      Então, se há um `NaN` em algum lugar em uma expressão matemática, ele se propaga para o resultado inteiro.
+=======
+    So, if there's a `NaN` somewhere in a mathematical expression, it propagates to the whole result (there's only one exception to that: `NaN ** 0` is `1`).
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
 ```smart header="As operações matemáticas são seguras"
 Fazer matemática é "seguro" em JavaScript. Podemos fazer qualquer coisa: dividir por zero, tratar strings não-numéricas como números, etc.
