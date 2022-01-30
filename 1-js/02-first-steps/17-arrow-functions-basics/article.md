@@ -33,11 +33,7 @@ let sum = function(a, b) {
 alert( sum(1, 2) ); // 3
 ```
 
-<<<<<<< HEAD
 Como pode ver, `(a, b) => a + b` significa uma função que aceita dois argumentos, nomeadamente `a` e `b`. No momento da execução, esta avalia a expressão `a + b` e retorna o resultado.
-=======
-As you can see, `(a, b) => a + b` means a function that accepts two arguments named `a` and `b`. Upon the execution, it evaluates the expression `a + b` and returns the result.
->>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
 - Se tivermos apenas um argumento, então os parênteses à sua volta podem ser omitidos, tornando ela ainda mais curta.
 
@@ -90,11 +86,7 @@ Desta forma:
 let sum = (a, b) => {  // a chaveta abre uma função multi-linha
   let result = a + b;
 *!*
-<<<<<<< HEAD
   return result; // se usarmos chavetas, então precisamos de um "return" explícito
-=======
-  return result; // if we use curly braces, then we need an explicit "return"
->>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 */!*
 };
 
