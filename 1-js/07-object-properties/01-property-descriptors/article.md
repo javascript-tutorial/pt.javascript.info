@@ -5,14 +5,14 @@ Como sabemos, objetos podem armazenar propriedades.
 
 Até agora, para nós, uma propriedade era um simples par "chave-valor". Mas uma propriedade de objeto é na verdade uma coisa mais flexível e poderosa.
 
-Neste capítulo, nós vamos estudar opções de configurações adicionais, e no próximo nós vamos ver como invisivelmente tornar elas em funções getter/setter.
+Neste capítulo, nós vamos estudar opções de configuração adicionais, e no próximo nós vamos ver como invisivelmente tornar elas em funções getter/setter.
 
 ## Sinalizadores de propriedade
 
 Propriedades de objeto, além do **`valor`** têm três atributos especiais (também chamados "sinalizadores"):
 
 - **`gravável`** -- se `true`, o valor pode ser alterado, caso contrário, é apenas-leitura.
-- **`enúmeravel`** -- se `true`, então pode ser listado em loops, caso contrário, não pode.
+- **`enumerável`** -- se `true`, então pode ser listado em loops, caso contrário, não pode.
 - **`configurável`** -- se `true`, a propriedade pode ser deletada e seus atributos modificados, caso contrário não.
 
 Nós não vimos eles ainda, porque geralmente eles não aparecem. Quando criamos uma propriedade "do jeito comum", todos eles são `true`. Mas nós também podemos mudá-los a qualquer hora.
@@ -220,14 +220,14 @@ Math.PI = 3; // Erro, porque a propriedade tem gravável: false
 // deletar Math.PI também não irá funcionar
 ```
 
-We also can't change `Math.PI` to be `writable` again:
+Nós também não podemos alterar `Math.PI` para ser `writable`(gravável) de novo:
 
 ```js run
-// Error, because of configurable: false
+// Erro, porque configurable: false
 Object.defineProperty(Math, "PI", { writable: true });
 ```
 
-There's absolutely nothing we can do with `Math.PI`.
+Não há absolutamente nada que possamos fazer com `Math.PI`.
 
 Deixar uma propriedade não-configurável, é um caminho só de ida. Nós não podemos alterar isso novamente com `defineProperty`.
 
@@ -267,10 +267,10 @@ delete user.name;
 Object.defineProperty(user, "name", { value: "Pete" });
 ```
 
-```smart header="The only attribute change possible: writable true -> false"
-There's a minor exception about changing flags.
+```smart header="A única alteração de atributo possível: gravável true -> false"
+Há uma pequena excessão sobre alteração de flags.
 
-We can change `writable: true` to `false` for a non-configurable property, thus preventing its value modification (to add another layer of protection). Not the other way around though.
+Nós podemos mudar `writable: true` para `false` para uma propriedade não-configurável, evitando assim, sua modificação de valor (para adicionar outra camada de proteção). Mas não o contrário.
 ```
 
 ## Object.defineProperties
