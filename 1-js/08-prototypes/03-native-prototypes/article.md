@@ -129,7 +129,7 @@ Protótipos são globais, então é fácil gerar um conflito. Se duas biblioteca
 Por isso, geralmente, modificar um protótipo nativo é considerado uma má ideia.
 ```
 
-**Na programação moderna, existe apenas um caso quando modificar protótipos nativos é aprovado: fazer polyfill (polyfilling).**
+**Na programação moderna, existe apenas um caso erm que modificar protótipos nativos é aprovado: fazer polyfill (polyfilling).**
 
 *Polyfill* é um termpo para criar um substituto para um método que existe na especificação do JavaScript, mas ainda não tem suporte em alguma engine particular de JavaScript.
 
