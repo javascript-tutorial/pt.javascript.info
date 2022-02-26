@@ -133,7 +133,7 @@ Por isso, geralmente, modificar um protótipo nativo é considerado uma má idei
 
 *Polyfill* é um termpo para criar um substituto para um método que existe na especificação do JavaScript, mas ainda não tem suporte em algum interpretador particular de JavaScript.
 
-Nesse caso nós podemos implementar e popular o protótipo embutido com ele.
+Nesse caso nós podemos implementar e preencher o protótipo embutido com ele.
 
 Por exemplo:
 
