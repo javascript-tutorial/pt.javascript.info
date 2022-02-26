@@ -10,7 +10,7 @@ Vamos ver cuidadosamente o que está acontecendo na chamada `speedy.eat("apple")
 
 Então, todos os hamsters compartilham o mesmo estômago!
 
-Toda vez que o `stomach` é obtido do protótipo, o `stomach.push` modifica ele "lá mesmo".
+Toda vez que o `stomach` é obtido do protótipo, o `stomach.push` o modifica "lá mesmo".
 
 Note que isso não acontece no caso de uma simples atribuição `this.stomach=`:
 
