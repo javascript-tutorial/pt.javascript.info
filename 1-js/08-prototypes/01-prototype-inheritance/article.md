@@ -257,7 +257,7 @@ A imagem do resultado fica:
 
 ![](proto-animal-rabbit-walk-3.svg)
 
-Se nós tivéssemos outros objetos, como `bird`, `snake`, etc., herdando o `animal`, eles iriam ganhar acesso aos métodos de `animal`. Mas em cada chamada dos métodos, o `this` corresponderia ao próprio objeto (antes do ponto), calculado na hora da chamada, não ao `animal`. Dessa forma, quando escrevemos algum dado no `this`, ele vai ser armazenado dentro de cada objeto.
+Se nós tivéssemos outros objetos, como `bird`, `snake`, etc., herdando de `animal`, eles iriam ganhar acesso aos métodos de `animal`. Mas em cada chamada dos métodos, o `this` corresponderia ao próprio objeto (antes do ponto), calculado na hora da chamada, não ao `animal`. Dessa forma, quando escrevemos algum dado no `this`, ele vai ser armazenado dentro de cada objeto.
 
 Como resultado, os métodos são compartilhados, mas o estado dos objetos não são.
 
