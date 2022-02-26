@@ -195,4 +195,4 @@ Pegar métodos emprestado é mais flexível, isso permite misturar as funcionali
     - Os métodos são guardados no protótipo (`Array.prototype`, `Object.prototype`, `Date.prototype`, etc.)
     - O objeto só guarda os dados nele mesmo (itens de array, propriedades de objetos, a data)
 - Tipos primitivos também guardam métodos em protótipos de objetos que os envolvem (como um invólucro): `Number.prototype`, `String.prototype` e `Boolean.prototype`. Apenas `undefined` e `null` que não tem objetos invólucros.
-- Protótipos embutidos podem ser modificados ou populados com novos métodos. Mas modificá-los não é recomendado. O único caso aceitável é provavelmente quando nós adicionamos um novo comportamento e ele ainda não tem suporte em alguma engine JavaScript.
+- Protótipos embutidos podem ser modificados ou populados com novos métodos. Mas modificá-los não é recomendado. O único caso aceitável é provavelmente quando nós adicionamos um novo comportamento e ele ainda não tem suporte em algum interpretador (*engine*) de JavaScript.
