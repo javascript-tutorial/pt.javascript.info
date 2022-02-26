@@ -2,7 +2,7 @@ Vamos ver cuidadosamente o que está acontecendo na chamada `speedy.eat("apple")
 
 1. O método `speedy.eat` é encontrado no protótipo (`=hamster`), e executado usando `this=speedy` (o objeto antes do ponto).
 
-2. Então o método `this.stomach.push()` precisa encontrar uma propriedade `stomach` e chamar o `push` nela. Ele procura por um `stomach` no `this` (`=speedy`), mas não encontra.
+2. Então o método `this.stomach.push()` precisa de encontrar uma propriedade `stomach` e chamar o `push` nela. Ele procura por um `stomach` no `this` (`=speedy`), mas não encontra.
 
 3. Aí ele segue a cadeia de protótipos e encontra `stomach` no `hamster`.
 
