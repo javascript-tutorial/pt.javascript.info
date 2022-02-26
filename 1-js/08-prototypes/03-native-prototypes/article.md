@@ -106,7 +106,7 @@ Como sabemos, eles não são objetos. Mas se nós tentarmos acessar as proprieda
 Esses objetos são criados invisivelmente para nós e a maioria dos interpretadores (*engines*) otimizam esse processo, apesar da especificação descrevê-lo exatamente dessa forma. Os métodos desses objetos também residem nos protótipos, disponíveis como `String.prototype`, `Number.prototype` e `Boolean.prototype`.
 
 ```warn header="Os valores `null` e `undefined` não têm objetos que os envolvam"
-O valores especiais `null` e `undefined` se destacam dos outros. Eles não tem objetos que os envolem, então métodos e propriedades não estão disponíveis para eles. Também não existem protótipos correspondentes.
+O valores especiais `null` e `undefined` se destacam dos outros. Eles não têm objetos que os envolem, então métodos e propriedades não estão disponíveis para eles. Também não existem protótipos correspondentes.
 ```
 
 ## Mudando protótipos nativos [#native-prototype-change]
