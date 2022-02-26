@@ -131,7 +131,7 @@ Por isso, geralmente, modificar um protótipo nativo é considerado uma má idei
 
 **Na programação moderna, existe apenas um caso erm que modificar protótipos nativos é aprovado: fazer polyfill (polyfilling).**
 
-*Polyfill* é um termpo para criar um substituto para um método que existe na especificação do JavaScript, mas ainda não tem suporte em alguma engine particular de JavaScript.
+*Polyfill* é um termpo para criar um substituto para um método que existe na especificação do JavaScript, mas ainda não tem suporte em algum interpretador particular de JavaScript.
 
 Nesse caso nós podemos implementar e popular o protótipo embutido com ele.
 
