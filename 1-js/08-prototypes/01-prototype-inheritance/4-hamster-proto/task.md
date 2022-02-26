@@ -25,7 +25,7 @@ let lazy = {
   __proto__: hamster
 };
 
-// Esse aqui encontrou a comida
+// Este aqui encontrou a comida
 speedy.eat("maçã");
 alert( speedy.stomach ); // maçã
 
