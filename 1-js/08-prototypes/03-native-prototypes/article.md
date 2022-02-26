@@ -78,7 +78,7 @@ let arr = [1, 2, 3]
 alert(arr); // 1,2,3 <-- O resultado de Array.prototype.toString
 ```
 
-Como vimos antes, `Object.prototype` também tem o método `toString`, mas `Array.prototype` está mais perto na cadeia, então a variante da array é utilizada.
+Como vimos antes, `Object.prototype` também tem o método `toString`, mas `Array.prototype` está mais perto na cadeia, então a variante do array é utilizada.
 
 
 ![](native-prototypes-array-tostring.svg)
