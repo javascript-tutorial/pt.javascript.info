@@ -6,7 +6,7 @@ importance: 5
 
 Nós temos `rabbit` herdando de `animal`.
 
-Se nós chamarmos `rabbit.eat()`, qual objeto recebe a propriedade `full`: `animal` ou `rabbit`? 
+Se nós chamarmos `rabbit.eat()`, que objeto recebe a propriedade `full`: `animal` ou `rabbit`? 
 
 ```js
 let animal = {
