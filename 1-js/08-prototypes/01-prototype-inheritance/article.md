@@ -2,7 +2,7 @@
 
 Na programação, nós sempre queremos extender algum comportamento.
 
-Por exemplo, nós temos um objeto `user` com suas propriedades e métodos, e queremos criar duas variantes `admin` e `guest` levemente diferentes. Nós gostaríamos de reutilizar o que já temos no `user`, sem copiar/reimplementar seus métodos, apenas construir um novo objeto baseado nele.
+Por exemplo, nós temos um objeto `user` com suas propriedades e métodos, e queremos criar duas variantes `admin` e `guest` ligeiramente diferentes. Nós gostaríamos de reutilizar o que já temos no `user`, sem copiar/reimplementar seus métodos, apenas construir um novo objeto baseado nele.
 
 Herança Prototipada (*Prototypal inheritance*) é uma funcionalidade da linguagem que nos ajuda com isso.
 
