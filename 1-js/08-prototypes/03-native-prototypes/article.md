@@ -163,7 +163,7 @@ Isso é quando nós pegamos um método de um objeto e o copiamos para outro.
 
 Alguns métodos de protótipos nativos são emprestados com muita frequência.
 
-Por exemplo, se nós estamos fazendo um objeto parecido com um array, nós podemos querer copiar alguns métodos para ele.
+Por exemplo, se nós estamos fazendo um objeto parecido com um array, nós podemos querer copiar alguns métodos de array para ele.
 
 Veja um exemplo:
 
