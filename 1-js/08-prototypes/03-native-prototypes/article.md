@@ -121,7 +121,7 @@ String.prototype.show = function() {
 "BUM!".show(); // BUM!
 ```
 
-Durante o processo do desenvolvimento, nós podemos ter novas ideias de métodos embutidos que nós gostaríamos de ter, e podemos ficar tentados a adicioná-los nos protótipos nativos. Mas isso é geralmente uma má ideia.
+Durante o processo do desenvolvimento, nós podemos ter novas ideias de métodos embutidos que nós gostaríamos de ter, e podemos ficar tentados a adicioná-los aos protótipos nativos. Mas isso é geralmente uma má ideia.
 
 ```warn
 Protótipos são globais, então é fácil gerar um conflito. Se duas bibliotecas adicionam um método `String.prototype.show`, uma delas estará sobrescrevendo a outra.
