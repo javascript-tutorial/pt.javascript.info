@@ -103,7 +103,7 @@ As coisas mais complicadas acontecem com strings, números e boleanos.
 
 Como sabemos, eles não são objetos. Mas se nós tentarmos acessar as propriedades deles, temporariamente são criados objetos que contém os construtores embutidos `String`, `Number` and `Boolean`. Eles fornecem os métodos e disaparecem.
 
-Esses objetos são criados invisivelmente para nós e a maioria das engines otimizam esse processo, apesar da especificação descrevê-lo exatamente dessa forma. Os métodos desses objetos também residem nos protótipos, disponíveis como `String.prototype`, `Number.prototype` e `Boolean.prototype`.
+Esses objetos são criados invisivelmente para nós e a maioria dos interpretadores (*engines*) otimizam esse processo, apesar da especificação descrevê-lo exatamente dessa forma. Os métodos desses objetos também residem nos protótipos, disponíveis como `String.prototype`, `Number.prototype` e `Boolean.prototype`.
 
 ```warn header="Os valores `null` e `undefined` não têm objetos que os envolvam"
 O valores especiais `null` e `undefined` se destacam dos outros. Eles não tem objetos que os envolem, então métodos e propriedades não estão disponíveis para eles. Também não existem protótipos correspondentes.
