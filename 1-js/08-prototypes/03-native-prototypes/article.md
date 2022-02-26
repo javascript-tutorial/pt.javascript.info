@@ -50,7 +50,7 @@ Outros objetos embutidos, como `Array`, `Date`, `Function`, entre outros, també
 
 Por exemplo, quando nós criamos um array `[1, 2, 3]`, a função construtura padrão `new Array()` é usada internamente. Dessa forma, os dados são escritos dentro do novo objeto, e `Array.prototype` se torna no seu protótipo e provê métodos. Isso é bem eficiente em termos de memória.
 
-Pela especificação, todos os protótipos embutidos tem `Object.prototype` no topo. Algumas pessoas dizem que "tudo herda os objetos".
+Pela especificação, todos os protótipos embutidos têm `Object.prototype` no topo. Algumas pessoas dizem que "tudo herda de objetos".
 
 Aqui temos uma visão geral (para 3 protótipos embutidos):
 
