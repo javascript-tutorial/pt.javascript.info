@@ -84,7 +84,7 @@ Como vimos antes, `Object.prototype` também tem o método `toString`, mas `Arra
 ![](native-prototypes-array-tostring.svg)
 
 
-Ferramentas embutidas em navegadores, como o console do desenvolvedor no Chrome, também mostram herança (objetos embutidos podem precisar usar o `console.dir`):
+Ferramentas embutidas em navegadores, como o console do desenvolvedor no Chrome, também mostram herança (objetos embutidos podem precisar de usar o `console.dir`):
 
 ![](console_dir_array.png)
 
