@@ -218,7 +218,7 @@ Uma pergunta interessante pode surgir no exemplo acima: qual o valor do `this` d
 
 A resposta é simples: o `this` não é nem um pouco afetado pelos protótipos.
 
-**Não importa onde o método é encontrado: dentro de um objeto ou do seu protótipo. Ao chamar um método, `this` é sempre do objeto antes do ponto.**
+**Não importa onde o método é encontrado: dentro de um objeto ou do seu protótipo. Ao chamar um método, `this` é sempre o objeto antes do ponto.**
 
 Então, a chamada do setter `admin.fullName=` usa o `admin` como `this`, não o `user`.
 
