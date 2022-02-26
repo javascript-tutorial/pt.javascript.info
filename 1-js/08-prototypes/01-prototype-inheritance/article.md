@@ -332,7 +332,7 @@ Eles operam apenas no próprio objeto. Propriedades vindas do protótipo *não* 
 ## Resumo
 
 - No Javascript, todos os objetos possuem uma propriedade `[[Prototype]]` escondida que ou é um objeto ou é `null`.
-- Nós podemos usar `obj.__proto__` para acessá-lo (um getter/setter que é histórico, para o qual já temos alternativas, que veremos em breve).
+- Nós podemos usar `obj.__proto__` para acessá-lo (um histórico getter/setter, mas já existem alternativas, que veremos em breve).
 - O objeto referenciado por `[[Prototype]]` é um chamado "protótipo" (*prototype*).
 - Se nós queremos ler uma propriedade de `obj` ou chamar um método, e eles não existem, o Javascript tenta encontrá-los no protótipo.
 - Operações de escrever/deletar agem diretamente no objeto, elas não usam o protótipo (assumindo que a propriedade seja um dado, não um setter).
