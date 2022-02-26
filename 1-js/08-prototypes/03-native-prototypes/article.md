@@ -146,7 +146,7 @@ if (!String.prototype.repeat) { // Se não existe esse método
 
     // na realidade, o código deveria ser um pouco mais complexo do que isso
     // (o algoritmo completo está na especificação)
-    // mas mesmo imperfeito, o polyfill é geralmente considerado bom o suficiente
+    // mas mesmo um polyfill imperfeito, é geralmente considerado bom o suficiente
     return new Array(n + 1).join(this);
   };
 }
