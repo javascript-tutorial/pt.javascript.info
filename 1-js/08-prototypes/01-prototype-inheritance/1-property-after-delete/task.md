@@ -6,7 +6,7 @@ importance: 5
 
 Aqui está o código que cria um par de objetos, e depois os modifica.
 
-Quais valores são mostrados no processo?
+Que valores são mostrados no processo?
 
 ```js
 let animal = {
