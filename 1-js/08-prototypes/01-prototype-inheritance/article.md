@@ -337,4 +337,4 @@ Eles operam apenas no próprio objeto. Propriedades vindas do protótipo *não* 
 - Se nós queremos ler uma propriedade de `obj` ou chamar um método, e eles não existem, o Javascript tenta encontrá-los no protótipo.
 - Operações de escrever/deletar agem diretamente no objeto, elas não usam o protótipo (assumindo que seja uma propriedade para dados, não um setter).
 - Se chamarmos `obj.method()`, e o `method` é obtido do prototype, o `this` ainda referencia o `obj`. Portanto métodos sempre trabalham com o objeto atual, mesmo que eles sejam herdados.
-- O loop `for..in` itera tanto sobre as propriedades do objeto quanto sobre as propriedades herdadas. Todas as outras chaves/métodos *value-getting* operam apenas sobre o próprio objeto.
+- O loop `for..in` itera tanto sobre as propriedades do objeto quanto sobre as propriedades herdadas. Todas os outros métodos  para obter chaves/valores operam apenas sobre o próprio objeto.
