@@ -183,7 +183,7 @@ alert( obj.join(',') ); // Olá,mundo!
 
 Ele funciona porque o algoritmo interno do método `join` embutido só precisa dos índices corretos e da propriedade `length`. Ele não confere se o objeto é de fato uma array. Muitos métodos enbutidos são assim.
 
-Outra possibilidade é herdar configurando `obj.__proto__` para o `Array.prototype`, de forma que todos os métodos de `Array` fiquem automaticamente disponíveis em `obj`.
+Outra possibilidade é herdar configurando `obj.__proto__` para `Array.prototype`, de forma que todos os métodos de `Array` fiquem automaticamente disponíveis em `obj`.
 
 Mas isso é impossível se `obj` já herda de outro objeto. Lembre-se, nós só podemos herdar de um objeto por vez.
 
