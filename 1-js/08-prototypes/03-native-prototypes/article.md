@@ -139,7 +139,7 @@ Por exemplo:
 
 ```js run
 if (!String.prototype.repeat) { // Se não existe esse método
-  // adiciona no protótipo
+  // adiciona ao protótipo
 
   String.prototype.repeat = function(n) {
     // repete a string n vezes
