@@ -1,6 +1,6 @@
 # Console do desenvolvedor
 
-O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está *inevitavelmente* cometendo erros, pelo menos se você for um humano, não um [robô] (https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).
+O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está *inevitavelmente* cometendo erros, pelo menos se você for um humano, não um [robô](https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).
 
 Mas no navegador, os usuários não vêem os erros por padrão. Assim, se algo correr mal no script, não veremos de onde está partindo e não poderemos corrigir.
 
@@ -33,10 +33,9 @@ Abaixo da mensagem de erro, há um símbolo azul `>`. Ele marca uma "linha de co
 
 Agora podemos ver erros, e isso é suficiente para começar. Voltaremos mais tarde às ferramentas de desenvolvedor e abordaremos a depuração mais profundamente no capítulo <info:debugging-chrome>.
 
-```smart header="Multi-line input"
-Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
-
-To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```smart header="Múltiplas linhas de comando"
+Normalmente, quando colocamos uma linha de código no console e pressionamos `key:Enter`, o código sera executado.
+Para inserir várias linhas, pressione `key:Shift+Enter`. Dessa forma, será possível inserir longos fragmentos de código JavaScript.
 ```
 
 ## Firefox, Edge, e outros
@@ -47,13 +46,13 @@ A interface deles é bem parecida. Uma vez que você saiba como usar uma dessas 
 
 ## Safari
 
-O Safari (navegador do Mac, não suportado pelo Windows/Linux) é um pouco especial aqui. Precisamos primeiro habilitar o "Develop menu".
+O Safari (navegador do Mac, não suportado pelo Windows/Linux) é um pouco especial aqui. Precisamos primeiro habilitar o "menu Desenvolvedor".
 
 Abra Preferências e vá para o painel "Avançado". Há uma caixa de seleção na parte inferior:
 
 ![safari](safari.png)
 
-Agora o `key:Cmd+Opt+C` pode alternar o console. Além disso, note que o novo item do menu superior chamado "Develop" apareceu. Ele tem muitos comandos e opções.
+Agora o `key:Cmd+Opt+C` pode alternar o console. Além disso, note que o novo item do menu superior chamado "Desenvolvedor" apareceu. Ele tem muitos comandos e opções.
 
 ## Resumo
 
