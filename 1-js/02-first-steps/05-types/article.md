@@ -2,7 +2,7 @@
 
 Uma variável em JavaScript é sempre de um certo tipo. Por exemplo, uma string ou um número.
 
-Há oito tipos de dados básicos em JavaScript. Aqui, vamos cobri-los em geral e nos próximos capítulos vamos falar sobre cada um deles em detalhe.
+Há oito tipos de dados básicos em JavaScript. Aqui, vamos cobri-los, em geral, e nos próximos capítulos vamos falar sobre cada um deles em detalhe.
 
 Podemos por qualquer tipo numa variável. Por exemplo, uma variável pode em um momento ser uma string e em outro um número:
 
@@ -25,7 +25,7 @@ O tipo *número* representa números inteiros e números de ponto flutuante.
 
 Existem muitas operações para números, por exemplo, multiplicação `*`, divisão `/`, adição `+`, subtração `-`, e assim por diante.
 
-Além dos números regulares, existem os chamados "valores numéricos especiais" que também pertencem a este tipo de dados: `Infinito`, `-Infinito` e `NaN`.
+Além dos números regulares, existem os chamados "valores numéricos especiais" que também pertencem aos tipos de dados: `Infinito`, `-Infinito` e `NaN`.
 
 - `Infinito` representa a matemática [Infinity](https://en.wikipedia.org/wiki/Infinity) ∞. É um valor especial que é maior que qualquer número.
 
@@ -68,27 +68,28 @@ Veremos mais sobre como trabalhar com números no capítulo <info:number>.
 
 ## BigInt [#bigint-type]
 
-In JavaScript, the "number" type cannot represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that's `9007199254740991`), or less than <code>-(2<sup>53</sup>-1)</code> for negatives. It's a technical limitation caused by their internal representation.
+Em JavaScript, o tipo "number" não pode representar valores inteiros maiores que <code>(2<sup>53</sup>-1)</code> (que é `9007199254740991`) ou menores que <code>-(2<sup>53</sup>-1)</code> para negativos. É uma limitação técnica causada por sua representação interna.
 
 For most purposes that's quite enough, but sometimes we need really big numbers, e.g. for cryptography or microsecond-precision timestamps.
 
-`BigInt` type was recently added to the language to represent integers of arbitrary length.
+Para a maioria dos propósitos, isso é suficiente, mas às vezes precisamos de números realmente grandes, por exemplo, para criptografia ou uma ["marca temporal"](https://pt.wikipedia.org/wiki/Marca_temporal) (carimbo do instante exato da data ou hora com precisão de microssegundos).
 
-A `BigInt` value is created by appending `n` to the end of an integer:
+O tipo `BigInt` foi adicionado recentemente à linguagem para representar inteiros de comprimento arbitrário. 
+
+Um valor `BigInt` é criado anexando `n` ao final de um inteiro:
 
 ```js
-// the "n" at the end means it's a BigInt
+// o "n" no final significa que é um BigInt
 const bigInt = 1234567890123456789012345678901234567890n;
 ```
 
-As `BigInt` numbers are rarely needed, we don't cover them here, but devoted them a separate chapter <info:bigint>. Read it when you need such big numbers.
+Como os números `BigInt` raramente são necessários, nós não os cobrimos aqui, mas dedicamos-lhes um capítulo separado <info:bigint>. Leia-o quando precisar de números tão grandes.
 
-
-```smart header="Compatibility issues"
-Right now, `BigInt` is supported in Firefox/Chrome/Edge/Safari, but not in IE.
+```smart header="Problemas de compatibilidade"
+No momento, o `BigInt` é suportado no Firefox/Chrome/Edge/Safari, mas não no IE.
 ```
 
-You can check [*MDN* BigInt compatibility table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) to know which versions of a browser are supported.
+Você pode verificar a [tabela de compatibilidade do *MDN* BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) para saber quais versões de um navegador são suportadas.
 
 ## String
 
@@ -113,10 +114,10 @@ Backticks são citações de "funcionalidade estendida". Eles nos permitem incor
 ```js run
 let name = "John";
 
-// embed a variable
+// Incorporando uma variável
 alert( `Olá, *!*${name}*/!*!` ); // Olá, John!
 
-// embed an expression
+// Incorporando uma expressão
 alert( `o resultado é *!*${1 + 2}*/!*` ); // o resultado é 3
 ```
 
@@ -178,7 +179,7 @@ O código acima declara que `age` é desconhecido.
 
 O valor especial `undefined` também se diferencia. Faz um tipo próprio, tal como `null`.
 
-O significado de `undefined` é "o valor não é atribuído".
+O significado de `undefined` é "valor não é atribuído".
 
 Se uma variável é declarada, mas não atribuída, então seu valor é `undefined`:
 
@@ -205,15 +206,15 @@ alert(age); // "undefined"
 
 O tipo `object` é especial.
 
-Todos os outros tipos são chamados de "primitivos" porque seus valores podem conter apenas uma única coisa (seja ela uma string, ou um número ou qualquer outra). Por outro lado, os objetos são usados para armazenar coleções de dados e entidades mais complexas.
+Todos os outros tipos são chamados de "primitivos" porque seus valores podem conter apenas uma única coisa (seja ela uma string, ou um número, ou qualquer outra). Por outro lado, os objetos são usados para armazenar coleções de dados e entidades mais complexas.
 
-Por serem tão importantes, os objetos merecem um tratamento especial. Nós vamos lidar com eles no capítulo <info: object>, depois que aprendermos mais sobre primitivos.
+Por serem tão importantes, os objetos merecem um tratamento especial. Nós vamos lidar com eles no capítulo <info:object>, depois que aprendermos mais sobre primitivos.
 
-O tipo `symbol` é usado para criar identificadores únicos para objetos. Nós o temos que mencionar aqui para completude, mas também adiar os seus detalhes até sabermos sobre objetos.
+O tipo `symbol` é usado para criar identificadores únicos para objetos. Nós o temos que mencionar aqui para completude, mas também adiaremos os seus detalhes até sabermos sobre objetos.
 
 ## The typeof operator [#type-typeof]
 
-O operador `typeof` retorna o tipo do argumento. É útil quando queremos processar valores de diferentes tipos de forma diferente ou apenas queremos fazer uma verificação rápida.
+O operador `typeof` retorna o tipo do argumento. É útil quando queremos processar valores de diferentes tipos ou apenas queremos fazer uma verificação rápida.
 
 A chamada para `typeof x` retorna uma string com o nome do tipo:
 
@@ -247,14 +248,14 @@ As três últimas linhas podem precisar de explicações adicionais:
 
 1. `Math` é um objeto embutido que fornece operações matemáticas. Nós o vamos aprender no capítulo <info:number>. Aqui, ele serve apenas como um exemplo de um objeto.
 2. O resultado de `typeof null` é `"object"`. É um erro oficialmente reconhecido no comportamento de `typeof`, vindo dos primeiros dias do JavaScript e mantido para compatibilidade. Naturalmente, `null` não é um objeto. É um valor especial com um tipo separado próprio. O comportamento de `typeof` é errado aqui.
-3. O resultado de `typeof alert` é `"function"`, porque `alert` é uma função. Vamos estudar as funções nos próximos capítulos onde veremos também que não há nenhum tipo especial "função" em JavaScript. As funções pertencem ao tipo objecto. Mas o `typeof` as trata de forma diferente, retornando `"function"`. Isto, também vem dos primeiros dias do JavaScript. Tecnicamente, é incorreto, mas muito conveniente na prática.
+3. O resultado de `typeof alert` é `"function"`, porque `alert` é uma função. Vamos estudar as funções nos próximos capítulos onde veremos também que não há nenhum tipo especial "função" em JavaScript. As funções pertencem ao tipo objeto. Mas o `typeof` as trata de forma diferente, retornando `"function"`. Isto, também vem dos primeiros dias do JavaScript. Tecnicamente, é incorreto, mas muito conveniente, na prática.
 
 ```smart header="A `sintaxe typeof(x)`"
 Você pode também encontrar outra sintaxe: `typeof(x)`. è o mesmo que `typeof x`.
 
-Para deixar claro: `typeof` é um operador, não uma função. Os parêntesis aqui não fazem parte de `typeof`. São o tipo de parêntesis usados em matemática para agrupamento.
+Para deixar claro: `typeof` é um operador, não uma função. Os parênteses aqui não fazem parte de `typeof`. São os parênteses usados em matemática para agrupamento.
 
-Geralmente, tais parêntesis contêm uma expressão matemática, como em `(2 + 2)`, mas aqui eles contêm apenas um argumento `(x)`. Sintáticamente, eles permitem evitar o espaço entre o operador `typeof` e o seu argumento, e algumas pessoas gostam disso.
+Geralmente, tais parênteses contêm uma expressão matemática, como em `(2 + 2)`, mas aqui eles contêm apenas um argumento `(x)`. Sintáticamente, eles permitem evitar o espaço entre o operador `typeof` e o seu argumento, e algumas pessoas gostam disso.
 
 Algumas pessoas preferem `typeof(x)`, embora a sintaxe `typeof x` seja muito mais comum.
 ```
@@ -274,7 +275,7 @@ Existem 8 tipos básicos em JavaScript.
 
 O operador `typeof` nos permite ver que tipo está armazenado em uma variável.
 
-- Geralmente, usado como `typeof x`, mas `typeof(x)` também é possivel.
+- Geralmente, usado como `typeof x`, mas `typeof(x)` também é possível.
 - Retorna uma string com o nome do tipo, como `"string"`.
 - Para `null` retorna `"object"` -- isso é um erro na linguagem, não é realmente um objeto.
 
