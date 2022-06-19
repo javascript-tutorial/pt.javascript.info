@@ -1,6 +1,6 @@
 # Interação: alert, prompt, confirm
 
-Como usuaremos o navegador como nosso ambiente de demonstração, vamos ver algumas funções para interagir com o usuário: `alert`, `prompt` e `confirm`.
+Como usaremos o navegador como nosso ambiente de demonstração, vamos ver algumas funções para interagir com o usuário: `alert`, `prompt` e `confirm`.
 
 ## alert
 
@@ -12,7 +12,7 @@ Por exemplo:
 alert('Olá');
 ```
 
-A mini-janela com a mensagem é chamada de _modal window_. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc, até que ele tenha lidado com a janela. Nesse caso -- até pressionar "OK".
+A mini-janela com a mensagem é chamada de _modal window_. A palavra "modal" significa que o visitante não pode interagir com o resto da página, pressionar outros botões, etc., até ele ter lidado com a janela. Nesse caso -- até pressionar "OK".
 
 ## prompt
 
@@ -55,7 +55,7 @@ Execute este código no Internet Explorer para visualizar:
 let test = prompt('Teste');
 ```
 
-Portanto, para que os prompts tenham boa aparência no IE, recomendamos que sempre forneça o segundo argumento:
+Portanto, para que os prompts tenham boa aparência no IE, recomendamos que forneça sempre o segundo argumento:
 
 ```js run
 let test = prompt('Teste', ''); // <-- para o IE
@@ -97,7 +97,7 @@ Cobrimos 3 funções específicas do navegador para interagir com o visitante:
 
 Todos esse métodos são modais: eles pausam a execução do script e não permitem ao visitante interagir com o resto da página até que a janela seja descartada.
 
-Existem duas limitações compartilhadas entre esses metódos acima:
+Existem duas limitações compartilhadas entre esses métodos acima:
 
 1. A localização exata da janela modal é determinada pelo navegador. Geralmente, está no centro.
 2. A aparência exata da janela também depende do navegador. Nós não podemos modificá-la.
