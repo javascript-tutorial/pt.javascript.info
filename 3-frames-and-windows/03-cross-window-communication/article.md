@@ -114,9 +114,6 @@ And now an example with the same origin. We can do anything with the embedded wi
 
 ### Please wait until the iframe loads
 
-<<<<<<< HEAD
-When an iframe is created, it immediately has a document. But that document is different from the one that finally loads into it!
-=======
 By definition, two URLs with different domains have different origins.
 
 But if windows share the same second-level domain, for instance `john.site.com`, `peter.site.com` and `site.com` (so that their common second-level domain is `site.com`), we can make the browser ignore that difference, so that they can be treated as coming from the "same origin" for the purposes of cross-window communication.
@@ -143,7 +140,6 @@ When an iframe comes from the same origin, and we may access its  `document`, th
 Upon its creation an iframe immediately has a document. But that document is different from the one that loads into it!
 
 So if we do something with the document immediately, that will probably be lost.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 Here, look:
 
