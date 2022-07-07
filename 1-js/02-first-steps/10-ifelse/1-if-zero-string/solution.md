@@ -1,6 +1,6 @@
-**Sim vai.**
+**Sim, vai.**
 
-Qualquer string exceto uma vazia (e `"0"` não está vazia) se torna `true` no contexto lógico.
+Qualquer "string" exceto uma vazia (e `"0"` não está vazia) se torna `true` no contexto lógico.
 
 Podemos executar e verificar:
 

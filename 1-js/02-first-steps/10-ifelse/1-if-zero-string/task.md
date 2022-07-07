@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# f (uma string com zero)
+# f (uma “string” com zero)
 
 O `alert` será exibido?
 

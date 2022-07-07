@@ -2,7 +2,7 @@
 
 Às vezes, precisamos realizar ações diferentes com base em condições diferentes.
 
-Para fazer isso, podemos usar a instrução `if` e o operador condicional `?`, que também é chamado de operador "ponto de interrogação".
+Para fazer isso, podemos usar a instrução `if` e o operador condicional `?`, que também é comumente dito como operador "ponto de interrogação".
 
 ## A instrução "if"
 
@@ -37,8 +37,8 @@ A instrução `if (…)` avalia a expressão entre parênteses e converte o resu
 
 Vamos relembrar as regras de conversão do capítulo <info:type-conversions>:
 
-- Um número `0`, uma string vazia `""`, `null`, `undefined` e `NaN` tornam-se `false`. Por isso são chamados de valores "falsos".
-- Outros valores se tornam `true`, então eles são chamados de "verdadeiro".
+- Um número `0`, uma ‘string’ vazia `""`, `null`, `undefined` e `NaN` tornam-se `false`. Por isso são entitulados como valores "falsos".
+- Outros valores se tornam `true`, então eles são entitulados como "verdadeiro".
 
 Portanto, o código sob essa condição nunca seria executado:
 
@@ -48,7 +48,7 @@ if (0) { // 0 é falso
 }
 ```
 
-... e dentro desta condição -- sempre será:
+... E dentro desta condição -- sempre será:
 
 ```js
 if (1) { // 1 é verdadeiro
@@ -125,9 +125,9 @@ if (age > 18) {
 alert(accessAllowed);
 ```
 
-O chamado operador "condicional" ou "ponto de interrogação" nos permite fazer isso de uma forma mais curta e simples.
+O chamado operador "condicional" ou "ponto de interrogação" nos permite fazer isso de uma forma curta e simples.
 
-O operador é representado por um ponto de interrogação `?`. Às vezes é chamado de "ternário", porque o operador possui três operandos. Na verdade, é o único operador em JavaScript que possui tantos. Na verdade, é o único operador em JavaScript que possui tantas possibilidades de operandos.
+O operador é representado por um ponto de interrogação `?`. Às vezes referênciado como "ternário", porque o operador possui três operandos. Na verdade, é o único operador em JavaScript que possui tantos. Na verdade, é o único operador em JavaScript que possui tantas possibilidades de operandos.
 
 A sintaxe é:
 
@@ -166,7 +166,7 @@ let accessAllowed = age > 18;
 
 ## Múltiplos '?'
 
-Uma seqüência de operadores de ponto de interrogação `?` pode retornar um valor que depende de mais de uma condição.
+Uma sequência de operadores de ponto de interrogação `?` pode retornar um valor que depende de mais de uma condição.
 
 Por exemplo:
 
@@ -181,7 +181,7 @@ let message = (age < 3) ? 'Oi, bebê!' :
 alert( message );
 ```
 
-Pode ser difícil no início entender o que está acontecendo. Mas depois de um olhar mais atento, podemos ver que é apenas uma sequência comum de testes:
+Pode ser difícil no início entender o que está acontecendo. Mas depois de um olhar mais atento, percebemos que é apenas uma sequência comum de testes:
 
 1. O primeiro ponto de interrogação verifica se `age < 3`.
 2. Se for verdadeiro -- retorna `'Oi, bebê!'`. Caso contrário, continua para a expressão após os dois pontos '":"', verificando `age < 18`.
