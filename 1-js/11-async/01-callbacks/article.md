@@ -20,8 +20,8 @@ Veja a função `loadScript(src)`, que carrega um script com um dado `src`:
 
 ```js
 function loadScript(src) {
-  // creates a <script> tag and append it to the page
-  // this causes the script with given src to start loading and run when complete
+  // cria uma tag <script> e a anexa à página
+  // isso faz com que o script com o determinado src comece a carregar e seja executado quando concluído
   let script = document.createElement('script');
   script.src = src;
   document.head.append(script);
