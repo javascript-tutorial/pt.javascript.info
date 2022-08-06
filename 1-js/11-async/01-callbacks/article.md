@@ -10,7 +10,7 @@ Se você não está familiarizado com esses métodos, e o uso deles nos exemplos
 Mas nós vamos tentar deixar as coisas claras de qualquer jeito. Não vai ter nada muito complexo em relação ao navegador.
 ```
 
-Muitas funções providas pelo JavaScript permitem que você agende ações *assíncronas*. Em outras palavras, ações que nós iniciamos agora, mas elas terminam mais tarde.
+Muitas funções providas pelo JavaScript permitem que você agende ações *assíncronas*. Em outras palavras, ações que nós iniciamos agora, mas que terminam mais tarde.
 
 Por exemplo, uma dessas funções é a função `setTimeout`.
 
@@ -49,7 +49,7 @@ loadScript('/my/script.js');
 
 Agora, vamos imaginar que queremos usar o novo script assim que ele terminar de carregar. Ele provavelmente declara novas funções, e queremos executar elas.
 
-Mas se nós fizermos isso imediatamente depois da chamada `loadScript(…)`, não iria funcionar.
+Mas se nós fizéssemos isso imediatamente depois da chamada `loadScript(…)`, não iria funcionar.
 
 ```js
 loadScript('/my/script.js'); // o script tem "function newFunction() {…}"
@@ -106,7 +106,7 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 */!*
 ```
 
-Isso é chamado de programação assíncrona "baseada em callbacks". A função que faz alguma coisa assincronamente deve prover um argumento `callback` onde nós colocamos a função que vai executar depois que ela terminar.
+Isso é chamado de programação assíncrona "baseada em callbacks". A função que faz alguma coisa assincronamente deve prover um argumento `callback` onde nós colocamos a função que vai executar depois que ela estiver completa.
 
 Aqui nós fizemos isso em `loadScript`, mas é claro que isso é uma abordagem genérica.
 
@@ -156,7 +156,7 @@ Então, toda ação nova fica dentro de um callback. Tudo bem para poucas açõe
 
 No exemplo acima nós não consideramos erros. E se o carregamento do script falhar? Nosso callback deveria ser capaz de reagir a isso.
 
-Abaixo temos uma versão melhorada do `loadScript` que pega os erros de carregamento:
+Abaixo temos uma versão melhorada do `loadScript` que rastreia os erros de carregamento:
 
 ```js
 function loadScript(src, callback) {
@@ -185,7 +185,7 @@ loadScript('/my/script.js', function(error, script) {
 });
 ```
 
-De novo, o padrão que nós usamos para o `loadScript` é bem comum. É chamado de estilo "error-first callback".
+De novo, o padrão que nós usamos para o `loadScript` é bem comum. É chamado de estilo "callback com erro primeiro".
 
 A convenção é:
 1. O primeiro argumento do `callback` é reservado para um erro, se algum ocorrer. Então `callback(err)` é chamado.
@@ -262,7 +262,7 @@ loadScript('1.js', function(error, script) {
 
 ![](callback-hell.svg)
 
-A "pirâmide" de chamadas aninhadas cresce para a direita a cada ação assíncrona e rapidamente sai de controle.
+A "pirâmide" de chamadas aninhadas cresce para a direita a cada ação assíncrona e rapidamente sai do controle.
 
 Então esse jeito de programar não é muito bom.
 
@@ -300,7 +300,7 @@ function step3(error, script) {
 
 Viu? Isso faz a mesma coisa, e não tem um aninhamento profundo agora porque nós fizemos cada ação em uma função separada no mesmo nível.
 
-funciona, porém o código parece uma planilha dividida. É difícil de ler, e você provavelmente percebeu que precisamos pular entre as partes do código enquanto estamos lendo ele. Isso é inconveniente, especialmente se o leitor não estiver familiarizado com o código e não souber para onde pular.
+Funciona, porém o código parece uma planilha dividida. É difícil de ler, e você provavelmente percebeu que precisamos de pular entre as partes do código enquanto estamos lendo ele. Isso é inconveniente, especialmente se o leitor não estiver familiarizado com o código e não souber para onde pular.
 
 Além disso, as funções chamadas `step*` são todas utilizadas apenas uma vez. Elas são criadas apenas pra evitar a "pirâmide da perdição." Ninguém vai reutilizá-las fora da cadeia de ações. Então tem um pouco de bagunça aqui.
 
