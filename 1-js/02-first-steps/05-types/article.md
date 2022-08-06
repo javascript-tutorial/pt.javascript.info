@@ -46,13 +46,15 @@ Além dos números regulares, existem os chamados "valores numéricos especiais"
     alert( "not a number" / 2 ); // NaN, tal divisão é errônea
     ```
 
-    `NaN` é pegajoso. Qualquer outra operação em `NaN` retorna `NaN`:
+    `NaN` é pegajoso. Qualquer outra operação matemática com `NaN` retorna `NaN`:
 
     ```js run
-    alert( "not a number" / 2 + 5 ); // NaN
+    alert( NaN + 1 ); // NaN
+    alert( 3 * NaN ); // NaN
+    alert( "not a number" / 2 - 1 ); // NaN
     ```
 
-     Então, se há um `NaN` em algum lugar em uma expressão matemática, ele se propaga para o resultado inteiro.
+     Então, se há um `NaN` em algum lugar em uma expressão matemática, ele se propaga para o resultado inteiro (existe apenas uma exceção nisto: `NaN ** 0` é `1`).
 
 ```smart header="As operações matemáticas são seguras"
 Fazer matemática é "seguro" em JavaScript. Podemos fazer qualquer coisa: dividir por zero, tratar strings não-numéricas como números, etc.
@@ -213,13 +215,6 @@ O tipo `symbol` é usado para criar identificadores únicos para objetos. Nós o
 
 O operador `typeof` retorna o tipo do argumento. É útil quando queremos processar valores de diferentes tipos de forma diferente ou apenas queremos fazer uma verificação rápida.
 
-Suporta duas formas de sintaxe:
-
-1. Como operador: `typeof x`.
-2. Como uma função: `typeof(x)`.
-
-Em outras palavras, trabalha com parênteses ou sem eles. O resultado é o mesmo.
-
 A chamada para `typeof x` retorna uma string com o nome do tipo:
 
 ```js
@@ -251,8 +246,18 @@ typeof alert // "function"  (3)
 As três últimas linhas podem precisar de explicações adicionais:
 
 1. `Math` é um objeto embutido que fornece operações matemáticas. Nós o vamos aprender no capítulo <info:number>. Aqui, ele serve apenas como um exemplo de um objeto.
-2. O resultado de `typeof null` é `"object"`. É um erro oficialmente reconhecido no comportamento de `typeof` e mantido para compatibilidade. Naturalmente, `null` não é um objeto. É um valor especial com um tipo separado próprio.
+2. O resultado de `typeof null` é `"object"`. É um erro oficialmente reconhecido no comportamento de `typeof`, vindo dos primeiros dias do JavaScript e mantido para compatibilidade. Naturalmente, `null` não é um objeto. É um valor especial com um tipo separado próprio. O comportamento de `typeof` é errado aqui.
 3. O resultado de `typeof alert` é `"function"`, porque `alert` é uma função. Vamos estudar as funções nos próximos capítulos onde veremos também que não há nenhum tipo especial "função" em JavaScript. As funções pertencem ao tipo objecto. Mas o `typeof` as trata de forma diferente, retornando `"function"`. Isto, também vem dos primeiros dias do JavaScript. Tecnicamente, é incorreto, mas muito conveniente na prática.
+
+```smart header="A `sintaxe typeof(x)`"
+Você pode também encontrar outra sintaxe: `typeof(x)`. è o mesmo que `typeof x`.
+
+Para deixar claro: `typeof` é um operador, não uma função. Os parêntesis aqui não fazem parte de `typeof`. São o tipo de parêntesis usados em matemática para agrupamento.
+
+Geralmente, tais parêntesis contêm uma expressão matemática, como em `(2 + 2)`, mas aqui eles contêm apenas um argumento `(x)`. Sintáticamente, eles permitem evitar o espaço entre o operador `typeof` e o seu argumento, e algumas pessoas gostam disso.
+
+Algumas pessoas preferem `typeof(x)`, embora a sintaxe `typeof x` seja muito mais comum.
+```
 
 ## Resumo
 
@@ -269,7 +274,7 @@ Existem 8 tipos básicos em JavaScript.
 
 O operador `typeof` nos permite ver que tipo está armazenado em uma variável.
 
-- Duas formas: `typeof x` ou `typeof(x)`.
+- Geralmente, usado como `typeof x`, mas `typeof(x)` também é possivel.
 - Retorna uma string com o nome do tipo, como `"string"`.
 - Para `null` retorna `"object"` -- isso é um erro na linguagem, não é realmente um objeto.
 

@@ -228,8 +228,8 @@ loadScript('1.js', function(error, script) {
 ```
 
 No código acima:
-1. Carregamos `1.js`, e depois, se não tiver nenhum erro.
-2. Carregamos `2.js`, e depois, se não tiver nenhum erro.
+1. Carregamos `1.js`, e depois, se não tiver nenhum erro...
+2. Carregamos `2.js`, e depois, se não tiver nenhum erro...
 3. Carregamos `3.js`, e depois, se não tiver nenhum erro -- faz outra coisa `(*)`.
 
 À medida em que as chamadas ficam mais aninhadas, o código vai ficando mais profundo e cada vez mais difícil de gerenciar, especialmente se nós tivermos um código real em vez de `...`, que pode incluir mais laços, condicionais e assim por diante.
@@ -298,7 +298,7 @@ function step3(error, script) {
 }
 ```
 
-Viu? Isso faz a mesma coisa, e não tem um aninhamento profundo agora porque nós fizemos cada ação em uma função separada no mesmo nível.
+Viu? Isso faz a mesma coisa, e não tem aninhamento profundo agora porque nós transformamos cada ação em uma função de nível superior separada.
 
 Funciona, porém o código parece uma planilha dividida. É difícil de ler, e você provavelmente percebeu que precisamos de pular entre as partes do código enquanto estamos lendo ele. Isso é inconveniente, especialmente se o leitor não estiver familiarizado com o código e não souber para onde pular.
 
