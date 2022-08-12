@@ -12,7 +12,7 @@ let message = "olá";
 message = 123456;
 ```
 
-As linguagens de programação que permitem tais coisas são chamadas "dinamicamente tipadas", o que significa que existem tipos de dados, mas as variáveis não estão vinculadas a nenhum deles.
+As linguagens de programação que permitem tais coisas são chamadas "dinamicamente tipadas", o que significa que existem tipos de dados, mas as variáveis não estão restritas a nenhum deles.
 
 ## Um número
 
