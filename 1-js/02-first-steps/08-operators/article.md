@@ -45,7 +45,7 @@ Os quatro primeiros são diretos, enquanto que `%` e `**` precisam de alguma exp
 
 O operador de resto `%`, apesar de sua aparência, não possui relação com porcentagens.
 
-O resultado de `a % b`é o [resto](https://pt.wikipedia.org/wiki/Resto_da_divis%C3%A3o_inteira) da divisão inteira de `a` por `b`.
+O resultado de `a % b` é o [resto](https://pt.wikipedia.org/wiki/Resto_da_divis%C3%A3o_inteira) da divisão inteira de `a` por `b`.
 
 Por exemplo:
 
