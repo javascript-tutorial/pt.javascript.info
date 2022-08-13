@@ -147,7 +147,7 @@ alert( +"" );   // 0
 */!*
 ```
 
-Isto na verdade faz a mesma coisa que `Number(...)`, mas de forma mais curta.
+Isto, na verdade, faz a mesma coisa que `Number(...)`, mas de maneira mais curta.
 
 A necessidade de converter strings em números surge com frequência. Por exemplo, se nós estivermos pegando valores de campos de formulário HTML, eles são normalmente strings. E se nós quisermos somá-los?
 
@@ -177,7 +177,7 @@ alert( +apples + +oranges ); // 5
 
 Do ponto de vista matemático, a abundância de sinais de mais pode parecer estranha. Mas de um ponto de vista de um programador, não há nada de especial: positivos unários são aplicados primeiro, eles convertem strings em números, e então o positivo binário os soma.
 
-Por que positivos unários são aplicados a valores antes dos positivos binários? Como iremos ver, é por causa da *maior precedência* destes.
+Por que positivos unários são aplicados a valores antes dos positivos binários? Como iremos ver, é devido à *maior precedência* destes.
 
 ## Precedência de operador
 
@@ -241,7 +241,7 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-No exemplo acima, o resultado da expressão `(a = b + 1)` é o valor que é atribuído à `a` (isto é, `3`). Este é então usado para avaliações adicionais.
+No exemplo acima, o resultado da expressão `(a = b + 1)` é o valor atribuído à `a` (isto é, `3`). Este é então usado para avaliações adicionais.
 
 Código engraçado, não é? Nós devemos entender como ele funciona, porque às vezes nós o vemos em bibliotecas JavaScript.
 
@@ -366,7 +366,7 @@ let a = counter++; // (*) mudou ++counter para counter++
 alert(a); // *!*1*/!*
 ```
 
-Na linha `(*)`, a forma pós-fixa `counter++` também incrementa `counter` mas retorna o valor *antigo* (anterior ao incremento). Então, o `alerta` mostra `1`.
+Na linha `(*)`, a forma pós-fixa `counter++` também incrementa `counter`, mas retorna o valor *antigo* (anterior ao incremento). Então, o `alerta` mostra `1`.
 
 Resumindo:
 
@@ -384,7 +384,7 @@ Resumindo:
     let counter = 0;
     alert( ++counter ); // 1
     ```
-- Se quisermos incrementar um valor mas usar o seu valor anterior, nós precisamos da forma pós-fixa:
+- Se quisermos incrementar um valor, mas usar o seu valor anterior, nós precisamos da forma pós-fixa:
 
     ```js run
     let counter = 0;
@@ -443,7 +443,7 @@ Estes operadores são muito raramente usados, quando nós precisamos mexer com n
 
 O operador vírgula `,`, é um dos operadores mais raros e incomuns. Às vezes, ele é usado para escrever código mais curto, de modo que precisamos conhecê-lo para entender o que está ocorrendo.
 
-O operador vírgula nos permite avaliar várias expressões, dividindo-as com uma vírgula `,`. Cada uma delas é avaliada mas somente o resultado da última é retornado.
+O operador vírgula nos permite avaliar várias expressões, dividindo-as com uma vírgula `,`. Cada uma delas é avaliada, mas somente o resultado da última é retornado.
 
 Por exemplo:
 
