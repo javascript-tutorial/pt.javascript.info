@@ -81,7 +81,7 @@ Aqui está uma lista:
 | Caractere | Descrição |
 |-----------|-------------|
 |`\n`|Nova linha|
-|`\r`|Carriage return: não usado sózinho. Ficheiros de texto no Windows usam uma combinação de dois carateres `\r\n` para representar uma quebra de linha. |
+|`\r`|Em ficheiros de texto no Windows uma combinação de dois carateres `\r\n` representa uma quebra de linha, enquanto em Sistemas Operativos (SOs) não-Windows é apenas `\n`. Isto é por razões históricas, muito software Windows também compreende `\n`.|
 |`\'`, `\"`|Aspas|
 |`\\`|Backslash|
 |`\t`|Tab|
