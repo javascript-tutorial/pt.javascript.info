@@ -161,7 +161,7 @@ for (let key in user) alert(key); // 'name', 'age' (nenhum símbolo)
 alert( "Direct: " + user[id] );
 ```
 
-`Object.keys(user)` também os ignora. Isto, faz parte do conceito geral de "ocultação de propriedades simbólicas". Se, um outro programa ou uma biblioteca percorrer o nosso objeto com um ciclo (*loop*), não irá inadvertidamente aceder a uma propriedade simbólica.
+[Object.keys(user)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) também os ignora. Isto, faz parte do conceito geral de "ocultação de propriedades simbólicas". Se, um outro programa ou uma biblioteca percorrer o nosso objeto com um ciclo (*loop*), não irá inadvertidamente aceder a uma propriedade simbólica.
 
 Em contraste, [Object.assign](mdn:js/Object/assign) copia ambas as propriedades *string* e *symbol*:
 

@@ -100,7 +100,7 @@ alert( a == b ); // false
 
 For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely -- usually they appear as a result of a programming mistake.
 
-## Cloning and merging, Object.assign
+## Cloning and merging, Object.assign [#cloning-and-merging-object-assign]
 
 So, copying an object variable creates one more reference to the same object.
 
@@ -133,7 +133,7 @@ clone.name = "Pete"; // changed the data in it
 alert( user.name ); // still John in the original object
 ```
 
-Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
+Also we can use the method [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) for that.
 
 The syntax is:
 
@@ -185,6 +185,8 @@ let clone = Object.assign({}, user);
 ```
 
 It copies all properties of `user` into the empty object and returns it.
+
+There are also other methods of cloning an object, e.g. using the [spread syntax](info:rest-parameters-spread) `clone = {...user}`, covered later in the tutorial.
 
 ## Nested cloning
 
