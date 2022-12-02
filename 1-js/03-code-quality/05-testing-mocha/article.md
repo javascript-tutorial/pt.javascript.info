@@ -163,8 +163,8 @@ Aqui, nós podemos selecionar uma das duas formas para organizar o teste:
         assert.equal(pow(2, 3), 8);
       });
 
-      it("3 elevado a 3 é 27", function() {
-        assert.equal(pow(3, 3), 27);
+      it("3 elevado a 4 é 81", function() {
+        assert.equal(pow(3, 4), 81);
       });
 
     });
@@ -186,7 +186,7 @@ O resultado:
 
 [iframe height=250 src="pow-2" edit border="1"]
 
-Como nós esperávamos, o segundo teste falhou. Seguramente, a nossa função retorna sempre `8`, enquanto o `assert` espera `27`.
+Como nós esperávamos, o segundo teste falhou. Seguramente, a nossa função retorna sempre `8`, enquanto o `assert` espera `81`.
 
 ## Melhorando a implementação
 

@@ -12,12 +12,10 @@ Uma IDE carrega o projeto (que pode ter muitos arquivos), permite navegação en
 
 Se você ainda não tiver selecionado uma IDE, considere as seguintes opções:
 
-- [WebStorm](http://www.jetbrains.com/webstorm/) para desenvolvimento de front-end. A mesma empresa oferece outros editores para outras linguagens (pago).
-- [Netbeans](http://netbeans.org/) (livre).
+- [Visual Studio Code](https://code.visualstudio.com/) (plataforma cruzada, livre).
+- [WebStorm](https://www.jetbrains.com/pt-br/webstorm/) (plataforma cruzada, pago).
 
-Todas essas IDEs são multi-plataforma.
-
-Para Windows, há também "Visual Studio", que não deve ser confundido com "Visual Studio Code". "Visual Studio" é um editor pago e poderoso somente para Windows, bem adequado para a plataforma .NET . Uma versão gratuita é chamada [Visual Studio Community](https://www.visualstudio.com/vs/community/).
+Para Windows, há também "Visual Studio", que não deve ser confundido com "Visual Studio Code". "Visual Studio" é um editor pago e poderoso somente para Windows, bem adequado para a plataforma .NET . Uma versão gratuita é chamada [Visual Studio Community](https://visualstudio.microsoft.com/pt-br/vs/community/).
 
 Muitas IDEs são pagas, mas têm um período experimental. Seu custo é geralmente desprezível comparado ao salário de um desenvolvedor qualificado, então basta escolher o melhor para você.
 
@@ -33,20 +31,10 @@ Na prática, os editores leves podem ter muitos plug-ins, incluindo analisadores
 
 As seguintes opções merecem sua atenção:
 
-- [Visual Studio Code](https://code.visualstudio.com/) (plataforma cruzada, livre) também tem muitos recursos similares a IDE.
-- [Atom](https://atom.io/) (multi-plataforma, livre).
-- [Sublime Text](http://www.sublimetext.com) (multi-plataforma, shareware).
+- [Atom](https://atom.io/) (plataforma cruzada, livre).
+- [Sublime Text](http://www.sublimetext.com) (plataforma cruzada, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, livre).
 - [Vim](http://www.vim.org/) e [Emacs](https://www.gnu.org/software/emacs/) também são legais se você sabe como usá-los.
-
-## Os meus favoritos
-
-A preferência pessoal do autor deve ter uma IDE para projetos e um editor leve para edição de arquivo rápida e fácil.
-
-Eu estou usando:
-
-- Como uma IDE para JS -- [WebStorm](http://www.jetbrains.com/webstorm/) (Eu mudo para uma das outras ofertas do JetBrains quando uso outras linguagens)
-- Como um editor de peso leve -- [Sublime Text](http://www.sublimetext.com) ou [Atom](https://atom.io/).
 
 ## Não vamos discutir
 

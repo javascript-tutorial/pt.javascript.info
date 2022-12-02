@@ -6,12 +6,12 @@ importance: 5
 
 Compare the two code fragments.
 
-1. The first one uses `finally` to execute the code after `try..catch`:
+1. The first one uses `finally` to execute the code after `try...catch`:
 
     ```js
     try {
       work work
-    } catch (e) {
+    } catch (err) {
       handle errors
     } finally {
     *!*
@@ -19,12 +19,12 @@ Compare the two code fragments.
     */!*
     }
     ```
-2. The second fragment puts the cleaning right after `try..catch`:
+2. The second fragment puts the cleaning right after `try...catch`:
 
     ```js
     try {
       work work
-    } catch (e) {
+    } catch (err) {
       handle errors
     }
 
@@ -33,6 +33,6 @@ Compare the two code fragments.
     */!*
     ```
 
-We definitely need the cleanup after the work has started, doesn't matter if there was an error or not.
+We definitely need the cleanup after the work, doesn't matter if there was an error or not.
 
 Is there an advantage here in using `finally` or both code fragments are equal? If there is such an advantage, then give an example when it matters.
