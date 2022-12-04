@@ -1,6 +1,6 @@
 # Promise API
 
-There are 5 static methods in the `Promise` class. We'll quickly cover their use cases here.
+There are 6 static methods in the `Promise` class. We'll quickly cover their use cases here.
 
 ## Promise.all
 
@@ -13,12 +13,12 @@ That's what `Promise.all` is for.
 The syntax is:
 
 ```js
-let promise = Promise.all([...promises...]);
+let promise = Promise.all(iterable);
 ```
 
-`Promise.all` takes an array of promises (it technically can be any iterable, but is usually an array) and returns a new promise.
+`Promise.all` takes an iterable (usually, an array of promises) and returns a new promise.
 
-The new promise resolves when all listed promises are settled, and the array of their results becomes its result.
+The new promise resolves when all listed promises are resolved, and the array of their results becomes its result.
 
 For instance, the `Promise.all` below settles after 3 seconds, and then its result is an array `[1, 2, 3]`:
 
@@ -309,15 +309,15 @@ In practice, this method is almost never used.
 
 ## Summary
 
-There are 5 static methods of `Promise` class:
+There are 6 static methods of `Promise` class:
 
 1. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, it becomes the error of `Promise.all`, and all other results are ignored.
 2. `Promise.allSettled(promises)` (recently added method) -- waits for all promises to settle and returns their results as an array of objects with:
     - `status`: `"fulfilled"` or `"rejected"`
     - `value` (if fulfilled) or `reason` (if rejected).
 3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
-4. `Promise.any(promises)` -- waits for the first promise to fulfill, and its result becomes the outcome. If all of the given promises are rejected, [`AggregateError`](mdn:js/AggregateError) becomes the error of `Promise.any`.
+4. `Promise.any(promises)` (recently added method) -- waits for the first promise to fulfill, and its result becomes the outcome. If all of the given promises are rejected, [`AggregateError`](mdn:js/AggregateError) becomes the error of `Promise.any`.
 5. `Promise.resolve(value)` -- makes a resolved promise with the given value.
 6. `Promise.reject(error)` -- makes a rejected promise with the given error.
 
-Of these five, `Promise.all` is probably the most common in practice.
+Of all these, `Promise.all` is probably the most common in practice.

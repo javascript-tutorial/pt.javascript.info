@@ -12,7 +12,9 @@ A sintaxe que empregámos antes é chamada de Declaração de Função (*Functio
 
 Existe outra sintaxe para criar uma função que é chamada de Expressão de Função (*Function Expression*).
 
-Ela se parece com:
+Ela nos permite criar uma função no meio de qualquer expressão.
+
+Por exemplo:
 
 ```js
   let sayHi = function() {
@@ -20,9 +22,19 @@ Ela se parece com:
   };
 ```
 
-Aqui, a função é criada e atribuída explícitamente à variável, como qualquer outro valor. Não importa como a função é definida, é apenas um valor armazenado na variável `sayHi`.
+Aqui, vemos um valor atribuido à variavel `sayHi`, a nova função, criada como `function() { alert("Hello"); }`.
 
-O significado destas amostras de código é o mesmo: "crie uma função e a coloque na variável `sayHi`".
+Como a criação da função é feita no contexto de uma expressão de atribuição (no lado direito de `=`), isto é uma *Expressão de Função* (Function Expression).
+
+Por favor, note que não há nenhum nome depois da palavra-chave `function`. A omissão do nome é permitida para Expressões de Funções.
+
+Aqui, nós imediatamente a atribuimos à variável, assim o significado destas amostras de código é o mesmo que: "crie uma função e a coloque na variável `sayHi`".
+
+Em situaões mais avançadas, que nós veremos mais adiante, uma função pode ser criada e imediatemente invocada ou agendada para uma execução mais tarde, mas não guardada en nenhum lugar, assim permanecendo anónima.
+
+## Uma função é um valor
+
+Vamos sublinhar: não importa como uma função é criada, uma função é um valor. Em ambos os exemplos acima, uma função é guardada na variável `sayHi`.
 
 Nós podemos até exibir esse valor usando `alert`:
 
@@ -63,10 +75,10 @@ Aqui está o que acima acontece, em detalhe:
 2. Na linha em `(2)` é copiada para a variável `func`. Por favor, note outra vez: não existem parênteses depois de `sayHi`. Se os houvessem, então `func = sayHi()` iria escrever *o resultado da chamada* `sayHi()` em `func`, não a própria *função* `sayHi`.
 3. Agora, a função pode ser invocada tanto como `sayHi()` como igualmente `func()`.
 
-Note, que também poderíamos ter utilizado uma Expressão de Função para declarar `sayHi` na primeira linha:
+Também poderíamos ter usado uma Expressão de Função para declarar `sayHi` na primeira linha:
 
 ```js
-  let sayHi = function() {
+  let sayHi = function() { // (1) criação
     alert( "Olá" );
   };
 
@@ -90,9 +102,9 @@ Poderá se perguntar, porque terá uma Function Expression um ponto-e-vírgula `
   }*!*;*/!*
 ```
 
-A resposta é simples:
-- Não há necessidade para um `;` no fim de blocos de código e estruturas sintáticas que usem tais blocos como `if { ... }`, `for {  }`, `function f { }` etc.
-- Uma Function Expression é utilizada dentro de uma instrução: `let sayHi = ...;`, a exemplo de um outro valor. Não se trata de um bloco de código, mas duma atribuição. O ponto-e-vírgula `;` é recomendado no final de instruções, independentemente de seu valores. Assim, o ponto-e-vírgula aqui não está relacionado à Function Expression em si, mas simplesmente termina a instrução.
+A resposta é simples: uma Expressão de Função é criada aqui, dentro da instrução de atribuição `let sayHi = …;`, como `function(…) {…}`. O ponto e vírgula `;`, é recomendado no final de uma instrução, assim não faz parte da sintaxe da função.
+
+O ponto e vírgula estaria lá numa atribuição mais simples, como por exemplo `let sayHi = 5;`, então também lá está numa atribuição de função.
 ````
 
 ## Funções callback
