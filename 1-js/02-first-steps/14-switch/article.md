@@ -26,7 +26,7 @@ switch(x) {
 }
 ```
 
-- O valor de `x` é comparado por meio de uma igualdade exata ao valor do primeiro `case` (isto é, ao `valor1`), a seguir ao do segundo (`valor2`) e assim sucessivamente.
+- O valor de `x` é comparado através de uma igualdade exata ao valor do primeiro `case` (isto é, ao `valor1`), a seguir ao do segundo (`valor2`) e assim sucessivamente.
 - Se uma igualdade for encontrada, o `switch` começa a executar o código a partir do início do `case` correspondente, até ao próximo `break` (ou até ao fim do `switch`).
 - Se nenhum `case` é equiparado então o código em `default` é executado (se existir).
 
@@ -43,7 +43,7 @@ switch (a) {
     break;
 *!*
   case 4:
-    alert( 'Exacto!' );
+    alert( 'Exato!' );
     break;
 */!*
   case 5:
@@ -54,9 +54,9 @@ switch (a) {
 }
 ```
 
-Aqui o `switch` começa por comparar `a` à variante no primeiro `case`, que é `3`. A correspondência falha.
+Aqui o `switch` começa por comparar `a` à variante no primeiro `case`, sendo  `3`. A correspondência falha.
 
-Então a `4`. Existe uma correspondência, e assim a execução começa a partir do `case 4` até ao próximo `break`.
+A seguir a `4`. Existe uma correspondência, e assim a execução começa a partir do `case 4` até ao próximo `break`.
 
 **Se não existir um `break` então a execução continua pelo próximo `case` sem quaisquer comparações.**
 
@@ -70,7 +70,7 @@ switch (a) {
     alert( 'Muito baixo' );
 *!*
   case 4:
-    alert( 'Exacto!' );
+    alert( 'Exato!' );
   case 5:
     alert( 'Muito alto' );
   default:
@@ -82,7 +82,7 @@ switch (a) {
 No exemplo acima, vemos uma execução sequential de três `alert`'s:
 
 ```js
-alert( 'Exacto!' );
+alert( 'Exato!' );
 alert( 'Muito alto' );
 alert( "Não conheço tais valores" );
 ```
@@ -125,7 +125,7 @@ switch (a) {
     break;
 
 *!*
-  case 3:                    // (*) dois cases agrupados
+  case 3: // (*) dois cases agrupados
   case 5:
     alert('Errado!');
     alert("Porque não tem aulas de matemática?");
@@ -143,7 +143,7 @@ A habilidade para "agrupar" cases é um efeito secundário de como o `switch/cas
 
 ## O tipo importa
 
-Vamos emfatizar que a verificação da igualdade é sempre exata. Os valores devem também ser do mesmo tipo para existir correspondência.
+Vamos enfatizar que a verificação da igualdade é sempre exata. Os valores devem também ser do mesmo tipo para existir correspondência.
 
 Por exemplo, consideremos o código:
 
@@ -169,4 +169,4 @@ switch (arg) {
 
 1. Para `0`, `1`, o primeiro `alert` é executado.
 2. Para `2` o segundo `alert` corre.
-3. Mas para `3`, o resultado do `prompt` á a string `"3"`, que não é estritamente igual `===` ao número `3`. Assim temos código inútil em `case 3`! A variante `default` será executada.
+3. Mas para `3`, o resultado do `prompt` é uma string com o valor `"3"`, que não é estritamente igual `===` ao número `3`. Assim temos código inútil em `case 3`! A variante `default` será executada.
