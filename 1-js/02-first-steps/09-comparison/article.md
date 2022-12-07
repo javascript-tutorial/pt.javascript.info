@@ -9,10 +9,6 @@ Em JavaScript eles são escritos assim:
 - Equals: `a == b`, observe o sinal de igualdade duplo `==` significa o teste de igualdade, enquanto um único `a = b` significa uma atribuição.
 - Diferente: Em matemática a notação é <code>&ne;</code>, mas em JavaScript é escrita como <code>a != b</code>.
 
-In this article we'll learn more about different types of comparisons, how JavaScript makes them, including important peculiarities.
-
-At the end you'll find a good recipe to avoid "JavaScript quirks"-related issues.
-
 Neste artigo vamos aprender mais sobre diferentes tipos de comparações, como o JavaScript as processa, incluindo peculiaridades importantes.
 
 No final, você encontrará uma boa receita para evitar problemas relacionados a "peculiaridades do JavaScript".
