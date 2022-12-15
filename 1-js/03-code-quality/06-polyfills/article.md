@@ -1,7 +1,7 @@
 
 # Polyfills e transpilers
 
-A linguagem JavaScript evolui constantemente. Novas propostas para a linguagem aparecem regularmente, elas são analisadas e, se consideradas valiosas, são anexadas à lista em <https://tc39.github.io/ecma262/> e depois progridem para a [especificação (en)](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
+A linguagem JavaScript evolui constantemente. Novas propostas para a linguagem aparecem regularmente, elas são analisadas e, se consideradas válidas, são anexadas à lista em <https://tc39.github.io/ecma262/> e depois progridem para a [especificação (en)](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/).
 
 Grupos por detrás dos interpretadores de JavaScript têm as suas próprias ideias sobre o que implementar primeiro. Eles podem decidir implementar propostas que estão em esboço e adiar coisas que já estão na spec, por serem menos interessantes ou apenas mais difíceis de fazer.
 
@@ -42,7 +42,7 @@ Geralmente, um desenvolvedor corre o transpiler na sua própria máquina, e depo
 
 Falando em nomes, o [Babel](https://babeljs.io) é um dos mais prominentes transpilers por aí.
 
-Sistemas para a construção de projetos modernos, tais como o [webpack](http://webpack.github.io/), fornecem meios para automaticamente correr o transpiler em cada alteração do código, e assim é muito fácil o integrar no processo de desenvolvimento.
+Sistemas para a construção de projetos modernos, tais como o [webpack](https://webpack.js.org/), fornecem meios para automaticamente correr o transpiler em cada alteração do código, e assim é muito fácil o integrar no processo de desenvolvimento.
 
 ## Polyfills
 
@@ -69,12 +69,11 @@ if (!Math.trunc) { // se a função não existir
 }
 ```
 
-O JavaScript é uma linguagem altamente dinâmica, e scripts podem adicionar/modificar quaisquer funções, incluindo até incorporadas.
+O JavaScript é uma linguagem altamente dinâmica. Scripts podem adicionar/modificar quaisquer funções, incluindo até incorporadas.
 
 Duas interessantes bibliotecas de polyfills são:
 - [core js](https://github.com/zloirock/core-js) que suporta muitas funcionalidades, e permite apenas incluir aquelas necessárias.
 - [polyfill.io](http://polyfill.io) um serviço que fornece um script com polyfills, dependendo das funcionalidades e do navegador do utilizador.
-
 
 ## Resumo
 
@@ -82,7 +81,7 @@ Neste capítulo, gostaríamos de o motivar a estudar funcionalidades modernas ou
 
 Apenas não se esqueça de usar um transpiler (se empregar sintaxe ou operadores modernos) e polyfills (para adicionar funções que possam estar ausentes). E eles irão garantir que o código funciona.
 
-Por exemplo, mais adiante quando estiver familiarizado com o JavaScript, você pode configurar um sistema para a construção de código com base no [webpack](http://webpack.github.io/) e com o plugin [babel-loader](https://github.com/babel/babel-loader).
+Por exemplo, mais adiante quando estiver familiarizado com o JavaScript, você pode configurar um sistema para a construção de código com base no [webpack](https://webpack.js.org/) e com o plugin [babel-loader](https://github.com/babel/babel-loader).
 
 Bons recursos que mostram o estágio atual do suporte para várias funcionalidades:
 - <https://kangax.github.io/compat-table/es6/> - para puro JavaScript.
