@@ -54,7 +54,7 @@ alert( rabbit.eats ); // true (**)
 alert( rabbit.jumps ); // true
 ```
 
-A linha `(*)` do exemplo configura `animal` como o protótipo de `rabbit`.
+Aqui, a linha `(*)` do exemplo configura `animal` como o protótipo de `rabbit`.
 
 Depois, quando o `alert` tenta ler a propriedade `rabbit.eats`, em `(**)`, ela não está no `rabbit`, então o Javascript segue a referência do `[[Prototype]]` e a encontra no `animal` (olhe de baixo pra cima):
 
@@ -93,7 +93,6 @@ O método é automaticamente obtido do protótipo, assim:
 
 A cadeia de protótipos pode ser maior:
 
-
 ```js run
 let animal = {
   eats: true,
@@ -128,13 +127,12 @@ Agora, se nós quisermos ler algo de `longEar` e ele não possuir, o Javascript 
 Só existem duas limitações:
 
 1. As referências não podem ser circulares. O Javascript vai disparar um erro caso a gente tente atribuir `__proto__` em um círculo de objetos.
-2. O valor de `__proto__` só pode ser um objeto ou `null`, outros tipos (como tipos primitivos) são ignorados.
+2. O valor de `__proto__` só pode ser um objeto ou `null`, outros tipos são ignorados.
 
 Além disso, só pode haver um `[[Prototype]]`. Um objeto não pode ser herdeiro de outros dois.
 
-
 ```smart header="`__proto__` é um getter/setter histórico para `[[Prototype]]`"
-É um erro comum desenvolvedores novatos não reconhecerem a diferença entre esses dois.
+É um erro comum, desenvolvedores novatos não saberem a diferença entre esses dois.
 
 Mas note que `__proto__` *não é o mesmo* que a propriedade interna `[[Prototype]]`. Ele é um getter/setter para o `[[Prototype]]`. Mais tarde veremos situações nas quais isso importa, por ora vamos apenar manter isso em mente enquanto construimos nossa compreensão da linguagem Javascript.
 
@@ -178,7 +176,7 @@ De agora em diante, chamar `rabbit.walk()` encontra o método imediatamente no o
 
 ![](proto-animal-rabbit-walk-2.svg)
 
-Isso vale apenas para propriedades que são dados, não para métodos de acesso (getter/setter). Se uma propriedade é um getter/setter, então ela irá se comportar como uma função: getters/setters são procurados no protótipo.
+Métodos de acesso são uma exceção, porque a atribuição é feita por uma função setter. Assim, guardar um valor numa dessas propriedades é o mesmo que chamar uma função.
 
 Por essa razão, `admin.fullName` funciona corretamente no código abaixo:
 

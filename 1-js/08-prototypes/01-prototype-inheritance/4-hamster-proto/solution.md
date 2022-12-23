@@ -10,7 +10,7 @@ Vamos ver cuidadosamente o que está acontecendo na chamada `speedy.eat("apple")
 
 Então, todos os hamsters compartilham o mesmo estômago!
 
-Toda vez que o `stomach` é obtido do protótipo, o `stomach.push` o modifica "lá mesmo".
+Para ambos `lazy.stomach.push(...)` e `speedy.stomach.push()`, a propriedade `stomach` é encontrada no protótipo (porque não está no próprio objeto), e assim os novos dados são colocados nela.
 
 Note que isso não acontece no caso de uma simples atribuição `this.stomach=`:
 
@@ -77,4 +77,4 @@ alert( speedy.stomach ); // maçã
 alert( lazy.stomach ); // <vazio>
 ```
 
-É uma solução comum fazer com que todas as propriedades que descrevem um estado particular do objeto, como o `stomach` acima, sejam escritas dentro do próprio objeto. Isso previne esses problemas.
+É uma solução comum, fazer com que todas as propriedades que descrevem um estado particular do objeto, como o `stomach` acima, sejam escritas dentro do próprio objeto. Isso previne esses problemas.
