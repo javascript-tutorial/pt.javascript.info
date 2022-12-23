@@ -12,7 +12,7 @@ No Javascript, os objetos possuem uma propriedade escondida especial `[[Prototyp
 
 ![prototype](object-prototype-empty.svg)
 
-Quando lemos uma propriedade de um `object`, e ela não está presente, o Javascript automaticamente obtém seu valor do protótipo. Na programação, isso é chamado de "herança prototipada". Em breve nós vamos ver vários exemplos dessa herança, bem como funcionalidades legais constrúidas em cima disso.
+Quando lemos uma propriedade de um `object`, e ela não está presente, o Javascript automaticamente obtém seu valor do protótipo. Na programação, isso é chamado de "herança prototipada". Em breve nós vamos ver vários exemplos dessa herança, bem como funcionalidades legais construidas em cima disso.
 
 A propriedade `[[Prototype]]` é interna e escondida, mas existem várias formas de configurar um valor para ela. 
 
@@ -136,7 +136,7 @@ Além disso, só pode haver um `[[Prototype]]`. Um objeto não pode ser herdeiro
 ```smart header="`__proto__` é um getter/setter histórico para `[[Prototype]]`"
 É um erro comum desenvolvedores novatos não reconhecerem a diferença entre esses dois.
 
-Mas note que `__proto__` *não é o mesmo* que a propriedade interna `[[Prototype]]`. Ele é um getter/setter para o `[[Prototype]]`. Mais tarde veremos situações nas quais isso importa, por ora vamos apenar manter isso em mente enquanto contruímos nossa compreensão da linguagem Javascript.
+Mas note que `__proto__` *não é o mesmo* que a propriedade interna `[[Prototype]]`. Ele é um getter/setter para o `[[Prototype]]`. Mais tarde veremos situações nas quais isso importa, por ora vamos apenar manter isso em mente enquanto construimos nossa compreensão da linguagem Javascript.
 
 A propriedade `__proto__` está um pouco ultrapassada, ela existe por motivos históricos. O Javascript moderno sugere que nós usemos as funções `Object.getPrototypeOf/Object.setPrototypeOf` no lugar, que também fazem get/set do protótipo. Nós também vamos cobrir essas funções mais tarde. 
 
