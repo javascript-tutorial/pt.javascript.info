@@ -93,7 +93,6 @@ The method is automatically taken from the prototype, like this:
 
 The prototype chain can be longer:
 
-
 ```js run
 let animal = {
   eats: true,
@@ -128,10 +127,9 @@ Now if we read something from `longEar`, and it's missing, JavaScript will look 
 There are only two limitations:
 
 1. The references can't go in circles. JavaScript will throw an error if we try to assign `__proto__` in a circle.
-2. The value of `__proto__` can be either an object or `null`, other types (like primitives) are ignored.
+2. The value of `__proto__` can be either an object or `null`. Other types are ignored.
 
 Also it may be obvious, but still: there can be only one `[[Prototype]]`. An object may not inherit from two others.
-
 
 ```smart header="`__proto__` is a historical getter/setter for `[[Prototype]]`"
 It's a common mistake of novice developers not to know the difference between these two.
@@ -178,7 +176,7 @@ From now on, `rabbit.walk()` call finds the method immediately in the object and
 
 ![](proto-animal-rabbit-walk-2.svg)
 
-That's for data properties only, not for accessors. If a property is a getter/setter, then it behaves like a function: getters/setters are looked up in the prototype.
+Accessor properties are an exception, as assignment is handled by a setter function. So writing to such a property is actually the same as calling a function.
 
 For that reason `admin.fullName` works correctly in the code below:
 
