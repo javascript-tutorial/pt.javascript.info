@@ -4,7 +4,7 @@ In modern JavaScript, there are two types of numbers:
 
 1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
 
-2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
+2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't safely exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
 
 So here we'll talk about regular numbers. Let's expand our knowledge of them.
 
@@ -37,32 +37,32 @@ alert( 7.3e9 );  // 7.3 billions (same as 7300000000 or 7_300_000_000)
 In other words, `e` multiplies the number by `1` with the given zeroes count.
 
 ```js
-1e3 = 1 * 1000 // e3 means *1000
-1.23e6 = 1.23 * 1000000 // e6 means *1000000
+1e3 === 1 * 1000; // e3 means *1000
+1.23e6 === 1.23 * 1000000; // e6 means *1000000
 ```
 
 Now let's write something very small. Say, 1 microsecond (one millionth of a second):
 
 ```js
-let ms = 0.000001;
+let mсs = 0.000001;
 ```
 
 Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could say the same as:
 
 ```js
-let ms = 1e-6; // six zeroes to the left from 1
+let mcs = 1e-6; // six zeroes to the left from 1
 ```
 
-If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.  
+If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.
 
 In other words, a negative number after `"e"` means a division by 1 with the given number of zeroes:
 
 ```js
 // -3 divides by 1 with 3 zeroes
-1e-3 = 1 / 1000 (=0.001)
+1e-3 === 1 / 1000; // 0.001
 
 // -6 divides by 1 with 6 zeroes
-1.23e-6 = 1.23 / 1000000 (=0.00000123)
+1.23e-6 === 1.23 / 1000000; // 0.00000123
 ```
 
 ### Hex, binary and octal numbers
@@ -118,6 +118,7 @@ Please note that two dots in `123456..toString(36)` is not a typo. If we want to
 If we placed a single dot: `123456.toString(36)`, then there would be an error, because JavaScript syntax implies the decimal part after the first dot. And if we place one more dot, then JavaScript knows that the decimal part is empty and now goes the method.
 
 Also could write `(123456).toString(36)`.
+
 ```
 
 ## Rounding
@@ -328,7 +329,7 @@ let num = +prompt("Enter a number", '');
 alert( isFinite(num) );
 ```
 
-Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.  
+Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.
 
 ```smart header="Compare with `Object.is`"
 

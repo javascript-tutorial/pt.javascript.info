@@ -114,7 +114,32 @@ And now an example with the same origin. We can do anything with the embedded wi
 
 ### Please wait until the iframe loads
 
-When an iframe is created, it immediately has a document. But that document is different from the one that finally loads into it!
+By definition, two URLs with different domains have different origins.
+
+But if windows share the same second-level domain, for instance `john.site.com`, `peter.site.com` and `site.com` (so that their common second-level domain is `site.com`), we can make the browser ignore that difference, so that they can be treated as coming from the "same origin" for the purposes of cross-window communication.
+
+To make it work, each such window should run the code:
+
+```js
+document.domain = 'site.com';
+```
+
+That's all. Now they can interact without limitations. Again, that's only possible for pages with the same second-level domain.
+
+```warn header="Deprecated, but still working"
+The `document.domain` property is in the process of being removed from the [specification](https://html.spec.whatwg.org/multipage/origin.html#relaxing-the-same-origin-restriction). The cross-window messaging (explained soon below) is the suggested replacement.
+
+That said, as of now all browsers support it. And the support will be kept for the future, not to break old code that relies on `document.domain`.
+```
+
+
+## Iframe: wrong document pitfall
+
+When an iframe comes from the same origin, and we may access its  `document`, there's a pitfall. It's not related to cross-origin things, but important to know.
+
+Upon its creation an iframe immediately has a document. But that document is different from the one that loads into it!
+
+So if we do something with the document immediately, that will probably be lost.
 
 Here, look:
 

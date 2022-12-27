@@ -6,9 +6,9 @@ JavaScript gives exceptional flexibility when dealing with functions. They can b
 
 Let's say we have a function `slow(x)` which is CPU-heavy, but its results are stable. In other words, for the same `x` it always returns the same result.
 
-If the function is called often, we may want to cache (remember) the results for different `x` to avoid spending extra-time on recalculations.
+If the function is called often, we may want to cache (remember) the results to avoid spending extra-time on recalculations.
 
-But instead of adding that functionality into `slow()` we'll create a wrapper. As we'll see, there are many benefits of doing so.
+But instead of adding that functionality into `slow()` we'll create a wrapper function, that adds caching. As we'll see, there are many benefits of doing so.
 
 Here's the code, and explanations follow:
 
@@ -23,13 +23,13 @@ function cachingDecorator(func) {
   let cache = new Map();
 
   return function(x) {
-    if (cache.has(x)) { // if the result is in the map
-      return cache.get(x); // return it
+    if (cache.has(x)) {    // if there's such key in cache
+      return cache.get(x); // read the result from it
     }
 
-    let result = func(x); // otherwise call func
+    let result = func(x);  // otherwise call func
 
-    cache.set(x, result); // and cache (remember) the result
+    cache.set(x, result);  // and cache (remember) the result
     return result;
   };
 }
@@ -49,13 +49,11 @@ The idea is that we can call `cachingDecorator` for any function, and it will re
 
 By separating caching from the main function code we also keep the main code simpler.
 
-Now let's get into details of how it works.
-
 The result of `cachingDecorator(func)` is a "wrapper": `function(x)` that "wraps" the call of `func(x)` into caching logic:
 
 ![](decorator-makecaching-wrapper.svg)
 
-As we can see, the wrapper returns the result of `func(x)` "as is". From an outside code, the wrapped `slow` function still does the same. It just got a caching aspect added to its behavior.
+From an outside code, the wrapped `slow` function still does the same. It just got a caching aspect added to its behavior.
 
 To summarize, there are several benefits of using a separate `cachingDecorator` instead of altering the code of `slow` itself:
 
@@ -228,9 +226,7 @@ let worker = {
 worker.slow = cachingDecorator(worker.slow);
 ```
 
-We have two tasks to solve here.
-
-First is how to use both arguments `min` and `max` for the key in `cache` map. Previously, for a single argument `x` we could just `cache.set(x, result)` to save the result and `cache.get(x)` to retrieve it. But now we need to remember the result for a *combination of arguments* `(min,max)`. The native `Map` takes single value only as the key.
+Previously, for a single argument `x` we could just `cache.set(x, result)` to save the result and `cache.get(x)` to retrieve it. But now we need to remember the result for a *combination of arguments* `(min,max)`. The native `Map` takes single value only as the key.
 
 There are many solutions possible:
 
@@ -238,12 +234,11 @@ There are many solutions possible:
 2. Use nested maps: `cache.set(min)` will be a `Map` that stores the pair `(max, result)`. So we can get `result` as `cache.get(min).get(max)`.
 3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can allow to provide a *hashing function* for the decorator, that knows how to make one value from many.
 
-
 For many practical applications, the 3rd variant is good enough, so we'll stick to it.
 
 Also we need to pass not just `x`, but all arguments in `func.call`. Let's recall that in a `function()` we can get a pseudo-array of its arguments as `arguments`, so `func.call(this, x)` should be replaced with `func.call(this, ...arguments)`.
 
-Now let's bake it all into the more powerful `cachingDecorator`:
+Here's a more powerful `cachingDecorator`:
 
 ```js run
 let worker = {
@@ -264,7 +259,7 @@ function cachingDecorator(func, hash) {
     }
 
 *!*
-    let result = func.apply(this, arguments); // (**)
+    let result = func.call(this, ...arguments); // (**)
 */!*
 
     cache.set(key, result);
@@ -287,7 +282,7 @@ Now it works with any number of arguments (though the hash function would also n
 There are two changes:
 
 - In the line `(*)` it calls `hash` to create a single key from `arguments`. Here we use a simple "joining" function that turns arguments `(3, 5)` into the key `"3,5"`. More complex cases may require other hashing functions.
-- Then `(**)` uses `func.apply` to pass both the context and all arguments the wrapper got (no matter how many) to the original function.
+- Then `(**)` uses `func.call(this, ...arguments)` to pass both the context and all arguments the wrapper got (not just the first one) to the original function.
 
 ## func.apply
 
@@ -423,10 +418,9 @@ The generic *call forwarding* is usually done with `apply`:
 ```js
 let wrapper = function() {
   return original.apply(this, arguments);
-}
+};
 ```
 
-We also saw an example of *method borrowing* when we take a method from an object and `call` it in the context of another object. It is quite common to take array methods and apply them to arguments. The alternative is to use rest parameters object that is a real array.
-
+We also saw an example of *method borrowing* when we take a method from an object and `call` it in the context of another object. It is quite common to take array methods and apply them to `arguments`. The alternative is to use rest parameters object that is a real array.
 
 There are many decorators there in the wild. Check how well you got them by solving the tasks of this chapter.

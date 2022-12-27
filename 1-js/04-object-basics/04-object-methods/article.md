@@ -51,7 +51,7 @@ let user = {
 // primeiro, declare
 function sayHi() {
   alert("Olá!");
-};
+}
 
 // depois adicione como um método
 user.sayHi = sayHi;
@@ -90,7 +90,7 @@ let user = {
 
 Como demonstrado, podemos omitir `"function"` e apenas escrever `sayHi()`.
 
-Na verdade, as notações não são totalmente idênticas. Existem diferenças subtis relacionadas com a herança do objeto (a ser estudado mais adiante), mas por ora elas não interessam. Em quase todos os casos, a sintaxe mais curta é preferível.
+Na verdade, as notações não são totalmente idênticas. Existem diferenças subtis em relação à herança do objeto (a ser estudado mais adiante), mas por ora elas não interessam. Em quase todos os casos, a sintaxe mais curta é preferível.
 
 ## "*this*" em métodos
 

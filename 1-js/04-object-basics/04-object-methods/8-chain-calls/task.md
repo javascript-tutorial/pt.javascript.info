@@ -28,12 +28,14 @@ ladder.up();
 ladder.up();
 ladder.down();
 ladder.showStep(); // 1
+ladder.down();
+ladder.showStep(); // 0
 ```
 
 Modifique o código de `up`, `down` e `showStep` para tornar as chamadas encadeáveis, como:
 
 ```js
-ladder.up().up().down().showStep(); // 1
+ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
 ```
 
 Tal abordagem é amplamente utilizada em bibliotecas (*libraries*) de JavaScript.

@@ -6,7 +6,7 @@ importância: 5
 
 Crie um objeto `calculator` com três métodos:
 
-- `read()` pergunta (*prompts*) por dois valores e os guarda (*saves*) como propriedades de um objeto.
+- `read()` pergunta (*prompts*) por dois valores e os guarda (*saves*) como propriedades de um objeto com os nomes `a` e `b` respetivamente.
 - `sum()` retorna a soma dos valores guardados.
 - `mul()` multiplica os valores guardados e retorna o resultado.
 
@@ -21,4 +21,3 @@ alert( calculator.mul() );
 ```
 
 [demo]
-
