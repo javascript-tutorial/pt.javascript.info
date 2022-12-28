@@ -74,7 +74,7 @@ Agora, se fizermos o mesmo:
 user = null;
 ```
 
-...Aí, o objeto ainda pode ser alcançado por intermédio da variável global `admin`, por isso continua em memória. Se também atribuirmos outro valor a `admin`, então ele pode ser removido.
+...Aí, o objeto ainda pode ser alcançado por intermédio da variável global `admin`, por isso deve continuar em memória. Se também atribuirmos outro valor a `admin`, então ele pode ser removido.
 
 ## Objetos interligados
 
@@ -169,11 +169,11 @@ O primeiro passo, marca as raízes (*roots*):
 
 ![](garbage-collection-2.svg)
 
-A seguir, as referências delas são marcadas:
+A seguir, nós seguimos as referências delas e marcamos os objetos referenciados:
 
 ![](garbage-collection-3.svg)
 
-...E as referências destas, o quanto possível:
+...E continuamos a seguir mais referências, o quanto possível:
 
 ![](garbage-collection-4.svg)
 
@@ -183,12 +183,12 @@ Agora, os objetos que não puderam ser visitados no processo são considerados i
 
 Podemos também imaginar o processo como derramar um enorme balde de tinta a partir das raízes,  que corre por todas as referências e marca todos os objetos que alcança. Os não marcados, são então removidos.
 
-Este, é o conceito de como funciona a coleta de lixo. Interpretadores de JavaScript (*JavaScript engines*) aplicam muitas optimizações para a fazer correr mais rapidamente, e não afetar a execução do programa.
+Este, é o conceito de como funciona a coleta de lixo. Interpretadores de JavaScript (*JavaScript engines*) aplicam muitas optimizações para a fazer correr mais rapidamente, e não introduzir quaisquer atrasos na execução do programa.
 
 Algumas das optimizações:
 
-- **Generational collection** (coleta geracional) -- objetos são separados em dois grupos: "novos" e "velhos". Muitos objetos aparecem, fazem o seu trabalho e terminam depressa, eles podem ser limpos agressivamente. Aqueles que sobrevivem por mais tempo, tornam-se "velhos" e são examinados com menos frequência.
-- **Incremental collection** (coleta incremental) -- se existirem muitos objetos, e tentarmos percorrer e marcar todo o conjunto de objetos de uma só vez, pode levar algum tempo e introduzir visíveis atrasos na execução do programa. Assim, o interpretador tenta repartir a coleta de lixo em pedaços. Então, os pedaços são executados um por um, separadamente. Isso, requere alguma anotação (*bookkeeping*) extra entre eles para rastrear alterações, mas temos muitos pequeninos atrasos em vez de um único grande.
+- **Generational collection** (coleta geracional) (coleta geracional) -- objetos são separados em dois grupos: "novos" e "velhos". Num programa comum, muitos objetos têm um tempo de vida curto: aparecem, fazem o seu trabalho e terminam depressa, assim faz sentido acompanhar novos objetos, e limpá-los da memória se for o caso. Aqueles que sobrevivem por mais tempo, tornam-se "velhos" e são examinados com menos frequência.
+- **Incremental collection** (coleta incremental) -- se existirem muitos objetos, e tentarmos percorrer e marcar todo o conjunto de objetos de uma só vez, pode levar algum tempo e introduzir visíveis atrasos na execução do programa. Assim, o interpretador reparte todo o conjunto de objetos existentes em múltiplas partes. E depois, limpa essas partes uma após outra. Resulta em muitas pequenas coletas de lixo, em vez de uma só. Isso, requere alguma anotação (*bookkeeping*) extra entre elas para rastrear alterações, mas temos muitos pequeninos atrasos em vez de um único grande.
 - **Idle-time collection** (coleta no tempo ocioso) -- o coletor de lixo tenta apenas correr quando o CPU estiver parado, para reduzir possíveis efeitos sobre a execução do programa.
 
 Existem outras optimizações e sabores de algoritmos para a coleta de lixo. Embora gostasse de os descrever aqui, tenho de parar porque interpretadores diferentes implementam diferentes adaptações (*tweaks*) e técnicas. E ainda mais importante, as coisas mudam à medida que os interpretadores evoluem, assim estudar em pormenor "adiantadamente", sem uma necessidade real provavelmente não vale o esforço. A não ser claro, por puro interesse, e para isso haverão alguns links para si abaixo.
@@ -199,14 +199,14 @@ As principais coisas a saber:
 
 - A coleta de lixo é executada automaticamente. Não a podemos forçar nem evitar.
 - Objetos são retidos em memória enquanto forem alcançáveis.
-- Ser referenciado não é o mesmo que ser alcançável (a partir de uma raíz): um grupo de objetos interligados pode se tornar inacessível no seu todo.
+- Ser referenciado não é o mesmo que ser alcançável (a partir de uma raíz): um grupo de objetos interligados pode se tornar inacessível no seu todo, como vimos no exemplo acima.
 
 Interpretadores modernos implementam algoritmos avançados para a coleta de lixo.
 
 O livro geral "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones et al), cobre alguns deles.
 
-Se tiver familiaridade com programação de baixo-nível, mais detalhada informação sobre o coletor de lixo de V8 está no artigo [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
+Se tiver familiaridade com programação de baixo-nível, mais detalhada informação sobre o coletor de lixo do V8 está no artigo [A tour of V8: Garbage Collection](https://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
 
-O [V8 blog](https://v8.dev/) também publica artigos sobre alterações na gestão de memória de tempos em tempos. Naturalmente, para aprender sobre a coleta de lixo, melhor seria preparar-se aprendendo sobre o funcionamento interno do V8 em geral, e ler o blog de [Vyacheslav Egorov](http://mrale.ph) que trabalhou como um dos engenheiros do V8. Digo "V8", porque é o que contém melhores artigos na internet. Para outros interpretadores, muitas abordagens são similares, porém a coleta de lixo difere em muitos aspetos.
+O [V8 blog](https://v8.dev/) também publica artigos sobre alterações na gestão de memória de tempos em tempos. Naturalmente, para aprender mais sobre a coleta de lixo, melhor seria preparar-se aprendendo sobre o funcionamento interno do V8 em geral, e ler o blog de [Vyacheslav Egorov](https://mrale.ph) que trabalhou como um dos engenheiros do V8. Digo "V8", porque é o que contém melhores artigos na internet. Para outros interpretadores, muitas abordagens são similares, porém a coleta de lixo difere em muitos aspetos.
 
 Conhecimento aprofundado sobre interpretadores é bom para quando precisar de optimizações de baixo-nível. Seria sábio planear isso como próximo passo, depois de se familiarizar com a linguagem.  
