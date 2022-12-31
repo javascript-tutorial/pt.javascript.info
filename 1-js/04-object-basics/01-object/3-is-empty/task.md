@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Verifique por vazio (*emptiness*)
+# Verifique por vazio
 
 Escreva a função `isEmpty(obj)`, que retorna `true` se o  objeto não tiver propriedades, e `false` caso contrário.
 
@@ -17,3 +17,4 @@ schedule["8:30"] = "levante-se";
 
 alert( isEmpty(schedule) ); // falso
 ```
+

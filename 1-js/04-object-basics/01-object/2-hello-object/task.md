@@ -6,7 +6,7 @@ importance: 5
 
 Escreva o código, uma ação por linha:
 
-1. Crie um objeto vazio (*empty object*) `user`.
+1. Crie um objeto vazio `user`.
 2. Adicione a propriedade `name` com o valor `John`.
 3. Adicione a propriedade `surname` com o valor `Smith`.
 4. Altere o valor de `name` para `Pete`.

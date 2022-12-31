@@ -26,6 +26,6 @@ menu = {
 };
 ```
 
-Por favor, note que `multiplyNumeric` não precisa de retornar nada. Deve modificar o próprio objecto.
+Por favor, note que `multiplyNumeric` não precisa de retornar nada. Deve modificar o próprio objeto.
 
 P.S. Use `typeof` aqui para verificar se é um número.
