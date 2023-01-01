@@ -33,7 +33,7 @@ let user = {     // um objeto
 };
 ```
 
-Uma propriedade tem uma chave (também conhecida por "nome" ou "identificador") antes dos dois-pontos `":"` e um valor à sua direita.
+Uma propriedade tem uma chave (também conhecida por "nome" ou "identificador") antes dos dois-pontos `":"` e um valor à direita deles.
 
 No objeto `user`, existem duas propriedades:
 
@@ -82,8 +82,8 @@ let user = {
 
 ![](object-user-props.svg)
 
-A última propriedade da lista pode terminar com uma vírgula:
 
+A última propriedade da lista pode terminar com uma vírgula:
 ```js
 let user = {
   name: "John",
@@ -177,7 +177,7 @@ let bag = {
 alert( bag.apple ); // 5 se fruit="apple"
 ```
 
-O significado de uma propriedade computada é simples: `[fruit]` diz que o nome da propriedade é o valor em `fruit`.
+O significado de uma propriedade computada é simples: `[fruit]` diz que o nome da propriedade é o valor armazenado em `fruit`.
 
 Assim, se um visitante inserir `"apple"`, `bag` se tornará em `{apple: 5}`.
 
@@ -186,7 +186,7 @@ Essencialmente, isso é o mesmo que:
 let fruit = prompt("Que fruta comprar?", "apple");
 let bag = {};
 
-// obtenha o nome da propriedade por meio da variável fruit
+// obtenha o nome da propriedade da variável fruit
 bag[fruit] = 5;
 ```
 
@@ -203,7 +203,7 @@ let bag = {
 
 Parênteses retos, são mais poderosos que a notação por ponto. Eles permitem quaisquer nomes de propriedades e variáveis. Mas, eles também dão mais trabalho para escrever.
 
-Assim, na maior parte as vezes, quando os nomes de propriedades são conhecidos e simples, o ponto é utilizado. E, se precisarmos de algo mais complexo, mudamos para os parênteses retos.
+Assim, a maior parte as vezes, quando os nomes de propriedades são conhecidos e simples, o ponto é utilizado. E, se precisarmos de algo mais complexo, mudamos para os parênteses retos.
 
 ## Abreviação do valor da propriedade
 
