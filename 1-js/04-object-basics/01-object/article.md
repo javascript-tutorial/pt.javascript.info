@@ -177,7 +177,7 @@ let bag = {
 alert( bag.apple ); // 5 se fruit="apple"
 ```
 
-O significado de uma propriedade computada é simples: `[fruit]` diz que o nome da propriedade é o valor armazenado em `fruit`.
+O significado de uma propriedade computada é simples: `[fruit]` quer dizer que o nome da propriedade é o valor armazenado em `fruit`.
 
 Assim, se um visitante inserir `"apple"`, `bag` se tornará em `{apple: 5}`.
 
@@ -186,7 +186,7 @@ Essencialmente, isso é o mesmo que:
 let fruit = prompt("Que fruta comprar?", "apple");
 let bag = {};
 
-// obtenha o nome da propriedade da variável fruit
+// obtenha o nome da propriedade pela variável fruit
 bag[fruit] = 5;
 ```
 
@@ -224,7 +224,7 @@ let user = makeUser("John", 30);
 alert(user.name); // John
 ```
 
-No exemplo acima, as propriedades têm os mesmos nomes que as variáveis. O caso prático (*use-case*) de construir uma propriedade com base numa variável é tão comum, que existe uma especial *abreviação do valor da propriedade* (*property value shorthand*) para a tornar mais curta.
+No exemplo acima, as propriedades têm os mesmos nomes que as variáveis. Este caso prático de construir uma propriedade com base numa variável é tão comum, que existe uma especial *abreviação do valor da propriedade* (*property value shorthand*) para a tornar mais curta.
 
 Em vez de `name:name`, podemos simplesmente escrever `name`, como abaixo:
 
@@ -240,7 +240,7 @@ function makeUser(name, age) {
 }
 ```
 
-Podemos empregar ambas, as propriedades normais e as abreviações (*shorthands*), no mesmo objeto:
+Podemos empregar ambas, as propriedades normais e as abreviações, no mesmo objeto:
 
 ```js
 let user = {
@@ -269,7 +269,7 @@ alert( obj.for + obj.let + obj.return );  // 6
 
 Em resumo, não existem limitações para os nomes de propriedades. Eles podem ser quaisquer *strings* ou símbolos (um tipo especial de  identificadores, a ser visto mais adiante).
 
-Outros tipos são automáticamente convertidos para *strings*.
+Outros tipos são automaticamente convertidos para *strings*.
 
 Por exemplo, um número `0` se torna na *string* `"0"`, quando usado como chave de propriedade:
 
