@@ -357,7 +357,7 @@ Situações como esta muito raramente ocorrem, porque `undefined` não deveria s
 
 ## O laço "for..in"
 
-Para navegar por todas as chaves (*keys*) de um objeto, existe uma forma especial de laço (*loop*): `for..in`. Esta, é uma coisa completamente diferente da construção `for(;;)` que estudámos antes.
+Para navegar por todas as chaves de um objeto, existe uma forma especial de laço (*loop*): `for..in`. Esta, é uma coisa completamente diferente da construção `for(;;)` que estudámos antes.
 
 A sintaxe:
 
@@ -384,7 +384,7 @@ for (let key in user) {
 }
 ```
 
-Note, que todas as construções "for" nos permitem declarar a variável do laço dentro do *loop*, como `let key` aqui.
+Note, que todas as construções "for" nos permitem declarar a variável do laço dentro dele, como `let key` aqui.
 
 De igual modo, nós poderíamos usar aqui um nome de variável diferente de `key`. Por exemplo, `"for (let prop in obj)"` também é largamente utilizado.
 
@@ -392,7 +392,7 @@ De igual modo, nós poderíamos usar aqui um nome de variável diferente de `key
 
 Os objetos são ordenados? Por outras palavras, se percorrermos um objeto com um laço, será que obtemos todas as propriedades pela mesma ordem em que foram adicionadas? Poderemos confiar nisso?
 
-A curta resposta é: "ordenados de um modo especial" - propriedades inteiras são ordenadas de forma crescente, outras aparecem na ordem em que foram criadas. Detalhes a seguir.
+A curta resposta é: "ordenados de uma forma especial" - propriedades inteiras são ordenadas de forma crescente, outras aparecem na ordem em que foram criadas. Detalhes a seguir.
 
 Como exemplo, vamos considerar um objeto com indicativos telefónicos de países:
 
@@ -422,11 +422,12 @@ Mas, ao correr o código, temos uma imagem totalmente diferente:
 Os indicativos telefónicos, são ordenados por ordem ascendente, porque são inteiros. Por isso, vemos `1, 41, 44, 49`.
 
 ````smart header="Propriedades inteiras? O que é isso?"
-O termo "propriedade inteira" aqui, significa que uma *string* pode ser convertida para inteiro ('integer'), e convertida de volta sem qualquer alteração.
+O termo "propriedade inteira" aqui, significa que uma *string* pode ser convertida para *integer*, e convertida de volta sem qualquer alteração.
 
-Assim, "49" é um nome de propriedade inteiro porque, ao ser transformado num número inteiro e reconvertido, continua o mesmo. Mas, "+49" e "1.2" não são:
+Assim, "49" é um nome de propriedade inteira porque, ao ser transformado num número inteiro e reconvertido, continua o mesmo. Mas, "+49" e "1.2" não são:
 
 ```js run
+// Number(...) explicitamente converte para numero
 // Math.trunc é uma função incorporada (*built-in function*) que remove a parte decimal
 alert( String(Math.trunc(Number("49"))) ); // "49", inalterado ⇒ propriedade inteira
 alert( String(Math.trunc(Number("+49"))) ); // "49", não o mesmo que "+49" ⇒ não é uma propriedade inteira
@@ -479,16 +480,16 @@ Eles armazenam propriedades (pares chave-valor), onde:
 - As chaves das propriedades devem ser *strings* ou símbolos (geralmente *strings*).
 - Os valores podem ser de qualquer tipo.
 
-Para aceder a uma propriedade, podemos utilizar:
+Para aceder a uma propriedade, podemos usar:
 - A notação por ponto: `obj.property`.
-- A notação por parênteses retos `obj["property"]`. Os parênteses retos permitem receber a chave a partir de uma variável, como por exemplo `obj[varWithKey]`.
+- A notação de parênteses retos `obj["property"]`. Os parênteses retos permitem receber a chave a partir de uma variável, como por exemplo `obj[varWithKey]`.
 
 Operadores adicionais:
 - Para remover uma propriedade: `delete obj.prop`.
 - Para verificar se uma propriedade com uma dada chave existe: `"key" in obj`.
 - Para iterar sobre um objeto: o ciclo `for (let key in obj)`.
 
-O que estudámos neste capítulo é o chamado "objeto simples" ("*plain object*"), ou simplesmente `Objeto`.
+O que estudámos neste capítulo é o chamado "objeto simples" ("*plain object*"), ou simplesmente `Object`.
 
 Existem muitos outros tipos de objetos em JavaScript:
 
@@ -497,6 +498,6 @@ Existem muitos outros tipos de objetos em JavaScript:
 - `Error` para armazenar informação sobre um erro.
 - ...E outros mais.
 
-Eles têm as suas funcionalidades especiais, que vamos estudar mais adiante. Por vezes, as pessoas dizem algo como "o tipo Array" ou "o tipo Data" (*Date*), mas formalmente eles não são própriamente tipos, eles pertencem a um único tipo de dados "objeto". E eles o estendem de várias formas.
+Eles têm as suas funcionalidades especiais, que vamos estudar mais adiante. Por vezes, as pessoas dizem algo como "o tipo Array" ou "o tipo Data" (*Date*), mas formalmente eles não são propriamente tipos, e sim pertencem a um único tipo de dados "objeto". E eles o estendem de várias maneiras.
 
-Objetos em JavaScript são muito poderosos. Aqui, apenas analisamos a superfície de um tópico que é realmente amplo. Nós vamos, mais especificamente, trabalhar e aprender sobre objetos em futuras partes do tutorial.
+Objetos em JavaScript são muito poderosos. Aqui, apenas ficámos à superfície de um tópico que é realmente amplo. Nós vamos, mais especificamente, trabalhar e aprender sobre objetos em futuras partes do tutorial.
