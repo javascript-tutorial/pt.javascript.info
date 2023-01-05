@@ -2,7 +2,7 @@
 
 The `instanceof` operator allows to check whether an object belongs to a certain class. It also takes inheritance into account.
 
-Such a check may be necessary in many cases, here we'll use it for building a *polymorphic* function, the one that treats arguments differently depending on their type.
+Such a check may be necessary in many cases. For example, it can be used for building a *polymorphic* function, the one that treats arguments differently depending on their type.
 
 ## The instanceof operator [#ref-instanceof]
 
@@ -44,9 +44,9 @@ alert( arr instanceof Array ); // true
 alert( arr instanceof Object ); // true
 ```
 
-Please note that `arr` also belongs to the `Object` class. That's because `Array` prototypally inherits from `Object`.
+Please note that `arr` also belongs to the `Object` class. That's because `Array` prototypically inherits from `Object`.
 
-The `instanceof` operator examines the prototype chain for the check, and is also fine-tunable using the static method `Symbol.hasInstance`.
+Normally, `instanceof` examines the prototype chain for the check. We can also set a custom logic in the static method `Symbol.hasInstance`.
 
 The algorithm of `obj instanceof Class` works roughly as follows:
 
@@ -64,7 +64,7 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) is called
     ```
 
-2. Most classes do not have `Symbol.hasInstance`. In that case, check if `Class.prototype` equals to one of prototypes in the `obj` prototype chain.
+2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceOf Class` checks whether `Class.prototype` is equal to one of the prototypes in the `obj` prototype chain.
 
     In other words, compare:
     ```js
@@ -86,8 +86,11 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     *!*
     alert(rabbit instanceof Animal); // true
     */!*
+
     // rabbit.__proto__ === Rabbit.prototype
+    *!*
     // rabbit.__proto__.__proto__ === Animal.prototype (match!)
+    */!*
     ```
 
 Here's the illustration of what `rabbit instanceof Animal` compares with `Animal.prototype`:
@@ -96,9 +99,9 @@ Here's the illustration of what `rabbit instanceof Animal` compares with `Animal
 
 By the way, there's also a method [objA.isPrototypeOf(objB)](mdn:js/object/isPrototypeOf), that returns `true` if `objA` is somewhere in the chain of prototypes for `objB`. So the test of `obj instanceof Class` can be rephrased as `Class.prototype.isPrototypeOf(obj)`.
 
-That's funny, but the `Class` constructor itself does not participate in the check! Only the chain of prototypes and `Class.prototype` matters.
+It's funny, but the `Class` constructor itself does not participate in the check! Only the chain of prototypes and `Class.prototype` matters.
 
-That can lead to interesting consequences when `prototype` is changed.
+That can lead to interesting consequences when a `prototype` property is changed after the object is created.
 
 Like here:
 
@@ -179,11 +182,11 @@ let user = {
 alert( {}.toString.call(user) ); // [object User]
 ```
 
-For most environment-specific objects, there is such a property. Here are few browser specific examples:
+For most environment-specific objects, there is such a property. Here are some browser specific examples:
 
 ```js run
-// toStringTag for the envinronment-specific object and class:
-alert( window[Symbol.toStringTag]); // window
+// toStringTag for the environment-specific object and class:
+alert( window[Symbol.toStringTag]); // Window
 alert( XMLHttpRequest.prototype[Symbol.toStringTag] ); // XMLHttpRequest
 
 alert( {}.toString.call(window) ); // [object Window]

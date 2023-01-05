@@ -45,6 +45,7 @@ function showPrimes(n) {
 
 A melhor variante, com uma função `isPrime` em relevo:
 
+
 ```js
 function showPrimes(n) {
 
@@ -125,7 +126,6 @@ Documente os parâmetros e o uso da função
 : Existe uma sintaxe especial, [JSDoc](http://en.wikipedia.org/wiki/JSDoc), para documentar uma função: o seu uso, parâmetros, e valor retornado.
 
 Por exemplo:
-
 ```js
 /**
  * Retorna x elevado à n-ésima potência.
