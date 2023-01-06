@@ -1,10 +1,10 @@
-importância: 4
+importance: 4
 
 ---
 
 # Mau estilo
 
-O que há de errado com o código abaixo?
+O que há de errado com o estilo de código abaixo?
 
 ```js no-beautify
 function pow(x,n)

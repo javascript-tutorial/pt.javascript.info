@@ -2,7 +2,7 @@
 
 O nosso código, deve ser o mais limpo e fácil de ler o quanto possível.
 
-Isto é, na verdade, a arte de programar -- tomar uma tarefa complexa e codificá-la de uma forma que tanto seja correta, como humanamente legível. Um bom estilo de código em muito ajuda para tal.
+Isto é, na verdade, a arte de programar -- tomar uma tarefa complexa e codificá-la de uma forma que seja tanto correta, como humanamente legível. Um bom estilo de código em muito ajuda para tal.
 
 ## Sintaxe
 
@@ -42,7 +42,7 @@ Nada está gravado em pedra aqui. Estas são preferências de estilo, não rígi
 
 ### Chavetas
 
-Em muitos projetos em JavaScript, as chavetas são escritas no estilo "Egípcio", com a de abertura na mesma linha que a palavra-chave correspondente -- não numa nova linha. Também deveria existir um espaço antes da chaveta de abertura, desta forma:
+Em muitos projetos de JavaScript, as chavetas são escritas no estilo "Egípcio", com a de abertura na mesma linha que a palavra-chave correspondente -- não numa nova linha. Também deveria existir um espaço antes da chaveta de abertura, desta forma:
 
 ```js
 if (condição) {
@@ -54,7 +54,7 @@ if (condição) {
 
 Uma construção de única-linha, tal como `if (condição) doSomething()`, é um importante caso de exceção. Devemos utilizar chavetas, ou não?
 
-Aqui estão variantes com anotações, para que por si mesmo você possa avaliar a sua legíbilidade:
+Aqui estão variantes com anotações, para que você por si mesmo possa avaliar a sua legibilidade:
 
 1. 😠 Principiantes, por vezes fazem isto. É mau! As chavetas não são necessárias:
     ```js
