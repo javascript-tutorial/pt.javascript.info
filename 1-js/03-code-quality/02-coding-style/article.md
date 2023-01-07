@@ -60,7 +60,7 @@ Aqui estão variantes com anotações, para que você por si mesmo possa avaliar
     ```js
     if (n < 0) *!*{*/!*alert(`A potência ${n} não é suportada`);*!*}*/!*
     ```
-2. 😠 Dividida por linhas em separado, sem chavetas. Nunca faça isso; é fácil cometer erros ao adicionar mais linhas:
+2. 😠 Dividir por linhas em separado, sem chavetas. Nunca faça isso; é fácil cometer erros ao adicionar mais linhas:
     ```js
     if (n < 0)
       alert(`A potência ${n} não é suportada`);
@@ -85,10 +85,10 @@ Ninguém gosta de ler uma longa linha horizontal de código. A melhor prática �
 Por exemplo:
 
 ```js
-// o acento grave (*backtick*) ` permite repartir uma *string* por múltiplas linhas
+// as aspas com acento grave (*backtick*) ` permitem repartir uma *string* por múltiplas linhas
 let str = `
   O TC39 da ECMA International, é um grupo de desenvolvedores e implementadores de  JavaScript, académicos, e outros, colaborando com a comunidade para manter e
-  evoluir a definição de JavaScript.
+  evoluir a definição do JavaScript.
 `;
 ```
 
@@ -112,7 +112,7 @@ Existem dois tipos de indentação:
 
 - **Indentação horizontal: 2 ou 4 espaços.**
 
-    Uma indentação horizontal é feita quer inserindo 2 ou 4 espaços, quer usando símbolo de tabulação horizontal (tecla `key:Tab`). Qual deles escolher, vem sendo uma guerra antiga. Hoje em dia, os espaços são mais comuns.
+    Uma indentação horizontal é feita quer inserindo 2 ou 4 espaços, quer usando o símbolo de tabulação horizontal (tecla `key:Tab`). Qual deles escolher, vem sendo uma guerra antiga. Hoje em dia, os espaços são mais comuns.
 
     Uma vantagem dos espaços sobre *tabs*, é que espaços permitem configurações de indentação mais flexíveis do que o símbolo "Tab".
 
@@ -120,10 +120,11 @@ Existem dois tipos de indentação:
 
     ```js no-beautify
     show(parameters,
-         alinhada, // 5 espaços adicionados à esquerda  
-         uma,
+    show(parâmetros,
+         alinhados, // 5 espaços adicionados à esquerda  
+         um,
          após,
-         outra
+         outro
       ) {
       // ...
     }
