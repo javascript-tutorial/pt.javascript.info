@@ -1,23 +1,23 @@
 # Browser default actions
 
-Many events automatically lead to browser actions.
+Many events automatically lead to certain actions performed by the browser.
 
 For instance:
 
-- A click on a link -- initiates going to its URL.
-- A click on submit button inside a form -- initiates its submission to the server.
-- Pressing a mouse button over a text and moving it -- selects the text.
+- A click on a link - initiates navigation to its URL.
+- A click on a form submit button - initiates its submission to the server.
+- Pressing a mouse button over a text and moving it - selects the text.
 
-If we handle an event in JavaScript, often we don't want browser actions. Fortunately, it can be prevented.
+If we handle an event in JavaScript, we may not want the corresponding browser action to happen, and want to implement another behavior instead.
 
 ## Preventing browser actions
 
 There are two ways to tell the browser we don't want it to act:
 
 - The main way is to use the `event` object. There's a method `event.preventDefault()`.
-- If the handler is assigned using `on<event>` (not by `addEventListener`), then we can just return `false` from it.
+- If the handler is assigned using `on<event>` (not by `addEventListener`), then returning `false` also works the same.
 
-In the example below a click to links doesn't lead to URL change:
+In this HTML, a click on a link doesn't lead to navigation; the browser doesn't do anything:
 
 ```html autorun height=60 no-beautify
 <a href="/" onclick="return false">Click here</a>
@@ -25,12 +25,14 @@ or
 <a href="/" onclick="event.preventDefault()">here</a>
 ```
 
-```warn header="Not necessary to return `true`"
+In the next example we'll use this technique to create a JavaScript-powered menu.
+
+```warn header="Returning `false` from a handler is an exception"
 The value returned by an event handler is usually ignored.
 
-The only exception -- is `return false` from a handler assigned using `on<event>`.
+The only exception is `return false` from a handler assigned using `on<event>`.
 
-In all other cases, the return is not needed and it's not processed anyhow.
+In all other cases, `return` value is ignored. In particular, there's no sense in returning `true`.
 ```
 
 ### Example: the menu
@@ -49,7 +51,7 @@ Here's how it looks with some CSS:
 
 [iframe height=70 src="menu" link edit]
 
-Menu items are links `<a>`, not buttons. There are several benefits, for instance:
+Menu items are implemented as HTML-links `<a>`, not buttons `<button>`. There are several reasons to do so, for instance:
 
 - Many people like to use "right click" -- "open in a new window". If we use `<button>` or `<span>`, that doesn't work.
 - Search engines follow `<a href="...">` links while indexing.
@@ -97,7 +99,7 @@ That's because the browser action is canceled on `mousedown`. The focusing is st
 
 The optional `passive: true` option of `addEventListener` signals the browser that the handler is not going to call `preventDefault()`.
 
-Why that may be needed?
+Why might that be needed?
 
 There are some events like `touchmove` on mobile devices (when the user moves their finger across the screen), that cause scrolling by default, but that scrolling can be prevented using `preventDefault()` in the handler.
 
@@ -114,7 +116,7 @@ The property `event.defaultPrevented` is `true` if the default action was preven
 
 There's an interesting use case for it.
 
-You remember in the chapter <info:bubbling-and-capturing> we talked about `event.stopPropagation()`  and why stopping bubbling is bad?
+You remember in the chapter <info:bubbling-and-capturing> we talked about `event.stopPropagation()` and why stopping bubbling is bad?
 
 Sometimes we can use `event.defaultPrevented` instead.
 
@@ -206,7 +208,7 @@ As we can clearly see, `event.stopPropagation()` and `event.preventDefault()` (a
 ```
 
 ```smart header="Nested context menus architecture"
-There are also alternative ways to implement nested context menus. One of them is to have a special global object with a method that handles `document.oncontextmenu`, and also methods that allow to store various "lower-level" handlers in it.
+There are also alternative ways to implement nested context menus. One of them is to have a single global object with a handler for `document.oncontextmenu`, and also methods that allow us to store other handlers in it.
 
 The object will catch any right-click, look through stored handlers and run the appropriate one.
 
@@ -240,5 +242,5 @@ But we should generally keep the semantic meaning of HTML elements. For instance
 
 Besides being "just a good thing", that makes your HTML better in terms of accessibility.
 
-Also if we consider the example with `<a>`, then please note: a browser allows to open such links in a new window (by right-clicking them and other means). And people like that. But if we make a button behave as a link using JavaScript and even look like a link using CSS, then `<a>`-specific browser features still won't work for it.
+Also if we consider the example with `<a>`, then please note: a browser allows us to open such links in a new window (by right-clicking them and other means). And people like that. But if we make a button behave as a link using JavaScript and even look like a link using CSS, then `<a>`-specific browser features still won't work for it.
 ```

@@ -83,7 +83,6 @@ Para código muito curto, uma única linha é aceitável, ex: `if (cond) return 
 Ninguém gosta de ler uma longa linha horizontal de código. A melhor prática é a particionar.
 
 Por exemplo:
-
 ```js
 // as aspas usando acento grave (*backtick*) ` permitem repartir uma *string* por múltiplas linhas
 let str = `
