@@ -25,7 +25,7 @@ describe("Eleva x à potência n", function() {
 });
 ```
 
-Nós substituimos o único `it` por `describe` e um grupo de blocos `it`. Agora, se algo falhar, vemos claramente que dados estão errados.
+Nós substituímos o único `it` por `describe` e um grupo de blocos `it`. Agora, se algo falhar, vemos claramente que dados estão errados.
 
 Também, podemos isolar um único teste e executá-lo à parte (*standalone*) escrevendo `it.only` em vez de `it`:
 

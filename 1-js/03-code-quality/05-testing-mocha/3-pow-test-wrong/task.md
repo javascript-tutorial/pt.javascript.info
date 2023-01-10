@@ -21,4 +21,4 @@ it("Eleva x à potência n", function() {
 });
 ```
 
-P.S. Sintáticamente, o teste está correto e passa.
+P.S. Sintaticamente, o teste está correto e passa.
