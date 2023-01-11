@@ -4,7 +4,7 @@ Teste automatizado será utilizado nos exercícios seguintes, e também é ampla
 
 ## Porque precisamos de testes?
 
-Quando escrevemos uma função, nós geralmente podemos imaginar o que ela deveria fazer: que parâmetros dariam que resultados.
+Quando escrevemos uma função, podemos geralmente imaginar o que ela deveria fazer: que parâmetros dariam que resultados.
 
 Durante o desenvolvimento, podemos analisar a função executando-a e comparando o resultado obtido ao esperado. Por exemplo, podemos fazê-lo na consola.
 
