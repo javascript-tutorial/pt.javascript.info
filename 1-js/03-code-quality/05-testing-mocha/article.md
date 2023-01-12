@@ -18,9 +18,9 @@ Por exemplo, estamos a criar uma função `f`. Escrevemos algum código, e testa
 
 Isso é muito comum. Quando desenvolvemos algo, mantemos uma quantidade de possíveis casos exemplo (*use cases*) em mente. Mas, é difícil esperar que um programador os verifique todos manualmente após cada alteração. Assim, torna-se fácil corrigir uma coisa e quebrar outra.
 
-**Teste automatizado significa que testes são escritos separadamente, \ ao código. Eles correm as nossas funções de várias maneiras e comparam os resultados obtidos aos esperados.**
+**Teste automatizado significa que testes são escritos separadamente, adicionalmente ao código. Eles correm as nossas funções de várias maneiras e comparam os resultados obtidos aos esperados.**
 
-## Desenvolvimento Guiado por Comportamento (Behavior Driven Desenvolvimento [BDD])
+## Desenvolvimento Guiado por Comportamento (Behavior Driven Development [BDD])
 
 Vamos começar por uma técnica chamada [Desenvolvimento Guiado por Comportamento](https://pt.wikipedia.org/wiki/Behavior_Driven_Development), ou abreviadamente BDD (em Inglês).
 
@@ -51,7 +51,7 @@ describe("pow", function() {
 Uma *spec* tem três principais blocos construtores, como pode ver acima:
 
 `describe("título", function() { ... })`
-: Que funcionalidade estamos a descrever. No nosso caso, estamos a descrever a função `pow`. São usados para agrupar "executores" ("*workers*") -- os blocos `it`.
+: Que funcionalidade estamos a descrever. No nosso caso, estamos a descrever a função `pow`. É usado para agrupar "executores" ("*workers*") -- os blocos `it`.
 
 `it("descrição do caso exemplo", function() { ... })`
 : No título de `it` nós, *de uma forma claramente legível*, descrevemos o caso exemplo em questão, e no segundo argumento está uma função que o testa.
@@ -59,9 +59,7 @@ Uma *spec* tem três principais blocos construtores, como pode ver acima:
 `assert.equal(valor1, valor2)`
 : O código dentro do bloco `it`, se a implementação estiver correta, não deverá mostrar erros.
 
-```text
 Funções `assert.*` são usadas para verificar se `pow` funciona como esperado. Aqui mesmo, estamos a usar uma delas -- `assert.equal`, que compara argumentos e dá como resultado um erro se eles não forem iguais. Aqui, ela verifica se o resultado de `pow(2, 3)` é `8`. Existem outros tipos de comparações e verificações, que adicionaremos mais adiante.
-```
 
 A especificação pode ser executada, e irá correr o teste especificado no bloco `it`. O que veremos mais adiante.
 
@@ -71,9 +69,9 @@ Geralmente, o fluxo de desenvolvimento se assemelha a:
 
 1. Uma *spec* inicial é escrita, com testes para a mais básica funcionalidade.
 2. Uma implementação inicial é criada.
-3. Para verificar se ela funciona, nós corremos a infraestrutura de teste [Mocha](http://mochajs.org/) (mais detalhes em breve) que corre a *spec*. Enquanto a funcionalidade não estiver completa, erros são mostrados. Nós a corrigimos até que tudo funcione.
+3. Para verificar se ela funciona, nós corremos a infraestrutura de testes [Mocha](http://mochajs.org/) (mais detalhes em breve) que corre a *spec*. Enquanto a funcionalidade não estiver completa, erros são mostrados. Nós a corrigimos até que tudo funcione.
 4. Agora, temos uma implementação inicial a funcionar com testes.
-5. Adicionamos mais casos exemplo (*use cases*) à *spec*, provávelmente ainda não suportados pelas implementações. Os testes começam a falhar.
+5. Adicionamos mais casos exemplo (*use cases*) à *spec*, provavelmente ainda não suportados pelas implementações. Os testes começam a falhar.
 6. Vamos para 3, atualizamos a implementação até que os testes nâo forneçam erros.
 7. Repetimos os passos 3-6 até que a funcionalidade esteja pronta.
 
@@ -81,7 +79,7 @@ Assim, o desenvolvimento é *iterativo*. Nós escrevemos a *spec*, a implementam
 
 Vejamos este fluxo de desenvolvimento no nosso caso prático.
 
-O primeiro passo já está completo: nós temos uma *spec* inicial para `pow`. Agora, antes de fazer a implementação, vamos utilizar umas poucas bibliotecas (*libraries*) de JavaScript para executar os testes, apenas para ver se eles estão a funcionar (todos irão falhar).
+O primeiro passo já está completo: nós temos uma *spec* inicial para `pow`. Agora, antes de fazermos a implementação, vamos utilizar umas poucas bibliotecas (*libraries*) de JavaScript para executar os testes, apenas para ver se eles estão a funcionar (todos irão falhar).
 
 ## A *spec* em ação
 
@@ -95,8 +93,7 @@ Estas bibliotecas, são adequadas a testes quer num navegador (*in-browser*) com
 
 A página HTML completa, com estas infraestruturas e a *spec* `pow`:
 
-```html
-  src="index.html"
+```html src="index.html"
 ```
 
 A página pode ser dividida em cinco partes:
