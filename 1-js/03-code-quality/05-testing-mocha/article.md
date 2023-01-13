@@ -110,7 +110,7 @@ O resultado:
 
 Por ora, o teste falha, existe um erro. O que é lógico: nós temos uma função sem código em `pow`; assim, `pow(2,3)` retorna `undefined` em vez de `8`.
 
-Para o futuro, vamos tomar nota de que existem executadores de testes (*test-runners*) de nível mais elevado, como [karma](https://karma-runner.github.io/) e outros, que tornam fácil correr automáticamente (*autorun*) muitos testes diferentes.
+Para o futuro, vamos tomar nota de que existem executadores de testes (*test-runners*) de nível mais elevado, como [karma](https://karma-runner.github.io/) e outros, que tornam fácil correr automaticamente (*autorun*) muitos testes diferentes.
 
 ## Implementação inicial
 
@@ -118,7 +118,7 @@ Vamos fazer uma implementação simples de `pow`, para passar nos testes:
 
 ```js
 function pow(x, n) {
-  return 8; // :) nós fizémos batota!
+  return 8; // :) nós fizemos batota!
 }
 ```
 
@@ -128,7 +128,7 @@ Wow, agora ela funciona!
 
 ## Melhorando a *spec*
 
-O que nós fizémos é definitivamente uma batota. A função não funciona: uma tentativa para calcular `pow(3,4)` daria um resultado incorreto, mas os testes passam.
+O que nós fizemos é definitivamente uma batota. A função não funciona: uma tentativa para calcular `pow(3,4)` daria um resultado incorreto, mas os testes passam.
 
 ...Mas a situação é muito comum, acontece na prática. Testes passam, mas a função funciona de forma errada. A nossa *spec* está imperfeita. Nós precisamos de lhe adicionar mais casos exemplo (*use cases*).
 
@@ -174,7 +174,7 @@ E para além disso, é mais uma boa regra para se seguir.
 
 **Um teste verifica uma coisa.**
 
-Se olharmos para o teste e virmos duas verificações independentes, o melhor é reparti-lo em dois mais simples.
+Se olharmos para um teste e virmos duas verificações independentes, o melhor é reparti-lo em dois mais simples.
 
 Assim, vamos prosseguir com a segunda variante.
 
