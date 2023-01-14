@@ -4,7 +4,7 @@ Teste automatizado será utilizado nos exercícios seguintes, e também é ampla
 
 ## Porque precisamos de testes?
 
-Quando escrevemos uma função, podemos geralmente imaginar o que ela deveria fazer: que parâmetros dariam que resultados.
+Quando escrevemos uma função, podemos geralmente imaginar o que ela deveria fazer: que parâmetros iriam dar que resultados.
 
 Durante o desenvolvimento, podemos analisar a função executando-a e comparando o resultado obtido ao esperado. Por exemplo, podemos fazê-lo na consola.
 
@@ -36,7 +36,7 @@ Essa tarefa é apenas um exemplo: existe o operador `**` em JavaScript que pode 
 
 Antes de criarmos o código de `pow`, podemos imaginar o que a função deveria fazer e descrevê-lo (*describe it*).
 
-Tal descrição é chamada de *especificação*, ou abreviadamente uma *spec*, e contém descrições de casos exemplo (*use cases*) acompanhados de testes para eles, como por exemplo:
+Tal descrição é chamada de *especificação*, ou abreviadamente uma *spec*, e contém descrições de casos exemplo (*use cases*) acompanhadas de testes para eles, como por exemplo:
 
 ```js
 describe("pow", function() {
@@ -86,8 +86,8 @@ O primeiro passo já está completo: nós temos uma *spec* inicial para `pow`. A
 Aqui, no tutorial, nós iremos usar as seguintes bibliotecas de JavaScript para testes:
 
 - [Mocha](http://mochajs.org/) -- a infraestrutura principal: ela fornece funções de teste comuns, incluindo `describe` e `it` e a principal função que executa os testes.
-- [Chai](http://chaijs.com) -- a biblioteca (*library*) com muitas *asserções*. Ela permite usar muitas diferentes *asserções*; por ora, nós apenas precisamos de `assert.equal`.
-- [Sinon](http://sinonjs.org/) -- a biblioteca para espiar sobre funções, simular funções incorporadas (built-in) e mais; nós a vamos precisar muito mais tarde.
+- [Chai](http://chaijs.com) -- uma biblioteca (*library*) com muitas *asserções*. Ela permite usar muitas diferentes *asserções*; por ora, nós apenas precisamos de `assert.equal`.
+- [Sinon](http://sinonjs.org/) -- uma biblioteca para espiar sobre funções, simular funções incorporadas (built-in) e mais; nós a vamos precisar muito mais tarde.
 
 Estas bibliotecas, são adequadas a testes quer num navegador (*in-browser*) como num servidor (*server-side*). Aqui, nós vamos considerar a variante do navegador.
 
@@ -110,7 +110,7 @@ O resultado:
 
 Por ora, o teste falha, existe um erro. O que é lógico: nós temos uma função sem código em `pow`; assim, `pow(2,3)` retorna `undefined` em vez de `8`.
 
-Para o futuro, vamos tomar nota de que existem executadores de testes (*test-runners*) de nível mais elevado, como [karma](https://karma-runner.github.io/) e outros, que tornam fácil correr automaticamente (*autorun*) muitos testes diferentes.
+Para trabalho futuro, vamos tomar nota de que existem executadores de testes (*test-runners*) de nível mais elevado, como [karma](https://karma-runner.github.io/) e outros, que tornam fácil correr automaticamente (*autorun*) muitos testes diferentes.
 
 ## Implementação inicial
 
@@ -130,7 +130,7 @@ Wow, agora ela funciona!
 
 O que nós fizemos é definitivamente uma batota. A função não funciona: uma tentativa para calcular `pow(3,4)` daria um resultado incorreto, mas os testes passam.
 
-...Mas a situação é muito comum, acontece na prática. Testes passam, mas a função funciona de forma errada. A nossa *spec* está imperfeita. Nós precisamos de lhe adicionar mais casos exemplo (*use cases*).
+...Contudo, a situação é muito comum, e acontece na prática. Testes passam, mas a função funciona de forma errada. A nossa *spec* está imperfeita. Nós precisamos de lhe adicionar mais casos exemplo (*use cases*).
 
 Vamos adicionar mais um teste para verificar se `pow(3, 4) = 81`.
 
@@ -190,13 +190,13 @@ Vamos escrever algo mais real para os testes passarem:
 
 ```js
 function pow(x, n) {
-  let resultado = 1;
+  let result = 1;
 
   for (let i = 0; i < n; i++) {
-    resultado *= x;
+    result *= x;
   }
 
-  return resultado;
+  return result;
 }
 ```
 
@@ -225,7 +225,7 @@ O resultado:
 
 ## describe aninhados
 
-Agora, vamos adicionar ainda mais testes. Mas, antes tomemos nota de que a função auxiliar `makeTest` e o `for` deveriam estar agrupados juntos. Nós não precisaremos de `makeTest` em outros testes, apenas é necessária no `for`: a sua tarefa comum é verificar como `pow` eleva à potência pretendida.
+Agora, vamos adicionar ainda mais testes. Mas, antes tomemos nota de que a função auxiliar `makeTest` e o `for` deveriam estar agrupados juntos. Nós não precisaremos de `makeTest` em outros testes, apenas é necessária no `for`: a tarefa de ambos é verificar como `pow` eleva à potência pretendida.
 
 O agrupamento é feito com `describe` aninhados:
 
@@ -262,7 +262,7 @@ O `describe` aninhado define um novo "subgrupo" de testes. No resultado mostrado
 No futuro, nós podemos adicionar mais `it` e `describe` ao nível de topo com outras funções auxiliares, elas não irão ver `makeTest`.
 
 ````smart header="`before/after` and `beforeEach/afterEach`"
-Nós podemos definir funções `before/after`, que corram antes/após os testes serem executados, e também funções `beforeEach/afterEach` que corram antes/após *cada* `it`.
+Nós podemos definir funções `before/after`, que corram antes/após testes serem executados, e também funções `beforeEach/afterEach` que corram antes/após *cada* `it`.
 
 Por exemplo:
 
@@ -283,7 +283,7 @@ describe("test", function() {
 
 A sequência da execução será:
 
-```text
+```
 Testes iniciados – antes de todos os testes (before)
 Antes de um teste - entrando para um teste (beforeEach)
 1
@@ -296,12 +296,12 @@ Testes terminados – após todos os testes (after)
 
 [edit src="beforeafter" title="Abra o exemplo no ambiente isolado de processos (*sandbox*)."]
 
-Geralmente, `beforeEach/afterEach` e `before/after` são usadas para executar a inicialização, zerar contadores ou fazer mais alguma coisa entre os testes (ou grupos de testes).
+Geralmente, `beforeEach/afterEach` e `before/after` são usadas para executar a inicialização, zerar contadores, ou fazer mais alguma coisa entre os testes (ou grupos de testes).
 ````
 
 ## Estendendo a *spec*
 
-A funcionalidade básica de `pow` está completa. A primeira iteração do desenvolvimento está feita. Quando acabarmos de celebrar e de beber champagne -- vamos a tornar melhor.
+A funcionalidade básica de `pow` está completa. A primeira iteração do desenvolvimento está feita. Quando acabarmos de celebrar e de beber champagne -- vamos torná-la melhor.
 
 Como foi dito, a função `pow(x, n)` foi feita para trabalhar com valores inteiros positivos de `n`.
 
@@ -379,18 +379,18 @@ Em BDD, a *spec* vem primeiro, seguida pela implementação. No final, nós temo
 
 A *spec* pode ser usada de três formas:
 
-1. Como **Testes** - eles guarantem que o código funciona corretamente.
+1. Como **Testes** - eles garantem que o código funciona corretamente.
 2. Como **Docs** -- os títulos de `describe` e `it` dizem o que a função faz.
 3. Como **Exemplos** -- os testes são, na verdade, exemplos práticos mostrando como a função pode ser usada.
 
 Com a *spec*, nós podemos com segurança melhorar, alterar, e até reescrever a função do início e ter a certeza de que ela ainda funciona corretamente.
 
-Isso é especialmente importante em grandes projetos, quando uma função é usada em muitos lugares. Quando nós alteramos essa função, simplesmente não há forma de manualmente verificar se ainda funciona corretamente em cada lugar em que é usada.
+Isso é especialmente importante em grandes projetos, quando uma função é usada em muitos lugares. Quando nós alteramos essa função, não há uma forma simples de manualmente verificar se ainda funciona corretamente em cada lugar em que é usada.
 
 Sem testes, as pessoas têm duas formas:
 
 1. Executar a alteração, não importa o que aconteça. E aí, os nossos utilizadores encontram *bugs*, porque provavelmente nós falhámos ao não testar algo manualmente.
-2. Ou, se a punição por erros for severa, como não existem testes, as pessoas ficam com receio de modificar tais funções, e aí o código se torna obsoleto, ninguém quer se involver nele. Nada bom para o desenvolvimento.
+2. Ou, se a punição por erros for severa, e como não existem testes, as pessoas ficam com receio de modificar tais funções, e aí o código se torna obsoleto, ninguém quer se involver nele. Nada bom para o desenvolvimento.
 
 **Testes automáticos ajudam a evitar estes problemas!**
 
@@ -400,10 +400,10 @@ Se o projeto estiver coberto por testes, simplesmente não existe tal problema. 
 
 Naturalmente, isto porque código auto-testado é mais fácil de modificar e melhorar. Mas, também há outro motivo.
 
-Para se escrever testes, o código deverá estar organizado de tal forma que cada função tenha uma tarefa claramente descrita, e entrada e saida de dados bem definidas. Isso, significa uma boa arquitetura a partir do início.
+Para se escrever testes, o código deverá estar organizado de tal forma que cada função tenha uma tarefa claramente descrita, e entrada e saída de dados bem definidas. Isso significa uma boa arquitetura a partir do início.
 
-Na vida real, por vezes isto não é tão fácil. Ás vezes, é dificil escrever uma *spec* antes do respetivo código, por ainda não estar claro como ele se deveria comportar. Mas, em geral, escrever testes torna o desenvolvimento mais rápido e mais estável.
+Na vida real, por vezes isto não é tão fácil. Ás vezes, é difícil escrever uma *spec* antes do respetivo código, por ainda não estar claro como ele se deveria comportar. Mas, em geral, escrever testes torna o desenvolvimento mais rápido e mais estável.
 
 Mais adiante, no tutorial, você irá encontrar muitas tarefas com testes preparados. Desta forma, poderá ver mais exemplos práticos.
 
-Escrever testes, requere um bom conhecimento de JavaScript. Mas, estamos a começar a aprender. Deste modo, para facilitar, por ora não se lhe pede que escreva testes, contudo você já deveria ser capaz de os ler, mesmo que eles sejam um pouco mais complexos que os deste capítulo.
+Escrever testes, requere um bom conhecimento de JavaScript. Mas, estamos a começar a aprender. Deste modo, para facilitar, por ora não se pede que você escreva testes, contudo você já deveria ser capaz de os ler, mesmo que eles sejam um pouco mais complexos que os deste capítulo.
