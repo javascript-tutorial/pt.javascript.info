@@ -5,7 +5,7 @@ Há outra sintaxe muito simples e abreviada para criar funções, e que frequent
 É chamada de "*arrow functions*" (funções seta), porque é parecida com:
 
 ```js
-let func = (arg1, arg2, ...argN) => expression
+let func = (arg1, arg2, ..., argN) => expression;
 ```
 
 ...Isto cria a função `func` com os argumentos `arg1..argN`, a seguir avalia a `expression` no lado direito com eles, e retorna o resultado.
@@ -13,7 +13,7 @@ let func = (arg1, arg2, ...argN) => expression
 Por outras palavras, é a versão mais curta de:
 
 ```js
-let func = function(arg1, arg2, ...argN) {
+let func = function(arg1, arg2, ..., argN) {
   return expression;
 };
 ```
@@ -48,7 +48,7 @@ Como você pode ver `(a, b) => a + b` significa uma função que aceita dois arg
     alert( double(3) ); // 6
     ```
 
-- Se não houver argumentos, os parênteses estarão vazios (mas devem estar presentes):
+- Se não houver argumentos, os parênteses estarão vazios, mas devem estar presentes:
 
     ```js run
     let sayHi = () => alert("Olá!");
@@ -61,7 +61,7 @@ Como você pode ver `(a, b) => a + b` significa uma função que aceita dois arg
 Por exemplo, para criar dinamicamente uma função:
 
 ```js run
-let age = prompt("Que idade tem?", 18);
+let age = prompt("Que idade você tem?", 18);
 
 let welcome = (age < 18) ?
   () => alert('Olá') :
@@ -70,7 +70,7 @@ let welcome = (age < 18) ?
 welcome();
 ```
 
-*Arrow functions* podem parecer estranhas e não muito legíveis a princípio, mas isso rápidamente muda à medida que os olhos se habituam à estrutura.
+*Arrow functions* podem parecer estranhas e não muito legíveis a princípio, mas isso rapidamente muda à medida que os olhos se habituam à estrutura.
 
 Elas são muito convenientes para ações simples com uma única-linha, quando estamos algo ociosos para escrever muitas palavras.
 
