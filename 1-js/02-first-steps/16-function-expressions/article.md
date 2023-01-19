@@ -54,7 +54,7 @@ Em JavaScript, uma função é um valor, então podemos lidar com ela como com u
 
 É claro que uma função é um valor especial, porque o podemos invocar usando `sayHi()`.
 
-Mas, ainda se trata de um valor. Então, o podemos manusear como acontece com outros tipos de valores.
+Mas, ainda assim trata-se de um valor. Então, o podemos manusear como acontece com outros tipos de valores.
 
 Nós podemos copiar uma função para outra variável:
 
@@ -73,7 +73,7 @@ Aqui está o que acima acontece, em detalhe:
 
 1. A Declaração de Função `(1)` cria uma função e a coloca na variável chamada `sayHi`.
 2. Na linha em `(2)` é copiada para a variável `func`. Por favor, note outra vez: não existem parênteses depois de `sayHi`. Se houvesse, então `func = sayHi()` iria escrever *o resultado da chamada* `sayHi()` em `func`, não a própria *função* `sayHi`.
-3. Agora, a função pode ser invocada tanto como `sayHi()` como também `func()`.
+3. Agora, a função pode ser invocada como `sayHi()` e também como `func()`.
 
 Também poderíamos ter usado uma Expressão de Função para declarar `sayHi` na primeira linha:
 
@@ -203,7 +203,7 @@ Primeiro, a sintaxe: como as diferenciar no código.
       };
     ```
 
-Contudo, a mais subtil diferença é *quando* uma função é criada pelo interpretador de JavaScript (*JavaScript engine*).
+Contudo, a mais subtil diferença é *quando* a função é criada pelo interpretador de JavaScript (*JavaScript engine*).
 
 **Uma Expressão de Função é criada quando a execução a alcança, e só é utilizável a partir desse momento.**
 
@@ -233,7 +233,7 @@ function sayHi(name) {
 
 A Declaração de Função `sayHi` é criada quando o JavaScript se prepara para iniciar o script, e é visível em todo o lugar nele.
 
-...Se fosse uma Expressão de Função, então não iria funcionar:
+...Se fosse uma Expressão de Função, não iria funcionar:
 
 ```js run refresh untrusted
 *!*
@@ -245,13 +245,13 @@ let sayHi = function(name) {  // (*) não há mais mágica
 };
 ```
 
-As Expressões de Função são criadas quando a execução as alcança. Isso só iria acontecer na linha `(*)`. Demasiado tarde.
+As Expressões de Função são criadas quando a execução as alcança. Isto só iria acontecer na linha `(*)`. Demasiado tarde.
 
 Uma outra funcionalidade especial de Declarações de Função é o seu escopo de bloco (*block scope*).
 
 **No modo estrito (*strict mode*), quando uma Declarações de Função está dentro de um bloco de código, ela é visível em todo o lugar dentro desse bloco. Mas não fora dele.**
 
-Por exemplo, imaginemos que precisamos de declarar uma função `welcome()` que dependa da variável `age` que obtemos no momento da execução (runtime) do programa. E que depois planejamos usá-la mais tarde.
+Por exemplo, imaginemos que precisamos de declarar uma função `welcome()` que dependa da variável `age` que obtemos no momento da execução (runtime) do programa. E que planejamos usá-la mais tarde.
 
 Se empregarmos uma Declaração de Função, isto não funciona como pretendido:
 
