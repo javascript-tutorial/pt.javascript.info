@@ -51,7 +51,7 @@ let user = {
 // first, declare
 function sayHi() {
   alert("Hello!");
-};
+}
 
 // then add as a method
 user.sayHi = sayHi;
@@ -81,7 +81,7 @@ user = {
 // method shorthand looks better, right?
 user = {
 *!*
-  sayHi() { // same as "sayHi: function()"
+  sayHi() { // same as "sayHi: function(){...}"
 */!*
     alert("Hello");
   }
@@ -90,7 +90,7 @@ user = {
 
 As demonstrated, we can omit `"function"` and just write `sayHi()`.
 
-To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases the shorter syntax is preferred.
+To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases, the shorter syntax is preferred.
 
 ## "this" in methods
 

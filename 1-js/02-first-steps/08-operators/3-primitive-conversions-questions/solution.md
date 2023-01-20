@@ -9,7 +9,6 @@ true + false = 1
 "$" + 4 + 5 = "$45"
 "4" - 2 = 2
 "4px" - 2 = NaN
-7 / 0 = Infinity
 "  -9  " + 5 = "  -9  5" // (3)
 "  -9  " - 5 = -14 // (4)
 null + 1 = 1 // (5)
@@ -23,4 +22,4 @@ undefined + 1 = NaN // (6)
 4. The subtraction always converts to numbers, so it makes `"  -9  "` a number `-9` (ignoring spaces around it).
 5. `null` becomes `0` after the numeric conversion.
 6. `undefined` becomes `NaN` after the numeric conversion.
-7. Space characters, are trimmed off string start and end when a string is converted to a number. Here the whole string consists of space characters, such as `\t`, `\n` and a "regular" space between them. So, similarly to an empty string, it becomes `0`.
+7. Space characters are trimmed off string start and end when a string is converted to a number. Here the whole string consists of space characters, such as `\t`, `\n` and a "regular" space between them. So, similarly to an empty string, it becomes `0`.
