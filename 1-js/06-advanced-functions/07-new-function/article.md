@@ -1,19 +1,19 @@
 
-# The "new Function" syntax
+# A sintaxe de "new Function"
 
-There's one more way to create a function. It's rarely used, but sometimes there's no alternative.
+Existe mais uma maneira de criar uma função. Ela é raramente usada, mas as vezes não existem alternativas.
 
-## Syntax
+## Sintaxe
 
-The syntax for creating a function:
+A sintaxe para criar uma função:
 
 ```js
 let func = new Function ([arg1[, arg2[, ...argN]],] functionBody)
 ```
 
-In other words, function parameters (or, more precisely, names for them) go first, and the body is last. All arguments are strings.
+Em outras palavras, os parâmetros da função (ou, mais precisamente, os nomes deles) vêm primeiro, e o corpo da função vem por último. Todos os argumentos são `strings`.
 
-It's easier to understand by looking at an example. Here's a function with two arguments:
+É mais fácil de compreender olhando um exemplo. Aqui está uma função com dois argumentos:
 
 ```js run
 let sum = new Function('a', 'b', 'return a + b'); 
@@ -21,39 +21,39 @@ let sum = new Function('a', 'b', 'return a + b');
 alert( sum(1, 2) ); // 3
 ```
 
-If there are no arguments, then there's only a single argument, the function body:
+Se não existem argumentos, então somente existe um único argumento, que é o corpo da função:
 
 ```js run
-let sayHi = new Function('alert("Hello")');
+let sayHi = new Function('alert("Olá")');
 
-sayHi(); // Hello
+sayHi(); // Olá
 ```
 
-The major difference from other ways we've seen is that the function is created literally from a string, that is passed at run time. 
+A maior diferença de outros métodos vistos é que a função é literalmente criada a partir de uma `string`, que é passada em tempo de execução. 
 
-All previous declarations required us, programmers, to write the function code in the script.
+Todas as declarações anteriores requeriam de nós, programadores, escrever o código da função dentro do *script*.
 
-But `new Function` allows to turn any string into a function. For example, we can receive a new function from a server and then execute it:
+Mas `new Function` permite transformar qualquer `string` em uma função. Por exemplo, nós podemos receber uma nova função de um servidor e executa-la:
 
 ```js
-let str = ... receive the code from a server dynamically ...
+let str = ... recebe o código de um servidor dinamicamente ...
 
 let func = new Function(str);
 func();
 ```
 
-It is used in very specific cases, like when we receive code from a server, or to dynamically compile a function from a template. The need for that usually arises at advanced stages of development.
+Ela é usada em casos muito específicos, como quando nós recebemos código de um servidor, ou para compilar dinamicamente a função a partir de um *template*. A necessidade disso geralmente surge em estágios avançados de desenvolvimento.
 
 ## Closure
 
-Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Lexical Environment from where it's created.
+No geral, uma função se "lembra" de onde ela foi criada na propriedade especial `[[Environment]]`. Ela referencia o escopo léxico de onde ela foi criada.
 
-But when a function is created using `new Function`, its `[[Environment]]` references not the current Lexical Environment, but instead the global one.
+Porém quando uma função é criada usando `new Function`, a sua `[[Environment]]` não referencia o atual escopo léxico, mas sim o escopo global.
 
 ```js run
 
 function getFunc() {
-  let value = "test";
+  let value = "teste";
 
 *!*
   let func = new Function('alert(value)');
@@ -62,14 +62,14 @@ function getFunc() {
   return func;
 }
 
-getFunc()(); // error: value is not defined
+getFunc()(); // erro: value não foi definido
 ```
 
-Compare it with the regular behavior:
+Compare-a com o comportamento padrão:
 
 ```js run 
 function getFunc() {
-  let value = "test";
+  let value = "teste";
 
 *!*
   let func = function() { alert(value); };
@@ -78,30 +78,30 @@ function getFunc() {
   return func;
 }
 
-getFunc()(); // *!*"test"*/!*, from the Lexical Environment of getFunc
+getFunc()(); // *!*"teste"*/!*, do escopo léxico de getFunc
 ```
 
-This special feature of `new Function` looks strange, but appears very useful in practice.
+Essa caracteristica especial de `new Function` parece estranha, mas se apresenta muito útil na prática.
 
-Imagine that we must create a function from a string. The code of that function is not known at the time of writing the script (that's why we don't use regular functions), but will be known in the process of execution. We may receive it from the server or from another source.
+Imagine que nós precisamos criar uma função a partir de uma `string`. O código dessa função é desconhecido durante a escrita do *script* (por esse motivo nós não usamos funções regulares), mas vai ser conhecido durante o processo de execução. Nós podemos recebe-lo do servidor ou de outra fonte.
 
-Our new function needs to interact with the main script.
+Nossa nova função precisa interagir com o *script* principal.
 
-Perhaps we want it to be able to access outer local variables?
+Talvez nós queremos que ela consiga acessar variáveis locias externas?
 
-The problem is that before JavaScript is published to production, it's compressed using a *minifier* -- a special program that shrinks code by removing extra comments, spaces and -- what's important, renames local variables into shorter ones.
+O problema é que antes do JavaScript ser publicado para produção, ele é comprimido usando um "minificador" -- um programa especial que encolhe código removendo comentários, espaços e -- o mais importante, renomeia variáveis locais em variáveis mais curtas.
 
-For instance, if a function has `let userName`, minifier replaces it with `let a` (or another letter if this one is occupied), and does it everywhere. That's usually a safe thing to do, because the variable is local, nothing outside the function can access it. And inside the function, minifier replaces every mention of it. Minifiers are smart, they analyze the code structure, so they don't break anything. They're not just a dumb find-and-replace.
+Por exemplo, se uma função tem `let userName`, o minificador o troca  por `let a` (ou outra letra se esta estiver ocupada), e ele faz isso em toda parte. Isso usualmente é uma coisa segura de se fazer, porque a variável é local, nada fora da função pode acessar ela. E dentro da função, o minificador troca todas as suas menções. Minificadores são inteligentes, eles analisam a estrutura do código, para que eles não quebrem nada. Eles não são um simples não-inteligente "encontra-e-substitui".
 
-But, if `new Function` could access outer variables, then it would be unable to find `userName`, since this is passed in as a string *after* the code is minified.
+Entretanto, se `new Function` pudesse acessar variáveis externas, então ele não conseguiria encontrar `userName`, pois ele é passado como uma `string` **depois** que o código é minificado.
 
-**Even if we could access outer lexical environment in `new Function`, we would have problems with minifiers.**
+**Mesmo se nós pudessemos acessar o escopo léxico externo na `new Function`, nós teriamos problemas com minificadores.**
 
-The "special feature" of `new Function` saves us from mistakes.
+A "característica especial" de `new Function` nos salva de erros.
 
-And it enforces better code. If we need to pass something to a function created by `new Function`, we should pass it explicitly as an argument.
+E ela assegura um código melhor. Se nós precisarmos passar algo para uma função criada por `new Function`, nós devemos passar ele explicitamente como um argumento.
 
-Our "sum" function actually does that right:
+A nossa função "sum" faz isso corretamente:
 
 ```js run 
 *!*
@@ -111,27 +111,27 @@ let sum = new Function('a', 'b', 'return a + b');
 let a = 1, b = 2;
 
 *!*
-// outer values are passed as arguments
+// variáveis externas são passdas como argumentos
 alert( sum(a, b) ); // 3
 */!*
 ```
 
-## Summary
+## Resumo
 
-The syntax:
+A sintaxe:
 
 ```js
 let func = new Function(arg1, arg2, ..., body);
 ```
 
-For historical reasons, arguments can also be given as a comma-separated list. 
+Por razões históricas, argumentos também podem ser dados como uma lista separada por vírgulas. 
 
-These three mean the same:
+Estes três significam o mesmo:
 
 ```js 
-new Function('a', 'b', 'return a + b'); // basic syntax
-new Function('a,b', 'return a + b'); // comma-separated
-new Function('a , b', 'return a + b'); // comma-separated with spaces
+new Function('a', 'b', 'return a + b'); // sintaxe básica
+new Function('a,b', 'return a + b'); // separada por vírgula
+new Function('a , b', 'return a + b'); // separada por vírgula com espaços
 ```
 
-Functions created with `new Function`, have `[[Environment]]` referencing the global Lexical Environment, not the outer one. Hence, they cannot use outer variables. But that's actually good, because it saves us from errors. Passing parameters explicitly is a much better method architecturally and causes no problems with minifiers.
+Funções criadas com `new Function`, têm `[[Environment]]` referenciando o escopo léxico global, e não o escopo externo. Por isso, elas não podem usar variáveis externas. Porém isso na verdade é bom, porque isto nos salva de erros. Passar parametros explicitamente é um método muito melhor arquiteturamente e não causa problemas com minificadores.
