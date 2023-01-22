@@ -33,7 +33,7 @@ In other words, such pattern means that we're looking for `pattern:X` followed b
 
 That's only possible if patterns `pattern:Y` and `pattern:Z` aren't mutually exclusive.
 
-For example, `pattern:\d+(?=\s)(?=.*30)` looks for `pattern:\d+` only if it's followed by a space, and there's `30` somewhere after it:
+For example, `pattern:\d+(?=\s)(?=.*30)` looks for `pattern:\d+` that is followed by a space `pattern:(?=\s)`, and there's `30` somewhere after it `pattern:(?=.*30)`:
 
 ```js run
 let str = "1 turkey costs 30€";
@@ -58,6 +58,10 @@ alert( str.match(/\d+\b(?!€)/g) ); // 2 (the price is not matched)
 ```
 
 ## Lookbehind
+
+```warn header="Lookbehind browser compatibility"
+Please Note: Lookbehind is not supported in non-V8 browsers, such as Safari, Internet Explorer.
+```
 
 Lookahead allows to add a condition for "what follows".
 

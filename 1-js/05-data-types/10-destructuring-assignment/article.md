@@ -5,7 +5,7 @@ The two most used data structures in JavaScript are `Object` and `Array`.
 - Objects allow us to create a single entity that stores data items by key. 
 - Arrays allow us to gather data items into an ordered list.
 
-Although, when we pass those to a function, it may need not an object/array as a whole. It may need individual pieces.
+Although, when we pass those to a function, it may need not be an object/array as a whole. It may need individual pieces.
 
 *Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient. 
 
@@ -151,7 +151,7 @@ We can swap more than two variables this way.
 
 ### The rest '...'
 
-Usually, if the array is longer when the list at the left, the "extra" items are omitted.
+Usually, if the array is longer than the list at the left, the "extra" items are omitted.
 
 For example, here only two items are taken, and the rest is just ignored:
 

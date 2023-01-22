@@ -257,6 +257,7 @@ Vimos três formas para criar uma função em JavaScript:
 
   ```js
     // expressão no lado direito
+
     let sum = (a, b) => a + b;
 
     // ou em sintaxe multi-linha com { ... }, aqui precisa de return
@@ -271,7 +272,6 @@ Vimos três formas para criar uma função em JavaScript:
     // com um único argumento
     let double = n => n * 2;
   ```
-
 
 - Funções podem ter variáveis locais: aquelas declaradas no seu corpo ou entre a lista dos seus parâmetros. Tais variáveis só são visíveis dentro da função.
 - Parâmetros podem ter valores por defeito: `function sum(a = 1, b = 2) {...}`.
