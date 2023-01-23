@@ -103,13 +103,13 @@ Mais em: <info:variables> e <info:types>.
 
 Estamos a utilizar um navegador (*browser*) como ambiente de trabalho, assim funções básicas de *UI* (Interface com o Utilizador) serão:
 
-[`prompt(question, [default])`](mdn:api/Window/prompt)
+[`prompt(question, [default])`](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/prompt)
 : Faz uma `question`, e retorna o que o visitante inseriu ou `null` se a pessoa clicou em "cancel".
 
-[`confirm(question)`](mdn:api/Window/confirm)
+[`confirm(question)`](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/confirm)
 : Faz uma `question` e sugere que a pessoa escolha entre *Ok* e *Cancel*. A escolha é retornada como `true/false` (verdadeiro/falso).
 
-[`alert(message)`](mdn:api/Window/alert)
+[`alert(message)`](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/alert)
 : Exibe uma `message`.
 
 Todas estas funções são *modais* (*modal*), elas fazem uma pausa no código em execução e impedem o visitante de interagir com a página até que ele responda.
@@ -144,7 +144,7 @@ De atribuição
 : Existe uma atribuição simples: `a = b`, e combinadas como `a *= 2`.
 
 *Bit-a-bit*
-: Operadores *bit-a-bit* (*bitwise operators*) trabalham com números inteiros de 32-bits no nível mais baixo, o do *bit*: veja em [docs](mdn:/JavaScript/Guide/Expressions_and_Operators#Bitwise) quando eles são necessários.
+: Operadores *bit-a-bit* (*bitwise operators*) trabalham com números inteiros de 32-bits no nível mais baixo, o do *bit*: veja em [docs](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Expressions_and_Operators#operadores_bit_a_bit) quando eles são necessários.
 
 Condicional
 : O único operador com três parâmetros: `condition ? resultA : resultB`. Se `condition` for verdadeira, retorna `resultA`, senão o `resultB`.
