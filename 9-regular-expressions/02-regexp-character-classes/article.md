@@ -33,7 +33,7 @@ alert( str.match(regexp) ); // matriz de correspondências: 7,9,0,3,1,2,3,4,5,6,
 alert( str.match(regexp).join('') ); // 79031234567
 ```
 
-Essa era uma classe de caracteres para dígitos. Existem outras classes de caracteres também.
+Essa era uma classe de caracteres para dígitos. Existem outras classes de caracteres.
 
 As mais usadas são:
 
@@ -44,7 +44,7 @@ As mais usadas são:
 : Um símbolo de espaço: inclui espaços, tabulações `\t`, novas linhas `\n` e alguns outros caracteres raros, como `\v`, `\f` e `\r`.
 
 `padrão:\w` ("w" é de "word" (*palavra*))
-: Um caractere de texto: uma letra do alfabeto latino ou um dígito ou um sublinhado `_`. Letras não latinas (como cirílico ou hindu) não pertecem ao `padrão:\w`.
+: Um caractere de texto: uma letra do alfabeto latino ou um dígito ou um sublinhado `_`. Letras não latinas (como cirílico ou hindu) não pertencem ao `padrão:\w`.
 
 Por exemplo, `padrão:\d\s\w` significa um "dígito" seguido de um "caractere de espaço" seguido de um "caractere de texto", como `correspondência:1 a`.
 
@@ -76,15 +76,15 @@ Para cada classe de caracteres existe uma "classe inversa", denotada com a mesma
 O "inverso" significa que ele corresponde a todos os outros caracteres, por exemplo:
 
 `padrão:\D`
-: Sem dígito: qualquer caractere, exceto `padrão:\d`, por exemplo, uma letra.
+: Não-dígito: qualquer caractere, exceto `padrão:\d`, por exemplo, uma letra.
 
 `padrão:\S`
-: Sem espaço: qualquer caractere, exceto `padrão:\s`, por exemplo, uma letra.
+: Não-espaço: qualquer caractere, exceto `padrão:\s`, por exemplo, uma letra.
 
 `padrão:\W`
-: Caractere não verbal: qualquer coisa, exceto `padrão:\w`, por exemploo uma letra não latina ou um espaço.
+: Caractere não verbal: qualquer coisa, exceto `padrão:\w`, por exemplo uma letra não latina ou um espaço.
 
-No início do capítulo, vimos como criar um número de telefone somente para números a partir de uma string como `subject:+7(903)-123-45-67`: encontre todos os dígitos e junte-se a eles.
+No início do capítulo, vimos como criar um número de telefone somente com números a partir de uma string como `subject:+7(903)-123-45-67`: encontre todos os dígitos e os junte.
 
 ```js run
 let str = "+7(903)-123-45-67";
@@ -92,7 +92,7 @@ let str = "+7(903)-123-45-67";
 alert( str.match(/\d/g).join('') ); // 79031234567
 ```
 
-Uma maneira alternativa e mais curta é encontrar um `padrão:\D` não-dígito e removê-lo da string:
+Uma maneira alternativa e mais curta é encontrar não-dígitos `padrão:\D`  e removê-los da string:
 
 ```js run
 let str = "+7(903)-123-45-67";
