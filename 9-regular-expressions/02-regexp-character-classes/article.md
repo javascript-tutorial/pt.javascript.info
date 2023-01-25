@@ -102,7 +102,7 @@ alert( str.replace(/\D/g, "") ); // 79031234567
 
 ## Um ponto é "qualquer caractere"
 
-Um ponto `padrão:.` é uma classe de caractere especial que corresponde a "qualquer caractere, exceto uma nova linha".
+Um ponto `padrão:.` é uma classe de caracteres especial que corresponde a "qualquer caractere, exceto uma nova linha".
 
 Por exemplo:
 
@@ -138,27 +138,27 @@ alert( "A\nB".match(/A.B/) ); // null (sem correspondência)
 
 Há muitas situações em que gostaríamos que um ponto significasse literalmente "qualquer caractere", incluindo a nova linha.
 
-É o que flag `padrão:s` faz. Se uma regexp possui, então um ponto `padrão:.` corresponde literalmente a qualquer caractere:
+É o que a flag `padrão:s` faz. Se uma regexp a possui, então um ponto `padrão:.` corresponde literalmente a qualquer caractere:
 
 ```js run
 alert( "A\nB".match(/A.B/s) ); // A\nB (correspondência!)
 ```
 
-````warn header="Não suportado no Firefox, IE, Edge"
-Verifique <https://caniuse.com/#search=dotall> para obter o estado de suporte mais recente. No momento da redação deste documento, não inclui o Firefox, IE, Edge.
+````warn header="Não suportado no IE"
+A flag `padrão:s` não tem suporte no IE.
 
-Felizmente, há uma alternativa, que funciona em qualquer lugar. Podemos usar uma regexp como `padrão:[\s\S]` para corresponder a "qualquer caractere".
+Felizmente, há uma alternativa, que funciona em qualquer lugar. Podemos usar uma regexp como `padrão:[\s\S]` para corresponder a "qualquer caractere" (este padrão irá ser estudado no artigo <info:regexp-character-sets-and-ranges>).
 
 ```js run
-alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
+alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (correspondência!)
 ```
 
-O padrão `padrão:[\s\S]` diz literalmente: "um caractere de espaço OU não um caractere de espaço". Em outras palavras, "qualquer coisa". Poderíamos usar outro par de classes complementares, como `padrão:[\d\D]`, que não importa. Ou mesmo o padrão `padrão:[^]` - pois significa corresponder a qualquer caractere, exceto nada.
+O padrão `padrão:[\s\S]` diz literalmente: "um caractere de espaço OU não um caractere de espaço". Em outras palavras, "qualquer coisa". Poderíamos usar outro par de classes complementares, como `padrão:[\d\D]`, que não importa. Ou mesmo o padrão `padrão:[^]` -- pois significa corresponder a qualquer caractere, exceto nada.
 
 Também podemos usar esse truque se quisermos os dois tipos de "pontos" no mesmo padrão: o ponto real `padrão:.` comportando-se da maneira regular ("não incluindo uma nova linha") e também uma maneira de combinar "qualquer caractere" com `padrão:[\s\S]` ou similar.
 ````
 
-````warn header="Preste atenção nos espaços"
+````warn header="Preste atenção aos espaços"
 Geralmente prestamos pouca atenção aos espaços. Para nós, as strings `sujeito:1-5` e `sujeito:1 - 5` são quase idênticas.
 
 Mas se uma regexp não leva em consideração os espaços, ela pode falhar.
@@ -169,7 +169,7 @@ Vamos tentar encontrar dígitos separados por um hífen:
 alert( "1 - 5".match(/\d-\d/) ); // null, sem correspondência!
 ```
 
-Vamos corrigi-lo adicionando espaços ao padrão regexp `padrão:\d - \d`:
+Vamos corrigi-lo adicionando espaços à regexp `padrão:\d - \d`:
 
 ```js run
 alert( "1 - 5".match(/\d - \d/) ); // 1 - 5, agora funciona
@@ -179,7 +179,7 @@ alert( "1 - 5".match(/\d\s-\s\d/) ); // 1 - 5, também funciona
 
 **Um espaço é um caractere. Igual em importância a qualquer outro caractere.**
 
-Não podemos adicionar ou remover espaços de uma expressão regular e esperar que funcione da mesma maneira.
+Não podemos adicionar ou remover espaços a uma expressão regular e esperar que funcione da mesma maneira.
 
 Em outras palavras, em uma expressão regular, todos os caracteres são importantes, espaços também.
 ````
@@ -188,16 +188,16 @@ Em outras palavras, em uma expressão regular, todos os caracteres são importan
 
 Existem as seguintes classes de caracteres:
 
-- `padrão:\d` - dígitos.
-- `padrão:\D` - não-dígitos.
-- `padrão:\s` - símbolos de espaço, tabulações, novas linhas.
-- `padrão:\S` - todos, exceto `padrão:\s`.
-- `padrão:\w` - Letras latinas, dígitos, sublinhado `'_'`.
-- `padrão:\W` - todos, exceto `padrão:\w`.
-- `padrão:.` - qualquer caractere se estiver com a flag regexp `'s' `; caso contrário, qualquer um, exceto uma nova linha `\n`.
+- `padrão:\d` -- dígitos.
+- `padrão:\D` -- não-dígitos.
+- `padrão:\s` -- símbolos de espaço, tabulações, novas linhas.
+- `padrão:\S` -- todos, exceto `padrão:\s`.
+- `padrão:\w` -- Letras latinas, dígitos, sublinhado `'_'`.
+- `padrão:\W` -- todos, exceto `padrão:\w`.
+- `padrão:.` -- qualquer caractere se estiver com a flag regexp `'s' `; caso contrário, qualquer um, exceto uma nova linha `\n`.
 
 ...Mas isso não é tudo!
 
-A codificação unicode, usada pelo JavaScript para strings, fornece muitas propriedades para caracteres, como: a qual idioma a letra pertence (se for uma letra), é um sinal de pontuação etc.
+A codificação Unicode, usada pelo JavaScript para strings, fornece muitas propriedades para caracteres, como: a qual idioma a letra pertence (se for uma letra), é um sinal de pontuação, etc.
 
 Também podemos pesquisar por essas propriedades. Isso requer a flag `padrão:u`, abordada no próximo artigo.
