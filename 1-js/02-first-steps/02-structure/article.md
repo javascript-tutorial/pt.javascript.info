@@ -46,7 +46,7 @@ alert(3 +
 + 2);
 ```
 
-O código produz `6` porque o Javascript não insere pontos e virgulas aqui. É intuitivamente óbvio que se a linha termina com um sinal de mais `"+"`, então é uma "expressão incompleta", logo o ponto e vírgula não é necessário. E neste caso isso funciona como pretendido.
+O código produz `6` porque o Javascript não insere pontos e virgulas aqui. É intuitivamente óbvio que se a linha termina com um sinal de mais `"+"`, então é uma "expressão incompleta", logo o ponto e vírgula aí seria incorreto. E neste caso isso funciona como pretendido.
 
 **Mas há situações em que o JavaScript "falha" em assumir um ponto e vírgula onde ele é realmente necessário.**
 
@@ -56,40 +56,36 @@ Erros que ocorrem em tais casos são bastante difíceis de encontrar e corrigir.
 Se você está curioso para ver um exemplo concreto de tal erro, verifique este código:
 
 ```js run
-[1, 2].forEach(alert)
+alert("Hello");
+
+[1, 2].forEach(alert);
 ```
 
-Não há necessidade de pensar sobre o significado dos parênteses `[]` e `forEach` ainda. Nós vamos estudá-los mais tarde. Por enquanto, apenas lembre-se que o resultado do código: mostra `1` e depois` 2`.
+Não há necessidade de pensar sobre o significado dos parênteses `[]` e também do `forEach`. Nós vamos estudá-los mais tarde. Por enquanto, apenas lembre-se do resultado da execução do código: ele mostra `Hello`, depois `1`, e depois` 2`.
 
-Agora, vamos adicionar um `alert` antes do código e * não * terminá-lo com um ponto e vírgula:
+Agora, vamos remover o ponto e vírgula depois do `alert`:
 
 ```js run no-beautify
-alert("Haverá um erro")
+alert("Hello")
 
-[1, 2].forEach(alert)
+[1, 2].forEach(alert);
 ```
 
-Agora, se nós executarmos o código, apenas o primeiro `alert` é mostrado e então temos um erro!
+A diferença em comparação com o código acima é de apenas um caractere: o ponto e vírgula da primeira linha se foi.
 
-Mas tudo está bem novamente se adicionarmos um ponto e vírgula após `alert`:
-```js run
-alert("Tudo bem agora");
+Se nós executarmos esse código, apenas o primeiro `Hello` é mostrado (e então há um erro, você pode precisar de abrir a consola para o ver). Já não existem mais números.
 
-[1, 2].forEach(alert)  
-```
+Isso ocorre porque o JavaScript não assume um ponto e vírgula antes dos colchetes `[...]`. Portanto, o código no último exemplo é tratado como uma única instrução. 
 
-Agora temos a mensagem "Tudo bem agora" seguida por "1" e "2".
-
-
-O erro na variante sem ponto e vírgula ocorre porque o JavaScript não assume um ponto e vírgula antes dos colchetes `[...]`.
-
-Portanto, como o ponto e vírgula não é inserido automaticamente, o código no primeiro exemplo é tratado como uma única instrução. Veja como o mecanismo vê isso:
+Veja como o mecanismo vê isso:
 
 ```js run no-beautify
-alert("Haverá um erro")[1, 2].forEach(alert)
+alert("Hello")[1, 2].forEach(alert);
 ```
 
-Mas devem ser duas declarações separadas, não uma. Tal fusão neste caso é completamente errado, daí o erro. Isso pode acontecer em outras situações.
+Parece estranho, não? Tal fusão neste caso é completamente errada. Nós precisamos de colocar um ponto e vírgula depois de `alert` para o código funcionar corretamente.
+
+Isso também pode acontecer em outras situações.
 ````
 
 Recomendamos colocar ponto e vírgula entre as frases, mesmo que estejam separadas por novas linhas. Esta regra é amplamente adotada pela comunidade. Vamos notar mais uma vez -- *é possível* deixar de fora os pontos e vírgulas na maior parte do tempo. Mas é mais seguro -- especialmente para um iniciante -- usá-los.

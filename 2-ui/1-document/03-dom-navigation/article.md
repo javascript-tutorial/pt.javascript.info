@@ -205,7 +205,7 @@ alert( document.body.parentNode === document.documentElement ); // true
 
 ## Element-only navigation
 
-Navigation properties listed above refer to *all* nodes. For instance, in `childNodes` we can see both text nodes, element nodes, and even comment nodes if there exist.
+Navigation properties listed above refer to *all* nodes. For instance, in `childNodes` we can see both text nodes, element nodes, and even comment nodes if they exist.
 
 But for many tasks we don't want text or comment nodes. We want to manipulate element nodes that represent tags and form the structure of the page.
 

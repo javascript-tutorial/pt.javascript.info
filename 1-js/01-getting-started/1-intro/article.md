@@ -24,11 +24,11 @@ O navegador tem um interpretador(motor) incorporado, às vezes chamado de "máqu
 
 Interpretadores diferentes têm "codinomes" diferentes. Por exemplo:
 
-- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- no Chrome e no Opera.
+- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- no Chrome, Opera e Edge.
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- no Firefox.
-- ...Há outros codinomes como "Chakra" para o IE, "ChakraCore" para Microsoft Edge, "Nitro" e "SquirrelFish" para Safari, etc.
+- ...Há outros codinomes como "Chakra" para o IE, "JavaScriptCore", "Nitro" e "SquirrelFish" para Safari, etc.
 
-Os termos acima são bons para lembrar, pois são usados em artigos de desenvolvedores na internet. Vamos usá-los também. Por exemplo, se "um recurso X é suportado pelo V8", então ele provavelmente funciona no Chrome e no Opera.
+Os termos acima são bons para lembrar, pois são usados em artigos de desenvolvedores na internet. Vamos usá-los também. Por exemplo, se "um recurso X é suportado pelo V8", então ele provavelmente funciona no Chrom, Opera e Edge.
 
 ```smart header="Como funcionam os interpretadores?"
 
@@ -45,7 +45,7 @@ O interpretador aplica otimizações em cada etapa do processo. Ele ainda observ
 
 JavaScript moderno é uma linguagem de programação "segura". Ele não fornece acesso de baixo nível à memória ou CPU, porque foi inicialmente criado para navegadores que não necessitam dele.
 
-As capacidades do JavaScript dependem muito do ambiente em que está sendo executado. Por exemplo, [Node.js](https://wikipedia.org/wiki/Node.js) suporta funções que permitem ao JavaScript ler/gravar arquivos arbitrários, executar solicitações de rede, etc.
+As capacidades do JavaScript dependem muito do ambiente em que está sendo executado. Por exemplo, [Node.js]https://pt.wikipedia.org/wiki/Node.js) suporta funções que permitem ao JavaScript ler/gravar arquivos arbitrários, executar solicitações de rede, etc.
 
 O JavaScript no navegador pode fazer tudo relacionado à manipulação de páginas web, interação com o usuário e o servidor web.
 

@@ -81,7 +81,7 @@ Here's the full list:
 | Character | Description |
 |-----------|-------------|
 |`\n`|New line|
-|`\r`|Carriage return: not used alone. Windows text files use a combination of two characters `\r\n` to represent a line break. |
+|`\r`|In Windows text files a combination of two characters `\r\n` represents a new break, while on non-Windows OS it's just `\n`. That's for historical reasons, most Windows software also understands `\n`. |
 |`\'`, `\"`|Quotes|
 |`\\`|Backslash|
 |`\t`|Tab|
@@ -526,7 +526,7 @@ Now it becomes obvious why `a > Z`.
 The characters are compared by their numeric code. The greater code means that the character is greater. The code for `a` (97) is greater than the code for `Z` (90).
 
 - All lowercase letters go after uppercase letters because their codes are greater.
-- Some letters like `Ö` stand apart from the main alphabet. Here, it's code is greater than anything from `a` to `z`.
+- Some letters like `Ö` stand apart from the main alphabet. Here, its code is greater than anything from `a` to `z`.
 
 ### Correct comparisons [#correct-comparisons]
 

@@ -118,7 +118,7 @@ alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 
 ## Not just a syntactic sugar
 
-Sometimes people say that `class` is a "syntactic sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same without `class` keyword at all:
+Sometimes people say that `class` is a "syntactic sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same thing without using the `class` keyword at all:
 
 ```js run
 // rewriting class User in pure functions
@@ -144,7 +144,7 @@ The result of this definition is about the same. So, there are indeed reasons wh
 
 Still, there are important differences.
 
-1. First, a function created by `class` is labelled by a special internal property `[[FunctionKind]]:"classConstructor"`. So it's not entirely the same as creating it manually.
+1. First, a function created by `class` is labelled by a special internal property `[[IsClassConstructor]]: true`. So it's not entirely the same as creating it manually.
 
     The language checks for that property in a variety of places. For example, unlike a regular function, it must be called with `new`:
 
