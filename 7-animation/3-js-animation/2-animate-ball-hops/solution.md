@@ -4,15 +4,15 @@ A coordenada horizontal é modificada por outra regra: ela não "quica", mas gra
 
 Podemos escrever mais um `animate` para isso.
 
-Como função de tempo podemos usar `liner`, mas algo como `makeEaseOut(quad)` parece bem melhor.
+Como função de tempo podemos usar `linear`, mas algo como `makeEaseOut(quad)` parece bem melhor.
 
 O código:
 
 ```js
-let height = field.clientHeight - ball.clientHeight
-let width = 100
+let height = field.clientHeight - ball.clientHeight;
+let width = 100;
 
-// animate top (bouncing)
+// anime o topo (quicando)
 animate({
   duration: 2000,
   timing: makeEaseOut(bounce),
@@ -21,7 +21,7 @@ animate({
   }
 });
 
-// animate left (moving to the right)
+// anime a esquerda (movendo para a direita)
 animate({
   duration: 2000,
   timing: makeEaseOut(quad),

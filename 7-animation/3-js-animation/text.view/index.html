@@ -10,12 +10,12 @@
 <body>
   <textarea id="textExample" rows="5" cols="60">
     Ele pegou sua espada vorpal na mão:
-    Faz tempo que o manxome inimigo que ele procurava -
+    Faz tempo que o inimigo manxome que ele procurava -
     Então ele descansou perto da árvore Tumtum,
     E ficou um pouco em pensamento.
   </textarea>
 
-  <button onclick="animateText(textExample)">Run the animated typing!</button>
+  <button onclick="animateText(textExample)">Execute o texto animado!</button>
 
   <script>
     function animateText(textArea) {
@@ -26,7 +26,7 @@
       animate({
         duration: 5000,
         timing: bounce,
-        draw: function(progress) {
+        draw: function (progress) {
           let result = (to - from) * progress + from;
           textArea.value = text.substr(0, Math.ceil(result))
         }
