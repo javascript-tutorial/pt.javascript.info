@@ -14,8 +14,8 @@ O pseudo-código pode ficar assim:
 
 ```js
 let timer = setInterval(function() {
-  if (animation complete) clearInterval(timer);
-  else increase style.left by 2px
+  if (animação completa) clearInterval(timer);
+  else incremente style.left em 2px
 }, 20); //aumenta 2px a cada 20ms, em média 50 quadros por segundo
 ```
 
@@ -38,8 +38,8 @@ let timer = setInterval(function() {
 
 }, 20);
 
-// timePassed vai de 0 a 2000
-// recebe valores de 0 a 400px
+// enquanto timePassed vai de 0 a 2000
+// 'left' recebe valores de 0 a 400px
 function draw(timePassed) {
   train.style.left = timePassed / 5 + 'px';
 }
@@ -75,9 +75,9 @@ setInterval(animate2, 20); // em diferentes lugares do script
 setInterval(animate3, 20);
 ```
 
-Esses diferentes redesenhos deveriam ser agrupados juntos, para fazer com o que o redesenho seja mais fácil para o navegador (e, portanto, mais suave para as pessoas).
+Esses diferentes redesenhos deveriam ser agrupados juntos, para fazer com o que o redesenho seja mais fácil para o navegador e, portanto, menos carga sobre a CPU e mais suave para as pessoas.
 
-Tem mais uma coisa a ser manter em mente. Às vezes, quando a CPU está sobrecarregada, ou quando existem outras reazões para resesenhar com menos frequência (como quando a aba do navegador está escondida), então não devemos executá-la a cada `20ms`.
+Tem mais uma coisa a se manter em mente. Às vezes, quando a CPU está sobrecarregada, ou quando existem outras reazões para resesenhar com menos frequência (como quando a aba do navegador não está visível), então não devemos executá-la a cada `20ms`.
 
 Mas como sabemos disso em JavaScript? Existe uma especificação [Tempo de animação](http://www.w3.org/TR/animation-timing/) que fornece a função `requestAnimationFrame`. Ela aborda todos esses problemas e mais.
 
@@ -149,7 +149,7 @@ Função `animate` aceita 3 parâmetros que essencialmente descrevem a animaçã
 : Tempo total da animação. Exemplo, `1000`.
 
 `timing(timeFraction)`
-: Função de tempo, como a propriedade CSS `transition-timing-function` que recebe a fração de tempo percorrido (`0` no início, `1` no final) e retorna a conclusão da animação (como `y` na curva de Bezier).
+: Função de tempo, tal como a propriedade CSS `transition-timing-function` que recebe a fração de tempo percorrido (`0` no início, `1` no final) e retorna a conclusão da animação (como `y` na curva de Bezier).
 
     Por exemplo, uma função linear significa que a animação continue uniformemente com a mesma velocidade:
 
@@ -227,7 +227,7 @@ Veja em ação (clique para ativar):
 
 [iframe height=40 src="quad" link]
 
-...Ou a curva cúbica ou evento maior que `n`. Aumentar a potência faz com que acelere mais rapidamente.
+...Ou a curva cúbica ou até um `n` maior. Aumentar a potência faz com que acelere mais rapidamente.
 
 Aqui está o gráfico para `progress` na potência `5`:
 
@@ -312,7 +312,7 @@ Em ação para `x=1.5`:
 
 [iframe height=40 src="elastic" link]
 
-## Reversão: ease\*
+## Reversão: ease*
 
 Então temos uma coleção de funções de tempo. Sua aplicação direta é chamada "easeIn".
 
@@ -326,7 +326,7 @@ No modo de "eastOut", a função `timing` é envoltada pela `timingEaseOut`:
 timingEaseOut(timeFraction) = 1 - timing(1 - timeFraction)
 ```
 
-Em outras palavras, temos uma função de "transformar" `makeEaseOut` que recebe a função de tempo "regular" e retorna a função que a envolve:
+Em outras palavras, temos uma função "transformar" `makeEaseOut` que recebe a função de tempo "regular" e retorna a função que a envolve:
 
 ```js
 // aceita a função de tempo, returna a variante transformada
@@ -353,16 +353,16 @@ Aqui podemos ver como a transformação muda o comportamento da função:
 
 Se existe um efeito de animação no início, como quique -- será mostrado no final.
 
-No gráfico acima, <span style="color:#EE6B47">quique regular</span> tem a cor vermelha, e <span style="color:#62C0DC">quique easeOut</span> é azul.
+No gráfico acima, o <span style="color:#EE6B47">quique regular</span> tem a cor vermelha, e o <span style="color:#62C0DC">quique easeOut</span> é azul.
 
 - Quique regular -- o objeto salta na parte inferior, e no final pula abruptamente para o topo.
-- Depois `easeOut` -- ele pula no começo, depois quica naquele lugar.
+- Depois de `easeOut` -- ele primeiro pula para o topo, e depois quica naquele lugar.
 
 ### easeInOut
 
 Podemos também mostrar o efeito tanto no começo quanto no final da animação. A transformação é chamada "easeInOut".
 
-Dado a função de tempo, calculamos o estado de animação assim:
+Dada a função de tempo, calculamos o estado de animação assim:
 
 ```js
 if (timeFraction <= 0.5) { // primeira metade da animação
@@ -372,7 +372,7 @@ if (timeFraction <= 0.5) { // primeira metade da animação
 }
 ```
 
-O código do wrapper:
+O código da envolvente:
 
 ```js
 function makeEaseInOut(timing) {
@@ -393,13 +393,13 @@ Em ação, `bounceEaseInOut`:
 
 A transformaçào "easeInOut" une dois gráficos em um: `easeIn` (regular) para a primeira metade da animação e `easeOut` (invertida) -- para a segunda parte.
 
-O efeito é claramente visto se compararmos os gráficos de `easeIn`, `easeOut` e `easeInOut` da função `circ`:
+O efeito é claramente visto se compararmos os gráficos de `easeIn`, `easeOut` e `easeInOut` da função de tempo `circ`:
 
 ![](circ-ease.svg)
 
-- <span style="color:#EE6B47">Red</span> é a variante regular de `circ` (`easeIn`).
-- <span style="color:#8DB173">Greed</span> -- `easeOut`.
-- <span style="color:#62C0DC">Blue</span> -- `easeInOut`.
+- <span style="color:#EE6B47">Vermelho</span> é a variante regular de `circ` (`easeIn`).
+- <span style="color:#8DB173">Verde</span> -- `easeOut`.
+- <span style="color:#62C0DC">Azul</span> -- `easeInOut`.
 
 Como podemos ver, o gráfico da primeira metade da animação é a reduzida `easeIn`, e a segunda metade é a reduzida `easeOut`. Como resultado, a animação começa e termina com o mesmo efeito.
 
@@ -407,13 +407,13 @@ Como podemos ver, o gráfico da primeira metade da animação é a reduzida `eas
 
 Ao invés de mover o elemento, podemos fazer outra coisa. Tudo o que precisamos é escrever a `draw` apropriada.
 
-Aqui está o texto animato "quicando":
+Aqui está o texto animado "quicando":
 
 [codetabs src="text"]
 
 ## Resumo
 
-Para animação que CSS não lida bem, ou aquelas que precisam de controle rígido, JavaScript pode ajudar. Animações JavaScript devem ser implementadas via `requestAnimationFrame`. Esse método embutido permite configurar uma callback para que seja executada quando o navegador estiver preparando uma repintura. Geralmente é bem breve, mas o tempo exato depende do navegador.
+Para animação que CSS não lida bem, ou aquelas que precisam de controle rígido, JavaScript pode ajudar. Animações com JavaScript devem ser implementadas via `requestAnimationFrame`. Esse método embutido permite configurar uma callback para que seja executada quando o navegador estiver preparando uma repintura. Geralmente é bem breve, mas o tempo exato depende do navegador.
 
 Quando uma página está em segundo plano, não ocorrem repinturas, então a callback não será executada: a animação será suspensa e não consumirá recursos. Isso é ótimo.
 
@@ -449,6 +449,6 @@ Opções:
 
 Certamente poderíamos melhorá-las, adicionar mais recursos adicionais supérfluos, mas animações JavaScript não são aplicadas no dia-a-dia. Elas são usadas para fazer coisas mais interessantes e não-padrão. Então você gostaria de adicionar novas funcionalidades quando precisa delas.
 
-Animações JavaScript podem usar qualquer função de tempo. Cobrimos muitos exemplos e transformações para fazê-las ainda mais versáteis. Ao contrário de CSS, não estamos limitados às curvas de Bezier.
+Animações com JavaScript podem usar qualquer função de tempo. Cobrimos muitos exemplos e transformações para fazê-las ainda mais versáteis. Ao contrário de CSS, não estamos limitados às curvas de Bezier.
 
 É o mesmo com `draw`: podemos animar qualquer coisa, não só propriedades CSS.
