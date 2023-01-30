@@ -4,7 +4,7 @@ Contudo, para certas *strings*, um simples `'=='` também funciona.
 
 ```js no-beautify
 if(browser == 'Edge') {
-  alert("Você tem o Edge!");
+  alert("Você usa o Edge!");
 } else if (browser == 'Chrome'
  || browser == 'Firefox'
  || browser == 'Safari'
