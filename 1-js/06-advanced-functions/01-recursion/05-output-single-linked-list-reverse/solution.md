@@ -33,11 +33,11 @@ printReverseList(list);
 
 # Using a loop
 
-The loop variant is also a little bit more complicated then the direct output.
+The loop variant is also a little bit more complicated than the direct output.
 
 There is no way to get the last value in our `list`. We also can't "go back".
 
-So what we can do is to first go through the items in the direct order and rememeber them in an array, and then output what we remembered in the reverse order:
+So what we can do is to first go through the items in the direct order and remember them in an array, and then output what we remembered in the reverse order:
 
 ```js run
 let list = {

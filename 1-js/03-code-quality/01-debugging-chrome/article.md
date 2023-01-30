@@ -1,4 +1,4 @@
-# Depuração de erros no Chrome
+# Depuração de erros no navegador
 
 Antes de escrevermos código mais complexo, vamos falar de debugging (depuração de erros).
 

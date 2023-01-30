@@ -50,23 +50,28 @@ The result of `a % b` is the [remainder](https://en.wikipedia.org/wiki/Remainder
 For instance:
 
 ```js run
-alert( 5 % 2 ); // 1, a remainder of 5 divided by 2
-alert( 8 % 3 ); // 2, a remainder of 8 divided by 3
+alert( 5 % 2 ); // 1, the remainder of 5 divided by 2
+alert( 8 % 3 ); // 2, the remainder of 8 divided by 3
+alert( 8 % 4 ); // 0, the remainder of 8 divided by 4
 ```
 
 ### Exponentiation **
 
-The exponentiation operator `a ** b` multiplies `a` by itself `b` times.
+The exponentiation operator `a ** b` raises `a` to the power of `b`.
+
+In school maths, we write that as a<sup>b</sup>.
 
 For instance:
 
 ```js run
-alert( 2 ** 2 ); // 4  (2 multiplied by itself 2 times)
-alert( 2 ** 3 ); // 8  (2 * 2 * 2, 3 times)
-alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2, 4 times)
+alert( 2 ** 2 ); // 2² = 4
+alert( 2 ** 3 ); // 2³ = 8
+alert( 2 ** 4 ); // 2⁴ = 16
 ```
 
-Mathematically, the exponentiation is defined for non-integer numbers as well. For example, a square root is an exponentiation by `1/2`:
+Just like in maths, the exponentiation operator is defined for non-integer numbers as well.
+
+For example, a square root is an exponentiation by ½:
 
 ```js run
 alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root)
@@ -76,7 +81,7 @@ alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
 
 ## String concatenation with binary +
 
-Let's meet features of JavaScript operators that are beyond school arithmetics.
+Let's meet the features of JavaScript operators that are beyond school arithmetics.
 
 Usually, the plus operator `+` sums numbers.
 
@@ -190,22 +195,22 @@ Here's an extract from the [precedence table](https://developer.mozilla.org/en-U
 | Precedence | Name | Sign |
 |------------|------|------|
 | ... | ... | ... |
-| 17 | unary plus | `+` |
-| 17 | unary negation | `-` |
-| 16 | exponentiation | `**` |
-| 15 | multiplication | `*` |
-| 15 | division | `/` |
-| 13 | addition | `+` |
-| 13 | subtraction | `-` |
+| 14 | unary plus | `+` |
+| 14 | unary negation | `-` |
+| 13 | exponentiation | `**` |
+| 12 | multiplication | `*` |
+| 12 | division | `/` |
+| 11 | addition | `+` |
+| 11 | subtraction | `-` |
 | ... | ... | ... |
-| 3 | assignment | `=` |
+| 2 | assignment | `=` |
 | ... | ... | ... |
 
-As we can see, the "unary plus" has a priority of `17` which is higher than the `13` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
+As we can see, the "unary plus" has a priority of `14` which is higher than the `11` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
 
 ## Assignment
 
-Let's note that an assignment `=` is also an operator. It is listed in the precedence table with the very low priority of `3`.
+Let's note that an assignment `=` is also an operator. It is listed in the precedence table with the very low priority of `2`.
 
 That's why, when we assign a variable, like `x = 2 * 2 + 1`, the calculations are done first and then the `=` is evaluated, storing the result in `x`.
 
@@ -299,9 +304,9 @@ Such operators have the same precedence as a normal assignment, so they run afte
 ```js run
 let n = 2;
 
-n *= 3 + 5;
+n *= 3 + 5; // right part evaluated first, same as n *= 8
 
-alert( n ); // 16  (right part evaluated first, same as n *= 8)
+alert( n ); // 16
 ```
 
 ## Increment/decrement
@@ -433,7 +438,7 @@ The list of operators:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
-These operators are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. We won't need these operators any time soon, as web development has little use of them, but in some special areas, such as cryptography, they are useful. You can read the [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Bitwise) chapter on MDN when a need arises.
+These operators are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. We won't need these operators any time soon, as web development has little use of them, but in some special areas, such as cryptography, they are useful. You can read the [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) chapter on MDN when a need arises.
 
 ## Comma
 
