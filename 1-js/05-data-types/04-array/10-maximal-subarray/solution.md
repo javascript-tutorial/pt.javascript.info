@@ -91,4 +91,4 @@ alert( getMaxSubSum([-1, -2, -3]) ); // 0
 
 O algoritmo requere exatamente 1 passagem pelo *array*, portanto o tempo de complexidade é O(n).
 
-Pode encontrar informação mais detalhada sobre o algoritmo aqui: [Sublista contígua de soma máxima](https://pt.wikipedia.org/wiki/Sublista_cont%C3%ADgua_de_soma_m%C3%A1xima). Se, ainda não for óbvio porque isso funciona, então por favor rasteie cada algoritmo nos exemplos acima e veja como trabalha, é melhor do que quaisquer palavras.
+Pode encontrar informação mais detalhada sobre o algoritmo aqui: [Sublista contígua de soma máxima](https://pt.wikipedia.org/wiki/Sublista_cont%C3%ADgua_de_soma_m%C3%A1xima). Se, ainda não for óbvio porque isso funciona, então por favor rasteie o algoritmo nos exemplos acima e veja como trabalha, é melhor do que quaisquer palavras.

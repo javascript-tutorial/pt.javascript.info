@@ -2,7 +2,7 @@ O resultado é `4`:
 
 
 ```js run
-let fruits = ["Maçã", "Pêra", "Laranja"];
+let fruits = ["Maçã", "Pera", "Laranja"];
 
 let shoppingCart = fruits;
 

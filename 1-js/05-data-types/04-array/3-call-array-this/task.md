@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Invocando o contexto de um *array*
+# Chamando uma função no contexto de um *array*
 
 Qual é o resultado? Porquê?
 

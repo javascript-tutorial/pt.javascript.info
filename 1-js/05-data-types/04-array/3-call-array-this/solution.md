@@ -1,4 +1,4 @@
-A invocação `arr[2]()` é sintáticamente a antiga `obj[method]()`; no papel de `obj` temos `arr`, e no papel de `method` temos `2`.
+A chamada `arr[2]()` é sintaticamente a antiga `obj[method]()`; no papel de `obj` temos `arr`, e no papel de `method` temos `2`.
 
 Assim, temos uma chamada da função `arr[2]` como um método de objeto. Naturalmente, como ela recebe em `this` a referência ao objeto `arr`, ela exibe o *array*:
 
@@ -12,4 +12,4 @@ arr.push(function() {
 arr[2](); // a,b,function(){...}
 ```
 
-O *array* tem 3 valores: inicialmente dois, mais a função.
+O *array* tem 3 valores: inicialmente tinha dois, e a função foi adicionada.
