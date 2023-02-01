@@ -17,7 +17,7 @@ let arr = new Array();
 let arr = [];
 ```
 
-Quase sempre é usada a segunda sintaxe. Também podemos fornecer elementos iniciais entre os parênteses:
+Quase sempre é usada a segunda sintaxe. Também podemos fornecer elementos iniciais entre os parênteses retos:
 
 ```js
 let fruits = ["Maçã", "Laranja", "Ameixa"];
@@ -25,7 +25,7 @@ let fruits = ["Maçã", "Laranja", "Ameixa"];
 
 Os elementos de um *array* são numerados, começando por zero.
 
-Podemos obter um elemento pelo seu número entre parênteses retos:
+Podemos obter um elemento fornecendo a sua posição entre parênteses retos:
 
 ```js run
 let fruits = ["Maçã", "Laranja", "Ameixa"];
@@ -38,16 +38,16 @@ alert( fruits[2] ); // Ameixa
 Podemos substituir um elemento:
 
 ```js
-fruits[2] = 'Pêra'; // now ["Maçã", "Laranja", "Pêra"]
+fruits[2] = 'Pera'; // now ["Maçã", "Laranja", "Pera"]
 ```
 
 ...Ou adicionar um novo ao *array*:
 
 ```js
-fruits[3] = 'Limão'; // now ["Maçã", "Laranja", "Pêra", "Limão"]
+fruits[3] = 'Limão'; // now ["Maçã", "Laranja", "Pera", "Limão"]
 ```
 
-O número total dos elementos no *array* é o seu `*length*` (comprimento):
+O número total dos elementos no *array* é o seu comprimento (`*length*`):
 
 ```js run
 let fruits = ["Maçã", "Laranja", "Ameixa"];
@@ -92,13 +92,45 @@ let fruits = [
 O estilo de "vírgula final" torna mais fácil inserir/remover itens, porque todas as linhas se tornam semelhantes.
 ````
 
+## Obtenha o último elemento com "at"
+
+[recent browser="new"]
+
+Digamos que queremos o último elemento do *array*
+
+Algumas linguagens de programação permitem o uso de indices negativos para este propósito, como `fruits[-1]`.
+
+Mas, em JavaScript isto não funciona. O resultado irá ser `undefined`, porque um índice entre parenteses retos é tratado literalmente.
+
+Podemos explicitamente calcular o índice do último elemento, e depois o aceder: `fruits[fruits.length - 1]`.
+
+```js run
+let fruits = ["Maçã", "Laranja", "Ameixa"];
+
+alert( fruits[fruits.length-1] ); // Ameixa
+```
+
+Um pouco complicado, não? Nós precisamos de escrever o nome da variável duas vezes.
+
+Felizmente, existe uma sintaxe mais curta: `fruits.at(-1)`:
+
+```js run
+let fruits = ["Maçã", "Laranja", "Ameixa"];
+
+// o mesmo que fruits[fruits.length-1]
+alert( fruits.at(-1) ); // Ameixa
+```
+
+Por outras palavras, `arr.at(i)`:
+- é exatamente o mesmo que `arr[i]`, se `i >= 0`.
+- para valores negativos de `i`,  a procura começa do fim do *array*.
 
 ## Métodos pop/push, shift/unshift
 
-Uma [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) (*fila*) é um dos usos mais comuns de um *array*. Em ciência dos computadores, isto significa uma coleção ordenada de elementos que suporta duas operações:
+Uma *fila* ([queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type))) é um dos usos mais comuns para um *array*. Em ciência dos computadores, ela significa uma coleção ordenada de elementos que suporta duas operações:
 
 - `push` adiciona um elemento ao final.
-- `shift` obtém um elemento do início, avançando a fila, de modo que o 2º elemento se torne no 1º.
+- `shift` obtém um elemento do início, avançando a fila, de modo que o 2º elemento se torna no 1º.
 
 ![](queue.svg)
 
