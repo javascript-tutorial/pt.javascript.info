@@ -47,7 +47,7 @@ fruits[2] = 'Pera'; // now ["Maçã", "Laranja", "Pera"]
 fruits[3] = 'Limão'; // now ["Maçã", "Laranja", "Pera", "Limão"]
 ```
 
-O número total dos elementos no *array* é o seu comprimento (`*length*`):
+O número total dos elementos no *array* é o seu comprimento (`length`):
 
 ```js run
 let fruits = ["Maçã", "Laranja", "Ameixa"];
