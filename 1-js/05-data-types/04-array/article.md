@@ -145,7 +145,7 @@ Ela suporta duas operações:
 - `push` adiciona um elemento ao final.
 - `pop` toma um elemento do final.
 
-Assim, novos elementos são adicionados ou tomados sempre ao/do "final".
+Assim, novos elementos são sempre adicionados ou tomados do "final".
 
 Uma pilha (*stack*) é geralmente ilustrada como um baralho de cartas: novas cartas são adicionadas ao topo ou tiradas do topo:
 
@@ -153,61 +153,63 @@ Uma pilha (*stack*) é geralmente ilustrada como um baralho de cartas: novas car
 
 Para pilhas, o último item inserido é recebido primeiro, o que também é chamado de princípio *LIFO* (*Last-In-First-Out*) (o-Último-a-Entrar-é-o-Primeiro-a-Sair). Para filas (*queues*), nós temos *FIFO* (*First-In-First-Out*) (o-Primeiro-a-Entrar-é-o-Primeiro-a-Sair).
 
-Os *arrays* em JavaScript tanto podem  trabalhar como uma fila, como também uma pilha. Eles permitem-lhe adicionar/remover elementos quer ao/do início como ao/do final.
+Os *arrays* em JavaScript tanto podem trabalhar como uma fila, ou como uma pilha. Eles permitem-lhe adicionar/remover elementos quer ao/do início como ao/do final.
 
-Em ciência dos computadores, a estrutura de dados que permite isto é chamada de [deque](https://pt.wikipedia.org/wiki/Deque_(estruturas_de_dados)).
+Em ciência dos computadores, a estrutura de dados que permite isto é chamada  [deque](https://pt.wikipedia.org/wiki/Deque_(estruturas_de_dados)).
 
 **Métodos que trabalham no final do _array_:**
 
-`*pop*`
+`pop`
 : Extrai o último elemento do *array* e o retorna:
 
     ```js run
-    let fruits = ["Maçã", "Laranja", "Pêra"];
+    let fruits = ["Maçã", "Laranja", "Pera"];
 
-    alert( fruits.pop() ); // remove "Pêra" e o exibe
+    alert( fruits.pop() ); // remove "Pera" e exibe
 
     alert( fruits ); // Maçã, Laranja
     ```
 
-`*push*`
+Ambos, `fruits.pop()` e `fruits.at(-1)` retornam o último elemento do *array*, mas `fruits.pop()` adicionalmente modifica o *array* removendo-o.
+
+`push`
 : Adiciona o elemento ao final do *array*:
 
     ```js run
     let fruits = ["Maçã", "Laranja"];
 
-    fruits.push("Pêra");
+    fruits.push("Pera");
 
-    alert( fruits ); // Maçã, Laranja, Pêra
+    alert( fruits ); // Maçã, Laranja, Pera
     ```
 
     A chamada `fruits.push(...)` é igual a `fruits[fruits.length] = ...`.
 
 **Métodos que trabalham no início do _array_:**
 
-`*shift*`
+`shift`
 : Extrai o primeiro elemento do *array* e o retorna:
 
     ```js
-    let fruits = ["Maçã", "Laranja", "Pêra"];
+    let fruits = ["Maçã", "Laranja", "Pera"];
 
-    alert( fruits.shift() ); // remove Maçã e o exibe
+    alert( fruits.shift() ); // remove Maçã e exibe
 
-    alert( fruits ); // Laranja, Pêra
+    alert( fruits ); // Laranja, Pera
     ```
 
-`*unshift*`
+`unshift`
 : Adiciona o elemento ao início do *array*:
 
     ```js
-    let fruits = ["Laranja", "Pêra"];
+    let fruits = ["Laranja", "Pera"];
 
     fruits.unshift('Maçã');
 
-    alert( fruits ); // Maçã, Laranja, Pêra
+    alert( fruits ); // Maçã, Laranja, Pera
     ```
 
-Os métodos `*push*` e `*unshift*` podem adicionar múltiplos elementos de uma só vez:
+Os métodos `push` e `unshift` podem adicionar múltiplos elementos de uma só vez:
 
 ```js run
 let fruits = ["Maçã"];
@@ -236,32 +238,32 @@ let arr = fruits; // cópia por referência (duas variáveis referenciam o mesmo
 
 alert( arr === fruits ); // true (verdadeiro)
  
-arr.push("Pêra"); // modifique o array por referência
+arr.push("Pera"); // modifique o array por referência
 
-alert( fruits ); // Banana, Pêra - 2 itens agora
+alert( fruits ); // Banana, Pera - 2 itens agora
 ```
 
-...Mas, o que torna os *arrays* realmente  especiais é a sua representação interna. O interpretador de JavaScript tenta armazenar os seus elementos numa área contígua de memória, um após outro, precisamente como mostrado nas ilustrações deste capítulo, e existem também outras optimizações para fazerem os *arrays* trabalhar verdadeiramente rápido.
+...Mas, o que torna os *arrays* realmente  especiais é a sua representação interna. O interpretador de JavaScript tenta armazenar os seus elementos numa área contígua de memória, um após outro, precisamente como mostrado nas ilustrações deste capítulo, e também existem outras optimizações para fazer os *arrays* trabalhar verdadeiramente rápido.
 
-Mas, todas elas quebram se pararmos de trabalhar com um *array* como uma "coleção ordenada", e começarmos a trabalhar com ele como se fosse um objeto regular.
+Mas, todas elas quebram se pararmos de trabalhar com um *array* como com uma "coleção ordenada", e começarmos a trabalhar com ele como se fosse um objeto regular.
 
 Por exemplo, tecnicamente nós podemos fazer isto:
 
 ```js
 let fruits = []; // cria um array
 
-fruits[99999] = 5; // atribui uma propriedade com um índice muito maior do que o seu comprimento
+fruits[99999] = 5; // atribui uma propriedade com um índice muito maior do que o comprimento do *array*
 
 fruits.age = 25; // cria uma propriedade com um nome arbitrário
 ```
 
-Isso é possível, porque *arrays* são objetos na sua base. Podemos adicionar qualquer propriedade a eles.
+Isso é possível, porque *arrays* são objetos na sua base. Podemos adicionar quaisquer propriedades a eles.
 
 Mas, o interpretador irá ver que nós estamos a trabalhar com o *array* como com um objeto regular. Optimizações especificas para *arrays* não são adequadas a tais casos e serão desativadas, os seus benefícios desaparecem.
 
 Formas de má utilização de um *array*:
 
-- Adicionar uma propriedade não-numérica como `arr.test = 5`. 
+- Adicionar uma propriedade não-numérica, como `arr.test = 5`. 
 - Formar buracos, como: adicionar `arr[0]` e depois `arr[1000]` (e nada entre eles).
 - Preencher o *array* por ordem inversa, como `arr[1000]`, `arr[999]` e assim por diante.
 
@@ -273,13 +275,13 @@ Os métodos `push/pop` correm rápidamente, enquanto `shift/unshift` são lentos
 
 ![](array-speed.svg)
 
-Porque é mais rápido trabalhar  no final de um *array*, do que no seu início? Vejamos o que acontece durante a execução:
+Porque é mais rápido trabalhar no final de um *array*, do que no seu início? Vejamos o que acontece durante a execução:
 
 ```js
 fruits.shift(); // tome 1 elemento do início
 ```
 
-Não é suficiente tomar e remover o elemento com o número `0`. Os outros elementos também precisam de ser renumerados.
+Não é suficiente tomar e remover o elemento com o índice `0`. Os outros elementos também precisam de ser reposicionados.
 
 A operação `shift` deve efetuar 3 coisas:
 
