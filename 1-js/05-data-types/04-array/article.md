@@ -96,7 +96,7 @@ O estilo de "vírgula final" torna mais fácil inserir/remover itens, porque tod
 
 [recent browser="new"]
 
-Digamos que queremos o último elemento do *array*
+Digamos que queremos o último elemento do *array*.
 
 Algumas linguagens de programação permitem o uso de indices negativos para este propósito, como `fruits[-1]`.
 
@@ -123,7 +123,7 @@ alert( fruits.at(-1) ); // Ameixa
 
 Por outras palavras, `arr.at(i)`:
 - é exatamente o mesmo que `arr[i]`, se `i >= 0`.
-- para valores negativos de `i`,  a procura começa do fim do *array*.
+- para valores negativos de `i`,  a procura começa pelo fim do *array*.
 
 ## Métodos pop/push, shift/unshift
 
@@ -227,7 +227,7 @@ Um *array* é um tipo especial de objeto. Os parêntesis retos usados para acede
 
 Eles são uma extensão aos objetos, fornecendo métodos especiais para trabalhar com coleções ordenadas de dados e também a propriedade `length`. Assim, no seu núcleo um *array* é um objeto.
 
-Lembre-se, só existem oito tipos de dados básicos em JavaScript (veja o capítulo [Tipos de dads](info:types) para mais informação). O *array* é um objeto e portanto comporta-se como um objeto.
+Lembre-se, só existem oito tipos de dados básicos em JavaScript (veja o capítulo [Tipos de dads](info:types) para mais informação). O *array* é um objeto, e portanto comporta-se como um objeto.
 
 Por exemplo, ele é copiado por referência:
 
@@ -243,7 +243,7 @@ arr.push("Pera"); // modifique o array por referência
 alert( fruits ); // Banana, Pera - 2 itens agora
 ```
 
-...Mas, o que torna os *arrays* realmente  especiais é a sua representação interna. O interpretador de JavaScript tenta armazenar os seus elementos numa área contígua de memória, um após outro, precisamente como mostrado nas ilustrações deste capítulo, e também existem outras optimizações para fazer os *arrays* trabalhar verdadeiramente rápido.
+...Mas, o que torna os *arrays* realmente  especiais é a sua representação interna. O interpretador de JavaScript tenta armazenar os seus elementos numa área contígua de memória, um após outro, precisamente como mostrado nas ilustrações deste capítulo, e também existem outras optimizações para fazerem os *arrays* trabalhar verdadeiramente rápido.
 
 Mas, todas elas quebram se pararmos de trabalhar com um *array* como com uma "coleção ordenada", e começarmos a trabalhar com ele como se fosse um objeto regular.
 
@@ -267,11 +267,11 @@ Formas de má utilização de um *array*:
 - Formar buracos, como: adicionar `arr[0]` e depois `arr[1000]` (e nada entre eles).
 - Preencher o *array* por ordem inversa, como `arr[1000]`, `arr[999]` e assim por diante.
 
-Por favor, pense em *arrays* como estruturas especiais para trabalhar com *dados ordenados*. Eles fornecem métodos especiais para isso. *Arrays* são cuidadosamente afinados dentro dos interpretadores de JavaScript (*JavaScript engines*) para trabalharem com dados ordenados contíguos, por favor os utilize dessa forma. E, se precisar de chaves arbitrárias, são altas as chances de que na verdade necessite de um objeto regular `{}`.
+Por favor, pense em *arrays* como estruturas especiais para trabalhar com *dados ordenados*. Eles fornecem métodos especiais para isso. *Arrays* são cuidadosamente afinados dentro dos interpretadores de JavaScript (*JavaScript engines*) para trabalharem com dados ordenados contíguos, por favor os utilize desta forma. E, se precisar de chaves arbitrárias, são altas as chances de que na verdade necessite de um objeto regular `{}`.
 
 ## Performance
 
-Os métodos `push/pop` correm rápidamente, enquanto `shift/unshift` são lentos.
+Os métodos `push/pop` correm rapidamente, enquanto `shift/unshift` são lentos.
 
 ![](array-speed.svg)
 
@@ -293,7 +293,7 @@ A operação `shift` deve efetuar 3 coisas:
 
 **Quantos mais elementos no *array*, mais tempo se leva para os mover, e mais operações em memória.**
 
-A semelhança acontece com `unshift`: para adicionar um elemento ao início do *array*, nós primeiro precisamos de mover os elementos existentes para à direita, aumentando os seus indices.
+A semelhança acontece com `unshift`: para adicionar um elemento ao início do *array*, nós primeiro precisamos de mover os elementos existentes para a direita, aumentando os seus indices.
 
 E, o que se passa com `push/pop`? Eles, não precisam de mover nada. Para extrair um elemento do final, o método `pop` limpa o índice e diminui `length`.
 
@@ -314,7 +314,7 @@ O semelhante se passa com o método `push`.
 Uma das velhas formas para percorrer itens de um *array*, é o ciclo `for` sobre os seus indices:
 
 ```js run
-let arr = ["Maçã", "Laranja", "Pêra"];
+let arr = ["Maçã", "Laranja", "Pera"];
 
 *!*
 for (let i = 0; i < arr.length; i++) {
@@ -339,12 +339,12 @@ O `for..of` não dá acesso ao índice do elemento atual, mas apenas ao seu valo
 Tecnicamente, uma vez que *arrays* são objetos, também é possível usar `for..in`:
 
 ```js run
-let arr = ["Maçã", "Laranja", "Pêra"];
+let arr = ["Maçã", "Laranja", "Pera"];
 
 *!*
 for (let key in arr) {
 */!*
-  alert( arr[key] ); // Maçã, Laranja, Pêra
+  alert( arr[key] ); // Maçã, Laranja, Pera
 }
 ```
 
@@ -352,9 +352,9 @@ Mas, na verdade é uma má ideia. Existem potenciais problemas com isso:
 
 1. O ciclo `for..in` itera sobre *todas as propriedades*, não apenas sobre as numéricas.
 
-    Existem os objetos chamados de "semelhantes-a-arrays" (*array-like*), no navegador e em outros ambientes, que *se parecem com arrays*. Isto é, eles têm as propriedades `length` e indices, mas também podem ter outras propriedades não-numéricas e métodos, que geralmente não precisamos. Contudo, o ciclo `for..in` irá listar todos elas. Assim, se precisarmos de trabalhar com objetos semelhantes-a-arrays, aí essas propriedades "extra" podem constituir um problema.
+    Existem os objetos chamados de "semelhantes-a-arrays" (*array-like*), no navegador e em outros ambientes, que *se parecem com arrays*. Isto é, eles têm as propriedades `length` e indices, mas também podem ter outras propriedades não-numéricas e métodos, que geralmente não precisamos. Contudo, o ciclo `for..in` irá listar todas elas. Assim, se precisarmos de trabalhar com objetos semelhantes-a-arrays, aí essas propriedades "extra" podem constituir um problema.
 
-2. O laço (*loop*) `for..in` está optimizado para objetos genéricos, não *arrays*, e desta forma é 10-100 vezes mais lento. Claro que ainda assim é muito rápido. A velocidade pode apenas ser importante em pontos cruciais (*bottlenecks*). Mas, deveríamos estar conscientes desta diferença.
+2. O laço (*loop*) `for..in` está optimizado para objetos genéricos, não *arrays*, e desta forma é 10-100 vezes mais lento. Claro que ainda assim é muito rápido. A velocidade pode apenas ser importante em pontos cruciais (*bottlenecks*). Mas, devemos estar conscientes desta diferença.
 
 Em geral, não deveríamos usar `for..in` para *arrays*.
 
@@ -372,7 +372,7 @@ fruits[123] = "Maçã";
 alert( fruits.length ); // 124
 ```
 
-Note que geralmente nós não usamos *arrays* dessa forma.
+Note que geralmente nós não usamos *arrays* desta forma.
 
 Uma outra coisa interessante sobre a propriedade `length`, é que pode ser alterada.
 
@@ -396,12 +396,12 @@ Assim, a forma mais simples para limpar um array é: `arr.length = 0;`.
 Há mais uma sintaxe para se criar um *array*:
 
 ```js
-let arr = *!*new Array*/!*("Maçã", "Pêra", "etc");
+let arr = *!*new Array*/!*("Maçã", "Pera", "etc");
 ```
 
 Raramente é usada, porque os parênteses retos são mais curtos `[]`. Além disso, existe uma característica peculiar a acompanhá-la.
 
-Se `new Array` for chamada com um único argumento e sendo este  numérico, então ela cria um *array* *sem itens, mas com esse comprimento*.
+Se `new Array` for chamada com um único argumento e sendo este numérico, então ela cria um *array* *sem itens, mas com esse comprimento*.
 
 Vejamos como alguém pode se atraiçoar a si próprio:
 
@@ -429,7 +429,7 @@ let matrix = [
 alert( matrix[1][1] ); // o elemento central
 ```
 
-## *toString*
+## toString
 
 Os *arrays* têm a sua própria implementação do método `toString`, que retorna uma lista de elementos separados por vírgulas.
 
@@ -475,7 +475,7 @@ Vamos nos recordar das regras:
 
 A comparação exata (*strict*) `===` é ainda mais simples, porque ela não converte tipos.
 
-Assim, se nós compararmos *arrays* com `==`, eles nunca são iguais, a não ser que estejamos a comparar duas variáveis que referenciam exatamente o mesmo *array*.
+Assim, se nós compararmos *arrays* com `==`, eles nunca são iguais, a não ser que comparemos duas variáveis que referenciam exatamente o mesmo *array*.
 
 Por exemplo:
 ```js run
@@ -501,7 +501,7 @@ Então, a comparação continua entre primitivos, como é descrita no capítulo 
 // depois de [] ser convertido para ''
 alert( 0 == '' ); // true, como '' é convertida para 0
 
-alert('0' == '' ); // false, nenhuma conversão de tipos de dados, só strings diferentes
+alert('0' == '' ); // false, nenhuma conversão de tipos de dados, apenas strings diferentes
 ```
 
 Então, como comparar *arrays*?
@@ -512,20 +512,25 @@ Isto é simples: não use o operador `==`. Em vez disto, os compare item-por-ite
 
 O *array* é um tipo especial de objeto, apropriado para armazenar e gerir itens de dados ordenados.
 
-- A declaração:
+A declaração:
 
-    ```js
-    // parênteses retos (usual)
-    let arr = [item1, item2...];
+```js
+// parênteses retos (usual)
+let arr = [item1, item2...];
 
-    // new Array (excepcionalmente rara)
-    let arr = new Array(item1, item2...);
-    ```
+// new Array (excepcionalmente rara)
+let arr = new Array(item1, item2...);
+```
 
-    A chamada a `new Array(number)` cria um *array* com o comprimento dado, mas sem elementos.
+A chamada a `new Array(number)` cria um *array* com o comprimento dado, mas sem elementos.
 
 - A propriedade `length` é o comprimento do *array* ou, para ser preciso, o seu último índice numérico mais um. Ela é auto-ajustada por métodos do *array*.
 - Se nós encurtarmos `length` manualmente, o *array* é truncado.
+
+Obtendo os elementos:
+
+- nós podemos obter o elemento por meio do seu índice, como `arr[0]`
+- também podemos usar o método `at(i)`, que permite indices negativos. Para valores negativos de `i`, a procura começa pelo fim do array. Se `i >= 0`, funciona como `arr[i]`.
 
 Podemos usar um *array* como uma *deque* (estrutura de dados), com as seguintes operações:
 
