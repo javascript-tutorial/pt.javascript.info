@@ -1,150 +1,150 @@
-# Type Conversions
+# Conversões de Tipo
 
-Most of the time, operators and functions automatically convert the values given to them to the right type.
+Na maior parte do tempo, operadores e funções convertem os valores dados a eles para o tipo certo automaticamente.
 
-For example, `alert` automatically converts any value to a string to show it. Mathematical operations convert values to numbers.
+Por exemplo, `alert` converte automaticamente qualquer valor para string antes de mostrá-lo. Operações matemáticas convertem os valores para números.
 
-There are also cases when we need to explicitly convert a value to the expected type.
+Também existem casos em que precisamos explicitamente de converter um valor para o tipo que precisamos.
 
-```smart header="Not talking about objects yet"
-In this chapter, we won't cover objects. For now we'll just be talking about primitives.
+```smart header="Não vamos falar de objetos"
+Nesse capítulo, não vamos falar sobre objetos. Por agora, vamos abordar apenas os tipos primitivos.
 
-Later, after we learn about objects, in the chapter <info:object-toprimitive> we'll see how objects fit in.
+Mais tarde, após abordarmos objetos no capítulo <info:object-toprimitive>, veremos como objetos se comportam em conversões de tipo.
 ```
 
-## String Conversion
+## Conversões para String
 
-String conversion happens when we need the string form of a value.
+As conversões para string acontecem quando precisamos da forma string de um valor.
 
-For example, `alert(value)` does it to show the value.
+Por exemplo, `alert(value)` faz isso para mostrar o valor.
 
-We can also call the `String(value)` function to convert a value to a string:
+Também podemos usar a função `String(value)` para converter um valor para string:
 
 ```js run
 let value = true;
 alert(typeof value); // boolean
 
 *!*
-value = String(value); // now value is a string "true"
+value = String(value); // agora value é uma string "true"
 alert(typeof value); // string
 */!*
 ```
 
-String conversion is mostly obvious. A `false` becomes `"false"`, `null` becomes `"null"`, etc.
+Conversões para string são as mais fáceis. `false` se torna `"false"`, `null` vira `"null"`, e assim por diante.
+ 
+## Conversões Numéricas
 
-## Numeric Conversion
+As conversões numéricas acontecem automaticamente em funções e expressões matemáticas.
 
-Numeric conversion happens in mathematical functions and expressions automatically.
-
-For example, when division `/` is applied to non-numbers:
+Por exemplo, quando `/` é usado com valores que não são números:
 
 ```js run
-alert( "6" / "2" ); // 3, strings are converted to numbers
+alert( "6" / "2" ); // 3, strings viram números
 ```
 
-We can use the `Number(value)` function to explicitly convert a `value` to a number:
+Podemos usar a função `Number(value)` para converter `value` para um número.
 
 ```js run
 let str = "123";
 alert(typeof str); // string
 
-let num = Number(str); // becomes a number 123
+let num = Number(str); // vira o número 123
 
 alert(typeof num); // number
 ```
 
-Explicit conversion is usually required when we read a value from a string-based source like a text form but expect a number to be entered.
+Conversões explícitas geralmente são obrigatórias quando estamos a ler um valor de uma fonte baseada em string - como um texto - mas esperamos receber um valor numérico.
 
-If the string is not a valid number, the result of such a conversion is `NaN`. For instance:
+Se a string não é um valor numérico válido, o resultado da conversão é `NaN`. Por exemplo:
 
 ```js run
-let age = Number("an arbitrary string instead of a number");
+let age = Number("uma string ao invés de um número");
 
-alert(age); // NaN, conversion failed
+alert(age); // NaN, a conversão falhou
 ```
 
-Numeric conversion rules:
+Regras de conversões numéricas:
 
-| Value |  Becomes... |
+| Valor |  Se torna... |
 |-------|-------------|
 |`undefined`|`NaN`|
 |`null`|`0`|
-|<code>true&nbsp;and&nbsp;false</code> | `1` and `0` |
-| `string` | Whitespaces from the start and end are removed. If the remaining string is empty, the result is `0`. Otherwise, the number is "read" from the string. An error gives `NaN`. |
+|<code>true&nbsp;e&nbsp;false</code>| `1` e `0` |
+| `string` | Espaços em branco do início e do fim são removidos. Se a string que sobrar for vazia, o resultado é `0`. Senão, o número é "lido" a partir da string. Um erro nos dá `NaN`|
 
-Examples:
+Exemplos:
 
 ```js run
 alert( Number("   123   ") ); // 123
-alert( Number("123z") );      // NaN (error reading a number at "z")
+alert( Number("123z") );      // NaN (Erro ao ler um número em "z")
 alert( Number(true) );        // 1
 alert( Number(false) );       // 0
 ```
 
-Please note that `null` and `undefined` behave differently here: `null` becomes zero while `undefined` becomes `NaN`.
+Note que `null` e `undefined` se comportam de maneira diferente: `null` se torna zero, enquanto `undefined` vira `NaN`.
 
-Most mathematical operators also perform such conversion, we'll see that in the next chapter.
+A maioria dos operadores matemáticos também executam essa conversão, o que veremos no próximo capítulo.
 
-## Boolean Conversion
+## Conversões Booleanas
 
-Boolean conversion is the simplest one.
+Conversões booleanas são as mais simples de todas.
 
-It happens in logical operations (later we'll meet condition tests and other similar things) but can also be performed explicitly with a call to `Boolean(value)`.
+Acontecem em operações lógicas (depois veremos testes de condição e outras coisas similares), mas também podem acontecer explicitamente ao usar a função `Boolean(value)`.
 
-The conversion rule:
+A regra de conversão:
 
-- Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined`, and `NaN`, become `false`.
-- Other values become `true`.
+- Valores que são intuitivamente "vazios", como "0", uma string vazia (""), `null`, `undefined` e `NaN`, viram `false`.
+- Outros valores viram `true`.
 
-For instance:
+Por exemplo:
 
 ```js run
 alert( Boolean(1) ); // true
 alert( Boolean(0) ); // false
 
-alert( Boolean("hello") ); // true
+alert( Boolean("Olá") ); // true
 alert( Boolean("") ); // false
 ```
 
-````warn header="Please note: the string with zero `\"0\"` is `true`"
-Some languages (namely PHP) treat `"0"` as `false`. But in JavaScript, a non-empty string is always `true`.
+````warn header="Note que uma string com um zero `\"0\"` é `true`"
+Algumas linguagens de programação (como PHP), tratam `\"0\"` como `false`. Mas no JavaScript, uma string não-vazia sempre é `true`.
 
 ```js run
 alert( Boolean("0") ); // true
-alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
+alert( Boolean(" ") ); // espaços também são true (toda string não-vazia se torna true)
 ```
 ````
 
-## Summary
+## Sumário
 
-The three most widely used type conversions are to string, to number, and to boolean.
+As três conversões mais comuns são para string, number e boolean.
 
-**`String Conversion`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+**`Conversões para String`** -- Ocorrem quando mostramos algum valor. Podem ser explicitamente feitas com `String(value)`. As conversões para string geralmente são óbvias com tipos primitivos.
 
-**`Numeric Conversion`** -- Occurs in math operations. Can be performed with `Number(value)`.
+**`Conversões Numéricas`** -- Ocorrem em operações matemáticas. Podem ser feitas com `Number(value)`.
 
-The conversion follows the rules:
+A conversão segue as seguintes regras:
 
-| Value |  Becomes... |
+| Valor |  Se torna... |
 |-------|-------------|
 |`undefined`|`NaN`|
 |`null`|`0`|
-|<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
-| `string` | The string is read "as is", whitespaces from both sides are ignored. An empty string becomes `0`. An error gives `NaN`. |
+|<code>true&nbsp;/&nbsp;false</code>| `1 / 0` |
+| `string` | A string é lida "como ela é", espaços em branco do início e do fim são ignorados. Uma string vazia, vira `0`. Um erro nos dá `NaN`|
 
-**`Boolean Conversion`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
+**`Conversões Booleanas`** -- Ocorrem em operações lógicas. Podem ser feitas com `Boolean(value)`.
 
-Follows the rules:
+Seguem as regras:
 
-| Value |  Becomes... |
+| Valor |  Se torna... |
 |-------|-------------|
 |`0`, `null`, `undefined`, `NaN`, `""` |`false`|
-|any other value| `true` |
+|qualquer outro valor| `true` |
 
 
-Most of these rules are easy to understand and memorize. The notable exceptions where people usually make mistakes are:
+A maior parte dessas regras são fáceis de entender e memorizar. Exceções notáveis em que as pessoas geralmente erram são:
 
-- `undefined` is `NaN` as a number, not `0`.
-- `"0"` and space-only strings like `"   "` are true as a boolean.
+- `undefined` é `NaN` como número, não `0`.
+- `"0"` e strings só com espaços `"   "` são `true` como booleanos.
 
-Objects aren't covered here. We'll return to them later in the chapter <info:object-toprimitive> that is devoted exclusively to objects after we learn more basic things about JavaScript.
+Objetos não são citados aqui. Retornaremos depois no capítulo <info:object-toprimitive> que é dedicado exclusivamente a objetos, após aprendermos coisas mais básicas de JavaScript.
