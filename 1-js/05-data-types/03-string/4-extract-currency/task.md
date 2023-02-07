@@ -2,13 +2,13 @@ importance: 4
 
 ---
 
-# Extract the money
+# Extraia o valor monetário
 
-We have a cost in the form `"$120"`. That is: the dollar sign goes first, and then the number.
+Temos um custo na forma `"$120"`. Isto é: o sinal de dólar vem primeiro, e a seguir o número.
 
-Create a function `extractCurrencyValue(str)` that would extract the numeric value from such string and return it. 
+Crie uma função `extractCurrencyValue(str)` que faça a extração do valor numérico dessa *string* e o retorne.
 
-The example:
+O exemplo:
 
 ```js
 alert( extractCurrencyValue('$120') === 120 ); // true

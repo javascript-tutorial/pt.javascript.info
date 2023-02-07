@@ -1,23 +1,23 @@
 # Strings
 
-In JavaScript, the textual data is stored as strings. There is no separate type for a single character.
+Em JavaScript, os dados de texto são armazenados como *strings* (cadeias-de-carateres). E não existe um tipo separado para um único caractere.
 
-The internal format for strings is always [UTF-16](https://en.wikipedia.org/wiki/UTF-16), it is not tied to the page encoding.
+O formato interno das *strings* é sempre em [UTF-16](https://en.wikipedia.org/wiki/UTF-16), por isso não está conectado à codificação da página (*page encoding*).
 
-## Quotes
+## Aspas
 
-Let's recall the kinds of quotes.
+Vamos nos lembrar dos tipos de aspas.
 
-Strings can be enclosed within either single quotes, double quotes or backticks:
+As *strings* podem estar dentro de aspas simples, aspas duplas ou acentos graves (*backticks*):
 
 ```js
-let single = 'single-quoted';
-let double = "double-quoted";
+let single = 'entre aspas simples';
+let double = "entre aspas duplas";
 
-let backticks = `backticks`;
+let backticks = `entre acentos graves`;
 ```
 
-Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, by wrapping it in `${…}`:
+Aspas simples e duplas são essencialmente o mesmo. *Backticks*, contudo, nos permitem inserir qualquer expressão numa *string*, envolvendo ela em `${…}`:
 
 ```js run
 function sum(a, b) {
@@ -27,246 +27,246 @@ function sum(a, b) {
 alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
 ```
 
-Another advantage of using backticks is that they allow a string to span multiple lines:
+Uma outra vantagem em usar *backticks*, está em que eles permitem a uma *string* estender-se por múltiplas linhas:
 
 ```js run
-let guestList = `Guests:
+let guestList = `Convidados:
  * John
  * Pete
  * Mary
 `;
 
-alert(guestList); // a list of guests, multiple lines
+alert(guestList); // uma lista de convidados, múltiplas linhas
 ```
 
-Looks natural, right? But single or double quotes do not work this way.
+Parece natural, não? Mas aspas simples ou duplas não funcionam desta maneira.
 
-If we use them and try to use multiple lines, there'll be an error:
+Se as usarmos e tentarmos estender por múltiplas linhas, irá ocorrer um erro:
 
 ```js run
 let guestList = "Guests: // Error: Unexpected token ILLEGAL
   * John";
 ```
 
-Single and double quotes come from ancient times of language creation when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
+Aspas simples e duplas vêm de tempos antigos da criação da linguagem, quando a necessidade de *strings* multi-linha não era tida em consideração. Os *backticks* apareceram muito mais tarde e portanto são mais versáteis.
 
-Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. This is called "tagged templates". This feature makes it easier to implement custom templating, but is rarely used in practice. You can read more about it in the [manual](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
+Os *backticks* também nos permitem especificar uma "função modelo" (*template function*) antes do primeiro *backtick*. A sintaxe é: <code>func&#96;string&#96;</code>. A função `func` é chamada automaticamente, recebe a *string* e expressões nesta inseridas, e as pode processar. Isto é chamado de "modelos etiquetados" (*tagged templates*). Esta funcionalidade torna mais fácil implementar modelos personalizados (*custom templating*), mas na prática raramente é utilizada. Você poderá ler mais sobre isso no [manual](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
 
-## Special characters
+## Carateres especiais
 
-It is still possible to create multiline strings with single and double quotes by using a so-called "newline character", written as `\n`, which denotes a line break:
+Ainda é possível criar *strings* multi-linha com aspas simples ou duplas usando o chamado "caractere de nova-linha", escrito como `\n`, que denota uma quebra de linha:
 
 ```js run
 let guestList = "Guests:\n * John\n * Pete\n * Mary";
 
-alert(guestList); // a multiline list of guests
+alert(guestList); // uma lista de convidados em múltiplas linhas
 ```
 
-For example, these two lines are equal, just written differently:
+Por exemplo, estas duas linhas são iguais, apenas escritas de forma diferente:
 
 ```js run
-let str1 = "Hello\nWorld"; // two lines using a "newline symbol"
+let str1 = "Olá\Mundo"; // duas linhas usando o "símbolo de nova-linha"
 
-// two lines using a normal newline and backticks
-let str2 = `Hello
+// duas linhas usando uma quebra de linha normal e backticks
+let str2 = `Olá
 World`;
 
 alert(str1 == str2); // true
 ```
 
-There are other, less common "special" characters.
+Existem outros, mas menos comuns carateres "especiais".
 
-Here's the full list:
+Aqui está uma lista:
 
-| Character | Description |
+| Caractere | Descrição |
 |-----------|-------------|
-|`\n`|New line|
-|`\r`|In Windows text files a combination of two characters `\r\n` represents a new break, while on non-Windows OS it's just `\n`. That's for historical reasons, most Windows software also understands `\n`. |
-|`\'`, `\"`|Quotes|
+|`\n`|Nova linha|
+|`\r`|Em ficheiros de texto no Windows uma combinação de dois carateres `\r\n` representa uma quebra de linha, enquanto em Sistemas Operativos (SOs) não-Windows é apenas `\n`. Isto é por razões históricas, muito software Windows também compreende `\n`.|
+|`\'`, `\"`|Aspas|
 |`\\`|Backslash|
 |`\t`|Tab|
-|`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- kept for compatibility, not used nowadays. |
-|`\xXX`|Unicode character with the given hexadecimal Unicode `XX`, e.g. `'\x7A'` is the same as `'z'`.|
-|`\uXXXX`|A Unicode symbol with the hex code `XXXX` in UTF-16 encoding, for instance `\u00A9` -- is a Unicode for the copyright symbol `©`. It must be exactly 4 hex digits. |
-|`\u{X…XXXXXX}` (1 to 6 hex characters)|A Unicode symbol with the given UTF-32 encoding. Some rare characters are encoded with two Unicode symbols, taking 4 bytes. This way we can insert long codes. |
+|`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- mantidos por compatibilidade, hoje em dia não usados. |
+|`\xXX`|Caractere Unicode com unicode em hexadecimal `XX`; ex. `'\x7A'` é o mesmo que `'z'`.|
+|`\uXXXX`|Um símbolo unicode com um código em hexadecimal `XXXX` na codificação UTF-16; por exemplo `\u00A9` -- é um unicode para o símbolo de copyright `©`. Devem ser exatamente 4 dígitos hexadecimais. |
+|`\u{X…XXXXXX}` (1 a 6 carateres hexadecimais)|Um símbolo unicode na codificação UTF-32. Alguns carateres raros são codificados com dois símbolos unicode, tomando 4 bytes. Desta maneira nós podemos inserir longos códigos de carateres. |
 
-Examples with Unicode:
+Exemplos com *unicode*:
 
 ```js run
 alert( "\u00A9" ); // ©
-alert( "\u{20331}" ); // 佫, a rare Chinese hieroglyph (long Unicode)
-alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long Unicode)
+alert( "\u{20331}" ); // 佫, um hieróglifo chinês raro (unicode longo)
+alert( "\u{1F60D}" ); // 😍, um símbolo de face sorridente (outro unicode longo)
 ```
 
-All special characters start with a backslash character `\`. It is also called an "escape character".
+Todos os carateres especiais começam por um caractere *backslash* (barra-invertida) `\`. Também é chamado de "*escape character*" (caractere de escape).
 
-We might also use it if we wanted to insert a quote into the string.
+Também o utilizamos quando queremos inserir uma das aspas dentro de uma *string*.
 
-For instance:
+Por exemplo:
 
 ```js run
 alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 ```
 
-As you can see, we have to prepend the inner quote by the backslash `\'`, because otherwise it would indicate the string end.
+Como você pode ver, precedemos a aspas interior por backslash `\'`, porque de outra forma ela iria indicar o final da *string*.
 
-Of course, only the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+Evidentemente, apenas as aspas iguais às de abertura e fecho precisam de escape. Mas, como uma solução mais elegante, podemos trocar por aspas duplas ou backticks:
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
 ```
 
-Note that the backslash `\` serves for the correct reading of the string by JavaScript, then disappears. The in-memory string has no `\`. You can clearly see that in `alert` from the examples above.
+Note que a *backslash* `\` serve para a correta leitura da *string* pelo JavaScript, e depois ela desaparece. A *string* em memória não possui nenhuma `\`. Você pode claramente ver nos `alert` dos exemplos anteriores.
 
-But what if we need to show an actual backslash `\` within the string?
+Mas, e se precisarmos de realmente mostrar uma *backslash* `\` dentro de uma *string*?
 
-That's possible, but we need to double it like `\\`:
+Isto é possível, mas precisamos de a duplicar, como `\\`:
 
 ```js run
-alert( `The backslash: \\` ); // The backslash: \
+alert( `A backslash: \\` ); // A backslash: \
 ```
 
-## String length
+## Comprimento da *string*
 
-The `length` property has the string length:
+A propriedade `length` contém o comprimento da *string*:
 
 ```js run
 alert( `My\n`.length ); // 3
 ```
 
-Note that `\n` is a single "special" character, so the length is indeed `3`.
+Note que `\n` é um único caractere "especial", assim o comprimento é na verdade `3`.
 
-```warn header="`length` is a property"
-People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
+```warn header="`length` é uma propriedade"
+Pessoas que estudaram algumas outras linguagens por vezes erradamente escrevem `str.length()` em vez de apenas `str.length`, e por isso não funciona.
 
-Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it.
+Por favor, note que `str.length` é uma propriedade numérica, não uma função. Não há necessidade de se adicionar parênteses depois dela.
 ```
 
-## Accessing characters
+## Acedendo aos carateres
 
-To get a character at position `pos`, use square brackets `[pos]` or call the method [str.charAt(pos)](mdn:js/String/charAt). The first character starts from the zero position:
+Para obter o caractere na posição `pos`, use parênteses retos `[pos]` ou invoque o método [str.charAt(pos)](mdn:js/String/charAt). O primeiro caractere começa na posição zero:
 
 ```js run
-let str = `Hello`;
+let str = `Olá`;
 
-// the first character
-alert( str[0] ); // H
-alert( str.charAt(0) ); // H
+// o primeiro caractere
+alert( str[0] ); // O
+alert( str.charAt(0) ); // O
 
-// the last character
-alert( str[str.length - 1] ); // o
+// o último caractere
+alert( str[str.length - 1] ); // á
 ```
 
-The square brackets are a modern way of getting a character, while `charAt` exists mostly for historical reasons.
+Os parênteses retos são uma forma moderna de se obter um caractere, enquanto `charAt` existe mais por razões históricas.
 
-The only difference between them is that if no character is found, `[]` returns `undefined`, and `charAt` returns an empty string:
+A única diferença entre eles está em que, se nenhum caractere for encontrado, `[]` retorna `undefined`, e `charAt` retorna uma *string* vazia:
 
 ```js run
-let str = `Hello`;
+let str = `Olá`;
 
 alert( str[1000] ); // undefined
-alert( str.charAt(1000) ); // '' (an empty string)
+alert( str.charAt(1000) ); // '' (uma string vazia)
 ```
 
-We can also iterate over characters using `for..of`:
+Podemos também iterar sobre os carateres utilizando `for..of`:
 
 ```js run
-for (let char of "Hello") {
-  alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
+for (let char of "Olá") {
+  alert(char); // O,l,á ('char' se torna em "O", depois "l", etc)
 }
 ```
 
-## Strings are immutable
+## *Strings* são imutáveis
 
-Strings can't be changed in JavaScript. It is impossible to change a character.
+As *strings* não podem ser alteradas em JavaScript. É impossível modificar um caractere.
 
-Let's try it to show that it doesn't work:
+Vamos tentar fazê-lo para mostrar que não resulta:
 
 ```js run
 let str = 'Hi';
 
-str[0] = 'h'; // error
-alert( str[0] ); // doesn't work
+str[0] = 'h'; // erro
+alert( str[0] ); // não resulta
 ```
 
-The usual workaround is to create a whole new string and assign it to `str` instead of the old one.
+Uma comum solução alternativa é criar uma *string* completamente nova, e a atribuir a `str` para substituir a velha.
 
-For instance:
+Por exemplo:
 
 ```js run
 let str = 'Hi';
 
-str = 'h' + str[1]; // replace the string
+str = 'h' + str[1]; // substitua a string
 
 alert( str ); // hi
 ```
 
-In the following sections we'll see more examples of this.
+Nas secções seguintes, iremos ver mais exemplos disto.
 
-## Changing the case
+## Alterando o caso
 
-Methods [toLowerCase()](mdn:js/String/toLowerCase) and [toUpperCase()](mdn:js/String/toUpperCase) change the case:
+Os métodos [toLowerCase()](mdn:js/String/toLowerCase) e [toUpperCase()](mdn:js/String/toUpperCase) mudam o caso (maiúsculas/minúsculas):
 
 ```js run
 alert( 'Interface'.toUpperCase() ); // INTERFACE
 alert( 'Interface'.toLowerCase() ); // interface
 ```
 
-Or, if we want a single character lowercased:
+Ou, se quisermos um só caractere em minúsculas:
 
 ```js
 alert( 'Interface'[0].toLowerCase() ); // 'i'
 ```
 
-## Searching for a substring
+## Procurando por uma *substring*
 
-There are multiple ways to look for a substring within a string.
+Existem múltiplas formas de procurar por uma *substring* dentro uma *string*.
 
 ### str.indexOf
 
-The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf).
+O primeiro método é [str.indexOf(substr, pos)](mdn:js/String/indexOf).
 
-It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
+Ele procura pela `substr` em `str`, começando por uma dada posição `pos`, e retorna a posição onde foi encontrada uma equivalência, ou `-1` se nada for encontrado.
 
-For instance:
-
-```js run
-let str = 'Widget with id';
-
-alert( str.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning
-alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive
-
-alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
-```
-
-The optional second parameter allows us to start searching from a given position.
-
-For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
+Por exemplo:
 
 ```js run
-let str = 'Widget with id';
+let str = 'Widget com id';
 
-alert( str.indexOf('id', 2) ) // 12
+alert( str.indexOf('Widget') ); // 0, porque 'Widget' é encontrada no inicio
+alert( str.indexOf('widget') ); // -1, não encontrada, a pesquisa é sensível ao caso (maiúsculas/minúsculas)
+
+alert( str.indexOf("id") ); // 1, "id" é encontrada na posição 1 (..idget com id)
 ```
 
-If we're interested in all occurrences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
+O segundo parâmetro é opcional, e nos permite começar a pesquisa a partir de uma dada posição.
+
+Por exemplo, a primeira ocorrência de `"id"` está na posição `1`. Para procurarmos pela ocorrência seguinte, vamos começar a pesquisa pela posição `2`:
+
+```js run
+let str = 'Widget com id';
+
+alert( str.indexOf('id', 2) ) // 11
+```
+
+Se estivermos interessados em todas as ocorrências, podemos invocar `indexOf` dentro de um laço (*loop*). Cada nova chamada é feita tendo uma posição que se segue à equivalência anterior:
 
 ```js run
 let str = 'As sly as a fox, as strong as an ox';
 
-let target = 'as'; // let's look for it
+let target = 'as'; // vamos procurar por essa
 
 let pos = 0;
 while (true) {
   let foundPos = str.indexOf(target, pos);
   if (foundPos == -1) break;
 
-  alert( `Found at ${foundPos}` );
-  pos = foundPos + 1; // continue the search from the next position
+  alert( `Encontrada em ${foundPos}` );
+  pos = foundPos + 1; // continue a pesquisa a partir da posição a seguir
 }
 ```
 
-The same algorithm can be layed out shorter:
+O mesmo algoritmo pode ser colocado de uma forma mais curta:
 
 ```js run
 let str = "As sly as a fox, as strong as an ox";
@@ -281,232 +281,232 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 ```
 
 ```smart header="`str.lastIndexOf(substr, position)`"
-There is also a similar method [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
+Também existe um método similar [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) que pesquisa do final para o início duma string.
 
-It would list the occurrences in the reverse order.
+Ele iria listar as ocorrências na ordem inversa.
 ```
 
-There is a slight inconvenience with `indexOf` in the `if` test. We can't put it in the `if` like this:
+Há um pequeno inconveniente com `indexOf` num teste `if`. Não o podemos usar num `if` desta maneira:
 
 ```js run
-let str = "Widget with id";
+let str = "Widget com id";
 
 if (str.indexOf("Widget")) {
-    alert("We found it"); // doesn't work!
+    alert("Nós a encontramos"); // não funciona!
 }
 ```
 
-The `alert` in the example above doesn't show because `str.indexOf("Widget")` returns `0` (meaning that it found the match at the starting position). Right, but `if` considers `0` to be `false`.
+O `alert` no exemplo acima não é exibido porque `str.indexOf("Widget")` retorna `0` (o que significa que encontrou uma equivalência na primeira posição). Encontrou, mas `if` considera `0` como `false`.
 
-So, we should actually check for `-1`, like this:
+Assim, na verdade nós deveríamos verificar por `-1`. Desta maneira:
 
 ```js run
-let str = "Widget with id";
+let str = "Widget com id";
 
 *!*
 if (str.indexOf("Widget") != -1) {
 */!*
-    alert("We found it"); // works now!
+    alert("Nós a encontramos"); // agora funciona!
 }
 ```
 
-#### The bitwise NOT trick
+#### O truque bitwise NOT
 
-One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
+Um dos velhos truques aqui utilizado é o operador `~` [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT). Ele converte um número para um inteiro de 32 bits (removendo a parte decimal, se existir) e depois inverte todos os bits dessa representação binária.
 
-In practice, that means a simple thing: for 32-bit integers `~n` equals `-(n+1)`.
+Na prática, isto significa uma simples coisa: para inteiros de 32 bits, `~n` é igual a `-(n+1)`.
 
-For instance:
+Por exemplo:
 
 ```js run
-alert( ~2 ); // -3, the same as -(2+1)
-alert( ~1 ); // -2, the same as -(1+1)
-alert( ~0 ); // -1, the same as -(0+1)
+alert( ~2 ); // -3, o mesmo que -(2+1)
+alert( ~1 ); // -2, o mesmo que -(1+1)
+alert( ~0 ); // -1, o mesmo que -(0+1)
 *!*
-alert( ~-1 ); // 0, the same as -(-1+1)
+alert( ~-1 ); // 0, o mesmo que -(-1+1)
 */!*
 ```
 
-As we can see, `~n` is zero only if `n == -1` (that's for any 32-bit signed integer `n`).
+Como vemos, `~n` é zero apenas se `n == -1` (isto é, para qualquer inteiro `n` de 32-bits com sinal).
 
-So, the test `if ( ~str.indexOf("...") )` is truthy only if the result of `indexOf` is not `-1`. In other words, when there is a match.
+Portanto, o teste `if ( ~str.indexOf("...") )` só é verdadeiro se o resultado de `indexOf` não for `-1`. Por outras palavras, enquanto houver uma equivalência.
 
-People use it to shorten `indexOf` checks:
+As pessoas o usam para encurtar verificações com `indexOf`:
 
 ```js run
 let str = "Widget";
 
 if (~str.indexOf("Widget")) {
-  alert( 'Found it!' ); // works
+  alert( 'Encontramos!' ); // funciona
 }
 ```
 
-It is usually not recommended to use language features in a non-obvious way, but this particular trick is widely used in old code, so we should understand it.
+Geralmente, não é recomendado empregar funcionalidades da linguagem de uma forma não-óbvia, mas este truque em particular é largamente utilizado em código antigo, por isso deveríamos compreendê-lo.
 
-Just remember: `if (~str.indexOf(...))` reads as "if found".
+Apenas se lembre: `if (~str.indexOf(...))` se lê como "se encontrada".
 
-To be precise though, as big numbers are truncated to 32 bits by `~` operator, there exist other numbers that give `0`, the smallest is `~4294967295=0`. That makes such check correct only if a string is not that long.
+Mas, para ser preciso, se alguns números grandes são truncados para 32 bits pelo operador `~`, existem outros números que resultam em `0`, e o mais pequeno deles é `~4294967295=0`. Isto,  torna aquela verificação correta apenas se uma *string* não for tão longa.
 
-Right now we can see this trick only in the old code, as modern JavaScript provides `.includes` method (see below).
+Por enquanto, nós podemos ver este truque apenas em código antigo, porque o JavaScript moderno fornece o método `.includes` (ver abaixo).
 
 ### includes, startsWith, endsWith
 
-The more modern method [str.includes(substr, pos)](mdn:js/String/includes) returns `true/false` depending on whether `str` contains `substr` within.
+O método mais moderno [str.includes(substr, pos)](mdn:js/String/includes) retorna `true/false` dependendo de `str` conter ou      não a `substr` dentro.
 
-It's the right choice if we need to test for the match, but don't need its position:
+É a escolha certa se quisermos testar a equivalência, mas não precisarmos da sua posição:
 
 ```js run
-alert( "Widget with id".includes("Widget") ); // true
+alert( "Widget com id".includes("Widget") ); // true
 
 alert( "Hello".includes("Bye") ); // false
 ```
 
-The optional second argument of `str.includes` is the position to start searching from:
+O segundo argumento de `str.includes` é opcional, e é a posição para o início da pesquisa:
 
 ```js run
 alert( "Widget".includes("id") ); // true
-alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id"
+alert( "Widget".includes("id", 3) ); // false, a partir da posição 3 não existe "id"
 ```
 
-The methods [str.startsWith](mdn:js/String/startsWith) and [str.endsWith](mdn:js/String/endsWith) do exactly what they say:
+Os métodos [str.startsWith](mdn:js/String/startsWith) e [str.endsWith](mdn:js/String/endsWith) fazem exatamente o que eles dizem:
 
 ```js run
-alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
-alert( "Widget".endsWith("get") ); // true, "Widget" ends with "get"
+alert( "Widget".startsWith("Wid") ); // true, "Widget" começa por "Wid"
+alert( "Widget".endsWith("get") ); // true, "Widget" termina por "get"
 ```
 
-## Getting a substring
+## Obtendo uma *substring*
 
-There are 3 methods in JavaScript to get a substring: `substring`, `substr` and `slice`.
+Existem 3 métodos em JavaScript para se obter uma *substring*: `substring`, `substr` e `slice`.
 
 `str.slice(start [, end])`
-: Returns the part of the string from `start` to (but not including) `end`.
+: Retorna a parte da *string* começando por `start` e até (mas não incluindo) `end`.
 
-    For instance:
+    Por exemplo:
 
     ```js run
     let str = "stringify";
-    alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5)
-    alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
+    alert( str.slice(0, 5) ); // 'strin', a substring de 0 a 5 (não incluindo 5)
+    alert( str.slice(0, 1) ); // 's', de 0 a 1, mas não incluindo 1, portanto apenas o caractere em 0
     ```
 
-    If there is no second argument, then `slice` goes till the end of the string:
+    Se não existir um segundo argumento, então `slice` vai até ao final da *string*:
 
     ```js run
     let str = "st*!*ringify*/!*";
-    alert( str.slice(2) ); // 'ringify', from the 2nd position till the end
+    alert( str.slice(2) ); // 'ringify', começando pela segunda posição e até ao fim
     ```
 
-    Negative values for `start/end` are also possible. They mean the position is counted from the string end:
+    Valores negativos para `start/end` também são possíveis. Eles significam que a posição é contada a partir do final da *string*:
 
     ```js run
     let str = "strin*!*gif*/!*y";
 
-    // start at the 4th position from the right, end at the 1st from the right
+    // começa pela quarta posição a contar da direita, e termina na primeira posição também à direita
     alert( str.slice(-4, -1) ); // 'gif'
     ```
 
 `str.substring(start [, end])`
-: Returns the part of the string *between* `start` and `end`.
+: Retorna a parte da string *entre* `start` e `end`.
 
-    This is almost the same as `slice`, but it allows `start` to be greater than `end`.
+    Isto, é quase o mesmo que `slice`, mas permite que `start` seja maior do que `end`.
 
-    For instance:
+    Por exemplo:
 
     ```js run
     let str = "st*!*ring*/!*ify";
 
-    // these are same for substring
+    // // estas significam o mesmo para substring
     alert( str.substring(2, 6) ); // "ring"
     alert( str.substring(6, 2) ); // "ring"
 
-    // ...but not for slice:
-    alert( str.slice(2, 6) ); // "ring" (the same)
-    alert( str.slice(6, 2) ); // "" (an empty string)
+    // ...mas não para slice:
+    alert( str.slice(2, 6) ); // "ring" (o mesmo)
+    alert( str.slice(6, 2) ); // "" (uma string vazia))
 
     ```
 
-    Negative arguments are (unlike slice) not supported, they are treated as `0`.
+    Argumentos negativos (ao contrário de slice) não são suportados, eles são tratados como `0`.
 
 `str.substr(start [, length])`
-: Returns the part of the string from `start`, with the given `length`.
+: Retorna a parte da *string* começando por `start`, e com o comprimento dado `length`.
 
-    In contrast with the previous methods, this one allows us to specify the `length` instead of the ending position:
+    Em contraste com os métodos anteriores, este nos permite especificar o comprimento `length` em vez da posição final:
 
     ```js run
     let str = "st*!*ring*/!*ify";
-    alert( str.substr(2, 4) ); // 'ring', from the 2nd position get 4 characters
+    alert( str.substr(2, 4) ); // 'ring', começando pela segunda posição obtenha 4 carateres
     ```
 
-    The first argument may be negative, to count from the end:
+    O primeiro argumento pode ser negativo, para a contagem a partir do fim:
 
     ```js run
     let str = "strin*!*gi*/!*fy";
-    alert( str.substr(-4, 2) ); // 'gi', from the 4th position get 2 characters
+    alert( str.substr(-4, 2) ); // 'gi', começando pela quarta posição à direita obtenha 2 carateres
     ```
 
-Let's recap these methods to avoid any confusion:
+Vamos recapitular estes métodos para evitar qualquer confusão:
 
-| method | selects... | negatives |
+| método | seleciona... | negativos |
 |--------|-----------|-----------|
-| `slice(start, end)` | from `start` to `end` (not including `end`) | allows negatives |
-| `substring(start, end)` | between `start` and `end` | negative values mean `0` |
-| `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
+| `slice(start, end)` | de `start` para `end` (não incluindo `end`) | permite negativos |
+| `substring(start, end)` | entre `start` e `end` | valores negativos significam `0` |
+| `substr(start, length)` | de `start` obtenha `length` carateres | permite `start` negativo |
 
-```smart header="Which one to choose?"
-All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core JavaScript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
+```smart header="Qual deles escolher?"
+Todos eles podem executar o trabalho. Formalmente, `substr` tem uma pequena desvantagem: não está descrito na especificação nuclear de JavaScript, mas no Annex B, que cobre funcionalidades só para navegadores que existam principalmente por razões históricas. Assim, ambientes não para navegadores podem não o suportar. Mas, na prática ele funciona em qualquer lugar.
 
-Of the other two variants, `slice` is a little bit more flexible, it allows negative arguments and shorter to write. So, it's enough to remember solely `slice` of these three methods.
+Das outras duas variantes, `slice` é um pouco mais flexível, ele permite argumentos negativos e é mais curto para digitar. Assim, basta apenas se lembrar de `slice` de entre estes três métodos.
 ```
 
-## Comparing strings
+## Comparando *strings*
 
-As we know from the chapter <info:comparison>, strings are compared character-by-character in alphabetical order.
+Como sabemos pelo capítulo <info:comparison>, *strings* são comparadas caractere-por-caractere por ordem alfabética.
 
-Although, there are some oddities.
+Contudo, existem algumas particularidades.
 
-1. A lowercase letter is always greater than the uppercase:
+1. Uma letra minúscula é sempre maior do que uma maiúscula:
 
     ```js run
     alert( 'a' > 'Z' ); // true
     ```
 
-2. Letters with diacritical marks are "out of order":
+2. Letras com marcas diacríticas estão "fora da ordem":
 
     ```js run
     alert( 'Österreich' > 'Zealand' ); // true
     ```
 
-    This may lead to strange results if we sort these country names. Usually people would expect `Zealand` to come after `Österreich` in the list.
+    Isto pode levar a resultados estranhos se ordenarmos estes países por nome. Habitualmente, as pessoas esperam que `Zealand` venha depois de `Österreich` numa lista.
 
-To understand what happens, let's review the internal representation of strings in JavaScript.
+Para se compreender o que acontece, vamos rever a representação interna das *strings* em JavaScript.
 
-All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). That is: each character has a corresponding numeric code. There are special methods that allow to get the character for the code and back.
+Todas as *strings* são codificadas empregando [UTF-16](https://en.wikipedia.org/wiki/UTF-16). Isto é: cada caractere tem um código numérico correspondente. Existem métodos especiais que permitem obter o caractere a partir do código, e vice-versa.
 
 `str.codePointAt(pos)`
-: Returns the code for the character at position `pos`:
+: Retorna o código para o caractere na posição `pos`:
 
     ```js run
-    // different case letters have different codes
+    // letras minúsculas e maiúsculas têm códigos diferentes
     alert( "z".codePointAt(0) ); // 122
     alert( "Z".codePointAt(0) ); // 90
     ```
 
 `String.fromCodePoint(code)`
-: Creates a character by its numeric `code`
+: Cria um caractere a partir do seu código (`code`) numérico
 
     ```js run
     alert( String.fromCodePoint(90) ); // Z
     ```
 
-    We can also add Unicode characters by their codes using `\u` followed by the hex code:
+    Podemos também adicionar carateres *unicode* utilizando os seus códigos por meio de `\u` seguido pelo código em hexadecimal:
 
     ```js run
-    // 90 is 5a in hexadecimal system
+    // 90 é 5a no sistema hexadecimal
     alert( '\u005a' ); // Z
     ```
 
-Now let's see the characters with codes `65..220` (the latin alphabet and a little bit extra) by making a string of them:
+Agora, vamos ver os carateres com os códigos `65..220` (o alfabeto latino e um pouco mais), formando uma *string* com eles:
 
 ```js run
 let str = '';
@@ -519,135 +519,135 @@ alert( str );
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 ```
 
-See? Capital characters go first, then a few special ones, then lowercase characters, and `Ö` near the end of the output.
+Você vê? Carateres maiúsculos vêm primeiro, depois uns poucos especiais, e a seguir carateres minúsculos, e `Ö` está perto do final.
 
-Now it becomes obvious why `a > Z`.
+Agora, se torna óbvio porque `a > Z`.
 
-The characters are compared by their numeric code. The greater code means that the character is greater. The code for `a` (97) is greater than the code for `Z` (90).
+Os carateres são comparados pelo seu código numérico. Quanto maior o código, maior é o caractere. O código para `a` (97) é maior do que o código para `Z` (90).
 
-- All lowercase letters go after uppercase letters because their codes are greater.
-- Some letters like `Ö` stand apart from the main alphabet. Here, its code is greater than anything from `a` to `z`.
+- Todas as letras minúsculas vêm depois das letras maiúsculas porque os seus códigos são maiores.
+- Algumas letras como `Ö` estão separadas do alfabeto principal. Aqui, o seu código é maior do que qualquer um de `a` a `z`.
 
-### Correct comparisons [#correct-comparisons]
+### Comparações corretas
 
-The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages.
+O algoritmo "correto" para fazer comparações de *strings* é mais complexo do que parece, porque alfabetos são diferentes em línguas diferentes.
 
-So, the browser needs to know the language to compare.
+Assim, o navegador (*browser*) precisa de saber que língua é para fazer a comparação.
 
-Luckily, all modern browsers (IE10- requires the additional library [Intl.js](https://github.com/andyearnshaw/Intl.js/)) support the internationalization standard [ECMA-402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+Felizmente, todos os navegadores modernos (IE10- requere a biblioteca adicional [Intl.JS](https://github.com/andyearnshaw/Intl.js/)) suportam o padrão de internacionalização [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
 
-It provides a special method to compare strings in different languages, following their rules.
+Ele contém um método especial para comparar *strings* em diferentes línguas, seguindo as suas regras.
 
-The call [str.localeCompare(str2)](mdn:js/String/localeCompare) returns an integer indicating whether `str` is less, equal or greater than `str2` according to the language rules:
+A invocação de [str.localeCompare(str2)](mdn:js/String/localeCompare) retorna um inteiro indicando se `str` é menor, igual ou maior do que `str2`, de acordo com as regras da língua:
 
-- Returns a negative number if `str` is less than `str2`.
-- Returns a positive number if `str` is greater than `str2`.
-- Returns `0` if they are equivalent.
+- Retorna um número negativo, se `str` é menor do que `str2`.
+- Retorna um número positivo, se `str` é maior do que `str2`.
+- Retorna `0`, se elas forem equivalentes.
 
-For instance:
+Por exemplo:
 
 ```js run
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 
-This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment, letter order depends on the language) and setup additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
+Na verdade, este método tem dois argumentos adicionais especificados na [documentation](mdn:js/String/localeCompare), que permitem especificar a língua (por defeito, ela é tomada do ambiente local; a ordem das letras depende da língua), e configurar regras adicionais como sensibilidade ao caso (*case-sensitivity*) ou se deveriam `"a"` e `"á"` ser tratadas como a mesma, etc.
 
-## Internals, Unicode
+## Internamente, *Unicode*
 
-```warn header="Advanced knowledge"
-The section goes deeper into string internals. This knowledge will be useful for you if you plan to deal with emoji, rare mathematical or hieroglyphic characters or other rare symbols.
+```warn header="Conhecimento avançado"
+Esta secção vai mais a fundo sobre o funcionamento interno da string. Este conhecimento lhe será útil se planeja lidar com emoji, carateres matemáticos ou hieróglifos raros, ou outros símbolos raros.
 
-You can skip the section if you don't plan to support them.
+Você pode saltar esta secção se não planejar suportá-los.
 ```
 
-### Surrogate pairs
+### Pares substitutos
 
-All frequently used characters have 2-byte codes. Letters in most european languages, numbers, and even most hieroglyphs, have a 2-byte representation.
+Todos os carateres frequentemente utilizados têm códigos de 2-bytes. Letras na maioria das línguas europeias, números, e até a maioria dos hieróglifos, têm uma representação de 2-bytes.
 
-But 2 bytes only allow 65536 combinations and that's not enough for every possible symbol. So rare symbols are encoded with a pair of 2-byte characters called "a surrogate pair".
+Mas, 2 bytes só permitem 65536 combinações, o que não é suficiente para todos os símbolos possíveis. Assim, símbolos raros são codificados como um par (dois) de carateres de 2-bytes chamado de "par substituto" (*surrogate pair*).
 
-The length of such symbols is `2`:
+O comprimento de tais símbolos é `2`:
 
 ```js run
-alert( '𝒳'.length ); // 2, MATHEMATICAL SCRIPT CAPITAL X
-alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY
-alert( '𩷶'.length ); // 2, a rare Chinese hieroglyph
+alert( '𝒳'.length ); // 2, símbolo matemático X maiúsculo
+alert( '😂'.length ); // 2, face com lágrimas de alegria
+alert( '𩷶'.length ); // 2, um raro hieróglifo chinês
 ```
 
-Note that surrogate pairs did not exist at the time when JavaScript was created, and thus are not correctly processed by the language!
+Note que pares substitutos não existiam quando o JavaScript foi criado, e por isso não são corretamente processados pela linguagem!
 
-We actually have a single symbol in each of the strings above, but the `length` shows a length of `2`.
+Na verdade, temos um único símbolo em cada uma das *strings* acima, mas `length` mostra um comprimento de `2`.
 
-`String.fromCodePoint` and `str.codePointAt` are few rare methods that deal with surrogate pairs right. They recently appeared in the language. Before them, there were only [String.fromCharCode](mdn:js/String/fromCharCode) and [str.charCodeAt](mdn:js/String/charCodeAt). These methods are actually the same as `fromCodePoint/codePointAt`, but don't work with surrogate pairs.
+`String.fromCodePoint` e `str.codePointAt` são dos poucos raros métodos que lidam corretamente com pares substitutos. Eles apareceram recentemente na linguagem. Antes deles, apenas existiam [String.fromCharCode](mdn:js/String/fromCharCode) e [str.charCodeAt](mdn:js/String/charCodeAt). Estes métodos são na verdade o mesmo que `fromCodePoint/codePointAt`, mas não trabalham com pares substitutos.
 
-Getting a symbol can be tricky, because surrogate pairs are treated as two characters:
+Para se obter um símbolo pode ser complicado, porque pares substitutos são tratados como dois carateres:
 
 ```js run
-alert( '𝒳'[0] ); // strange symbols...
-alert( '𝒳'[1] ); // ...pieces of the surrogate pair
+alert( '𝒳'[0] ); // símbolos estranhos...
+alert( '𝒳'[1] ); // ...partes do par substituto
 ```
 
-Note that pieces of the surrogate pair have no meaning without each other. So the alerts in the example above actually display garbage.
+Note que partes de um par substituto não têm nenhum significado, umas sem as outras. Assim os *alerts* no exemplo acima, na verdade, mostram lixo.
 
-Technically, surrogate pairs are also detectable by their codes: if a character has the code in the interval of `0xd800..0xdbff`, then it is the first part of the surrogate pair. The next character (second part) must have the code in interval `0xdc00..0xdfff`. These intervals are reserved exclusively for surrogate pairs by the standard.
+Tecnicamente, pares substitutos também são detetáveis pelo seus códigos: se um caractere tiver o código no intervalo `0xd800..0xdbff`, então é a primeira parte de um par substituto. O caractere seguinte (a segunda parte) tem de ter o código no intervalo `0xdc00..0xdfff`. Estes intervalos estão exclusivamente reservados a pares substitutos pela especificação.
 
-In the case above:
+No caso acima:
 
 ```js run
-// charCodeAt is not surrogate-pair aware, so it gives codes for parts
+// charCodeAt não suporta pares substitutos, assim ele fornece códigos para as partes
 
-alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, between 0xd800 and 0xdbff
-alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, between 0xdc00 and 0xdfff
+alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, entre 0xd800 e 0xdbff
+alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, entre 0xdc00 e 0xdfff
 ```
 
-You will find more ways to deal with surrogate pairs later in the chapter <info:iterable>. There are probably special libraries for that too, but nothing famous enough to suggest here.
+Você irá encontrar mais formas para lidar com pares substitutos mais adiante no capítulo <info:iterable>. Provavelmente, podem também existir bibliotecas (*libraries*) especiais para isso, mas nada com suficiente fama para sugerir aqui.
 
-### Diacritical marks and normalization
+### Marcas diacríticas e normalização
 
-In many languages there are symbols that are composed of the base character with a mark above/under it.
+Em muitas línguas, existem símbolos que são compostos por um caractere base com uma marca acima/abaixo dele.
 
-For instance, the letter `a` can be the base character for: `àáâäãåā`. Most common "composite" character have their own code in the UTF-16 table. But not all of them, because there are too many possible combinations.
+Por exemplo, a letra `a` pode ser o caractere base para: `àáâäãåā`. Os mais comuns carateres "compostos" têm os seus códigos próprios na tabela UTF-16. Mas não todos eles, porque existem demasiadas combinações possíveis.
 
-To support arbitrary compositions, UTF-16 allows us to use several Unicode characters: the base character followed by one or many "mark" characters that "decorate" it.
+Para suportar composições arbitrárias, o UTF-16 nos permite utilizar múltiplos carateres *unicode*: o caractere base, seguido por um ou mais carateres "marca" que o "decoram".
 
-For instance, if we have `S` followed by the special "dot above" character (code `\u0307`), it is shown as Ṡ.
+Por exemplo, se tivermos `S` seguido pelo caractere especial "ponto superior" (código `\u0307`), é mostrado como Ṡ.
 
 ```js run
 alert( 'S\u0307' ); // Ṡ
 ```
 
-If we need an additional mark above the letter (or below it) -- no problem, just add the necessary mark character.
+Se, precisarmos de uma marca adicional acima da letra (ou abaixo dela) -- não há problema, apenas adicionamos o necessário caractere marca.
 
-For instance, if we append a character "dot below" (code `\u0323`), then we'll have "S with dots above and below": `Ṩ`.
+Por exemplo, se adicionarmos um caractere "ponto abaixo" (código `\u0323`), então teremos "S com pontos acima e abaixo": `Ṩ`.
 
-For example:
+Por exemplo:
 
 ```js run
 alert( 'S\u0307\u0323' ); // Ṩ
 ```
 
-This provides great flexibility, but also an interesting problem: two characters may visually look the same, but be represented with different Unicode compositions.
+Isto provê grande flexibilidade, mas também um problema interessante: dois carateres podem visualmente ter a mesma aparência, mas estar representados por composições *unicode* diferentes.
 
-For instance:
+Por exemplo:
 
 ```js run
-let s1 = 'S\u0307\u0323'; // Ṩ, S + dot above + dot below
-let s2 = 'S\u0323\u0307'; // Ṩ, S + dot below + dot above
+let s1 = 'S\u0307\u0323'; // Ṩ, S + ponto acima + ponto abaixo
+let s2 = 'S\u0323\u0307'; // Ṩ, S + ponto abaixo + ponto acima
 
 alert( `s1: ${s1}, s2: ${s2}` );
 
-alert( s1 == s2 ); // false though the characters look identical (?!)
+alert( s1 == s2 ); // false embora os caracteres pareçam idênticos (?!)
 ```
 
-To solve this, there exists a "Unicode normalization" algorithm that brings each string to the single "normal" form.
+Para solucionar isto, existe um algoritmo para "normalização *unicode*" que transforma cada *string* numa única forma "normal".
 
-It is implemented by [str.normalize()](mdn:js/String/normalize).
+Ele é implementado por [str.normalize()](mdn:js/String/normalize).
 
 ```js run
 alert( "S\u0307\u0323".normalize() == "S\u0323\u0307".normalize() ); // true
 ```
 
-It's funny that in our situation `normalize()` actually brings together a sequence of 3 characters to one: `\u1e68` (S with two dots).
+É engraçado que na nossa situação `normalize()` transforma, na verdade, a sequência de 3 carateres em um: `\u1e68` (S com dois pontos).
 
 ```js run
 alert( "S\u0307\u0323".normalize().length ); // 1
@@ -655,25 +655,25 @@ alert( "S\u0307\u0323".normalize().length ); // 1
 alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 ```
 
-In reality, this is not always the case. The reason being that the symbol `Ṩ` is "common enough", so UTF-16 creators included it in the main table and gave it the code.
+Na realidade, nem sempre é o caso. A razão é porque o símbolo `Ṩ` é "algo comum", e por isso os criadores do UTF-16 o incluíram na tabela principal e o deram um código.
 
-If you want to learn more about normalization rules and variants -- they are described in the appendix of the Unicode standard: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), but for most practical purposes the information from this section is enough.
+Se quiser aprender mais sobre regras e variantes de normalização -- elas estão descritas no apêndice do padrão Unicode: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), mas para a maioria dos propósitos práticos a informação nesta secção é suficiente.
 
-## Summary
+## Sumário
 
-- There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions `${…}`.
-- Strings in JavaScript are encoded using UTF-16.
-- We can use special characters like `\n` and insert letters by their Unicode using `\u...`.
-- To get a character, use: `[]`.
-- To get a substring, use: `slice` or `substring`.
-- To lowercase/uppercase a string, use: `toLowerCase/toUpperCase`.
-- To look for a substring, use: `indexOf`, or `includes/startsWith/endsWith` for simple checks.
-- To compare strings according to the language, use: `localeCompare`, otherwise they are compared by character codes.
+- Existem 3 tipos de aspas. Os *backticks* permitem que uma *string* se estenda por múltiplas linhas e expressões embebidas `${…}`.
+- As *Strings* em JavaScript são codificadas empregando UTF-16.
+- Podemos utilizar carateres especiais como `\n`, e inserir letras por meio do seu *unicode* usando `\u...`.
+- Para obter um caractere, use: `[]`.
+- Para obter uma *substring*, use: `slice` ou `substring`.
+- Para transformar uma *string* em minúsculas/maiúsculas, use: `toLowerCase/toUpperCase`.
+- Para procurar por uma *substring*, use: `indexOf`, ou `includes/startsWith/endsWith` para verificações simples.
+- Para comparar *strings* de acordo com a língua, use: `localeCompare`, caso contrário elas são comparadas pelos códigos dos carateres.
 
-There are several other helpful methods in strings:
+Existem vários outros métodos úteis para *strings*:
 
-- `str.trim()` -- removes ("trims") spaces from the beginning and end of the string.
-- `str.repeat(n)` -- repeats the string `n` times.
-- ...and more to be found in the [manual](mdn:js/String).
+- `str.trim()` -- remove ("*trims*") espaços do inicio e final da *string*.
+- `str.repeat(n)` -- repete a *string* `n` vezes.
+- ...e mais pode ser encontrado no [manual](mdn:js/String).
 
-Strings also have methods for doing search/replace with regular expressions. But that's big topic, so it's explained in a separate tutorial section <info:regular-expressions>.
+As *strings* também têm métodos para se fazer a procura/substituição usando expressões regulares (*regular expressions*). Mas, este é um tópico extenso e por isso é explicado em separado na secção tutorial <info:regular-expressions>.
