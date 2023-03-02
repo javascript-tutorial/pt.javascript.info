@@ -13,7 +13,7 @@ These events are special, because they have property `relatedTarget`. This prope
 For `mouseover`:
 
 - `event.target` -- is the element where the mouse came over.
-- `event.relatedTarget` -- is the element from which the mouse came.
+- `event.relatedTarget` -- is the element from which the mouse came (`relatedTarget` -> `target`).
 
 For `mouseout` the reverse:
 
