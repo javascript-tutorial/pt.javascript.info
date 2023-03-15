@@ -202,7 +202,6 @@ Como pode ver, o resultado é exatamente `Symbol.toStringTag` (Se existir), agru
 No final, temos "typeof com esteróides" que não funciona apenas para dados primitivos, mas também para objetos nativos e pode até mesmo ser personalizado.
 
 Podemos usar `{}.toString.call` ao invés de `{}.toString.call` para objetos nativos quando queremos obter o tipo como uma string em vez de apenas verificar.
-We can use `{}.toString.call` instead of `instanceof` for built-in objects when we want to get the type as a string rather than just to check.
 
 ## Conclusão
 
