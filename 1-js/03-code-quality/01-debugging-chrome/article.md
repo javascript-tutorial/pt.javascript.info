@@ -84,8 +84,6 @@ function hello(name) {
 }
 ```
 
-Muito conveniente quando se está num editor de código pois remove a necessidade de mudar para o navegador, procurar nas ferramentas de desenvolvedor o arquivo correto e selecionar o *breakpoint* manualmente.
-
 Este comando só irá funcionar quando a interface de ferramentas de desenvolvedor do navegador estiver aberta, caso contrário, será ignorado.
 
 ## Pause e dê uma olhada
