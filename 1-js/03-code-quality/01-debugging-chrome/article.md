@@ -84,6 +84,7 @@ function hello(name) {
 }
 ```
 
+
 Este comando só irá funcionar quando a interface de ferramentas de desenvolvedor do navegador estiver aberta, caso contrário, será ignorado.
 
 ## Pause e dê uma olhada
