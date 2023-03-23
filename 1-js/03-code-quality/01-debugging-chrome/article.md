@@ -84,7 +84,7 @@ function hello(name) {
 }
 ```
 
-É muito conveniente...
+É muito conveniente quando estivermos num editor de código e não quisermos mudar para o navegador, e de seguida, nas ferramentas do desenvolvedor deste, procurar no programa (*script*) pelo local onde colocar o breakpoint.
 
 Este comando só irá funcionar quando a interface de ferramentas de desenvolvedor do navegador estiver aberta, caso contrário, será ignorado.
 
