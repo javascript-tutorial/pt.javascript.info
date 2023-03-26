@@ -6,7 +6,7 @@ importance: 2
 
 Usando a construção `if..else`, escreva o código que pergunta: 'Qual é o nome "oficial" do JavaScript?'
 
-Se o visitante digitar "ECMAScript", então chame a função alerta passando como valor: "correto!", caso contrário -- registre a seguinte mensagem: "Você não sabe? ECMAScript!"
+Se o visitante digitar "ECMAScript", então chame a função `alert` passando como valor: "Correto!", caso contrário -- registre a seguinte mensagem: "Você não sabe? ECMAScript!"
 
 ![](ifelse_task2.svg)
 

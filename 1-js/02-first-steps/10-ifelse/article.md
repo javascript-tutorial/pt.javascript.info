@@ -2,16 +2,16 @@
 
 Às vezes, precisamos realizar ações diferentes com base em condições diferentes.
 
-Para fazer isso, podemos usar a instrução `if` e o operador condicional `?`, que também é comumente dito como operador "ponto de interrogação".
+Para fazer isso, podemos usar a instrução `if` e o operador condicional `?`, que também é chamado de operador "ponto de interrogação".
 
 ## A instrução "if"
 
-A instrução `if(...)` avalia uma condição entre parênteses e, se o resultado for `true`, executa um bloco de código.
+A instrução `if(...)` avalia uma condição entre parênteses e, se o resultado for `true` (verdadeiro), executa um bloco de código.
 
 Por exemplo:
 
 ```js run
-let year = prompt('Em que ano a especificação ECMAScript-2015 foi publicada?', '');
+let year = prompt('Em que ano foi publicada a especificação ECMAScript-2015?', '');
 
 *!*
 if (year == 2015) alert( 'Você está certo!' );
@@ -20,7 +20,7 @@ if (year == 2015) alert( 'Você está certo!' );
 
 No exemplo acima, a condição é uma simples verificação de igualdade (`year == 2015`), mas pode ser muito mais complexa.
 
-Se quisermos executar mais de uma instrução, temos que envolver nosso bloco de código entre chaves:
+Se quisermos executar mais de uma instrução, temos que envolver o nosso bloco de código entre chaves:
 
 ```js
 if (year == 2015) {
@@ -29,7 +29,7 @@ if (year == 2015) {
 }
 ```
 
-Recomendamos envolver seu bloco de código com chaves `{}` toda vez que você usar uma instrução `if`, mesmo que haja apenas uma instrução a ser executada. Isso melhora a legibilidade.
+Recomendamos envolver o seu bloco de código entre chaves `{}` toda vez que usar uma instrução `if`, mesmo que haja apenas uma instrução a ser executada. Isso melhora a legibilidade.
 
 ## Conversão booleana
 
@@ -38,9 +38,9 @@ A instrução `if (…)` avalia a expressão entre parênteses e converte o resu
 Vamos relembrar as regras de conversão do capítulo <info:type-conversions>:
 
 - Um número `0`, uma ‘string’ vazia `""`, `null`, `undefined` e `NaN` tornam-se `false`. Por isso são entitulados como valores "falsos".
-- Outros valores se tornam `true`, então eles são entitulados como "verdadeiro".
+- Outros valores se tornam `true`, então eles são entitulados como "verdadeiros".
 
-Portanto, o código sob essa condição nunca seria executado:
+Portanto, o código sob esta condição nunca seria executado:
 
 ```js
 if (0) { // 0 é falso
@@ -48,7 +48,7 @@ if (0) { // 0 é falso
 }
 ```
 
-... E dentro desta condição -- sempre será:
+... e dentro desta condição -- sempre será executado:
 
 ```js
 if (1) { // 1 é verdadeiro
@@ -59,7 +59,7 @@ if (1) { // 1 é verdadeiro
 Também podemos passar um valor booleano pré-avaliado para `if`, assim:
 
 ```js
-let cond = (year == 2015); // igualdade é avaliada como verdadeira ou falsa
+let cond = (year == 2015); // a igualdade é avaliada como verdadeira ou falsa
 
 if (cond) {
   ...
@@ -68,12 +68,12 @@ if (cond) {
 
 ## A cláusula "else"
 
-A instrução `if` pode conter um bloco opcional "else". Ele é executado quando a condição é falsa.
+A instrução `if` pode conter um bloco opcional "else" (senão). Ele é executado quando a condição é falsa.
 
 Por exemplo:
 
 ```js run
-let year = prompt('Em que ano a especificação ECMAScript-2015 foi publicada?', '');
+let year = prompt('Em que ano foi publicada a especificação ECMAScript-2015?', '');
 
 if (year == 2015) {
   alert( 'Você acertou!' );
@@ -89,7 +89,7 @@ if (year == 2015) {
 Por exemplo:
 
 ```js run
-let year = prompt('Em que ano a especificação ECMAScript-2015 foi publicada?', '');
+let year = prompt('Em que ano foi publicada a especificação ECMAScript-2015?', '');
 
 if (year < 2015) {
   alert( 'Muito cedo...' );
@@ -100,7 +100,7 @@ if (year < 2015) {
 }
 ```
 
-No código acima, o JavaScript primeiro verifica `year < 2015`. Se for falso, vai para a próxima condição `ano > 2015`. Se isso também for falso, mostra o último 'alerta'.
+No código acima, o JavaScript primeiro verifica `year < 2015`. Se for falso, vai para a próxima condição `year > 2015`. Se isto também for falso, mostra o último `alert`.
 
 Pode haver mais blocos `else if`. O `else` final é opcional.
 
@@ -111,7 +111,7 @@ Pode haver mais blocos `else if`. O `else` final é opcional.
 Por exemplo:
 
 ```js run no-beautify
-let accessAllowed;
+let accessAllowed; // (acessoPermitido)
 let age = prompt('Quantos anos você tem?', '');
 
 *!*
@@ -127,7 +127,7 @@ alert(accessAllowed);
 
 O chamado operador "condicional" ou "ponto de interrogação" nos permite fazer isso de uma forma curta e simples.
 
-O operador é representado por um ponto de interrogação `?`. Às vezes referênciado como "ternário", porque o operador possui três operandos. Na verdade, é o único operador em JavaScript que possui tantos. Na verdade, é o único operador em JavaScript que possui tantas possibilidades de operandos.
+O operador é representado por um ponto de interrogação `?`. Às vezes é chamado de "ternário", porque o operador possui três operandos. Na verdade, é o único operador em JavaScript que possui tantos. 
 
 A sintaxe é:
 
@@ -207,7 +207,7 @@ if (age < 3) {
 Às vezes, o ponto de interrogação `?` é usado como substituto para `if`:
 
 ```js run no-beautify
-let company = prompt('Qual empresa criou o JavaScript?', '');
+let company = prompt('Que empresa criou o JavaScript?', '');
 
 *!*
 (company == 'Netscape') ?
@@ -221,12 +221,12 @@ Não atribuímos um resultado a uma variável aqui. Em vez disso, executamos um 
 
 **Não é recomendado usar o operador de ponto de interrogação dessa maneira.**
 
-A notação é mais curta do que a instrução `if` equivalente, que atrai alguns programadores. Mas é menos legível.
+A notação é mais curta do que a instrução `if` equivalente, o que atrai alguns programadores. Mas é menos legível.
 
 Aqui está o mesmo código usando `if` para comparação:
 
 ```js run no-beautify
-let company = prompt('Qual empresa criou o JavaScript?', '');
+let company = prompt('Que empresa criou o JavaScript?', '');
 
 *!*
 if (company == 'Netscape') {
