@@ -11,4 +11,3 @@ Se o visitante digitar "ECMAScript", então chame a função alerta passando com
 ![](ifelse_task2.svg)
 
 [demo src="ifelse_task2"]
-

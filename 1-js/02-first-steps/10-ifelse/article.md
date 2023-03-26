@@ -184,9 +184,9 @@ alert( message );
 Pode ser difícil no início entender o que está acontecendo. Mas depois de um olhar mais atento, percebemos que é apenas uma sequência comum de testes:
 
 1. O primeiro ponto de interrogação verifica se `age < 3`.
-2. Se for verdadeiro -- retorna `'Oi, bebê!'`. Caso contrário, continua para a expressão após os dois pontos '":"', verificando `age < 18`.
-3. Se for verdade -- retorna `'Olá!'`. Caso contrário, continua para a expressão após os próximos dois pontos '":"', verificando `age < 100`.
-4. Se for verdade -- retorna `'Saudações!'`. Caso contrário, continua com a expressão após os últimos dois-pontos '":"', retornando `'Que idade incomum!'`.
+2. Se for verdadeiro -- retorna `'Oi, bebê!'`. Caso contrário, continua para a expressão após os dois pontos ":", verificando `age < 18`.
+3. Se for verdade -- retorna `'Olá!'`. Caso contrário, continua para a expressão após os próximos dois pontos ":", verificando `age < 100`.
+4. Se for verdade -- retorna `'Saudações!'`. Caso contrário, continua com a expressão após os últimos dois-pontos ":", retornando `'Que idade incomum!'`.
 
 Veja como isso fica usando `if..else`:
 

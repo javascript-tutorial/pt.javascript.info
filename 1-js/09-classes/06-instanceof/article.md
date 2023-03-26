@@ -11,7 +11,7 @@ The syntax is:
 obj instanceof Class
 ```
 
-It returns `true` if `obj` belongs to the `Class` (or a class inheriting from it).
+It returns `true` if `obj` belongs to the `Class` or a class inheriting from it.
 
 For instance:
 
@@ -50,10 +50,13 @@ Normally, `instanceof` examines the prototype chain for the check. We can also s
 
 The algorithm of `obj instanceof Class` works roughly as follows:
 
-1. If there's a static method `Symbol.hasInstance`, then use it. Like this:
+1. If there's a static method `Symbol.hasInstance`, then just call it: `Class[Symbol.hasInstance](obj)`. It should return either `true` or `false`, and we're done. That's how we can customize the behavior of `instanceof`.
+
+    For example:
 
     ```js run
-    // assume anything that canEat is an animal
+    // setup instanceOf check that assumes that
+    // anything with canEat property is an animal
     class Animal {
       static [Symbol.hasInstance](obj) {
         if (obj.canEat) return true;
@@ -61,22 +64,25 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     }
 
     let obj = { canEat: true };
+
     alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) is called
     ```
 
 2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceOf Class` checks whether `Class.prototype` is equal to one of the prototypes in the `obj` prototype chain.
 
-    In other words, compare:
+    In other words, compare one after another:
     ```js
-    obj.__proto__ === Class.prototype
-    obj.__proto__.__proto__ === Class.prototype
-    obj.__proto__.__proto__.__proto__ === Class.prototype
+    obj.__proto__ === Class.prototype?
+    obj.__proto__.__proto__ === Class.prototype?
+    obj.__proto__.__proto__.__proto__ === Class.prototype?
     ...
+    // if any answer is true, return true
+    // otherwise, if we reached the end of the chain, return false
     ```
 
-    In the example above `Rabbit.prototype === rabbit.__proto__`, so that gives the answer immediately.
+    In the example above `rabbit.__proto__ === Rabbit.prototype`, so that gives the answer immediately.
 
-    In the case of an inheritance, `rabbit` is an instance of the parent class as well:
+    In the case of an inheritance, the match will be at the second step:
 
     ```js run
     class Animal {}
@@ -87,7 +93,7 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     alert(rabbit instanceof Animal); // true
     */!*
 
-    // rabbit.__proto__ === Rabbit.prototype
+    // rabbit.__proto__ === Animal.prototype (no match)
     *!*
     // rabbit.__proto__.__proto__ === Animal.prototype (match!)
     */!*
@@ -118,9 +124,7 @@ alert( rabbit instanceof Rabbit ); // false
 */!*
 ```
 
-That's one of the reasons to avoid changing `prototype`. Just to keep safe.
-
-## Bonus: Object toString for the type
+## Bonus: Object.prototype.toString for the type
 
 We already know that plain objects are converted to string as `[object Object]`:
 
@@ -153,7 +157,7 @@ let objectToString = Object.prototype.toString;
 // what type is this?
 let arr = [];
 
-alert( objectToString.call(arr) ); // [object Array]
+alert( objectToString.call(arr) ); // [object *!*Array*/!*]
 ```
 
 Here we used [call](mdn:js/function/call) as described in the chapter [](info:call-apply-decorators) to execute the function `objectToString` in the context `this=arr`.
@@ -197,11 +201,11 @@ As you can see, the result is exactly `Symbol.toStringTag` (if exists), wrapped 
 
 At the end we have "typeof on steroids" that not only works for primitive data types, but also for built-in objects and even can be customized.
 
-It can be used instead of `instanceof` for built-in objects when we want to get the type as a string rather than just to check.
+We can use `{}.toString.call` instead of `instanceof` for built-in objects when we want to get the type as a string rather than just to check.
 
 ## Summary
 
-Let's recap the type-checking methods that we know:
+Let's summarize the type-checking methods that we know:
 
 |               | works for   |  returns      |
 |---------------|-------------|---------------|

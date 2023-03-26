@@ -2,7 +2,7 @@
 
 The `"prototype"` property is widely used by the core of JavaScript itself. All built-in constructor functions use it.
 
-We'll see how it is for plain objects first, and then for more complex ones.
+First we'll look at the details, and then how to use it for adding new capabilities to built-in objects.
 
 ## Object.prototype
 
@@ -38,7 +38,7 @@ alert(obj.toString === obj.__proto__.toString); //true
 alert(obj.toString === Object.prototype.toString); //true
 ```
 
-Please note that there is no additional `[[Prototype]]` in the chain above `Object.prototype`:
+Please note that there is no more `[[Prototype]]` in the chain above `Object.prototype`:
 
 ```js run
 alert(Object.prototype.__proto__); // null
@@ -48,9 +48,9 @@ alert(Object.prototype.__proto__); // null
 
 Other built-in objects such as `Array`, `Date`, `Function` and others also keep methods in prototypes.
 
-For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is  used internally. So the array data is written into the new object, and `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
+For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is used internally. So `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
 
-By specification, all of the built-in prototypes have `Object.prototype` on the top. Sometimes people say that "everything inherits from objects".
+By specification, all of the built-in prototypes have `Object.prototype` on the top. That's why some people say that "everything inherits from objects".
 
 Here's the overall picture (for 3 built-ins to fit):
 
@@ -124,7 +124,7 @@ String.prototype.show = function() {
 During the process of development, we may have ideas for new built-in methods we'd like to have, and we may be tempted to add them to native prototypes. But that is generally a bad idea.
 
 ```warn
-Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the other.
+Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the method of the other.
 
 So, generally, modifying a native prototype is considered a bad idea.
 ```
@@ -163,7 +163,7 @@ That's when we take a method from one object and copy it into another.
 
 Some methods of native prototypes are often borrowed.
 
-For instance, if we're making an array-like object, we may want to copy some array methods to it.
+For instance, if we're making an array-like object, we may want to copy some `Array` methods to it.
 
 E.g.
 
