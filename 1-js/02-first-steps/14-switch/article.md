@@ -2,7 +2,7 @@
 
 Uma instrução `switch` pode substituir muitas comparações `if` (se).
 
-Ela fornece uma forma mais descritiva para comparar um valor a múltiplas variantes.
+Ela fornece uma maneira mais descritiva de comparar um valor a múltiplas variantes.
 
 ## A sintaxe
 
