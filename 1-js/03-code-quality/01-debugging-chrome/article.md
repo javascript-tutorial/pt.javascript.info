@@ -1,6 +1,6 @@
 # Depuração de erros no navegador
 
-Antes de escrevermos código mais complexo, precisamos falar de debugging (depuração de erros).
+Antes de escrevermos código mais complexo, precisamos de falar de debugging (depuração de erros).
 
 [Depuração](https://pt.wikipedia.org/wiki/Depura%C3%A7%C3%A3o) é o processo de procura e correção de erros em um dado programa. Todos os navegadores (*browsers*) modernos e muitas outras plataformas (*environments*) suportam ferramentas de (*debugging*) -- uma UI (Interface de Usuário) especial que está disponível nas ferramentas do desenvolvedor (*developer tools*) tornando assim, a depuração de erros muito mais fácil. Ela também permite rastrear o código passo-a-passo para entender exatamente o que está sendo executado.
 
@@ -65,7 +65,7 @@ Uma lista de *breakpoints* sempre estará disponível no painel à direita. Muit
 ```smart header="*Breakpoints* condicionais"
 *Clicar com o botão direito do mouse* sobre um número de linha permite a criação de um *breakpoint condicional* o qual será ativado apenas quando a expressão inserida for verdadeira.
 
-É prático quando precisamos suspender a execução apenas para valores determinados de certa variável ou para parâmetros específicos numa função.
+É prático quando precisamos de suspender a execução apenas para valores determinados de certa variável ou para parâmetros específicos numa função.
 ```
 
 ## O comando *debugger*
