@@ -104,10 +104,9 @@ showMessage();
 
 alert( userName ); // *!*Bob*/!*, o valor foi modificado pela função
 ```
+A variável externa só é usada se não houver uma local.
 
-The outer variable is only used if there's no local one.
-
-Se uma variável com o mesmo nome é declarada dentro da função, então ela *shadows* a externa. Por exemplo, no código abaixo, a função usa o `userName` local. O exterior é ignorado:
+Se uma variável com o mesmo nome é declarada dentro da função, então ela *encobre (shadows)* a externa. Por exemplo, no código abaixo, a função usa o `userName` local. O exterior é ignorado:
 
 ```js run
 let userName = 'John';
@@ -121,7 +120,7 @@ function showMessage() {
   alert(message);
 }
 
-// a função criará e usará seu próprio userName
+// a função criará e usará o seu próprio userName
 showMessage();
 
 alert( userName ); // *!*John*/!*, inalterado, a função não acessou a variável externa
@@ -132,7 +131,7 @@ Variáveis declaradas fora de qualquer função, como o `userName` externo no c�
 
 Variáveis globais são visíveis por qualquer função (a não ser que sejam sombreadas pelas locais).
 
-It's a good practice to minimize the use of global variables. Modern code has few or no globals. Most variables reside in their functions. Sometimes though, they can be useful to store project-level data.
+É uma boa prática minimizar o uso de variáveis ​​globais. Um código moderno tem poucas ou nenhuma variável global. A maioria das variáveis ​​residem em suas funções. Às vezes, porém, elas podem ser úteis para armazenar dados em nível de projeto.
 ```
 
 ## Parameters
