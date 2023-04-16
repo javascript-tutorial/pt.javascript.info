@@ -4,7 +4,7 @@ Resposta: `3`.
 alert( null || 2 && 3 || 4 );
 ```
 
-A precedência de E `&&` é maior do que OU `||`. então ele é executado primeiro.
+A precedência de *AND* `&&` é maior que *OR* `||`. Então ele é executado primeiro.
 
 O resultado de `2 && 3 = 3`, então a expressão se torna:
 

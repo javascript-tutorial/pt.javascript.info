@@ -1,4 +1,4 @@
-importância: 3
+importance: 3
 
 ---
 
@@ -6,13 +6,13 @@ importância: 3
 
 Escreva o código que irá perguntar por um login com um `prompt`.
 
-Se o visitante digitar `"Admin"`, então faça `prompt` para a senha, se a entrada é uma linha vazia ou `key:Esc` -- mostre "Cancelado.", se for qualquer outra string -- então mostre "Eu não conheço você.".
+Se o visitante digitar `"Admin"`, então faça `prompt` para uma senha, se a entrada é uma linha vazia ou `key:Esc` -- mostre "Cancelada.", se for qualquer outra `string` -- então mostre "Eu não conheço você.".
 
 A senha é checada da seguinte forma:
 
 - Se for igual a "TheMaster", então mostre "Bem vindo!",
-- Qualquer outra string -- mostre "Senha incorreta",
-- Para uma string vazia ou cancelada, mostre "Cancelado.".
+- Qualquer outra `string` -- mostre "Senha incorreta",
+- Para uma `string` vazia ou cancelada, mostre "Cancelada.".
 
 O esquema:
 

@@ -1,8 +1,8 @@
-importância: 5
+importance: 5
 
 ---
 
-# Qual o resultado de E?
+# Qual o resultado de *AND*?
 
 O que este código irá mostrar?
 

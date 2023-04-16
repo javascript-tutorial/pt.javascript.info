@@ -1,8 +1,8 @@
-importância: 5
+importance: 5
 
 ---
 
-# O resultado de OR E OR
+# O resultado de *OR* *AND* *OR*
 
 Qual será o resultado?
 

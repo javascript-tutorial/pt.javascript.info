@@ -1,8 +1,8 @@
-importância: 5
+importance: 5
 
 ---
 
-# A questão sobre "if"
+# Uma questão sobre "if"
 
 Qual destes `alert`s serão executados?
 

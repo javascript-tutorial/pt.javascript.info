@@ -1,8 +1,8 @@
-importância: 3
+importance: 3
 
 ---
 
-# Qual o resultado do alerta de encadeamento de OU's?
+# Qual o resultado do alerta de encadeamento de *OR*'s?
 
 Qual a saída do código abaixo?
 

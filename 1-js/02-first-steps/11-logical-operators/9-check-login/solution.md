@@ -22,4 +22,4 @@ if (userName == 'Admin') {
 }
 ```
 
-Note as identações verticais dentro dos blocos de `if`s. Tecnicamente, elas não são necessárias, mas fazem o código mais legível.
+Note as indentações verticais dentro dos blocos de `if`s. Tecnicamente, elas não são necessárias, mas tornam o código mais legível.

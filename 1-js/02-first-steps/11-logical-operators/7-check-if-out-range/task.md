@@ -1,9 +1,9 @@
-importância: 3
+importance: 3
 
 ---
 
 # Verifique o exterior do intervalo
 
-Escreva uma condição `if` para verificar se `idade` NÃO está entre o intervalo fechado `14` e `90`.
+Escreva uma condição `if` para verificar se `age` NÃO está no intervalo fechado de 14 a 90.
 
-Crie duas variações: a primeira usando NÃO `!`, e uma segunda -- sem ele.
+Crie duas variantes: a primeira usando NÃO `!`, e uma segunda -- sem ele.

@@ -1,8 +1,8 @@
-importância: 3
+importance: 3
 
 ---
 
-# Qual o resultado dos alerts encadeados em E?
+# Qual o resultado dos alerts encadeados em *AND*?
 
 O que este código irá mostrar?
 
