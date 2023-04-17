@@ -1,0 +1,22 @@
+ifelse_task.svg:
+  Begin:
+    text: Início
+    position: center
+  Who's there?:
+    text: Quem está aí?
+    position: center
+  Password?:
+    text: Senha?
+    position: center
+  Welcome!:
+    text: Bem vindo!
+    position: center
+  Canceled:
+    text: Cancelado
+    position: center
+  Wrong Password:
+    text: Senha incorreta
+    position: center
+  I don't know you:
+    text: Eu não conheço você
+    position: center
