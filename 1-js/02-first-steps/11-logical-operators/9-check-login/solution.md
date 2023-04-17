@@ -3,19 +3,19 @@
 ```js run demo
 let userName = prompt("Quem está aí?", '');
 
-if (userName == 'Admin') {
+if (userName === 'Admin') {
 
   let pass = prompt('Senha?', '');
 
-  if (pass == 'TheMaster') {
+  if (pass === 'TheMaster') {
     alert( 'Bem vindo!' );
-  } else if (pass == '' || pass == null) {
+  } else if (pass === '' || pass === null) {
     alert( 'Cancelado.' );
   } else {
     alert( 'Senha incorreta.' );
   }
 
-} else if (userName == '' || userName == null) {
+} else if (userName === '' || userName === null) {
   alert( 'Cancelado' );
 } else {
   alert( "Eu não conheço você." );

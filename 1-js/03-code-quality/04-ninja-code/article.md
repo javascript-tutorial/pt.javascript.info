@@ -1,7 +1,7 @@
 # Ninja code
 
 
-```quote author="Confucius"
+```quote author="Confucius (Analects)"
 Learning without thought is labor lost; thought without learning is perilous.
 ```
 
@@ -43,7 +43,7 @@ The Dao hides in wordlessness. Only the Dao is well begun and well
 completed.
 ```
 
-Another way to code faster is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
+Another way to code shorter is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
 
 A short variable disappears in the code like a real ninja in the forest. No one will be able to find it using "search" of the editor. And even if someone does, they won't be able to "decipher" what the name `a` or `b` means.
 
@@ -104,8 +104,8 @@ A quick read of such code becomes impossible. And when there's a typo... Ummm...
 
 ## Smart synonyms
 
-```quote author="Confucius"
-The hardest thing of all is to find a black cat in a dark room, especially if there is no cat.
+```quote author="Laozi (Tao Te Ching)"
+The Tao that can be told is not the eternal Tao. The name that can be named is not the eternal name.
 ```
 
 Using *similar* names for *same* things makes life more interesting and shows your creativity to the public.
@@ -137,7 +137,7 @@ Instead, reuse existing names. Just write new values into them.
 
 In a function try to use only variables passed as parameters.
 
-That would make it really hard to identify what's exactly in the variable *now*. And also where it comes from. A person with weak intuition would have to analyze the code line-by-line and track the changes through every code branch.
+That would make it really hard to identify what's exactly in the variable *now*. And also where it comes from. The purpose is to develop the intuition and memory of a person reading the code. A person with weak intuition would have to analyze the code line-by-line and track the changes through every code branch.
 
 **An advanced variant of the approach is to covertly (!) replace the value with something alike in the middle of a loop or a function.**
 
@@ -155,7 +155,7 @@ function ninjaFunction(elem) {
 
 A fellow programmer who wants to work with `elem` in the second half of the function will be surprised... Only during the debugging, after examining the code they will find out that they're working with a clone!
 
-Seen in code regularly. Deadly effective even against an experienced ninja. 
+Seen in code regularly. Deadly effective even against an experienced ninja.
 
 ## Underscores for fun
 
@@ -169,8 +169,7 @@ A smart ninja puts underscores at one spot of code and evades them at other plac
 
 Let everyone see how magnificent your entities are! Names like `superElement`, `megaFrame` and `niceItem` will definitely enlighten a reader.
 
-Indeed, from one hand, something is written: `super..`, `mega..`, `nice..` But from the other hand -- that brings no details. A reader may decide to look for a hidden meaning and meditate for an hour or two.
-
+Indeed, from one hand, something is written: `super..`, `mega..`, `nice..` But from the other hand -- that brings no details. A reader may decide to look for a hidden meaning and meditate for an hour or two of their paid working time.
 
 
 ## Overlap outer variables
@@ -180,7 +179,7 @@ When in the light, can't see anything in the darkness.<br>
 When in the darkness, can see everything in the light.
 ```
 
-Use same names for variables inside and outside a function. As simple. No efforts required.
+Use same names for variables inside and outside a function. As simple. No efforts to invent new names.
 
 ```js
 let *!*user*/!* = authenticateUser();
