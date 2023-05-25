@@ -1,22 +1,22 @@
-# The "switch" statement
+# A expressão "switch"
 
-A `switch` statement can replace multiple `if` checks.
+A expressão `switch` pode substituir multiplas verificações de `if`.
 
-It gives a more descriptive way to compare a value with multiple variants.
+Ela permite uma forma mais descritiva de comparar um valor com multiplas variantes.
 
-## The syntax
+## A sintaxe
 
-The `switch` has one or more `case` blocks and an optional default.
+O switch tem um ou mais blocos `case` e uma opção padrão.
 
-It looks like this:
+Ela se parece com isso:
 
-```js no-beautify
+``` js no-beautify
 switch(x) {
-  case 'value1':  // if (x === 'value1')
+  case 'valor1':  // if (x === 'valor1')
     ...
     [break]
 
-  case 'value2':  // if (x === 'value2')
+  case 'valor2':  // if (x === 'valor2')
     ...
     [break]
 
@@ -26,71 +26,71 @@ switch(x) {
 }
 ```
 
-- The value of `x` is checked for a strict equality to the value from the first `case` (that is, `value1`) then to the second (`value2`) and so on.
-- If the equality is found, `switch` starts to execute the code starting from the corresponding `case`, until the nearest `break` (or until the end of `switch`).
-- If no case is matched then the `default` code is executed (if it exists).
+- O valor de `x` é verificado por uma igualdade estrita para o valor do primeiro `case` (que é, `valor1`) então o segundo (`valor2`) e assim em diante.
+- se a igualdade é encontrada, `switch` inicia a execução do código do `case` correspondente até o `break` mais próximo (ou até o final do `switch`).
+- Se nenhum caso for correspondente, então o código `default` é executado (se ele existe).
 
-## An example
+## Um exemplo
 
-An example of `switch` (the executed code is highlighted):
+Um exemplo de `switch` (o código executado está em destaque):
 
 ```js run
 let a = 2 + 2;
 
 switch (a) {
   case 3:
-    alert( 'Too small' );
+    alert( 'Muito pequeno' );
     break;
 *!*
   case 4:
-    alert( 'Exactly!' );
+    alert( 'Exatamente!' );
     break;
 */!*
   case 5:
-    alert( 'Too big' );
+    alert( 'Muito grande' );
     break;
   default:
-    alert( "I don't know such values" );
+    alert( "Eu não conheço tais valores" );
 }
 ```
 
-Here the `switch` starts to compare `a` from the first `case` variant that is `3`. The match fails.
+Aqui o `switch` começa a comparar `a` da primeira variação de `case` que é `3`. A correspondência falha.
 
-Then `4`. That's a match, so the execution starts from `case 4` until the nearest `break`.
+Então `4`, que é correspondente, inicia sua execução do `case 4` até o próximo `break`.
 
-**If there is no `break` then the execution continues with the next `case` without any checks.**
+**Se não há um `break`, então a execução continua com o próximo `case` sem qualquer verificação.**
 
-An example without `break`:
+Um exemplo sem `break`:
 
 ```js run
 let a = 2 + 2;
 
 switch (a) {
   case 3:
-    alert( 'Too small' );
+    alert( 'Muito pequeno' );
 *!*
   case 4:
-    alert( 'Exactly!' );
+    alert( 'Exatamente!' );
   case 5:
-    alert( 'Too big' );
+    alert( 'Muito grande' );
   default:
-    alert( "I don't know such values" );
+    alert( "Eu não conheço tais valores" );
 */!*
 }
 ```
 
-In the example above we'll see sequential execution of three `alert`s:
+No exemplo acima nós vemos uma execução sequencial de três `alert`s:
 
 ```js
-alert( 'Exactly!' );
-alert( 'Too big' );
-alert( "I don't know such values" );
+alert( 'Exatamente!' );
+alert( 'Muito grande' );
+alert( "Eu não conheço tais valores" );
 ```
 
-````smart header="Any expression can be a `switch/case` argument"
-Both `switch` and `case` allow arbitrary expressions.
+````smart header="Qualquer expressão pode ser um argumento `switch/case`
+Ambos, `switch` e `case` permitem expressões arbitrárias.
 
-For example:
+Por exemplo:
 
 ```js run
 let a = "1";
@@ -99,74 +99,74 @@ let b = 0;
 switch (+a) {
 *!*
   case b + 1:
-    alert("this runs, because +a is 1, exactly equals b+1");
+    alert("Este executa porque +a é 1, exatamente igual a b+1");
     break;
 */!*
 
   default:
-    alert("this doesn't run");
+    alert("Este não executa");
 }
 ```
-Here `+a` gives `1`, that's compared with `b + 1` in `case`, and the corresponding code is executed.
+Aqui `+a` dá `1`, que é comparado com `b + 1` no `case`, e a correspondência é executada.
 ````
 
-## Grouping of "case"
+## Agrupamento de "case"
 
-Several variants of `case` which share the same code can be grouped.
+Diversas variações de `case` que compartilham o mesmo código podem ser agrupadas.
 
-For example, if we want the same code to run for `case 3` and `case 5`:
+Por exemplo, se nós queremos que o mesmo código execute para o `case 3` e `case 5`:
 
 ```js run no-beautify
 let a = 3;
 
 switch (a) {
   case 4:
-    alert('Right!');
+    alert('Correto!');
     break;
 
 *!*
   case 3: // (*) grouped two cases
   case 5:
-    alert('Wrong!');
-    alert("Why don't you take a math class?");
+    alert('Errado!');
+    alert("Por que você não estuda Matemática?");
     break;
 */!*
 
   default:
-    alert('The result is strange. Really.');
+    alert('O resultado é estranho. Realmente.');
 }
 ```
 
-Now both `3` and `5` show the same message.
+Agora ambos `3` e ``5` exibem a mesma mensagem.
 
-The ability to "group" cases is a side effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
+A habilidade de agrupar casos é um efeito colateral de como `switch/case` funciona sem `break`. Aqui a execução de `case 3` inicia da linha `(*)` e vai até o `case 5` porque não há `break`.
 
-## Type matters
+## Tipo importa
 
-Let's emphasize that the equality check is always strict. The values must be of the same type to match.
+Vamos enfatizar que a igualdade é sempre verificada estritamente. Os valores precisam ser do mesmo tipo para corresponder.
 
-For example, let's consider the code:
+Por exemplo, vamos considerar o código:
 
 ```js run
-let arg = prompt("Enter a value?");
+let arg = prompt("Entre com um valor?");
 switch (arg) {
   case '0':
   case '1':
-    alert( 'One or zero' );
+    alert( 'Um ou zero' );
     break;
 
   case '2':
-    alert( 'Two' );
+    alert( 'Dois' );
     break;
 
   case 3:
-    alert( 'Never executes!' );
+    alert( 'Nunca executa!' );
     break;
   default:
-    alert( 'An unknown value' );
+    alert( 'Um valor desconhecido' );
 }
 ```
 
-1. For `0`, `1`, the first `alert` runs.
-2. For `2` the second `alert` runs.
-3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execute.
+1. Para `0` e `1` o primeiro `alert` executa.
+2. Para `2` o segundo `alert` executa.
+3. Mas para `3`, o resultado do `prompt` é uma string `"3"`, que não é estritamente igual `===` ao número `3`. Então nós temos um código morto no `case 3`! A variação `default` será executada.
