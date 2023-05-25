@@ -1,10 +1,10 @@
-importance: 5
+importância: 5
 
 ---
 
-# The postfix and prefix forms
+# As formas do sufixo e prefixo
 
-What are the final values of all variables `a`, `b`, `c` and `d` after the code below?
+Qual será o valor final de todas as variáveis `a`, `b`, `c` e `d` depois do código abaixo?
 
 ```js
 let a = 1, b = 1;
