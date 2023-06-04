@@ -32,7 +32,7 @@ Variables, declared with `var`, are either function-scoped or global-scoped. The
 
 For instance:
 
-```js
+```js run
 if (true) {
   var test = true; // use "var" instead of "let"
 }
@@ -58,7 +58,7 @@ alert(test); // ReferenceError: test is not defined
 
 The same thing for loops: `var` cannot be block- or loop-local:
 
-```js
+```js run
 for (var i = 0; i < 10; i++) {
   var one = 1;
   // ...
@@ -72,7 +72,7 @@ alert(one); // 1, "one" is visible after loop, it's a global variable
 
 If a code block is inside a function, then `var` becomes a function-level variable:
 
-```js
+```js run
 function sayHi() {
   if (true) {
     var phrase = "Hello";
@@ -115,7 +115,7 @@ In other words, `var` variables are defined from the beginning of the function, 
 
 So this code:
 
-```js
+```js run
 function sayHi() {
   phrase = "Hello";
 
@@ -125,11 +125,12 @@ function sayHi() {
   var phrase;
 */!*
 }
+sayHi();
 ```
 
 ...Is technically the same as this (moved `var phrase` above):
 
-```js
+```js run
 function sayHi() {
 *!*
   var phrase;
@@ -139,11 +140,12 @@ function sayHi() {
 
   alert(phrase);
 }
+sayHi();
 ```
 
 ...Or even as this (remember, code blocks are ignored):
 
-```js
+```js run
 function sayHi() {
   phrase = "Hello"; // (*)
 
@@ -155,6 +157,7 @@ function sayHi() {
 
   alert(phrase);
 }
+sayHi();
 ```
 
 People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
@@ -167,7 +170,7 @@ That's best demonstrated with an example:
 
 ```js run
 function sayHi() {
-  alert(phrase);  
+  alert(phrase);
 
 *!*
   var phrase = "Hello";
@@ -274,11 +277,11 @@ In all the above cases we declare a Function Expression and run it immediately. 
 
 ## Summary
 
-There are two main differences of `var`:
+There are two main differences of `var` compared to `let/const`:
 
 1. `var` variables have no block scope, their visibility is scoped to current function, or global, if declared outside function.
 2. `var` declarations are processed at function start (script start for globals).
 
 There's one more very minor difference related to the global object, that we'll cover in the next chapter.
 
-These differences are actually a bad thing most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.
+These differences make `var` worse than `let` most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.
