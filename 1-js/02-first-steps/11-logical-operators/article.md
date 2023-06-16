@@ -172,6 +172,7 @@ if (1 && 0) { // avaliado como true && false
 }
 ```
 
+
 ## "*AND*" encontra o primeiro valor falso
 
 Dados múltiplos valores encadeados em AND's:
