@@ -1,76 +1,76 @@
-# Attributes and properties
+# Atributos e propriedades
 
-When the browser loads the page, it "reads" (another word: "parses") the HTML and generates DOM objects from it. For element nodes, most standard HTML attributes automatically become properties of DOM objects.
+Quando navegador carrega a página, ele "lê" (outra palavra: "analisa") o HTML e gera objetos DOM a partir dela. Para nós de elementos, a maior parte dos atributos HTML padrão automaticamente se tornam propriedades de objetos DOM.
 
-For instance, if the tag is `<body id="page">`, then the DOM object has `body.id="page"`.
+Por exemplo, se a tag é `<body id="page">`, então o objeto DOM tem `body.id="page"`.
 
-But the attribute-property mapping is not one-to-one! In this chapter we'll pay attention to separate these two notions, to see how to work with them, when they are the same, and when they are different.
+Mas o mapeamento atributo-propriedade não é de um para um! Nesse capítulo vamos prestar atenção em separar essas duas noções, entender como trabalhar com eles, quando eles são os mesmos e quando eles são diferentes.
 
-## DOM properties
+## Propriedades DOM
 
-We've already seen built-in DOM properties. There are a lot. But technically no one limits us, and if there aren't enough, we can add our own.
+Nós já vimos propriedades DOM incorporadas. Há várias. Mas tecnicamente ninguém nos limita, e se não há propriedades suficientes, nós podemos adicionar nossas próprias. 
 
-DOM nodes are regular JavaScript objects. We can alter them.
+Nós DOM são objetos JavaScript. Nós podemos alterar eles.
 
-For instance, let's create a new property in `document.body`:
+Por exemplo, vamos criar uma propriedade nova em `document.body`:
 
 ```js run
 document.body.myData = {
   name: 'Caesar',
-  title: 'Imperator'
+  title: 'Imperador'
 };
 
-alert(document.body.myData.title); // Imperator
+alert(document.body.myData.title); // Imperador
 ```
 
-We can add a method as well:
+Nós podemos adicionar um método também:
 
 ```js run
 document.body.sayTagName = function() {
   alert(this.tagName);
 };
 
-document.body.sayTagName(); // BODY (the value of "this" in the method is document.body)
+document.body.sayTagName(); // BODY (o valor de "this" no método é document.body)
 ```
 
-We can also modify built-in prototypes like `Element.prototype` and add new methods to all elements:
+Nós também podemos modificar prototypes incorporados como `Element.prototype` e adicionar novos métodos para todos elements:
 
 ```js run
 Element.prototype.sayHi = function() {
-  alert(`Hello, I'm ${this.tagName}`);
+  alert(`Olá, eu sou um ${this.tagName}`);
 };
 
-document.documentElement.sayHi(); // Hello, I'm HTML
-document.body.sayHi(); // Hello, I'm BODY
+document.documentElement.sayHi(); // Olá, eu sou um HTML
+document.body.sayHi(); // Olá, eu sou um BODY
 ```
 
-So, DOM properties and methods behave just like those of regular JavaScript objects:
+Então, propriedades e métodos do DOM se comportam como qualquer objeto JavaScript:
 
-- They can have any value.
-- They are case-sensitive (write `elem.nodeType`, not `elem.NoDeTyPe`).
+- Podem ter qualquer valor.
+- São sensíveis a letras maiúsculas e minúsculas (escreva `elem.nodeType`, não `elem.NoDeTyPe`).
 
-## HTML attributes
+## Atributos HTML
 
-In HTML, tags may have attributes. When the browser parses the HTML to create DOM objects for tags, it recognizes *standard* attributes and creates DOM properties from them.
+Em HTML, tags podem ter atributos. Quando o navegador analisa o HTML para criar objetos DOM para tags, ele reconhece atributos *padrões* e cria propriedades DOM para eles.
 
-So when an element has `id` or another *standard* attribute, the corresponding property gets created. But that doesn't happen if the attribute is non-standard.
+Então quando um elemento tem `id` ou outro atributo *padrão*, a propriedade correspontente é criada. Mas isso não acontece se o atributo não for padrão.
 
-For instance:
+Por exemplo:
 ```html run
 <body id="test" something="non-standard">
   <script>
     alert(document.body.id); // test
 *!*
-    // non-standard attribute does not yield a property
+    // Atributo não padrão não resulta em uma propriedade
     alert(document.body.something); // undefined
 */!*
   </script>
 </body>
 ```
 
-Please note that a standard attribute for one element can be unknown for another one. For instance, `"type"` is standard for `<input>` ([HTMLInputElement](https://html.spec.whatwg.org/#htmlinputelement)), but not for `<body>` ([HTMLBodyElement](https://html.spec.whatwg.org/#htmlbodyelement)). Standard attributes are described in the specification for the corresponding element class.
+Observe que um atributo padrão para um elemento pode ser desconhecido para outro elemento. Por exemplo, `"type"` é padrão para `<input>`([HTMLInputElement](https://html.spec.whatwg.org/#htmlinputelement)), mas não para `<body>` ([HTMLBodyElement](https://html.spec.whatwg.org/#htmlbodyelement)). Atributos padrão são descritos na especificação da classe correspondente ao elemento.
 
-Here we can see it:
+Aqui nós podemos ver:
 ```html run
 <body id="body" type="...">
   <input id="input" type="text">
@@ -83,14 +83,14 @@ Here we can see it:
 </body>
 ```
 
-So, if an attribute is non-standard, there won't be a DOM-property for it. Is there a way to access such attributes?
+Então, se um atributo não é padrão, não há uma propriedade DOM para ele. Há alguma forma de acessar esses atributos?
 
-Sure. All attributes are accessible by using the following methods:
+Claro. Todos atributos são acessíveis usando os seguintes métodos:
 
-- `elem.hasAttribute(name)` -- checks for existence.
-- `elem.getAttribute(name)` -- gets the value.
-- `elem.setAttribute(name, value)` -- sets the value.
-- `elem.removeAttribute(name)` -- removes the attribute.
+- `elem.hasAttribute(name)` -- checa a existencia.
+- `elem.getAttribute(name)` -- obtém o valor.
+- `elem.setAttribute(name, value)` -- defined um valor.
+- `elem.removeAttribute(name)` -- remove o atributo.
 
 These methods operate exactly with what's written in HTML.
 
