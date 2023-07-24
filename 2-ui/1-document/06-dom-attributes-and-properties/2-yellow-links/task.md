@@ -7,7 +7,7 @@ importance: 3
 Faça com que todos links externos fiquem laranja alterando a propriedade `style`.
 
 Um link é externo se:
-- O `href` tem `://`.
+- Seu `href` contém `://`.
 - Mas não começa com `http://internal.com`.
 
 Por exemplo:

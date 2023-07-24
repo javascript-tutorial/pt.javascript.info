@@ -1,6 +1,7 @@
+
 Primeiro, precisamos encontrar todas referências externas.
 
-Há duas formas.
+Há duas maneiras.
 
 A primeira é encontrar todos os links usando `document.querySelectorAll('a')` e então filtrar o que precisamos:
 
@@ -21,12 +22,12 @@ for (let link of links) {
 }
 ```
 
-Por favor observe: usamos `link.getAttribute('href')`. Não `link.href`, porque precisamos do valor do HTML.
+Observe: usamos `link.getAttribute('href')`. Não `link.href`, porque precisamos do valor do HTML.
 
-...Outra forma mais simples seria apenas adicionar os checks ao seletor CSS
+...Outra forma mais simples seria apenas adicionar as verificações ao seletor CSS
 
 ```js
-// procura todos os links que tem :// em href
+// procura por todos os links que tem :// em href
 // mas href não começa com http://internal.com
 let selector = 'a[href*="://"]:not([href^="http://internal.com"])';
 let links = document.querySelectorAll(selector);

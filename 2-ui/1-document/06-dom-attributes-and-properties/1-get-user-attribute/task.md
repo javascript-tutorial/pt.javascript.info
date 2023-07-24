@@ -4,7 +4,7 @@ importance: 5
 
 # Obtendo o atributo
 
-Escreva o código para obter do documento o elemento com o atributo `data-widget-name` e leia seu valor.
+Escreva o código para selecionar o elemento do documento com o atributo `data-widget-name` e leia seu valor.
 
 ```html run
 <!DOCTYPE html>
