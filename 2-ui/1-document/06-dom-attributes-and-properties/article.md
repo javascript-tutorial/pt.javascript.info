@@ -1,6 +1,6 @@
 # Atributos e propriedades
 
-Quando navegador carrega a página, ele "lê" (em outras palavras: "analisa") o HTML e gera objetos DOM a partir dela. Para nós de elementos, a maioria dos atributos HTML padronizados automaticamente se tornam propriedades de objetos DOM.
+Quando o navegador carrega a página, ele "lê" (em outras palavras: "analisa") o HTML e gera objetos DOM a partir dela. Para nós de elementos, a maioria dos atributos HTML padronizados automaticamente se tornam propriedades de objetos DOM.
 
 Por exemplo, se a tag é `<body id="page">`, então o objeto DOM tem `body.id="page"`.
 
@@ -51,7 +51,7 @@ Então, propriedades do DOM e métodos se comportam como qualquer outro objeto J
 
 ## Atributos HTML
 
-Em HTML, tags podem ter atributos. Quando o navegador analisa o HTML para criar objetos DOM para as tags, ele {"type": {"type": "text"}} atributos *padronizados* e cria propriedades DOM para eles.
+Em HTML, tags podem ter atributos. Quando o navegador analisa o HTML para criar objetos DOM para as tags, ele reconhece atributos *padronizados* e cria propriedades DOM para eles.
 
 Então quando um elemento tem `id` ou outro atributo *padrão*, a propriedade correspondente é criada. Mas isso não acontece se o atributo não for padrão.
 
@@ -85,7 +85,7 @@ Aqui nós podemos ver:
 
 Então, se um atributo não é padrão, não há uma propriedade DOM para ele. Há alguma forma de acessar esses atributos?
 
-Claro. Todos atributos são acessíveis usando os seguintes métodos:
+Claro. Todos os atributos são acessíveis usando os seguintes métodos:
 
 - `elem.hasAttribute(name)` -- checa a existência do valor.
 - `elem.getAttribute(name)` -- obtém o valor.
@@ -96,7 +96,7 @@ Esses métodos operam exatamente com o que está escrito no HTML.
 
 É possível checar todos os atributos usando `elem.attributes`: uma coleção de objetos que pertence à classe incorporada [Attr](https://dom.spec.whatwg.org/#attr), com as propriedades `name` e `value`.
 
-Aqui está uma demonstração da leitura de uma propriedade não padrão:
+Aqui está uma demonstração da leitura de uma propriedade não padronizada:
 
 ```html run
 <body something="non-standard">
@@ -135,8 +135,8 @@ Aqui está uma demonstração estendida de como trabalhar com atributos:
 
 Observe:
 
-1. `getAttribute('About')` -- a primeira letra aqui está em maiúsculo, e no HTML está totalmente em minúsculo. Mas isso não importa: nomes de atributos são insensíveis a caixa alta ou baixa.
-2. Nós podemos assinalar qualquer coisa a um atributo, mas se tornará uma string. Então aqui temos `"123"` como o valor.
+1. `getAttribute('About')` -- a primeira letra aqui está em maiúsculo, e no HTML está totalmente em minúsculo. Mas isso não importa: nomes de atributos são insensíveis à caixa alta ou baixa.
+2. Nós podemos atribuir qualquer coisa a um atributo, mas se tornará uma string. Então, aqui temos `"123"` como o valor.
 3. Todos os atributos, incluindo os que estão definidos, são visíveis no `outerHTML`.
 4. A coleção `attributes` é iterável e tem todos os atributos do elemento (padrões e não padrões) como objetos com propriedades `name` e `value`. 
 
@@ -239,7 +239,7 @@ Se precisarmos do valor de `href` ou qualquer outro atributo exatamente como esc
 
 Quando escrevemos HTML, usamos vários atributos padrões. Mas e os atributos customizados, os não padrões? Primeiro, vamos ver se eles são úteis ou não? E para que servem?
 
-As vezes, atributos não padronizados são úteis para passar dados customizados do HTML para o JavaScript, ou para "marcar" elementos HTML para o JavaScript.
+Às vezes, atributos não padronizados são úteis para passar dados customizados do HTML para o JavaScript, ou para "marcar" elementos HTML para o JavaScript.
 
 Bem assim:
 
@@ -297,16 +297,16 @@ Por exemplo, para o estado do pedido, o atributo `order-state` é utilizado:
 </div>
 ```
 
-Porque é preferível usar um atributo do que ter classes como `.order-state-new`, `.order-state-pendeing`, `.order-state-canceled`?
+Por que é preferível usar um atributo do que ter classes como `.order-state-new`, `.order-state-pendeing`, `.order-state-canceled`?
 
-Porque um atributo é mais conveniente de se gerenciar. O estado pode ser mudado tão facilmente quanto:
+Porque um atributo é mais conveniente de gerenciar. O estado pode ser mudado tão facilmente quanto:
 
 ```js
 // um pouco mais simples que remover classes antigas/adicionar classes novas.
 div.setAttribute('order-state', 'canceled');
 ```
 
-Mas podem haver possíveis problemas com atributos customizados. E se usarmos um atributo não padronizado e depois ele for introduzido como um atributo padrão? A linguagem HTML é viva e está crescendo, e mais atributos aparecem para atender as necessidades dos desenvolvedores. Isso pode causar efeitos inesperados em tais casos.
+Mas pode haver um possível problema com atributos customizados. E se usarmos um atributo não padronizado e depois ele for introduzido como um atributo padrão? A linguagem HTML é viva e está crescendo, e mais atributos aparecem para atender as necessidades dos desenvolvedores. Isso pode causar efeitos inesperados em tais casos.
 
 Para evitar tais conflitos, existem os atributos [data-*](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes).
 
@@ -325,7 +325,7 @@ Bem assim:
 
 Atributos com várias palavras como `data-order-state` são definidas em camel case: `dataset.orderState`.
 
-Aqui vai um exemplo "order state" reescrito:
+Aqui está um exemplo "order state" reescrito:
 
 ```html run
 <style>
@@ -369,7 +369,7 @@ Uma pequena comparação:
 |      | Propriedades                                                                     | Atributos                                                            |
 |------|----------------------------------------------------------------------------------|----------------------------------------------------------------------|
 | Tipo | Qualquer valor, propriedades padronizadas tem o tipo descrito nas especificações | Uma string                                                           |
-| Nome | Nome é sensível a caixa alta ou baixa.                                           | Nome não é sensívels a caixa alta ou baixa|
+| Nome | Nome é sensível à caixa alta ou baixa.                                           | Nome não é sensível à caixa alta ou baixa|
 
 Métodos para trabalhar com atributos são:
 

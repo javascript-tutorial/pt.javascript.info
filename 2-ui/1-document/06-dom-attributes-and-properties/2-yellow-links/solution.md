@@ -1,5 +1,5 @@
 
-Primeiro, precisamos encontrar todas referências externas.
+Primeiro, precisamos encontrar todas as referências externas.
 
 Há duas maneiras.
 

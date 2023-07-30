@@ -11,7 +11,7 @@ Escreva o código para selecionar o elemento do documento com o atributo `data-w
 <html>
 <body>
 
-  <div data-widget-name="menu">Choose the genre</div>
+  <div data-widget-name="menu">Escolha o gênero</div>
 
   <script>
     /* seu código */
