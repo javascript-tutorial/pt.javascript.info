@@ -70,7 +70,7 @@ Veremos mais sobre como trabalhar com números no capítulo <info:number>.
 
 Em JavaScript, o tipo "number" não pode representar valores inteiros maiores que <code>(2<sup>53</sup>-1)</code> (que é `9007199254740991`) ou menores que <code>-(2<sup>53</sup>-1)</code> para negativos. É uma limitação técnica causada por sua representação interna.
 
-For most purposes that's quite enough, but sometimes we need really big numbers, e.g. for cryptography or microsecond-precision timestamps.
+Para a maioria dos propósitos, isso é o suficiente, mas às vezes precisamos de números realmente grandes, por exemplo, para criptografia ou carimbos de data/hora com precisão de microssegundos.
 
 Para a maioria dos propósitos, isso é suficiente, mas às vezes precisamos de números realmente grandes, por exemplo, para criptografia ou uma ["marca temporal"](https://pt.wikipedia.org/wiki/Marca_temporal) (carimbo do instante exato da data ou hora com precisão de microssegundos).
 
@@ -251,11 +251,11 @@ As três últimas linhas podem precisar de explicações adicionais:
 3. O resultado de `typeof alert` é `"function"`, porque `alert` é uma função. Vamos estudar as funções nos próximos capítulos onde veremos também que não há nenhum tipo especial "função" em JavaScript. As funções pertencem ao tipo objeto. Mas o `typeof` as trata de forma diferente, retornando `"function"`. Isto, também vem dos primeiros dias do JavaScript. Tecnicamente, é incorreto, mas muito conveniente, na prática.
 
 ```smart header="A `sintaxe typeof(x)`"
-Você pode também encontrar outra sintaxe: `typeof(x)`. è o mesmo que `typeof x`.
+Você pode também encontrar outra sintaxe: `typeof(x)`. é o mesmo que `typeof x`.
 
 Para deixar claro: `typeof` é um operador, não uma função. Os parênteses aqui não fazem parte de `typeof`. São os parênteses usados em matemática para agrupamento.
 
-Geralmente, tais parênteses contêm uma expressão matemática, como em `(2 + 2)`, mas aqui eles contêm apenas um argumento `(x)`. Sintáticamente, eles permitem evitar o espaço entre o operador `typeof` e o seu argumento, e algumas pessoas gostam disso.
+Geralmente, tais parênteses contêm uma expressão matemática, como em `(2 + 2)`, mas aqui eles contêm apenas um argumento `(x)`. Sintaticamente, eles permitem evitar o espaço entre o operador `typeof` e o seu argumento, e algumas pessoas gostam disso.
 
 Algumas pessoas preferem `typeof(x)`, embora a sintaxe `typeof x` seja muito mais comum.
 ```
