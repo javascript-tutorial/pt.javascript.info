@@ -1,37 +1,38 @@
 
-# Authoring
+# Autoria
 
-This describes important stuff about authoring new articles of the tutorial.
+Isso descreve coisas importantes sobre a autoria de novos artigos do tutorial.
 
-## Internal links
+## Links internos
 
-All tutorial links should start from the root, not including the domain.
+Todos os links do tutorial devem começar da raiz, não incluindo o domínio.
 
-✅ OK:
-
-```md
-We'll cover that in the chapter [about functions](/function-basics)
-```
-
-❌ Not ok:
+✅ Tudo bem:
 
 ```md
-We'll cover that in the chapter [about functions](https://javascript.info/function-basics)
+Abordaremos isso no capítulo [sobre funções](/function-basics)
 ```
 
-Also, to reference a chapter, there's a special "info:" scheme, like this:
+❌ Não está bem:
 
 ```md
-We'll cover that in the chapter <info:function-basics>.
+Abordaremos isso no capítulo [sobre funções](https://javascript.info/function-basics)
 ```
 
-Becomes:
+Além disso, para registrar referência a um capítulo, há um esquema especial "info:", como este:
+
+```md
+Abordaremos isso no capítulo <info:function-basics>.
+```
+
+Torna-se:
+
 ```html
-We'll cover that in the chapter <a href="/function-basics">Function basics</a>.
+Abordaremos isso no capítulo <a href="/function-basics">Funções básicas</a>.
 ```
 
-The title is auto-inserted from the referenced article. That has the benefit of keeping the right title if the article gets renamed.
+O título é inserido automaticamente a partir do artigo referenciado. Isso tem a vantagem de manter o título correto se o artigo for renomeado.
 
 ## TODO
 
-Ask @iliakan to for more details.
+Pergunte a @iliakan para mais detalhes.
