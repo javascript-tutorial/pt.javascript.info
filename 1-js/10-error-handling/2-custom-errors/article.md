@@ -17,9 +17,7 @@ Here's an example of how a valid `json` may look:
 let json = `{ "name": "John", "age": 30 }`;
 ```
 
-Internally, we'll use `JSON.parse`. If it receives malformed `json`, then it throws `SyntaxError`.
-
-But even if `json` is syntactically correct, that doesn't mean that it's a valid user, right? It may miss the necessary data. For instance, it may not have `name` and `age` properties that are essential for our users.
+Internally, we'll use `JSON.parse`. If it receives malformed `json`, then it throws `SyntaxError`. But even if `json` is syntactically correct, that doesn't mean that it's a valid user, right? It may miss the necessary data. For instance, it may not have `name` and `age` properties that are essential for our users.
 
 Our function `readUser(json)` will not only read JSON, but check ("validate") the data. If there are no required fields, or the format is wrong, then that's an error. And that's not a `SyntaxError`, because the data is syntactically correct, but another kind of error. We'll call it `ValidationError` and create a class for it. An error of that kind should also carry the information about the offending field.
 
@@ -33,12 +31,12 @@ class Error {
   constructor(message) {
     this.message = message;
     this.name = "Error"; // (different names for different built-in error classes)
-    this.stack = <nested calls>; // non-standard, but most environments support it
+    this.stack = <call stack>; // non-standard, but most environments support it
   }
 }
 ```
 
-Now let's go on and inherit `ValidationError` from it:
+Now let's inherit `ValidationError` from it and try it in action:
 
 ```js run untrusted
 *!*
@@ -63,10 +61,9 @@ try {
 }
 ```
 
-Please take a look at the constructor:
+Please note: in the line `(1)` we call the parent constructor. JavaScript requires us to call `super` in the child constructor, so that's obligatory. The parent constructor sets the `message` property.
 
-1. In the line `(1)` we call the parent constructor. JavaScript requires us to call `super` in the child constructor, so that's obligatory. The parent constructor sets the `message` property.
-2. The parent constructor also sets the `name` property to `"Error"`, so in the line `(2)` we reset it to the right value.
+The parent constructor also sets the `name` property to `"Error"`, so in the line `(2)` we reset it to the right value.
 
 Let's try to use it in `readUser(json)`:
 
@@ -216,7 +213,7 @@ Now custom errors are much shorter, especially `ValidationError`, as we got rid 
 
 ## Wrapping exceptions
 
-The purpose of the function `readUser` in the code above is "to read the user data", right? There may occur different kinds of errors in the process. Right now we have `SyntaxError` and `ValidationError`, but in the future `readUser` function may grow: the new code will probably generate other kinds of errors.
+The purpose of the function `readUser` in the code above is "to read the user data". There may occur different kinds of errors in the process. Right now we have `SyntaxError` and `ValidationError`, but in the future `readUser` function may grow and probably generate other kinds of errors.
 
 The code which calls `readUser` should handle these errors. Right now it uses multiple `if`s in the `catch` block, that check the class and handle known errors and rethrow the unknown ones.
 
