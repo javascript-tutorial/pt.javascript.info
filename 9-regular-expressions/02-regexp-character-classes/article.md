@@ -82,7 +82,7 @@ O "inverso" significa que ele corresponde a todos os outros caracteres, por exem
 : Não-espaço: qualquer caractere, exceto `padrão:\s`, por exemplo, uma letra.
 
 `padrão:\W`
-: Caractere não verbal: qualquer coisa, exceto `padrão:\w`, por exemplo uma letra não latina ou um espaço.
+: Caractere não verbal: qualquer coisa, exceto `padrão:\w`, por exemplo, uma letra não latina ou um espaço.
 
 No início do capítulo, vimos como criar um número de telefone somente com números a partir de uma string como `subject:+7(903)-123-45-67`: encontre todos os dígitos e os junte.
 
@@ -92,7 +92,7 @@ let str = "+7(903)-123-45-67";
 alert( str.match(/\d/g).join('') ); // 79031234567
 ```
 
-Uma maneira alternativa e mais curta é encontrar não-dígitos `padrão:\D`  e removê-los da string:
+Uma maneira alternativa e mais curta é encontrar não-dígitos `padrão:\D` e removê-los da string:
 
 ```js run
 let str = "+7(903)-123-45-67";
