@@ -7,7 +7,7 @@ Respostas:
 
 2. `false`. 
 
-    Objetos são atrbuídos por referência. O objeto do `Rabbit.prototype` não é duplicado, ele continua sendo um único objeto referenciado por `Rabbit.prototype` e pelo `[[Prototype]]` do `rabbit`. 
+    Objetos são atribuídos por referência. O objeto do `Rabbit.prototype` não é duplicado, ele continua sendo um único objeto referenciado por `Rabbit.prototype` e pelo `[[Prototype]]` do `rabbit`. 
 
     Portanto, quando nós mudamos o seu conteúdo através de uma referência, ele fica visível para as outras.
 

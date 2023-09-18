@@ -4,7 +4,7 @@ importance: 5
 
 # Criando um objeto com o mesmo construtor
 
-Imagine que nós temos um objeto `obj` arbitrário, criado por uma função construtura -- nós não sabemos qual é, mas nós gostaríamos de criar um novo objeto usando ela.
+Imagine que nós temos um objeto `obj` arbitrário, criado por uma função construtura -- nós não sabemos qual é, mas nós gostaríamos de criar um objeto novo usando ela.
 
 Nós podemos fazer isso dessa forma?
 

@@ -88,7 +88,7 @@ alert(rabbit.constructor == Rabbit); // true (vindo do protótipo)
 
 ![](rabbit-prototype-constructor.svg)
 
-Nós podemos usar a propriedade `constructor` para criar um novo objeto usando o próprio construtor de um objeto que já exista.
+Nós podemos usar a propriedade `constructor` para criar um objeto novo usando o próprio construtor de um objeto que já exista.
 
 Como abaixo:
 
@@ -113,7 +113,7 @@ Mas provavelmente a coisa mais importante sobre o `"constructor"` é que...
 
 Sim, existe um `"prototype"` padrão para funções, mas é só isso. O que acontece com ele depois -- está totalmente por nossa conta.
 
-Em particular, se nós substituirmos o `prototype` padrão como um todo, não vai haver um `"constructor"` nele.
+Em particular, se nós substituirmos o `prototype` padrão, não vai haver um `"constructor"` nele.
 
 Por exemplo:
 
@@ -153,7 +153,6 @@ Rabbit.prototype = {
 // agora o constructor também está correto, porque nós o adicionamos
 ```
 
-
 ## Resumo
 
 Neste capítulo, nós descrevemos brevemente a forma de configurar um `[[Prototype]]` para os objetos criados via função construtura. Mais tarde nós vamos ver padrões (*patterns*) mais avançados de programação que dependem disso.
@@ -173,4 +172,4 @@ let user = {
 };
 ```
 
-Por definição, todas as funções possuem `F.prototype = { constructor: F }`, então nós podemos obter o construtor de um objeto acessando sua propriedade `"constructor"`.
+Por padrão, todas as funções possuem `F.prototype = { constructor: F }`, então nós podemos obter o construtor de um objeto acessando sua propriedade `"constructor"`.
