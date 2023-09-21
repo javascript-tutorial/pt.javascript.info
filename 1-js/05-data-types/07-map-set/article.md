@@ -1,12 +1,12 @@
 
-# Map and Set
+# Map e Set
 
-Till now, we've learned about the following complex data structures:
+Até agora, aprendemos sobre as seguintes estruturas de dados complexas:
 
-- Objects are used for storing keyed collections.
-- Arrays are used for storing ordered collections.
+- Objetos são usados para armazenar coleções indexadas.
+- Arrays são usados para armazenar coleções ordenadas.
 
-But that's not enough for real life. That's why `Map` and `Set` also exist.
+Mas isso não é suficiente para a vida real. É por isso que `Map` e `Set` também existem.
 
 ## Map
 
@@ -78,7 +78,7 @@ visitsCountObj[john] = 123; // try to use john object as the key, ben object wil
 
 *!*
 // That's what got written!
-alert( visitsCountObj["[object Object]"] ); // 123 
+alert( visitsCountObj["[object Object]"] ); // 123
 */!*
 ```
 
