@@ -10,88 +10,88 @@ Mas isso não é suficiente para a vida real. É por isso que `Map` e `Set` tamb
 
 ## Map
 
-[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) is a collection of keyed data items, just like an `Object`. But the main difference is that `Map` allows keys of any type.
+[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) é uma coleção de itens de dados indexados, assim como um `Object`. Mas a principal diferença é que `Map` permite chaves de qualquer tipo.
 
-Methods and properties are:
+Métodos e propriedades são:
 
-- [`new Map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Map) -- creates the map.
-- [`map.set(key, value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) -- stores the value by the key.
-- [`map.get(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- [`map.has(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
-- [`map.delete(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) -- removes the element (the key/value pair) by the key.
-- [`map.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) -- removes everything from the map.
-- [`map.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/size) -- returns the current element count.
+- [`new Map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Map) -- cria o mapa.
+- [`map.set(chave, valor)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) -- armazena o valor pela chave.
+- [`map.get(chave)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get) -- retorna o valor pela chave, `undefined` se a `chave` não existir no mapa.
+- [`map.has(chave)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has) -- retorna `true` se a `chave` existir, `false` caso contrário.
+- [`map.delete(chave)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) -- remove o elemento (o par chave/valor) pela chave.
+- [`map.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) -- remove tudo do mapa.
+- [`map.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/size) -- retorna a contagem atual de elementos.
 
-For instance:
+Por exemplo:
 
 ```js run
 let map = new Map();
 
-map.set('1', 'str1');   // a string key
-map.set(1, 'num1');     // a numeric key
-map.set(true, 'bool1'); // a boolean key
+map.set('1', 'str1');   // uma chave de string
+map.set(1, 'num1');     // uma chave numérica
+map.set(true, 'bool1'); // uma chave booleana
 
-// remember the regular Object? it would convert keys to string
-// Map keeps the type, so these two are different:
+// lembra do objeto normal? Ele converteria as chaves para string
+// Map mantém o tipo, então esses dois são diferentes:
 alert( map.get(1)   ); // 'num1'
 alert( map.get('1') ); // 'str1'
 
 alert( map.size ); // 3
 ```
 
-As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
+Como podemos ver, ao contrário de objetos, as chaves não são convertidas em strings. Qualquer tipo de chave é possível.
 
-```smart header="`map[key]` isn't the right way to use a `Map`"
-Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (only string/symbol keys and so on).
+```smart header="`map[chave]` não é a maneira correta de usar um `Map`"
+Embora `map[chave]` também funcione, por exemplo, podemos definir `map[chave] = 2`, isso trata o `map` como um objeto JavaScript simples, o que implica todas as limitações correspondentes (apenas chaves de string/símbolo, entre outras).
 
-So we should use `map` methods: `set`, `get` and so on.
+Portanto, devemos usar os métodos do `map`: `set`, `get` e assim por diante.
 ```
 
-**Map can also use objects as keys.**
+**Map também pode usar objetos como chaves.**
 
-For instance:
+Por exemplo:
 
 ```js run
 let john = { name: "John" };
 
-// for every user, let's store their visits count
+// para cada usuário, vamos armazenar a contagem de suas visitas.
 let visitsCountMap = new Map();
 
-// john is the key for the map
+// john é a chave para o mapa
 visitsCountMap.set(john, 123);
 
 alert( visitsCountMap.get(john) ); // 123
 ```
 
-Using objects as keys is one of the most notable and important `Map` features. The same does not count for `Object`. String as a key in `Object` is fine, but we can't use another `Object` as a key in `Object`.
+Usar objetos como chaves é uma das características mais notáveis e importantes do `Map`. O mesmo não se aplica ao `Object`. Usar uma string como chave em um `Object` é aceitável, mas não podemos usar outro `Object` como chave em um `Object`.
 
-Let's try:
+Vamos tentar:
 
 ```js run
 let john = { name: "John" };
 let ben = { name: "Ben" };
 
-let visitsCountObj = {}; // try to use an object
+let visitsCountObj = {}; // tente usar um objeto
 
-visitsCountObj[ben] = 234; // try to use ben object as the key
-visitsCountObj[john] = 123; // try to use john object as the key, ben object will get replaced
+visitsCountObj[ben] = 234; // tente usar o objeto ben como chave
+visitsCountObj[john] = 123; // tente usar o objeto john como chave, o objeto ben será substituído
 
 *!*
-// That's what got written!
+// Isso é o que foi escrito!
 alert( visitsCountObj["[object Object]"] ); // 123
 */!*
 ```
 
-As `visitsCountObj` is an object, it converts all `Object` keys, such as `john` and `ben` above, to same string `"[object Object]"`. Definitely not what we want.
+"Como `visitsCountObj` é um objeto, ele converte todas as chaves de `Object`, como `john` e `ben` acima, para a mesma string `"[object Object]"`. Definitivamente, não é o que queremos."
 
-```smart header="How `Map` compares keys"
-To test keys for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
+```smart header="Como o `Map` compara chaves"
+Para testar as chaves quanto à equivalência, o `Map` utiliza o algoritmo [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). Ele é essencialmente o mesmo que a igualdade estrita `===`, mas a diferença é que `NaN` é considerado igual a `NaN`. Portanto, `NaN` pode ser usado como chave também.
 
-This algorithm can't be changed or customized.
+Este algoritmo não pode ser alterado ou personalizado.
 ```
 
-````smart header="Chaining"
-Every `map.set` call returns the map itself, so we can "chain" the calls:
+````smart header="Encadeamento"
+Cada chamada de `map.set` retorna o próprio mapa, então podemos "encadear" as chamadas:
 
 ```js
 map.set('1', 'str1')
