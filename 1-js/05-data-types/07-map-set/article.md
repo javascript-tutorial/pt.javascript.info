@@ -100,7 +100,7 @@ map.set('1', 'str1')
 ```
 ````
 
-## Iteração sobre o Mapa
+## Iteração sobre o Map
 
 Para fazer um loop em um `map`, existem 3 métodos:
 
@@ -146,12 +146,12 @@ recipeMap.forEach( (value, key, map) => {
 });
 ```
 
-## Object.entries: Map from Object
+## Object.entries: Map a partir de Objeto
 
-When a `Map` is created, we can pass an array (or another iterable) with key/value pairs for initialization, like this:
+Quando um `Map` é criado, podemos passar um array (ou outro iterável) com pares chave/valor para inicialização, como este:
 
 ```js run
-// array of [key, value] pairs
+// array de pares [chave, valor]
 let map = new Map([
   ['1',  'str1'],
   [1,    'num1'],
@@ -161,9 +161,9 @@ let map = new Map([
 alert( map.get('1') ); // str1
 ```
 
-If we have a plain object, and we'd like to create a `Map` from it, then we can use built-in method [Object.entries(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
+Se tivermos um objeto simples e gostaríamos de criar um `Map` a partir dele, podemos usar o método embutido [Object.entries(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries), que retorna um array de pares chave/valor para um objeto exatamente nesse formato.
 
-So we can create a map from an object like this:
+Portanto, podemos criar um mapa a partir de um objeto da seguinte forma:
 
 ```js run
 let obj = {
@@ -178,8 +178,7 @@ let map = new Map(Object.entries(obj));
 alert( map.get('name') ); // John
 ```
 
-Here, `Object.entries` returns the array of key/value pairs: `[ ["name","John"], ["age", 30] ]`. That's what `Map` needs.
-
+Aqui, `Object.entries` retorna o array de pares chave/valor: `[ ["name","John"], ["age", 30] ]`. Isso é o que o `Map` precisa.
 
 ## Object.fromEntries: Object from Map
 
