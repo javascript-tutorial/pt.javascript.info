@@ -82,7 +82,7 @@ alert( visitsCountObj["[object Object]"] ); // 123
 */!*
 ```
 
-"Como `visitsCountObj` é um objeto, ele converte todas as chaves de `Object`, como `john` e `ben` acima, para a mesma string `"[object Object]"`. Definitivamente, não é o que queremos."
+Como `visitsCountObj` é um objeto, ele converte todas as chaves de `Object`, como `john` e `ben` acima, para a mesma string `"[object Object]"`. Definitivamente, não é o que queremos.
 
 ```smart header="Como o `Map` compara chaves"
 Para testar as chaves quanto à equivalência, o `Map` utiliza o algoritmo [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). Ele é essencialmente o mesmo que a igualdade estrita `===`, mas a diferença é que `NaN` é considerado igual a `NaN`. Portanto, `NaN` pode ser usado como chave também.
@@ -100,15 +100,15 @@ map.set('1', 'str1')
 ```
 ````
 
-## Iteration over Map
+## Iteração sobre o Mapa
 
-For looping over a `map`, there are 3 methods:
+Para fazer um loop em um `map`, existem 3 métodos:
 
-- [`map.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys) -- returns an iterable for keys,
-- [`map.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values) -- returns an iterable for values,
-- [`map.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries) -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
+- [`map.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys) -- retorna um iterável para chaves,
+- [`map.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values) -- retorna um iterável para valores,
+- [`map.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries) -- retorna um iterável para entradas `[chave, valor]`, é usado por padrão em `for..of`.
 
-For instance:
+Por exemplo:
 
 ```js run
 let recipeMap = new Map([
@@ -117,30 +117,30 @@ let recipeMap = new Map([
   ['onion',    50]
 ]);
 
-// iterate over keys (vegetables)
+// itera sobre as chaves (vegetais)
 for (let vegetable of recipeMap.keys()) {
   alert(vegetable); // cucumber, tomatoes, onion
 }
 
-// iterate over values (amounts)
+// itera sobre os valores (quantidades)
 for (let amount of recipeMap.values()) {
   alert(amount); // 500, 350, 50
 }
 
-// iterate over [key, value] entries
-for (let entry of recipeMap) { // the same as of recipeMap.entries()
-  alert(entry); // cucumber,500 (and so on)
+// itera sobre as entradas [chave, valor]
+for (let entry of recipeMap) { // o mesmo que recipeMap.entries()
+  alert(entry); // cucumber,500 (e assim por diante)
 }
 ```
 
-```smart header="The insertion order is used"
-The iteration goes in the same order as the values were inserted. `Map` preserves this order, unlike a regular `Object`.
+```smart header="A ordem de inserção é usada."
+A iteração segue a mesma ordem em que os valores foram inseridos. O `Map` preserva essa ordem, ao contrário de um objeto normal.
 ```
 
-Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
+Além disso, o `Map` possui um método embutido chamado `forEach`, semelhante ao `Array`:
 
 ```js
-// runs the function for each (key, value) pair
+// executa a função para cada par (chave, valor)
 recipeMap.forEach( (value, key, map) => {
   alert(`${key}: ${value}`); // cucumber: 500 etc
 });
