@@ -272,30 +272,30 @@ for (let user of set) {
 
 A alternativa ao `Set` poderia ser um array de usuários e o código para verificar duplicatas em cada inserção usando [arr.find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find). No entanto, o desempenho seria muito pior, porque esse método percorre todo o array verificando cada elemento. O `Set` é muito mais otimizado internamente para verificações de unicidade.
 
-## Iteration over Set
+## Iteração sobre o Set
 
-We can loop over a set either with `for..of` or using `forEach`:
+Podemos fazer um loop sobre um conjunto tanto com `for..of` quanto usando `forEach`:
 
 ```js run
 let set = new Set(["oranges", "apples", "bananas"]);
 
 for (let value of set) alert(value);
 
-// the same with forEach:
+// o mesmo com forEach:
 set.forEach((value, valueAgain, set) => {
   alert(value);
 });
 ```
 
-Note the funny thing. The callback function passed in `forEach` has 3 arguments: a `value`, then *the same value* `valueAgain`, and then the target object. Indeed, the same value appears in the arguments twice.
+Observe a coisa curiosa. A função de retorno de chamada passada no `forEach` tem 3 argumentos: um `value`, em seguida, *o mesmo valor* `valueAgain`, e depois o objeto de destino. Na verdade, o mesmo valor aparece nos argumentos duas vezes.
 
-That's for compatibility with `Map` where the callback passed `forEach` has three arguments. Looks a bit strange, for sure. But this may help to replace `Map` with `Set` in certain cases with ease, and vice versa.
+Isso é para compatibilidade com o `Map`, onde a função de retorno de chamada passada no `forEach` tem três argumentos. Parece um pouco estranho, com certeza. Mas isso pode ajudar a substituir `Map` por `Set` em determinados casos com facilidade, e vice-versa.
 
-The same methods `Map` has for iterators are also supported:
+Os mesmos métodos que o `Map` tem para iteradores também são suportados:
 
-- [`set.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/keys) -- returns an iterable object for values,
-- [`set.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values) -- same as `set.keys()`, for compatibility with `Map`,
-- [`set.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/entries) -- returns an iterable object for entries `[value, value]`, exists for compatibility with `Map`.
+- [`set.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/keys) -- retorna um objeto iterável para valores,
+- [`set.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values) -- o mesmo que `set.keys()`, para compatibilidade com `Map`,
+- [`set.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/entries) -- retorna um objeto iterável para entradas `[valor, valor]`, existe para compatibilidade com `Map`.
 
 ## Summary
 
