@@ -180,11 +180,11 @@ alert( map.get('name') ); // John
 
 Aqui, `Object.entries` retorna o array de pares chave/valor: `[ ["name","John"], ["age", 30] ]`. Isso é o que o `Map` precisa.
 
-## Object.fromEntries: Object from Map
+## Object.fromEntries: Objeto a partir de Map
 
-We've just seen how to create `Map` from a plain object with `Object.entries(obj)`.
+Acabamos de ver como criar um `Map` a partir de um objeto simples usando `Object.entries(obj)`.
 
-There's `Object.fromEntries` method that does the reverse: given an array of `[key, value]` pairs, it creates an object from them:
+Existe o método `Object.fromEntries` que faz o inverso: dado um array de pares `[chave, valor]`, ele cria um objeto a partir deles:
 
 ```js run
 let prices = Object.fromEntries([
@@ -193,16 +193,16 @@ let prices = Object.fromEntries([
   ['meat', 4]
 ]);
 
-// now prices = { banana: 1, orange: 2, meat: 4 }
+// agora prices = { banana: 1, orange: 2, meat: 4 }
 
 alert(prices.orange); // 2
 ```
 
-We can use `Object.fromEntries` to get a plain object from `Map`.
+Podemos usar `Object.fromEntries` para obter um objeto simples a partir de um `Map`.
 
-E.g. we store the data in a `Map`, but we need to pass it to a 3rd-party code that expects a plain object.
+Por exemplo, armazenamos os dados em um `Map`, mas precisamos passá-los para um código de terceiros que espera um objeto simples.
 
-Here we go:
+Aqui está:
 
 ```js run
 let map = new Map();
@@ -211,23 +211,23 @@ map.set('orange', 2);
 map.set('meat', 4);
 
 *!*
-let obj = Object.fromEntries(map.entries()); // make a plain object (*)
+let obj = Object.fromEntries(map.entries()); // cria um objeto simples (*)
 */!*
 
-// done!
+// feito!
 // obj = { banana: 1, orange: 2, meat: 4 }
 
 alert(obj.orange); // 2
 ```
 
-A call to `map.entries()` returns an iterable of key/value pairs, exactly in the right format for `Object.fromEntries`.
+Uma chamada para `map.entries()` retorna um iterável de pares chave/valor, exatamente no formato correto para `Object.fromEntries`.
 
-We could also make line `(*)` shorter:
+Também podemos tornar a linha `(*)` mais curta:
 ```js
-let obj = Object.fromEntries(map); // omit .entries()
+let obj = Object.fromEntries(map); // omite .entries()
 ```
 
-That's the same, because `Object.fromEntries` expects an iterable object as the argument. Not necessarily an array. And the standard iteration for `map` returns same key/value pairs as `map.entries()`. So we get a plain object with same key/values as the `map`.
+Isso é o mesmo, porque `Object.fromEntries` espera um objeto iterável como argumento. Não necessariamente um array. E a iteração padrão para o `map` retorna os mesmos pares chave/valor que o `map.entries()`. Portanto, obtemos um objeto simples com as mesmas chaves/valores do `map`.
 
 ## Set
 
