@@ -37,7 +37,7 @@ alert( result ); // true
 
 ## Comparação de strings
 
-Para ver se uma string é maior que outra, o JavaScript usa a chamado ordem "dicionário" ou "lexicográfica".
+Para ver se uma string é maior que outra, o JavaScript usa a chamada ordem "dicionário" ou "lexicográfica".
 
 Em outras palavras, as strings são comparadas letra a letra.
 
@@ -126,7 +126,7 @@ A mesma coisa acontece com uma string vazia:
 alert( '' == false ); // true
 ```
 
-Isso acontece porque operandos de tipos diferentes são convertidos em números pelo operador de igualdade `==`. Uma string vazia, assim como `false`, torna-se um zero.
+Isso acontece porque operandos de tipos diferentes são convertidos em números pelo operador de igualdade `==`. Uma string vazia, assim como `false`, torna-se em um zero.
 
 O que fazer se quisermos diferenciar `0` de `false`?
 
@@ -149,14 +149,14 @@ O operador de igualdade estrita é um pouco mais longo para escrever, mas torna 
 Há um comportamento não intuitivo quando `null` ou `undefined` são comparados a outros valores.
 
 Para uma verificação de igualdade estrita `===`
-: Esses valores são diferentes, porque cada um deles é de um tipo diferente.
+: Esses valores diferem, porque cada um deles é de um tipo diferente.
 
     ```js run
     alert( null === undefined ); // false
     ```
 
 Para uma verificação não estrita `==`
-: Há uma regra especial. Esses dois são um "casal doce": eles se igualam (no sentido de `==`), mas não a qualquer outro valor.
+: Há uma regra especial. Esses dois são um "casal doce": eles se igualam (no sentido de `==`), mas não, a qualquer outro valor.
 
     ```js run
     alert( null == undefined ); // true
@@ -165,7 +165,7 @@ Para uma verificação não estrita `==`
 Para matemática e outras comparações `< > <= >=`
 : `null/undefined` são convertidos em números: `null` torna-se `0`, enquanto `undefined` torna-se `NaN`.
 
-Agora vamos ver algumas coisas engraçadas que acontecem quando aplicamos essas regras. E, o que é mais importante, como não cair numa armadilha com eles.: Esses valores são diferentes, porque cada um deles é de um tipo diferente.
+Agora vamos ver algumas coisas engraçadas que acontecem quando aplicamos essas regras. E, o que é mais importante, como não cair numa armadilha com eles.: Esses valores diferem, porque cada um deles é de um tipo diferente.
 
 ### Resultado estranho: null vs 0
 
