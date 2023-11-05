@@ -4,7 +4,7 @@ importance: 5
 
 # Verifique por vazio
 
-Escreva a função `isEmpty(obj)`, que retorna `true` se o  objeto não tiver propriedades, e `false` caso contrário.
+Escreva a função `isEmpty(obj)`, que retorna `true` se o objeto não tiver propriedades, e `false` caso contrário.
 
 Deve funcionar desta forma:
 

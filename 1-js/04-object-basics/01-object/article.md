@@ -203,7 +203,7 @@ let bag = {
 
 Parênteses retos, são mais poderosos que a notação por ponto. Eles permitem quaisquer nomes de propriedades e variáveis. Mas, eles também dão mais trabalho para escrever.
 
-Assim, a maior parte as vezes, quando os nomes de propriedades são conhecidos e simples, o ponto é utilizado. E, se precisarmos de algo mais complexo, mudamos para os parênteses retos.
+Assim, a maior parte às vezes, quando os nomes de propriedades são conhecidos e simples, o ponto é utilizado. E, se precisarmos de algo mais complexo, mudamos para os parênteses retos.
 
 ## Abreviação do valor da propriedade
 
@@ -267,7 +267,7 @@ let obj = {
 alert( obj.for + obj.let + obj.return );  // 6
 ```
 
-Em resumo, não existem limitações para os nomes de propriedades. Eles podem ser quaisquer *strings* ou símbolos (um tipo especial de  identificadores, a ser visto mais adiante).
+Em resumo, não existem limitações para os nomes de propriedades. Eles podem ser quaisquer *strings* ou símbolos (um tipo especial de identificadores, a ser visto mais adiante).
 
 Outros tipos são automaticamente convertidos para *strings*.
 
@@ -299,7 +299,7 @@ Vamos analisar a natureza especial de `__proto__` em [subsequent chapters](info:
 
 Uma particularidade notável de objetos em JavaScript, em comparação a outras linguagens, é que é possível aceder a qualquer propriedade. Não haverá erro se a propriedade não existir!
 
-Aceder a uma propriedade não-existente apenas retorna `undefined`. Assim, podemos fácilmente testar se uma propriedade existe:
+Aceder a uma propriedade não-existente apenas retorna `undefined`. Assim, podemos facilmente testar se uma propriedade existe:
 
 ```js run
 let user = {};
@@ -357,7 +357,7 @@ Situações como esta muito raramente ocorrem, porque `undefined` não deveria s
 
 ## O laço "for..in"
 
-Para navegar por todas as chaves de um objeto, existe uma forma especial de laço (*loop*): `for..in`. Esta, é uma coisa completamente diferente da construção `for(;;)` que estudámos antes.
+Para navegar por todas as chaves de um objeto, existe uma forma especial de laço (*loop*): `for..in`. Esta, é uma coisa completamente diferente da construção `for(;;)` que estudamos antes.
 
 A sintaxe:
 
@@ -367,7 +367,7 @@ for (key in object) {
 }
 ```
 
-Por exemplo, vamos imprimir todas propriedades de  `user`:
+Por exemplo, vamos imprimir todas as propriedades de `user`:
 
 ```js run
 let user = {
@@ -394,7 +394,7 @@ Os objetos são ordenados? Por outras palavras, se percorrermos um objeto com um
 
 A curta resposta é: "ordenados de uma forma especial" - propriedades inteiras são ordenadas de forma crescente, outras aparecem na ordem em que foram criadas. Detalhes a seguir.
 
-Como exemplo, vamos considerar um objeto com indicativos telefónicos de países:
+Como exemplo, vamos considerar um objeto com indicativos telefônicos de países:
 
 ```js run
 let codes = {
@@ -419,7 +419,7 @@ Mas, ao correr o código, temos uma imagem totalmente diferente:
 - EUA (1) vem em primeiro lugar,
 - depois a Suíça (41), e assim por adiante.
 
-Os indicativos telefónicos, são ordenados por ordem ascendente, porque são inteiros. Por isso, vemos `1, 41, 44, 49`.
+Os indicativos telefônicos, são ordenados por ordem ascendente, porque são inteiros. Por isso, vemos `1, 41, 44, 49`.
 
 ````smart header="Propriedades inteiras? O que é isso?"
 O termo "propriedade inteira" aqui, significa que uma *string* pode ser convertida para *integer*, e convertida de volta sem qualquer alteração.
@@ -452,7 +452,7 @@ for (let prop in user) {
 }
 ```
 
-Portanto, para corrigir o problema dos indicativos telefónicos, podemos "enganar" tornando-os não-inteiros. Adicionar um sinal de mais `"+"` antes de cada código é o suficiente.
+Portanto, para corrigir o problema dos indicativos telefônicos, podemos "enganar" tornando-os não-inteiros. Adicionar um sinal de mais `"+"` antes de cada código é o suficiente.
 
 Desta forma:
 
@@ -489,7 +489,7 @@ Operadores adicionais:
 - Para verificar se uma propriedade com uma dada chave existe: `"key" in obj`.
 - Para iterar sobre um objeto: o ciclo `for (let key in obj)`.
 
-O que estudámos neste capítulo é o chamado "objeto simples" ("*plain object*"), ou simplesmente `Object`.
+O que estudamos neste capítulo é o chamado "objeto simples" ("*plain object*"), ou simplesmente `Object`.
 
 Existem muitos outros tipos de objetos em JavaScript:
 
@@ -500,4 +500,4 @@ Existem muitos outros tipos de objetos em JavaScript:
 
 Eles têm as suas funcionalidades especiais, que vamos estudar mais adiante. Por vezes, as pessoas dizem algo como "o tipo Array" ou "o tipo Data" (*Date*), mas formalmente eles não são propriamente tipos, e sim pertencem a um único tipo de dados "objeto". E eles o estendem de várias maneiras.
 
-Objetos em JavaScript são muito poderosos. Aqui, apenas ficámos à superfície de um tópico que é realmente amplo. Nós vamos, mais especificamente, trabalhar e aprender sobre objetos em futuras partes do tutorial.
+Objetos em JavaScript são muito poderosos. Aqui, apenas ficamos na superfície de um tópico que é realmente amplo. Nós vamos, mais especificamente, trabalhar e aprender sobre objetos em futuras partes do tutorial.
