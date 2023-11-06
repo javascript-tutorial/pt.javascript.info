@@ -1,92 +1,96 @@
 
-# Polyfills and transpilers
+# Polyfills e transpiladores
 
-The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/).
+A linguagem JavaScript evolui constantemente. Novas propostas para a linguagem surgem regularmente, elas são analisadas e, se consideradas interessantes,  serão adicionadas à lista <https://tc39.github.io/ecma262/> e depois progridem para a [especificação](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/).
 
-Teams behind JavaScript engines have their own ideas about what to implement first. They may decide to implement proposals that are in draft and postpone things that are already in the spec, because they are less interesting or just harder to do.
+As equipes por trás dos mecanismos JavaScript têm suas próprias ideias sobre o que implementar primeiro. Eles podem decidir implementar propostas que estão em rascunho e adiar coisas que já estão dentro das especificações, porque são menos interessantes ou simplesmente mais difíceis de fazer.
 
-So it's quite common for an engine to implement only part of the standard.
+Portanto, é bastante comum que um mecanismo implemente apenas parte do padrão.
 
-A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
+Uma excelente página para ver o estado atual do suporte aos recursos da linguagem é <https://compat-table.github.io/compat-table/es6> (a lista é gigante, temos muito o que estudar pela frente!)
 
-As programmers, we'd like to use most recent features. The more good stuff - the better!
+Como programadores, gostaríamos de usar os recursos mais recentes. Quanto mais coisas boas – melhor!
 
-On the other hand, how to make our modern code work on older engines that don't understand recent features yet?
+Por outro lado, como fazer nosso código moderno funcionar em motores (engines) mais antigos que ainda não entendem os recursos recentes?
 
-There are two tools for that:
+Existem duas ferramentas para contornar isso:
 
-1. Transpilers.
-2. Polyfills.
+1. Transpiladores (Transpilers).
+2. Scripts de Preenchimentos (Polyfills).
 
-Here, in this chapter, our purpose is to get the gist of how they work, and their place in web development.
+Aqui, neste capítulo, nosso objetivo é entender a essência de como eles funcionam e seu lugar no mundo do desenvolvimento web.
 
-## Transpilers
+## Transpiladores
 
-A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) is a special piece of software that translates source code to another source code. It can parse ("read and understand") modern code and rewrite it using older syntax constructs, so that it'll also work in outdated engines.
+Um [transpilador](https://en.wikipedia.org/wiki/Source-to-source_compiler) é um software especial que traduz o código-fonte em outro código-fonte. Ele pode analisar ("ler e compreender") código moderno e reescrevê-lo usando construções de sintaxe mais antigas, para que também funcione em mecanismos desatualizados.
 
-E.g. JavaScript before year 2020 didn't have the "nullish coalescing operator" `??`. So, if a visitor uses an outdated browser, it may fail to understand the code like `height = height ?? 100`.
+Por exemplo, JavaScript antes do ano 2020 não tinha o "operador de coalescência nulo" `??`. Portanto, se um usuário utilizar um navegador desatualizado, ele poderá não entender o código como `height = height ?? 100`.
 
-A transpiler would analyze our code and rewrite `height ?? 100` into `(height !== undefined && height !== null) ? height : 100`.
+Um transpilador analisaria nosso código e reescreveria a `height ?? 100` em algo parecido com `(height !== undefined && height !== null) ? height : 100`
 
 ```js
-// before running the transpiler
+// antes de executar o transpilador
 height = height ?? 100;
 
-// after running the transpiler
+// após executar o transpilador
 height = (height !== undefined && height !== null) ? height : 100;
 ```
 
-Now the rewritten code is suitable for older JavaScript engines.
+Agora, o código reescrito é adequado para mecanismos JavaScript mais antigos.
 
-Usually, a developer runs the transpiler on their own computer, and then deploys the transpiled code to the server.
+Normalmente, um desenvolvedor executa o transpilador em seu próprio computador e, em seguida, faz o deploy do código transpilado para o servidor.
 
-Speaking of names, [Babel](https://babeljs.io) is one of the most prominent transpilers out there.
+Falando em nomes, [Babel](https://babeljs.io) é um dos transpiladores mais populares que existe.
 
-Modern project build systems, such as [webpack](https://webpack.js.org/), provide a means to run a transpiler automatically on every code change, so it's very easy to integrate into the development process.
+Sistemas modernos de construção de projetos, como o [webpack](https://webpack.js.org/), fornecem um meio de executar um transpilador automaticamente em cada alteração de código, por isso é muito fácil integrá-lo ao processo de desenvolvimento.
 
-## Polyfills
+## Scripts de Preenchimentos (Polyfills)
 
-New language features may include not only syntax constructs and operators, but also built-in functions.
+Novos recursos de linguagem podem incluir não apenas construções e operadores de sintaxe, mas também funções integradas (built-in functions).
 
-For example, `Math.trunc(n)` is a function that "cuts off" the decimal part of a number, e.g `Math.trunc(1.23)` returns `1`.
+Por exemplo, `Math.trunc(n)` é uma função que "retira" a parte decimal de um número, por exemplo, `Math.trunc(1.23)` retorna `1`.
 
-In some (very outdated) JavaScript engines, there's no `Math.trunc`, so such code will fail.
+Em alguns mecanismos JavaScript (muito desatualizados), não há `Math.trunc`, portanto, esse código falhará.
 
-As we're talking about new functions, not syntax changes, there's no need to transpile anything here. We just need to declare the missing function.
+Como estamos falando de novas funções, não de mudanças de sintaxe (como linguagem é escrita), não há necessidade de transpilar nada aqui. Precisamos apenas declarar a função que falta.
 
-A script that updates/adds new functions is called "polyfill". It "fills in" the gap and adds missing implementations.
+Um script que atualiza/adiciona novas funções é chamado de "polyfill". Ele "preenche" a lacuna e adiciona implementações ausentes.
 
-For this particular case, the polyfill for `Math.trunc` is a script that implements it, like this:
+Para este caso específico, o polyfill para `Math.trunc` seria um script implementado da seguinte forma:
 
 ```js
-if (!Math.trunc) { // if no such function
-  // implement it
+if (!Math.trunc) { // se não existir a função
+  // Implementação da função
   Math.trunc = function(number) {
-    // Math.ceil and Math.floor exist even in ancient JavaScript engines
-    // they are covered later in the tutorial
+    // Math.ceil and Math.floor já existem mesmo em mecanismos bem antigos
+    // elas serão abordadas posteriormente
     return number < 0 ? Math.ceil(number) : Math.floor(number);
   };
 }
 ```
-
-JavaScript is a highly dynamic language. Scripts may add/modify any function, even built-in ones.
-
-Two interesting polyfill libraries are:
-- [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
-- [polyfill.io](https://polyfill.io/) service that provides a script with polyfills, depending on the features and user's browser.
+JavaScript é uma linguagem altamente dinâmica. Os scripts podem adicionar/modificar qualquer função, mesmo as integradas (built-in functions).
 
 
-## Summary
+Duas bibliotecas de polyfills interessantes são:
 
-In this chapter we'd like to motivate you to study modern and even "bleeding-edge" language features, even if they aren't yet well-supported by JavaScript engines.
+- [core js](https://github.com/zloirock/core-js) que oferece suporte a muitas funcionalidades e permite incluir apenas as necessárias.
+- [polyfill.io](https://polyfill.io/) um serviço que fornece um script com polyfills, dependendo das funcionalidades e do navegador do usuário.
 
-Just don't forget to use a transpiler (if using modern syntax or operators) and polyfills (to add functions that may be missing). They'll ensure that the code works.
 
-For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](https://webpack.js.org/) with the [babel-loader](https://github.com/babel/babel-loader) plugin.
+## Resumo
 
-Good resources that show the current state of support for various features:
-- <https://kangax.github.io/compat-table/es6/> - for pure JavaScript.
-- <https://caniuse.com/> - for browser-related functions.
+Neste capítulo, gostaríamos de motivá-lo a estudar recursos de linguagem modernos e até mesmo "de ponta", mesmo que ainda não sejam bem suportados por mecanismos JavaScript.
 
-P.S. Google Chrome is usually the most up-to-date with language features, try it if a tutorial demo fails. Most tutorial demos work with any modern browser though.
+Só não se esqueça de usar um transpilador (se estiver usando sintaxe ou operadores modernos) e polyfills (para preencher funções que possam estar faltando). Eles garantirão que o código funcione.
 
+Por exemplo, mais tarde, quando estiver familiarizado com JavaScript, você poderá configurar um sistema de construção de código baseado em [webpack](https://webpack.js.org/) com o plugin [babel-loader](https://github.com/babel/babel-loader).
+
+Sites que mostram o estado atual do suporte para vários recursos da linguagem:
+- <https://kangax.github.io/compat-table/es6/> - para JavaScript puro.
+- <https://caniuse.com/> - para funcionalidades relacionadas ao navegador.
+
+**Observação:**
+O Google Chrome geralmente é o mais atualizado em termos de recursos de linguagem. 
+Experimente alguns recursos listado no [Caniuse](https://caniuse.com), veja se consegue encontrar algum recurso que falha na versão atual do Google Chrome, ou do seu navegador favorito. 
+
+A maioria dos tutoriais de demonstrações apresentados aqui funcionam com qualquer navegador moderno. Fique à vontade para experimentá-los!
