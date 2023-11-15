@@ -203,7 +203,7 @@ let bag = {
 
 Parênteses retos, são mais poderosos que a notação por ponto. Eles permitem quaisquer nomes de propriedades e variáveis. Mas, eles também dão mais trabalho para escrever.
 
-Assim, a maior parte às vezes, quando os nomes de propriedades são conhecidos e simples, o ponto é utilizado. E, se precisarmos de algo mais complexo, mudamos para os parênteses retos.
+Assim, na maior parte das vezes, quando os nomes de propriedades são conhecidos e simples, o ponto é utilizado. E, se precisarmos de algo mais complexo, mudamos para os parênteses retos.
 
 ## Abreviação do valor da propriedade
 
