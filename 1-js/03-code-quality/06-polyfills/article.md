@@ -7,7 +7,7 @@ Grupos por detrás dos interpretadores de JavaScript têm as suas próprias idei
 
 Assim, é muito comum que um interpretador implemente apenas parte de um padrão.
 
-Uma boa página para se ver o estágio atual de suporte de funcionalidades da linguagem é <https://kangax.github.io/compat-table/es6/> (é extensa, nós ainda temos muito que estudar).
+Uma boa página para se ver o estágio atual de suporte de funcionalidades da linguagem é <https://compat-table.github.io/compat-table/es6/> (é extensa, nós ainda temos muito que estudar).
 
 Como programadores, nós gostaríamos de usar as funcionalidades mais recentes. Quantas mais forem as coisas boas - melhor!
 
@@ -18,11 +18,11 @@ Existem duas ferramentas para isso:
 1. Transpilers.
 2. Polyfills.
 
-Aqui, neste capítulo, o nosso propósito é obter o essencial de como elas funcionam, e o seu lugar dentro do desenvolvimento para a web.
+Aqui, neste capítulo, o nosso propósito é obter o essencial de como elas funcionam, e o seu lugar no desenvolvimento para a web.
 
 ## Transpilers
 
-Um [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) é uma peça especial de software que traduz um código fonte para outro código fonte. Ele pode analisar ("ler e compreender") código moderno, e o reescrever usando construções sintáticas antigas, de tal forma que também funcione em interpretadores desatualizados.
+Um [transpiler (transpilador em português)](https://en.wikipedia.org/wiki/Source-to-source_compiler) é uma peça especial de software que traduz um código-fonte para outro código-fonte. Ele pode analisar ("ler e compreender") código moderno, e o reescrever usando construções sintáticas antigas, de tal forma que também funcione em interpretadores desatualizados.
 
 Por exemplo, o JavaScript antes de 2020 não tinha o "operador de coalescência nula" `??`. Assim, se um visitante usar um navegador desatualizado, este não conseguirá compreender código como `height = height ?? 100`.
 
@@ -38,7 +38,7 @@ height = (height !== undefined && height !== null) ? height : 100;
 
 Agora, o código reescrito está adequado a interpretadores de JavaScript antigos.
 
-Geralmente, um desenvolvedor corre o transpiler na sua própria máquina, e depois coloca o código transpilado no servidor.
+Geralmente, um desenvolvedor executa o transpiler na sua própria máquina, e depois coloca o código transpilado no servidor.
 
 Falando em nomes, o [Babel](https://babeljs.io) é um dos mais prominentes transpilers por aí.
 
@@ -52,7 +52,7 @@ Por exemplo, `Math.trunc(n)` é uma função que "corta" a parte decimal de um n
 
 Em alguns (muito desatualizados) interpretadores de JavaScript, não existe `Math.trunc`, por isto esse código irá falhar.
 
-Como estamos a falar de novas funções, e não de alterações sintáticas, não é necessário transpilar nada aqui. Nós, apenas precisamos de declarar a função em falta.
+Como estamos falando de novas funções, e não de alterações sintáticas, não é necessário transpilar nada aqui. Nós, apenas precisamos de declarar a função em falta.
 
 Um script que atualize/adicione novas funções é chamado de "polyfill". Ele "preenche" o intervalo e adiciona implementações que faltem.
 
@@ -79,12 +79,12 @@ Duas interessantes bibliotecas de polyfills são:
 
 Neste capítulo, gostaríamos de o motivar a estudar funcionalidades modernas ou até em esboço da linguagem, mesmo que elas ainda não tenham um bom suporte pelos interpretadores de JavaScript.
 
-Apenas não se esqueça de usar um transpiler (se empregar sintaxe ou operadores modernos) e polyfills (para adicionar funções que possam estar ausentes). E eles irão garantir que o código funciona.
+Apenas não se esqueça de usar um transpiler (se empregar sintaxe ou operadores modernos) e polyfills (para adicionar funções que possam estar ausentes). E eles irão garantir que o código funcione.
 
 Por exemplo, mais adiante quando estiver familiarizado com o JavaScript, você pode configurar um sistema para a construção de código com base no [webpack](https://webpack.js.org/) e com o plugin [babel-loader](https://github.com/babel/babel-loader).
 
 Bons recursos que mostram o estágio atual do suporte para várias funcionalidades:
-- <https://kangax.github.io/compat-table/es6/> - para puro JavaScript.
+- <https://compat-table.github.io/compat-table/es6/> - para puro JavaScript.
 - <https://caniuse.com/> - para funções com relação ao navegador.
 
-P.S. O Google Chrome, geralmente é o mais atualizado relativamente a funcionalidades da linguagem, tente-o se um exemplo no tutorial falhar. Contudo, a maioria dos exemplos no tutorial funcionam com qualquer navegador moderno.
+P.S. O Google Chrome, geralmente é o mais atualizado relativamente a funcionalidades da linguagem, experimente-o se um exemplo no tutorial falhar. Contudo, a maioria dos exemplos no tutorial funcionam com qualquer navegador moderno.
