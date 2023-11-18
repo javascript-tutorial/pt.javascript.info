@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Changing "prototype"
+# Mudando o "prototype"
 
-In the code below we create `new Rabbit`, and then try to modify its prototype.
+No código abaixo, nós criamos um `new Rabbit`, depois tentamos modificar seu protótipo.
 
-In the start, we have this code:
+No começo, nós temos esse código:
 
 ```js run
 function Rabbit() {}
@@ -19,8 +19,7 @@ let rabbit = new Rabbit();
 alert( rabbit.eats ); // true
 ```
 
-
-1. We added one more string (emphasized). What will `alert` show now?
+1. Nós adicionamos uma linha (realçada). O que o `alert` vai mostrar agora?
 
     ```js
     function Rabbit() {}
@@ -37,7 +36,7 @@ alert( rabbit.eats ); // true
     alert( rabbit.eats ); // ?
     ```
 
-2. ...And if the code is like this (replaced one line)?
+2. ...E se o código for assim (a linha foi substituída)?
 
     ```js
     function Rabbit() {}
@@ -54,7 +53,7 @@ alert( rabbit.eats ); // true
     alert( rabbit.eats ); // ?
     ```
 
-3. And like this (replaced one line)?
+3. E se for assim (a linha foi substituída)?
 
     ```js
     function Rabbit() {}
@@ -71,7 +70,7 @@ alert( rabbit.eats ); // true
     alert( rabbit.eats ); // ?
     ```
 
-4. The last variant:
+4. A última variação:
 
     ```js
     function Rabbit() {}

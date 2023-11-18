@@ -1,4 +1,4 @@
 proto-constructor-animal-rabbit.svg:
-  "name: \"White Rabbit\"":
-    "text": "name: \"Coelho Branco\""
-    "position": "center"
+  White Rabbit:
+    text: Coelho Branco
+    position: center

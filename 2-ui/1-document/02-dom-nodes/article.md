@@ -96,14 +96,13 @@ let node2 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node2, 'div.domtree', 690, 210);
 </script>
 
-```smart header="Edge spaces and in-between empty text are usually hidden in tools"
+```smart header="Spaces at string start/end and space-only text nodes are usually hidden in tools"
 Browser tools (to be covered soon) that work with DOM usually do not show spaces at the start/end of the text and empty text nodes (line-breaks) between tags.
 
-That's because they are mainly used to decorate HTML, and do not affect how it is shown (in most cases).
+Developer tools save screen space this way.
 
-On further DOM pictures we'll sometimes omit them where they are irrelevant, to keep things short.
+On further DOM pictures we'll sometimes omit them when they are irrelevant. Such spaces usually do not affect how the document is displayed.
 ```
-
 
 ## Autocorrection
 
@@ -166,7 +165,9 @@ You see? The `<tbody>` appeared out of nowhere. We should keep this in mind whil
 
 ## Other node types
 
-Let's add more tags and a comment to the page:
+There are some other node types besides elements and text nodes.
+
+For example, comments:
 
 ```html
 <!DOCTYPE HTML>
@@ -192,7 +193,7 @@ let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node6, 'div.domtree', 690, 500);
 </script>
 
-Here we see a new tree node type -- *comment node*, labeled as `#comment`.
+We can see here a new tree node type -- *comment node*, labeled as `#comment`, between two text nodes.
 
 We may think -- why is a comment added to the DOM? It doesn't affect the visual representation in any way. But there's a rule -- if something's in HTML, then it also must be in the DOM tree.
 
@@ -211,9 +212,7 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
 ## See it for yourself
 
-To see the DOM structure in real-time, try [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up as a DOM at an instant.
-
-## In the browser inspector
+To see the DOM structure in real-time, try [Live DOM Viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up as a DOM at an instant.
 
 Another way to explore the DOM is to use the browser developer tools. Actually, that's what we use when developing.
 
@@ -243,10 +242,12 @@ The best way to study them is to click around. Most values are editable in-place
 
 ## Interaction with console
 
-As we explore the DOM, we also may want to apply JavaScript to it. Like: get a node and run some code to modify it, to see how it looks. Here are few tips to travel between the Elements tab and the console.
+As we work the DOM, we also may want to apply JavaScript to it. Like: get a node and run some code to modify it, to see the result. Here are few tips to travel between the Elements tab and the console.
 
-- Select the first `<li>` in the Elements tab.
-- Press `key:Esc` -- it will open console right below the Elements tab.
+For the start:
+
+1. Select the first `<li>` in the Elements tab.
+2. Press `key:Esc` -- it will open console right below the Elements tab.
 
 Now the last selected element is available as `$0`, the previously selected is `$1` etc.
 
@@ -254,7 +255,9 @@ We can run commands on them. For instance, `$0.style.background = 'red'` makes t
 
 ![](domconsole0.svg)
 
-From the other side, if we're in console and have a variable referencing a DOM node, then we can use the command `inspect(node)` to see it in the Elements pane.
+That's how to get a node from Elements in Console.
+
+There's also a road back. If there's a variable referencing a DOM node, then we can use the command `inspect(node)` in Console to see it in the Elements pane.
 
 Or we can just output the DOM node in the console and explore "in-place", like `document.body` below:
 
