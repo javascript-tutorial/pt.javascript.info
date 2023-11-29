@@ -1,12 +1,12 @@
-# Referência e cópia de objeto
+# Referências e cópias de objetos
 
-Uma das diferenças fundamentais entre objetos e primitivos é que objetos são armazenados e copiados por "referência", enquanto valores primiticos: strings, números, booleanos, etc -- são sempre copiados "como um valor integral".
+Uma das diferenças fundamentais entre objetos e primitivos é que objetos são armazenados e copiados por "referência", enquanto valores primitivos: strings, números, booleanos, etc -- são sempre copiados "como um valor integral".
 
 Isso é fácil de entender se olharmos um pouco por debaixo dos panos do que acontece quando copiamos um valor.
 
 Vamos começar com um primitivo, como uma string.
 
-Aqui colocamos uma cópia de `message` em `phrase`
+Aqui fazemos uma cópia de `message` para `phrase`
 
 ```js
 let message = "Hello!";
@@ -23,7 +23,7 @@ Objetos não são assim.
 
 **Uma variável atribuída a um objeto armazena não o próprio objeto, mas sim o seu "endereço em memória" -- em outras palavras "uma referência" a ele.**
 
-Vamos analisar um exemplo dessa variável
+Vamos analisar o exemplo dessa variável
 
 ```js
 let user = {
@@ -37,13 +37,13 @@ E aqui é como ela realmente está armazenada na memória
 
 O objeto é armazenado em algum lugar na memória (à direita da imagem), enquanto a variável `user` (à esquerda) possui uma referência a ele.
 
-Podemos pensar em uma variável de objeto, como `user`, como uma folha de papel com o endereço do objeto escrito nela.
+Podemos pensar em uma variável de objeto, `user`, como uma folha de papel com o endereço do objeto escrito nela.
 
-Quando realizamos acões com o objeto, por exemplo, acessar a propriedade `user.name`, o motor do Javascript verifica o que está nesse endereço e realiza a operação no objeto real.
+Quando realizamos ações com o objeto, por exemplo, acessar a propriedade `user.name`, o motor do Javascript verifica o que está nesse endereço e realiza a operação no objeto real.
 
-Agora está aqui o motivo pelo qual isso é importante.
+Agora está aqui o motivo pelo qual isso é importante:
 
-**Quando uma variavel de objeto é copiada, a referência é copiada, mas o próprio objeto não é diplicado**
+**Quando uma variável de objeto é copiada, a referência é copiada, mas o próprio objeto não é diplicado**
 
 Por exemplo:
 
@@ -79,7 +79,7 @@ alert(*!*user.name*/!*); // 'Pete', alterações são vistas a partir da referê
 
 Dois objetos são iguais apenas se possuem a mesma referência.
 
-Por exemplo, aqui `a` e `b` referencia o mesmo objeto, portanto eles são iguais:
+Por exemplo, aqui `a` e `b` faz referência ao mesmo objeto, por isso eles são iguais:
 
 ```js run
 let a = {};
@@ -117,7 +117,7 @@ user.name = "Pete"; // (*)
 alert(user.name); // Pete
 ```
 
-Pode parecer que a linha `(*)` causaria uum erro, mas não causa. O valor de `user` é constante, ele deve sempre referenciar o mesmo objeto, porém as propriedades desse objeto são livres para mudar.
+Pode parecer que a linha `(*)` causaria um erro, mas não causa. O valor de `user` é constante, ele deve sempre referenciar o mesmo objeto, porém as propriedades desse objeto são livres para mudar.
 
 Em outras palavras, o `const user` gera um erro apenas se tentarmos definir `user=...` como um todo.
 
@@ -130,7 +130,7 @@ Sim, copiar uma variável de objeto cria mais uma referência para o mesmo objet
 
 Mas e se precisamos duplicar um objeto?
 
-Podemos crar um novo objeto e replicar a estrutura existente, iterando sobre suas propriedades e copiando-as no nível primitivo.
+Podemos criar um novo objeto e replicar a estrutura existente, iterando sobre suas propriedades e copiando-as no nível primitivo.
 
 Como neste exemplo:
 
@@ -177,7 +177,7 @@ let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
 *!*
-// copia todas as prorpeidades de permissions1 e permissions2 para user
+// copia todas as propriedades de permissions1 e permissions2 para user
 Object.assign(user, permissions1, permissions2);
 */!*
 
@@ -299,9 +299,9 @@ let clone = structuredClone(user);
 alert(clone.me === clone); // true
 ```
 
-Como você pode ver `clone.me` referencia the `clone`, não o `user`! , As you can see, `clone.me` references the `clone`, not the `user`! Então a referência circular foi clonada também.
+Como você pode ver `clone.me` faz referência a `clone`, não a `user`! , Então a referência circular foi clonada corretamente também.
 
-No entante, existem casos em que `structuredClone` falha.
+No entanto, existem casos em que `structuredClone` falha.
 
 Por exemplo, quando um objeto possui uma propriedade que é uma função:
 
@@ -318,8 +318,8 @@ Para lidar com casos complexos, podemos precisar usar uma combinação de métod
 
 ## Resumo
 
-Objetos são atribuídos e copiados por referêbcia. Em outras palavras, uma variável armazena não o "valor do objeto", mas uma "referência" (endereço em memória) para o valor. Portanto, copiar tal variável ou passá-la como argumente de uma função copia essa referência, não o objeto em si.
+Objetos são atribuídos e copiados por referência. Em outras palavras, uma variável armazena não o "valor do objeto", mas uma "referência" (endereço em memória) para o valor. Portanto, copiar a variável ou passá-la como argumento de uma função copia essa referência, não o objeto em si.
 
-Todas as operações via referências copiadas (como adicão/remoção de propriedades) são realizadas no mesmo objeto único.
+Todas as operações feitas através de referências copiadas (como adição/remoção de propriedades) são realizadas no mesmo objeto único.
 
-Para fazer uma "cópia real" (um clone) podemos usar `Object.assign` para a chamada "cópia rasa" (objetos aninhados são copiados por referência) ou uma função `structuredClone` de "clonagem profunda" ou usar uma implementação de clonagem personalizada, como [\_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+Para fazer uma "cópia real" (um clone) podemos usar `Object.assign` caracterizando a chamada "cópia rasa" (objetos aninhados são copiados por referência) ou uma função `structuredClone` de "clonagem profunda" ou usar uma implementação de clonagem personalizada, como [\_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
