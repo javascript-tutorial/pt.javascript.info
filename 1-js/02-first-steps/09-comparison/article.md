@@ -73,7 +73,7 @@ Por exemplo, um caso relevante. Uma letra maiúscula `"A"` não é igual à letr
 
 ## Comparação de diferentes tipos
 
-Quando é comparado valores de tipos diferentes, o JavaScript converte os valores em números.
+Quando comparado valores de tipos diferentes, o JavaScript converte os valores em números.
 
 Por exemplo:
 
@@ -156,7 +156,7 @@ Para uma verificação de igualdade estrita `===`
     ```
 
 Para uma verificação não estrita `==`
-: Há uma regra especial. Esses dois são um "casal doce": eles se igualam (no sentido de `==`), mas não, a qualquer outro valor.
+: Há uma regra especial. Esses dois são um "casal doce": eles se igualam (no sentido de `==`), mas não a qualquer outro valor.
 
     ```js run
     alert( null == undefined ); // true
@@ -181,7 +181,7 @@ Matematicamente, isso é estranho. O último resultado afirma que "`null` é mai
 
 A razão é que uma verificação de igualdade `==` e comparações `> < >= <=` funcionam de forma diferente. As comparações convertem `null` em um número, tratando-o como `0`. É por isso que (3) `null >= 0` é verdadeiro e (1) `null > 0` é falso.
 
-Por outro lado, a verificação de igualdade `==` para `undefined` e `null` é definida de tal forma que, sem nenhuma conversão, eles são iguais entre si e não são iguais a mais nada. É por isso que (2) `null == 0` é falso.
+Por outro lado, a verificação de igualdade `==` para `undefined` e `null` é definida de tal forma que, sem nenhuma conversão, eles são iguais entre si, e não são iguais a mais nada. É por isso que (2) `null == 0` é falso.
 
 ### Um incomparável "undefined"
 
@@ -205,7 +205,7 @@ Obtemos esses resultados porque:
 Por que examinamos esses exemplos? Devemos nos lembrar dessas peculiaridades o tempo todo? Bem, na verdade, não. Essas coisas complicadas gradualmente se tornarão familiares com o tempo, mas há uma maneira sólida de evitar problemas com elas:
 
 - Trate qualquer comparação com `undefined/null` exceto a igualdade estrita `===` com cuidado excepcional.
-- Não use comparações `>= > < <=` com uma variável que pode ser `null/undefined`, a menos que você tenha a certeza do que está fazendo. Se uma variável puder a ter esses valores, verifique-os separadamente.
+- Não use comparações `>= > < <=` com uma variável que pode ser `null/undefined`, a menos que você tenha a certeza do que está fazendo. Se uma variável tiver `null` ou `undefined`, verifique-os separadamente.
 
 ## Resumo
 
@@ -213,4 +213,4 @@ Por que examinamos esses exemplos? Devemos nos lembrar dessas peculiaridades o t
 - As strings são comparadas letra a letra na ordem do "dicionário".
 - Quando valores de tipos diferentes são comparados, eles são convertidos em números (com a exclusão de uma verificação de igualdade estrita).
 - Os valores `null` e `undefined` são iguais `==` entre si e não são iguais a nenhum outro valor.
-- Tenha cuidado ao usar comparações como `>` ou `<` com variáveis ​​que podem ocasionalmente ser `null/undefined`. Verificar por `null/undefined` separadamente é uma boa ideia.
+- Tenha cuidado ao usar comparações, como `>` ou `<`, com variáveis ​​que possam ocasionalmente ser `null/undefined`. Verificar por `null/undefined` separadamente é uma boa ideia.
