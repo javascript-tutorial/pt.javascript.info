@@ -1,23 +1,23 @@
 proto-constructor-animal-rabbit.svg:
-  "name: \"White Rabbit\"":
-    "text": "name: \"Coelho Branco\""
-    "position": "center"
+  "White Rabbit":
+    text: "Coelho Branco"
+    position: center
 ifelse_task2.svg:
-  Begin:
+  "Begin":
     text: Início
     position: center
-  What's the:
-    text: Qual o nome
+  "What's the":
+    text: "Qual o nome"
     position: center
-  “official” name of:
-    text: nome "oficial" do
+  "\"official\" name of":
+    text: "nome \"oficial\" do"
     position: center
-  Other:
-    text: Outro
+  "Other":
+    text: "Outro"
     position: center
-  You don't know?:
-    text: Você não conhece?
+  "You don't know?":
+    text: "Você não conhece?"
     position: left
-  Right!:
-    text: Correto!
+  "Right!":
+    text: "Correto!"
     position: center
