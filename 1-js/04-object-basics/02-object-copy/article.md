@@ -31,7 +31,7 @@ let user = {
 };
 ```
 
-E aqui é como ela realmente está armazenada na memória
+E aqui é como ela está realmente armazenada na memória
 
 ![](variable-contains-reference.svg)
 
@@ -43,7 +43,7 @@ Quando realizamos ações com o objeto, por exemplo, acessar a propriedade `user
 
 Agora está aqui o motivo pelo qual isso é importante:
 
-**Quando uma variável de objeto é copiada, a referência é copiada, mas o próprio objeto não é diplicado**
+**Quando uma variável de objeto é copiada, a referência é copiada, mas o próprio objeto não é duplicado**
 
 Por exemplo:
 
@@ -73,7 +73,7 @@ admin.name = 'Pete'; // alterado pela referência "admin"
 alert(*!*user.name*/!*); // 'Pete', alterações são vistas a partir da referência "user"
 ```
 
-É como se tivéssemos uma armário com duas chaves e usado uma delas (`admin`) para abri-lo e fazer alterações. Então, se depois usarmos a outra chave (`user`), ainda estaremos abrindo o mesmo armário e podemos acessar o conteúdo alterado.
+É como se tivéssemos um armário com duas chaves e usado uma delas (`admin`) para abri-lo e fazer alterações. Então, se depois usarmos a outra chave (`user`), ainda estaremos abrindo o mesmo armário e podemos acessar o conteúdo alterado.
 
 ## Comparação por referência
 
@@ -143,7 +143,7 @@ let user = {
 *!*
 let clone = {}; // o novo objeto vazio
 
-// vamos copiar todas as propriedades de usuario para ele
+// vamos copiar todas as propriedades de usuário para ele
 for (let key in user) {
   clone[key] = user[key];
 }
@@ -157,7 +157,7 @@ alert( user.name ); // Ainda será John no objeto original
 
 Também podemos usar o método [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign).
 
-A syntax é:
+A sintaxe é:
 
 ```js
 Object.assign(dest, ...sources);
@@ -259,7 +259,7 @@ Para corrigir isso e tornar `user` e `clone` objetos verdadeiramente separados, 
 
 ### structuredClone
 
-A chamada `structuredClone(object)` clone o `object` como todas as propriedades aninhadas.
+A chamada `structuredClone(object)` clona o `object` com todas as propriedades aninhadas.
 
 Aqui está com podemos usá-lo em nosso exemplo:
 
@@ -276,7 +276,7 @@ let user = {
 let clone = structuredClone(user);
 */!*
 
-alert( user.sizes === clone.sizes ); // false, objectos diferentes
+alert( user.sizes === clone.sizes ); // false, objetos diferentes
 
 // Agora, user e clone são completamente independentes
 user.sizes.width = 60;    // altera uma propriedade de um local
@@ -299,7 +299,7 @@ let clone = structuredClone(user);
 alert(clone.me === clone); // true
 ```
 
-Como você pode ver `clone.me` faz referência a `clone`, não a `user`! , Então a referência circular foi clonada corretamente também.
+Como você pode ver `clone.me` faz referência a `clone`, não a `user`! Então a referência circular foi clonada corretamente também.
 
 No entanto, existem casos em que `structuredClone` falha.
 
