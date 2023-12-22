@@ -2,7 +2,7 @@
 
 describe("calculator", function() {
   
-  context("when 2 and 3 entered", function() {
+  context("quando são entrados 2 e 3", function() {
     beforeEach(function() {
       sinon.stub(window, "prompt");
 
@@ -21,11 +21,11 @@ describe("calculator", function() {
       assert.equal(calculator.b, 3);
     });
 
-    it("the sum is 5", function() {
+    it("a soma é 5", function() {
       assert.equal(calculator.sum(), 5);
     });
 
-    it("the multiplication product is 6", function() {
+    it("o produto da multiplicação é 6", function() {
       assert.equal(calculator.mul(), 6);
     });
   });

@@ -2,26 +2,26 @@ importance: 2
 
 ---
 
-# Chaining
+# Encadeamento
 
-There's a `ladder` object that allows to go up and down:
+Existe um objeto `ladder` (escada) que permite subir e descer:
 
 ```js
 let ladder = {
   step: 0,
-  up() { 
+  up() {
     this.step++;
   },
-  down() { 
+  down() {
     this.step--;
   },
-  showStep: function() { // shows the current step
+  showStep: function() { // mostra o degrau atual
     alert( this.step );
   }
 };
 ```
 
-Now, if we need to make several calls in sequence, can do it like this:
+Agora, se precisarmos de fazer várias chamadas em sequência, podemos as efetuar desta forma:
 
 ```js
 ladder.up();
@@ -32,10 +32,10 @@ ladder.down();
 ladder.showStep(); // 0
 ```
 
-Modify the code of `up`, `down` and `showStep` to make the calls chainable, like this:
+Modifique o código de `up`, `down` e `showStep` para tornar as chamadas encadeáveis, como:
 
 ```js
 ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
 ```
 
-Such approach is widely used across JavaScript libraries.
+Tal abordagem é amplamente utilizada em bibliotecas (*libraries*) de JavaScript.

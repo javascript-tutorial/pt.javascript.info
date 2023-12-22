@@ -1,4 +1,4 @@
-The solution is to return the object itself from every call.
+A solução será retornar o próprio objeto em cada invocação.
 
 ```js run demo
 let ladder = {
@@ -26,7 +26,7 @@ let ladder = {
 ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
 ```
 
-We also can write a single call per line. For long chains it's more readable:
+Nós também podemos escrever uma única invocação por linha. Para longas cadeias é mais legível:
 
 ```js
 ladder

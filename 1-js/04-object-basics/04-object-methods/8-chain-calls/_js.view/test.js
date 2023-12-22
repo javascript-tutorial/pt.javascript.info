@@ -1,5 +1,5 @@
 
-describe('Ladder', function() {
+describe('Escada', function() {
   before(function() {
     window.alert = sinon.stub(window, "alert");
   });
@@ -8,24 +8,24 @@ describe('Ladder', function() {
     ladder.step = 0;
   });
 
-  it('up() should return this', function() {
+  it('up() deveria retornar this', function() {
     assert.equal(ladder.up(), ladder);
   });
 
-  it('down() should return this', function() {
+  it('down() deveria retornar this', function() {
     assert.equal(ladder.down(), ladder);
   });
 
-  it('showStep() should call alert', function() {
+  it('showStep() deveria invocar alert', function() {
     ladder.showStep();
     assert(alert.called);
   });
 
-  it('up() should increase step', function() {
+  it('up() deveria incrementar step', function() {
     assert.equal(ladder.up().up().step, 2);
   });
 
-  it('down() should decrease step', function() {
+  it('down() deveria decrementar step', function() {
     assert.equal(ladder.down().step, -1);
   });
 
