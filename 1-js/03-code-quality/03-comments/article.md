@@ -1,10 +1,10 @@
 # Comentários
 
-Como o sabemos pelo capítulo <info:structure>, comentários podem ser de linha-única: começando por `//`, e de múltiplas linhas: `/* ... */`.
+Como o sabemos pelo capítulo <info:structure>, comentários podem ser de linha-única: começando por `//`, ou de múltiplas linhas: `/* ... */`.
 
 Normalmente, os usamos para descrever como e porque o código funciona.
 
-Na primeira leitura, os comentários devem ser óbvios, mas programadores inexperientes frequentemente os usam de forma errada.
+Numa primeira leitura, os comentários devem ser óbvios, mas programadores inexperientes frequentemente os usam de forma errada.
 
 ## Maus comentários
 
@@ -45,6 +45,7 @@ function showPrimes(n) {
 
 A melhor variante, com uma função `isPrime` em relevo:
 
+
 ```js
 function showPrimes(n) {
 
@@ -64,7 +65,7 @@ function isPrime(n) {
 }
 ```
 
-Agora, compreendemos o código mais fácilmente. A própria função torna-se num comentário. Código semelhante é chamado de auto-descritivo.
+Agora, compreendemos o código mais facilmente. A própria função torna-se num comentário. Código semelhante é chamado de auto-descritivo.
 
 ### Receita: crie funções
 
@@ -119,13 +120,12 @@ Na realidade, não podemos evitar totalmente comentários "explanatórios". Exis
 Assim, comentários explanatórios são geralmente maus. Que comentários são bons?
 
 Descreva a arquitetura
-: Forneça uma visão dos componentes a alto-nível, como eles iteragem, qual o fluxo de controlo em várias situações... Em resumo -- uma visão panorâmica do código. Existe uma linguagem especial, [UML](https://pt.wikipedia.org/wiki/UML), para construir diagramas de estruturas de alto-nível que expliquem o código. Definitivamente, vale a pena a estudar.
+: Forneça uma visão dos componentes a alto-nível, como eles iteragem, qual o fluxo de controlo em várias situações... Em resumo -- uma visão panorâmica do código. Existe uma linguagem especial, [UML](https://pt.wikipedia.org/wiki/UML), para construir diagramas de estrutura de alto-nível que expliquem o código. Definitivamente, vale a pena a estudar.
 
 Documente os parâmetros e o uso da função
 : Existe uma sintaxe especial, [JSDoc](http://en.wikipedia.org/wiki/JSDoc), para documentar uma função: o seu uso, parâmetros, e valor retornado.
 
 Por exemplo:
-
 ```js
 /**
  * Retorna x elevado à n-ésima potência.
@@ -141,23 +141,23 @@ function pow(x, n) {
 
 Tais comentários, nos permitem compreender o propósito da função e a usar de forma correta, sem olhar para o seu código.
 
-A propósito, muitos editores, como o [WebStorm](https://www.jetbrains.com/webstorm/, podem também os perceber e os usar para fornecer completação automática de palavras (*autocomplete*), e algumas verificações de código (*code-checking*) automáticas.
+A propósito, muitos editores, como o [WebStorm](https://www.jetbrains.com/webstorm/, também os podem perceber e os usar para fornecer completação automática de palavras (*autocomplete*), e algumas verificações de código (*code-checking*) automáticas.
 
-Também, existem ferramentas como o [JSDoc 3](https://github.com/jsdoc3/jsdoc), que podem gerar documentação HTML a partir de comentários. Pode ler mais informação sobre o JSDoc em <http://usejsdoc.org/>.
+Também, existem ferramentas como o [JSDoc 3](https://github.com/jsdoc3/jsdoc) que podem gerar documentação HTML a partir de comentários. Pode ler mais informação sobre o JSDoc em <https://jsdoc.app/>.
 
 Porque é a tarefa solucionada dessa forma?
 : O que está escrito é importante. Mas, o que *não* está escrito pode ser ainda mais importante, para se compreender o que se passa. Porque é a tarefa solucionada exatamente dessa forma? O código não dá resposta alguma.
 
-    Se existirem muitas formas de se resolver uma tarefa, porque esta? Especialmente, quando não é a mais óbvia.
+    Se existirem muitas maneiras de se resolver uma tarefa, porque esta? Especialmente, quando não é a mais óbvia.
 
-    Sem tais comentários, a seguinte situação é possivel:
+    Sem tais comentários, a seguinte situação é possível:
     1. Você (ou o seu colega) abre o código escrito há algum tempo, e vê que é "subótimo".
     2. Você pensa: "Quão estúpido fui naquela altura, e quão mais inteligente sou agora", e re-escreve o código empregando a variante "mais óbvia e correta".
-    3. ...A urgência para reescrever foi boa. Mas, durante o processo você vê que a "mais óbvia" é na verdade sofrível. Você vagamente lembra-se porquê, porque já a tentou há muito tempo. Você a reverte para a variante correta, mas o tempo já foi perdido.
+    3. ...A urgência para reescrever foi boa. Mas, durante o processo você vê que a solução "mais óbvia" é na verdade sofrível. Você vagamente lembra-se porquê, porque já a tentou há muito tempo. Você a reverte para a variante correta, mas o tempo já foi perdido.
 
     Comentários que expliquem a solução são muito importantes. Eles ajudam a continuar o desenvolvimento de forma correta.
 
-Algumas particularidades subtis no código? Onde elas são empregues?
+Algumas particularidades subtis no código? Onde elas são usadas?
 : Se o código tem alguma coisa subtil e não-intuitiva, definitivamente vale a pena comentar.
 
 ## Resumo
@@ -168,7 +168,7 @@ Bons comentários, nos permitem manter o código saudável, voltar a ele após u
 
 **Comente isto:**
 
-- A arquitetutaem geral, numa visão de alto-nível.
+- A arquitetura em geral, numa visão de alto-nível.
 - O uso das funções.
 - Soluções importantes, especialmente quando não imediatamente óbvias.
 
@@ -177,4 +177,4 @@ Bons comentários, nos permitem manter o código saudável, voltar a ele após u
 - Que digam "como o código funciona" e "o que faz".
 - Coloque-os apenas se for impossível tornar o código tão simples e auto-descritivo que não precise deles.
 
-Comentários também são utilizados por ferramentas de auto-documentação, como o JSDoc3: elas os lêm e geram documentos em HTML (ou documentos num outro formato).
+Comentários também são utilizados por ferramentas de auto-documentação, como o JSDoc3: elas os lêm e geram documentos de HTML (ou documentos num outro formato).
