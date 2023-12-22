@@ -11,10 +11,10 @@ function pow(x,n)  // <- nenhum espaço entre argumentos
 }
 
 let x=prompt("x?",''), n=prompt("n?",'') // <-- tecnicamente possível,
-// mas o melhor é a tornar em 2 linhas, também não existem espaços, e falta o ;
-if (n<0)  // <- nenhum espaço dentro (n < 0), e deveria existir uma linha extra sobre a condição
+// mas o melhor é torná-la em 2 linhas, também não existem espaços, e falta o ;
+if (n<0)  // <- nenhum espaço dentro (n < 0), e deveria existir uma linha em branco sobre a instrução
 {   // <- chaveta de abertura numa linha em separado
-  // abaixo - linhas longas podem ser repartidas por múltiplas linhas para melhorar a legíbilidade
+  // a seguir - linhas longas podem ser repartidas por múltiplas linhas para melhor legibilidade
   alert(`A potência de ${n} não é suportada, por favor insira um número inteiro maior do que zero`);
 }
 else // <- poderia ser escrito numa única linha, como "} else {"
