@@ -25,9 +25,8 @@ class MyClass {
 }
 ```
 
-Então use `new MyClass()` para criar um novo objeto com todos os métodos listados.
+Então use `new MyClass()` para criar um objeto com todos os métodos listados.
 
-The `constructor()` method is called automatically by `new`, so we can initialize the object there.
 O método `constructor()` é executado automaticamente pela declaração de `new`, então realizamos a inicialização o objeto através dessa chamada.
 
 Por exemplo:
@@ -55,10 +54,10 @@ Quando `new User("John")` é executado:
 1. Um novo objeto é criado (também descrito como tendo sido `instanciado`).
 2. O `construtor` é executado com o argumento fornecido e o atribui a `this.name`.
 
-...Então podemos chamar os métodos do objetos `User`, como `user.sayHi()`.
+...Então podemos chamar os métodos do objeto `User`, como `user.sayHi()`.
 
 
-```warn header="No comma between class methods"
+```warn header="Sem vírgula entre métodos de classe"
 Uma armadilha comum para desenvolvedores iniciantes é colocar uma vírgula entre os métodos de classe, o que resultaria em um erro de sintaxe.
 
 A notação aqui não deve ser confundida com `Object Literals`. Dentro da classe, não são necessárias vírgulas.
@@ -142,11 +141,11 @@ let user = new User("John");
 user.sayHi();
 ```
 
-O resultado desta definição é aproximadamente o mesmo. Portanto, existem de fato razões pelas quais `class` pode ser considerado um açúcar sintático para definir um construtor junto com seus métodos de protótipo.
+O resultado desta definição é aproximadamente o mesmo. Portanto, existem de fato razões pelas quais `class` pode ser considerado um açúcar sintático para definir um construtor com seus métodos de protótipo.
 
 Ainda assim, existem diferenças importantes.
 
-1. Primeiro, uma função criada por `class` é rotulada por uma propriedade interna especial `[[IsClassConstructor]]: true`. Portanto, não é exatamente o mesmo que criá-lo manualmente.
+1. Primeiro, uma função criada por `class` é rotulada por uma propriedade interna especial `[[IsClassConstructor]]: true`. Portanto, não é o mesmo que criá-lo manualmente.
 
     A linguagem verifica essa propriedade em vários lugares. Por exemplo, diferente de uma função normal, ela deve ser chamada com `new`:
 
@@ -212,7 +211,7 @@ new User().sayHi(); // funciona, mostra a definição de MyClass
 alert(MyClass); // erro, o nome MyClass não é visível fora da classe
 ```
 
-Podemos até fazer aulas dinamicamente "sob demanda", assim:
+Podemos até fazer uma classe dinamicamente "sob demanda", assim:
 
 ```js run
 function makeClass(phrase) {
@@ -289,11 +288,11 @@ class User {
 new User().sayHi();
 ```
 
-Esses recursos são fáceis de lembrar, pois se assemelham aos de objetos literais.
+Esses recursos são fáceis de lembrar, pois, se assemelham aos de objetos literais.
 
 ## Campos de classe
 
-```warn header="Old browsers may need a polyfill"
+```warn header="Navegadores antigos podem precisar de um polyfill"
 Os campos de classe são uma adição recente a linguagem.
 ```
 
@@ -378,7 +377,7 @@ O problema é chamado de "perder `this`".
 Existem duas abordagens para corrigi-lo, conforme discutido no capítulo <info:bind>:
 
 1. Passe uma função wrapper, como `setTimeout(() => button.click(), 1000)`.
-2. Vincule o método ao objeto, por exemplo. no construtor.
+2. Vincule o método ao objeto, por exemplo, no construtor.
 
 Os campos de classe fornecem outra sintaxe bastante elegante:
 
