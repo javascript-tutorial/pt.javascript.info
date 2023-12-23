@@ -1,3 +1,7 @@
+proto-constructor-animal-rabbit.svg:
+  White Rabbit:
+    text: Coelho Branco
+    position: center
 ifelse_task.svg:
   Begin:
     text: Início
@@ -19,4 +23,4 @@ ifelse_task.svg:
     position: center
   I don't know you:
     text: Eu não conheço você
-    position: center
+
