@@ -135,7 +135,7 @@ Aqui está uma demonstração estendida de como trabalhar com atributos:
 
 Observe:
 
-1. `getAttribute('About')` -- a primeira letra aqui está em maiúsculo, e no HTML está totalmente em minúsculo. Mas isso não importa: nomes de atributos são insensíveis à caixa alta ou baixa.
+1. `getAttribute('About')` -- a primeira letra aqui está em maiúsculo, e no HTML está totalmente em minúsculo. Mas isso não importa: os nomes dos atributos não diferenciam maiúsculas de minúsculas.
 2. Nós podemos atribuir qualquer coisa a um atributo, mas se tornará uma string. Então, aqui temos `"123"` como o valor.
 3. Todos os atributos, incluindo os que estão definidos, são visíveis no `outerHTML`.
 4. A coleção `attributes` é iterável e tem todos os atributos do elemento (padrões e não padrões) como objetos com propriedades `name` e `value`. 
@@ -357,7 +357,7 @@ Aqui está um exemplo "order state" reescrito:
 
 Usar atributos `data-*` é uma forma válida e segura de passar dados customizados.
 
-Observe que estamos não limitados ler, como bem podemos modificar os dados. Então o CSS atualiza o visual de acordo: no exemplo acima, a última linha `(*)` muda a cor para azul.
+Observe que não estamos limitados somente a leitura do atributo, mas também modificar atributos de dados. Então o CSS atualiza o visual de acordo: no exemplo acima, a última linha `(*)` muda a cor para azul.
 
 ## Sumário
 
@@ -369,7 +369,7 @@ Uma pequena comparação:
 |      | Propriedades                                                                     | Atributos                                                            |
 |------|----------------------------------------------------------------------------------|----------------------------------------------------------------------|
 | Tipo | Qualquer valor, propriedades padronizadas tem o tipo descrito nas especificações | Uma string                                                           |
-| Nome | Nome é sensível à caixa alta ou baixa.                                           | Nome não é sensível à caixa alta ou baixa|
+| Nome | Diferencia maiúsculas de minúsculas                                              | Não diferencia maiúsculas de minúsculas                              |
 
 Métodos para trabalhar com atributos são:
 
