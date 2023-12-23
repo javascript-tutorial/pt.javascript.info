@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# if (a string with zero)
+# if (uma “string” com zero)
 
-Will `alert` be shown?
+O `alert` será exibido?
 
 ```js
 if ("0") {
-  alert( 'Hello' );
+  alert( 'Olá' );
 }
 ```
 
