@@ -3,7 +3,7 @@
 
 Um dos princípios mais importantes de programação orientada a objetos é a delimitação da interface interna da externa.
 
-Essa é uma prática "fundamental" ao desenvolver qualquer coisa mais complexa do que um aplicativo "hello world"
+Essa é uma prática "fundamental" ao desenvolver qualquer coisa mais complexa do que um aplicativo "hello world".
 
 Para entender isso, vamos nos afastar do desenvolvimento e voltar nossos olhos para o mundo real.
 
@@ -11,7 +11,7 @@ Geralmente, os dispositivos que usamos são bastante complexos. No entanto, deli
 
 ## Um exemplo da vida real
 
-Por exxemplo, uma máquina de café. Simples do lado de fora: um botão, uma tela, alguns orifícios...E, com certezza, o resultado: um ótimo café! :)
+Por exemplo, uma máquina de café. Simples do lado de fora: um botão, uma tela, alguns orifícios... E, com certeza, o resultado: um ótimo café! :)
 
 ![](coffee.jpg)
 
@@ -19,13 +19,13 @@ Mas internamente...(uma imagem do manual de reparo)
 
 ![](coffee-inside.jpg)
 
-Muitos detalhes. Porém podemos usá-la sem saber nada.
+Muitos detalhes. Porém, podemos usá-la sem saber nada.
 
 Máquinas de café são bastante confiáveis, não são? Podemos usá-las por anos, e apenas se algo der errado, precisamos levá-las para o reparo.
 
 O segredo da confiança e simplicidade de uma máquina de café está em ajustar bem todos os detalhes e escondê-los internamente.
 
-Se removermos a cobertura protetora da máquina de café, então usá-la será muito mais complexo (onde apertar?), e perigoso (pode causar choque elétrico)
+Se removermos a cobertura protetora da máquina de café, então usá-la será muito mais complexo (onde apertar?), e perigoso (pode causar choque elétrico).
 
 Como veremos, na programação, objetos são como máquinas de café.
 
@@ -42,9 +42,9 @@ Se continuarmos com a analogia da máquina de café, o que está escondido inter
 
 Uma interface interna é usada para o objeto funcionar, seus detalhes se interconectam. Por exemplo, um tudo de caldeira está atrelado ao elemento de aquecimento.
 
-Porém por fora, uma máquina está fechada pela cobertura protetora, de modo que ninguém possa acessar esses detalhes internos. Detalhes são ocultos e inacessíveis. Podemos usar suas funcionalidades por meio da interface externa.
+Porém, por fora, uma máquina está fechada pela cobertura protetora, de modo que ninguém possa acessar esses detalhes internos. Detalhes são ocultos e inacessíveis. Podemos usar suas funcionalidades por meio da interface externa.
 
-Assim, tudo precisamos para utilizar um objeto é conhecer sua interface externa. Podemos estar completamente inconscientes de como funciona por dentro, e isso é ótimo
+Assim, tudo que precisamos para utilizar um objeto é conhecer sua interface externa. Podemos estar completamente inconscientes de como funciona por dentro, e isso é ótimo.
 
 Esta foi uma introdução geral.
 
@@ -53,7 +53,7 @@ No Javascript, existem dois tipos de campos de objeto (propriedades e métodos):
 - Publico: acessível de qualquer lugar. Eles compõem a interface externa. Até agora, estávamos usando apenas propriedades e métodos públicos.
 - Privado: acessível apenas de dentro da classe. Estes são para a interface interna.
 
-Em muitas outras linguagens, também existem campos "protegidos": acessíveis apenas de dentro da classe e por aquelas que a estendem (semelhante a privado, porém com acesso adicional pelas classes que herdam). Eles também são úteis para a interface interna. De certa forma, são mais difundidos do que os privados, pois geralmente desejamos que classes que herdam tenham aacesso a eles.  
+Em muitas outras linguagens, também existem campos "protegidos": acessíveis apenas de dentro da classe e por aquelas que a estendem (como privado, porém com acesso adicional pelas classes que herdam). Eles também são úteis para a interface interna. De certa forma, são mais difundidos do que os privados, pois geralmente desejamos que classes que herdam tenham acesso a eles.  
 
 Campos protegidos não são implementados em Javascript no nível da linguagem, porém, na prática, são muito convenientes, então eles são emulados.
 
@@ -83,7 +83,7 @@ coffeeMachine.waterAmount = 200;
 
 Agora as propriedades  `waterAmount` e `power` são públicas. Podemos facilmente obtê-las/atribuí-las de fora para qualquer valor. 
 
-Vamos alterar a propriedade `waterAmount` para protegida para ter mais controle sobre ela. Por exemplo, não queremos que qualquer alguém a definia com um valor abaixo de zero.
+Vamos alterar a propriedade `waterAmount` para protegida para ter mais controle sobre ela. Por exemplo, não queremos que ninguém defina com um valor abaixo de zero.
 
 **Propriedades protegidas são normalmente prefixadas com um sublinhado `_`.**
 
@@ -119,11 +119,11 @@ let coffeeMachine = new CoffeeMachine(100);
 coffeeMachine.waterAmount = -10; // _waterAmount será 0, não -10
 ```
 
-Agora, o acesso está sob controle, tornando impossível definir a quantidade de água abaixo de zero.
+Agora, o acesso está sob controle, torna-se impossível definir a quantidade de água abaixo de zero.
 
-## "power" apenas para leitura  
+## "power" apenas para leitura
 
-Para a propriedade `power`, vamos torná-la apenas para leitura. ÀS vezes acontece que UM propriedade deve ser definida apenas no momento de criação, e então nunca modificada.  
+Para a propriedade `power`, vamos torná-la apenas para leitura. ÀS vezes acontece que uma propriedade deve ser definida apenas no momento de criação, e então nunca modificada.  
 
 Este é exatamente o caso da máquina de café, `power` nunca muda.
 
@@ -175,7 +175,7 @@ new CoffeeMachine().setWaterAmount(100);
 
 Isto parece um pouco mais longo, mas funções são mais flexíveis. Elas podem aceitar múltiplos argumentos (mesmo que não precisemos deles agora).
 
-Por outro lado, a sintaxe ger/set é mais curta, então, no final das contas, não existe uma regra estrita, você pode decidir.
+Por outro lado, a sintaxe get/set é mais curta, então, no final das contas, não existe uma regra estrita, você pode decidir.
 ````
 
 ```smart header="Campos protegidos são herdados"
@@ -188,7 +188,7 @@ Portanto, os campos protegidos são naturalmente herdados, ao contrário dos pri
 
 [recent browser=none]
 
-Há uma proposta de JavaScript finalizada, quase padronizada, que fornece suporte a nível de linguagem para métodos e propriedades privados.
+Há uma proposta de JavaScript finalizada, quase padronizada, que fornece suporte ao nível da linguagem para métodos e propriedades privados.
 
 Privados devem começar com `#`. Eles são acessíveis apenas de dentro da classe.
 
@@ -282,14 +282,14 @@ Com campos privados isso é impossível: `this['#name']` não funciona. Essa é 
 
 ## Resumo
 
-Em termos de POO, a delimitação da interface interna da externa é chamada de [encapsulamento](https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_orientada_a_objetos#Encapsulamento)
+Em termos de POO, a delimitação da interface interna da externa é chamada de [encapsulamento](https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_orientada_a_objetos#Encapsulamento).
 
 Isto proporciona os seguintes benefícios:
 
 Proteção para os usuários, evitando que atirem no próprio pé
-: Imagine que há um time de desenvolvedores usando uma máquina de café. Ela foi fabricada pela empresa "Best CoffeeMachine" e funciona bem, mas a capa protetora foi removida, expondo a interface interna.
+: Imagine, há uma equipe de desenvolvedores usando uma máquina de café. Ela foi fabricada pela empresa "Best CoffeeMachine" e funciona bem, mas a capa protetora foi removida, expondo a interface interna.
 
-    Todos os desenvolvedores são civilizados e usam a máquina de café como pretendido. No entanto um deles, John, decidiu que é o mais intelligente e fez algumas modificações internas na máquina de café. Como resultado a máquina de café falha dois dias depois.
+    Todos os desenvolvedores são civilizados e usam a máquina de café como pretendido. No entanto, um deles, John, decidiu que ele era o mais inteligente e fez algumas modificações internas na máquina de café. Como resultado a máquina de café falha dois dias depois.
 
     Certamente, isso não é culpa do John, mas sim da pessoa que removeu a capa protetora e permitiu que John fizesse suas manipulações.
     
@@ -302,12 +302,12 @@ Manutenibilidade
 
     Se você é um desenvolvedor de tal classe, é ótimo saber que métodos privados podem ser renomeados com segurança, seus parâmetros podem ser modificados e até removidos, porque nenhum código externo depende deles.
 
-    For users, when a new version comes out, it may be a total overhaul internally, but still simple to upgrade if the external interface is the same.
+    Para os usuários, quando uma nova versão é liberada, pode ser uma reformulação total internamente, mas ainda assim simples de atualizar se a interface externa for a mesma.
 
 Complexidade oculta
-: Pessoas adora usar coisas que são simples. Ao menos do lado de fora. O que está por dentro é uma história diferente.
+: Pessoas adoram usar coisas que são simples. Ao menos do lado de fora. O que esta por dentro é uma história diferente.
 
-    Programadores não são exceção.
+    Programadores não são exceções.
 
     **É sempre conveniente quando detalhes de implementação estão ocultos e uma interface externa simples e bem documentada está disponível.**
 
