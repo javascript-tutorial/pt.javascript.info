@@ -42,4 +42,7 @@ ifelse_task.svg:
     position: center
   I don't know you:
     text: Eu não conheço você
-
+love-html5-classes.svg:
+  "I love":
+    "text": "Eu amo"
+    "position": "center"
