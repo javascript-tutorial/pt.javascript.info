@@ -54,7 +54,7 @@ let arr = new PowerArray(1, 2, 5, 10, 50);
 alert(arr.isEmpty()); // false
 
 // filter cria um novo array usando arr.constructor[Symbol.species] como constructor
-let filteredArr = arr.filter(item => item >= 10);
+let filteredArr = arr.filter(item => item >= 10); 
 
 *!*
 // filteredArr não é PowerArray, mas Array
@@ -62,7 +62,7 @@ let filteredArr = arr.filter(item => item >= 10);
 alert(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
 ```
 
-Como você pode ver, agora `.filter` retorna `Array`. Assim, a funcionalidade extendida não é repassada adiante.
+Como você pode ver, agora `.filter` retorna `Array`. Assim, a funcionalidade estendida não é repassada adiante.
 
 ```smart header="Outras coleções funcionam similarmente"
 Outras coleções, como `Map` e `Set, funcionam da mesma forma. Elas também utilizam `Symbol.species`.
@@ -78,7 +78,7 @@ Normalmente, quando uma classe estende outra, métodos estáticos e não estáti
 
 Mas as classes nativas são uma exceção. Elas não herdam métodos estáticos uma das outras.
 
-Por exxemplo, tanto `Array` quanto `Date` herdam de `Object`, então suas instâncias têm métodos de `Object.prototype`. No entanto `Array.[[Prototype]]` não referencia `Object`, então não existe, por exemplo, um método estático `Array.keys()` (ou `Date.keys()`).
+Por exemplo, tanto `Array` quanto `Date` herdam de `Object`, então suas instâncias têm métodos de `Object.prototype`. No entanto `Array.[[Prototype]]` não referencia `Object`, então não existe, por exemplo, um método estático `Array.keys()` (ou `Date.keys()`).
 
 Aqui está a estrutura visual para `Date` e `Object`:
 
