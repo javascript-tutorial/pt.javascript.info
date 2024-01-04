@@ -4,15 +4,15 @@
 <html>
 <body>
 
-  <div data-widget-name="menu">Choose the genre</div>
+  <div data-widget-name="menu">Escolha o gênero</div>
 
   <script>
-    // getting it
+    // Obtendo o elemento
     let elem = document.querySelector('[data-widget-name]');
 
-    // reading the value
+    // lendo o valor
     alert(elem.dataset.widgetName);
-    // or
+    // ou
     alert(elem.getAttribute('data-widget-name'));
   </script>
 </body>
