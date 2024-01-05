@@ -3,7 +3,7 @@ describe("isEmpty", function() {
     assert.isTrue(isEmpty({}));
   });
 
-  it("retorna falso se uma propriedade existir", function() {
+  it("retorna falso se uma propriedade existe", function() {
     assert.isFalse(isEmpty({
       anything: false
     }));

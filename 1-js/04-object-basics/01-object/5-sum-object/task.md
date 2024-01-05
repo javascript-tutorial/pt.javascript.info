@@ -4,7 +4,7 @@ importance: 5
 
 # Soma das propriedades de um objeto
 
-Temos um objeto armazenando salários da nossa equipa:
+Temos um objeto armazenando salários da nossa equipe:
 
 ```js
 let salaries = {
