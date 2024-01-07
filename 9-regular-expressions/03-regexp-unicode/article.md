@@ -1,6 +1,6 @@
 # Unicode: flag "u" e classe \p{...}
 
-O JavaScript usa a [codificação Unicode](https://pt.wikipedia.org/wiki/Unicode) para strings. A maioria dos caracteres são codificados com 2 bytes, mas isso só permite representar no máximo 65536 caracteres diferentes.
+O JavaScript usa a [codificação Unicode](https://pt.wikipedia.org/wiki/Unicode) para strings. A maioria dos caracteres são codificados com 2 bytes, mas isso permite representar no máximo 65536 caracteres diferentes.
 
 Esse alcance não é grande o bastante para codificar todos os caracteres possíveis, por isso alguns caracteres são codificados com 4 bytes, como o `𝒳` (X matemático) ou o `😄` (emoji sorridente), alguns hieróglifos e assim por diante.
 
