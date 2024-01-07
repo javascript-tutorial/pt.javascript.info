@@ -1,6 +1,6 @@
 describe("pseudoRandom", function() {
 
-  it("follows the formula", function() {
+  it("segue a fórmula", function() {
     let generator = pseudoRandom(1);
 
     assert.equal(generator.next().value, 16807);
@@ -9,7 +9,7 @@ describe("pseudoRandom", function() {
   });
 
 
-  it("returns same value for the same seed", function() {
+  it("retorna o mesmo valor para a mesma semente", function() {
     let generator1 = pseudoRandom(123);
     let generator2 = pseudoRandom(123);
 
