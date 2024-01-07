@@ -1,6 +1,6 @@
 # Geradores
 
-Funções regulares retorna apenas um único valor (ou nenhum).
+Funções regulares retornam apenas um único valor (ou nenhum).
 
 Geradores podem retornar ("yield") múltiplos valores, um após o outro, sob demanda. Eles funcionam muito bem com [iteráveis](info:iterable), permitindo criar fluxos de dados com facilidade.
 
@@ -88,7 +88,7 @@ alert(JSON.stringify(three)); // {value: 3, *!*done: true*/!*}
 
 ![](generateSequence-4.svg)
 
-Agora o generator está concluído. Vemos isso em `done:true` e `value:3` como o resultado final. 
+Agora o `generator` está concluído. Vemos isso em `done:true` e `value:3` como resultado final. 
 
 Novas chamadas à `generator.next()` não fazem mais sentido. Se as fizermos, elas retornam o mesmo objeto: `{done: true}`.
 
@@ -154,11 +154,11 @@ let sequence = [0, ...generateSequence()];
 alert(sequence); // 0, 1, 2, 3
 ```
 
-No código acima, `...generateSequence()` transforma o objeto gerador iterável em um array de itens (leia mais sobre a sintaxe de propagação no capítulo [](info:rest-parameters-spread#spread-syntax))
+No código acima, `...generateSequence()` transforma o objeto gerador iterável em um array de itens (leia mais sobre a sintaxe de propagação no capítulo <info:rest-parameters-spread#spread-syntax>)
 
 ## Utilizando geradores para iteráveis
 
-Há algum tempo, no capítulo [](info:iterable), criamos um objeto iterável `range` que retorna valores `from..to`.
+Há algum tempo, no capítulo <info:iterable>, criamos um objeto iterável `range` que retorna valores `from..to`.
 
 Aqui, vamos relembrar o código:
 
@@ -194,7 +194,7 @@ alert([...range]); // 1,2,3,4,5
 
 Podemos usar uma função geradora para iteração, fornecendo-a como `Symbol.iterator`.
 
-Aqui  está o mesmo objeto `range`, porém muito mais compacto:
+Aqui está o mesmo objeto `range`, porém muito mais compacto:
 
 ```js run
 let range = {
@@ -211,7 +211,7 @@ let range = {
 alert( [...range] ); // 1,2,3,4,5
 ```
 
-Iso funciona porque `range[Symbol.iterator]()` agora retorna um gerador, e os métodos do gerador são exatamente o que `for..of` espera:
+Isso funciona porque `range[Symbol.iterator]()` agora retorna um gerador, e os métodos do gerador são exatamente o que `for..of` espera:
 - ele tem um método `.next()`
 - que retorna valores no formato `{value: ..., done: true/false}`
 
@@ -278,7 +278,7 @@ alert(str); // 0..9A..Za..z
 
 A diretiva `yield*` *delega* a execução para outro gerador. Isso significa que `yield* gen` itera sobre o gerador `gen` e encaminha transparentemente seus valores para fora. Como se os valores fossem gerados pelo gerador externo.
 
-O resultado é o mesmo que se estivéssemos incorporado o código dos geradores aninhados:
+O resultado é o mesmo que se incorporássemos o código dos geradores aninhados:
 
 ```js run
 function* generateSequence(start, end) {
@@ -341,7 +341,7 @@ generator.next(4); // --> passa o valor para dentro do gerador
 ![](genYield2.svg)
 
 1. A primeira chamada `generator.next()` sempre deve ser feito sem um argumento (o argumento é ignorado se passado). Isso inicia a execução e retorna o resultado do primeiro `yield "2+2=?"`. Nesse ponto, o gerador pausa a execução, enquanto espera na linha `(*)`.
-2. Então, como mostrado na imagem acima, o resultado do `yield` é vai para a variável `question` no código que chama. 
+2. Então, como mostrado na imagem acima, o resultado do `yield` vai para a variável `question` no código que o chamou. 
 3. Em `generator.next(4)`, o gerador é retomado, e `4` entra como o resultado: `let result = 4`.
 
 Observe que o código externo não precisa chamar `next(4)` imediatamente. Pode levar algum tempo. Isso não é um problema: o gerador esperará.
@@ -353,7 +353,7 @@ Por exemplo:
 setTimeout(() => generator.next(4), 1000);
 ```
 
-Como podemos ver, ao contrário de funções regulares, um gerador e o código que o chama pode trocar resultados passando valores em `next/yield`  
+Como podemos ver, ao contrário de funções regulares, um gerador e o código que o chamou pode trocar resultados passando valores em `next/yield`  
 
 Para tornar as coisas mais claras, aqui está outro exemplo com mais chamadas:
 
@@ -385,9 +385,9 @@ A imagem da execução:
 2. O resultado é retornado para o código externo.
 3. O segundo `.next(4)` passa `4` de volta para o gerador como resultado do primeiro `yield` e retoma a execução.
 4. ...Alcança o segundo `yield`, que se torna o resultado da chamada do gerador.
-5. O terceiro `next(9)` passa `9` para o gerador como resultado do segundo `yield` e retoma e execução que alcança o final da função, então `done: true`.
+5. O terceiro `next(9)` passa `9` para o gerador como resultado do segundo `yield` e retoma a execução que alcança o final da função, então `done: true`.
 
-É como um jogo de "pingue-pongue". Cada `next(value)` (com exceção do primeiro) passa um valor para o gerador, que se torna o resultado do `yield` atual, e então recebe de volta o valor do próximo  `yield`.
+É como um jogo de "pingue-pongue". Cada `next(value)` (com exceção do primeiro) passa um valor para o gerador, que se torna o resultado do `yield` atual, e então recebe de volta o valor do próximo `yield`.
 
 ## generator.throw
 
@@ -419,9 +419,9 @@ generator.throw(new Error("A resposta não foi encontrada no meu banco de dados"
 */!*
 ```
 
-O erro, lançado no ,gerador na linha `(2)` leva a uma exceção na linha `(1)` com `yield`. No exemplo acima,  `try..catch` o captura e o mostra.
+O erro, lançado no gerador na linha `(2)` leva a uma exceção na linha `(1)` com `yield`. No exemplo acima, `try..catch` captura e o exibe.
 
-Se não o capturamos, então assim como qualquer exceção, ela "cai para fora" do gerador para o código que o chama. 
+Se não o capturamos, então assim como qualquer exceção, ela "cai para fora" do gerador para o código que o chamou. 
 
 A linha atual do código que chama é a linha com `generator.throw`, rotulada como `(2)`. Portanto, devemos capturá-lo aqui, assim:
 
@@ -465,7 +465,7 @@ g.next();        // { value: undefined, done: true }
 
 Se usarmos novamente `generator.return()` em um gerador finalizado, ele retornará esse valor novamente ([MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Generator/return)).
 
-Frequentemente, não o usamos, pois na maioria das vezes queremos obter todos os valores retornados, mas pode ser útil quando queremos interromper um gerador em uma condição específica.
+Frequentemente, não o usamos, pois, na maioria das vezes queremos obter todos os valores retornados, mas pode ser útil quando queremos interromper um gerador em uma condição específica.
 
 ## Resumo
 
