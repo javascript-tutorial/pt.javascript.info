@@ -65,8 +65,8 @@ Estas são as principais categorias de caracteres e suas sub-categorias:
 - Pontuação `P`:
   - conector `Pc`,
   - traço `Pd`,
-  - abertura de citação `Pi`,
-  - fechamento de citação `Pf`,
+  - aspas esquerdas `Pi`,
+  - aspas direitas `Pf`,
   - abertura `Ps`,
   - fechamento `Pe`,
   - outro `Po`.
@@ -105,11 +105,11 @@ O Unicode suporta muitas propriedades diferentes, e a lista completa precisaria 
 - Apelidos curtos das propriedades: <https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt>.
 - A base completa dos caracteres Unicode em formato textual, com todas as suas propriedades, está aqui: <https://www.unicode.org/Public/UCD/latest/ucd/>.
 
-### Example: hexadecimal numbers
+### Exemplo: números hexadecimais
 
-For instance, let's look for hexadecimal numbers, written as `xFF`, where `F` is a hex digit (0..9 or A..F).
+Para este exemplo, vamos procurar por números hexadecimais, escritos como `xFF`, onde `F` é um dígito hexadecimal (0..9 ou A..F).
 
-A hex digit can be denoted as `pattern:\p{Hex_Digit}`:
+Um dígito hexadecimal pode ser indicado por `pattern:\p{Hex_Digit}`:
 
 ```js run
 let regexp = /x\p{Hex_Digit}\p{Hex_Digit}/u;
@@ -117,27 +117,27 @@ let regexp = /x\p{Hex_Digit}\p{Hex_Digit}/u;
 alert("number: xAF".match(regexp)); // xAF
 ```
 
-### Example: Chinese hieroglyphs
+### Exemplo: Sinogramas Chineses
 
-Let's look for Chinese hieroglyphs.
+Vamos procurar por sinogramas chineses.
 
-There's a Unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list](https://en.wikipedia.org/wiki/Script_(Unicode)).
+Há uma propriedade Unicode chamada `Script` (sistema de escrita), que pode receber diferentes valores: `Cyrillic` (Cirílico: Russo, Ucraniano, Sérvio), `Greek` (Grego), `Arabic` (Árabe), `Han` (Chinês) e assim por diante, [a lista completa pode ser encontrada aqui](https://en.wikipedia.org/wiki/Script_(Unicode)).
 
-To look for characters in a given writing system we should use `pattern:Script=<value>`, e.g. for Cyrillic letters: `pattern:\p{sc=Cyrillic}`, for Chinese hieroglyphs: `pattern:\p{sc=Han}`, and so on:
+Para procurar por caracteres de um sistema de escrita específico nós devemos usar o `pattern:Script=<value>`. Para buscar letras cirílicas, por exemplo: `pattern:\p{sc=Cyrillic}`, para sinogramas chineses: `pattern:\p{sc=Han}`, e assim por diante:
 
 ```js run
-let regexp = /\p{sc=Han}/gu; // returns Chinese hieroglyphs
+let regexp = /\p{sc=Han}/gu; // retorna sinogramas chineses
 
 let str = `Hello Привет 你好 123_456`;
 
 alert( str.match(regexp) ); // 你,好
 ```
 
-### Example: currency
+### Exemplo: moeda
 
-Characters that denote a currency, such as `$`, `€`, `¥`, have Unicode property  `pattern:\p{Currency_Symbol}`, the short alias: `pattern:\p{Sc}`.
+Caracteres que representam uma moeda, como `$`, `€`, `¥`, possuem a propriedade Unicode `pattern:\p{Currency_Symbol}`, de apelido: `pattern:\p{Sc}`.
 
-Let's use it to look for prices in the format "currency, followed by a digit":
+Vamos usá-la para procurar por preços no formato "símbolo de moeda, seguido de um dígito":
 
 ```js run
 let regexp = /\p{Sc}\d/gu;
@@ -147,15 +147,15 @@ let str = `Prices: $2, €1, ¥9`;
 alert( str.match(regexp) ); // $2,€1,¥9
 ```
 
-Later, in the article <info:regexp-quantifiers> we'll see how to look for numbers that contain many digits.
+Mais adiante, no artigo <info:regexp-quantifiers> veremos como procurar por números que contém vários dígitos.
 
-## Summary
+## Sumário
 
-Flag `pattern:u` enables the support of Unicode in regular expressions.
+A flag `pattern:u` ativa o suporte ao Unicode em expressões regulares.
 
-That means two things:
+Isso resulta em duas coisas:
 
-1. Characters of 4 bytes are handled correctly: as a single character, not two 2-byte characters.
-2. Unicode properties can be used in the search: `\p{…}`.
+1. Caracteres de 4 bytes são reconhecidos corretamente: como um único carácter, não dois caracteres de 2 bytes.
+2. Propriedades Unicode podem ser usadas na busca, usando `\p{…}`.
 
-With Unicode properties we can look for words in given languages, special characters (quotes, currencies) and so on.
+Com as propriedades Unicode podemos buscar por palavras em línguas específicas, caracteres especiais (aspas, símbolos de moeda) e assim por diante.
