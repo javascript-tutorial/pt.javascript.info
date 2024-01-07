@@ -6,7 +6,7 @@ Neste capítulo, nós começaremos com operadores simples, e então nos concentr
 
 ## Termos: "unário", "binário", "operando"
 
-Antes de prosseguirmos, vamos entender um pouco sobre terminologia comum.
+Antes de prosseguirmos, vamos entender um pouco a terminologia comum.
 
 - *Um operando* -- é aquilo sobre o que os operadores são aplicados. Por exemplo, na multiplicação de `5 * 2` existem dois operandos: o operando da esquerda é `5` e o operando da direita é `2`. Às vezes, as pessoas chamam estes de "argumentos" ao invés de "operandos".
 - Um operador é "unário" se este tiver um único operando. Por exemplo, a negação unária `-` inverte o sinal de um número:
@@ -113,7 +113,7 @@ Aqui, os operadores atuam um após o outro. O primeiro `+` soma dois números, r
 ```js run
 alert('1' + 2 + 2); // "122" e não "14"
 ```
-Aqui o primeiro operando é uma string, com o compilador tratando os outros dois operandos também como strings. O `2` é concatenado ao `'1'`, ficando `'1' + 2 = "12"` e `"12" + 2 = "122"`.
+Aqui como o primeiro operando é uma string, o compilador trata os outros dois operandos também como strings. O `2` é concatenado ao `'1'`, ficando `'1' + 2 = "12"` e `"12" + 2 = "122"`.
 
 O binário `+` é o único operador que suporta strings desta forma. Outros operadores aritméticos funcionam apenas com números e sempre convertem seus operandos em números.
 
@@ -147,7 +147,7 @@ alert( +"" );   // 0
 */!*
 ```
 
-Isto, na verdade, faz a mesma coisa que `Number(...)`, mas de maneira mais curta.
+Ele, na verdade, faz a mesma coisa que `Number(...)`, mas de uma maneira mais curta.
 
 A necessidade de converter strings em números surge com frequência. Por exemplo, se nós estivermos pegando valores de campos de formulário HTML, eles são normalmente strings. E se nós quisermos somá-los?
 
@@ -157,7 +157,7 @@ O positivo binário os adicionaria como strings:
 let apples = "2";
 let oranges = "3";
 
-alert( apples + oranges ); // "23", o binário positivo concatena strings
+alert( apples + oranges ); // "23", o positivo binário concatena strings
 ```
 
 Se nós quisermos tratá-los como números, nós precisamos convertê-los e então somá-los:
@@ -167,7 +167,7 @@ let apples = "2";
 let oranges = "3";
 
 *!*
-// ambos os valores convertidos para números antes do binário positivo
+// ambos os valores são convertidos para números antes do positivo binário
 alert( +apples + +oranges ); // 5
 */!*
 
@@ -185,7 +185,7 @@ Se uma expressão tem mais do que um operador, a ordem de execução é definida
 
 Todos sabemos da escola que a multiplicação na expressão `1 + 2 * 2` deve ser calculada antes da adição. Esta é exatamente a coisa da precedência. É dito que a multiplicação tem *uma precedência maior* do que a adição.
 
-Os parênteses sobrepõem qualquer precedência, então se nós não estivermos satisfeitos com a ordem padrão, nós podemos usá-los para mudar isto. Por exemplo, escrever `(1 + 2) * 2`.
+Os parênteses sobrepõem qualquer precedência, então se nós não estivermos satisfeitos com a ordem padrão, nós podemos usá-los para mudar isto. Por exemplo, escrevendo `(1 + 2) * 2`.
 
 Existem muitos operadores em JavaScript. Todo operador tem um número de precedência correspondente. Aquele com maior número é executado primeiro. Se a precedência for a mesma, a ordem de execução é da esquerda para a direita.
 
@@ -221,7 +221,7 @@ alert( x ); // 5
 
 ### Atribuição = retorna um valor
 
-O fato de `=` ser um operador, não um construto "mágico" da linguagem tem uma implicação interessante.
+O fato de `=` ser um operador, não uma construção "mágica" da linguagem tem uma implicação interessante.
 
 Todos os operadores em JavaScript retornam um valor. Isto é óbvio para `+` e `-`, mas também é verdadeiro para `=`.
 
@@ -241,7 +241,7 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-No exemplo acima, o resultado da expressão `(a = b + 1)` é o valor atribuído à `a` (isto é, `3`). Este é então usado para avaliações adicionais.
+No exemplo acima, o resultado da expressão `(a = b + 1)` é o valor atribuído à `a` (isto é, `3`). Este é depois usado em avaliações adicionais.
 
 Código engraçado, não é? Nós devemos entender como ele funciona, porque às vezes nós o vemos em bibliotecas JavaScript.
 
@@ -296,7 +296,7 @@ n *= 2; // agora n = 14 (o mesmo que n = n * 2)
 alert( n ); // 14
 ```
 
-Operadores curtos "modificar-e-atribuir" existem para todos os operadores aritméticos e bit a bit: `/=`, `-=`, etc.
+Operadores "modificar-e-atribuir" curtos existem para todos os operadores aritméticos e também bit a bit: `/=`, `-=`, etc.
 
 Tais operadores têm a mesma precedência que uma atribuição normal, de modo que eles são executados após a maioria dos outros cálculos:
 
@@ -310,9 +310,9 @@ alert( n ); // 16
 
 ## Incremento/decremento
 
-<!-- Não se pode usar -- no título, porque o built-in parser converte isto num 'traço longo' – -->
+<!-- Não se pode usar '--' no título, porque o interpretador de Markdown converte isto num único 'traço longo': '–' -->
 
-Aumentar ou diminuir um número por um está entre as operações numéricas mais comuns.
+Aumentar ou diminuir um número por 1 está entre as operações numéricas mais comuns.
 
 Portanto, existem operadores especiais para isto:
 
@@ -335,14 +335,14 @@ Portanto, existem operadores especiais para isto:
 Incremento/decremento só pode ser aplicado a variáveis. Tentar usar isto num valor como `5++` resultará em erro.
 ```
 
-Os operadores `++` e `--` podem ser escritos antes ou depois de uma variável.
+Os operadores `++` e `--` podem ser colocados antes ou depois de uma variável.
 
 - Quando o operador aparece depois da variável, ele está numa "forma pós-fixa": `counter++`.
 - A "forma prefixa" é quando o operador aparece antes da variável: `++counter`.
 
 Ambas as declarações fazem a mesma coisa: aumentam o `counter` em `1`.
 
-Existe alguma diferença? Sim, mas só podemos vê-la se usarmos o valor retornado de `++/--`.
+Existe alguma diferença? Sim, mas só podemos vê-la se usarmos o valor retornado da operação `++/--`.
 
 Vamos esclarecer. Como sabemos, todos os operadores retornam um valor. Incremento/decremento não é exceção. A forma prefixa retorna o novo valor enquanto que a forma pós-fixa retorna o valor antigo (anterior ao incremento/decremento).
 
@@ -408,7 +408,7 @@ let counter = 1;
 alert( 2 * counter++ ); // 2, pois counter++ retorna o valor "antigo"
 ```
 
-Embora tecnicamente correta, tal notação normalmente torna o código menos legível. Uma linha faz várias coisas -- nada bom.
+Embora tecnicamente correta, tal notação normalmente torna o código menos legível. Numa linha faz-se várias coisas -- nada bom.
 
 Ao ler um código, uma rápida olhada "vertical" pode facilmente deixar passar algo como `counter++` e não será óbvio que a variável aumentou.
 
@@ -437,7 +437,7 @@ A lista de operadores:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
-Estes operadores são muito raramente usados, quando nós precisamos mexer com números no nível mais baixo (bit a bit). Nós não precisaremos destes operadores em nenhum momento, já que desenvolvimento web faz pouco uso deles, mas em algumas áreas específicas, como em criptografia, eles são úteis. Você pode ler o capítulo [Operadores bit a bit](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Expressions_and_Operators#operadores_bit_a_bit) na MDN quando surgir a necessidade.
+Estes operadores são muito raramente usados, e acontece quando nós precisamos mexer com números no nível mais baixo (bit a bit). Nós não precisaremos destes operadores tão cedo, já que desenvolvimento web faz pouco uso deles, mas em algumas áreas específicas, como em criptografia, eles são úteis. Você pode ler o capítulo [Operadores bit a bit](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Expressions_and_Operators#operadores_bit_a_bit) na MDN quando surgir a necessidade.
 
 ## Vírgula
 
@@ -465,7 +465,7 @@ Sem eles: `a = 1 + 2, 3 + 4` avalia `+` primeiro, somando os números e resultan
 
 Por que precisamos de um operador que descarta tudo exceto a última expressão?
 
-Às vezes, as pessoas o usam e construtos mais complexos para pôr várias ações em uma linha.
+Às vezes, as pessoas o usam em construções mais complexas para pôr várias ações em uma linha.
 
 Por exemplo:
 
@@ -476,4 +476,4 @@ for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
 }
 ```
 
-Tais truques são usados em muitos frameworks JavaScript. É por isto que nós os estamos mencionando. Mas geralmente eles não melhoram a legibilidade do código de modo que nós precisamos pensar bem antes de usá-los.
+Tais truques são usados em muitos frameworks JavaScript. É por isto que nós os estamos mencionando. Mas geralmente eles não melhoram a legibilidade do código, de modo que nós precisamos pensar bem antes de usá-los.

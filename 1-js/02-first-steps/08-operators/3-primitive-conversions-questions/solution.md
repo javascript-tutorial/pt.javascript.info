@@ -16,9 +16,9 @@ undefined + 1 = NaN // (6)
 " \t \n" - 2 = -2 // (7)
 ```
 
-1. A adição com uma string `"" + 1` converte `1` para uma string: `"" + 1 = "1"`, e então nós temos `"1" + 0`, a mesma regra é aplicada.
-2. A subtração `-` (como a maioria das operações matemáticas) apenas funciona com números, esta converte uma string vazia `""` para `0`.
-3. A adição com uma string anexa o número `5` à string.
+1. A adição de uma string `"" + 1` converte `1` para uma string: `"" + 1 = "1"`, e quando nós temos `"1" + 0`, a mesma regra é aplicada.
+2. A subtração `-` (como a maioria das operações matemáticas) apenas funciona com números, e converte uma string vazia `""` para `0`.
+3. A adição a uma string anexa o número `5` à string.
 4. A subtração sempre converte para números, de modo que esta transforma `"  -9  "` no número `-9` (ignorando os espaços em volta deste).
 5. `null` se torna `0` após a conversão numérica.
 6. `undefined` se torna `NaN` após a conversão numérica.

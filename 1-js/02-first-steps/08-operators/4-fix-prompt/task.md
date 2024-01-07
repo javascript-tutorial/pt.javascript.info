@@ -6,9 +6,9 @@ importance: 5
 
 Aqui está um código que pede dois números ao usuário e mostra a soma dos mesmos.
 
-Ele funciona incorretamente. A saída no exemplo abaixo é `12` (para valores padrões do prompt).
+Ele funciona incorretamente. A saída no exemplo abaixo é `12` (para os valores presentes por padrão no prompt, definidos pelo segundo argumento).
 
-Por quê? Conserte isto. O resultado deve ser `3`.
+Por quê? Conserte isto. O resultado deveria ser `3`.
 
 ```js run
 let a = prompt("Primeiro número?", 1);

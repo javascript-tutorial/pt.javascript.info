@@ -9,9 +9,9 @@ let b = "2"; // prompt("Segundo número?", 2);
 alert(a + b); // 12
 ```
 
-O que nós devemos fazer é converter strings em números antes do `+`. Por exemplo, usando `Number()` ou precedendo-os com `+`.
+O que nós devemos fazer é converter strings em números antes da adição (`+`). Por exemplo, usando `Number()` ou precedendo-os com `+`.
 
-Por exemplo, logo antes de `prompt`:
+Por exemplo, logo antes do `prompt`:
 
 ```js run
 let a = +prompt("Primeiro número?", 1);
@@ -29,4 +29,4 @@ let b = prompt("Segundo número?", 2);
 alert(+a + +b); // 3
 ```
 
-Usando ambos os `+` unário e binário no último código. Parece engraçado, não é mesmo?
+Usando ambos `+` unário e binário no último código. Parece engraçado, não é mesmo?
