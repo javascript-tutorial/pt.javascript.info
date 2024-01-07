@@ -1,284 +1,284 @@
-# JavaScript specials
+# Especiais em JavaScript
 
-This chapter briefly recaps the features of JavaScript that we've learned by now, paying special attention to subtle moments.
+Este capítulo brevemente revê as funcionalidades do JavaScript que aprendemos até agora, dando atenção especial a momentos subtis.
 
-## Code structure
+## Estrutura do código
 
-Statements are delimited with a semicolon:
-
-```js run no-beautify
-alert('Hello'); alert('World');
-```
-
-Usually, a line-break is also treated as a delimiter, so that would also work:
+Instruções são delimitadas por ponto-e-vírgula:
 
 ```js run no-beautify
-alert('Hello')
-alert('World')
+  alert('Olá'); alert('Mundo');
 ```
 
-That's called "automatic semicolon insertion". Sometimes it doesn't work, for instance:
+Geralmente, uma quebra de linha também é tratada como um delimitador, então isto também iria resultar:
+
+```js run no-beautify
+  alert('Olá')
+  alert('Mundo')
+```
+
+Isto chama-se de "inserção automática de ponto-e-vírgula". Por vezes, não funciona, como neste exemplo:
 
 ```js run
-alert("There will be an error after this message")
+  alert("Haverá um erro depois desta mensagem")
 
-[1, 2].forEach(alert)
+  [1, 2].forEach(alert)
 ```
 
-Most codestyle guides agree that we should put a semicolon after each statement.
+A maioria dos guias de estilo-de-código concorda que deveríamos colocar um ponto-e-vírgula no final de cada instrução.
 
-Semicolons are not required after code blocks `{...}` and syntax constructs with them like loops:
+Pontos-e-vírgula não são necessários depois de blocos de código `{...}` e construções sintáticas que os utilizem, como *loops* (laços):
 
 ```js
-function f() {
-  // no semicolon needed after function declaration
-}
+  function f() {
+    // nenhum ponto-e-vírgula é necessário depois da declaração de função
+  }
 
-for(;;) {
-  // no semicolon needed after the loop
-}
+  for(;;) {
+    // nenhum ponto-e-vírgula é necessário depois do loop
+  }
 ```
 
-...But even if we can put an "extra" semicolon somewhere, that's not an error. It will be ignored.
+...Mas mesmo que coloquemos um ponto-e-vírgula "extra" em um lugar, isso não é um erro. Ele será ignorado.
 
-More in: <info:structure>.
+Mais em: <info:structure>.
 
-## Strict mode
+## Modo *strict*
 
-To fully enable all features of modern JavaScript, we should start scripts with `"use strict"`.
+Para ativar completamente todas as funcionalidades do JavaScript moderno, devemos começar os programas com `"use strict"`.
 
 ```js
-'use strict';
+  'use strict';
 
-...
+  ...
 ```
 
-The directive must be at the top of a script or at the beginning of a function body.
+A diretiva deve estar no topo de um *script* (programa) ou no início do corpo de uma função.
 
-Without `"use strict"`, everything still works, but some features behave in the old-fashioned, "compatible" way. We'd generally prefer the modern behavior.
+Sem `"use strict"`, tudo ainda funciona, mas algumas funcionalidades se comportam de maneira antiga, de uma forma "compatível". Nós geralmente iriamos preferir o comportamento moderno.
 
-Some modern features of the language (like classes that we'll study in the future) enable strict mode implicitly.
+Algumas funcionalidades modernas da linguagem (como classes que iremos estudar no futuro) ativam o modo *strict* implícitamente.
 
-More in: <info:strict-mode>.
+Mais em: <info:strict-mode>.
 
-## Variables
+## Variáveis
 
-Can be declared using:
+Podem ser declaradas usando:
 
 - `let`
-- `const` (constant, can't be changed)
-- `var` (old-style, will see later)
+- `const` (constante, não pode ser alterada)
+- `var` (estilo-antigo, veremos mais tarde)
 
-A variable name can include:
-- Letters and digits, but the first character may not be a digit.
-- Characters `$` and `_` are normal, on par with letters.
-- Non-Latin alphabets and hieroglyphs are also allowed, but commonly not used.
+O nome de uma varável pode incluir:
+- Letras e dígitos, mas o primeiro caractere não pode ser um dígito.
+- Carateres `$` e `_` são normais, *on par* às letras.
+- Alfabetos não-latinos e hieróglifos também são permitidos, mas geralmente não utilizados.
 
-Variables are dynamically typed. They can store any value:
+Variáveis recebem os tipos dinâmicamente. Elas podem armazenar qualquer valor:
 
 ```js
-let x = 5;
-x = "John";
+  let x = 5;
+  x = "John";
 ```
 
-There are 8 data types:
+Existem 8 tipos de dados:
 
-- `number` for both floating-point and integer numbers,
-- `bigint` for integer numbers of arbitrary length,
-- `string` for strings,
-- `boolean` for logical values: `true/false`,
-- `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
-- `undefined` -- a type with a single value `undefined`, meaning "not assigned",
-- `object` and `symbol` -- for complex data structures and unique identifiers, we haven't learnt them yet.
+- `number` para números, tanto inteiros (*integer*) como em ponto-flutuante (*floating-point*),
+- `bigint` para números inteiros com um comprimento arbitrário,
+- `string` para cadeias-de-carateres (*strings*),
+- `boolean` para valores lógicos: `true/false` (verdadeiro/falso),
+- `null` -- um tipo de dados com só um valor `null`, significando "vazio" ou "não existe",
+- `undefined` -- um tipo de dados com só um valor `undefined`, significando "não atribuído",
+- `object` e `symbol` -- para estruturas de dados complexas e identificadores únicos, mas ainda não aprendemos ambos.
 
-The `typeof` operator returns the type for a value, with two exceptions:
+O operador `typeof` retorna o tipo de um valor, com duas exceções:
 ```js
-typeof null == "object" // error in the language
-typeof function(){} == "function" // functions are treated specially
+  typeof null == "object" // erro na linguagem
+  typeof function(){} == "function" // funções são tratadas especialmente
 ```
 
-More in: <info:variables> and <info:types>.
+Mais em: <info:variables> e <info:types>.
 
-## Interaction
+## Interação
 
-We're using a browser as a working environment, so basic UI functions will be:
+Estamos a utilizar um navegador (*browser*) como ambiente de trabalho, assim funções básicas de *UI* (Interface com o Utilizador) serão:
 
-[`prompt(question, [default])`](mdn:api/Window/prompt)
-: Ask a `question`, and return either what the visitor entered or `null` if they clicked "cancel".
+[`prompt(question, [default])`](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/prompt)
+: Faz uma `question`, e retorna o que o visitante inseriu ou `null` se a pessoa clicou em "cancel".
 
-[`confirm(question)`](mdn:api/Window/confirm)
-: Ask a `question` and suggest to choose between Ok and Cancel. The choice is returned as `true/false`.
+[`confirm(question)`](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/confirm)
+: Faz uma `question` e sugere que a pessoa escolha entre *Ok* e *Cancel*. A escolha é retornada como `true/false` (verdadeiro/falso).
 
-[`alert(message)`](mdn:api/Window/alert)
-: Output a `message`.
+[`alert(message)`](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/alert)
+: Exibe uma `message`.
 
-All these functions are *modal*, they pause the code execution and prevent the visitor from interacting with the page until they answer.
+Todas estas funções são *modais* (*modal*), elas fazem uma pausa no código em execução e impedem o visitante de interagir com a página até que ele responda.
 
-For instance:
+Por exemplo:
 
 ```js run
-let userName = prompt("Your name?", "Alice");
-let isTeaWanted = confirm("Do you want some tea?");
+  let userName = prompt("Como se chama?", "Alice");
+  let isTeaWanted = confirm("Quer um pouco de chá?");
 
-alert( "Visitor: " + userName ); // Alice
-alert( "Tea wanted: " + isTeaWanted ); // true
+  alert( "Visitante: " + userName ); // Alice
+  alert( "Quer chá: " + isTeaWanted ); // true
 ```
 
-More in: <info:alert-prompt-confirm>.
+Mais em: <info:alert-prompt-confirm>.
 
-## Operators
+## Operadores
 
-JavaScript supports the following operators:
+O JavaScript suporta os seguintes operadores:
 
-Arithmetical
-: Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
+Aritméticos
+: Regulares: `* + - /`, e também `%` para o resto de uma divisão inteira, e `**` para a potência de um número.
 
-    The binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
-
-    ```js run
-    alert( '1' + 2 ); // '12', string
-    alert( 1 + '2' ); // '12', string
-    ```
-
-Assignments
-: There is a simple assignment: `a = b` and combined ones like `a *= 2`.
-
-Bitwise
-: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) when they are needed.
-
-Conditional
-: The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
-
-Logical operators
-: Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped (not necessary `true`/`false`). Logical NOT `!` converts the operand to boolean type and returns the inverse value.
-
-Nullish coalescing operator
-: The `??` operator provides a way to choose a defined value from a list of variables. The result of `a ?? b` is `a` unless it's `null/undefined`, then `b`.
-
-Comparisons
-: Equality check `==` for values of different types converts them to a number (except `null` and `undefined` that equal each other and nothing else), so these are equal:
+    O operador binário mais `+` concatena *strings*. E se um dos operandos for uma *string*, o outro também é convertido para *string*:
 
     ```js run
-    alert( 0 == false ); // true
-    alert( 0 == '' ); // true
+      alert( '1' + 2 ); // '12', *string*
+      alert( 1 + '2' ); // '12', *string*
     ```
 
-    Other comparisons convert to a number as well.
+De atribuição
+: Existe uma atribuição simples: `a = b`, e combinadas como `a *= 2`.
 
-    The strict equality operator `===` doesn't do the conversion: different types always mean different values for it.
+*Bit-a-bit*
+: Operadores *bit-a-bit* (*bitwise operators*) trabalham com números inteiros de 32-bits no nível mais baixo, o do *bit*: veja em [docs](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Expressions_and_Operators#operadores_bit_a_bit) quando eles são necessários.
 
-    Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else.
+Condicional
+: O único operador com três parâmetros: `condition ? resultA : resultB`. Se `condition` for verdadeira, retorna `resultA`, senão o `resultB`.
 
-    Greater/less comparisons compare strings character-by-character, other types are converted to a number.
+Lógicos
+: Os lógicos *AND* (E) `&&` e OR (OU) `||` executam uma avaliação em curto-circuito (*short-circuit evaluation*) e depois retornam o valor em que pararam (não necessáriamente `true`/`false`). O lógico *NOT* (NÃO) `!` converte o operando para o tipo booleano e retorna o inverso desse booleano.
 
-Other operators
-: There are few others, like a comma operator.
+De coalescência nula (Nullish coalescing)
+: O operador `??` dá uma forma de escolher um certo valor de uma lista de variáveis. O resultado de `a ?? b` é `a` se este não for `null/undefined`, mas se for então é `b`.
 
-More in: <info:operators>, <info:comparison>, <info:logical-operators>, <info:nullish-coalescing-operator>.
+Comparações
+: O de verificação de igualdade `==` para valores de tipos diferentes, os converte para números (exceto `null` e `undefined` que se igualam entre si, e a nada mais); assim os seguintes são similares:
+
+    ```js run
+    alert( 0 == false ); // true (verdadeiro)
+    alert( 0 == '' ); // true (verdadeiro)
+    ```
+
+    Outras comparações também convertem para números.
+
+    O operador de igualdade exata (*strict equality*) `===` não executa a conversão: para ele, tipos diferentes significam sempre valores diferentes.
+
+    Os valores `null` e `undefined` são especiais: eles são iguais `==` entre si e a mais nenhum outro.
+
+    Comparações maior/menor, comparam *strings* caractere-por-caractere, mas outros tipos são convertidos para números.
+
+Outros operadores
+: Existem mais uns poucos, como o operador vírgula.
+
+Mais em: <info:operators>, <info:comparison>, <info:logical-operators>, <info:nullish-coalescing-operator>.
 
 ## Loops
 
-- We covered 3 types of loops:
+- Nós vimos 3 tipos de *loops* (laços):
 
     ```js
-    // 1
-    while (condition) {
-      ...
-    }
+      // 1
+      while (condição) {
+        ...
+      }
 
-    // 2
-    do {
-      ...
-    } while (condition);
+      // 2
+      do {
+        ...
+      } while (condição);
 
-    // 3
-    for(let i = 0; i < 10; i++) {
-      ...
-    }
+      // 3
+      for(let i = 0; i < 10; i++) {
+        ...
+      }
     ```
 
-- The variable declared in `for(let...)` loop is visible only inside the loop. But we can also omit `let` and reuse an existing variable.
-- Directives `break/continue` allow to exit the whole loop/current iteration. Use labels to break nested loops.
+- A variável declarada no ciclo (*loop*) `for(let...)` só é visível dentro do ciclo. Mas também podemos omitir `let` e re-usar uma variável já existente.
+- As diretivas `break/continue` permitem sair completamente-do-laço/da-atual-iteração. Use etiquetas (*labels*) para sair (*break*) de laços aninhados (*nested loops*).
 
-Details in: <info:while-for>.
+Detalhes em: <info:while-for>.
 
-Later we'll study more types of loops to deal with objects.
+Mais adiante estudaremos outros tipos de *loops* para lidar com objetos.
 
-## The "switch" construct
+## A construção "*switch*"
 
-The "switch" construct can replace multiple `if` checks. It uses `===` (strict equality) for comparisons.
+A construção "*switch*" permite substituir múltiplas verificações `if`. Ela emprega `===` (igualdade exata - *strict equality*) nas comparações.
 
-For instance:
+Por exemplo:
 
 ```js run
-let age = prompt('Your age?', 18);
+  let age = prompt('Que idade tem?', 18);
 
-switch (age) {
-  case 18:
-    alert("Won't work"); // the result of prompt is a string, not a number
-    break;
+  switch (age) {
+    case 18:
+      alert("Não irá funcionar"); // o resultado de 'prompt' é uma 'string', não um número
+      break;
 
-  case "18":
-    alert("This works!");
-    break;
+    case "18":
+      alert("Isto funciona!");
+      break;
 
-  default:
-    alert("Any value not equal to one above");
-}
+    default:
+      alert("Qualquer valor não igual aos dos 'case' acima");
+  }
 ```
 
-Details in: <info:switch>.
+Detalhes em: <info:switch>.
 
-## Functions
+## Funções
 
-We covered three ways to create a function in JavaScript:
+Vimos três formas para criar uma função em JavaScript:
 
-1. Function Declaration: the function in the main code flow
+1. Declaração de função: a função no fluxo principal do código
 
-    ```js
+  ```js
     function sum(a, b) {
       let result = a + b;
 
       return result;
     }
-    ```
+  ```
 
-2. Function Expression: the function in the context of an expression
+2. Expressão de função: a função no contexto de uma expressão
 
-    ```js
+  ```js
     let sum = function(a, b) {
       let result = a + b;
 
       return result;
-    };
-    ```
+    }
+  ```
 
-3. Arrow functions:
+3. Funções seta (*arrow functions*):
 
-    ```js
-    // expression on the right side
+  ```js
+    // expressão no lado direito
+
     let sum = (a, b) => a + b;
 
-    // or multi-line syntax with { ... }, need return here:
+    // ou em sintaxe multi-linha com { ... }, aqui precisa de return
     let sum = (a, b) => {
       // ...
       return a + b;
     }
 
-    // without arguments
-    let sayHi = () => alert("Hello");
+    // sem argumentos
+    let sayHi = () => alert("Olá");
 
-    // with a single argument
+    // com um único argumento
     let double = n => n * 2;
-    ```
+  ```
 
+- Funções podem ter variáveis locais: aquelas declaradas no seu corpo ou entre a lista dos seus parâmetros. Tais variáveis só são visíveis dentro da função.
+- Parâmetros podem ter valores por defeito: `function sum(a = 1, b = 2) {...}`.
+- Funções sempre retornam algo. Se não houver uma instrução `return`, então o resultado é `undefined`.
 
-- Functions may have local variables: those declared inside its body or its parameter list. Such variables are only visible inside the function.
-- Parameters can have default values: `function sum(a = 1, b = 2) {...}`.
-- Functions always return something. If there's no `return` statement, then the result is `undefined`.
+Detalhes: veja <info:function-basics>, <info:arrow-functions-basics>.
 
-Details: see <info:function-basics>, <info:arrow-functions-basics>.
+## Mais adiante
 
-## More to come
-
-That was a brief list of JavaScript features. As of now we've studied only basics. Further in the tutorial you'll find more specials and advanced features of JavaScript.
+Esta foi uma breve lista de funcionalidades do JavaScript. Até agora apenas estudámos o básico. Mais adiante no tutorial você irá encontrar mais funcionalidades especiais e avançadas do JavaScript.
