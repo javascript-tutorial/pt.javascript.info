@@ -30,7 +30,7 @@ arr.constructor === PowerArray
 
 Quando `arr.filter()` é chamado, ele internamente cria o novo array de resultados usando exatamente `arr.constructor`, não o básico `Array`. Isso é realmente interessante, porque podemos continuar utilizando os métodos de `PowerArray` no resultado.
 
-Ainda mais, podemos customizar este comportamento.
+Ainda mais, podemos personalizar este comportamento.
 
 Podemos adicionar um getter estático especial chamado `Symbol.species` à classe. Se ele existir, deve retornar o construtor que o JavaScript usará internamente para criar novas entidades em `map`, `filter` e assim por diante.
 
@@ -86,4 +86,4 @@ Aqui está a estrutura visual para `Date` e `Object`:
 
 Como você pode ver, não existe ligação entre `Date` e `Object`. Eles são independentes, apenas `Date.prototype` herda de `Object.prototype`.
 
-Essa é uma diferença importante de herança entre objetos nativos em comparação com o que obtemos com `extend
+Essa é uma diferença importante de herança entre objetos nativos em comparação com o que obtemos com `extends`.
