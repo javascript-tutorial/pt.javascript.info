@@ -105,7 +105,7 @@ O Unicode suporta muitas propriedades diferentes, e a lista completa precisaria 
 - Apelidos curtos das propriedades: <https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt>.
 - A base completa dos caracteres Unicode em formato textual, com todas as suas propriedades, está aqui: <https://www.unicode.org/Public/UCD/latest/ucd/>.
 
-### Exemplo: números hexadecimais
+### Exemplo: Números hexadecimais
 
 Para este exemplo, vamos procurar por números hexadecimais, escritos como `xFF`, onde `F` é um dígito hexadecimal (0..9 ou A..F).
 
@@ -133,7 +133,7 @@ let str = `Hello Привет 你好 123_456`;
 alert( str.match(regexp) ); // 你,好
 ```
 
-### Exemplo: moeda
+### Exemplo: Moeda
 
 Caracteres que representam uma moeda, como `$`, `€`, `¥`, possuem a propriedade Unicode `pattern:\p{Currency_Symbol}`, de apelido: `pattern:\p{Sc}`.
 
