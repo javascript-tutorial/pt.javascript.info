@@ -24,7 +24,7 @@ Nesses casos em particular, poderíamos usar os métodos do objeto string `start
 
 ## Testando por casamento completo
 
-Frequentemente, âmbas as âncoras `pattern:^...$` são usadas juntas para verificar se uma string inteira corresponde ao padrão. Para confirmar, por exemplo, se a entrada do usuário está no formato correto.
+Frequentemente, ambas as âncoras `pattern:^...$` são usadas juntas para verificar se uma string inteira corresponde ao padrão. Para confirmar, por exemplo, se a entrada do usuário está no formato correto.
 
 Vamos verificar se uma string é um horário no formato `12:34`. Isto é: dois dígitos, seguido de dois pontos (':'), e então mais dois dígitos.
 
