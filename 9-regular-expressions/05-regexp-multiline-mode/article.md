@@ -1,14 +1,14 @@
-# Multiline mode of anchors ^ $, flag "m"
+# Modo multilinha das âncoras ^ e $, flag "m"
 
-The multiline mode is enabled by the flag `pattern:m`.
+O modo multilinha é ativado pela flag `pattern:m`.
 
-It only affects the behavior of `pattern:^` and `pattern:$`.
+Ela afeta apenas o comportamento do `pattern:^` e `pattern:$`.
 
-In the multiline mode they match not only at the beginning and the end of the string, but also at start/end of line.
+No modo multilinha, eles não casam somente o começo e o fim de uma string, mas também o começo e o fim de linhas.
 
-## Searching at line start ^
+## Busca no início da linha ^
 
-In the example below the text has multiple lines. The pattern `pattern:/^\d/gm` takes a digit from the beginning of each line:
+O exemplo abaixo tem várias linhas. O padrão `pattern:/^\d/gm` casa um carácter no começo de cada linha:
 
 ```js run
 let str = `1st place: Winnie
@@ -20,7 +20,7 @@ console.log( str.match(/^\d/gm) ); // 1, 2, 3
 */!*
 ```
 
-Without the flag `pattern:m` only the first digit is matched:
+Sem a flag `pattern:m` somente o primeiro dígito será casado:
 
 ```js run
 let str = `1st place: Winnie
@@ -32,19 +32,17 @@ console.log( str.match(/^\d/g) ); // 1
 */!*
 ```
 
-That's because by default a caret `pattern:^` only matches at the beginning of the text, and in the multiline mode -- at the start of any line.
+Isso acontece porque por padrão, o acento circunflexo `pattern:^` casa apenas com o começo da string -- e no modo multilinha no começo de cada linha.
 
 ```smart
-"Start of a line" formally means "immediately after a line break": the test  `pattern:^` in multiline mode matches at all positions preceded by a newline character `\n`.
-
-And at the text start.
+Formalmente, "começo de linha" quer dizer "imediatamente após uma quebra de linha": o teste `pattern:^` no modo multilinha casa todas as posições precedidas por um carácter de nova linha `\n`, bem como o início da string como um todo.
 ```
 
-## Searching at line end $
+## Busca no fim da linha $
 
-The dollar sign `pattern:$` behaves similarly.
+O cifrão `pattern:$` se comporta de maneira similar.
 
-The regular expression `pattern:\d$` finds the last digit in every line
+A expressão regular `pattern:\d$` casa com o último dígito de cada linha
 
 ```js run
 let str = `Winnie: 1
@@ -54,21 +52,19 @@ Eeyore: 3`;
 console.log( str.match(/\d$/gm) ); // 1,2,3
 ```
 
-Without the flag `pattern:m`, the dollar `pattern:$` would only match the end of the whole text, so only the very last digit would be found.
+Sem a flag `pattern:m`, o cifrão `pattern:$` casaria apenas com o fim da string inteira, então apenas o último dígito seria encontrado.
 
 ```smart
-"End of a line" formally means "immediately before a line break": the test  `pattern:$` in multiline mode matches at all positions succeeded by a newline character `\n`.
-
-And at the text end.
+Formalmente, "fim de linha" quer dizer "imediatamente antes de uma quebra de linha": o teste `pattern:$` no modo multilinha casa todas as posições sucedidas por um caracter de nova linha `\n`, bem como o fim da string como um todo.
 ```
 
-## Searching for \n instead of ^ $
+## Busca por \n ao invés de ^ e $
 
-To find a newline, we can use not only anchors `pattern:^` and `pattern:$`, but also the newline character `\n`.
+Para encontrar uma quebra de linha podemos usar além das âncoras `pattern:^` e `pattern:$` o carácter `\n`.
 
-What's the difference? Let's see an example.
+Qual a diferença? Vejamos um exemplo.
 
-Here we search for `pattern:\d\n` instead of `pattern:\d$`:
+Aqui estamos buscando por `pattern:\d\n` ao invés de `pattern:\d$`:
 
 ```js run
 let str = `Winnie: 1
@@ -78,10 +74,10 @@ Eeyore: 3`;
 console.log( str.match(/\d\n/g) ); // 1\n,2\n
 ```
 
-As we can see, there are 2 matches instead of 3.
+Como podemos ver, temos dois casamentos ao invés de 3
 
-That's because there's no newline after `subject:3` (there's text end though, so it matches `pattern:$`).
+Isso ocorre porque não há uma quebra de linha após o `subject:3` (Mas temos o fim da string, então ele casa com o `pattern:$`)
 
-Another difference: now every match includes a newline character `match:\n`. Unlike the anchors `pattern:^` `pattern:$`, that only test the condition (start/end of a line), `\n` is a character, so it becomes a part of the result.
+Outra diferença: Agora cada correspondência inclui um carácter de nova linha `match:\n`. Diferentemente das âncoras `pattern:^` e `pattern:$`, que testam apenas a condição (início ou fim de uma linha), `\n` é um carácter, então ele se torna parte do resultado.
 
-So, a `\n` in the pattern is used when we need newline characters in the result, while anchors are used to find something at the beginning/end of a line.
+Dessa forma, usamos o `\n` no padrão quando precisamos de caracteres de nova linha no resultado, e usamos âncoras quando precisamos buscar algo no começo ou final de uma linha.
