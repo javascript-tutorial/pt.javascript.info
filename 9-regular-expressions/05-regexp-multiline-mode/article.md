@@ -8,7 +8,7 @@ No modo multilinha, eles não casam somente o começo e o fim de uma string, mas
 
 ## Busca no início da linha ^
 
-O exemplo abaixo tem várias linhas. O padrão `pattern:/^\d/gm` casa um carácter no começo de cada linha:
+O exemplo abaixo tem várias linhas. O padrão `pattern:/^\d/gm` casa um caractere no começo de cada linha:
 
 ```js run
 let str = `1st place: Winnie
@@ -35,7 +35,7 @@ console.log( str.match(/^\d/g) ); // 1
 Isso acontece porque por padrão, o acento circunflexo `pattern:^` casa apenas com o começo da string -- e no modo multilinha no começo de cada linha.
 
 ```smart
-Formalmente, "começo de linha" quer dizer "imediatamente após uma quebra de linha": o teste `pattern:^` no modo multilinha casa todas as posições precedidas por um carácter de nova linha `\n`, bem como o início da string como um todo.
+Formalmente, "começo de linha" quer dizer "imediatamente após uma quebra de linha": o teste `pattern:^` no modo multilinha casa todas as posições precedidas por um caractere de nova linha `\n`, bem como o início da string como um todo.
 ```
 
 ## Busca no fim da linha $
@@ -60,7 +60,7 @@ Formalmente, "fim de linha" quer dizer "imediatamente antes de uma quebra de lin
 
 ## Busca por \n ao invés de ^ e $
 
-Para encontrar uma quebra de linha podemos usar além das âncoras `pattern:^` e `pattern:$` o carácter `\n`.
+Para encontrar uma quebra de linha podemos usar além das âncoras `pattern:^` e `pattern:$` o caractere `\n`.
 
 Qual a diferença? Vejamos um exemplo.
 
@@ -78,6 +78,6 @@ Como podemos ver, temos dois casamentos ao invés de 3
 
 Isso ocorre porque não há uma quebra de linha após o `subject:3` (Mas temos o fim da string, então ele casa com o `pattern:$`)
 
-Outra diferença: Agora cada correspondência inclui um carácter de nova linha `match:\n`. Diferentemente das âncoras `pattern:^` e `pattern:$`, que testam apenas a condição (início ou fim de uma linha), `\n` é um carácter, então ele se torna parte do resultado.
+Outra diferença: Agora cada correspondência inclui um caractere de nova linha `match:\n`. Diferentemente das âncoras `pattern:^` e `pattern:$`, que testam apenas a condição (início ou fim de uma linha), `\n` é um caractere, então ele se torna parte do resultado.
 
 Dessa forma, usamos o `\n` no padrão quando precisamos de caracteres de nova linha no resultado, e usamos âncoras quando precisamos buscar algo no começo ou final de uma linha.
