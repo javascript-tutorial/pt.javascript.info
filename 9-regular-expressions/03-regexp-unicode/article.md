@@ -33,9 +33,9 @@ Diferente de strings, expressões regulares têm a flag `pattern:u` que resolve 
 
 ## Propriedades Unicode \p{...}
 
-Cada carácter no Unicode tem diversas propriedades. Elas descrevem a "categoria" a qual o carácter pertence, e contém informações miscelâneas sobre ele.
+Cada caractere no Unicode tem diversas propriedades. Elas descrevem a "categoria" a qual o caractere pertence, e contém informações miscelâneas sobre ele.
 
-Por exemplo, se um carácter possui a propriedade `Letter`, isso significa que o carácter pertence a um alfabeto (de qualquer língua). A propriedade `Number` indica que é um dígito: talvez Árabe ou Chinês, e assim por diante.
+Por exemplo, se um caractere possui a propriedade `Letter`, isso significa que o caractere pertence a um alfabeto (de qualquer língua). A propriedade `Number` indica que é um dígito: talvez Árabe ou Chinês, e assim por diante.
 
 Podemos buscar por caracteres baseado em suas propriedades, escrito como `pattern:\p{…}`. Para usar o `pattern:\p{…}`, a expressão regular deve possuir a flag `pattern:u`.
 
@@ -94,13 +94,13 @@ Estas são as principais categorias de caracteres e suas sub-categorias:
 Então, se precisarmos de letras minúsculas por exemplo, podemos escrever `pattern:\p{Ll}`, símbolos de pontuação: `pattern:\p{P}` e assim por diante.
 
 Existem outras categorias derivadas, como:
-- `Alphabetic` (`Alpha`), inclui a categoria "Letters" `L`, e letras numéricas `Nl` (Exemplo: Ⅻ - Um carácter para o número romano 12), além de alguns outros símbolos `Other_Alphabetic` (`OAlpha`).
+- `Alphabetic` (`Alpha`), inclui a categoria "Letters" `L`, e letras numéricas `Nl` (Exemplo: Ⅻ - Um caractere para o número romano 12), além de alguns outros símbolos `Other_Alphabetic` (`OAlpha`).
 - `Hex_Digit` inclui dígitos hexadecimais: `0-9`, `a-f`.
 - ...E assim por diante.
 
 O Unicode suporta muitas propriedades diferentes, e a lista completa precisaria de muito espaço, então aqui estão as referências:
 
-- Lista de todas as propriedades por carácter: <https://unicode.org/cldr/utility/character.jsp>.
+- Lista de todas as propriedades por caractere: <https://unicode.org/cldr/utility/character.jsp>.
 - Lista de todos os caracteres por propriedade: <https://unicode.org/cldr/utility/list-unicodeset.jsp>.
 - Apelidos curtos das propriedades: <https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt>.
 - A base completa dos caracteres Unicode em formato textual, com todas as suas propriedades, está aqui: <https://www.unicode.org/Public/UCD/latest/ucd/>.
@@ -155,7 +155,7 @@ A flag `pattern:u` ativa o suporte ao Unicode em expressões regulares.
 
 Isso resulta em duas coisas:
 
-1. Caracteres de 4 bytes são reconhecidos corretamente: como um único carácter, não dois caracteres de 2 bytes.
+1. Caracteres de 4 bytes são reconhecidos corretamente: como um único caractere, não dois caracteres de 2 bytes.
 2. Propriedades Unicode podem ser usadas na busca, usando `\p{…}`.
 
 Com as propriedades Unicode podemos buscar por palavras em línguas específicas, caracteres especiais (aspas, símbolos de moeda) e assim por diante.
