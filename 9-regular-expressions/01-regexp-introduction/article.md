@@ -23,7 +23,7 @@ regexp = /padrão/; // sem flags
 regexp = /padrão/gmi; // com flags `g`, `m` e `i` (a ser abordado em breve)
 ```
 
-Barras `padrão:/.../` informam ao JavaScript que estamos criando uma expressão regular. Eles desempenham o mesmo papel que aspas para strings.
+Barras `pattern:/.../` informam ao JavaScript que estamos criando uma expressão regular. Eles desempenham o mesmo papel que aspas para strings.
 
 Em ambos os casos, a `regexp` se torna numa instância da classe interna `RegExp`.
 
@@ -43,30 +43,30 @@ Expressões regulares podem ter flags que afetam a pesquisa.
 
 Existem apenas 6 delas em JavaScript:
 
-`padrão:i`
+`pattern:i`
 : Com essa flag, a pesquisa não diferencia maiúsculas de minúsculas: não há diferença entre `A` e `a` (veja o exemplo abaixo).
 
-`padrão:g`
+`pattern:g`
 : Com essa flag, a pesquisa procura todas as correspondências, sem ela - somente a primeira correspondência é retornada.
 
-`padrão:m`
+`pattern:m`
 : Modo multilinha (abordado no capítulo <info:regexp-multiline-mode>).
 
-`padrão:s`
-: Ativa o modo "dotall", que permite que um ponto `padrão:.` corresponda ao caractere de nova linha `\n` (abordado no capítulo <info:regexp-character-classes>).
+`pattern:s`
+: Ativa o modo "dotall", que permite que um ponto `pattern:.` corresponda ao caractere de nova linha `\n` (abordado no capítulo <info:regexp-character-classes>).
 
-`padrão:u`
+`pattern:u`
 : Ativa o suporte completo de Unicode. A flag permite o processamento correto de pares substitutos. Mais sobre isso no capítulo <info:regexp-unicode>.
 
-`padrão:y`
+`pattern:y`
 : Modo "fixo": pesquisando na posição exata no texto (abordado no capítulo <info:regexp-sticky>)
 
 ```smart header="Cores"
 A partir daqui, o esquema de cores é:
 
-- regexp -- `padrão:vermelho`
-- string (onde pesquisamos) -- `fonte:azul`
-- result -- `correspondência:verde`
+- regexp -- `pattern:vermelho`
+- string (onde pesquisamos) -- `subject:azul`
+- result -- `match:verde`
 ```
 
 ## Pesquisando: str.match
@@ -77,13 +77,13 @@ O método `str.match(regexp)` encontra todas as correspondências de `regexp` na
 
 Possui 3 modos de trabalho:
 
-1. Se a expressão regular tiver flag `padrão:g`, ela retornará uma matriz de todas as correspondências:
+1. Se a expressão regular tiver flag `pattern:g`, ela retornará uma matriz de todas as correspondências:
     ```js run
     let str = "Nós vamos, nós vamos sacudir você";
 
     alert( str.match(/nós/gi) ); // Nós, nós (uma matriz de 2 substrings que correspondem)
     ```
-    Observe que ambas `correspondência:Nós` e `correspondência:nós` são encontradas, porque flag `padrão:i` torna a expressão regular sem distinção entre maiúsculas e minúsculas.
+    Observe que ambas `match:Nós` e `match:nós` são encontradas, porque flag `pattern:i` torna a expressão regular sem distinção entre maiúsculas e minúsculas.
 
 2. Se não houver essa flag, ela retornará apenas a primeira correspondência na forma de uma matriz, com a correspondência completa no índice `0` e alguns detalhes adicionais nas propriedades:
     ```js run
@@ -100,7 +100,7 @@ Possui 3 modos de trabalho:
     ```
     A matriz pode ter outros índices, além de `0` se uma parte da expressão regular estiver entre parênteses. Abordaremos isso no capítulo <info:regexp-groups>.
 
-3. E, finalmente, se não houver correspondências, `null` é retornado (não importa se há flags `padrão:g` ou não).
+3. E, finalmente, se não houver correspondências, `null` é retornado (não importa se há flags `pattern:g` ou não).
 
     Esta é uma nuance muito importante. Se não houver correspondências, não receberemos uma matriz vazia, mas receberemos `null`. Esquecer isso pode levar a erros, por exemplo:
 
@@ -124,7 +124,7 @@ Possui 3 modos de trabalho:
 
 ## Substituindo: str.replace
 
-O método `str.replace(regexp, substituição)` substitui as correspondências encontradas usando `regexp` na string ` str` por `substituição` (todas as correspondências se houver flag `padrão:g`, caso contrário, apenas a primeira).
+O método `str.replace(regexp, substituição)` substitui as correspondências encontradas usando `regexp` na string ` str` por `substituição` (todas as correspondências se houver flag `pattern:g`, caso contrário, apenas a primeira).
 
 Por exemplo:
 
@@ -147,10 +147,10 @@ O segundo argumento é a string de `substituição`. Podemos usar combinações 
 |`$<nome>`|insere o conteúdo dos parênteses com o `nome` fornecido, mais sobre isso no capítulo <info:regexp-groups>|
 |`$$`|insere o caractere `$` |
 
-Um exemplo com o `padrão:$&`:
+Um exemplo com o `pattern:$&`:
 
 ```js run
-alert( "Eu amo HTML".replace(/HTML/, "$& and JavaScript") ); // Eu amo HTML and JavaScript
+alert( "Eu amo HTML".replace(/HTML/, "$& e JavaScript") ); // Eu amo HTML e JavaScript
 ```
 
 ## Teste: regexp.test
@@ -170,8 +170,8 @@ Informações completas sobre os métodos são fornecidas no artigo <info:regexp
 
 ## Resumo
 
-- Uma expressão regular consiste em um padrão e flags opcionais: `padrão:g`, `padrão:i`, `padrão:m`, `padrão:u`, `padrão:s`, `padrão:y`.
+- Uma expressão regular consiste em um padrão e flags opcionais: `pattern:g`, `pattern:i`, `pattern:m`, `pattern:u`, `pattern:s`, `pattern:y`.
 - Sem flags e símbolos especiais (que estudaremos mais adiante), a pesquisa por uma regexp é igual à pesquisa com substring.
-- O método `str.match(regexp)` procura por correspondências: todas elas se houver a flag `padrão:g`, caso contrário, apenas a primeira.
-- O método `str.replace(regexp, substituição)` substitui as correspondências encontradas usando `regexp` por 'substituição': todas elas se houver uma flag `padrão:g`, caso contrário, somente a primeira.
+- O método `str.match(regexp)` procura por correspondências: todas elas se houver a flag `pattern:g`, caso contrário, apenas a primeira.
+- O método `str.replace(regexp, substituição)` substitui as correspondências encontradas usando `regexp` por 'substituição': todas elas se houver uma flag `pattern:g`, caso contrário, somente a primeira.
 - O método `regexp.test(str)` retorna `true` se houver pelo menos uma correspondência, caso contrário, retorna `false`.
