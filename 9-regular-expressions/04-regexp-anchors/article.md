@@ -22,7 +22,7 @@ alert( /snow$/.test(str1) ); // true
 
 Nesses casos em particular, poderíamos usar os métodos do objeto string `startsWith/endsWith` em seu lugar. Expressões regulares devem ser usadas para testes mais complexos.
 
-## Testando por casamento completo
+## Casando com uma string inteira
 
 Frequentemente, ambas as âncoras `pattern:^...$` são usadas juntas para verificar se uma string inteira corresponde ao padrão. Para confirmar, por exemplo, se a entrada do usuário está no formato correto.
 
