@@ -1,11 +1,11 @@
 
-# Unicode, detalhes internos de Strings
+# Unicode, detalhes internos da String
 
 ```warn header="Conhecimento avançado"
-Esta seção aprofunda nos detalhes internos de strings. Este conhecimento será útil se você planeja lidar com emojis, caracteres matemáticos raros, hieróglifos ou outros símbolos raros.
+Esta seção aprofunda nos detalhes internos das strings. Este conhecimento será útil se você planeja lidar com emojis, caracteres matemáticos raros, hieróglifos ou outros símbolos raros.
 ```
 
-Como já sabemos, strings em JavaScript são baseadas em [Unicode](https://en.wikipedia.org/wiki/Unicode): cada caractere é representado por uma sequência de bytes de 1 a 4 bytes.
+Já sabemos que, as strings do JavaScript são baseadas no [Unicode](https://en.wikipedia.org/wiki/Unicode): cada caractere é representado por uma sequência de bytes de 1 a 4 bytes.
 
 JavaScript nos permite inserir um caractere em uma string ao especificar o seu código Unicode hexadecimal com uma dessas três notações:
 
@@ -13,7 +13,7 @@ JavaScript nos permite inserir um caractere em uma string ao especificar o seu c
 
     `XX` deve ser composto por dois digitos hexadecimais com um valor entre `00` e `FF`, assim `\xXX` representa o caractere cujo o código Unicode é `XX`.
 
-    Porque a notação `\xXX` suporta apenas dois dígitos hexadecimais, ela pode ser usada apenas para os primeiros 256 caracteres Unicode.
+    Uma vez que a notação `\xXX` suporta apenas dois dígitos hexadecimais, ela pode ser usada apenas para os primeiros 256 caracteres Unicode.
 
     Esses primeiros 256 caracteres incluem o alfabeto latino, a maioria dos caracteres de sintaxe básica e alguns outros. Por exemplo, `"\x7A"` é o mesmo que `"z"` (Unicode `U+007A`).
 
