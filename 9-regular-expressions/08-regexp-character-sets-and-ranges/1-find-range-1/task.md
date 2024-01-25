@@ -1,5 +1,5 @@
 # Java[^script]
 
-We have a regexp `pattern:/Java[^script]/`.
+Dada a regex `pattern:/Java[^script]/`, responda:
 
-Does it match anything in the string `subject:Java`? In the string `subject:JavaScript`?
+Ela casa com qualquer coisa na string `subject:Java`? E na string `subject:JavaScript`?
