@@ -1,12 +1,12 @@
-# The Modern JavaScript Tutorial
+# O Tutorial Moderno de JavaScript
 
-Este repositório hospeda o conteúdo em inglês do Modern JavaScript Tutorial, publicado em [https://javascript.info](https://javascript.info).
+Este repositório hospeda o conteúdo em português do Modern JavaScript Tutorial, publicado em [https://javascript.info](https://javascript.info).
 
 ## Traduções
 
 Gostaríamos de disponibilizar o tutorial em vários idiomas. Por favor, ajude-nos a traduzir.
 
-Veja <https://javascript.info/translate> para mais detalhes.
+Acesse <https://javascript.info/translate> para mais detalhes.
 
 ## Contribuições
 
@@ -14,9 +14,11 @@ Também gostaríamos de colaborar no tutorial com outras pessoas.
 
 Algo está errado? Falta um tópico? Explique para as pessoas, adicione como PR 👏
 
-**Você pode editar o texto em qualquer editor.** O tutorial usa um formato "markdown" aprimorado, fácil de entender. E se você quiser ver como fica no local, há um servidor para executar o tutorial localmente em <https://github.com/javascript-tutorial/server>.
+**Você pode editar o texto em qualquer editor.** O tutorial usa um formato "markdown" aprimorado, fácil de entender. E se você quiser ver como fica no site, há um servidor para executar o tutorial localmente em <https://github.com/javascript-tutorial/server>.
 
 A lista de contribuidores está disponível em <https://javascript.info/about#contributors>.
+
+Para saber como contribuir, leia o nosso [Guia de Contribuição](/CONTRIBUTING.md)
 
 ## Estrutura
 
