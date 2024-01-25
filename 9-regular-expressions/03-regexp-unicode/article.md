@@ -25,7 +25,7 @@ alert('😄'.length); // 2
 alert('𝒳'.length); // 2
 ```
 
-...Mas nós podemos ver que há apenas um, certo? O ponto é que o método `length` trata 4 bytes como dois caracteres de 2 bytes. Isso está errado, porque eles devem ser somente considerados juntos (os chamados "pares de substitutos", você pode ler mais sobre eles no artigo <info:string>).
+...Mas nós podemos ver que há apenas um, certo? O ponto é que o método `length` trata 4 bytes como dois caracteres de 2 bytes. Isso está errado, porque eles devem ser somente considerados juntos (os chamados "pares substitutos", você pode ler mais sobre eles no artigo <info:string>).
 
 Por padrão, expressões regulares também tratam "caracteres compridos" de 4 bytes como um par de caracteres de 2 bytes. E, da mesma maneira que acontece com strings, isso pode levar a resultados estranhos. Veremos isso mais adiante, no artigo <info:regexp-character-sets-and-ranges>.
 
