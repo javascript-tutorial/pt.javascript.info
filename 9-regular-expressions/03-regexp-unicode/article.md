@@ -2,17 +2,17 @@
 
 O JavaScript usa a [codificação Unicode](https://pt.wikipedia.org/wiki/Unicode) para strings. A maioria dos caracteres são codificados com 2 bytes, mas isso permite representar no máximo 65536 caracteres diferentes.
 
-Esse alcance não é grande o bastante para codificar todos os caracteres possíveis, por isso alguns caracteres são codificados com 4 bytes, como o `𝒳` (X matemático) ou o `😄` (emoji sorridente), alguns hieróglifos e assim por diante.
+Esse alcance não é grande o bastante para codificar todos os caracteres possíveis, por isso alguns caracteres são codificados com 4 bytes, como o `𝒳` (X matemático) ou o `😄` (emoji sorridente), alguns ideogramas e assim por diante.
 
 Aqui estão os valores no Unicode de alguns caracteres:
 
-| Carácter  | Unicode | Contagem de bytes no Unicode  |
-|------------|---------|--------|
-| a | `0x0061` |  2 |
-| ≈ | `0x2248` |  2 |
-|𝒳| `0x1d4b3` | 4 |
-|𝒴| `0x1d4b4` | 4 |
-|😄| `0x1f604` | 4 |
+| Carácter | Unicode   | Contagem de bytes no Unicode |
+| -------- | --------- | ---------------------------- |
+| a        | `0x0061`  | 2                            |
+| ≈        | `0x2248`  | 2                            |
+| 𝒳        | `0x1d4b3` | 4                            |
+| 𝒴        | `0x1d4b4` | 4                            |
+| 😄       | `0x1f604` | 4                            |
 
 Note que caracteres como `a` e `≈` ocupam 2 bytes, enquanto os códigos para `𝒳`, `𝒴` e `😄` são maiores, e ocupam 4 bytes.
 
@@ -44,25 +44,25 @@ Por exemplo, `\p{Letter}` denota uma letra em qualquer língua. Também podemos 
 No exemplo abaixo três tipos de letras serão encontrados: Inglês, Georgiano e Coreano.
 
 ```js run
-let str = "A ბ ㄱ";
+let str = 'A ბ ㄱ';
 
-alert( str.match(/\p{L}/gu) ); // A,ბ,ㄱ
-alert( str.match(/\p{L}/g) ); // null (nenhuma correspondência, \p não funciona sem a flag "u")
+alert(str.match(/\p{L}/gu)); // A,ბ,ㄱ
+alert(str.match(/\p{L}/g)); // null (nenhum casamento, \p não funciona sem a flag "u")
 ```
 
 Estas são as principais categorias de caracteres e suas sub-categorias:
 
-- Letra `L`:
+- Letra (Letter) `L`:
   - minúscula `Ll`
   - modificadora `Lm`,
   - titular `Lt`,
   - maiúscula `Lu`,
   - outra `Lo`.
-- Número `N`:
+- Número (Number) `N`:
   - dígito decimal `Nd`,
   - letras numéricas `Nl`,
   - outro `No`.
-- Pontuação `P`:
+- Pontuação (Punctuation) `P`:
   - conector `Pc`,
   - traço `Pd`,
   - aspas esquerdas `Pi`,
@@ -70,30 +70,30 @@ Estas são as principais categorias de caracteres e suas sub-categorias:
   - abertura `Ps`,
   - fechamento `Pe`,
   - outro `Po`.
-- Marcação `M` (diacríticos, etc.):
+- Marcações Diacríticas (Mark) `M`:
   - com espaço `Mc`,
   - envolvente `Me`,
   - sem espaço `Mn`.
-- Símbolo `S`:
+- Símbolos (Symbol) `S`:
   - moeda `Sc`,
   - modificador `Sk`,
   - matemático `Sm`,
   - outro `So`.
-- Separador `Z`:
+- Separadores (Separator) `Z`:
   - linha `Zl`,
   - parágrafo `Zp`,
   - espaço `Zs`.
-- Outro `C`:
+- Outros (Other) `C`:
   - controle `Cc`,
   - formato `Cf`,
   - não atribuído `Cn`,
   - uso reservado `Co`,
   - substituto `Cs`.
 
-
 Então, se precisarmos de letras minúsculas por exemplo, podemos escrever `pattern:\p{Ll}`, símbolos de pontuação: `pattern:\p{P}` e assim por diante.
 
 Existem outras categorias derivadas, como:
+
 - `Alphabetic` (`Alpha`), inclui a categoria "Letters" `L`, e letras numéricas `Nl` (Exemplo: Ⅻ - Um caractere para o número romano 12), além de alguns outros símbolos `Other_Alphabetic` (`OAlpha`).
 - `Hex_Digit` inclui dígitos hexadecimais: `0-9`, `a-f`.
 - ...E assim por diante.
@@ -114,14 +114,14 @@ Um dígito hexadecimal pode ser indicado por `pattern:\p{Hex_Digit}`:
 ```js run
 let regexp = /x\p{Hex_Digit}\p{Hex_Digit}/u;
 
-alert("number: xAF".match(regexp)); // xAF
+alert('number: xAF'.match(regexp)); // xAF
 ```
 
 ### Exemplo: Sinogramas Chineses
 
 Vamos procurar por sinogramas chineses.
 
-Há uma propriedade Unicode chamada `Script` (sistema de escrita), que pode receber diferentes valores: `Cyrillic` (Cirílico: Russo, Ucraniano, Sérvio), `Greek` (Grego), `Arabic` (Árabe), `Han` (Chinês) e assim por diante, [a lista completa pode ser encontrada aqui](https://en.wikipedia.org/wiki/Script_(Unicode)).
+Há uma propriedade Unicode chamada `Script` (sistema de escrita), que pode receber diferentes valores: `Cyrillic` (Cirílico: Russo, Ucraniano, Sérvio), `Greek` (Grego), `Arabic` (Árabe), `Han` (Chinês) e assim por diante, [a lista completa pode ser encontrada aqui](<https://en.wikipedia.org/wiki/Script_(Unicode)>).
 
 Para procurar por caracteres de um sistema de escrita específico nós devemos usar o `pattern:Script=<value>`. Para buscar letras cirílicas, por exemplo: `pattern:\p{sc=Cyrillic}`, para sinogramas chineses: `pattern:\p{sc=Han}`, e assim por diante:
 
@@ -130,7 +130,7 @@ let regexp = /\p{sc=Han}/gu; // retorna sinogramas chineses
 
 let str = `Hello Привет 你好 123_456`;
 
-alert( str.match(regexp) ); // 你,好
+alert(str.match(regexp)); // 你,好
 ```
 
 ### Exemplo: Moeda
@@ -144,7 +144,7 @@ let regexp = /\p{Sc}\d/gu;
 
 let str = `Prices: $2, €1, ¥9`;
 
-alert( str.match(regexp) ); // $2,€1,¥9
+alert(str.match(regexp)); // $2,€1,¥9
 ```
 
 Mais adiante, no artigo <info:regexp-quantifiers> veremos como procurar por números que contém vários dígitos.
