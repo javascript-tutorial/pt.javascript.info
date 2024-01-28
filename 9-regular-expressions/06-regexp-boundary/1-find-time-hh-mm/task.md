@@ -6,4 +6,4 @@ Componha uma regex que encontra o horário na string: `subject:Café da manhã a
 
 P.S. Nessa tarefa não é necessário verificar a corretude do horário ainda, então `25:99` também pode ser um resultado válido.
 
-P.P.S. A expressão não deve casar com `123:456`.
+P.P.S. A expressão não deve corresponder com `123:456`.

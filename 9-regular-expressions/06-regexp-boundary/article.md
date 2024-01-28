@@ -10,30 +10,30 @@ Existem três diferentes posições que configuram uma borda de palavra:
 - Entre dois caracteres de uma string, quando um deles é um caractere de palavra `pattern:\w` e o outro não.
 - No fim da string, Se o último caractere for um caractere de palavra `pattern:\w`.
 
-Por exemplo, a regex `pattern:\bJava\b` casa com `subject:Hello, Java!`, já que `subject:Java` é uma palavra solta, mas não casa com `subject:Hello, JavaScript!`.
+Por exemplo, a regex `pattern:\bJava\b` corresponde com `subject:Hello, Java!`, já que `subject:Java` é uma palavra solta, mas não corresponde com `subject:Hello, JavaScript!`.
 
 ```js run
 alert( "Hello, Java!".match(/\bJava\b/) ); // Java
 alert( "Hello, JavaScript!".match(/\bJava\b/) ); // null
 ```
 
-Na string `subject:Hello, Java!` as seguintes posições casam com `pattern:\b`:
+Na string `subject:Hello, Java!` as seguintes posições correspondem ao `pattern:\b`:
 
 ![](hello-java-boundaries.svg)
 
-Ela casa com o padrão `pattern:\bHello\b` por que:
+Ela corresponde com o padrão `pattern:\bHello\b` por que:
 
-1. Casa o começo da string com o primeiro teste `pattern:\b`.
-2. Depois casa com a palavra `pattern:Hello`.
-3. E então casa com o teste `pattern:\b` novamente, dado que estamos entre um `subject:o` e uma vírgula.
+1. Corresponde ao começo da string com o primeiro teste `pattern:\b`.
+2. Depois corresponde com a palavra `pattern:Hello`.
+3. E então corresponde com o teste `pattern:\b` novamente, dado que estamos entre um `subject:o` e uma vírgula.
 
-Então o padrão `pattern:\bHello\b` casaria, mas não o `pattern:\bHell\b` (porque não temos nenhuma borda de palavra após o `l`), e nem o `Java!\b` (porque a exclamação não é um caractere de palavra `pattern:\w`, então não tem uma borda de palavra após ela).
+Então o padrão `pattern:\bHello\b` corresponderia, mas não o `pattern:\bHell\b` (porque não temos nenhuma borda de palavra após o `l`), e nem o `Java!\b` (porque a exclamação não é um caractere de palavra `pattern:\w`, então não tem uma borda de palavra após ela).
 
 ```js run
 alert( "Hello, Java!".match(/\bHello\b/) ); // Hello
 alert( "Hello, Java!".match(/\bJava\b/) );  // Java
-alert( "Hello, Java!".match(/\bHell\b/) );  // null (no match)
-alert( "Hello, Java!".match(/\bJava!\b/) ); // null (no match)
+alert( "Hello, Java!".match(/\bHell\b/) );  // null (nenhuma correspondência)
+alert( "Hello, Java!".match(/\bJava!\b/) ); // null (nenhuma correspondência)
 ```
 
 Além de usar o `pattern:\b` com palavras, podemos usá-lo com dígitos também.
