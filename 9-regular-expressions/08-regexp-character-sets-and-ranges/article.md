@@ -1,25 +1,25 @@
 # Conjuntos e alcances [...]
 
-Caracteres ou classes de caracteres dentro de colchetes `[…]` significam "case com qualquer caractere dentre os fornecidos".
+Caracteres ou classes de caracteres dentro de colchetes `[…]` significam "Corresponda com qualquer caractere dentre os fornecidos".
 
 ## Conjuntos
 
-O padrão `pattern:[eao]`, por exemplo, casa com qualquer um dos 3 caracteres: `'a'`, `'e'`, or `'o'`.
+O padrão `pattern:[eao]`, por exemplo, corresponde com qualquer um dos 3 caracteres: `'a'`, `'e'`, or `'o'`.
 
 Isso é chamado de *conjunto*. Conjuntos podem ser usados numa regex como qualquer outro caractere normal:
 
 ```js run
-// Case case [t ou m], e então "op"
+// Case [t ou m], e então "op"
 alert( "Mop top".match(/[tm]op/gi) ); // "Mop", "top"
 ```
 
-Repare que mesmo que um conjunto possui múltiplos caracteres, ele casa com apenas um caractere por vez.
+Repare que mesmo que um conjunto possua múltiplos caracteres, ele corresponde a apenas um caractere por vez.
 
-Dessa maneira, o exemplo abaixo não casa com nada:
+Dessa maneira, o exemplo abaixo não corresponde com nada:
 
 ```js run
 // Case com "V", depois [o ou i], e então "la"
-alert( "Voila".match(/V[oi]la/) ); // null, nenhum casamento
+alert( "Voila".match(/V[oi]la/) ); // null, nenhuma correspondência
 ```
 
 O padrão está procurando por:
