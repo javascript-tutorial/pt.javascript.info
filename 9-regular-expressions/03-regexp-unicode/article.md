@@ -4,15 +4,15 @@ O JavaScript usa a [codificação Unicode](https://pt.wikipedia.org/wiki/Unicode
 
 Esse alcance não é grande o bastante para codificar todos os caracteres possíveis, por isso alguns caracteres são codificados com 4 bytes, como o `𝒳` (X matemático) ou o `😄` (emoji sorridente), alguns ideogramas e assim por diante.
 
-Aqui estão os valores no Unicode de alguns caracteres:
+Aqui estão os códigos Unicode de alguns caracteres:
 
-| Carácter | Unicode   | Contagem de bytes no Unicode |
-| -------- | --------- | ---------------------------- |
-| a        | `0x0061`  | 2                            |
-| ≈        | `0x2248`  | 2                            |
-| 𝒳        | `0x1d4b3` | 4                            |
-| 𝒴        | `0x1d4b4` | 4                            |
-| 😄       | `0x1f604` | 4                            |
+| Carácter | Unicode   | Tamanho em bytes do caractere em Unicode |
+| -------- | --------- | ---------------------------------------- |
+| a        | `0x0061`  | 2                                        |
+| ≈        | `0x2248`  | 2                                        |
+| 𝒳        | `0x1d4b3` | 4                                        |
+| 𝒴        | `0x1d4b4` | 4                                        |
+| 😄       | `0x1f604` | 4                                        |
 
 Note que caracteres como `a` e `≈` ocupam 2 bytes, enquanto os códigos para `𝒳`, `𝒴` e `😄` são maiores, e ocupam 4 bytes.
 
@@ -21,8 +21,8 @@ Há muito tempo atrás, quando o JavaScript foi criado, a codificação Unicode 
 Por exemplo, o método `length` pensa que aqui há dois caracteres:
 
 ```js run
-alert('😄'.length); // 2
-alert('𝒳'.length); // 2
+alert("😄".length); // 2
+alert("𝒳".length); // 2
 ```
 
 ...Mas nós podemos ver que há apenas um, certo? O ponto é que o método `length` trata 4 bytes como dois caracteres de 2 bytes. Isso está errado, porque eles devem ser somente considerados juntos (os chamados "pares substitutos", você pode ler mais sobre eles no artigo <info:string>).
@@ -44,10 +44,10 @@ Por exemplo, `\p{Letter}` denota uma letra em qualquer língua. Também podemos 
 No exemplo abaixo três tipos de letras serão encontrados: Inglês, Georgiano e Coreano.
 
 ```js run
-let str = 'A ბ ㄱ';
+let str = "A ბ ㄱ";
 
 alert(str.match(/\p{L}/gu)); // A,ბ,ㄱ
-alert(str.match(/\p{L}/g)); // null (nenhum casamento, \p não funciona sem a flag "u")
+alert(str.match(/\p{L}/g)); // null (nenhuma correspondência, \p não funciona sem a flag "u")
 ```
 
 Estas são as principais categorias de caracteres e suas sub-categorias:
@@ -114,7 +114,7 @@ Um dígito hexadecimal pode ser indicado por `pattern:\p{Hex_Digit}`:
 ```js run
 let regexp = /x\p{Hex_Digit}\p{Hex_Digit}/u;
 
-alert('number: xAF'.match(regexp)); // xAF
+alert("number: xAF".match(regexp)); // xAF
 ```
 
 ### Exemplo: Sinogramas Chineses
