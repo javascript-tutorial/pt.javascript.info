@@ -4,31 +4,31 @@ Os caracteres acento circunflexo `pattern:^` e cifrão `pattern:$` possuem um si
 
 O acento circunflexo `pattern:^` corresponde ao início da string, e o cifrão `pattern:$` ao final.
 
-Neste exemplo, vamos testar se o texto começa com `Mary`:
+Neste exemplo, vamos testar se o texto começa com `Maria`:
 
 ```js run
-let str1 = "Mary had a little lamb";
-alert( /^Mary/.test(str1) ); // true
+let str1 = "Maria tinha um cordeirinho";
+alert( /^Maria/.test(str1) ); // true
 ```
 
-O padrão `pattern:^Mary` quer dizer: "início da string, e então Mary"
+O padrão `pattern:^Maria` quer dizer: "início da string, e então Maria"
 
-Da mesma maneira, podemos testar se a string termina com `snow` usando `pattern:snow$`:
+Da mesma maneira, podemos testar se a string termina com `neve` usando `pattern:neve$`:
 
 ```js run
-let str1 = "its fleece was white as snow";
-alert( /snow$/.test(str1) ); // true
+let str1 = "Seu velo era branco como a neve";
+alert( /neve$/.test(str1) ); // true
 ```
 
 Nesses casos em particular, poderíamos usar os métodos do objeto string `startsWith/endsWith` em seu lugar. Expressões regulares devem ser usadas para testes mais complexos.
 
-## Casando com uma string inteira
+## Correspondendo com uma string inteira
 
 Frequentemente, ambas as âncoras `pattern:^...$` são usadas juntas para verificar se uma string inteira corresponde ao padrão. Para confirmar, por exemplo, se a entrada do usuário está no formato correto.
 
 Vamos verificar se uma string é um horário no formato `12:34`. Isto é: dois dígitos, seguido de dois pontos (':'), e então mais dois dígitos.
 
-Em termos de expressões regulares, isso fica `pattern:\d\d:\d\d`: 
+Em expressões regulares, isso fica `pattern:\d\d:\d\d`: 
 
 ```js run
 let goodInput = "12:34";
