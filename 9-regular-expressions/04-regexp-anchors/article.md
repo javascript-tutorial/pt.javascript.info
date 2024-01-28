@@ -1,8 +1,8 @@
 # Âncoras: início ^ e fim $ de string
 
-Os caracterees acento circunflexo `pattern:^` e cifrão `pattern:$` possuem um significado especial em expressões regulares. Eles são chamados de "âncoras".
+Os caracteres acento circunflexo `pattern:^` e cifrão `pattern:$` possuem um significado especial em expressões regulares. Eles são chamados de "âncoras".
 
-O acento circunflexo `pattern:^` corresponde ao início da string, e o cifrão `pattern:$` -- ao final.
+O acento circunflexo `pattern:^` corresponde ao início da string, e o cifrão `pattern:$` ao final.
 
 Neste exemplo, vamos testar se o texto começa com `Mary`:
 
@@ -39,7 +39,7 @@ alert( regexp.test(goodInput) ); // true
 alert( regexp.test(badInput) ); // false
 ```
 
-Nesse exemplo, o casamento com o padrão `pattern:\d\d:\d\d` deve iniciar exatamente após o início da string `pattern:^`, e ser seguido imediatamente pelo fim da string `pattern:$`.
+Nesse exemplo, a correspondência com o padrão `pattern:\d\d:\d\d` deve iniciar exatamente após o início da string `pattern:^`, e ser seguido imediatamente pelo fim da string `pattern:$`.
 
 A string inteira deve obedecer exatamente a esse formato. Se houver qualquer desvio ou caractere adicional, o resultado será `false`.
 
@@ -48,5 +48,5 @@ A string inteira deve obedecer exatamente a esse formato. Se houver qualquer des
 ```smart header="Âncoras tem \"largura zero\""
 As âncoras `pattern:^` e `pattern:$` são verificações. Elas não possuem largura.
 
-Em outras palavras, elas não casam com um caractere, mas sim com uma posição, obrigando o interpretador regex a verificar a condição de início ou fim da string.
+Em outras palavras, elas não correspondem com um caractere, mas sim com uma posição, obrigando o interpretador regex a verificar a condição de início ou fim da string.
 ```

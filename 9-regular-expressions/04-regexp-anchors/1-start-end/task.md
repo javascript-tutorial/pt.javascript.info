@@ -1,3 +1,3 @@
 # Expressão Regular ^$
 
-Qual string casa com o padrão `pattern:^$`?
+Qual string corresponde ao padrão `pattern:^$`?
