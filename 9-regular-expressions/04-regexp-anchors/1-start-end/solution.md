@@ -1,5 +1,5 @@
-An empty string is the only match: it starts and immediately finishes.
+Uma string vazia é a única correspondência: Ela começa e imediatamente termina.
 
-The task once again demonstrates that anchors are not characters, but tests.
+Esta tarefa demostra novamente que âncoras não são caracteres, mas sim testes.
 
-The string is empty `""`. The engine first matches the `pattern:^` (input start), yes it's there, and then immediately the end `pattern:$`, it's here too. So there's a match.
+A string está vazia `""`. O interpretador primeiro encontra o padrão de início da entrada `pattern:^` (que sim, está lá), e então imediatamente o fim da entrada `pattern:$` (que também está). Temos uma correspondência.
