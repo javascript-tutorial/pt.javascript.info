@@ -7,7 +7,7 @@ Este artigo aborda um tópico avançado para uma compreensão mais aprofundada d
 Não é algo crucial. Muitos desenvolvedores experientes conseguem viver bem sem conhecê-lo. Continue lendo se desejar entender como as coisas funcionam internamente.
 ```
 
-Uma chamada de método avaliada dinamicamente pode perder a referência de this.
+Uma chamada de método avaliada dinamicamente pode perder a referência de `this`.
 
 Por exemplo:
 
@@ -20,7 +20,7 @@ let user = {
 
 user.hi(); // funciona
 
-// agora, vamos chamar user.hi ou user.by dependendo do nome
+// agora, vamos chamar user.hi ou user.bye dependendo do nome
 *!*
 (user.name == "John" ? user.hi : user.bye)(); // Erro!
 */!*
@@ -32,7 +32,7 @@ Então, o método é imediatamente chamado com parênteses `()`. Mas não funcio
 
 Como você pode ver, a chamada resulta em um erro, porque o valor de `"this"` dentro da chamada se torna `undefined`.
 
-Isso funciona (objeto, dot, método):
+Isso funciona (objeto, ponto, método):
 ```js
 user.hi();
 ```
