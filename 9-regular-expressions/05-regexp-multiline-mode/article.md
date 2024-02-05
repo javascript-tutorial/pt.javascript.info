@@ -1,6 +1,6 @@
-# Modo multilinha das âncoras ^ e $, flag "m"
+# Modo multilinha das âncoras ^ e $, opção "m"
 
-O modo multilinha é ativado pela flag `pattern:m`.
+O modo multilinha é ativado pela opção `pattern:m`.
 
 Ela afeta apenas o comportamento do `pattern:^` e `pattern:$`.
 
@@ -20,7 +20,7 @@ console.log( str.match(/^\d/gm) ); // 1, 2, 3
 */!*
 ```
 
-Sem a flag `pattern:m` somente o primeiro dígito será encontrado:
+Sem a opção `pattern:m` somente o primeiro dígito será encontrado:
 
 ```js run
 let str = `1st place: Winnie
@@ -52,7 +52,7 @@ Eeyore: 3`;
 console.log( str.match(/\d$/gm) ); // 1,2,3
 ```
 
-Sem a flag `pattern:m`, o cifrão `pattern:$` corresponde apenas ao fim da string inteira, então apenas o último dígito seria encontrado.
+Sem a opção `pattern:m`, o cifrão `pattern:$` corresponde apenas ao fim da string inteira, então apenas o último dígito seria encontrado.
 
 ```smart
 Formalmente, "fim de linha" quer dizer "imediatamente antes de uma quebra de linha": o teste `pattern:$` no modo multilinha corresponde a todas as posições sucedidas por um caractere de nova linha `\n`, bem como o fim da string como um todo.
