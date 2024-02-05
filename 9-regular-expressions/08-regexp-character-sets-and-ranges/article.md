@@ -44,7 +44,7 @@ alert( "Exception 0xAF".match(/x[0-9A-F][0-9A-F]/g) ); // xAF
 
 O padrão `pattern:[0-9A-F]` tem dois alcances: Ele casa com dígitos de `0` a `9` ou uma letra de `A` a `F`.
 
-Se quisermos casar com letras minúsculas também, podemos adicionar o alcance `a-f` (`pattern:[0-9A-Fa-f]`), ou adicionar a flag `pattern:i`.
+Se quisermos casar com letras minúsculas também, podemos adicionar o alcance `a-f` (`pattern:[0-9A-Fa-f]`), ou adicionar a opção `pattern:i`.
 
 Também podemos usar classes de caracteres dentro do `[…]`.
 
@@ -144,9 +144,9 @@ let regexp = /[\-\(\)\.\^\+]/g;
 alert( "1 + 2 - 3".match(regexp) ); // Também casa: +, -
 ```
 
-## Alcances e a flag "u"
+## Alcances e a opção "u"
 
-Se existem pares substitutos no conjunto, a flag `pattern:u` é obrigatória para garantir seu funcionamento correto.
+Se existem pares substitutos no conjunto, a opção `pattern:u` é obrigatória para garantir seu funcionamento correto.
 
 No exemplo abaixo queremos casar com o padrão `pattern:[𝒳𝒴]` na string `subject:𝒳`:
 
@@ -174,7 +174,7 @@ for(let i=0; i<'𝒳𝒴'.length; i++) {
 
 Por conta disso, o exemplo acima casa apenas com a metade esquerda do `𝒳`.
 
-Agora, se adicionarmos a flag `pattern:u`, o comportamento é o esperado:
+Agora, se adicionarmos a opção `pattern:u`, o comportamento é o esperado:
 
 ```js run
 alert( '𝒳'.match(/[𝒳𝒴]/u) ); // 𝒳
@@ -182,15 +182,15 @@ alert( '𝒳'.match(/[𝒳𝒴]/u) ); // 𝒳
 
 Uma situação parecida acontece quando estamos buscando por um alcance, como `[𝒳-𝒴]`.
 
-Se não usarmos a flag `pattern:u`, um erro ocorre:
+Se não usarmos a opção `pattern:u`, um erro ocorre:
 
 ```js run
 '𝒳'.match(/[𝒳-𝒴]/); // Error: Invalid regular expression (Expressão regular inválida)
 ```
 
-Isso ocorre porque sem a flag `pattern:u`, pares substitutos são percebidos como dois caracteres separados, então o alcance `[𝒳-𝒴]` é interpretado como `[<55349><56499>-<55349><56500>]` (cada par substituto é substituído pelos seus códigos constituintes). Dessa forma é fácil perceber que o alcance `56499-55349` é inválido: Seu código inicial `56499` é maior que seu código final, `55349`, causando o erro.
+Isso ocorre porque sem a opção `pattern:u`, pares substitutos são percebidos como dois caracteres separados, então o alcance `[𝒳-𝒴]` é interpretado como `[<55349><56499>-<55349><56500>]` (cada par substituto é substituído pelos seus códigos constituintes). Dessa forma é fácil perceber que o alcance `56499-55349` é inválido: Seu código inicial `56499` é maior que seu código final, `55349`, causando o erro.
 
-Com a flag `pattern:u`, entretanto, o padrão funciona como esperado:
+Com a opção `pattern:u`, entretanto, o padrão funciona como esperado:
 
 ```js run
 // Case com caracteres entre 𝒳 e 𝒵

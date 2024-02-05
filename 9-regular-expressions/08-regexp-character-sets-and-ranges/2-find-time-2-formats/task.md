@@ -2,7 +2,7 @@
 
 A string pode estar no formato `horas:minutos` ou `horas-minutos`. Ambas horas e minutos são compostas de 2 dígitos: `09:00` ou `21-30`.
 
-Escreva uma regex que case com o horário:
+Escreva uma expressão regular que corresponda ao horário:
 
 ```js
 let regexp = /your regexp/g;
