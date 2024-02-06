@@ -1,4 +1,4 @@
-# Quantifiers +, *, ? and {n}
+# Quantificadores +, *, ? e {n}
 
 Let's say we have a string like `+7(903)-123-45-67` and want to find all numbers in it. But unlike before, we are interested not in single digits, but full numbers: `7, 903, 123, 45, 67`.
 
