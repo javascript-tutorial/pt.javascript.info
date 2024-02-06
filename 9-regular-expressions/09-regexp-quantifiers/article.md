@@ -38,7 +38,7 @@ Um alcance: `pattern:{3,5}`, repetição de 3 a 5 vezes
     alert( "Não tenho 12, mas sim 345678 anos de idade".match(/\d{3,}/) ); // "345678"
     ```
 
-Vamos voltar à string `+7(903)-123-45-67`.
+Voltaremos à string `+7(903)-123-45-67`.
 
 Um número é uma sequência contínua de um ou mais dígitos. Com base nisso, a expressão regular equivalente é `pattern:\d{1,}`:
 
@@ -73,7 +73,7 @@ Existem atalhos para os quantificadores mais usados:
     Dessa forma, `pattern:colou?r` reconhece ambos `match:color` e `match:colour`:
 
     ```js run
-    // Devo escrever cor (em inglês americano) ou cor (em inglês britânico)?
+    // Tradução: Devo escrever cor (em inglês americano) ou cor (em inglês britânico)?
     let str = "Should I write color or colour?";
 
     alert( str.match(/colou?r/g) ); // color, colour
