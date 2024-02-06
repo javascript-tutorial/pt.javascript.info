@@ -28,7 +28,7 @@ O padrão está procurando por:
 - seguido de apenas *uma* das letras `pattern:[oi]`,
 - seguido de `pattern:la`.
 
-Então casaríamos com `match:Vola` ou `match:Vila`.
+Então encontraríamos `match:Vola` ou `match:Vila`.
 
 ## Alcances
 
@@ -42,13 +42,13 @@ No exemplo abaixo estamos buscado por um `"x"` seguido de dois dígitos ou letra
 alert( "Exception 0xAF".match(/x[0-9A-F][0-9A-F]/g) ); // xAF
 ```
 
-O padrão `pattern:[0-9A-F]` tem dois alcances: Ele casa com dígitos de `0` a `9` ou uma letra de `A` a `F`.
+O padrão `pattern:[0-9A-F]` tem dois alcances: Ele corresponde com dígitos de `0` a `9` ou uma letra de `A` a `F`.
 
-Se quisermos casar com letras minúsculas também, podemos adicionar o alcance `a-f` (`pattern:[0-9A-Fa-f]`), ou adicionar a opção `pattern:i`.
+Se quisermos encontrar letras minúsculas também, podemos adicionar o alcance `a-f` (`pattern:[0-9A-Fa-f]`), ou adicionar a opção `pattern:i`.
 
 Também podemos usar classes de caracteres dentro do `[…]`.
 
-Se quisermos, por exemplo, casar com um caractere "de palavra" `pattern:\w` ou um hífen `pattern:-`, o conjunto fica `pattern:[\w-]`
+Se quisermos, por exemplo, buscar por um caractere "de palavra" `pattern:\w` ou um hífen `pattern:-`, o conjunto fica `pattern:[\w-]`
 
 Também é possível combinar várias classes; o padrão `pattern:[\s\d]`, por exemplo, significa "um caractere de espaço ou um dígito".
 
@@ -62,9 +62,9 @@ Por exemplo:
 
 ### Exemplo: \w multilinguagens
 
-Como a classe de caracteres `pattern:\w` é um atalho para `pattern:[a-zA-Z0-9_]`, ele não casa com ideogramas, letras cirílicas, etc.
+Como a classe de caracteres `pattern:\w` é um atalho para `pattern:[a-zA-Z0-9_]`, ele não reconhece ideogramas, letras cirílicas, etc.
 
-Nós podemos escrever um padrão mais universal, que casa com caracteres usados em palavras de qualquer língua. Fica fácil usando propriedades Unicode: `pattern:[\p{Alpha}\p{M}\p{Nd}\p{Pc}\p{Join_C}]`.
+Nós podemos escrever um padrão mais universal, que encontra caracteres usados em palavras de qualquer língua. Fica fácil usando propriedades Unicode: `pattern:[\p{Alpha}\p{M}\p{Nd}\p{Pc}\p{Join_C}]`.
 
 Vamos decifrar o padrão. Similarmente ao `pattern:\w`, estamos criando nosso próprio conjunto que inclui caracteres com as seguintes propriedades Unicode:
 
@@ -97,13 +97,13 @@ Outra opção é utilizar alcances de caracteres da língua relevante, como `pat
 
 Além dos alcances normais, existem os alcances negados que usam a sintaxe `pattern:[^…]`.
 
-Eles são demarcados pelo acento circunflexo `^` no começo e casam com qualquer caractere *exceto os incluídos no alcance* 
+Eles são demarcados pelo acento circunflexo `^` no começo e correspondem a qualquer caractere *exceto os incluídos no alcance* 
 
 Por exemplo:
 
-- `pattern:[^aeyo]` -- casa qualquer caractere exceto  `'a'`, `'e'`, `'y'` e `'o'`.
-- `pattern:[^0-9]` -- casa qualquer caractere exceto um dígito, equivalente ao `pattern:\D`.
-- `pattern:[^\s]` -- casa qualquer caractere que não seja um espaço em branco, equivalente ao `\S`.
+- `pattern:[^aeyo]` -- reconhece qualquer caractere exceto  `'a'`, `'e'`, `'y'` e `'o'`.
+- `pattern:[^0-9]` -- reconhece qualquer caractere exceto um dígito, equivalente ao `pattern:\D`.
+- `pattern:[^\s]` -- reconhece qualquer caractere que não seja um espaço em branco, equivalente ao `\S`.
 
 O exemplo abaixo busca por qualquer caractere que não seja uma letra, um dígito ou um espaço:
 
@@ -113,7 +113,7 @@ alert( "alice15@gmail.com".match(/[^\d\sA-Z]/gi) ); // @ e .
 
 ## Escapes dentro do […]
 
-Normalmente quando queremos encontrar um caractere especial precisamos escapá-lo com a contrabarra `pattern:\.`. Se precisamos casar com uma contrabarra, escapamos ela também (`pattern:\\`), e assim por diante
+Normalmente quando queremos encontrar um caractere especial precisamos escapá-lo com a contrabarra `pattern:\.`. Se precisamos buscar uma contrabarra, escapamos ela também (`pattern:\\`), e assim por diante
 
 Dentro de colchetes podemos usar a grande maioria de caracteres especiais sem nenhum escape:
 
@@ -124,15 +124,15 @@ Dentro de colchetes podemos usar a grande maioria de caracteres especiais sem ne
 
 Em outras palavras, todos os caracteres especiais podem ser usados sem escapes, exceto nos casos onde eles modificam o comportamento do conjunto em si.
 
-O ponto `.` dentro de um conjunto representa um ponto literal. O padrão `pattern:[.,]` casa com um ponto ou uma vírgula.
+O ponto `.` dentro de um conjunto representa um ponto literal. O padrão `pattern:[.,]` reconhece um ponto ou uma vírgula.
 
-No exemplo abaixo, a expressão `pattern:[-().^+]` casa com qualquer um dos caracteres `-().^+`:
+No exemplo abaixo, a expressão `pattern:[-().^+]` reconhece qualquer um dos caracteres `-().^+`:
 
 ```js run
 // Não é necessário escapar nada
 let regexp = /[-().^+]/g;
 
-alert( "1 + 2 - 3".match(regexp) ); // Casa com +, -
+alert( "1 + 2 - 3".match(regexp) ); // Encontra + e -
 ```
 
 ...Mas caso você queira escapar "só para garantir", o efeito é o mesmo:
@@ -141,14 +141,14 @@ alert( "1 + 2 - 3".match(regexp) ); // Casa com +, -
 // Tudo escapado
 let regexp = /[\-\(\)\.\^\+]/g;
 
-alert( "1 + 2 - 3".match(regexp) ); // Também casa: +, -
+alert( "1 + 2 - 3".match(regexp) ); // Também encontra + e -
 ```
 
 ## Alcances e a opção "u"
 
 Se existem pares substitutos no conjunto, a opção `pattern:u` é obrigatória para garantir seu funcionamento correto.
 
-No exemplo abaixo queremos casar com o padrão `pattern:[𝒳𝒴]` na string `subject:𝒳`:
+No exemplo abaixo queremos realizar uma busca pelo padrão `pattern:[𝒳𝒴]` na string `subject:𝒳`:
 
 ```js run
 alert( '𝒳'.match(/[𝒳𝒴]/) ); // Mostra um caractere estranho, como um [?]
@@ -172,7 +172,7 @@ for(let i=0; i<'𝒳𝒴'.length; i++) {
 };
 ```
 
-Por conta disso, o exemplo acima casa apenas com a metade esquerda do `𝒳`.
+Por conta disso, o exemplo acima reconhece apenas a metade esquerda do `𝒳`.
 
 Agora, se adicionarmos a opção `pattern:u`, o comportamento é o esperado:
 

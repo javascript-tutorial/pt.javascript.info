@@ -1,5 +1,5 @@
 # Java[^script]
 
-Dada a regex `pattern:/Java[^script]/`, responda:
+Dada a expressão regular `pattern:/Java[^script]/`, responda:
 
-Ela casa com qualquer coisa na string `subject:Java`? E na string `subject:JavaScript`?
+Ela corresponde com alguma coisa na string `subject:Java`? E na string `subject:JavaScript`?
