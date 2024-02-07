@@ -125,5 +125,5 @@ Podemos usar esse código JSBI "como está" para motores que não suportam BigIn
 
 ## Referências
 
-- [Documentação da MDN sobre BigInt](mdn:/JavaScript/Reference/Global_Objects/BigInt).
+- [Documentação da MDN sobre BigInt](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
 - [Especificação](https://tc39.es/ecma262/#sec-bigint-objects).
