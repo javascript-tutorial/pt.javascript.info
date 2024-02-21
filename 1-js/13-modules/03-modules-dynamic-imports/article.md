@@ -22,7 +22,7 @@ if(...) {
 }
 ```
 
-Isso ocorre porque `import`/`export` têm como objetivo fornecer uma estrutura básica para a organização do código. Isso é algo bom, pois a estrutura do código pode ser analisada, os módulos podem ser reunidos e agrupados em um único arquivo por ferramentas especiais, e as exportações não utilizadas podem ser removidas ("tree-shaken"). Isso é possível apenas porque a estrutura de importações/exportações é simples e fixa.
+Isso ocorre porque `import`/`export` têm como objetivo fornecer uma estrutura básica para a organização do código. Isso é positivo, pois a estrutura do código pode ser analisada, os módulos podem ser reunidos e agrupados em um único arquivo por ferramentas especiais, e as exportações não utilizadas podem ser removidas ("tree-shaken"). Isso é possível apenas porque a estrutura de importações/exportações é simples e fixa.
 
 Mas como podemos importar um módulo dinamicamente, sob demanda?
 
@@ -36,7 +36,7 @@ Podemos utilizá-lo dinamicamente em qualquer lugar do código , por exemplo:
 let modulePath = prompt("Qual módulo carregar?");
 
 import(modulePath)
-  .then(obj => <module object>)
+  .then(obj => <objeto de módulo>)
   .catch(err => <Erro de carregamento, por exemplo, se o módulo não existir>)
 ```
 
@@ -64,12 +64,12 @@ hi();
 bye();
 ```
 
-Ou, se `say.js` tiver a exportação padrão>
+Ou, se `say.js` tiver o `export default`
 
 ```js
 // 📁 say.js
 export default function() {
-  alert("Módulo carregado (exportação padrão)!");
+  alert("Módulo carregado (export default)!");
 }
 ```
 
