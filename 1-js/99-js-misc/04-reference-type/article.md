@@ -2,7 +2,7 @@
 # Tipo de referência
 
 ```warn header="Recurso aprofundado da linguagem"
-Este artigo aborda um tópico avançado para uma compreensão mais aprofundada de casos específicos.```
+Este artigo aborda um tópico avançado para uma compreensão mais aprofundada de casos específicos.
 
 Não é algo crucial. Muitos desenvolvedores experientes conseguem viver bem sem conhecê-lo. Continue lendo se desejar entender como as coisas funcionam internamente.
 ```
@@ -76,7 +76,7 @@ O tipo por referência é um "tipo de especificação". Não podemos usá-lo exp
 
 O valor do tipo de referência é uma combinação de três valores `(base, name, strict)`, onde:
 
-- `base` é p objeto.
+- `base` é o objeto.
 - `name` é o nome da propriedade.
 - `strict` é verdadeiro se `use strict` estiver em efeito.
 
