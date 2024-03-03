@@ -13,22 +13,22 @@ Os scripts são fornecidos e executados como texto puro. Eles não precisam de p
 Neste aspecto, o JavaScript é muito diferente de outra linguagem chamada [Java](https://pt.wikipedia.org/wiki/Java_(linguagem_de_programação)).
 
 ```smart header="Por que é chamado <u>Java</u>Script?"
-Quando o JavaScript foi criado, inicialmente tinha outro nome: "LiveScript". Mas Java era muito popular naquela época, então foi decidido que posicionar uma nova linguagem como um "irmão mais novo" de Java ajudaria.
+Quando o JavaScript foi criado, tinha outro nome: "LiveScript". Mas Java era muito popular naquela época, então foi decidido que posicionar uma nova linguagem como um "irmão mais novo" de Java ajudaria.
 
-Mas à medida que ele evoluiu, o JavaScript se tornou uma linguagem totalmente independente com sua própria especificação chamada [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), e agora ele não tem nenhuma relação com Java.
+Mas à medida que ele evoluiu, o JavaScript se tornou uma linguagem totalmente independente e com a sua própria especificação chamada [ECMAScript](https://pt.wikipedia.org/wiki/ECMAScript), e agora ele não tem nenhuma relação com Java.
 ```
 
-Hoje, o JavaScript pode ser executado não só no navegador, mas também no servidor, ou mesmo em qualquer dispositivo que tenha um programa especial chamado [Interpretador JavaScript](https://pt.wikipedia.org/wiki/Interpretador_de_JavaScript).
+Hoje, o JavaScript pode ser executado não só no navegador, como também no servidor, ou mesmo em qualquer dispositivo que tenha um programa especial chamado [Interpretador JavaScript](https://pt.wikipedia.org/wiki/Interpretador_de_JavaScript).
 
-O navegador tem um interpretador (motor) incorporado, às vezes chamado de "máquina virtual JavaScript".
+O navegador tem um interpretador (motor) incorporado que às vezes é chamado de "máquina virtual JavaScript".
 
 Interpretadores diferentes têm "codinomes" diferentes. Por exemplo:
 
-- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- no Chrome, Opera e Edge.
+- [V8](https://pt.wikipedia.org/wiki/V8_(JavaScript)) -- no Chrome, Opera e Edge.
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- no Firefox.
 - ... Há outros codinomes como "Chakra" para o IE, "JavaScriptCore", "Nitro" e "SquirrelFish" para Safari, etc.
 
-Os termos acima são bons para lembrar, pois são usados em artigos de desenvolvedores na internet. Vamos usá-los também. Por exemplo, se "um recurso X é suportado pelo V8", então ele provavelmente funciona no Chrome, Opera e Edge.
+Os termos acima são bons para lembrar, pois são usados em artigos de desenvolvedores na internet. Nós também os vamos usar. Por exemplo, se "um recurso X é suportado pelo V8", então ele provavelmente funciona no Chrome, Opera e Edge.
 
 ```smart header="Como funcionam os interpretadores?"
 
@@ -52,32 +52,32 @@ O JavaScript no navegador pode fazer tudo relacionado à manipulação de págin
 Por exemplo, o JavaScript no navegador é capaz de:
 
 - Adicionar novo HTML à página, alterar o conteúdo existente, modificar estilos.
-- Reagir às ações do usuário, executar em cliques de mouse, movimentos de ponteiro, pressionamentos de teclas.
-- Enviar solicitações através da rede para servidores remotos, baixar e carregar arquivos (as chamadas tecnologias [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) e [COMET](https://en.wikipedia.org/wiki/Comet_(programming))).
+- Reagir às ações do usuário, executando código seguindo cliques de mouse, movimentos de ponteiro, pressionamentos de teclas.
+- Enviar solicitações através da rede para servidores remotos, baixar e carregar arquivos (as chamadas tecnologias [AJAX] (https://pt.wikipedia.org/wiki/Ajax_(programa%C3%A7%C3%A3o)) e [COMET] (https://pt.wikipedia.org/wiki/Comet_(programa%C3%A7%C3%A3o))).
 - Obter e definir cookies, fazer perguntas ao visitante, mostrar mensagens.
-- Lembre-se dos dados no lado do cliente ("local storage").
+- Lembrar-se dos dados no lado do cliente ("local storage").
 
 ## O que o JavaScript no navegador não pode fazer?
 
-As habilidades do JavaScript no navegador são limitadas por uma questão de segurança do usuário. O objetivo é evitar que uma página maléfica acesse informações privadas ou prejudique os dados do usuário.
+As habilidades do JavaScript no navegador são limitadas por uma questão de segurança do usuário. O objetivo é evitar que uma página maléfica acesse informações privadas ou danifique os dados do usuário.
 
 Exemplos de tais restrições incluem:
 
-- JavaScript em uma página não pode ler/gravar arquivos arbitrários no disco rígido, copiá-los ou executar programas. Não tem acesso direto às funções do sistema operacional.
+- O JavaScript em uma página não pode ler/gravar/copiar arquivos arbitrários ou executar programas, se estes estiverem no disco rígido. Não tem acesso direto às funções do sistema operacional.
 
-    Os navegadores modernos permitem que ele trabalhe com arquivos, mas o acesso é limitado e fornecido apenas se o usuário executar determinadas ações, como "dropping" de um arquivo em uma janela do navegador ou selecioná-lo por meio de uma tag `<input>`.
+    Os navegadores modernos permitem que ele trabalhe com arquivos, mas o acesso é limitado e fornecido apenas se o usuário executar determinadas ações, como "dropping" de um arquivo em uma janela do navegador ou selecioná-lo por meio de uma entrada de formulário.
 
-    Existem maneiras de interagir com a câmera / microfone e outros dispositivos, mas eles exigem permissão explícita do usuário. Assim, uma página habilitada para JavaScript pode não habilmente habilitar uma câmera web, observar os arredores e enviar as informações para a [Agência de Segurança Nacional (em inglês: National Security Agency - NSA)](https://pt.wikipedia.org/wiki/Ag%C3%AAncia_de_Seguran%C3%A7a_Nacional).
-- Diferentes abas/janelas geralmente não se conhecem mutuamente. Às vezes sim, por exemplo, quando uma janela usa JavaScript para abrir a outra. Mas mesmo neste caso, JavaScript de uma página pode não acessar a outra se eles vierem de sites diferentes (de um domínio, protocolo ou porta diferente).
+    Existem maneiras de interagir com a câmera/microfone e outros dispositivos, mas eles exigem permissão explícita do usuário. Assim, uma página com o JavaScript ativo não pode às encondidas habilitar uma câmera web, observar os arredores e enviar as informações para a [Agência de Segurança Nacional (NSA)](https://pt.wikipedia.org/wiki/Ag%C3%AAncia_de_Seguran%C3%A7a_Nacional).
+- Diferentes abas/janelas geralmente não se conhecem mutuamente. Mas às vezes sim, por exemplo, quando uma janela usa JavaScript para abrir outra. Mas, mesmo neste caso, o JavaScript numa página pode não acessar a outra se elas vierem de sites diferentes (de um domínio, protocolo ou porta diferentes).
 
-    Isso é chamado de "Política de mesma origem ". Para contornar isso, *ambas as páginas* devem conter um código JavaScript especial que lida com a troca de dados.
+    Isto é chamado de "Política de mesma origem". Para contornar isso, *ambas as páginas* devem concordar em trocar dados e conter código JavaScript específico para o fazer.
 
     Essa limitação é, novamente, para a segurança do usuário. Uma página de `http://umsitequalquer.com.br` que um usuário abriu não deve poder alcançar uma outra aba do navegador com a URL `http://gmail.com` e roubar a informação de lá.
-- O JavaScript pode se comunicar facilmente pela rede com o servidor de onde a página atual veio. Mas sua capacidade de receber dados de outros sites / domínios é prejudicada. Embora possível, requer acordo explícito (expresso em cabeçalhos HTTP) do lado remoto. Mais uma vez, isso é uma limitação de segurança.
+- O JavaScript pode se comunicar facilmente pela rede com o servidor de onde a página atual veio. Mas a sua capacidade de receber dados de outros sites/domínios é limitada. Embora possível, requer acordo explícito (expresso em cabeçalhos HTTP) do lado remoto. Mais uma vez, esta é uma limitação de segurança.
 
 ![](limitations.svg)
 
-Esses limites não existem se o JavaScript for usado fora do navegador, por exemplo, em um servidor. Os navegadores modernos também permitem plugins / extensões que podem solicitar permissões estendidas.
+Esses limites não existem se o JavaScript for usado fora do navegador, por exemplo, em um servidor. Os navegadores modernos também permitem plugins/extensões que podem solicitar permissões estendidas.
 
 ## O que torna o JavaScript único?
 
@@ -86,23 +86,23 @@ Há pelo menos *três* grandes aspectos do JavaScript:
 ```compare
 + Integração total com HTML/CSS.
 + Coisas simples são feitas de forma simples.
-+ Suporte para todos os principais navegadores e ativado por padrão.
++ Suporte em todos os principais navegadores, e ativado por padrão.
 ```
-JavaScript é a única tecnologia de navegador que combina estas três qualidades.
+O JavaScript é a única tecnologia de navegador que combina estas três qualidades.
 
 Isso é o que torna o JavaScript único. É por isso que é a ferramenta mais difundida para criar interfaces de navegador.
 
-Ao passo que planeja aprender uma nova tecnologia, é benéfico verificar suas perspectivas. Então, vamos seguir para as tendências modernas que o afetam, incluindo novas linguagens e habilidades de navegador.
+Dito isto, o JavaScript pode ser usado para criar servidores, aplicativos móveies, etc.
 
 ## Linguagens "sobre" JavaScript
 
 A sintaxe do JavaScript não se adapta às necessidades de todos. Pessoas diferentes querem características diferentes.
 
-Isso é de se esperar, porque os projetos e requisitos são diferentes para todos.
+Isso é de se esperar, porque projetos e requisitos são diferentes para todos.
 
 Então, recentemente uma infinidade de novas linguagens apareceu, que são *transpiladas* (convertidas) para JavaScript antes de rodarem no navegador.
 
-Ferramentas modernas tornam a transpilação muito rápida e transparente, permitindo que os desenvolvedores codifiquem em outra linguagem e auto-convertendo-a "sob o capô".
+Ferramentas modernas tornam a transpilação muito rápida e transparente, permitindo que os desenvolvedores codifiquem em outra linguagem e auto-convertendo "nos bastidores".
 
 Exemplos de tais linguagens:
 
