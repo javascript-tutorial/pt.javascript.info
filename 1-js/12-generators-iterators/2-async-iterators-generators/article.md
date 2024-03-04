@@ -1,11 +1,11 @@
 
 # Iteração assíncrona e geradores
 
-A iteração assíncrona permite que iteremos sobre dados que são gerados de forma assíncrona, sob demanda. Por exemplo, ao baixarmos algo pedaço por pedaço pela rede. E os geradores assíncronos tornam isso ainda mais conveniente.
+A iteração assíncrona nos permite iterar sobre dados que são gerados de forma assíncrona, sob demanda. Por exemplo, ao baixarmos algo pedaço por pedaço pela rede. E os geradores assíncronos tornam isso ainda mais conveniente.
 
 Vamos ver primeiro um exemplo simples para compreender a sintaxe e, em seguida, revisaremos um caso de uso da vida real.
 
-## Relembrando iteráveis
+## Relembrar os iteráveis
 
 Vamos relembrar o tópico sobre iteráveis.
 
@@ -18,7 +18,7 @@ let range = {
 };
 ```
 
-... E gostaríamos de usar o loop for..of nele, como for(valor of range), para obter valores de 1 a 5.
+... E gostaríamos de usar o loop `for..of` nele, como for(valor of range), para obter valores de 1 a 5.
 
 Em outras palavras, queremos adicionar uma capacidade de iteração ao objeto.
 
@@ -59,7 +59,7 @@ for(let value of range) {
   alert(value); // 1, depois 2, depois 3, depois 4, depois 5
 }
 ```
-Se algo não estiver claro, consulte o capítulo  [](info:iterable), que fornece todos os detalhes sobre iteráveis regulares.
+Se algo não estiver claro, consulte o capítulo  [](info:iterable), que fornece todos os detalhes sobre iteráveis tradicionais.
 
 ## Iteráveis assíncronos
 
@@ -72,7 +72,7 @@ Para tornar um objeto iterável de forma assíncrona:
 1. Use `Symbol.asyncIterator` em vez de `Symbol.iterator`.
 2. O método `next()` deve retornar uma promise (para ser resolvida com o próximo valor).
    - A palavra-chave `async` cuida disso, podemos simplesmente fazer `async next()`.
-3. Para iterar sobre esse objeto, devemos usar um lopp `for await (let item of iterable)`.
+3. Para iterar sobre esse objeto, devemos usar um loop `for await (let item of iterable)`.
    - Observe a palavra-chave `await`.
 
 Como exemplo inicial, vamos fazer um objeto iterável `range`, semelhante ao anterior, mas agora ele retornará valores de forma assíncrona, um por segundo.
@@ -96,7 +96,7 @@ let range = {
 */!*
 
 *!*
-        // observe: podemos usar "await" dentro de async next:
+        // observe: podemos usar o "await" dentro de async next:
         await new Promise(resolve => setTimeout(resolve, 1000)); // (3)
 */!*
 
@@ -120,7 +120,7 @@ let range = {
 
 })()
 ```
-Como podemos ver, a estrutura é semelhante aos iteradores regulares: 
+Como podemos ver, a estrutura é semelhante aos iteradores tradicionais: 
 
 1. Para criar um objeto iterável de forma assíncrona, ele deve ter um método `Symbol.asyncIterator` `(1)`.
 2. Este método deve retornar o objeto com o método `next()` que retorna uma promise `(2)`
@@ -135,7 +135,7 @@ Aqui está uma pequena tabela com as diferenças:
 | Para fazer um loop, use                          | `for..of`         | `for await..of` |
 
 ````warn header="A sintaxe spread `...` não funciona de forma assíncrona"
-Recursos que exigem iteradores regulares, síncronos, não funcionam com iteradores assíncronos.
+Recursos que exigem iteradores tradicionais, síncronos, não funcionam com iteradores assíncronos.
 
 Por exemplo, a sintaxe de spread não funcionará:
 ```js
@@ -153,7 +153,7 @@ Agora, vamos relembrar os geradores, pois eles permitem encurtar o código de it
 
 Por pura simplicidade, omitindo algumas coisas importantes, eles são "funções que geram (yield) valores". Eles são explicados em detalhes no capítulo [](info:generators).
 
-Os geradores são rotulados com `function*` (observe o asterisco) e usam `yield` para gerar um valor, então podemos usar `for..of` para fazer loop sobre eles.
+Os geradores são rotulados com `function*` (observe o asterisco) e usam `yield` para gerar um valor, então podemos usar `for..of` para iterar sobre eles.
 
 Este exemplo gera uma sequência de valores de `start` a `end`:
 
@@ -204,7 +204,7 @@ for(let value of range) {
 
 Consulte o capítulo [](info:generators) se desejar mais detalhes.
 
-Em geradores regulares, não podemos usar `await`. Todos os valores devem vir de forma síncrona, conforme exigido pelo construtor `for..of`.
+Em geradores tradicionais, não podemos usar o `await`. Todos os valores devem vir de forma síncrona, conforme exigido pelo construtor `for..of`.
 
 E se quisermos gerar valores de forma assíncrona? De solicitações de rede, por exemplo. 
 
@@ -248,9 +248,9 @@ Como o gerador é assíncrono, podemos usar `await` dentro dele, fazê-lo depend
 ````smart header="Diferença de baixo dos panos"
 Tecnicamente, se você é um leitor avançado que se lembra dos detalhes dos geradores, há uma diferença interna.
 
-Para geradores assíncrono, o método `generator.next()` é assíncrono, ele retorna promises. 
+Para geradores assíncronos, o método `generator.next()` é assíncrono, ele retorna promises. 
 
-Em um gerador regular usaríamos `result = generator.next()` para obter valores. Em um gerador assíncrono, devemos adicionar `await`, assim: 
+Em um gerador tradicional usaríamos `result = generator.next()` para obter valores. Em um gerador assíncrono, devemos adicionar `await`, assim: 
 
 ```js
 result = await generator.next(); // result = {value: ..., done: true/false}
@@ -260,7 +260,7 @@ result = await generator.next(); // result = {value: ..., done: true/false}
 
 ### Async iterable range
 
-Geradores regulares podem ser usados ​​como `Symbol.iterator` para tornar o código de iteração mais curto.
+Geradores tradicionais podem ser usados ​​como `Symbol.iterator` para tornar o código de iteração mais curto.
 
 Semelhante a isso, geradores assíncronos podem ser usados ​​como `Symbol.asyncIterator` para implementar a iteração assíncrona.
 
@@ -310,9 +310,9 @@ Existem muitos serviços online que entregam dados paginados. Por exemplo, ao so
 
 Esse padrão é bem comum. Não só com usuários, mas com qualquer coisa.
 
-Por exemplo, GitHub nos permite recuperar commits da mesma maneira paginados:
+Por exemplo, GitHub nos permite recuperar commits da mesma maneira, de forma paginada:
 
-- Devemos fazer uma requisição ao `fetch` no formato `https://api.github.com/repos/<repo>/commits`.
+- Devemos fazer uma requisição `fetch` no formato `https://api.github.com/repos/<repo>/commits`.
 - Ela responde com um JSON contendo 30 commits e também fornece um link para a próxima pagina no cabeçalho `Link`.
 - Podemos usar este link para a próxima requisição para obter mais commits, e assim por diante.
 
@@ -355,10 +355,10 @@ async function* fetchCommits(repo) {
 
 Mais explicações de como funciona:
 
-1. Usamos o o método do navegador [fetch](info:fetch) para baixar os commits.
+1. Usamos o método [fetch](info:fetch) do navegador para baixar os commits.
 
-    - A URL inicial é `https://api.github.com/repos/<repo>/commits` e a próxima página estará no cabeçalho `Link` da resposta.
-    - O método `fetch` nos permite fornecer cabeçalhos de autorização e outros caso necessário -- aqui o GitHub requer o `User-Agent`.
+  - A URL inicial é `https://api.github.com/repos/<repo>/commits` e a próxima página estará no cabeçalho `Link` da resposta.
+  - O método `fetch` nos permite fornecer cabeçalhos de autorização e outros caso necessário -- aqui o GitHub requer o `User-Agent`.
 2. Os commits são retornados no formato JSON.
 3. Devemos obter a URL da próxima página do cabeçalho `Link` da resposta. Ele tem um formato especial, então usamos uma expressão regular para isso (vamos aprender essa funcionalidade em [Expressões regulares](info:regular-expressions))
     - A URL da próxima página deve parecer com `https://api.github.com/repositories/93253246/commits?page=2`. É gerada pelo próprio GitHub.
@@ -384,30 +384,30 @@ Um exemplo de uso (mostra os autores dos commits no console):
 // Observe: Se você está rodando isso em um ambiente externo, você precisará colar aqui a função fetchCommits descrita acima. 
 ```
 
-Isso é apenas o que queremos.
+Isso é exatamente o que queremos.
 
 A mecânica interna das requisições paginadas é invisível para quem está do lado de fora. Para nós, é apenas um gerador assíncrono que retorna commits.
 
 ## Resumo
 
-Iteradores regulares e geradores funcionam bem com dados que não levam tempo para serem gerados.
+Iteradores tradicionais e geradores funcionam bem com dados que não levam tempo para serem gerados.
 
 Quando esperamos que os dados cheguem de forma assíncrona, com atrasos, podemos usar suas contrapartes assíncronas e `for await..of` em vez de `for..of`. 
 
-Diferenças de sintaxe entre iteradores assíncronos e regulares:
+Diferenças de sintaxe entre iteradores assíncronos e tradicionais:
 
 |       | Iterável | Iterável assíncrono |
 |-------|-----------|-----------------|
 | Método para fornecer um iterador | `Symbol.iterator` | `Symbol.asyncIterator` |
 | valor retornado por `next()` é          | `{value:…, done: true/false}`         | `Promise` que se resolve para  `{value:…, done: true/false}`  |
 
-Diferenças de sintaxe entre geradores assíncronos e regulares:
+Diferenças de sintaxe entre geradores assíncronos e tradicionais:
 
 |       | Geradores | Geradores assíncronos |
 |-------|-----------|-----------------|
 | Declaração | `function*` | `async function*` |
-| valor retornado por `next()` é          | `{value:…, done: true/false}`         | `Promise` que se resolve para `{value:…, done: true/false}`  |
+| valor retornado por `next()` é         | `{value:…, done: true/false}`         | `Promise` que se resolve para `{value:…, done: true/false}`  |
 
-Na área de desenvolvimento web, frequentemente nos deparamos com fluxos de dados, nos quais os dados fluem parte por parte. Por exemplo, ao baixar ou enviar um arquivo grande.
+Na área de desenvolvimento web, frequentemente nos deparamos com fluxos de dados, nos quais os dados fluem pedaço por pedaço. Por exemplo, ao baixar ou enviar um arquivo grande.
 
 Podemos usar geradores assíncronos para processar esses tipos de dados. Também é importante mencionar que em alguns ambientes, como em navegadores, existe outra API chamada Streams, que fornece interfaces especiais para trabalhar com esses fluxos, transformar dados e transmiti-los de um fluxo para outro (por exemplo, baixar de um local e enviar imediatamente para outro).
