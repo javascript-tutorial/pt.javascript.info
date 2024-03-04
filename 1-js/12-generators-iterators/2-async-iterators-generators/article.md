@@ -69,7 +69,7 @@ O caso mais comum é quando o objeto precisa fazer uma solicitação de rede par
 
 Para tornar um objeto iterável de forma assíncrona:
 
-1. Use `Symbol.asyncIterator` em vez de `Symbol.iterator`.
+1. Use o `Symbol.asyncIterator` em vez do `Symbol.iterator`.
 2. O método `next()` deve retornar uma promise (para ser resolvida com o próximo valor).
    - A palavra-chave `async` cuida disso, podemos simplesmente fazer `async next()`.
 3. Para iterar sobre esse objeto, devemos usar um loop `for await (let item of iterable)`.
@@ -124,8 +124,8 @@ Como podemos ver, a estrutura é semelhante aos iteradores tradicionais:
 
 1. Para criar um objeto iterável de forma assíncrona, ele deve ter um método `Symbol.asyncIterator` `(1)`.
 2. Este método deve retornar o objeto com o método `next()` que retorna uma promise `(2)`
-3. O método `next()` não precisa ser `assíncrono (async)`, pode ser um método regular que retorna uma promise, mas `async` nos permite usar `await`, o que é conveniente. Aqui apenas atrasamos por um segundo `(3)`.
-4. Para iterar, usamos `for await(let value of range)` `(4)`, ou seja, adicionamos "await" após "for". Isso chama `range[Symbol.asyncIterator]()` uma vez e, em seguida, seu `next()` para obter valores.
+3. O método `next()` não precisa ser `assíncrono (async)`, pode ser um método comum que retorna uma promise, mas o `async` nos permite usar o `await`, o que é conveniente. Aqui apenas atrasamos por um segundo `(3)`.
+4. Para iterar, usamos `for await(let value of range)` `(4)`, ou seja, adicionamos o "await" após o "for". Isso chama `range[Symbol.asyncIterator]()` uma vez e, em seguida, seu `next()` para obter valores.
 
 Aqui está uma pequena tabela com as diferenças:
 |       | Iteradores | Iteradores assíncronos |
@@ -144,12 +144,12 @@ alert( [...range] ); // Error, no Symbol.iterator
 
 Isso é natural, pois espera encontrar `Symbol.iterator`, não `Symbol.asyncIterator`.
 
-Isso também é válido para `for..of`: a sintaxe sem `await` precisa de `Symbol.iterator`.
+Isso também é válido para `for..of`: a sintaxe sem o `await` precisa do `Symbol.iterator`.
 ````
 
 ## Relembrando os geradores
 
-Agora, vamos relembrar os geradores, pois eles permitem encurtar o código de iteração. Na maioria das vezes, quando queremos criar um iterável, usaremos geradores.
+Agora, vamos relembrar dos geradores, pois eles permitem encurtar o código de iteração. Na maioria das vezes, quando queremos criar um iterável, usaremos geradores.
 
 Por pura simplicidade, omitindo algumas coisas importantes, eles são "funções que geram (yield) valores". Eles são explicados em detalhes no capítulo [](info:generators).
 
@@ -214,7 +214,7 @@ Vamos mudar para geradores assíncronos para tornar isso possível.
 
 Para a maioria das aplicações práticas, quando desejamos fazer um objeto que gera de forma assíncrona uma sequência de valores, podemos usar um gerador assíncrono.
 
-A sintaxe é simples: prefixe `function*` com `async`. Isso torna o gerador assíncrono.
+A sintaxe é simples: prefixe `function*` com o `async`. Isso torna o gerador assíncrono.
 
 E então use `for await (...)` para iterar sobre ele, assim:
 
@@ -243,19 +243,19 @@ E então use `for await (...)` para iterar sobre ele, assim:
 })();
 ```
 
-Como o gerador é assíncrono, podemos usar `await` dentro dele, fazê-lo depender de promises, realizar requisições de rede e assim por diante.
+Como o gerador é assíncrono, podemos usar o `await` dentro dele, fazê-lo depender de promises, realizar requisições de rede e assim por diante.
 
 ````smart header="Diferença de baixo dos panos"
 Tecnicamente, se você é um leitor avançado que se lembra dos detalhes dos geradores, há uma diferença interna.
 
 Para geradores assíncronos, o método `generator.next()` é assíncrono, ele retorna promises. 
 
-Em um gerador tradicional usaríamos `result = generator.next()` para obter valores. Em um gerador assíncrono, devemos adicionar `await`, assim: 
+Em um gerador tradicional, usaríamos `result = generator.next()` para obter valores. Em um gerador assíncrono, devemos adicionar o `await`, assim: 
 
 ```js
 result = await generator.next(); // result = {value: ..., done: true/false}
 ```
-É por isso que geradores assíncronos funcionam com `for await...of`. 
+  É por isso que geradores assíncronos funcionam com `for await...of`. 
 ````
 
 ### Async iterable range
@@ -408,6 +408,6 @@ Diferenças de sintaxe entre geradores assíncronos e tradicionais:
 | Declaração | `function*` | `async function*` |
 | valor retornado por `next()` é         | `{value:…, done: true/false}`         | `Promise` que se resolve para `{value:…, done: true/false}`  |
 
-Na área de desenvolvimento web, frequentemente nos deparamos com fluxos de dados, nos quais os dados fluem pedaço por pedaço. Por exemplo, ao baixar ou enviar um arquivo grande.
+Na área de desenvolvimento web, frequentemente nos deparamos com fluxos de dados, nos quais os dados fluem pedaço por pedaço. Por exemplo, ao baixarmos ou enviarmos um arquivo grande.
 
 Podemos usar geradores assíncronos para processar esses tipos de dados. Também é importante mencionar que em alguns ambientes, como em navegadores, existe outra API chamada Streams, que fornece interfaces especiais para trabalhar com esses fluxos, transformar dados e transmiti-los de um fluxo para outro (por exemplo, baixar de um local e enviar imediatamente para outro).
