@@ -7,33 +7,33 @@ describe('debounce', function () {
     this.clock.restore();
   });
 
-  it('para uma chamada - executa-o depois de dados milissegundos', function () {
+  it('para uma chamada - execute-a após um determinado ms', function () {
     const f = sinon.spy();
     const debounced = debounce(f, 1000);
 
     debounced('test');
     assert(f.notCalled, 'não é chamada imediatamente');
     this.clock.tick(1000);
-    assert(f.calledOnceWith('test'), 'é chamada depois de 1000ms');
+    assert(f.calledOnceWith('test'), 'chamada após 1000ms');
   });
 
-  it('para 3 chamadas - execute a última depois de dados milissegundos', function () {
+  it('para 3 chamadas - executa a última após determinados ms', function () {
     const f = sinon.spy();
     const debounced = debounce(f, 1000);
 
     debounced('a');
-    setTimeout(() => debounced('b'), 200); // ignorada (cedo demais)
-    setTimeout(() => debounced('c'), 500); // executa (1000ms passados)
+    setTimeout(() => debounced('b'), 200); // ignorada (demasiado cedo)
+    setTimeout(() => debounced('c'), 500); // executar (1000ms passados)
     this.clock.tick(1000);
 
-    assert(f.notCalled, 'não é chamada depois de 1000ms');
+    assert(f.notCalled, 'não é chamada após 1000ms');
 
     this.clock.tick(500);
 
-    assert(f.calledOnceWith('c'), 'é chamada depois de 1500ms');
+    assert(f.calledOnceWith('c'), 'chamada após 1500ms');
   });
 
-  it('preserva o contexto da chamada', function () {
+  it('mantém o contexto da chamada', function () {
     let obj = {
       f() {
         assert.equal(this, obj);

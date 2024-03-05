@@ -2,21 +2,21 @@ importance: 5
 
 ---
 
-# O decorador Debounce
+# Decorador de Redução
 
-O resultado do decorador `debounce(f, ms)` é um encapsulador que suspende chamadas de `f` até haver `ms` milissegundos de inactividade (nenhuma chamada, "período de espera"), depois invoca `f` uma vez com os últimos argumentos.
+O resultado do decorador `debounce(f, ms)` é um embrulhador que suspende as chamadas à `f` até existir `ms` milissegundos de inatividade (nenhuma chamada, "período de arrefecimento"), depois invoca `f` uma vez com os argumentos mais recentes.
 
-Por outras palavras, `debounce` é como uma secretária que aceita "chamadas telefónicas", e espera até existirem `ms` milissegundos de inatividade. E, somente então transfere a informação da última chamada para "o chefe" (chama a `f` atual).
+Por outras palavras, `debounce` é como uma secretária que aceita "chamadas telefónicas", e espera até existir `ms` milissegundos de silêncio. E apenas depois transfere a informação da chamada mais recente ao "chefe" (chama a verdadeira `f`).
 
-Por exemplo, tinhamos uma função `f` e a substituimos por `f = debounce(f, 1000)`.
+Por exemplo, tínhamos uma função `f` e a substituímos por `f = debounce(f, 1000)`.
 
-Então se a função encapsulada for chamada aos 0ms, 200ms, e 500ms, e depois não houver chamadas, a `f` atual será somente chamada uma vez, aos 1500ms. Ou seja, depois do período de espera de 1000ms após a última chamada.
+Então se a função embrulhada for chamada aos 0ms, 200ms, e 500ms, e depois não existirem chamadas, a `f` verdadeira apenas será chamada uma vez, aos 1500ms. Isto é: depois do período de arrefecimento de 1000ms da última chamada.
 
 ![](debounce.svg)
 
-...E receberá os argumentos da última chamada, outras chamadas são ignoradas.
+...E obterá os argumentos da última chamada, outras chamadas são ignoradas.
 
-Aqui está o código para isso (que usa o decorador debounce da [biblioteca Lodash](https://lodash.com/docs/4.17.15#debounce)):
+Eis o código para isto (que usa o decorador de redução da [biblioteca Lodash](https://lodash.com/docs/4.17.15#debounce)):
 
 ```js
 let f = _.debounce(alert, 1000);
@@ -24,28 +24,28 @@ let f = _.debounce(alert, 1000);
 f("a");
 setTimeout( () => f("b"), 200);
 setTimeout( () => f("c"), 500);
-// a função de debounce espera 1000ms após a última chamada e depois executa: alert("c")
+// a função de redução espera 1000ms após a última chamada e depois executa: alert("c")
 ```
 
-Agora um exemplo prático. Vamos dizer, que o usuário digita alguma coisa, e gostaríamos de fazer um pedido ao servidor quando a entrada tiver terminado.
+Agora um exemplo prático. Digamos, que o utilizador digita algo, e gostaríamos de enviar uma requisição a servidor quando a entrada for terminada.
 
-Não adianta enviar um pedido por cada caractere digitado. Ao invés disso gostariamos de esperar, e então processar todo o resultado.
+Não faz sentido enviar uma requisição por cada carácter digitado. Em vez disto, gostaríamos de esperar e depois processar todo o resultado.
 
-Num navegador, nós podemos configurar um gerenciador de eventos -- uma função que é chamada em todas as alterações no campo de entrada. Normalmente, um gerenciador de eventos é chamado com frequência, a cada tecla pressionada. Porém, se nós fizermos o `debounce` dele por 1000ms, então ele será chamando apenas uma vez, depois de 1000ms após a última entrada.
+Num navegador da Web, podemos configurar um manipulador de evento -- uma função que é chamada sobre toda mudança dum campo de entrada. Normalmente, um manipulador de evento é chamado com muita frequência, para toda tecla digitada. Mas se usássemos `debounce` nesta por 1000ms, então apenas será chamada uma vez, após 1000ms depois da última entrada.
 
 ```online
 
-Neste exemplo online, o gerenciador coloca o resultado na caixa abaixo, experimente:
+Neste exemplo ao vivo, o manipulador coloca o resultado numa caixa abaixo, experimenta:
 
 [iframe border=1 src="debounce" height=200]
 
-Você vê? A segunda entrada chama a função de debounce, assim o seu conteúdo será processado após 1000ms depois da última entrada.
+Vês? A segunda entrada chama a função reduzida, então o seu conteúdo é processado após 1000ms depois da última entrada.
 ```
 
-Portanto, `debounce` é uma excelente maneira de processar uma sequência de eventos: seja ela uma sequência de teclas pressionadas, movimentos do rato ou alguma outra coisa.
+Portanto, `debounce` é uma excelente maneira de processar uma sequência de eventos: seja uma sequência de pressões de tecla, movimentos de rato ou qualquer outra coisa.
 
-Ela espera o tempo dado depois da última chamada, e depois executa a sua tarefa, que pode processar o resultado.
+Esta espera o dado tempo depois da última chamada, e depois executa a sua função, que pode processar o resultado.
 
 A tarefa é implementar o decorador `debounce`.
 
-Dica: são apenas uma poucas linhas se você estiver a pensar nisso :)
+Sugestão: são apenas algumas linhas, se pensarmos bem :)
