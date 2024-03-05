@@ -11,22 +11,22 @@ function delay(f, ms) {
 
 let f1000 = delay(alert, 1000);
 
-f1000("test"); // exibe "test" depois de 1000ms
+f1000("teste"); // exibe "teste" após 1000ms
 ```
 
-Por favor note como uma função seta (arrow function) é usada aqui. Tal como sabemos, funções seta não têm seus próprios `this` e `arguments`, então `f.apply(this, arguments)` recebe `this` e `arguments` a partir do encapsulador.
+Nota como é utilizada aqui uma função de seta (ou função anónima). Como sabemos, as funções de seta não possuem `this` e `arguments` próprios, então `f.apply(this, arguments)` recebe o `this` e `arguments` da função envolvente.
 
-Se passássemos uma função normal, `setTimeout` iria chamá-la sem argumentos nem `this=window` (assumindo que estávamos no browser).
+Se passarmos uma função normal, `setTimeout` a chamaria sem argumentos e `this=window` (assumindo que estamos no navegador).
 
-Ainda podemos passar o `this` certo atráves do uso de uma variável intermédia, porém é um pouco mais difícil:
+Nós podemos ainda passar o `this` correto utilizando uma variável intermediária, mas isso é um pouco mais complicado:
 
 ```js
 function delay(f, ms) {
 
   return function(...args) {
-    let savedThis = this; // guarde isto numa variável intermédia
+    let savedThis = this; // armazenar isto numa variável intermédia
     setTimeout(function() {
-      f.apply(savedThis, args); // use-a aqui
+      f.apply(savedThis, args); // utilizá-lo aqui
     }, ms);
   };
 

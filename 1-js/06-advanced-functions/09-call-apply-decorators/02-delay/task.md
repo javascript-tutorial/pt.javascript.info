@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Atrasando o decorador
+# Decorador de Atraso
 
-Crie um decorador `delay(f, ms)` que atrase cada chamada de `f` por `ms` milissegundos.
+Crie um decorador `delay(f, ms)` que atrasa cada chamada de `f` por `ms` milissegundos.
 
 Por exemplo:
 
@@ -13,14 +13,14 @@ function f(x) {
   alert(x);
 }
 
-// cria encapsuladores
+// criar funções envolventes
 let f1000 = delay(f, 1000);
 let f1500 = delay(f, 1500);
 
-f1000("test"); // exibe "test" depois de 1000ms
-f1500("test"); // exibe "test" depois de 1500ms
+f1000("teste"); // exibe "teste" após 1000ms
+f1500("teste"); // exibe "teste" após 1500ms
 ```
 
-Por outras palavras, `delay(f, ms)` retorna uma variante de `f` "atrasada em `ms`".
+Por outras palavras, `delay(f, ms)` retorna uma variante "atrasada por `ms`" de `f`.
 
-No código acima, `f` é uma função com um único argumento, porém a sua solução deve passar todos os argumentos e o `this` do contexto.
+No código acima, `f` é uma função de um único argumento, mas a sua solução deve passar todos os argumentos e o contexto de `this`.
