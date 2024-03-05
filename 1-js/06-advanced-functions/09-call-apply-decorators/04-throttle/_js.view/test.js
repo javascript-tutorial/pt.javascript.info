@@ -29,11 +29,11 @@ describe("throttle(f, 1000)", function() {
 
   it(" a terceira chamada espera 1000ms depois da segunda chamada", function() {
     this.clock.tick(100);
-    f1000(4); // (throttling - menos do que 1000ms desde a última execução)
+    f1000(4); // (regulação - menos do que 1000ms desde a última execução)
     this.clock.tick(100);
-    f1000(5); // (throttling - menos do que 1000ms desde a última execução)
+    f1000(5); // (regulação - menos do que 1000ms desde a última execução)
     this.clock.tick(700);
-    f1000(6); // (throttling - menos do que 1000ms desde a última execução)
+    f1000(6); // (regulação - menos do que 1000ms desde a última execução)
 
     this.clock.tick(100); // agora 100 + 100 + 700 + 100 = 1000ms se passaram
 
@@ -48,7 +48,7 @@ describe("throttle(f, 1000)", function() {
 
 describe('throttle', () => {
 
-  it('executa a chamada encaminhada uma vez', done => {
+  it('executa uma chamada encaminhada uma vez', done => {
     let log = '';
     const f = str => log += str;
     const f10 = throttle(f, 10);

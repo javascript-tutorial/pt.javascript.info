@@ -7,23 +7,28 @@ function throttle(func, ms) {
   function wrapper() {
 
     if (isThrottled) {
-      // memorizar os últimos argumentos para a chamada depois da espera
+      // memorizar os últimos argumentos a
+      // chamar depois arrefecimento
       savedArgs = arguments;
       savedThis = this;
       return;
     }
 
-    // caso contrário vá para o estado de espera
+    // caso contrário, passa ao estado
+    // de arrefecimento
     func.apply(this, arguments);
 
     isThrottled = true;
 
-    // planeia reinicializar isThrottled depois do atraso
+    // planear reiniciar `isThrottled`
+    // depois do atraso
     setTimeout(function() {
       isThrottled = false;
       if (savedArgs) {
-        // se houver chamadas, savedThis/saveArgs tem a última
-        // a chamada recursiva executa a função e configura a espera novamente
+        // se houve chamadas, `savedThis` ou
+        // `savedArgs` tem a última
+        // a chamada recursiva executa a função
+        // e define novamente o arrefecimento
         wrapper.apply(savedThis, savedArgs);
         savedArgs = savedThis = null;
       }
