@@ -75,9 +75,9 @@ Partes de um par substituto não têm significado sem o outro. Então, os alerta
 
 Tecnicamente, pares substitutos também são detectáveis pelos seus códigos: se um caractere tem o código no intervalo de `0xd800..0xdbff`, então ele é a primeira parte do par substituto. O próximo caractere (segunda parte) deve ter o código no intervalo `0xdc00..0xdfff`. Esses intervalos são reservados exclusivamente para pares substitutos por padrão.
 
-Então, os métodos [String.fromCodePoint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint) e [str.codePointAt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt) foram adicionados no JavaScript para lidar com pares substitutos.
+Então, os métodos [String.fromCodePoint](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint) e [str.codePointAt](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt) foram adicionados no JavaScript para lidar com pares substitutos.
 
-Eles são essencialmente os mesmos que [String.fromCharCode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode) e [str.charCodeAt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt), mas eles tratam pares substitutos corretamente.
+Eles são essencialmente os mesmos que [String.fromCharCode](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode) e [str.charCodeAt](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt), mas eles tratam pares substitutos corretamente.
 
 Podemos ver a diferença aqui:
 
