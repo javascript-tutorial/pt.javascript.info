@@ -1,22 +1,22 @@
 # BigInt
 
-[recent caniuse="bigint"]
+[BigInt recentemente adicionado ao caniuse="bigint"]
 
-`BigInt` is a special numeric type that provides support for integers of arbitrary length.
+BigInt é um tipo numérico especial que oferece suporte para inteiros de tamanho arbitrário.
 
-A bigint is created by appending `n` to the end of an integer literal or by calling the function `BigInt` that creates bigints from strings, numbers etc.
+Um bigint é criado anexando `n` ao final de um literal inteiro ou chamando a função `BigInt` que cria BigInts a partir de strings, números, etc.
 
 ```js
 const bigint = 1234567890123456789012345678901234567890n;
 
 const sameBigint = BigInt("1234567890123456789012345678901234567890");
 
-const bigintFromNumber = BigInt(10); // same as 10n
+const bigintFromNumber = BigInt(10); // o mesmo que 10n
 ```
 
-## Math operators
+## Operadores matemáticos
 
-`BigInt` can mostly be used like a regular number, for example:
+`BigInt` pode ser usado principalmente como um número comum, por exemplo:
 
 ```js run
 alert(1n + 2n); // 3
@@ -24,44 +24,44 @@ alert(1n + 2n); // 3
 alert(5n / 2n); // 2
 ```
 
-Please note: the division `5/2` returns the result rounded towards zero, without the decimal part. All operations on bigints return bigints.
+Perceba: a divisão `5/2` retorna o resultado arredondado para zero, sem a parte decimal. Todas as operações com BigInts retornam BigInts.
 
-We can't mix bigints and regular numbers:
+Não podemos misturar BigInts e números comuns:
 
 ```js run
-alert(1n + 2); // Error: Cannot mix BigInt and other types
+alert(1n + 2); // Erro: Não é possível misturar BigInt e outros tipos
 ```
 
-We should explicitly convert them if needed: using either `BigInt()` or `Number()`, like this:
+Devemos convertê-los explicitamente, se necessário, usando `BigInt()` ou `Number()`, assim:
 
 ```js run
 let bigint = 1n;
 let number = 2;
 
-// number to bigint
+// number para bigint
 alert(bigint + BigInt(number)); // 3
 
-// bigint to number
+// bigint para number
 alert(Number(bigint) + number); // 3
 ```
 
-The conversion operations are always silent, never give errors, but if the bigint is too huge and won't fit the number type, then extra bits will be cut off, so we should be careful doing such conversion.
+As operações de conversão são sempre silenciosas, nunca dão erros, mas se o bigint for muito grande e não couber no tipo número, então bits extras serão cortados, então devemos ter cuidado ao fazer a conversão.
 
-````smart header="The unary plus is not supported on bigints"
-The unary plus operator `+value` is a well-known way to convert `value` to a number.
+````smart header="O operador mais unário não é suportado em BigInts"
+O operador mais unário `+valor` é uma maneira bem conhecida de converter `valor` para um número.
 
-In order to avoid confusion, it's not supported on bigints:
+Para evitar confusão, não é suportado em BigInts:
 ```js run
 let bigint = 1n;
 
-alert( +bigint ); // error
+alert( +bigint ); // erro
 ```
-So we should use `Number()` to convert a bigint to a number.
+Então, devemos usar `Number()` para converter um BigInt em um número.
 ````
 
-## Comparisons
+## Comparações
 
-Comparisons, such as `<`, `>` work with bigints and numbers just fine:
+Comparações, como `<`, `>` funcionam bem com BigInts e números:
 
 ```js run
 alert( 2n > 1n ); // true
@@ -69,7 +69,7 @@ alert( 2n > 1n ); // true
 alert( 2n > 1 ); // true
 ```
 
-Please note though, as numbers and bigints belong to different types, they can be equal `==`, but not strictly equal `===`:
+Note que, como números e BigInts pertencem a tipos diferentes, eles podem ser iguais `==`, mas não estritamente iguais `===`:
 
 ```js run
 alert( 1 == 1n ); // true
@@ -77,54 +77,53 @@ alert( 1 == 1n ); // true
 alert( 1 === 1n ); // false
 ```
 
-## Boolean operations
+## Operações booleanas
 
-When inside `if` or other boolean operations, bigints behave like numbers.
+Quando dentro de `if` ou outras operações booleanas, BigInts se comportam como números.
 
-For instance, in `if`, bigint `0n` is falsy, other values are truthy:
+Por exemplo, em `if`, o bigint `0n` é falso, outros valores são verdadeiros:
 
 ```js run
 if (0n) {
-  // never executes
+  // nunca executa
 }
 ```
-
-Boolean operators, such as `||`, `&&` and others also work with bigints similar to numbers:
+Operadores booleanos, como `||`, `&&` e outros também funcionam com BigInts semelhante aos números:
 
 ```js run
-alert( 1n || 2 ); // 1 (1n is considered truthy)
+alert( 1n || 2 ); // 1 (1n é considerado verdadeiro)
 
-alert( 0n || 2 ); // 2 (0n is considered falsy)
+alert( 0n || 2 ); // 2 (0n é considerado falso)
 ```
 
 ## Polyfills
 
-Polyfilling bigints is tricky. The reason is that many JavaScript operators, such as `+`, `-` and so on behave differently with bigints compared to regular numbers.
+Fazer um polyfill para BigInts é complicado. A razão é que muitos operadores JavaScript, como `+`, `-` e assim por diante se comportam de maneira diferente com BigInts em comparação com números regulares.
 
-For example, division of bigints always returns a bigint (rounded if necessary).
+Por exemplo, a divisão de BigInts sempre retorna um bigint (arredondado se necessário).
 
-To emulate such behavior, a polyfill would need to analyze the code and replace all such operators with its functions. But doing so is cumbersome and would cost a lot of performance.
+Para emular tal comportamento, um polyfill precisaria analisar o código e substituir todos esses operadores com suas funções. Mas fazer isso é trabalhoso e custaria muito em termos de desempenho.
 
-So, there's no well-known good polyfill.
+Então, não há um polyfill bem conhecido e bom.
 
-Although, the other way around is proposed by the developers of [JSBI](https://github.com/GoogleChromeLabs/jsbi) library.
+Apesar disso, o caminho inverso é proposto pelos desenvolvedores da biblioteca [JSBI](https://github.com/GoogleChromeLabs/jsbi).
 
-This library implements big numbers using its own methods. We can use them instead of native bigints:
+Esta biblioteca implementa números grandes usando seus próprios métodos. Podemos usá-los em vez de BigInts nativos:
 
-| Operation | native `BigInt` | JSBI |
+| Operação | `BigInt` nativo | JSBI |
 |-----------|-----------------|------|
-| Creation from Number | `a = BigInt(789)` | `a = JSBI.BigInt(789)` |
-| Addition | `c = a + b` | `c = JSBI.add(a, b)` |
-| Subtraction	| `c = a - b` | `c = JSBI.subtract(a, b)` |
+| Criação a partir de Number | `a = BigInt(789)` | `a = JSBI.BigInt(789)` |
+| Adição | `c = a + b` | `c = JSBI.add(a, b)` |
+| Subtração	| `c = a - b` | `c = JSBI.subtract(a, b)` |
 | ... | ... | ... |
 
-...And then use the polyfill (Babel plugin) to convert JSBI calls to native bigints for those browsers that support them.
+...E então use o polyfill (plugin do Babel) para converter chamadas JSBI para BigInts nativos para aqueles navegadores que os suportam.
 
-In other words, this approach suggests that we write code in JSBI instead of native bigints. But JSBI works with numbers as with bigints internally, emulates them closely following the specification, so the code will be "bigint-ready".
+Em outras palavras, essa abordagem sugere que escrevamos código em JSBI em vez de BigInts nativos. Mas o JSBI trabalha com números como se fossem BigInts internamente, emula-os de perto seguindo a especificação, então o código será "pronto para bigint".
 
-We can use such JSBI code "as is" for engines that don't support bigints and for those that do support - the polyfill will convert the calls to native bigints.
+Podemos usar esse código JSBI "como está" para motores que não suportam BigInts e para aqueles que suportam - o polyfill converterá as chamadas para BigInts nativos.
 
-## References
+## Referências
 
-- [MDN docs on BigInt](mdn:/JavaScript/Reference/Global_Objects/BigInt).
-- [Specification](https://tc39.es/ecma262/#sec-bigint-objects).
+- [Documentação da MDN sobre BigInt](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
+- [Especificação](https://tc39.es/ecma262/#sec-bigint-objects).
