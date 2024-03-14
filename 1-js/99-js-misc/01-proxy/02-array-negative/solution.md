@@ -5,8 +5,8 @@ let array = [1, 2, 3];
 array = new Proxy(array, {
   get(target, prop, receiver) {
     if (prop < 0) {
-      // messmo se acessarmos como arr[1]
-      // prop é uma string, então é necessário convertê-la para número.
+      // mesmo se acessarmos como arr[1]
+      // prop é uma string, então é necessário convertê-la para um número.
       prop = +prop + target.length;
     }
     return Reflect.get(target, prop, receiver);

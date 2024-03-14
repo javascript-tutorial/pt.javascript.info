@@ -3,14 +3,14 @@
 
 Em algumas linguagens de programação, podemos acessar elementos de um array usando índices negativos, contados a partir do final.
 
-Dessa forma :
+Assim:
 
 ```js
 let array = [1, 2, 3];
 
 array[-1]; // 3, o último elemento
-array[-2]; // 2, uma posição a partir do final
-array[-3]; // 1, duas posições a partir do final
+array[-2]; // 2, uma posição a partir da última
+array[-3]; // 1, duas posições a partir da última
 ```
 
 Em outras palavras, `array[-N]` é o mesmo que `array[array.length - N]`.

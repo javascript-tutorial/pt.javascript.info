@@ -1,8 +1,8 @@
 # Proxy e Reflect
 
-Um objeto `Proxy` envolve outro objeto e intercepta operações, como leitura/escrita de propriedades e outras, opcionalmente manipulando-as por conta própria ou permitindo de forma transparente que o objeto as manipule.
+Um objeto `Proxy` envolve um outro objeto e intercepta as suas operações, como leitura/escrita de propriedades e outras, opcionalmente manipulando-as por conta própria ou permitindo, de forma transparente, que o objeto as manipule.
 
-Os proxies são usados ​​em muitas bibliotecas e em algumas estruturas de navegador. Veremos muitas aplicações práticas neste artigo.
+Os proxies são usados ​​em muitas bibliotecas e em alguns frameworks de navegador. Veremos muitas aplicações práticas neste artigo.
 
 ## Proxy
 
@@ -12,7 +12,7 @@ A sintaxe:
 let proxy = new Proxy(target, handler)
 ```
 
-- `target` -- é uma objeto para agrupar, pode ser qualquer coisa, incluindo funções.
+- `target` -- é um objeto para envolver, pode ser qualquer coisa, incluindo funções.
 - `handler` -- configuração de proxy: um objeto com "armadilhas", métodos que interceptam operações, por exemplo, `get` para ler uma propriedade de `target`, `set` para escrever uma propriedade em `target` e assim por diante.
 
 Para operações em `proxy`, se houver uma armadilha correspondente em `handler`, então ela é executada, e o proxy tem a chance de lidar com ela; caso contrário, a operação é realizada no `target`.
@@ -37,19 +37,19 @@ Como não há armadilhas, todas as operações em `proxy` são encaminhadas para
 2. Uma operação de leitura `proxy.test` retorna o valor de `target`.
 3. Iteração sobre `proxy` retorna valores de `target`.
 
-Como podemos ver, sem nenhuma armadilha, `proxy` é um invólucro transparente em torno de `target`. 
+Como podemos ver, o `proxy`, com ausência de armadilhas, é um invólucro transparente em torno de `target`. 
 
 ![](proxy.svg)
 
-`Proxy` é um "objeto exótico" especial. Não possui propriedades próprias. Com um `manipulador` vazio ele aparentemente encaminha as operações para `target`.
+O `Proxy` é um "objeto exótico" especial. Não possui propriedades próprias. Com um `handler` vazio ele aparentemente encaminha as operações para `target`.
 
 Para ativar mais recursos, vamos adicionar armadilhas.
 
 O que podemos interceptar com eles?
 
-Para a maioria das operações em objetos, existe um "método interno" conhecido na especificação do JavaScript que descreve como ele funciona no nível mais baixo. Por exemplo `[[Get]]`, o método interno para ler uma propriedade, `[[Set]]`, o método interno para escrever uma propriedade, e assim por diante. Esses métodos são usados apenas na especificação, não podemos chamá-los diretamente pelo nome. 
+Para a maioria das operações em objetos, existe um "método interno" conhecido na especificação do JavaScript que descreve como ele funciona no nível mais baixo. Por exemplo, `[[Get]]`, o método interno para ler uma propriedade, `[[Set]]`, o método interno para escrever uma propriedade, e assim por diante. Esses métodos são usados apenas na especificação, não podemos chamá-los diretamente pelo nome. 
 
-Armadilhas de proxy interceptam chamadas desses métodos. Eles estão listados na [especificação de proxy](https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots) e na tabela abaixo.
+Armadilhas de proxy interceptam chamadas desses métodos. Eles estão listados na [especificação do proxy](https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots) e na tabela abaixo.
 
 Para cada método interno, há uma armadilha nesta tabela: o nome do método que podemos adicionar ao parâmetro `handler` do `new Proxy` para interceptar a operação:
 
@@ -70,7 +70,7 @@ Para cada método interno, há uma armadilha nesta tabela: o nome do método que
 | `[[OwnPropertyKeys]]` | `ownKeys` | [Object.getOwnPropertyNames](mdn:/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames), [Object.getOwnPropertySymbols](mdn:/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols), `for..in`, `Object.keys/values/entries` |
 
 ```warn header="invariantes"
-O JavaScript impõe alguns invariantes - condições que devem ser cumpridas por métodos internos e armadilhas.
+O JavaScript impõe algumas regras fixas invariantes - condições que devem ser cumpridas por métodos internos e armadilhas.
 
 A maioria deles se refere aos valores de retorno:
 - `[[Set]]` deve retornar `true` se o valor for escrito com sucesso, caso contrário, `false`. 
@@ -95,7 +95,7 @@ Para interceptar a leitura, o `manipulador` deve ter um método `get(target, pro
 Ele dispara quando uma propriedade é lida, com os seguintes argumentos:
 - `target` -- é o objeto alvo, o passado como primeiro argumento para `new Proxy`,
 - `property` -- nome da propriedade,
-- `receiver` -- se a propriedade `target` for umm getter, então `receiver` é o objeto que será usada como `this` nas suas chamadas. Normalmente é o próprio objeto `proxy` (ou um objeto que herdade dele, se herdamos de um proxy). No momento não precisamos desse argumento, por isso ele será explicado com mais detalhes depois
+- `receiver` -- se a propriedade `target` for método de acesso, então o `receiver` é o objeto que será usada como `this` nas suas chamadas. Normalmente é o próprio objeto `proxy` (ou um objeto que herda dele, se herdamos de um proxy). No momento não precisamos desse argumento, por isso ele será explicado com mais detalhes depois.
 
 Vamos usar `get` para implementar valores padrão para um objeto.
 
@@ -138,7 +138,7 @@ alert( dictionary['Hello'] ); // Hola
 alert( dictionary['Welcome'] ); // undefined
 ```
 
-Agora, se não houver frase, ler de `dictionary` retorna `unefined`. Mas na prática, deixar de traduzir uma frase é melhor do que `undefined`. Então vamos fazer com que retorne uma frase não traduzida nesse caso ao invés de `undefined`. 
+Agora, se não houver frase, ler de `dictionary` retorna `undefined`. Mas, na prática, deixar de traduzir uma frase é melhor que `undefined`. Então vamos fazer com que retorne uma frase não traduzida nesse caso ao invés de `undefined`. 
 
 Para conseguir fazer isso, vamos envolver `dictionary` em um proxy que intercepta operações de leitura:
 
@@ -166,7 +166,7 @@ dictionary = new Proxy(dictionary, {
 // No pior caso, elas não serão traduzidas.
 alert( dictionary['Hello'] ); // Hola
 *!*
-alert( dictionary['Welcome to Proxy']); // Bem vindo ao Proxy (sem tradução)
+alert( dictionary['Welcome to Proxy']); // Bem-vindo ao Proxy (sem tradução)
 */!*
 ```
 
@@ -214,7 +214,7 @@ numbers = new Proxy(numbers, { // (*)
 
 numbers.push(1); // adicionado com sucesso
 numbers.push(2); // adicionado com sucesso
-alert("Length is: " + numbers.length); // 2
+alert("O tamanho é: " + numbers.length); // 2
 
 *!*
 numbers.push("test"); // TypeError ('set' em proxy retornou false)
@@ -225,7 +225,7 @@ alert("Essa linha nunca é alcançada (erro na linha de cima)");
 
 Observe: a funcionalidade nativa dos arrays continua funcionando! Valores são adicionados por `push`. A propriedade `length` incrementa automaticamente quando valores são adicionados. Nosso proxy não quebra nada.
 
-Não é necessário sobrescrever métodos de adição de valor em arrays, como `push` e `unshift`, entre outros, para adicionar verificações, pois internamente eles usam a operação `[[Set]]`, que é interceptada pelo proxy.
+Não é necessário sobrescrever métodos de adição de valor em arrays, como `push` e `unshift`, entre outros, para adicionar verificações, pois internamente eles usam a operação `[[Set]]`, sendo interceptada pelo proxy.
 
 Portanto, o código fica limpo e conciso.
 
@@ -234,8 +234,8 @@ Como mencionado anteriormente, existem invariantes que precisam ser mantidos.
 
 Para `set`, deve retornar `true` para uma escrita bem-sucedida.
 
-Se esquecermos de fazer isso ou retornarmos qualquer valor falsy, a operação dispara um `TypeError`
-```
+Se esquecermos de fazer isso ou retornarmos qualquer valor considerado falso (falsy), a operação dispara um `TypeError`.
+
 ## Iteração com "ownKeys" e "getOwnPropertyDescriptor"
 
 O `Object.keys`, o loop `for..in` e a maioria dos outros métodos que iteram sobre propriedades de objetos usam o método interno `[[OwnPropertyKeys]]` (interceptado pela armadilha `ownKeys`) par obter uma lista de propriedades.
@@ -244,11 +244,11 @@ Esses métodos diferem nos detalhes:
 - `Object.getOwnPropertyNames(obj)` retorna chaves não-símbolo.
 - `Object.getOwnPropertySymbols(obj)` retorna chaves símbolo.
 - `Object.keys/values()` retorna chaves/valores que não são símbolos com a flag `enumerable` (as flags de propriedade foram explicadas no artigo <info:property-descriptors>).
-- loops`for..in` percorre sobre chaves não-símbolo com a flag `enumerable` e também chaves prototype.
+- Loops `for..in` percorrem sobre chaves não-símbolo com a flag `enumerable` e também sobre chaves prototype.
 
-...Porém todos elas começam com essa lista...
+...Porém, todos eles começam com essa lista.
 
-No exemplo abaixo usamos a armadilha `ownKeys` para fazer o `for..in` percorrer sobre `user`, e também `Object.keys` e `Object.values`, para pular propriedades inciadas com um sublinhado `_`:  
+No exemplo abaixo usamos a armadilha `ownKeys` para fazer o `for..in` iterar sobre `user`, e também `Object.keys` e `Object.values`, para ignorar propriedades inciadas com um sublinhado `_`:  
 
 ```js run
 let user = {
@@ -265,7 +265,7 @@ user = new Proxy(user, {
   }
 });
 
-// "ownKeys" filtra _password
+// "ownKeys" tira o _password da listagem
 for(let key in user) alert(key); // name, depois: age
 
 // mesmo efeito nesses métodos:
@@ -289,7 +289,7 @@ user = new Proxy(user, {
 
 alert( Object.keys(user) ); // <vazio>
 ```
-Por que? O motivo é simples: `Object.keys` retorna apenas propriedades com a flag `enumerable`. Para conferi-la,  ele chama o método interno `[[GetOwnProperty]]` para todas as propriedades para obter [seu descritor](info:property-descriptors). E aqui, como não existe propriedade, seu descritor está vazio, sem a flag `enumerable`, portanto é pulado.
+Por quê? O motivo é simples: `Object.keys` retorna apenas propriedades com a flag `enumerable`. Para conferi-la, ele chama o método interno `[[GetOwnProperty]]` para todas as propriedades a fim de obter [seu descritor](info:property-descriptors). E aqui, como não existe propriedade, seu descritor está vazio, sem a flag `enumerable`, portanto é pulado.
 
 Para que `Object.keys` retorne uma propriedade, precisamos que ela existe no objeto com a flag `enumerable` ou podemos interceptar chamadas a `[[GetOwnProperty]]` (a armadilha `getOwnPropertyDescriptor` faz isso) e retornar um descritor com `enumerable: true`.
 
@@ -299,7 +299,7 @@ Aqui está um exemplo disso:
 let user = { };
 
 user = new Proxy(user, {
-  ownKeys(target) { // chamado uma vez para obter uma lista de propriedades properties
+  ownKeys(target) { // chamado uma vez para obter uma lista de propriedades
     return ['a', 'b', 'c'];
   },
 
@@ -315,9 +315,9 @@ user = new Proxy(user, {
 
 alert( Object.keys(user) ); // a, b, c
 ```
-Vamos observar mais uma vez: só precisamos interceptar `[[GetOwnProperty]]` se a propriedaede estiver ausente no objeto.
+Vamos observar mais uma vez: só precisamos interceptar `[[GetOwnProperty]]` se a propriedade estiver ausente no objeto.
 
-## Propriedades prtegidas com "deleteProperty" e outras armadilhas
+## Propriedades protegidas com "deleteProperty" e outras armadilhas
 
 Existe uma convenção difundida de que propriedades e métodos prefixados por um sublinhado (`_`) são internos. Eles não devem ser acessados de fora do objeto.
 
@@ -332,13 +332,13 @@ let user = {
 alert(user._password); // secreto
 ```
 
-Vamos usar proxies para previnir qualquer acesso a propriedades que começam com `_`.
+Vamos usar proxies para prevenir qualquer acesso a propriedades que começam com `_`.
 
 Vamos precisar das armadilhas:
-- `get` para lançar um erro quando ler tal propriedade,
+- `get` para lançar um erro ao ler uma propriedade,
 - `set` para lançar um erro ao escrever,
-- `deleteProperty` para lanãr um erro ao deletar,
-- `ownKeys` para excluir propreidades que começam com `_` de `for..in` e métodos como  `Object.keys`.
+- `deleteProperty` para lançar um erro ao deletar,
+- `ownKeys` para excluir propriedades que começam com `_` de `for..in` e métodos como  `Object.keys`.
 
 Aqui está o código:
 
@@ -369,7 +369,7 @@ user = new Proxy(user, {
     }
   },
 *!*
-  deleteProperty(target, prop) { // para interceptar exclução de propriedades
+  deleteProperty(target, prop) { // para interceptar a exclusão de propriedades
 */!*
     if (prop.startsWith('_')) {
       throw new Error("Acesso negado");
@@ -385,26 +385,26 @@ user = new Proxy(user, {
   }
 });
 
-// "get" não permite ler _password
+// "get" não permite a leitura de _password
 try {
   alert(user._password); // Error: Acesso negado
 } catch(e) { alert(e.message); }
 
-// "set" não permita escrever em  _password
+// "set" não permite a escrita em _password
 try {
   user._password = "test"; // Error: Acesso negado
 } catch(e) { alert(e.message); }
 
-// "deleteProperty" não permite deletar _password
+// "deleteProperty" não permite a exlusão de _password
 try {
   delete user._password; // Error: Acesso negado
 } catch(e) { alert(e.message); }
 
-// "ownKeys" filtra _password
+// "ownKeys" tira o _password da listagem
 for(let key in user) alert(key); // name
 ```
 
-Perceba detalhe importante na armadilha `get`, na linha `(*)`:
+Perceba o detalhe importante na armadilha `get`, na linha `(*)`:
 
 ```js
 get(target, prop) {
@@ -418,7 +418,7 @@ get(target, prop) {
 
 Por que precisamos de uma função para chamar `value.bind(target)`?
 
-O motivo é que métodos de objetos, como `user.checkPassword()`, deve ser capaz de acessar `_password`.
+O motivo é que métodos de objetos, como `user.checkPassword()`, devem ser capazes de acessar `_password`.
 
 ```js
 user = {
@@ -430,22 +430,22 @@ user = {
 }
 ```
 
-Uma chamada a `user.checkPassword()` faz com que `user` seja proxificado como `this` (o objeto antes do ponto se torna `this`), assuentão quando ele tenta acessar `this._password`, a armadilha `get` é ativada (disapra em qualquer leiturade propriedade) e dispara um erro.
+Uma chamada a `user.checkPassword()` retorna o usuário o `user` proxificado como `this` (o objeto antes do ponto se torna `this`), então, quando tentar acessar `this._password`, a armadilha `get` é ativada (ela disparada em qualquer leitura de propriedade) e dispara um erro.
 
 Então, vinculamos o contexto dos métodos do objeto ao objeto original, `target`, na linha `(*)`. Em seguida, suas chamadas futuras usarão `target` como `this`, sem a necessidade de armadilhas.
 
-Essa solução geralmente funciona, mas não é ideal, pois um metodo pode passar um objeto sem proxy para algum outro lugar, então teremos uma bagunça: onde está o objeto original, e onde está o objeto com proxy? 
+Essa solução geralmente funciona, mas não é a ideal, pois um método pode passar um objeto sem proxy para algum outro lugar, então teremos uma bagunça: onde está o objeto original, e onde está o objeto com proxy?
 
-Além disso, um objeto pode ser alvo de vários proxies (múltpilos proxies podem adicionar diferentes "ajustes") ao objeto, e se passarmos o objeto não encapsulado para um método, pode haver consequências inesperadas
+Além disso, um objeto pode ser alvo de vários proxies (múltiplos proxies podem adicionar diferentes "ajustes") ao objeto, e se passarmos o objeto não encapsulado para um método, pode haver consequências inesperadas
 
 Assim, tal proxy não deve ser usado em todos os lugares. 
 ```smart header="Propriedades privadas de uma classe"
-As engines JavaScript modernas suportam nativamente propriedades privadas em classes, prefixadas com `#`. Elas são descritas no artigo <info:private-protected-properties-methods>. Não são necessários proxies.
+Os motores JavaScript modernos suportam propriedades privadas em classes nativamente, prefixadas com `#`. Elas são descritas no artigo <info:private-protected-properties-methods>. Não são necessários proxies.
 
-No entanto, essas propriedaeds têm seus proprios problemas. Em particular, elas não são herdadas.
+No entanto, essas propriedades têm seus próprios problemas. Particularmente, elas não são herdadas.
 ```
 
-## "In range" com armadilha "has"
+## "In range" com a armadilha "has"
 
 Vamos ver mais exemplos.
 
@@ -489,7 +489,7 @@ alert(50 in range); // false
 */!*
 ```
 
-Bela syntactic sugar, não é? E muito simples de implementar.
+Belo syntactic sugar, não é? E muito simples de implementar.
 
 ## Envolvendo funções: "apply" [#proxy-apply]
 
@@ -501,7 +501,8 @@ A armadilha `apply(target, thisArg, args)` lida com a chamada de um proxy como f
 - `args` é uma lista de argumentos.
 
 Por exemplo, vamos relembrar o decorator `delay(f, ms)`, que fizemos no artigo <info:call-apply-decorators>.
-Nesse artigo, fizemos isso sem proxies. Uma chamada para `delay(f, ms)` retornava uma função que encaminhava todas as chamadas para `f` após `ms` milisegundos.
+
+Nesse artigo, fizemos isso sem proxies. Uma chamada para `delay(f, ms)` retornava uma função que encaminhava todas as chamadas para `f` após `ms` milissegundos.
 
 Aqui está a implementação anterior, baseada em função:
 ```js run
@@ -516,7 +517,7 @@ function sayHi(user) {
   alert(`Hello, ${user}!`);
 }
 
-// após esse encapsulamento, chamadas a para sayHi serão atrasadas por 3 segundos
+// após esse encapsulamento, chamadas a para `sayHi` serão atrasadas por 3 segundos
 sayHi = delay(sayHi, 3000);
 
 sayHi("John"); // Hello, John! (depois de 3 segundos)
@@ -524,7 +525,7 @@ sayHi("John"); // Hello, John! (depois de 3 segundos)
 
 Como já vimos, isso funciona na maioria das vezes. A função encapsuladora `(*)` realiza a chamada depois do intervalo.
 
-Mas uma função encapsuladora não encaminha as operações de leitura/escrita ou qualquer outra coisa. Depois do encapsulamento, o acesso às propriedaeds das funções originais é perdido, tais como `nome`, `kength` e outras:
+Mas uma função encapsuladora não encaminha as operações de leitura/escrita ou qualquer outra coisa. Depois do encapsulamento, o acesso às propriedades das funções originais é perdido, tais como `nome`, `length` e outras:
 
 ```js run
 function delay(f, ms) {
@@ -574,11 +575,11 @@ alert(sayHi.length); // 1 (*) o proxy encaminha a operação "get length" para o
 sayHi("John"); // Hello, John! (após 3 segundos)
 ```
 
-O resultado é o mesmo, mas agora não apenas chamadas, mas atodas as operações no proxy são encaminhadas para a funcção original. Assim `sayHi.length` é retornado corretamente depois do encapsulamento na linha `(*)`.
+O resultado é o mesmo, mas agora não apenas chamadas, mas todas as operações no proxy são encaminhadas para a função original. Assim `sayHi.length` é retornado corretamente depois do encapsulamento na linha `(*)`.
 
 Nós temos uma camada externa "mais rica".
 
-Outra armadilha existe: a lista completa está no inicio desse artigo. O padrão de uso deles é semelhante ao mencionado acima.
+Outra armadilha existe: a lista completa está no início desse artigo. O padrão de uso deles é semelhante ao mencionado acima.
 
 ## Reflect
 
@@ -588,9 +589,9 @@ Foi dito anteriormente que métodos internos, tais como `[[Get]]`, `[[Set]]` e o
 
 O objeto `Reflect` torna isso algo possível em certa medida. Os métodos dele são encapsuladores mínimos em torno dos métodos internos. 
 
-Aqui estão exemplos de operações e chamadas de `Reflect` que realizam a mesma coisa:
+Aqui estão exemplos de operações e chamadas `Reflect` que realizam a mesma coisa:
 
-| Operação |  chamada de  `Reflect` | Método interno |
+| Operação |  chamada `Reflect` | Método interno |
 |-----------------|----------------|-------------|
 | `obj[prop]` | `Reflect.get(obj, prop)` | `[[Get]]` |
 | `obj[prop] = value` | `Reflect.set(obj, prop, value)` | `[[Set]]` |
@@ -598,7 +599,7 @@ Aqui estão exemplos de operações e chamadas de `Reflect` que realizam a mesma
 | `new F(value)` | `Reflect.construct(F, value)` | `[[Construct]]` |
 | ... | ... | ... |
 
-Por exemplo
+Por exemplo:
 
 ```js run
 let user = {};
@@ -608,7 +609,7 @@ Reflect.set(user, 'name', 'John');
 alert(user.name); // John
 ```
 
-Em particular, `Reflect` nos permite chamar operações (`new`, `delete`...) como funções (`Reflect.construct`, `Reflect.deleteProperty`, ...). Essa é uma capacidade interessante, mas aqui outra coisa importante. 
+Em particular, o `Reflect` nos permite chamar operações (`new`, `delete`...) como funções (`Reflect.construct`, `Reflect.deleteProperty`, ...). Essa é uma capacidade interessante, mas aqui outra coisa importante. 
 
 **Para cada método interno capturável por `Proxy`, há um método correspondente em `Reflect` com o mesmo nome e argumentos que as armadilhas em `Proxy`**
 
@@ -649,11 +650,11 @@ Isso é, tudo é simples: se uma armadilha quiser encaminhar a chamada para o ob
 
 Na maioria dos casos podemos fazer o mesmo sem `Reflect`, por exemplo, ler uma propriedade `Reflect.get(target, prop, receiver)` pode ser substituído por `target[prop]`. Há nuances importantes, no entanto.
 
-### Envolvendo um getter em um Proxy
+### Envolvendo um método de acesso em um Proxy
 
 Vamos ver um exemplo que demonstra por que `Reflect.get` é melhor. E também veremos por que `get/set` têm o terceiro argumento `receiver`, que não utilizamos anteriormente. 
 
-Temos um objeto `user` com uma propriedade `_name` e um getter para ela.
+Temos um objeto `user` com uma propriedade `_name` e um método de acesso para ela.
 
 Aqui está um proxy ao redor dele
 
@@ -678,7 +679,7 @@ alert(userProxy.name); // Guest
 A armadilha `get` é "transparente" aqui, ela retorna a propriedade original, e não faz mais nada. Isso é suficiente para o nosso exemplo.
 
 Tudo parece estar correto. Porém, vamos tornar o exemplo um pouco mais complexo.
-Depois de herdar outro objeto `admin` de `user`, podemos observar o comportamento incorreto:
+Após herdar outro objeto `admin` de `user`, podemos observar o comportamento incorreto:
 
 ```js run
 let user = {
@@ -706,20 +707,21 @@ alert(admin.name); // outputs: Guest (?!?)
 ```
 Ler `admin.name` devia retornar `"Admin"`, não `"Guest"`!
 
-Qual o problema? Talvez tenhamos feito algo errado com a herança?
+Qual é o problema? Talvez nós fizemos algo errado com a herança?
 
 Mas se removermos o proxy, então tudo funcionará como esperado.
 
-O problema na verdade está no proxy, na linha `(*)`.
+O problema, na verdade, está no proxy, na linha `(*)`.
 
 1. Quando lemos `admin.name`, como o objeto `admin` não tem tal propriedade própria, a busco vai para o seu protótipo.
 2. O protótipo usado é `userProxy`.
 3. Quando lemos a propriedade  `name` do proxy, a sua armadilha `get` dispara e o retorna do objeto original como `target[prop]` na linha `(*)`.
 
-    Uma chamada para `target[prop]`, quando `prop` é um getter, executa o seu código no contexto `this=target`. Então o resultado é `this._name` do objeto original `target`, isto é: de `user`.
-Para corrigir essas situações, precisamos do receiver, o terceiro argumento da armadilha `get`. Ele mantém o `this` correto a ser passado para um getter. No nosso caso, isso é `admin`.
+Uma chamada para `target[prop]`, quando `prop` é um método de acesso, executa o seu código no contexto `this=target`. Então o resultado é `this._name` do objeto original `target`, isto é: de `user`.
 
-Como passar o contexto para um getter? Para uma função regular poderíamos usar `call/apply`, mas esse é um getter, não é "chamado", apenas acessado.
+Para corrigir essas situações, precisamos do `receiver`, o terceiro argumento da armadilha `get`. Ele mantém o `this` correto a ser passado para um método de acesso. No nosso caso, isso é `admin`.
+
+Como passar o contexto para um método de acesso? Para uma função regular poderíamos usar `call/apply`, mas esse é um método de acesso, ele não é "chamado", apenas acessado.
 
 `Reflect.get` pode fazer isso. Tudo funcionará bem se o utilizarmos.
 
@@ -752,7 +754,7 @@ alert(admin.name); // Admin
 */!*
 ```
 
-Agora, `receiver`, que mantém uma referência ao `this` correto (que é `admin`), é passado para o getter usando `Reflect.get` na linha `(*)`.
+Agora, `receiver`, que mantém uma referência ao `this` correto (que é `admin`), é passado para o método de acesso usando `Reflect.get` na linha `(*)`.
 
 Podemos reescrever a armadilha de forma ainda mais curta:
 
@@ -771,13 +773,14 @@ Assim, `return Reflect...` fornece uma maneira segura e direta de encaminhar a o
 Proxies fornecem um jeito único de alterar ou ajustar o comportamento de objetos existente no nível mais baixo. Ainda assim, não é perfeito. Existem limitações.
 
 ### Objetos nativos: slots internos 
-Muitos objetos nativos, por exemplo `Map`, `Set`, `Date`, `Promise` e outros fazem uso dos chamados "slots internos". 
+
+Muitos objetos nativos, por exemplo, `Map`, `Set`, `Date`, `Promise` e outros recorrem aos chamados "slots internos". 
 
 Esses são semelhantes a propriedades, porém reservado para fins internos, exclusivos da especificação. Por exemplo, `Map` armazena items no slot interno `[[MapData]]`. Métodos nativos acessam esses slots diretamente, não por meio dos métodos internos `[[Get]]/[[Set]]`. Portanto, `Proxy` não pode interceptar. 
 
 Por que se importar? Afinal, eles são internos!
 
-Bem, aqui está o problema. Depois que um objeto nativo desse tipo é envolvido por um proxy, o proxy não possui esses slots internos, então métodos nativos falharão. 
+Bem, aqui está o problema. Depois que um objeto nativo desse tipo é colocado sob um proxy, o proxy não possui esses slots internos, então os métodos nativos irão falhar. 
 
 Por exemplo:
 
@@ -816,14 +819,14 @@ Agora funciona bem, porque a armadilha `get` vincula as propriedades de função
 Ao contrário do exemplo anterior, o valor de `this` dentro de `proxy.set(...)` não será `proxy`, mas o `map` original. Portanto, quando a implementação interna de `set` tenta acessar o slot interno `this.[[MapData]]`, ela é bem-sucedida.
 
 ```smart header="`Array` não tem slots internos"
-Uma notável exceção: O `Array` nativo não utiliza slots internos. Isso é por razões históricas, pois foi introduzido há muito tempo atrás.
+Uma notável exceção: O `Array` nativo não utiliza slots internos. Isso é por razões históricas, pois foi introduzido há muito tempo.
 
-Portanto, não há esse tipo de problema ao envolver um array em um proxy.
+Por isso não há esse tipo de problema ao envolver um array em um proxy.
 ```
 
-### Campos privadoss
+### Campos privados
 
-Algo semelhante acontence com campos privados de classe.
+Algo semelhante acontece com campos privados de classe.
 
 Por exemplo, o método `getName()` acessa a propriedade privada `#name` e falha após ser envolvido por um Proxy:
 
@@ -900,23 +903,23 @@ alert(allUsers.has(user)); // false
 */!*
 ```
 
-Como podemos ver, depoisapós a criação do proxy, não conseguimos encontrar `user` no conjunto `allUsers`, pois o proxy é um objeto diferente.
+Como podemos ver, após a criação do proxy, não conseguimos encontrar `user` no conjunto `allUsers`, pois o proxy é um objeto diferente.
 
 ```warn header="Proxies não podem interceptar um teste de igualdade estrita `===`"
 Proxies podem interceptar muitas operações, tais como `new` (com `construct`), `in` (com `has`), `delete` (com `deleteProperty`) e assim por diante.
 
-Mas não há maneira de interceptar um teste de igualdade estruta para objetos. Um objeto sé estritamente igual apenas a ele mesmo, e nenhum outro valore.
+Mas não há como interceptar um teste de igualdade estrita para objetos. Um objeto sé estritamente igual apenas a si mesmo, e a nenhum outro valor.
 
-Então todas as operações e classes nativas que compararm objetos para igualdade diferenciarão entre o objeto e o proxy. Não há nenhuma substituição transparente aqui.
+Portanto, todas as operações e classes nativas que comparam objetos pela igualdade vão diferenciar entre o objeto e o proxy. Aqui não há nenhuma substituição transparente.
 ```
 
 ## Proxies revogáveis
 
 Um proxy "revogável" é um proxy que pode ser desativado.
 
-Vamos supor que temos um recursoe gostaríamos de encerrar o acesso a ele a qualquer momento.
+Vamos supor que temos um recurso e gostaríamos de encerrar o acesso a ele a qualquer momento.
 
-O que podemos fazer é envolvê-lo em um proxy revogável, sem armadilhas. Esse tipo de ecaminhará as operações para o objeto, e podemos desativá-lo a qualquer momento.
+O que podemos fazer é envolvê-lo em um proxy revogável, sem armadilhas. Tal proxy encaminhará as operações para o objeto, e podemos desativá-lo a qualquer momento.
 
 A sintaxe é:
 
@@ -947,7 +950,7 @@ alert(proxy.data); // Error
 
 Uma chamada a `revoke()` remove todas as referências internas ao objeto alvo do proxy, então eles não estão mais conectados.
 
-Inicialmente, `revoke` é separado de `proxy`, para que possamos passar `proxy` para diferentes partes do código, enquanto deixamos `revoke` no escopo atual.
+Inicialmente, `revoke` é separado de `proxy`, para podermos passar `proxy` para diferentes partes do código, enquanto deixamos `revoke` no escopo atual.
 
 Também podemos associar o método `revoke` ao proxy definindo `proxy.revoke = revoke`.
 
@@ -974,7 +977,7 @@ revoke();
 alert(proxy.data); // Error (revogado)
 ```
 
-Usamos `WeakMap` em vez de `Map` aqui pois não bloqueará a coleta de lixo (garbage colllection). Se um objeto de proxy se torna "inalcançável" (por exemplo, nenhuma variável mais o referencia), o `WeakMap` permite que ele seja removido da memória juntamente com seu `revoke`, que não precisaremos mais.
+Aqui usamos o `WeakMap` em vez do `Map`, pois não bloqueará a coleta de lixo (garbage colllection). Se um objeto de proxy se torna "inalcançável" (por exemplo, nenhuma variável mais o referencia), o `WeakMap` permite que ele seja removido da memória juntamente com seu `revoke`, que não precisaremos mais.
 
 ## Referências
 
@@ -985,9 +988,9 @@ Usamos `WeakMap` em vez de `Map` aqui pois não bloqueará a coleta de lixo (gar
 
 `Proxy` é um invólucro ao redor de um objeto que encaminha operações para o objeto, opcionalmente capturando algumas delas. 
 
-Ele pode envolver qualquer tipo de objeto, incluindo classes e funçoes.
+Ele pode envolver qualquer tipo de objeto, incluindo classes e funções.
 
-A syntaxe é:
+A sintaxe é:
 
 ```js
 let proxy = new Proxy(target, {
@@ -1005,13 +1008,13 @@ Podemos capturar:
 
 Isso nos permite criar propriedades e métodos "virtuais", implementar valores padrão, objetos observáveis, decoradores (decorators) de funções e muito mais. 
 
-Também podemos envolver um objeto váriass vezes em diferentes proxies, decorando-os com vários aspectos de funcinoalidade. 
+Também podemos envolver um objeto várias vezes em diferentes proxies, decorando-os com vários aspectos de funcionalidade. 
 
 A API [Reflect](mdn:/JavaScript/Reference/Global_Objects/Reflect) é projetada para complementar [Proxy](mdn:/JavaScript/Reference/Global_Objects/Proxy). Para qualquer armadilha(`trap`) de `Proxy` , há uma chamada `Reflect` com os mesmos argumentos. Devemos usar essas chamadas para encaminhar operações para os objetos alvo. 
 
-Proxies têm algumass limitações:
+Proxies têm algumas limitações:
 
-- Objetos nativas têm slots internos, o acessoa esses slots não pode ser realiazdo por meio de proxies. Veja a alternativa acima.
-- O mesmo se aplica aos campos privados de uma classe, pois eles são implementados internamento usando slots. Portanto, chamadas de método relizadas por meio de proxies devem ter o objeto alvo como `this` para acessá-los.
+- Objetos nativos têm slots internos, o acesso a esses slots não pode ser realizado por meio de proxies. Veja a alternativa acima.
+- O mesmo se aplica aos campos privados de uma classe, pois eles são implementados internamento usando slots. Portanto, chamadas de método realizadas por meio de proxies devem ter o objeto alvo como `this` para acessá-los.
 - Os testes de igualdade de objetos usando `===` não podem ser interceptados.
-- Performance: benchmarks dependem de uma engine, mas, em geral, acessar uma propriedade usando um proxy simples leva um pouco mais de tempo. Na prática isso só é relevante para alguns objetos que são "gargalos". 
+- Performance: benchmarks dependem de um motor, mas, em geral, acessar uma propriedade usando um proxy simples leva um pouco mais de tempo. Na prática, isso só é relevante para alguns objetos que são "gargalos". 
