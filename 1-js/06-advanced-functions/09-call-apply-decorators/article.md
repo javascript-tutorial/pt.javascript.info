@@ -1,20 +1,20 @@
-# Decorators and forwarding, call/apply
+# Decoradores e reencaminhamento, chamar/aplicar
 
-JavaScript gives exceptional flexibility when dealing with functions. They can be passed around, used as objects, and now we'll see how to *forward* calls between them and *decorate* them.
+A JavaScript oferece uma flexibilidade excecional ao lidar com funções. Podem ser transmitidas, utilizadas como objetos, e agora veremos como *encaminhar* chamadas entre elas e *decorá-las*.
 
-## Transparent caching
+## Memorização transparente
 
-Let's say we have a function `slow(x)` which is CPU-heavy, but its results are stable. In other words, for the same `x` it always returns the same result.
+Digamos que temos uma função `slow(x)` que consume muito processamento, mas seus resultados são estáveis. Em outras palavras, para o mesmo `x` esta sempre retorna o mesmo resultado.
 
-If the function is called often, we may want to cache (remember) the results to avoid spending extra-time on recalculations.
+Se a função for chamada com frequência, podemos querer memorizar (lembrar) os resultados para evitar gastar tempo adicional em recálculos.
 
-But instead of adding that functionality into `slow()` we'll create a wrapper function, that adds caching. As we'll see, there are many benefits of doing so.
+Mas, em vez de adicionar essa funcionalidade em `slow()` criaremos uma função de embrulho, que adiciona a memorização. Como veremos, existem muitas vantagens em fazê-lo.
 
-Here's the code, and explanations follow:
+Eis o código, e as explicações que se seguem:
 
 ```js run
 function slow(x) {
-  // there can be a heavy CPU-intensive job here
+  // pode haver um processamento intensivo aqui
   alert(`Called with ${x}`);
   return x;
 }
@@ -23,43 +23,43 @@ function cachingDecorator(func) {
   let cache = new Map();
 
   return function(x) {
-    if (cache.has(x)) {    // if there's such key in cache
-      return cache.get(x); // read the result from it
+    if (cache.has(x)) {    // se existir tal chave na memória
+      return cache.get(x); // ler o resultado do mesmo
     }
 
-    let result = func(x);  // otherwise call func
+    let result = func(x);  // caso contrário, chamar função
 
-    cache.set(x, result);  // and cache (remember) the result
+    cache.set(x, result);  // e memorizar (lembrar) o resultado
     return result;
   };
 }
 
 slow = cachingDecorator(slow);
 
-alert( slow(1) ); // slow(1) is cached and the result returned
-alert( "Again: " + slow(1) ); // slow(1) result returned from cache
+alert( slow(1) ); // slow(1) é memorizado e o resultado retornado
+alert( "Again: " + slow(1) ); // resultado da slow(1) retornado da memória
 
-alert( slow(2) ); // slow(2) is cached and the result returned
-alert( "Again: " + slow(2) ); // slow(2) result returned from cache
+alert( slow(2) ); // slow(2) é memorizado e o resultado retornado
+alert( "Again: " + slow(2) ); // resultado da slow(2) retornado da memória
 ```
 
-In the code above `cachingDecorator` is a *decorator*: a special function that takes another function and alters its behavior.
+No código acima `cachingDecorator` é um *decorador*: uma função especial que pega em outra função e altera o seu comportamento.
 
-The idea is that we can call `cachingDecorator` for any function, and it will return the caching wrapper. That's great, because we can have many functions that could use such a feature, and all we need to do is to apply `cachingDecorator` to them.
+A ideia é que podemos chamar `cachingDecorator` para qualquer função, e esta retornará o embrulho de memorização. Isto é ótimo, porque podemos ter muitas funções que poderiam usar esse recurso, e tudo o que precisamos fazer é aplicar `cachingDecorator` a elas.
 
-By separating caching from the main function code we also keep the main code simpler.
+Ao separar a memorização do código da função principal, também mantemos o código principal mais simples.
 
-The result of `cachingDecorator(func)` is a "wrapper": `function(x)` that "wraps" the call of `func(x)` into caching logic:
+O resultado de `caching` é um "embrulho": `function(x)` que "embrulha" a chama da `func(x)` na lógica de memorização:
 
 ![](decorator-makecaching-wrapper.svg)
 
-From an outside code, the wrapped `slow` function still does the same. It just got a caching aspect added to its behavior.
+A partir dum código externo, a função `slow` embrulhada ainda faz o mesmo. Esta apenas tem um aspeto de memorização adicionado ao seu comportamento.
 
-To summarize, there are several benefits of using a separate `cachingDecorator` instead of altering the code of `slow` itself:
+Para resumir, existem vários benefícios em utilizar um `cachingDecorator` separado ao invés de alterar o código da `slow` em si:
 
-- The `cachingDecorator` is reusable. We can apply it to another function.
-- The caching logic is separate, it did not increase the complexity of `slow` itself (if there was any).
-- We can combine multiple decorators if needed (other decorators will follow).
+- O `cachingDecorator` é reutilizável. Podemos aplicá-lo a outra função.
+- A lógica de memorização é separada, não aumentou a complexidade da `slow` em si (se é que existia alguma).
+- Podemos combinar vários decoradores, se necessário (outros decoradores seguir-se-ão).
 
 ## Using "func.call" for the context
 
