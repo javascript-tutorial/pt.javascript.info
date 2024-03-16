@@ -61,27 +61,28 @@ Para resumir, existem vários benefícios em utilizar um `cachingDecorator` sepa
 - A lógica de memorização é separada, não aumentou a complexidade da `slow` em si (se é que existia alguma).
 - Podemos combinar vários decoradores, se necessário (outros decoradores seguir-se-ão).
 
-## Using "func.call" for the context
+## Usando  `func.call` para o contexto
 
-The caching decorator mentioned above is not suited to work with object methods.
+O decorador de memorização mencionado acima não é adequado para trabalhar com o métodos de objeto.
 
-For instance, in the code below `worker.slow()` stops working after the decoration:
+Por exemplo, no código abaixo `worker.slow()` para de funcionar após a decoração:
 
 ```js run
-// we'll make worker.slow caching
+// faremos a memorização do `worker.slow`
 let worker = {
   someMethod() {
     return 1;
   },
 
   slow(x) {
-    // scary CPU-heavy task here  
+    // tarefa de processamento
+    // assustadoramente pesado.
     alert("Called with " + x);
     return x * this.someMethod(); // (*)
   }
 };
 
-// same code as before
+// o mesmo código que o anterior
 function cachingDecorator(func) {
   let cache = new Map();
   return function(x) {
@@ -96,49 +97,50 @@ function cachingDecorator(func) {
   };
 }
 
-alert( worker.slow(1) ); // the original method works
+alert( worker.slow(1) ); // o método original funciona
 
-worker.slow = cachingDecorator(worker.slow); // now make it caching
+worker.slow = cachingDecorator(worker.slow); // agora, memorize-o
 
 *!*
-alert( worker.slow(2) ); // Whoops! Error: Cannot read property 'someMethod' of undefined
+alert( worker.slow(2) ); // Ups! Erro: Não é possível ler a 'someMethod' de indefinido
 */!*
 ```
 
-The error occurs in the line `(*)` that tries to access `this.someMethod` and fails. Can you see why?
+O erro ocorre na linha `(*)` que tenta acessar a `this.someMethod` e falha. Podemos ver por quê?
 
-The reason is that the wrapper calls the original function as `func(x)` in the line `(**)`. And, when called like that, the function gets `this = undefined`.
+A razão é que o embrulhador chama a função original como `func(x)` na linha `(**)`. E, quando chamada desta maneira, a função recebe `this = undefined`.
 
-We would observe a similar symptom if we tried to run:
+Observaríamos um sintoma semelhante se tentássemos executar:
 
 ```js
 let func = worker.slow;
 func(2);
 ```
 
-So, the wrapper passes the call to the original method, but without the context `this`. Hence the error.
+Assim, o embrulhador passa a chamada para o método original, mas sem o contexto `this`. Daí o erro.
 
-Let's fix it.
+Vamos corrigi-lo.
 
-There's a special built-in function method [func.call(context, ...args)](mdn:js/Function/call) that allows to call a function explicitly setting `this`.
+Existe uma método especial de função embutido [`func.call(context, ...args)`](mdn:js/Function/call) que permite chamar uma função definindo explicitamente `this`.
 
-The syntax is:
+A sintaxe é:
 
 ```js
 func.call(context, arg1, arg2, ...)
 ```
 
-It runs `func` providing the first argument as `this`, and the next as the arguments.
+Ele executa `func` fornecendo o primeiro argumento como `this`, e o próximo como os argumentos.
 
-To put it simply, these two calls do almost the same:
+Para simplificar, estas duas chamadas fazem quase o mesmo:
+
 ```js
 func(1, 2, 3);
 func.call(obj, 1, 2, 3)
 ```
 
-They both call `func` with arguments `1`, `2` and `3`. The only difference is that `func.call` also sets `this` to `obj`.
+Ambas chamam `func` com os argumentos `1`, `2`, e `3`. A única diferença é que `func.call` também define `this` como `obj`.
 
-As an example, in the code below we call `sayHi` in the context of different objects: `sayHi.call(user)` runs `sayHi` providing `this=user`, and the next line sets `this=admin`:
+Como exemplo, no código abaixo chamamos `sayHi` no contexto de diferentes objetos: `sayHi.call(user)` executa `sayHi` fornecendo `this=user`, e a próxima linha define `this=admin`:
 
 ```js run
 function sayHi() {
@@ -148,13 +150,13 @@ function sayHi() {
 let user = { name: "John" };
 let admin = { name: "Admin" };
 
-// use call to pass different objects as "this"
+// usar `call` para passar
+// diferentes objetos como "this"
 sayHi.call( user ); // John
 sayHi.call( admin ); // Admin
 ```
 
-And here we use `call` to call `say` with the given context and phrase:
-
+E aqui usamos `call` para chamar `say` com o dado contexto e frase:
 
 ```js run
 function say(phrase) {
@@ -163,11 +165,12 @@ function say(phrase) {
 
 let user = { name: "John" };
 
-// user becomes this, and "Hello" becomes the first argument
+// `user` torna-se `this`, e "Hello"
+// torna-se o primeiro argumento
 say.call( user, "Hello" ); // John: Hello
 ```
 
-In our case, we can use `call` in the wrapper to pass the context to the original function:
+No nosso caso, podemos usar `call` no embrulhador para passar o contexto para a função original:
 
 ```js run
 let worker = {
@@ -188,26 +191,26 @@ function cachingDecorator(func) {
       return cache.get(x);
     }
 *!*
-    let result = func.call(this, x); // "this" is passed correctly now
+    let result = func.call(this, x); // "this" é agora passado corretamente
 */!*
     cache.set(x, result);
     return result;
   };
 }
 
-worker.slow = cachingDecorator(worker.slow); // now make it caching
+worker.slow = cachingDecorator(worker.slow); // agora, memoriza-o
 
-alert( worker.slow(2) ); // works
-alert( worker.slow(2) ); // works, doesn't call the original (cached)
+alert( worker.slow(2) ); // funciona
+alert( worker.slow(2) ); // funciona, não chama o original (memorizado)
 ```
 
-Now everything is fine.
+Agora está tudo bem.
 
-To make it all clear, let's see more deeply how `this` is passed along:
+Para tornar tudo mais claro, veremos mais profundamente como `this` é passado adiante:
 
-1. After the decoration `worker.slow` is now the wrapper `function (x) { ... }`.
-2. So when `worker.slow(2)` is executed, the wrapper gets `2` as an argument and `this=worker` (it's the object before dot).
-3. Inside the wrapper, assuming the result is not yet cached, `func.call(this, x)` passes the current `this` (`=worker`) and the current argument (`=2`) to the original method.
+1. Após a decoração, `worker.slow` agora é o embrulhador `function (x) { ... }`.
+2. Então quando `worker.slow(2)` é executado, o embrulhador recebe `2` como argumento e `this=worker` (é o objeto antes do ponto).
+3. Dentro do embrulhador, assumindo que o resultado ainda não está memorizado, `func.call(this, x)` passa o `this` atual (`=worker`) e o argumento atual (`=2`) para o método original.
 
 ## Going multi-argument
 
