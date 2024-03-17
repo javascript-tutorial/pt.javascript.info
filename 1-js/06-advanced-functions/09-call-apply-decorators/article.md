@@ -212,36 +212,36 @@ Para tornar tudo mais claro, veremos mais profundamente como `this` é passado a
 2. Então quando `worker.slow(2)` é executado, o embrulhador recebe `2` como argumento e `this=worker` (é o objeto antes do ponto).
 3. Dentro do embrulhador, assumindo que o resultado ainda não está memorizado, `func.call(this, x)` passa o `this` atual (`=worker`) e o argumento atual (`=2`) para o método original.
 
-## Going multi-argument
+## Passando vários argumentos
 
-Now let's make `cachingDecorator` even more universal. Till now it was working only with single-argument functions.
+Agora vamos tornar o `cachingDecorator` ainda mais universal. Até agora este estava trabalhando apenas com funções de um único argumento.
 
-Now how to cache the multi-argument `worker.slow` method?
+Agora, como memorizar o método `worker.slow` com vários argumentos?
 
 ```js
 let worker = {
   slow(min, max) {
-    return min + max; // scary CPU-hogger is assumed
+    return min + max; // assume-se que é assustadoramente devoradora de processamento
   }
 };
 
-// should remember same-argument calls
+// deve lembrar-se das chamadas com o mesmo argumento
 worker.slow = cachingDecorator(worker.slow);
 ```
 
-Previously, for a single argument `x` we could just `cache.set(x, result)` to save the result and `cache.get(x)` to retrieve it. But now we need to remember the result for a *combination of arguments* `(min,max)`. The native `Map` takes single value only as the key.
+Anteriormente, para um único argumento, `x` poderíamos simplesmente `cache.set(x, result)` para guardar o resultado e `cache.get(x)` para recuperá-lo. Mas agora precisamos lembrar o resultado para uma *combinação de argumentos* `(min,max)`. O `Map` nativo recebe apenas um único valor como chave.
 
-There are many solutions possible:
+Existem muitas soluções possíveis:
 
-1. Implement a new (or use a third-party) map-like data structure that is more versatile and allows multi-keys.
-2. Use nested maps: `cache.set(min)` will be a `Map` that stores the pair `(max, result)`. So we can get `result` as `cache.get(min).get(max)`.
-3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can allow to provide a *hashing function* for the decorator, that knows how to make one value from many.
+1. Implementar uma nova estrutura de dados parecida com o mapa (ou usar uma estrutura de terceiros) que seja mais versátil e permita várias chaves.
+2. Usar mapas aninhados: `cache.set(min)` será um `Map` que armazena o par `(max, result)`. Assim, podemos obter o `result` como `cache.get(min).get(max)`.
+3. Juntar dois valores num só. No nosso caso particular, podemos usar uma sequência de caracteres `min,max` como chave do `Map`. Para maior flexibilidade, podemos permitir fornecer uma *função de baralhamento* para o decorador, que sabe como fazer um valor a partir de muitos.
 
-For many practical applications, the 3rd variant is good enough, so we'll stick to it.
+Para muitas aplicações práticas, a terceira variante é suficientemente boa, pelo que ficaremos por ela.
 
-Also we need to pass not just `x`, but all arguments in `func.call`. Let's recall that in a `function()` we can get a pseudo-array of its arguments as `arguments`, so `func.call(this, x)` should be replaced with `func.call(this, ...arguments)`.
+Também precisamos passar não apenas `x`, mas todos os argumentos na `func.call`. Lembremos que numa `func.call` podemos obter um pseudo-vetor dos seus argumentos como `arguments`, então `func.call(this, x)` deve ser substituído por `func.call(this, ...arguments)`.
 
-Here's a more powerful `cachingDecorator`:
+Eis um `cachingDecorator` mais poderoso:
 
 ```js run
 let worker = {
@@ -276,16 +276,16 @@ function hash(args) {
 
 worker.slow = cachingDecorator(worker.slow, hash);
 
-alert( worker.slow(3, 5) ); // works
-alert( "Again " + worker.slow(3, 5) ); // same (cached)
+alert( worker.slow(3, 5) ); // funciona
+alert( "Again " + worker.slow(3, 5) ); // o mesmo (memorizado)
 ```
 
-Now it works with any number of arguments (though the hash function would also need to be adjusted to allow any number of arguments. An interesting way to handle this will be covered below).
+Agora funciona com qualquer número de argumentos (embora a função de baralhar também precise de ser ajustada para permitir qualquer número de argumentos. Uma maneira interessante de lidar com isto será abordada mais adiante).
 
-There are two changes:
+Existem duas alterações:
 
-- In the line `(*)` it calls `hash` to create a single key from `arguments`. Here we use a simple "joining" function that turns arguments `(3, 5)` into the key `"3,5"`. More complex cases may require other hashing functions.
-- Then `(**)` uses `func.call(this, ...arguments)` to pass both the context and all arguments the wrapper got (not just the first one) to the original function.
+- Na linha `(*)` chama `hash` para criar uma única chave a partir de `arguments`. Neste caso usamos uma função simples de "junção" que transforma os argumentos `(3,5)` na chave `"3,5"`. Os casos mais complexos podem exigir outras funções de baralhamento.
+- Então `(**)` usa `func.call(this, ...arguments)` para passar tanto o contexto quanto todos os argumentos que o embrulhador recebeu (não apenas o primeiro) para a função original.
 
 ## func.apply
 
