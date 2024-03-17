@@ -2,7 +2,7 @@
 
 O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está *inevitavelmente* cometendo erros, pelo menos se você for um humano, não um [robô](https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).
 
-Mas no navegador, os usuários não vêem os erros por padrão. Assim, se algo correr mal no script, não veremos de onde está partindo e não poderemos corrigir.
+Mas no navegador, os usuários não veem os erros por padrão. Assim, se algo correr mal no script, não veremos de onde está partindo e não poderemos corrigir.
 
 Para que possamos visualizar erros e obter muitas outras informações úteis sobre scripts, as "ferramentas de desenvolvedor" foram incorporadas aos navegadores.
 
@@ -46,13 +46,13 @@ A interface deles é bem parecida. Uma vez que você saiba como usar uma dessas 
 
 ## Safari
 
-O Safari (navegador do Mac, não suportado pelo Windows/Linux) é um pouco especial aqui. Precisamos primeiro habilitar o "menu Desenvolvedor".
+O Safari (navegador do Mac, não suportado pelo Windows/Linux) é um pouco especial aqui. Precisamos primeiro habilitar o "Develop menu".
 
 Abra Preferências e vá para o painel "Avançado". Há uma caixa de seleção na parte inferior:
 
 ![safari](safari.png)
 
-Agora o `key:Cmd+Opt+C` pode alternar o console. Além disso, note que o novo item do menu superior chamado "Desenvolvedor" apareceu. Ele tem muitos comandos e opções.
+Agora o `key:Cmd+Opt+C` pode alternar o console. Além disso, note que o novo item do menu superior chamado "Develop" apareceu. Ele tem muitos comandos e opções.
 
 ## Resumo
 
