@@ -137,9 +137,9 @@ Os scripts `async` são ótimos quando integramos um script independente de terc
 Assim como `defer`, o atributo `async` é ignorado se a tag `<script>` não tiver `src`.
 ```
 
-## Dynamic scripts
+## Scripts dinâmicos
 
-There's one more important way of adding a script to the page.
+Existe mais uma maneira importante de adicionar um script à página.
 
 Podemos criar um script e anexá-lo ao documento dinamicamente usando JavaScript:
 
