@@ -9,7 +9,7 @@ The lifecycle of an HTML page has three important events:
 Each event may be useful:
 
 - `DOMContentLoaded` event -- DOM is ready, so the handler can lookup DOM nodes, initialize the interface.
-- `load` event -- additional resources are loaded, we can get image sizes (if not specified in HTML/CSS) etc.
+- `load` event -- external resources are loaded, so styles are applied, image sizes are known etc.
 - `beforeunload` event -- the user is leaving: we can check if the user saved the changes and ask them whether they really want to leave.
 - `unload` -- the user almost left, but we still can initiate some operations, such as sending out statistics.
 
@@ -60,7 +60,7 @@ So DOMContentLoaded definitely happens after such scripts:
 ```html run
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM ready!");
+    alert("DOM ready!");
   });
 </script>
 
@@ -88,7 +88,7 @@ But there's a pitfall. If we have a script after the style, then that script mus
 ```html run
 <link type="text/css" rel="stylesheet" href="style.css">
 <script>
-  // the script doesn't not execute until the stylesheet is loaded
+  // the script doesn't execute until the stylesheet is loaded
   alert(getComputedStyle(document.body).marginTop);
 </script>
 ```
@@ -149,12 +149,12 @@ window.addEventListener("unload", function() {
 ```
 
 - The request is sent as POST.
-- We can send not only a string, but also forms and other formats, as described in the chapter <info:fetch-basics>, but usually it's a stringified object.
+- We can send not only a string, but also forms and other formats, as described in the chapter <info:fetch>, but usually it's a stringified object.
 - The data is limited by 64kb.
 
 When the `sendBeacon` request is finished, the browser probably has already left the document, so there's no way to get server response (which is usually empty for analytics).
 
-There's also a `keepalive` flag for doing such "after-page-left" requests in  [fetch](info:fetch-basics) method for generic network requests. You can find more information in the chapter <info:fetch-api>.
+There's also a `keepalive` flag for doing such "after-page-left" requests in  [fetch](info:fetch) method for generic network requests. You can find more information in the chapter <info:fetch-api>.
 
 
 If we want to cancel the transition to another page, we can't do it here. But we can use another event -- `onbeforeunload`.
@@ -184,6 +184,26 @@ window.onbeforeunload = function() {
 ```
 
 The behavior was changed, because some webmasters abused this event handler by showing misleading and annoying messages. So right now old browsers still may show it as a message, but aside of that -- there's no way to customize the message shown to the user.
+
+````warn header="The `event.preventDefault()` doesn't work from a `beforeunload` handler"
+That may sound weird, but most browsers ignore `event.preventDefault()`.
+
+Which means, following code may not work:
+```js run
+window.addEventListener("beforeunload", (event) => {
+  // doesn't work, so this event handler doesn't do anything
+	event.preventDefault();
+});
+```
+
+Instead, in such handlers one should set `event.returnValue` to a string to get the result similar to the code above:
+```js run
+window.addEventListener("beforeunload", (event) => {
+  // works, same as returning from window.onbeforeunload
+	event.returnValue = "There are unsaved changes. Leave now?";
+});
+```
+````
 
 ## readyState
 
@@ -245,7 +265,7 @@ Here's a document with `<iframe>`, `<img>` and handlers that log events:
 
 <iframe src="iframe.html" onload="log('iframe onload')"></iframe>
 
-<img src="http://en.js.cx/clipart/train.gif" id="img">
+<img src="https://en.js.cx/clipart/train.gif" id="img">
 <script>
   img.onload = () => log('img onload');
 </script>

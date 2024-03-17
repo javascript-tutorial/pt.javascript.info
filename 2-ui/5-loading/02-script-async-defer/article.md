@@ -133,9 +133,13 @@ Os scripts `async` são ótimos quando integramos um script independente de terc
 <script async src="https://google-analytics.com/analytics.js"></script>
 ```
 
-## Scripts dinâmicos
- 
-Existe mais uma maneira importante de adicionar um script à página.
+```smart header="O atributo `async` é apenas para scripts externos"
+Assim como `defer`, o atributo `async` é ignorado se a tag `<script>` não tiver `src`.
+```
+
+## Dynamic scripts
+
+There's one more important way of adding a script to the page.
 
 Podemos criar um script e anexá-lo ao documento dinamicamente usando JavaScript:
 

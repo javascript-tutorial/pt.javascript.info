@@ -13,13 +13,13 @@ async function loadJson(url) { // (1)
   throw new Error(response.status);
 }
 
-loadJson('no-such-user.json')
+loadJson('https://javascript.info/no-such-user.json')
   .catch(alert); // Error: 404 (4)
 ```
 
 Notes:
 
-1. The function `loadUrl` becomes `async`.
+1. The function `loadJson` becomes `async`.
 2. All `.then` inside are replaced with `await`.
 3. We can `return response.json()` instead of awaiting for it, like this:
 

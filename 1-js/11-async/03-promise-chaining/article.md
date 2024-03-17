@@ -120,7 +120,7 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-Aqui o primeiro `.then` exibe `1` e retorna `new Promise(…)` na linha `(*)`. Após 1 segundo ele é resolvido, e o resultado (o argumento de `resolve`, no caso é `result * 2`) é passado ao tratador do segundo `.then`. O tratador está na linha `(**)`, ele exibe `2` e faz a mesma coisa.
+Aqui o primeiro `.then` exibe `1` e retorna `new Promise(…)` na linha `(*)`. Após 1 segundo ela é resolvida, e o resultado (o argumento de `resolve`, aqui é `result * 2`) é passado ao tratador do segundo `.then`. O tratador está na linha `(**)`, ele exibe `2` e faz a mesma coisa.
 
 Então a saída é a mesma que no exemplo anterior: 1 -> 2 -> 4, mas agora com 1 segundo de atraso entre as chamadas `alert`.
 

@@ -54,7 +54,7 @@ alert( rabbit.eats ); // true (**)
 alert( rabbit.jumps ); // true
 ```
 
-Here the line `(*)` sets `animal` to be a prototype of `rabbit`.
+Here the line `(*)` sets `animal` to be the prototype of `rabbit`.
 
 Then, when `alert` tries to read property `rabbit.eats` `(**)`, it's not in `rabbit`, so JavaScript follows the `[[Prototype]]` reference and finds it in `animal` (look from the bottom up):
 
@@ -93,7 +93,6 @@ The method is automatically taken from the prototype, like this:
 
 The prototype chain can be longer:
 
-
 ```js run
 let animal = {
   eats: true,
@@ -128,10 +127,9 @@ Now if we read something from `longEar`, and it's missing, JavaScript will look 
 There are only two limitations:
 
 1. The references can't go in circles. JavaScript will throw an error if we try to assign `__proto__` in a circle.
-2. The value of `__proto__` can be either an object or `null`, other types (like primitives) are ignored.
+2. The value of `__proto__` can be either an object or `null`. Other types are ignored.
 
 Also it may be obvious, but still: there can be only one `[[Prototype]]`. An object may not inherit from two others.
-
 
 ```smart header="`__proto__` is a historical getter/setter for `[[Prototype]]`"
 It's a common mistake of novice developers not to know the difference between these two.
@@ -178,7 +176,7 @@ From now on, `rabbit.walk()` call finds the method immediately in the object and
 
 ![](proto-animal-rabbit-walk-2.svg)
 
-That's for data properties only, not for accessors. If a property is a getter/setter, then it behaves like a function: getters/setters are looked up in the prototype.
+Accessor properties are an exception, as assignment is handled by a setter function. So writing to such a property is actually the same as calling a function.
 
 For that reason `admin.fullName` works correctly in the code below:
 
@@ -288,7 +286,7 @@ for(let prop in rabbit) alert(prop); // jumps, then eats
 */!*
 ```
 
-If that's not what we want, and we'd like to exclude inherited properties, there's a built-in method [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) property named `key`.
+If that's not what we want, and we'd like to exclude inherited properties, there's a built-in method [obj.hasOwnProperty(key)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) property named `key`.
 
 So we can filter out inherited properties (or do something else with them):
 

@@ -107,7 +107,7 @@ So, `event.code` may match a wrong character for unexpected layout. Same letters
 
 To reliably track layout-dependent characters, `event.key` may be a better way.
 
-On the other hand, `event.code` has the benefit of staying always the same, bound to the physical key location, even if the visitor changes languages. So hotkeys that rely on it work well even in case of a language switch.
+On the other hand, `event.code` has the benefit of staying always the same, bound to the physical key location. So hotkeys that rely on it work well even in case of a language switch.
 
 Do we want to handle layout-dependant keys? Then `event.key` is the way to go.
 
@@ -149,7 +149,7 @@ The `onkeydown` handler here uses `checkPhoneKey` to check for the key pressed. 
 
 As we know, the `false` value returned from the event handler, assigned using a DOM property or an attribute, such as above, prevents the default action, so nothing appears in the `<input>` for keys that don't pass the test. (The `true` value returned doesn't affect anything, only returning `false` matters)
 
-Please note that special keys, such as `key:Backspace`, `key:Left`, `key:Right`, do not work in the input. That's a side-effect of the strict filter `checkPhoneKey`. These keys make it return `false`.
+Please note that special keys, such as `key:Backspace`, `key:Left`, `key:Right`, do not work in the input. That's a side effect of the strict filter `checkPhoneKey`. These keys make it return `false`.
 
 Let's relax the filter a little bit by allowing arrow keys `key:Left`, `key:Right` and `key:Delete`, `key:Backspace`:
 
