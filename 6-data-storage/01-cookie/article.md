@@ -156,7 +156,7 @@ If we set `expires` to a date in the past, the cookie is deleted.
 
 -  **`max-age=3600`**
 
-Is an alternative to `expires` and specifies the cookie's expiration in seconds from the current moment.
+It's an alternative to `expires` and specifies the cookie's expiration in seconds from the current moment.
 
 If set to zero or a negative value, the cookie is deleted:
 
@@ -281,7 +281,6 @@ But if a cookie is `httpOnly`, then `document.cookie` doesn't see it, so it is p
 Here's a small set of functions to work with cookies, more convenient than a manual modification of `document.cookie`.
 
 There exist many cookie libraries for that, so these are for demo purposes. Fully working though.
-
 
 ### getCookie(name)
 
@@ -419,10 +418,10 @@ GDPR is not only about cookies, it's about other privacy-related issues too, but
 
 ## Summary
 
-`document.cookie` provides access to cookies
-- write operations modify only cookies mentioned in it.
-- name/value must be encoded.
-- one cookie must not exceed 4KB, 20+ cookies per site (depends on the browser).
+`document.cookie` provides access to cookies.
+- Write operations modify only cookies mentioned in it.
+- Name/value must be encoded.
+- One cookie may not exceed 4KB in size. The number of cookies allowed on a domain is around 20+ (varies by browser).
 
 Cookie options:
 - `path=/`, by default current path, makes the cookie visible only under that path.

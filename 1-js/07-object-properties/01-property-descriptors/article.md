@@ -63,7 +63,7 @@ Object.defineProperty(obj, propertyName, descriptor)
 ```
 
 `obj`, `propertyName`
-: The object and property to work on.
+: The object and its property to apply the descriptor.
 
 `descriptor`
 : Property descriptor object to apply.
@@ -116,14 +116,14 @@ Object.defineProperty(user, "name", {
 });
 
 *!*
-user.name = "Pete"; // Error: Cannot assign to read only property 'name'...
+user.name = "Pete"; // Error: Cannot assign to read only property 'name'
 */!*
 ```
 
 Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
 
 ```smart header="Errors appear only in strict mode"
-In the non-strict mode, no errors occur when writing to non-writable properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
+In non-strict mode, no errors occur when writing to non-writable properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
 ```
 
 Here's the same example, but the property is created from scratch:
@@ -140,10 +140,9 @@ Object.defineProperty(user, "name", {
 */!*
 });
 
-alert(user.name); // Pete
-user.name = "Alice"; // Error
+alert(user.name); // John
+user.name = "Pete"; // Error
 ```
-
 
 ## Non-enumerable
 
@@ -319,7 +318,7 @@ for (let key in user) {
 
 ...But that does not copy flags. So if we want a "better" clone then `Object.defineProperties` is preferred.
 
-Another difference is that `for..in` ignores symbolic properties, but `Object.getOwnPropertyDescriptors` returns *all* property descriptors including symbolic ones.
+Another difference is that `for..in` ignores symbolic and non-enumerable properties, but `Object.getOwnPropertyDescriptors` returns *all* property descriptors including symbolic and non-enumerable ones.
 
 ## Sealing an object globally
 
