@@ -1,12 +1,12 @@
 
-# Extending built-in classes
+# Estendendo classes nativas
 
-Built-in classes like Array, Map and others are extendable also.
+Classes nativas como Array, Map e outras também podem ser estendidas.
 
-For instance, here `PowerArray` inherits from the native `Array`:
+Por exemplo, aqui `PowerArray` herda do `Array` nativo:
 
 ```js run
-// add one more method to it (can do more)
+// adiciona mais um método (pode fazer mais)
 class PowerArray extends Array {
   isEmpty() {
     return this.length === 0;
@@ -21,21 +21,20 @@ alert(filteredArr); // 10, 50
 alert(filteredArr.isEmpty()); // false
 ```
 
-Please note a very interesting thing. Built-in methods like `filter`, `map` and others -- return new objects of exactly the inherited type `PowerArray`. Their internal implementation uses the object's `constructor` property for that.
+Note uma coisa muito interessante. Métodos nativos, como `filter`, `map` e outros retornam novos objetos exatamente do tipo herdado `PowerArray`. Sua implementação interna usa a propriedade `constructor` do objeto para isso.
 
-In the example above,
+No exemplo acima,
 ```js
 arr.constructor === PowerArray
 ```
 
-So when `arr.filter()` is called, it internally creates the new array of results exactly as `new PowerArray`.
-That's actually very cool, because we can keep using `PowerArray` methods further on the result.
+Quando `arr.filter()` é chamado, ele internamente cria o novo array de resultados usando exatamente `arr.constructor`, não o básico `Array`. Isso é realmente interessante, porque podemos continuar utilizando os métodos de `PowerArray` no resultado.
 
-Even more, we can customize that behavior.
+Ainda mais, podemos personalizar este comportamento.
 
-We can add a special static getter `Symbol.species` to the class. If it exists, it should return the constructor that JavaScript will use internally to create new entities in `map`, `filter` and so on.
+Podemos adicionar um getter estático especial chamado `Symbol.species` à classe. Se ele existir, deve retornar o construtor que o JavaScript usará internamente para criar novas entidades em `map`, `filter` e assim por diante.
 
-If we'd like built-in methods like `map`, `filter` will return regular arrays, we can return `Array` in `Symbol.species`, like here:
+Se quisermos que os métodos nativos como `map` ou `filter` retornem arrays regulares, podemos retornar `Array` em `Symbol.species`, como nesse exemplo:
 
 ```js run
 class PowerArray extends Array {
@@ -44,7 +43,7 @@ class PowerArray extends Array {
   }
 
 *!*
-  // built-in methods will use this as the constructor
+  // métodos nativos usarão isso como o construtor
   static get [Symbol.species]() {
     return Array;
   }
@@ -54,31 +53,37 @@ class PowerArray extends Array {
 let arr = new PowerArray(1, 2, 5, 10, 50);
 alert(arr.isEmpty()); // false
 
-// filter creates new array using arr.constructor[Symbol.species] as constructor
-let filteredArr = arr.filter(item => item >= 10);
+// filter cria um novo array usando arr.constructor[Symbol.species] como constructor
+let filteredArr = arr.filter(item => item >= 10); 
 
 *!*
-// filteredArr is not PowerArray, but Array
+// filteredArr não é PowerArray, mas Array
 */!*
 alert(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
 ```
 
-As you can see, now `.filter` returns `Array`. So the extended functionality is not passed any further.
+Como você pode ver, agora `.filter` retorna `Array`. Assim, a funcionalidade estendida não é repassada adiante.
 
-## No static inheritance in built-ins
+```smart header="Outras coleções funcionam similarmente"
+Outras coleções, como `Map` e `Set, funcionam da mesma forma. Elas também utilizam `Symbol.species`.
+```
 
-Built-in objects have their own static methods, for instance `Object.keys`, `Array.isArray` etc.
+## Sem herança estática em objetos nativos
 
-And we've already been talking about native classes extending each other: `Array.[[Prototype]] = Object`.
+Objetos nativos possuem seus próprios métodos estáticos, por exemplo `Object.keys`, `Array.isArray`, etc.
 
-Normally, when one class extends another, both static and non-static methods are inherited. That was thoroughly explained in the article [](info:static-properties-methods#statics-and-inheritance).
+Como já sabemos, classes nativas se estendem. Por exemplo, `Array` estende de `Object`.
 
-But built-in classes are an exception. They don't inherit statics from each other.
+Normalmente, quando uma classe estende outra, métodos estáticos e não estáticos são herdados. Isso foi explicado detalhadamente no artigo [](info:static-properties-methods#statics-and-inheritance).
 
-For example, both `Array` and `Date` inherit from `Object`, so their instances have methods from `Object.prototype`. But `Array.[[Prototype]]` does not reference `Object`, so there's no, for instance, `Array.keys()` (or `Date.keys()`) static method.
+Mas as classes nativas são uma exceção. Elas não herdam métodos estáticos uma das outras.
 
-Here's the picture structure for `Date` and `Object`:
+Por exemplo, tanto `Array` quanto `Date` herdam de `Object`, então suas instâncias têm métodos de `Object.prototype`. No entanto `Array.[[Prototype]]` não referencia `Object`, então não existe, por exemplo, um método estático `Array.keys()` (ou `Date.keys()`).
+
+Aqui está a estrutura visual para `Date` e `Object`:
 
 ![](object-date-inheritance.svg)
 
-Note, there's no link between `Date` and `Object`. Both `Object` and `Date` exist independently. `Date.prototype` inherits from `Object.prototype`, but that's all.
+Como você pode ver, não existe ligação entre `Date` e `Object`. Eles são independentes, apenas `Date.prototype` herda de `Object.prototype`.
+
+Essa é uma diferença importante de herança entre objetos nativos em comparação com o que obtemos com `extends`.

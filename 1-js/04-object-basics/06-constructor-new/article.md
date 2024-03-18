@@ -1,6 +1,6 @@
 # Constructor, operator "new"
 
-The regular `{...}` syntax allows to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+The regular `{...}` syntax allows us to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
 
 That can be done using constructor functions and the `"new"` operator.
 
@@ -171,7 +171,7 @@ alert( new SmallUser().name );  // John
 Usually constructors don't have a `return` statement. Here we mention the special behavior with returning objects mainly for the sake of completeness.
 
 ````smart header="Omitting parentheses"
-By the way, we can omit parentheses after `new`, if it has no arguments:
+By the way, we can omit parentheses after `new`:
 
 ```js
 let user = new User; // <-- no parentheses

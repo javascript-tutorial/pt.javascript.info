@@ -32,6 +32,7 @@ Visualmente, terá o seguinte aspeto:
 3. No final de `100ms` -- mais uma `update` acontece com as últimas coordenadas.
 4. Então, finalmente, o rato para em algum lugar. A variante decorada espera até `100ms` expiraram e depois executa a `update` com as últimas coordenadas. Assim, o mais importante, as últimas coordenadas do rato são processadas.
 
+
 Um exemplo de código:
 
 ```js

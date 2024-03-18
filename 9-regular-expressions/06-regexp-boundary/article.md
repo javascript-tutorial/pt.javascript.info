@@ -1,52 +1,52 @@
-# Word boundary: \b
+# Borda de palavra: \b
 
-A word boundary `pattern:\b` is a test, just like `pattern:^` and `pattern:$`.
+Uma borda de palavra `pattern:\b` é um teste, como o `pattern:^` e `pattern:$` também são.
 
-When the regexp engine (program module that implements searching for regexps) comes across `pattern:\b`, it checks that the position in the string is a word boundary.
+Quando o interpretador de regex (um módulo de programa que implementa a busca por expressões regulares) encontra um `pattern:\b`, ele verifica se naquela posição da string ocorre a borda de uma palavra.
 
-There are three different positions that qualify as word boundaries:
+Existem três diferentes posições que configuram uma borda de palavra:
 
-- At string start, if the first string character is a word character `pattern:\w`.
-- Between two characters in the string, where one is a word character `pattern:\w` and the other is not.
-- At string end, if the last string character is a word character `pattern:\w`.
+- O início de uma string, se o primeiro caractere da string é um caractere de palavra `pattern:\w`.
+- Entre dois caracteres de uma string, quando um deles é um caractere de palavra `pattern:\w` e o outro não.
+- No fim da string, Se o último caractere for um caractere de palavra `pattern:\w`.
 
-For instance, regexp `pattern:\bJava\b` will be found in `subject:Hello, Java!`, where `subject:Java` is a standalone word, but not in `subject:Hello, JavaScript!`.
+Por exemplo, a regex `pattern:\bJava\b` corresponde com `subject:Hello, Java!`, já que `subject:Java` é uma palavra solta, mas não corresponde com `subject:Hello, JavaScript!`.
 
 ```js run
 alert( "Hello, Java!".match(/\bJava\b/) ); // Java
 alert( "Hello, JavaScript!".match(/\bJava\b/) ); // null
 ```
 
-In the string `subject:Hello, Java!` following positions correspond to `pattern:\b`:
+Na string `subject:Hello, Java!` as seguintes posições correspondem ao `pattern:\b`:
 
 ![](hello-java-boundaries.svg)
 
-So, it matches the pattern `pattern:\bHello\b`, because:
+Ela corresponde com o padrão `pattern:\bHello\b` por que:
 
-1. At the beginning of the string matches the first test `pattern:\b`.
-2. Then matches the word `pattern:Hello`.
-3. Then the test `pattern:\b` matches again, as we're between `subject:o` and a comma.
+1. Corresponde ao começo da string com o primeiro teste `pattern:\b`.
+2. Depois corresponde com a palavra `pattern:Hello`.
+3. E então corresponde com o teste `pattern:\b` novamente, dado que estamos entre um `subject:o` e uma vírgula.
 
-So the pattern `pattern:\bHello\b` would match, but not `pattern:\bHell\b` (because there's no word boundary after `l`) and not `Java!\b` (because the exclamation sign is not a wordly character `pattern:\w`, so there's no word boundary after it).
+Então o padrão `pattern:\bHello\b` corresponderia, mas não o `pattern:\bHell\b` (porque não temos nenhuma borda de palavra após o `l`), e nem o `Java!\b` (porque a exclamação não é um caractere de palavra `pattern:\w`, então não tem uma borda de palavra após ela).
 
 ```js run
 alert( "Hello, Java!".match(/\bHello\b/) ); // Hello
 alert( "Hello, Java!".match(/\bJava\b/) );  // Java
-alert( "Hello, Java!".match(/\bHell\b/) );  // null (no match)
-alert( "Hello, Java!".match(/\bJava!\b/) ); // null (no match)
+alert( "Hello, Java!".match(/\bHell\b/) );  // null (nenhuma correspondência)
+alert( "Hello, Java!".match(/\bJava!\b/) ); // null (nenhuma correspondência)
 ```
 
-We can use `pattern:\b` not only with words, but with digits as well.
+Além de usar o `pattern:\b` com palavras, podemos usá-lo com dígitos também.
 
-For example, the pattern `pattern:\b\d\d\b` looks for standalone 2-digit numbers. In other words, it looks for 2-digit numbers that are surrounded by characters different from `pattern:\w`, such as spaces or punctuation (or text start/end).
+O padrão `pattern:\b\d\d\b` procura por números soltos de dois dígitos. Em outras palavras, ele procura por números de dois dígitos delimitados por caracteres diferentes da classe `pattern:\w`, como espaços e pontuação (ou início e final da string)
 
 ```js run
 alert( "1 23 456 78".match(/\b\d\d\b/g) ); // 23,78
 alert( "12,34,56".match(/\b\d\d\b/g) ); // 12,34,56
 ```
 
-```warn header="Word boundary `pattern:\b` doesn't work for non-latin alphabets"
-The word boundary test `pattern:\b` checks that there should be `pattern:\w` on the one side from the position and "not `pattern:\w`" - on the other side.
+```warn header="A borda de palavra `pattern:\b` não funciona com alfabetos não-latinos"
+O teste de borda de palavra `pattern:\b` verifica que existe um caractere `pattern:\w` de um lado da posição e um "não `pattern:\w`" do outro
 
-But `pattern:\w` means a latin letter `a-z` (or a digit or an underscore), so the test doesn't work for other characters, e.g. cyrillic letters or hieroglyphs.
+Mas o `pattern:\w` representa uma letra do alfabeto latino `a-z` (ou dígito, ou underscore '_'), então o teste não funciona para outros alfabetos, como o cirílico ou sinogramas, por exemplo.
 ```

@@ -30,6 +30,7 @@ function cachingDecorator(func) {
     let result = func(x);  // caso contrário, chamar função
 
     cache.set(x, result);  // e memorizar (lembrar) o resultado
+    
     return result;
   };
 }
