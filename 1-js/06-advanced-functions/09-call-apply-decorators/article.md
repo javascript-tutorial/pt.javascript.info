@@ -287,39 +287,39 @@ Existem duas alterações:
 - Na linha `(*)` chama `hash` para criar uma única chave a partir de `arguments`. Neste caso usamos uma função simples de "junção" que transforma os argumentos `(3,5)` na chave `"3,5"`. Os casos mais complexos podem exigir outras funções de baralhamento.
 - Então `(**)` usa `func.call(this, ...arguments)` para passar tanto o contexto quanto todos os argumentos que o embrulhador recebeu (não apenas o primeiro) para a função original.
 
-## func.apply
+## `func.apply`
 
-Instead of `func.call(this, ...arguments)` we could use `func.apply(this, arguments)`.
+Em vez de `func.call(this, ...arguments)` poderíamos usar `func.apply(this, arguments)`.
 
-The syntax of built-in method [func.apply](mdn:js/Function/apply) is:
+A sintaxe do método embutido [`func.apply`](mdn:js/Function/apply) é:
 
 ```js
 func.apply(context, args)
 ```
 
-It runs the `func` setting `this=context` and using an array-like object `args` as the list of arguments.
+Este executa a `func` definindo `this=context` e usando um objeto parecido com vetor `args` como lista de argumentos.
 
-The only syntax difference between `call` and `apply` is that `call` expects a list of arguments, while `apply` takes an array-like object with them.
+A única diferença entre `call` e `apply` é que `call` espera uma lista de argumentos, enquanto `apply` recebe um objeto parecido com vetor com eles.
 
-So these two calls are almost equivalent:
+Assim, estas duas chamadas são quase equivalentes:
 
 ```js
 func.call(context, ...args);
 func.apply(context, args);
 ```
 
-They perform the same call of `func` with given context and arguments.
+Estas realizam a mesma chama de `func` com dado contexto e argumentos.
 
-There's only a subtle difference regarding `args`:
+Existe apenas uma diferença subtil em relação a `args`:
 
-- The spread syntax `...` allows to pass *iterable* `args` as the list to `call`.
-- The `apply` accepts only *array-like* `args`.
+- A sintaxe de propagação `...` permite passar `args` *iteráveis* como lista a `call`.
+- O `apply` aceita apenas `args` *parecidos com vetor*.
 
-...And for objects that are both iterable and array-like, such as a real array, we can use any of them, but `apply` will probably be faster, because most JavaScript engines internally optimize it better.
+...E para objetos que são simultaneamente iteráveis e semelhantes a um vetor, tais como um vetor de verdade, podemos usar qualquer um destes, mas `apply` será provavelmente mais rápido, porque a maioria dos motores de JavaScript otimizam-o internamente melhor.
 
-Passing all arguments along with the context to another function is called *call forwarding*.
+A passagem de todos os argumentos juntamente com o contexto a outra função chama-se **encaminhamento de chamada**.
 
-That's the simplest form of it:
+Esta é a maneira mais simples de o fazer:
 
 ```js
 let wrapper = function() {
@@ -327,11 +327,11 @@ let wrapper = function() {
 };
 ```
 
-When an external code calls such `wrapper`, it is indistinguishable from the call of the original function `func`.
+Quando um código externo chama este `wrapper`, é indistinguível da chamada da função original `func`.
 
-## Borrowing a method [#method-borrowing]
+## Emprestando um método [#method-borrowing]
 
-Now let's make one more minor improvement in the hashing function:
+Agora vamos fazer mais uma pequena melhoria na função de baralhamento:
 
 ```js
 function hash(args) {
@@ -339,9 +339,9 @@ function hash(args) {
 }
 ```
 
-As of now, it works only on two arguments. It would be better if it could glue any number of `args`.
+De momento, funciona apenas com dois argumentos. Seria melhor se pudesse colar qualquer número de `args`.
 
-The natural solution would be to use [arr.join](mdn:js/Array/join) method:
+A solução natural seria usar o método [`arr.join`](mdn:js/Array/join):
 
 ```js
 function hash(args) {
@@ -349,21 +349,21 @@ function hash(args) {
 }
 ```
 
-...Unfortunately, that won't work. Because we are calling `hash(arguments)`, and `arguments` object is both iterable and array-like, but not a real array.
+...Infelizmente, isso não funcionará. Porque estamos chamando `hash(arguments)`, e o objeto `arguments` é tanto iterável quanto semelhante a um vetor, mas não um vetor de verdade.
 
-So calling `join` on it would fail, as we can see below:
+Por isso, chamar `join` sobre este falharia, como podemos ver abaixo:
 
 ```js run
 function hash() {
 *!*
-  alert( arguments.join() ); // Error: arguments.join is not a function
+  alert( arguments.join() ); // Error: `arguments.join` não é uma função
 */!*
 }
 
 hash(1, 2);
 ```
 
-Still, there's an easy way to use array join:
+No entanto, existe uma maneira fácil de usar a junção de vetor:
 
 ```js run
 function hash() {
@@ -375,48 +375,48 @@ function hash() {
 hash(1, 2);
 ```
 
-The trick is called *method borrowing*.
+O truque chama-se *empréstimo de método*.
 
-We take (borrow) a join method from a regular array (`[].join`) and use `[].join.call` to run it in the context of `arguments`.
+Nós pegamos (emprestamos) um método de junção dum vetor normal (`[].join`) e usamos `[].join.call()` para executá-lo no contexto de `arguments`.
 
-Why does it work?
+Por que é que funciona?
 
-That's because the internal algorithm of the native method `arr.join(glue)` is very simple.
+Isto acontece porque o algoritmo interno do método nativo `arr.join(glue)` é muito simples.
 
-Taken from the specification almost "as-is":
+Retirado da especificação quase "tal e qual":
 
-1. Let `glue` be the first argument or, if no arguments, then a comma `","`.
-2. Let `result` be an empty string.
-3. Append `this[0]` to `result`.
-4. Append `glue` and `this[1]`.
-5. Append `glue` and `this[2]`.
-6. ...Do so until `this.length` items are glued.
-7. Return `result`.
+1. Deixar `glue` ser o primeiro argumento, ou se não existirem argumentos, então uma vírgula `","`.
+2. Deixar `result` ser uma sequência de caracteres vazia.
+3. Anexar `this[0]` ao `result`.
+4. Anexar `glue` e `this[1]`.
+5. Anexar `glue` e `this[2]`.
+6. ...Fazer isto até que itens de `this.length` estejam colados.
+7. Retornar `result`.
 
-So, technically it takes `this` and joins `this[0]`, `this[1]` ...etc together. It's intentionally written in a way that allows any array-like `this` (not a coincidence, many methods follow this practice). That's why it also works with `this=arguments`.
+Então, tecnicamente este recebe `this` e junta `this[0]`, `this[1]` ...etc. Foi intencionalmente escrito de maneira a permitir qualquer `this` parecido com vetor (não por coincidência, muitos métodos seguem essa prática). É por isto que este também funciona com `this=arguments`.
 
-## Decorators and function properties
+## Decoradores e propriedades de função
 
-It is generally safe to replace a function or a method with a decorated one, except for one little thing. If the original function had properties on it, like `func.calledCount` or whatever, then the decorated one will not provide them. Because that is a wrapper. So one needs to be careful if one uses them.
+É geralmente seguro substituir uma função ou um método por um decorado, exceto por uma pequena coisa. Se a função original tinha propriedades, como `func.calledCount` ou qualquer outra, então a função decorada não as fornecerá. Porque isso é um embrulhador. Portanto, é preciso ter cuidado ao usá-las.
 
-E.g. in the example above if `slow` function had any properties on it, then `cachingDecorator(slow)` is a wrapper without them.
+Por exemplo, no exemplo acima se a função `slow` tivesse algum propriedade, então `cachingDecorator(slow)` é um embrulhador sem estas.
 
-Some decorators may provide their own properties. E.g. a decorator may count how many times a function was invoked and how much time it took, and expose this information via wrapper properties.
+Alguns decoradores podem fornecer as suas propriedades. Por exemplo, um decorador pode contar quantas vezes uma função foi invocada e quanto tempo demorou, e expor esta informação através das propriedades do embrulhador.
 
-There exists a way to create decorators that keep access to function properties, but this requires using a special `Proxy` object to wrap a function. We'll discuss it later in the article <info:proxy#proxy-apply>.
+Existe uma maneira de criar decoradores que preservam o acesso às propriedades das funções, mas isso exige usar um objeto `Proxy` especial para embrulhar uma função. Nós discutiremos isso mais tarde no artigo <info:proxy#proxy-apply>.
 
-## Summary
+## Sumário
 
-*Decorator* is a wrapper around a function that alters its behavior. The main job is still carried out by the function.
+O *decorador* é um embrulhador em torno duma função que altera o seu comportamento. O trabalho principal continua a ser efetuado pela função.
 
-Decorators can be seen as "features" or "aspects" that can be added to a function. We can add one or add many. And all this without changing its code!
+Os decoradores podem ser vistos como "características" ou "aspetos" que podem ser adicionados a uma função. Nós podemos adicionar um ou mais. E tudo isto sem alterar o seu código!
 
-To implement `cachingDecorator`, we studied methods:
+Para implementar `cachingDecorator`, estudámos os métodos:
 
-- [func.call(context, arg1, arg2...)](mdn:js/Function/call) -- calls `func` with given context and arguments.
-- [func.apply(context, args)](mdn:js/Function/apply) -- calls `func` passing `context` as `this` and array-like `args` into a list of arguments.
+- [`func.call(context, arg1, arg2...)`](mdn:js/Function/call) — chama `func` com o contexto e argumentos fornecidos.
+- [`func.apply(context, args)`](mdn:js/Function/apply) — chama `func` passando `context` como `this` e `args` parecido com vetor numa lista de argumentos.
 
-The generic *call forwarding* is usually done with `apply`:
+O *encaminhamento de chamada* genérico é normalmente efetuado com `apply`:
 
 ```js
 let wrapper = function() {
@@ -424,6 +424,6 @@ let wrapper = function() {
 };
 ```
 
-We also saw an example of *method borrowing* when we take a method from an object and `call` it in the context of another object. It is quite common to take array methods and apply them to `arguments`. The alternative is to use rest parameters object that is a real array.
+Também vimos um exemplo de **empréstimo de método** quando pegamos um método dum objeto e o chamamos no contexto de outro objeto. É muito comum pegar em métodos de vetor e aplicá-los a `arguments`. A alternativa é usar o objeto de parâmetros restantes que é um vetor de verdade.
 
-There are many decorators there in the wild. Check how well you got them by solving the tasks of this chapter.
+Existem muitos decoradores à disposição. Nós podemos verificar se os conseguimos entender resolvendo as tarefas deste capítulo.
