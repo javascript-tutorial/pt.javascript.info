@@ -1,9 +1,9 @@
 export function hi() {
-  alert(`Hello`);
+  alert(`Olá`);
 }
 
 export function bye() {
-  alert(`Bye`);
+  alert(`Adeus`);
 }
 
 export default function() {
