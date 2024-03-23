@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Animate the bouncing ball
+# Animar a bola quicando
 
-Make a bouncing ball. Click to see how it should look:
+Faça uma bola quicando. Clique para ver como deve ficar:
 
 [iframe height=250 src="solution"]
