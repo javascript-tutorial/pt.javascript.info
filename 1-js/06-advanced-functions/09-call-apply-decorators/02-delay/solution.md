@@ -14,7 +14,7 @@ let f1000 = delay(alert, 1000);
 f1000("teste"); // exibe "teste" após 1000ms
 ```
 
-Nota como é utilizada aqui uma função de seta (ou função anónima). Como sabemos, as funções de seta não possuem `this` e `arguments` próprios, então `f.apply(this, arguments)` recebe o `this` e `arguments` da função envolvente.
+Notemos como usamos uma função de seta neste exemplo de código. Como sabemos, as funções de seta não possuem `this` e `arguments` próprios, então `f.apply(this, arguments)` recebe o `this` e `arguments` da função envolvente.
 
 Se passarmos uma função normal, `setTimeout` a chamaria sem argumentos e `this=window` (assumindo que estamos no navegador).
 
