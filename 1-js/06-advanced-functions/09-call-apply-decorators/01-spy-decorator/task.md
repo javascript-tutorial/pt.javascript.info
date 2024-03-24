@@ -4,7 +4,7 @@ importance: 5
 
 # Decorador de Espionagem
 
-Cria um decorador `spy(func)` que retorna um embrulhador que guarde todas as chamadas à função na sua propriedade `calls`.
+Cria um decorador `spy(func)` que retorna um embrulhador que guarda todas as chamadas à função na sua propriedade `calls`.
 
 Toda chamada é guardada num vetor de argumentos.
 
