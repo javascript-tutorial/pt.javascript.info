@@ -1,10 +1,10 @@
-We need to look for `#` followed by 6 hexadecimal characters.
+Precisamos buscar pela cerquilha `#` seguida por 6 caracteres hexadecimais.
 
-A hexadecimal character can be described as `pattern:[0-9a-fA-F]`. Or if we use the `pattern:i` flag, then just  `pattern:[0-9a-f]`.
+Um caractere hexadecimal pode ser descrito como `pattern:[0-9a-fA-F]`, ou usando a opção `pattern:i`, apenas `pattern:[0-9a-f]`.
 
-Then we can look for 6 of them using the quantifier `pattern:{6}`.
+Podemos então buscar por 6 deles usando o quantificador `pattern:{6}`.
 
-As a result, we have the regexp: `pattern:/#[a-f0-9]{6}/gi`.
+Nosso resultado final é a expressão: `pattern:/#[a-f0-9]{6}/gi`.
 
 ```js run
 let regexp = /#[a-f0-9]{6}/gi;
@@ -14,18 +14,18 @@ let str = "color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2"
 alert( str.match(regexp) );  // #121212,#AA00ef
 ```
 
-The problem is that it finds the color in longer sequences:
+Mas temos um problema, essa expressão captura cores em sequências maiores:
 
 ```js run
 alert( "#12345678".match( /#[a-f0-9]{6}/gi ) ) // #123456
 ```
 
-To fix that, we can add `pattern:\b` to the end:
+Para consertar isso, adicionamos o `pattern:\b` ao final:
 
 ```js run
-// color
+// cor válida
 alert( "#123456".match( /#[a-f0-9]{6}\b/gi ) ); // #123456
 
-// not a color
+// cor inválida
 alert( "#12345678".match( /#[a-f0-9]{6}\b/gi ) ); // null
 ```
