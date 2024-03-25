@@ -1,27 +1,27 @@
-There are many ways, for instance:
+Existem formas variadas, por exemplo:
 
 
-The `<div>` DOM node:
+O `<div>` DOM node:
 
 ```js
 document.body.firstElementChild
-// or
+// ou
 document.body.children[0]
-// or (the first node is space, so we take 2nd)
+// ou (o primeiro node é espaço, por isso escolhemos o 2º)
 document.body.childNodes[1]
 ```
 
-The `<ul>` DOM node:
+O `<ul>` DOM node:
 
 ```js
 document.body.lastElementChild
-// or
+// ou
 document.body.children[1]
 ```
 
-The second `<li>` (with Pete):
+O segundo `<li>` (com o Pete):
 
 ```js
-// get <ul>, and then get its last element child
+// Obtém o <ul>, e depois seleciona o último child element
 document.body.lastElementChild.lastElementChild
 ```
