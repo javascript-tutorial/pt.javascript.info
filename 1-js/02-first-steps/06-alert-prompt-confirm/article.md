@@ -4,7 +4,7 @@ Como usaremos o navegador como nosso ambiente de demonstração, vamos ver algum
 
 ## alert
 
-Esta já vimos. Ela mostra uma mensagem e aguarda o usuário pressionar "OK".
+Esta já vimos. Ela mostra uma mensagem e aguarda que o usuário pressione "OK".
 
 Por exemplo:
 
@@ -34,7 +34,7 @@ Mostra uma janela modal com uma mensagem de texto, um campo de entrada para o vi
  Os colchetes ao redor de `default` na sintaxe acima denotam que o parâmetro é opcional, não é obrigatório.
 ````
 
-O visitante pode digitar algo no campo de entrada do prompt e pressionar OK. Então nós temos esse texto no `result`.  Ou ele pode cancelar a entrada pressionando Cancelar ou `key:Esc`, então nos temos `null` como o `result`.
+O visitante pode digitar algo no campo de entrada do prompt e pressionar OK. Então nós temos esse texto no `result`. Ou ele pode cancelar a entrada pressionando Cancelar ou `key:Esc`, então nós temos `null` como `result`.
 
 A chamada do `prompt` retorna o texto do campo de entrada ou `null` se a entrada for cancelada.
 
