@@ -30,7 +30,7 @@ Mas como podemos importar um módulo dinamicamente, sob demanda?
 
 A expressão `import(módulo)` carrega o módulo e retorna uma promise que é resolvida para um objeto de módulo contendo todas as suas exportações. Pode ser chamado de qualquer lugar no código.
 
-Podemos utilizá-lo dinamicamente em qualquer lugar do código , por exemplo:
+Podemos utilizá-lo dinamicamente em qualquer lugar do código, por exemplo:
 
 ```js
 let modulePath = prompt("Qual módulo carregar?");
