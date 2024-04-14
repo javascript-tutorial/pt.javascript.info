@@ -4,9 +4,9 @@ importance: 5
 
 # Iterable keys
 
-We'd like to get an array of `map.keys()` in a variable and then apply array-specific methods to it, e.g. `.push`.
+Gostaríamos de obter um array de `map.keys()` em uma variável e, em seguida, aplicar métodos específicos de array a ele, como `.push`.
 
-But that doesn't work:
+Mas isso não funciona:
 
 ```js run
 let map = new Map();
@@ -21,4 +21,4 @@ keys.push("more");
 */!*
 ```
 
-Why? How can we fix the code to make `keys.push` work?
+Por quê? Como podemos corrigir o código para fazer com que `keys.push` funcione?
