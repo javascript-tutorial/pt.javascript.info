@@ -68,9 +68,20 @@ Veremos mais sobre como trabalhar com números no capítulo <info:number>.
 
 ## BigInt [#bigint-type]
 
-Em JavaScript, o tipo "number" não pode representar valores inteiros maiores que <code>(2<sup>53</sup>-1)</code> (que é `9007199254740991`) ou menores que <code>-(2<sup>53</sup>-1)</code> para negativos. É uma limitação técnica causada por sua representação interna.
+Em JavaScript, o tipo "number" não pode representar com segurança valores inteiros maiores que <code>(2<sup>53</sup>-1)</code> (que é `9007199254740991`) ou menores que <code>-( 2<sup>53</sup>-1)</code> para negativos.
 
-Para a maioria dos propósitos, isso é suficiente, mas às vezes precisamos de números realmente grandes, por exemplo, para criptografia ou uma ["marca temporal"](https://pt.wikipedia.org/wiki/Marca_temporal) (carimbo do instante exato da data ou hora com precisão de microssegundos).
+Para ser realmente preciso, o tipo "number" pode armazenar números inteiros maiores (até <code>1.7976931348623157 * 10<sup>308</sup></code>), mas fora do intervalo de números inteiros seguros <code>±(2 <sup>53</sup>-1)</code> haverá um erro de precisão, porque nem todos os dígitos cabem no armazenamento fixo de 64 bits. Portanto, um valor “aproximado” pode ser armazenado.
+
+Por exemplo, estes dois números (logo acima da faixa segura) são iguais:
+
+```js
+console.log(9007199254740991 + 1); // 9007199254740992
+console.log(9007199254740991 + 2); // 9007199254740992
+```
+
+Por assim dizer, todos os números inteiros ímpares maiores que <code>(2<sup>53</sup>-1)</code> não podem ser armazenados no tipo "número".
+
+Para a maioria dos propósitos, o intervalo <code>±(2<sup>53</sup>-1)</code> é suficiente, mas às vezes precisamos de todo o intervalo de números inteiros realmente grandes, por exemplo, para criptografia ou carimbo do instante exato da data ou hora com precisão de microssegundos.
 
 O tipo `BigInt` foi adicionado recentemente à linguagem para representar inteiros de comprimento arbitrário. 
 
