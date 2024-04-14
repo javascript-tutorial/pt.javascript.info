@@ -70,8 +70,6 @@ Veremos mais sobre como trabalhar com números no capítulo <info:number>.
 
 Em JavaScript, o tipo "number" não pode representar valores inteiros maiores que <code>(2<sup>53</sup>-1)</code> (que é `9007199254740991`) ou menores que <code>-(2<sup>53</sup>-1)</code> para negativos. É uma limitação técnica causada por sua representação interna.
 
-Para a maioria dos propósitos, isso é o suficiente, mas às vezes precisamos de números realmente grandes, por exemplo, para criptografia ou carimbos de data/hora com precisão de microssegundos.
-
 Para a maioria dos propósitos, isso é suficiente, mas às vezes precisamos de números realmente grandes, por exemplo, para criptografia ou uma ["marca temporal"](https://pt.wikipedia.org/wiki/Marca_temporal) (carimbo do instante exato da data ou hora com precisão de microssegundos).
 
 O tipo `BigInt` foi adicionado recentemente à linguagem para representar inteiros de comprimento arbitrário. 
@@ -89,7 +87,7 @@ Como os números `BigInt` raramente são necessários, nós não os cobrimos aqu
 No momento, o `BigInt` é suportado no Firefox/Chrome/Edge/Safari, mas não no IE.
 ```
 
-Você pode verificar a [tabela de compatibilidade do *MDN* BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) para saber quais versões de um navegador são suportadas.
+Você pode verificar a [tabela de compatibilidade do *MDN* sobre BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) para saber quais versões de um navegador são suportadas.
 
 ## String
 
@@ -179,7 +177,7 @@ O código acima declara que `age` é desconhecido.
 
 O valor especial `undefined` também se diferencia. Faz um tipo próprio, tal como `null`.
 
-O significado de `undefined` é "valor não é atribuído".
+O significado de `undefined` é "valor não foi atribuído".
 
 Se uma variável é declarada, mas não atribuída, então seu valor é `undefined`:
 
