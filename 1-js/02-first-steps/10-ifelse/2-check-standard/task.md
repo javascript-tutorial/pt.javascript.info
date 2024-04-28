@@ -2,13 +2,12 @@ importance: 2
 
 ---
 
-# The name of JavaScript
+# O nome do JavaScript
 
-Using the `if..else` construct, write the code which asks: 'What is the "official" name of JavaScript?'
+Usando a construção `if..else`, escreva o código que pergunta: 'Qual é o nome "oficial" do JavaScript?'
 
-If the visitor enters "ECMAScript", then output "Right!", otherwise -- output: "You don't know? ECMAScript!"
+Se o visitante digitar "ECMAScript", então chame a função `alert` passando como valor: "Correto!", caso contrário -- registre a seguinte mensagem: "Você não sabe? ECMAScript!"
 
 ![](ifelse_task2.svg)
 
 [demo src="ifelse_task2"]
-

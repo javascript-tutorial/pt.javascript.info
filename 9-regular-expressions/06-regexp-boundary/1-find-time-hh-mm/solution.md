@@ -1,6 +1,5 @@
-
-The answer: `pattern:\b\d\d:\d\d\b`.
+A resposta: `pattern:\b\d\d:\d\d\b`.
 
 ```js run
-alert( "Breakfast at 09:00 in the room 123:456.".match( /\b\d\d:\d\d\b/ ) ); // 09:00
+alert( "Café da manhã as 09:00 no quarto 123:456.".match( /\b\d\d:\d\d\b/ ) ); // 09:00
 ```

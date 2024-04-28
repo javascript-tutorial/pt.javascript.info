@@ -1,5 +1,5 @@
 
-# Rewrite "rethrow" async/await
+# Rewrite "rethrow" with async/await
 
 Below you can find the "rethrow" example. Rewrite it using `async/await` instead of `.then/catch`.
 

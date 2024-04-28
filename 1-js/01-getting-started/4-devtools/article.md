@@ -1,8 +1,8 @@
 # Console do desenvolvedor
 
-O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está *inevitavelmente* cometendo erros, pelo menos se você for um humano, não um [robô] (<https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).>
+O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está *inevitavelmente* cometendo erros, pelo menos se você for um humano, não um [robô](https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).
 
-Mas no navegador, os usuários não vêem os erros por padrão. Assim, se algo correr mal no script, não veremos de onde está partindo e não poderemos corrigir.
+Mas no navegador, os usuários não veem os erros por padrão. Assim, se algo correr mal no script, não veremos de onde está partindo e não poderemos corrigir.
 
 Para que possamos visualizar erros e obter muitas outras informações úteis sobre scripts, as "ferramentas de desenvolvedor" foram incorporadas aos navegadores.
 
@@ -33,10 +33,9 @@ Abaixo da mensagem de erro, há um símbolo azul `>`. Ele marca uma "linha de co
 
 Agora podemos ver erros, e isso é suficiente para começar. Voltaremos mais tarde às ferramentas de desenvolvedor e abordaremos a depuração mais profundamente no capítulo <info:debugging-chrome>.
 
-```smart header="Multi-line input"
-Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
-
-To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```smart header="Múltiplas linhas de comando"
+Normalmente, quando colocamos uma linha de código no console e pressionamos `key:Enter`, o código sera executado.
+Para inserir várias linhas, pressione `key:Shift+Enter`. Dessa forma, será possível inserir longos fragmentos de código JavaScript.
 ```
 
 ## Firefox, Edge, e outros

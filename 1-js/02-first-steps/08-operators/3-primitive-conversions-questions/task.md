@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Type conversions
+# Conversões de tipo
 
-What are results of these expressions?
+Quais são os resultados destas expressões?
 
 ```js no-beautify
 "" + 1 + 0
@@ -23,4 +23,4 @@ undefined + 1
 " \t \n" - 2
 ```
 
-Think well, write down and then compare with the answer.
+Pense bem, escreva e então compare com a resposta.

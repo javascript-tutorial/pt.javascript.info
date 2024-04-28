@@ -24,7 +24,7 @@ Agora, podemos colocar alguns dados usando o operador de atribuição `=`:
 let message;
 
 *!*
-message = 'Olá'; // armazenar a string
+message = 'Olá'; // armazene a string 'Olá' na variável chamada message
 */!*
 ```
 
