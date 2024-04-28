@@ -4,7 +4,7 @@ Neste artigo, abordaremos em profundidade vários métodos que funcionam com reg
 
 ## str.match(regexp)
 
-O método `str.macth(regexp)` pesquisa correspondências para `regexp` na string `str`.
+O método `str.match(regexp)` pesquisa correspondências para `regexp` na string `str`.
 
 Possui 3 modos:
 
