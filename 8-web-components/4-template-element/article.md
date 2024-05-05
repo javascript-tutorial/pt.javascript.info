@@ -1,7 +1,7 @@
 
-# Elemento de template
+# Elemento `template`
 
-O elemento embutido `<template>` atua como um armazenamento para modelos de marcação HTML. O navegador ignora seu conteúdo, apenas verifica a validade da sintaxe, mas podemos acessá-lo e usá-lo em JavaScript para criar outros elementos.
+O elemento nativo `<template>` atua como um armazenamento para modelos de marcação HTML. O navegador ignora seu conteúdo, apenas verifica a validade da sintaxe, mas podemos acessá-lo e usá-lo em JavaScript para criar outros elementos.
 
 Em teoria, poderíamos criar qualquer elemento invisível em algum lugar do HTML para fins de armazenamento de marcação HTML. O que há de especial no `<template>`?
 
@@ -55,7 +55,7 @@ Por exemplo:
   let elem = document.createElement('div');
 
 *!*
-  // Clonar o conteúdo do modelo para reutilizá-lo várias vezes
+  // Clona o conteúdo do modelo para reutilizá-lo várias vezes
   elem.append(tmpl.content.cloneNode(true));
 */!*
 
