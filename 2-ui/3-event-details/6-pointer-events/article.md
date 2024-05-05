@@ -111,7 +111,7 @@ Such causes are:
 
 We'll demonstrate `pointercancel` on a practical example to see how it affects us.
 
-Let's say we're impelementing drag'n'drop for a ball, just as in the beginning of the article <info:mouse-drag-and-drop>.
+Let's say we're implementing drag'n'drop for a ball, just as in the beginning of the article <info:mouse-drag-and-drop>.
 
 Here is the flow of user actions and the corresponding events:
 
@@ -271,7 +271,7 @@ Pointer events allow handling mouse, touch and pen events simultaneously, with a
 
 Pointer events extend mouse events. We can replace `mouse` with `pointer` in event names and expect our code to continue working for mouse, with better support for other device types.
 
-For drag'n'drops and complex touch interactions that the browser may decide to hijack and handle on its own - remember to cancel the default action on events and set `touch-events: none` in CSS for elements that we engage.
+For drag'n'drops and complex touch interactions that the browser may decide to hijack and handle on its own - remember to cancel the default action on events and set `touch-action: none` in CSS for elements that we engage.
 
 Additional abilities of pointer events are:
 

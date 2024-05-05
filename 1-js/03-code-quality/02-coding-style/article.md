@@ -54,7 +54,7 @@ if (condição) {
 
 Uma construção de única-linha, tal como `if (condição) doSomething()`, é um importante caso de exceção. Devemos utilizar chavetas, ou não?
 
-Aqui estão variantes com anotações, para que por si mesmo você possa avaliar a sua legíbilidade:
+Aqui estão variantes com anotações, para que por si mesmo você possa avaliar a sua legibilidade:
 
 1. 😠 Principiantes, por vezes fazem isto. É mau! As chavetas não são necessárias:
     ```js
@@ -83,11 +83,12 @@ Para código muito curto, uma única linha é aceitável, ex: `if (cond) return 
 Ninguém gosta de ler uma longa linha horizontal de código. A melhor prática é a particionar.
 
 Por exemplo:
-
 ```js
 // o acento grave (*backtick*) ` permite repartir uma *string* por múltiplas linhas
 let str = `
-  O TC39 da ECMA International, é um grupo de desenvolvedores e implementadores de JavaScript, académicos, e outros, colaborando com a comunidade para manter e evoluir a definição de JavaScript.
+  O TC39 da ECMA International, é um grupo de desenvolvedores e 
+  implementadores de JavaScript, académicos, e outros, colaborando com a comunidade 
+  para manter e evoluir a definição de JavaScript.
 `;
 ```
 
@@ -148,7 +149,7 @@ Existem dois tipos de indentação:
 
 ### Pontos-e-vírgula
 
-Um ponto-e-vírgula deveria estar presente no fim de cada instrução, mesmo que possívelmente pudesse ser omitido.
+Um ponto-e-vírgula deveria estar presente no fim de cada instrução, mesmo que possivelmente pudesse ser omitido.
 
 Existem linguagens em que o ponto-e-vírgula é verdadeiramente opcional, e raramente utilizado. Contudo, em JavaScript, há casos em que uma quebra-de-linha não é interpretada como um ponto-e-vírgula, deixando o código vulnerável a erros. Veja mais sobre isto no capítulo <info:structure#semicolon>.
 
@@ -247,7 +248,6 @@ Se estiver a escrever várias funções "auxiliares" (*"helper" functions*) acom
     setHandler(elem);
     walkAround();
     ```
-
 2. O código primeiro, depois as funções:
 
     ```js
@@ -269,7 +269,6 @@ Se estiver a escrever várias funções "auxiliares" (*"helper" functions*) acom
       ...
     }
     ```
-
 3. Mista: uma função é declarada onde for empregue pela primeira vez.
 
 A maior parte da vezes, a segunda variante é a preferida.
@@ -282,7 +281,7 @@ Um guia de estilo contém regras gerais sobre "como escrever" código, ex. que a
 
 Quando todos os membros de uma equipa usam o mesmo guia de estilo, o código parece uniforme, independentemente do membro da equipa que o tenha escrito.
 
-Óbviamente, que uma equipa pode sempre escrever o seu próprio guia de estilo, mas geralmente não há necessidade. Existem muitos guias à escolha.
+Obviamente, que uma equipa pode sempre escrever o seu próprio guia de estilo, mas geralmente não há necessidade. Existem muitos guias à escolha.
 
 Algumas opções populares:
 
@@ -292,11 +291,11 @@ Algumas opções populares:
 - [StandardJS](https://standardjs.com/)
 - (e muitas mais)
 
-Se for um programador iniciante, começe pela cábula (*cheatsheet*) disponível no início deste capítulo. Depois, poderá procurar por outros guias de estilo afim de colher mais ideias e decidir qual prefere.
+Se for um programador iniciante, comece pela cábula (*cheatsheet*) disponível no início deste capítulo. Depois, poderá procurar por outros guias de estilo afim de colher mais ideias e decidir qual prefere.
 
 ## *Linters* Automatizados
 
-*Linters*, são ferramentas que automáticamente verificam o estilo do seu código e fazem sugestões para o alterar.
+*Linters*, são ferramentas que automaticamente verificam o estilo do seu código e fazem sugestões para o alterar.
 
 O seu ponto-forte reside em, à medida que verificam o estilo, poderem encontrar alguns erros (*bugs*), como nomes de variáveis ou de funções mal-escritos. Devido a esta capacidade, é recomendado que use um *linter* mesmo que não queira aderir a um certo "estilo de código".
 
@@ -304,7 +303,7 @@ Aqui estão algumas das mais conhecidas ferramentas de *linting*:
 
 - [JSLint](http://www.jslint.com/) -- um dos primeiros *linters*.
 - [JSHint](http://www.jshint.com/) -- mais configurações do que *JSLint*.
-- [ESLint](http://eslint.org/) -- provávelmente o mais recente.
+- [ESLint](http://eslint.org/) -- provavelmente o mais recente.
 
 Todos eles podem executar a tarefa. O autor utiliza [ESLint](http://eslint.org/).
 

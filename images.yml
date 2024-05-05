@@ -1,0 +1,48 @@
+proto-constructor-animal-rabbit.svg:
+  "White Rabbit":
+    text: "Coelho Branco"
+    position: center
+ifelse_task2.svg:
+  "Begin":
+    text: Início
+    position: center
+  "What's the":
+    text: "Qual o nome"
+    position: center
+  "\"official\" name of":
+    text: "nome \"oficial\" do"
+    position: center
+  "Other":
+    text: "Outro"
+    position: center
+  "You don't know?":
+    text: "Você não conhece?"
+    position: left
+  "Right!":
+    text: "Correto!"
+    position: center
+ifelse_task.svg:
+  Begin:
+    text: Início
+    position: center
+  Who's there?:
+    text: Quem está aí?
+    position: center
+  Password?:
+    text: Senha?
+    position: center
+  Welcome!:
+    text: Bem vindo!
+    position: center
+  Canceled:
+    text: Cancelado
+    position: center
+  Wrong Password:
+    text: Senha incorreta
+    position: center
+  I don't know you:
+    text: Eu não conheço você
+love-html5-classes.svg:
+  "I love":
+    "text": "Eu amo"
+    "position": "center"

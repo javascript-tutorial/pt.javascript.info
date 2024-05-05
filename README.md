@@ -1,38 +1,40 @@
-# The Modern JavaScript Tutorial
+# O Tutorial Moderno de JavaScript
 
-This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
+Este repositório hospeda o conteúdo em português do Modern JavaScript Tutorial, publicado em [https://javascript.info](https://javascript.info).
 
-## Translations
+## Traduções
 
-We'd like to make the tutorial available in many languages. Please help us to translate.
+Gostaríamos de disponibilizar o tutorial em vários idiomas. Por favor, ajude-nos a traduzir.
 
-See <https://javascript.info/translate> for the details.
+Acesse <https://javascript.info/translate> para mais detalhes.
 
-## Contributions
+## Contribuições
 
-We'd also like to collaborate on the tutorial with other people.
+Também gostaríamos de colaborar no tutorial com outras pessoas.
 
-Something's wrong? A topic is missing? Explain it to people, add as PR 👏
+Algo está errado? Falta um tópico? Explique para as pessoas, adicione como PR 👏
 
-**You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+**Você pode editar o texto em qualquer editor.** O tutorial usa um formato "markdown" aprimorado, fácil de entender. E se você quiser ver como fica no site, há um servidor para executar o tutorial localmente em <https://github.com/javascript-tutorial/server>.
 
-The list of contributors is available at <https://javascript.info/about#contributors>.
+A lista de contribuidores está disponível em <https://javascript.info/about#contributors>.
 
-## Structure
+Para saber como contribuir, leia o nosso [Guia de Contribuição](/CONTRIBUTING.md)
 
-Every chapter, article or a task has its folder.
+## Estrutura
 
-The folder is named like `N-url`, where `N` is a number for the sorting purposes and `url` is the URL part with title of the material.
+Cada capítulo, artigo ou tarefa tem sua pasta.
 
-The type of the material is defined by the file inside the folder:
+A pasta é nomeada como `N-url`, onde `N` é um número para fins de classificação e `URL` é a parte da URL com o título do material.
 
-  - `index.md` stands for a chapter
-  - `article.md` stands for an article
-  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
+O tipo do material é definido pelo arquivo dentro da pasta:
 
-Each of these files starts from the `# Main header`.
+  - `index.md` significa um capítulo
+  - `article.md` significa um artigo
+  - `task.md` representa uma tarefa (a solução também deve ser fornecida no arquivo `solution.md`)
 
-It's very easy to add something new.
+Cada um desses arquivos começa no `# Cabeçalho principal`.
+
+É muito fácil adicionar algo novo.
 
 ---  
 ♥  

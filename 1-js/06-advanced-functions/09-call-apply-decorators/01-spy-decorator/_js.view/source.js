@@ -1,5 +1,4 @@
 function spy(func) {
-  // your code
+  // o teu código
 }
-
 

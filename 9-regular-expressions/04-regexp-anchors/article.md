@@ -1,34 +1,34 @@
-# Anchors: string start ^ and end $
+# Âncoras: início ^ e fim $ de string
 
-The caret `pattern:^` and dollar `pattern:$` characters have special meaning in a regexp. They are called "anchors".
+Os caracteres acento circunflexo `pattern:^` e cifrão `pattern:$` possuem um significado especial em expressões regulares. Eles são chamados de "âncoras".
 
-The caret `pattern:^` matches at the beginning of the text, and the dollar `pattern:$` -- at the end.
+O acento circunflexo `pattern:^` corresponde ao início da string, e o cifrão `pattern:$` ao final.
 
-For instance, let's test if the text starts with `Mary`:
-
-```js run
-let str1 = "Mary had a little lamb";
-alert( /^Mary/.test(str1) ); // true
-```
-
-The pattern `pattern:^Mary` means: "string start and then Mary".
-
-Similar to this, we can test if the string ends with `snow` using `pattern:snow$`:
+Neste exemplo, vamos testar se o texto começa com `Maria`:
 
 ```js run
-let str1 = "it's fleece was white as snow";
-alert( /snow$/.test(str1) ); // true
+let str1 = "Maria tinha um cordeirinho";
+alert( /^Maria/.test(str1) ); // true
 ```
 
-In these particular cases we could use string methods `startsWith/endsWith` instead. Regular expressions should be used for more complex tests.
+O padrão `pattern:^Maria` quer dizer: "início da string, e então Maria"
 
-## Testing for a full match
+Da mesma maneira, podemos testar se a string termina com `neve` usando `pattern:neve$`:
 
-Both anchors together `pattern:^...$` are often used to test whether or not a string fully matches the pattern. For instance, to check if the user input is in the right format.
+```js run
+let str1 = "Seu velo era branco como a neve";
+alert( /neve$/.test(str1) ); // true
+```
 
-Let's check whether or not a string is a time in `12:34` format. That is: two digits, then a colon, and then another two digits.
+Nesses casos em particular, poderíamos usar os métodos do objeto string `startsWith/endsWith` em seu lugar. Expressões regulares devem ser usadas para testes mais complexos.
 
-In regular expressions language that's `pattern:\d\d:\d\d`:
+## Correspondendo com uma string inteira
+
+Frequentemente, ambas as âncoras `pattern:^...$` são usadas juntas para verificar se uma string inteira corresponde ao padrão. Para confirmar, por exemplo, se a entrada do usuário está no formato correto.
+
+Vamos verificar se uma string é um horário no formato `12:34`. Isto é: dois dígitos, seguido de dois pontos (':'), e então mais dois dígitos.
+
+Em expressões regulares, isso fica `pattern:\d\d:\d\d`: 
 
 ```js run
 let goodInput = "12:34";
@@ -39,14 +39,14 @@ alert( regexp.test(goodInput) ); // true
 alert( regexp.test(badInput) ); // false
 ```
 
-Here the match for `pattern:\d\d:\d\d` must start exactly after the beginning of the text `pattern:^`, and the end `pattern:$` must immediately follow.
+Nesse exemplo, a correspondência com o padrão `pattern:\d\d:\d\d` deve iniciar exatamente após o início da string `pattern:^`, e ser seguido imediatamente pelo fim da string `pattern:$`.
 
-The whole string must be exactly in this format. If there's any deviation or an extra character, the result is `false`.
+A string inteira deve obedecer exatamente a esse formato. Se houver qualquer desvio ou caractere adicional, o resultado será `false`.
 
-Anchors behave differently if flag `pattern:m` is present. We'll see that in the next article.
+Âncoras tem um comportamento diferente caso a flag `pattern:m` esteja presente. Veremos isso no próximo artigo.
 
-```smart header="Anchors have \"zero width\""
-Anchors `pattern:^` and `pattern:$` are tests. They have zero width.
+```smart header="Âncoras tem \"largura zero\""
+As âncoras `pattern:^` e `pattern:$` são verificações. Elas não possuem largura.
 
-In other words, they do not match a character, but rather force the regexp engine to check the condition (text start/end).
+Em outras palavras, elas não correspondem com um caractere, mas sim com uma posição, obrigando o interpretador regex a verificar a condição de início ou fim da string.
 ```

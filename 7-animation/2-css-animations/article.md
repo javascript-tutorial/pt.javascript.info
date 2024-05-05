@@ -433,7 +433,7 @@ A propriedade `transform` é uma grande escolha, porque:
 
 Por outras palavras, o navegador calcula a Layout (tamanhos, posições), pinta-a com cores, fundo, etc no estágio Paint, e depois aplica `transform` a caixas de elementos que precisarem.
 
-Mudanças (animações) da propriedade `transform` nunca desencadeiam os passos Layout e Paint. E ainda mais, o navegador explora o acelerador de gráficos (um *chip* especial na *CPU* ou placa gráfica) para transformações CSS, tornando-as muito eficientes.
+Mudanças (animações) da propriedade `transform` nunca desencadeiam os passos Layout e Paint. E ainda mais, o navegador explora o acelerador de gráficos (um *chip* especial na *CPU* ou placa gráfica) para transformações CSS, tornando-as assim muito eficientes.
 
 Felizmente, a propriedade `transform` é muito poderosa. Ao usar `transform` em um elemento, você pode rodá-lo e virá-lo, esticá-lo e encolhê-lo, deslocá-lo, e [muito mais](https://developer.mozilla.org/pt-BR/docs/Web/CSS/transform), Assim, em vez das propriedades `left/margin-left` nós podemos usar `transform: translateX(…)`, usar `transform: scale` para aumentar o tamanho de um elemento, etc.
 

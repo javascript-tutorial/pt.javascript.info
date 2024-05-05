@@ -8,20 +8,20 @@ Existe mais uma maneira de criar uma função. Ela é raramente usada, mas as ve
 A sintaxe para criar uma função:
 
 ```js
-let func = new Function ([arg1[, arg2[, ...argN]],] functionBody)
+let func = new Function ([arg1, arg2, ...argN], functionBody);
 ```
 
-Em outras palavras, os parâmetros da função (ou, mais precisamente, os nomes deles) vêm primeiro, e o corpo da função vem por último. Todos os argumentos são `strings`.
+A função é criada com os argumentos `arg1...argN` e entregue para `functionBody`.
 
 É mais fácil de compreender olhando um exemplo. Aqui está uma função com dois argumentos:
 
 ```js run
-let sum = new Function('a', 'b', 'return a + b'); 
+let sum = new Function('a', 'b', 'return a + b');
 
 alert( sum(1, 2) ); // 3
 ```
 
-Se não existem argumentos, então somente existe um único argumento, que é o corpo da função:
+E aqui está uma função sem argumentos, apenas com o corpo da função:
 
 ```js run
 let sayHi = new Function('alert("Olá")');
@@ -29,7 +29,7 @@ let sayHi = new Function('alert("Olá")');
 sayHi(); // Olá
 ```
 
-A maior diferença de outros métodos vistos é que a função é literalmente criada a partir de uma `string`, que é passada em tempo de execução. 
+A principal diferença de outras formas que vimos é que a função é criada literalmente a partir de uma string, que é passada em tempo de execução.
 
 Todas as declarações anteriores requeriam de nós, programadores, escrever o código da função dentro do *script*.
 
@@ -42,16 +42,17 @@ let func = new Function(str);
 func();
 ```
 
-Ela é usada em casos muito específicos, como quando nós recebemos código de um servidor, ou para compilar dinamicamente a função a partir de um *template*. A necessidade disso geralmente surge em estágios avançados de desenvolvimento.
+É usado em casos muito específicos, como quando recebemos código de um servidor, ou para compilar dinamicamente uma função a partir de um template, em aplicações web complexas.
 
 ## Closure
 
-No geral, uma função se "lembra" de onde ela foi criada na propriedade especial `[[Environment]]`. Ela referencia o escopo léxico de onde ela foi criada.
+Normalmente, uma função lembra onde nasceu na propriedade especial `[[Environment]]`. Ele faz referência ao Ambiente Lexical de onde foi criado (abordaremos isso no capítulo <info:closure>).
 
-Porém quando uma função é criada usando `new Function`, a sua `[[Environment]]` não referencia o atual escopo léxico, mas sim o escopo global.
+Mas quando uma função é criada usando `new Function`, seu `[[Environment]]` é definido para fazer referência não ao Ambiente Lexical atual, mas ao ambiente global.
+
+Portanto, tal função não tem acesso a variáveis ​​externas, apenas a variáveis globais.
 
 ```js run
-
 function getFunc() {
   let value = "teste";
 
@@ -67,7 +68,7 @@ getFunc()(); // erro: value não foi definido
 
 Compare-a com o comportamento padrão:
 
-```js run 
+```js run
 function getFunc() {
   let value = "teste";
 
@@ -87,51 +88,36 @@ Imagine que nós precisamos criar uma função a partir de uma `string`. O códi
 
 Nossa nova função precisa interagir com o *script* principal.
 
-Talvez nós queremos que ela consiga acessar variáveis locias externas?
+E se você pudesse acessar as variáveis ​​externas?
 
 O problema é que antes do JavaScript ser publicado para produção, ele é comprimido usando um "minificador" -- um programa especial que encolhe código removendo comentários, espaços e -- o mais importante, renomeia variáveis locais em variáveis mais curtas.
 
 Por exemplo, se uma função tem `let userName`, o minificador o troca  por `let a` (ou outra letra se esta estiver ocupada), e ele faz isso em toda parte. Isso usualmente é uma coisa segura de se fazer, porque a variável é local, nada fora da função pode acessar ela. E dentro da função, o minificador troca todas as suas menções. Minificadores são inteligentes, eles analisam a estrutura do código, para que eles não quebrem nada. Eles não são um simples não-inteligente "encontra-e-substitui".
 
-Entretanto, se `new Function` pudesse acessar variáveis externas, então ele não conseguiria encontrar `userName`, pois ele é passado como uma `string` **depois** que o código é minificado.
+Portanto, se `new Function` tivesse acesso a variáveis ​​externas, não seria possível encontrar `userName` renomeado.
 
-**Mesmo se nós pudessemos acessar o escopo léxico externo na `new Function`, nós teriamos problemas com minificadores.**
+**Se a `nova Função` tivesse acesso a variáveis ​​externas, haveria problemas com minificadores.**
 
-A "característica especial" de `new Function` nos salva de erros.
+Além disso, esse código seria arquitetonicamente ruim e sujeito a erros.
 
-E ela assegura um código melhor. Se nós precisarmos passar algo para uma função criada por `new Function`, nós devemos passar ele explicitamente como um argumento.
-
-A nossa função "sum" faz isso corretamente:
-
-```js run 
-*!*
-let sum = new Function('a', 'b', 'return a + b');
-*/!*
-
-let a = 1, b = 2;
-
-*!*
-// variáveis externas são passdas como argumentos
-alert( sum(a, b) ); // 3
-*/!*
-```
+Para passar algo para uma função, criada como `nova Função`, devemos usar seus argumentos.
 
 ## Resumo
 
 A sintaxe:
 
 ```js
-let func = new Function(arg1, arg2, ..., body);
+let func = new Function ([arg1, arg2, ...argN], functionBody);
 ```
 
-Por razões históricas, argumentos também podem ser dados como uma lista separada por vírgulas. 
+Por razões históricas, os argumentos também podem ser apresentados como uma lista separada por vírgulas.
 
-Estes três significam o mesmo:
+Estas três declarações significam o mesmo:
 
-```js 
+```js
 new Function('a', 'b', 'return a + b'); // sintaxe básica
-new Function('a,b', 'return a + b'); // separada por vírgula
-new Function('a , b', 'return a + b'); // separada por vírgula com espaços
+new Function('a,b', 'return a + b'); // separados por vírgula
+new Function('a , b', 'return a + b'); // separados por vírgula com espaços
 ```
 
-Funções criadas com `new Function`, têm `[[Environment]]` referenciando o escopo léxico global, e não o escopo externo. Por isso, elas não podem usar variáveis externas. Porém isso na verdade é bom, porque isto nos salva de erros. Passar parametros explicitamente é um método muito melhor arquiteturamente e não causa problemas com minificadores.
+Funções criadas com `new Function` têm `[[Environment]]` referenciando o ambiente lexical global, não o externo. Portanto, eles não podem usar variáveis ​​externas. Mas isso é realmente bom, porque nos protege contra erros. Passar parâmetros explicitamente é um método muito melhor do ponto de vista arquitetônico e não causa problemas com minificadores.

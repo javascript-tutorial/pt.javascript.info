@@ -31,7 +31,7 @@ To make the `range` object iterable (and thus let `for..of` work) we need to add
 1. When `for..of` starts, it calls that method once (or errors if not found). The method must return an *iterator* -- an object with the method `next`.
 2. Onward, `for..of` works *only with that returned object*.
 3. When `for..of` wants the next value, it calls `next()` on that object.
-4. The result of `next()` must have the form `{done: Boolean, value: any}`, where `done=true`  means that the iteration is finished, otherwise `value` is the next value.
+4. The result of `next()` must have the form `{done: Boolean, value: any}`, where `done=true` means that the loop is finished, otherwise `value` is the next value.
 
 Here's the full implementation for `range` with remarks:
 
@@ -45,10 +45,10 @@ let range = {
 range[Symbol.iterator] = function() {
 
   // ...it returns the iterator object:
-  // 2. Onward, for..of works only with this iterator, asking it for next values
+  // 2. Onward, for..of works only with the iterator object below, asking it for next values
   return {
     current: this.from,
-    last: this.to,      
+    last: this.to,
 
     // 3. next() is called on each iteration by the for..of loop
     next() {
@@ -218,7 +218,7 @@ alert(arr.pop()); // World (method works)
 
 The same happens for an iterable:
 
-```js
+```js run
 // assuming that range is taken from the example above
 let arr = Array.from(range);
 alert(arr); // 1,2,3,4,5 (array toString conversion works)
@@ -233,7 +233,7 @@ The optional second argument `mapFn` can be a function that will be applied to e
 
 For instance:
 
-```js
+```js run
 // assuming that range is taken from the example above
 
 // square each number
@@ -270,7 +270,7 @@ for (let char of str) {
 alert(chars);
 ```
 
-...But it is shorter.    
+...But it is shorter.
 
 We can even build surrogate-aware `slice` on it:
 

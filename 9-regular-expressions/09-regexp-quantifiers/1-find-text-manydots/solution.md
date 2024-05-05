@@ -1,9 +1,9 @@
 
-Solution:
+Solução:
 
 ```js run
 let regexp = /\.{3,}/g;
-alert( "Hello!... How goes?.....".match(regexp) ); // ..., .....
+alert( "Olá!... Como está?.....".match(regexp) ); // ..., .....
 ```
 
-Please note that the dot is a special character, so we have to escape it and insert as `\.`.
+Note que o ponto é um caractere especial (também conhecido como metacaractere), então devemos escapá-lo usando uma contrabarra: `\.`.
