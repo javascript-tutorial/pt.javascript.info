@@ -6,7 +6,7 @@ importance: 5
 
 Adicione ao protótipo de todas as funções o método `defer(ms)`, que executa a função depois de `ms` milisegundos.
 
-Depois de fazer isso, este código deveria funcionar:
+Depois de fazer isso, esse código deve funcionar:
 
 ```js
 function f() {
