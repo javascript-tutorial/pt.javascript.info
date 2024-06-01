@@ -9,7 +9,7 @@ Escreva uma função `showNotification(options)` que cria uma notificação: `<d
 As opções são:
 
 ```js
-// mostra um elemento com o texto "Olá" próximo ao canto superior direita da janela
+// mostra um elemento com o texto "Olá" próximo ao canto superior direito da janela
 showNotification({
   top: 10, // 10px a partir do topo da janela (por padrão 0px)
   right: 10, // 10px a partir da borda a direita da janela (por padrão 0px)

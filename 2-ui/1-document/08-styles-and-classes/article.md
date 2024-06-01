@@ -103,7 +103,7 @@ document.body.style.backgroundColor = prompt('background color?', 'green');
 ````smart header="Propriedades pré-fixadas"
 Propriedades com prefixo de navegador como `-moz-border-radius`, `-webkit-border-radius` também segue a mesma regra: um traço indica uma letra maiúscula.
 
-Por exmeplo:
+Por exemplo:
 
 ```js
 button.style.MozBorderRadius = '5px';
@@ -186,7 +186,7 @@ Repare: o navegador "descompacta" a propriedade `style.margin` nas últimas linh
 
 ## Estilos computados: getComputedStyle
 
-Portanto, modificar um estilo é facil. Mas como lê-lo?
+Portanto, modificar um estilo é fácil. Mas como lê-lo?
 
 Por exemplo, queremos saber o tamanho, as margens e a cor de um elemento. Como fazer isso?
 
@@ -253,7 +253,7 @@ Por exemplo:
 Existem dois conceitos no [CSS](https://drafts.csswg.org/cssom/#resolved-values):
 
 1. Um valor de estilo *computado* é o valor depois que todas as regras e heranças do CSS são aplicadas, como resultado da cascata CSS. Pode parecer com `height:1em` ou `font-size:125%`.
-2. Um estilo *resolvido* é aquele finalmente aplicado ao element. Valores como  `1em` ou `125%` são relativos. O navegador pega o valor computado e converte todas as unidades para fixas ou absoluta, por exemplo: `height:20px` ou `font-size:16px`. Para propriedades geométricas, os valores resolvidps podem ter ponto flutuante, como `width:50.5px`.
+2. Um estilo *resolvido* é aquele finalmente aplicado ao element. Valores como  `1em` ou `125%` são relativos. O navegador pega o valor computado e converte todas as unidades para fixas ou absoluta, por exemplo: `height:20px` ou `font-size:16px`. Para propriedades geométricas, os valores resolvidos podem ter ponto flutuante, como `width:50.5px`.
 
 Há muito tempo, `getComputedStyle` foi criado para obter valores computados, mas acabou sendo mais conveniente obter valores resolvidos, e o padrão mudou.
 
