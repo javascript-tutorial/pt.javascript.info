@@ -136,7 +136,7 @@ console.log(user);
 
 If we're not using modules, or [older browsers](https://caniuse.com/mdn-javascript_operators_await_top_level) must be supported, there's a universal recipe: wrapping into an anonymous async function.
 
-Lke this:
+Like this:
 
 ```js
 (async () => {
@@ -303,7 +303,7 @@ The `async` keyword before a function has two effects:
 
 The `await` keyword before a promise makes JavaScript wait until that promise settles, and then:
 
-1. If it's an error, the exception is generated — same as if `throw error` were called at that very place.
+1. If it's an error, an exception is generated — same as if `throw error` were called at that very place.
 2. Otherwise, it returns the result.
 
 Together they provide a great framework to write asynchronous code that is easy to both read and write.

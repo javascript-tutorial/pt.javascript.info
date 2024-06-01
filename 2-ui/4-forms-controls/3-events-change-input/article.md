@@ -1,10 +1,10 @@
 # Events: change, input, cut, copy, paste
 
-Let's discuss various events that accompany data updates.
+Let's cover various events that accompany data updates.
 
 ## Event: change
 
-The [change](http://www.w3.org/TR/html5/forms.html#event-input-change) event triggers when the element has finished changing.
+The `change` event triggers when the element has finished changing.
 
 For text inputs that means that the event occurs when it loses focus.
 
@@ -15,11 +15,23 @@ For instance, while we are typing in the text field below -- there's no event. B
 <input type="button" value="Button">
 ```
 
-For other elements: `select`, `input type=checkbox/radio` it triggers right after the selection changes.
+For other elements: `select`, `input type=checkbox/radio` it triggers right after the selection changes:
+
+```html autorun height=40 run
+<select onchange="alert(this.value)">
+  <option value="">Select something</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3</option>
+</select>
+```
+
 
 ## Event: input
 
-The `input` event triggers every time a value is modified.
+The `input` event triggers every time after a value is modified by the user.
+
+Unlike keyboard events, it triggers on any value change, even those that does not involve keyboard actions: pasting with a mouse or using speech recognition to dictate the text.
 
 For instance:
 
@@ -34,7 +46,7 @@ For instance:
 
 If we want to handle every modification of an `<input>` then this event is the best choice.
 
-Unlike keyboard events it works on any value change, even those that does not involve keyboard actions: pasting with a mouse or using speech recognition to dictate the text.
+On the other hand, `input` event doesn't trigger on keyboard input and other actions that do not involve value change, e.g. pressing arrow keys `key:⇦` `key:⇨` while in the input.
 
 ```smart header="Can't prevent anything in `oninput`"
 The `input` event occurs after the value is modified.
@@ -48,7 +60,7 @@ These events occur on cutting/copying/pasting a value.
 
 They belong to [ClipboardEvent](https://www.w3.org/TR/clipboard-apis/#clipboard-event-interfaces) class and provide access to the data that is cut/copied/pasted.
 
-We also can use `event.preventDefault()` to abort the action.
+We also can use `event.preventDefault()` to abort the action, then nothing gets copied/pasted.
 
 For instance, the code below prevents all `cut/copy/paste` events and shows the text we're trying to cut/copy/paste:
 
@@ -73,7 +85,7 @@ So the example above uses `document.getSelection()` to get the selected text. Yo
 
 It's possible to copy/paste not just text, but everything. For instance, we can copy a file in the OS file manager, and paste it.
 
-That's because `clipboardData` implements `DataTransfer` interface, commonly used for drag'n'drop and copy/pasting. It's bit beyond our scope now, but you can find its methods in the [DataTransfer specification](https://html.spec.whatwg.org/multipage/dnd.html#the-datatransfer-interface).
+That's because `clipboardData` implements `DataTransfer` interface, commonly used for drag'n'drop and copy/pasting. It's a bit beyond our scope now, but you can find its methods in the [DataTransfer specification](https://html.spec.whatwg.org/multipage/dnd.html#the-datatransfer-interface).
 
 Also, there's an additional asynchronous API of accessing the clipboard: `navigator.clipboard`. More about it in the specification [Clipboard API and events](https://www.w3.org/TR/clipboard-apis/), [not supported by Firefox](https://caniuse.com/async-clipboard).
 
@@ -89,7 +101,7 @@ Even if someone decides to save `event.clipboardData` in an event handler, and t
 
 To reiterate, [event.clipboardData](https://www.w3.org/TR/clipboard-apis/#clipboardevent-clipboarddata) works solely in the context of user-initiated event handlers.
 
-On the other hand, [navigator.clipboard](https://www.w3.org/TR/clipboard-apis/#h-navigator-clipboard) is the more recent API, meant for use in any context. It asks for user permission, if needed. Not supported in Firefox.
+On the other hand, [navigator.clipboard](https://www.w3.org/TR/clipboard-apis/#h-navigator-clipboard) is the more recent API, meant for use in any context. It asks for user permission, if needed.
 
 ## Summary
 

@@ -2,7 +2,7 @@
 
 A propriedade `"prototype"` é comumente utilizada pelo núcleo do próprio JavaScript. Toda função construtora embutida a usa.
 
-Vamos ver como é para objetos simples primeiro, e depois para objetos mais complexos.
+First we'll look at the details, and then how to use it for adding new capabilities to built-in objects.
 
 ## Object.prototype
 
@@ -38,7 +38,7 @@ alert(obj.toString === obj.__proto__.toString); //true
 alert(obj.toString === Object.prototype.toString); //true
 ```
 
-Note que não há um `[[Prototype]]` adicional na cadeia acima de `Object.prototype`:
+Please note that there is no more `[[Prototype]]` in the chain above `Object.prototype`:
 
 ```js run
 alert(Object.prototype.__proto__); // null
@@ -48,9 +48,9 @@ alert(Object.prototype.__proto__); // null
 
 Outros objetos embutidos, como `Array`, `Date`, `Function`, entre outros, também mantém métodos nos seus protótipos.
 
-Por exemplo, quando nós criamos um array `[1, 2, 3]`, a função construtura padrão `new Array()` é usada internamente. Dessa forma, os dados são escritos dentro do novo objeto, e `Array.prototype` se torna no seu protótipo e provê métodos. Isso é bem eficiente em termos de memória.
+For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is used internally. So `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
 
-Pela especificação, todos os protótipos embutidos têm `Object.prototype` no topo. Algumas pessoas dizem que "tudo herda de objetos".
+By specification, all of the built-in prototypes have `Object.prototype` on the top. That's why some people say that "everything inherits from objects".
 
 Aqui temos uma visão geral (para 3 protótipos embutidos):
 
@@ -124,7 +124,7 @@ String.prototype.show = function() {
 Durante o processo do desenvolvimento, nós podemos ter novas ideias de métodos embutidos que nós gostaríamos de ter, e podemos ficar tentados a adicioná-los aos protótipos nativos. Mas isso é geralmente uma má ideia.
 
 ```warn
-Protótipos são globais, então é fácil gerar um conflito. Se duas bibliotecas adicionam um método `String.prototype.show`, uma delas estará sobrescrevendo a outra.
+Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the method of the other.
 
 Por isso, geralmente, modificar um protótipo nativo é considerado uma má ideia.
 ```
@@ -163,7 +163,7 @@ Isso é quando nós pegamos um método de um objeto e o copiamos para outro.
 
 Alguns métodos de protótipos nativos são emprestados com muita frequência.
 
-Por exemplo, se nós estamos fazendo um objeto parecido com um array, nós podemos querer copiar alguns métodos de array para ele.
+For instance, if we're making an array-like object, we may want to copy some `Array` methods to it.
 
 Veja um exemplo:
 
