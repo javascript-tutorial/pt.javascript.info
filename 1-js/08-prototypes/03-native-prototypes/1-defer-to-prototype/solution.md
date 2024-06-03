@@ -6,8 +6,8 @@ Function.prototype.defer = function(ms) {
 };
 
 function f() {
-  alert("Hello!");
+  alert("Olá!");
 }
 
-f.defer(1000); // shows "Hello!" after 1 sec
+f.defer(1000); // mostra "Olá!" depois de 1 segundo
 ```
