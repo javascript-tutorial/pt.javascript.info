@@ -60,7 +60,7 @@ Formalmente, "fim de linha" quer dizer "imediatamente antes de uma quebra de lin
 
 ## Busca por \n ao invés de ^ e $
 
-Para encontrar uma quebra de linha podemos usar além das âncoras `pattern:^` e `pattern:$` o caractere `\n`.
+Para encontrar uma quebra de linha, podemos usar não apenas as âncoras `pattern:^` e `pattern:$`, mas também o caractere de nova linha `\n`.
 
 Qual a diferença? Vejamos um exemplo.
 
