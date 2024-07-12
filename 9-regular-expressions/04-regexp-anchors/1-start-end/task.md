@@ -1,3 +1,3 @@
-# Regexp ^$
+# Expressão Regular ^$
 
-Which string matches the pattern `pattern:^$`?
+Qual string corresponde ao padrão `pattern:^$`?
