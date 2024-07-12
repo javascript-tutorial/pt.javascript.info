@@ -6,6 +6,7 @@ Mas precisamos de um ambiente de trabalho para rodar nossos scripts e, como esse
 
 Então, primeiro, vamos ver como anexar um script a uma página. Para ambientes server-side (como Node.js), você pode executar o script com um comando como `"node my.js"`.
 
+
 ## A tag "script"
 
 Os programas JavaScript podem ser inseridos em quase qualquer parte de um documento HTML com a ajuda da tag `<script>`.
