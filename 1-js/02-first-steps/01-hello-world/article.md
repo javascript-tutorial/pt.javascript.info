@@ -40,6 +40,7 @@ Você pode executar o exemplo clicando no botão "Jogar" no canto superior direi
 
 A tag `<script>` contém código JavaScript que é executado automaticamente quando o navegador processa a tag.
 
+
 ## Marcação moderna
 
 A tag `<script>` tem alguns atributos que raramente são usados hoje em dia, mas que ainda podem ser encontrados em códigos antigos:
