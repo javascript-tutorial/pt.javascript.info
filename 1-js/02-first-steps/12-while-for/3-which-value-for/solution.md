@@ -8,7 +8,7 @@ for (let i = 0; i < 5; i++) alert( i );
 
 Isso pode ser facilmente deduzido do algoritmo de `for`:
 
-1. Executar `i = 0` uma vez antes de tudo (begin).
+1. Executar `i = 0` uma vez antes de tudo (início).
 2. Verificar a condição `i < 5`.
 3. Caso verdadeira (`true`), executar o corpo do loop `alert(i)`, e em seguida `i++`.
 
