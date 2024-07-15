@@ -6,7 +6,7 @@ importance: 4
 
 Pada cada loop, anote quais os valores retornados. Depois, compare com a resposta.
 
-Ambos os loops retornam em `alert` os mesmo valores, ou não?
+Ambos os loops retornam em `alert` os mesmos valores, ou não?
 
 1. A forma posfixada:
 
