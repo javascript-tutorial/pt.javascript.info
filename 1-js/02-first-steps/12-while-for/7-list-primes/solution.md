@@ -26,4 +26,4 @@ for (let i = 2; i <= n; i++) { // para cada i...
 }
 ```
 
-Há muitas maneiras de otimizá-lo. Por exemplo, podemos procurar divisores de `2` até a raiz quadrada de `i`. De qualquer modo, se quisermos ser realmente eficientes para intervalos maiores, precisamos mudar a abordagem e nos embasar em matemática avançada e  algoritmos complexos como o [Crivo Quadrático](https://en.wikipedia.org/wiki/Quadratic_sieve), o [Crivo do Corpo de Números Geral](https://en.wikipedia.org/wiki/General_number_field_sieve), etc.
+Há muitas maneiras de otimizá-lo. Por exemplo, podemos procurar divisores de `2` até a raiz quadrada de `i`. De qualquer modo, se quisermos ser realmente eficientes para intervalos maiores, precisamos de mudar a abordagem e usar matemática avançada e  algoritmos complexos como o [Crivo Quadrático](https://en.wikipedia.org/wiki/Quadratic_sieve), o [Campo de número de peneira geral](https://pt.wikipedia.org/wiki/Campo_de_n%C3%BAmero_de_peneira_geral), etc.
