@@ -139,7 +139,11 @@ switch (a) {
 
 Agora ambos `3` e `5` mostram a mesma mensagem.
 
+<<<<<<< HEAD
 A habilidade para "agrupar" cases é um efeito secundário de como o `switch/case` funciona sem `break`. Aqui a execução do `case 3` começa pela linha `(*)` e prossegue pelo `case 5`, por não existir `break`.
+=======
+The ability to "group" cases is a side effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ## O tipo de dados importa
 

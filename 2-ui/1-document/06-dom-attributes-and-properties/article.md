@@ -162,7 +162,11 @@ No exemplo abaixo `id` é modificado como um atributo, e nós podemos ver a prop
 </script>
 ```
 
+<<<<<<< HEAD
 Mas há algumas exceções, por exemplo, `input.value` sincroniza a partir de atributo -> propriedade, mas o contrário não ocorre:
+=======
+But there are exclusions, for instance `input.value` synchronizes only from attribute -> property, but not back:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```html run
 <input>

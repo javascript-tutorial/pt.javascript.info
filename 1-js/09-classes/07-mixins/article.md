@@ -100,7 +100,11 @@ Aqui está o diagrama (veja a parte direita):
 
 Isso porque os métodos `sayHi` e `sayBye` foram inicialmente criados em `sayHiMixin`. Portanto, mesmo que tenham sido copiados, suas propriedades internas `[[HomeObject]]` referenciam a `sayHiMixin`, como mostrado na figura acima.
 
+<<<<<<< HEAD
 Como `super` procura por métodos pais em `[[HomeObject]].[[Prototype]]`, isso significa que procura em `sayHiMixin.[[Prototype]]`.
+=======
+As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ## EventMixin
 
