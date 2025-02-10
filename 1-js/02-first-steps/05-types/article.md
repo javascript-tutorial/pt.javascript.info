@@ -68,9 +68,26 @@ Veremos mais sobre como trabalhar com números no capítulo <info:number>.
 
 ## BigInt [#bigint-type]
 
+<<<<<<< HEAD
 Em JavaScript, o tipo "number" não pode representar com segurança valores inteiros maiores que <code>(2<sup>53</sup>-1)</code> (que é `9007199254740991`) ou menores que <code>-( 2<sup>53</sup>-1)</code> para negativos.
 
 Para ser realmente preciso, o tipo "number" pode armazenar números inteiros maiores (até <code>1.7976931348623157 * 10<sup>308</sup></code>), mas fora do intervalo de números inteiros seguros <code>±(2 <sup>53</sup>-1)</code> haverá um erro de precisão, porque nem todos os dígitos cabem no armazenamento fixo de 64 bits. Portanto, um valor “aproximado” pode ser armazenado.
+=======
+In JavaScript, the "number" type cannot safely represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that's `9007199254740991`), or less than <code>-(2<sup>53</sup>-1)</code> for negatives.
+
+To be really precise, the "number" type can store larger integers (up to <code>1.7976931348623157 * 10<sup>308</sup></code>), but outside of the safe integer range <code>±(2<sup>53</sup>-1)</code> there'll be a precision error, because not all digits fit into the fixed 64-bit storage. So an "approximate" value may be stored.
+
+For example, these two numbers (right above the safe range) are the same:
+
+```js
+console.log(9007199254740991 + 1); // 9007199254740992
+console.log(9007199254740991 + 2); // 9007199254740992
+```
+
+So to say, all odd integers greater than <code>(2<sup>53</sup>-1)</code> can't be stored at all in the "number" type.
+
+For most purposes <code>±(2<sup>53</sup>-1)</code> range is quite enough, but sometimes we need the entire range of really big integers, e.g. for cryptography or microsecond-precision timestamps.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 Por exemplo, estes dois números (logo acima da faixa segura) são iguais:
 
@@ -94,12 +111,15 @@ const bigInt = 1234567890123456789012345678901234567890n;
 
 Como os números `BigInt` raramente são necessários, nós não os cobrimos aqui, mas dedicamos-lhes um capítulo separado <info:bigint>. Leia-o quando precisar de números tão grandes.
 
+<<<<<<< HEAD
 ```smart header="Problemas de compatibilidade"
 No momento, o `BigInt` é suportado no Firefox/Chrome/Edge/Safari, mas não no IE.
 ```
 
 Você pode verificar a [tabela de compatibilidade do *MDN* sobre BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) para saber quais versões de um navegador são suportadas.
 
+=======
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 ## String
 
 Uma string em JavaScript deve estar entre aspas.
@@ -223,7 +243,11 @@ O tipo `symbol` é usado para criar identificadores únicos para objetos. Nós o
 
 ## The typeof operator [#type-typeof]
 
+<<<<<<< HEAD
 O operador `typeof` retorna o tipo do argumento. É útil quando queremos processar valores de diferentes tipos ou apenas queremos fazer uma verificação rápida.
+=======
+The `typeof` operator returns the type of the operand. It's useful when we want to process values of different types differently or just want to do a quick check.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 A chamada para `typeof x` retorna uma string com o nome do tipo:
 
@@ -273,6 +297,7 @@ Algumas pessoas preferem `typeof(x)`, embora a sintaxe `typeof x` seja muito mai
 
 Existem 8 tipos básicos em JavaScript.
 
+<<<<<<< HEAD
 - `number` para números de qualquer tipo: inteiro ou ponto flutuante; inteiros estão limitados a <code>±(2<sup>53</sup>-1)</code>.
 - `bigint` é para números inteiros de comprimento arbitrário.
 - `string` para cadeias-de-caracteres. Uma *string* pode ter zero ou mais caracteres, não há nenhum tipo de caractere único separado.
@@ -281,6 +306,18 @@ Existem 8 tipos básicos em JavaScript.
 - `undefined` para valores não atribuídos -- um tipo autônomo que tem um único valor `undefined`.
 - `object` para estruturas de dados mais complexas.
 - `symbol` para identificadores exclusivos.
+=======
+- Seven primitive data types:
+    - `number` for numbers of any kind: integer or floating-point, integers are limited by <code>±(2<sup>53</sup>-1)</code>.
+    - `bigint` for integer numbers of arbitrary length.
+    - `string` for strings. A string may have zero or more characters, there's no separate single-character type.
+    - `boolean` for `true`/`false`.
+    - `null` for unknown values -- a standalone type that has a single value `null`.
+    - `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
+    - `symbol` for unique identifiers.
+- And one non-primitive data type:
+    - `object` for more complex data structures.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 O operador `typeof` nos permite ver que tipo está armazenado em uma variável.
 

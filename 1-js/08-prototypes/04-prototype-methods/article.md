@@ -14,7 +14,11 @@ The only usage of `__proto__`, that's not frowned upon, is as a property when cr
 
 Although, there's a special method for this too:
 
+<<<<<<< HEAD
 - [Object.create(proto, [descriptors])](mdn:js/Object/create) -- creates an empty object with given `proto` as `[[Prototype]]` and optional property descriptors.
+=======
+- [Object.create(proto[, descriptors])](mdn:js/Object/create) -- creates an empty object with given `proto` as `[[Prototype]]` and optional property descriptors.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 For instance:
 
@@ -201,7 +205,11 @@ alert(Object.keys(chineseDictionary)); // hello,bye
 - To create an object with the given prototype, use:
 
     - literal syntax: `{ __proto__: ... }`, allows to specify multiple properties
+<<<<<<< HEAD
     - or [Object.create(proto, [descriptors])](mdn:js/Object/create), allows to specify property descriptors.
+=======
+    - or [Object.create(proto[, descriptors])](mdn:js/Object/create), allows to specify property descriptors.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
     The `Object.create` provides an easy way to shallow-copy an object with all descriptors:
 

@@ -87,7 +87,11 @@ O resultado de um acesso à propriedade `user.hi` não é uma função, mas um v
 (user, "hi", true)
 ```
 
+<<<<<<< HEAD
 Quando parênteses são chamados no tipo de referência, eles recebem todas as informações sobre o objeto e o seu método, e podem definir o `this` correto (`user` nesse caso).
+=======
+When parentheses `()` are called on the Reference Type, they receive the full information about the object and its method, and can set the right `this` (`user` in this case).
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 O tipo de referência é um tipo interno especial "intermediário", com o propósito de transmitir informações do ponto `.` para os parênteses de chamada `()`.
 
