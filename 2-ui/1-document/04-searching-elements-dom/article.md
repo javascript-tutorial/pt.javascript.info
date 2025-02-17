@@ -52,8 +52,13 @@ Além disso, existe uma variável global nomeada por `id` que referencia o eleme
 </script>
 ```
 
+<<<<<<< HEAD
 ```warn header="Por favor, não use variáveis globais nomeadas com id para acessar elementos"
 Esse comportamento é descrito [na especificação](https://html.spec.whatwg.org/multipage/window-object.html#named-access-on-the-window-object), mas é suportado principalmente por questões de compatibilidade.
+=======
+```warn header="Please don't use id-named global variables to access elements"
+This behavior is described [in the specification](https://html.spec.whatwg.org/multipage/window-object.html#named-access-on-the-window-object), but it is supported mainly for compatibility.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 O navegador tenta nos ajudar misturando os namespaces do JavaScript e do DOM. Isso é bom para scripts simples, inseridos diretamente no HTML, mas geralmente não é algo bom. Pode haver conflitos de nomes. Além disso, quando alguém lê o código JavaScript e não tem o HTML à vista, não é óbvio de onde a variável vem.
 
@@ -112,7 +117,11 @@ Em outras palavras, o resultado é o mesmo que `elem.querySelectorAll(css)[0]`, 
 
 Os métodos anteriores estavam procurando no DOM.
 
+<<<<<<< HEAD
 O método [elem.matches(css)](https://dom.spec.whatwg.org/#dom-element-matches) não procura por nada, apenas verifica se `elem` corresponde ao seletor CSS fornecido. Ele retorna `true` ou `false`.
+=======
+The [elem.matches(css)](https://dom.spec.whatwg.org/#dom-element-matches) does not look for anything, it merely checks if `elem` matches the given CSS-selector. It returns `true` or `false`.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 O método é útil quando estamos iterando sobre elementos (como em um array ou algo do tipo) e tentando filtrar aqueles que nos interessam.
 
@@ -149,8 +158,13 @@ Poe exemplo:
 
 <div class="contents">
   <ul class="book">
+<<<<<<< HEAD
     <li class="chapter">Capítulo 1</li>
     <li class="chapter">Capítulo 2</li>
+=======
+    <li class="chapter">Chapter 1</li>
+    <li class="chapter">Chapter 2</li>
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
   </ul>
 </div>
 

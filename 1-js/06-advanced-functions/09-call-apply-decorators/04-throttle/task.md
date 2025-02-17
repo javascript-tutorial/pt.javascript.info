@@ -8,9 +8,15 @@ Crie um decorador de "regulação" `throttle(f, ms)` -- que retorna uma função
 
 Quando é chamado várias vezes, este passa a chamada a `f` no máximo uma vez por `ms` milissegundos.
 
+<<<<<<< HEAD
 Em comparação com o decorador de redução, o comportamento é completamente diferente:
 - `debounce` executa a função uma vez após o período de "arrefecimento". Bom para processar o resultado final.
 - `throttle` executa a função não mais frequentemente do que o tempo dado `ms`. Bom para atualizações regulares que não devem ser muito frequentes.
+=======
+Compared to the debounce decorator, the behavior is completely different:
+- `debounce` runs the function once after the "cooldown" period. Good for processing the final result.
+- `throttle` runs it not more often than given `ms` time. Good for regular updates that shouldn't be very often.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Por outras palavras, `throttle` é como uma secretária que aceita chamadas telefónicas, mas que incomoda a chefe (chama a verdadeira `f`) não mais do que uma vez por `ms` milissegundos.
 
