@@ -1,24 +1,24 @@
 # Bubbling and capturing
 
-Let's start with an example.
+Vamos começar com um exemplo.
 
-This handler is assigned to `<div>`, but also runs if you click any nested tag like `<em>` or `<code>`:
+Este manipulador de eventos foi atribuído a `<div>`, mas também é acionado caso você clique em qualquer elemento aninhado como `<em>` ou `<code>`:
 
 ```html autorun height=60
 <div onclick="alert('The handler!')">
-  <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
+  <em>Se você clicar no<code>EM</code>, o manipulador na <code>DIV</code> será acionado.</em>
 </div>
 ```
 
-Isn't it a bit strange? Why does the handler on `<div>` run if the actual click was on `<em>`?
+Não é um pouco estranho? Por que o manipulador na `<div>` é acionado se o clique foi no `<em>`?
 
 ## Bubbling
 
-The bubbling principle is simple.
+O bubbling é simples
 
-**When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.**
+**Quando um evento acontece em um elemento, ele primeiro executa os manipuladores nesse elemento, depois em seu elemento pai, e em seguida, sobe pelos outros ancestrais.**
 
-Let's say we have 3 nested elements `FORM > DIV > P` with a handler on each of them:
+Vamos supor que tenhamos 3 elementos aninhados `FORM > DIV > P` com um manipulador em cada um:
 
 ```html run autorun
 <style>
@@ -35,22 +35,22 @@ Let's say we have 3 nested elements `FORM > DIV > P` with a handler on each of t
 </form>
 ```
 
-A click on the inner `<p>` first runs `onclick`:
-1. On that `<p>`.
-2. Then on the outer `<div>`.
-3. Then on the outer `<form>`.
-4. And so on upwards till the `document` object.
+Um clique no `<p>` aciona primeiro o `onclick`:
+1. Neste `<p>`.
+2. Em seguida, na `<div>` externa.
+3. Depois, no `<form>`.
+4. E assim em diante até o objeto `document`.
 
 ![](event-order-bubbling.svg)
 
-So if we click on `<p>`, then we'll see 3 alerts: `p` -> `div` -> `form`.
+Então, se clicarmos no `<p>`, veremos 3 alerts: `p` -> `div` -> `form`.
 
-The process is called "bubbling", because events "bubble" from the inner element up through parents like a bubble in the water.
+O processo se chamado "bubbling", porque o evento "borbulha" do elemento mais interno para os elementos pais, com uma bolha na água.
 
-```warn header="*Almost* all events bubble."
-The key word in this phrase is "almost".
+```warn header="*Quase todos os eventos burbulham."
+A palavra-chave nessa frase é "quase".
 
-For instance, a `focus` event does not bubble. There are other examples too, we'll meet them. But still it's an exception, rather than a rule, most events do bubble.
+Por exemplo, um evento `focus` não borbulha. Existem outros exemplos também, que iremos conhecer. Mas ainda assim é uma exceção, e não a regra. A maioria dos eventos borbulha.
 ```
 
 ## event.target
