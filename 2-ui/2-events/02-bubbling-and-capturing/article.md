@@ -55,27 +55,27 @@ Por exemplo, um evento `focus` não borbulha. Existem outros exemplos também, q
 
 ## event.target
 
-A handler on a parent element can always get the details about where it actually happened.
+Um manipulador em um elemento pai sempre pode obter detalhes sobre onde o evento realmente ocorreu.
 
-**The most deeply nested element that caused the event is called a *target* element, accessible as `event.target`.**
+**O elemento mais interno que causou o evento é chamado de elemento *target*(alvo), acessado como `event.target`.**
 
-Note the differences from `this` (=`event.currentTarget`):
+Note a diferença de `this` (=`event.currentTarget`):
 
-- `event.target` -- is the "target" element that initiated the event, it doesn't change through the bubbling process.
-- `this` -- is the "current" element, the one that has a currently running handler on it.
+- `event.target` - é o elemento "*target*(alvo)" que iniciou o evento, ele não muda durante o processo bubbling.
+- `this` - é o elemento "*current*(atual)",  que contém um manipulador em execução.
 
-For instance, if we have a single handler `form.onclick`, then it can "catch" all clicks inside the form. No matter where the click happened, it bubbles up to `<form>` and runs the handler.
+Por exemplo, se tivermos um único manipulador `form.onclick`, ele poderá capturar todos os cliques dentro do `<form>`. Não importa onde o clique aconteceu, ele borbulha até `<form>` e executa o manipulador.
 
-In `form.onclick` handler:
+No manipulador `form.onclick`:
 
-- `this` (=`event.currentTarget`) is the `<form>` element, because the handler runs on it.
-- `event.target` is the actual element inside the form that was clicked.
+- `this` (=`event.currentTarget`) é o elemento  `<form>`, porque o manipulador foi atribuído a ele.
+- `event.target` é o elemento do form que foi clicado.
 
-Check it out:
+Confira:
 
 [codetabs height=220 src="bubble-target"]
 
-It's possible that `event.target` could equal `this` -- it happens when the click is made directly on the `<form>` element.
+É possível que `event.target` seja igual a `this` - isso acontece quando o clique é feito diretamente no elemento `<form>`.
 
 ## Stopping bubbling
 
