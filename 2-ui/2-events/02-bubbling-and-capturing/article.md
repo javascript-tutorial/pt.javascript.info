@@ -14,7 +14,7 @@ Não é um pouco estranho? Por que o manipulador na `<div>` é acionado se o cli
 
 ## Bubbling
 
-O bubbling é simples
+O *bubbling*(borbulhamento) é simples.
 
 **Quando um evento acontece em um elemento, ele primeiro executa os manipuladores nesse elemento, depois em seu elemento pai, e em seguida, sobe pelos outros ancestrais.**
 
@@ -43,9 +43,9 @@ Um clique no `<p>` aciona primeiro o `onclick`:
 
 ![](event-order-bubbling.svg)
 
-Então, se clicarmos no `<p>`, veremos 3 alerts: `p` -> `div` -> `form`.
+Então, se clicarmos no `<p>`, veremos 3 *alerts*: `p` -> `div` -> `form`.
 
-O processo se chamado "bubbling", porque o evento "borbulha" do elemento mais interno para os elementos pais, com uma bolha na água.
+O processo se chama "bubbling", porque o evento "borbulha" do elemento mais interno para os elementos pais, com uma bolha na água.
 
 ```warn header="*Quase todos os eventos burbulham."
 A palavra-chave nessa frase é "quase".
@@ -61,15 +61,15 @@ Um manipulador em um elemento pai sempre pode obter detalhes sobre onde o evento
 
 Note a diferença de `this` (=`event.currentTarget`):
 
-- `event.target` - é o elemento "*target*(alvo)" que iniciou o evento, ele não muda durante o processo bubbling.
-- `this` - é o elemento "*current*(atual)",  que contém um manipulador em execução.
+- `event.target` - é o elemento "*target*(alvo)" que iniciou o evento, ele não muda durante o processo *bubbling*.
+- `this` - é o elemento "*current*(atual)", que contém um manipulador em execução.
 
 Por exemplo, se tivermos um único manipulador `form.onclick`, ele poderá capturar todos os cliques dentro do `<form>`. Não importa onde o clique aconteceu, ele borbulha até `<form>` e executa o manipulador.
 
 No manipulador `form.onclick`:
 
-- `this` (=`event.currentTarget`) é o elemento  `<form>`, porque o manipulador foi atribuído a ele.
-- `event.target` é o elemento do form que foi clicado.
+- `this` (=`event.currentTarget`) é o elemento `<form>`, porque o manipulador foi atribuído a ele.
+- `event.target` é o elemento dentro do `<form> `que foi clicado.
 
 Confira:
 
@@ -77,42 +77,42 @@ Confira:
 
 É possível que `event.target` seja igual a `this` - isso acontece quando o clique é feito diretamente no elemento `<form>`.
 
-## Stopping bubbling
+## Parando o bubbling
 
-A bubbling event goes from the target element straight up. Normally it goes upwards till `<html>`, and then to `document` object, and some events even reach `window`, calling all handlers on the path.
+Um evento *bubbling* vai do elemento alvo subindo para os elementos pais. Normalmente, ele sobe até `<html>`, em seguida ao objeto `document`, alguns eventos alcançam até mesmo o `window`, executando todos os manipuladores no caminho.
 
-But any handler may decide that the event has been fully processed and stop the bubbling.
+Mas qualquer manipulador pode decidir se o evento foi totalmente processado e parar o *bubbling*.
 
-The method for it is `event.stopPropagation()`.
+O método para isso é `event.stopPropagation()`.
 
-For instance, here `body.onclick` doesn't work if you click on `<button>`:
+Por exemplo, aqui `body.onclick` não funciona se você clicar no `<button>`:
 
 ```html run autorun height=60
 <body onclick="alert(`the bubbling doesn't reach here`)">
-  <button onclick="event.stopPropagation()">Click me</button>
+  <button onclick="event.stopPropagation()">Clique em mim</button>
 </body>
 ```
 
 ```smart header="event.stopImmediatePropagation()"
-If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.
+Se um elemento tem múltiplos manipuladores para um único evento, então mesmo que um deles interrompa o *bubbling*, os outros ainda serão executados.
 
-In other words, `event.stopPropagation()` stops the move upwards, but on the current element all other handlers will run.
+Em outras palavras, `event.stopPropagation()` interrompe o movimento ascendente, mas no elemento atual todos os manipuladores serão executados.
 
-To stop the bubbling and prevent handlers on the current element from running, there's a method `event.stopImmediatePropagation()`. After it no other handlers execute.
+Para parar o *bubbling* e previnir que os manipualadores do elemento atual sejam executados, existe um método `event.stopImmediatePropagation()`. Após isso, nenhum manipulador será executado.
 ```
 
-```warn header="Don't stop bubbling without a need!"
-Bubbling is convenient. Don't stop it without a real need: obvious and architecturally well thought out.
+```warn header="Não interrompa o *bubbling* sem necessidade!"
+*Bubbling* é conveniente. Não o interrompa sem uma razão óbvia e arquiteturalmente planejada.
 
-Sometimes `event.stopPropagation()` creates hidden pitfalls that later may become problems.
+Às vezes, `event.stopPropagation()` cria armadilhas que se tornam problemas futuramente.
 
-For instance:
+Por exemplo:
 
-1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that the outer menu won't trigger.
-2. Later we decide to catch clicks on the whole window, to track users' behavior (where people click). Some analytic systems do that. Usually the code uses `document.addEventListener('click'…)` to catch all clicks.
-3. Our analytic won't work over the area where clicks are stopped by `stopPropagation`. Sadly, we've got a "dead zone".
+1. Criamos um menu aninhado. Cada submenu lida com cliques em seus elementos e chama `stopPropagation`, de forma que o manipulador do menu externo não seja acionado.
+2. Depois decidimos capturar cliques em toda a *window* para observar o comportamento do usuário (onde as pessoas clicam). Algum sistemas analíticos fazem isso. Em geral, os códigos usam `document.addEventListener('click'…)` para capturar todos os cliques.
+3. Nossa análise não funcionará nas áreas onde os cliques são interrompidos por `stopPropagation`. Infelizmente, temos uma "zona morta".
 
-There's usually no real need to prevent the bubbling. A task that seemingly requires that may be solved by other means. One of them is to use custom events, we'll cover them later. Also we can write our data into the `event` object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.
+Geralmente, não existe necessidade de prevenir o *bubbling*. Uma tarefa que aparentemente necessita disso pode ser resolvida por outros meios. Um deles é usar eventos customizados, que veremos em breve. Também podemos escrever nossos dados dentro do objeto `event` em um manipulador e lê-los em outro, para que possamos passar informações sobre o processamento aos manipuladores dos elementos pais.
 ```
 
 
