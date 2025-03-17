@@ -4,7 +4,11 @@
 
 O operador de coalescência nula é escrito usando dois sinais de interrogação `??`.
 
+<<<<<<< HEAD
 Como ele trata `null` e `undefined` da mesma forma, nós iremos usar um termo especial aqui, neste artigo. Diremos que uma expressão está definida quando não é `null` nem `undefined`.
+=======
+As it treats `null` and `undefined` similarly, we'll use a special term here, in this article. For brevity, we'll say that a value is "defined" when it's neither `null` nor `undefined`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 O resultado de `a ?? b` é:
 
@@ -23,14 +27,24 @@ result = a !== null && a !== undefined ? a : b;
 
 Agora, deveria estar completamente claro o que `??` faz. Vamos ver onde ele é útil.
 
+<<<<<<< HEAD
 O caso de uso comum para `??` é obter um valor padrão para uma variável potencialmente indefinida.
 
 Por exemplo, aqui exibimos `Anônimo` se `user` não for definido:
+=======
+The common use case for `??` is to provide a default value.
+
+For example, here we show `user` if its value isn't `null/undefined`, otherwise `Anonymous`:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 let user;
 
+<<<<<<< HEAD
 alert(user ?? "Anônimo"); // Anônimo ("user" não definido)
+=======
+alert(user ?? "Anonymous"); // Anonymous (user is undefined)
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 ```
 
 Aqui está o exemplo com um nome atribuído a `user`:
@@ -38,14 +52,24 @@ Aqui está o exemplo com um nome atribuído a `user`:
 ```js run
 let user = "João";
 
+<<<<<<< HEAD
 alert(user ?? "Anônimo"); // João ("user" está definido)
+=======
+alert(user ?? "Anonymous"); // John (user is not null/undefined)
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 ```
 
 Podemos também usar uma sequência de `??` para selecionar o primeiro valor em uma lista que não seja `null/undefined`.
 
+<<<<<<< HEAD
 Digamos que temos dados de um usuário nas variáveis `nome`, `sobrenome` ou `apelido`. Todos eles podem ser indefinidos, se o usuário optar por não entrar com um valor.
 
 Gostaríamos de exibir o nome do usuário usando uma dessas variáveis, ou exibir "Anônimo" se todas elas forem indefinidas.
+=======
+Let's say we have a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be not defined, if the user decided not to fill in the corresponding values.
+
+We'd like to display the user name using one of these variables, or show "Anonymous" if all of them are `null/undefined`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Para isso usaremos o operador `??`:
 
@@ -77,7 +101,11 @@ alert(firstName || lastName || nickName || "Anônimo"); // Supercoder
 */!*
 ```
 
+<<<<<<< HEAD
 Historicamente, o operador OU `||` foi o primeiro a existir. Ele existe desde a criação do JavaScript, e vem sendo utilizado para este propósito desde então.
+=======
+Historically, the OR `||` operator was there first. It's been there since the beginning of JavaScript, so developers were using it for such purposes for a long time.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Por outro lado, o operador de coalescência nula `??` foi adicionado ao JavaScript recentemente, e a razão para isso foi o descontentamento com `||`.
 
@@ -108,11 +136,19 @@ Na prática, a altura igual a zero é um valor válido que não deve ser substit
 
 ## Precedência
 
+<<<<<<< HEAD
 A precedência do operador `??` é a mesma que a de `||`. Ambos são iguais a '4' na [tabela MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table).
+=======
+The precedence of the `??` operator is the same as `||`. They both equal `3` in the [MDN table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table).
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Isto significa que, tal como `||`, o operador de coalescência nula `??` é avaliado antes de `=` e `?`, mas após a maioria dos outros operadores, como `+` e `*`.
 
+<<<<<<< HEAD
 Então, se quiser selecionar um valor com `??` em uma expressão com outros operadores, considere o uso de parênteses:
+=======
+So we may need to add parentheses in expressions like this:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 let height = null;
@@ -130,8 +166,13 @@ Caso contrário, se omitirmos os parênteses, como `*` tem maior precedência qu
 // sem parênteses
 let area = height ?? 100 * width ?? 50;
 
+<<<<<<< HEAD
 // ...funciona desta forma (provavelmente não como gostaríamos):
 let area = height ?? 100 * width ?? 50;
+=======
+// ...works this way (not what we want):
+let area = height ?? (100 * width) ?? 50;
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 ```
 
 ### Usando ?? com && ou ||

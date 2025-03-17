@@ -1,13 +1,23 @@
 
 # Polyfills e transpilers
 
+<<<<<<< HEAD
 A linguagem JavaScript evolui constantemente. Novas propostas para a linguagem aparecem regularmente, elas são analisadas e, se consideradas válidas, são anexadas à lista em <https://tc39.github.io/ecma262/> e depois progridem para a [especificação (en)](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/).
+=======
+The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/).
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Grupos por detrás dos interpretadores de JavaScript têm as suas próprias ideias sobre o que implementar primeiro. Eles podem decidir implementar propostas que estão em esboço e adiar coisas que já estão na spec, por serem menos interessantes ou apenas mais difíceis de fazer.
 
+<<<<<<< HEAD
 Assim, é muito comum que um interpretador implemente apenas parte de um padrão.
 
 Uma boa página para se ver o estágio atual de suporte de funcionalidades da linguagem é <https://compat-table.github.io/compat-table/es6/> (é extensa, nós ainda temos muito que estudar).
+=======
+So it's quite common for an engine to implement only part of the standard.
+
+A good page to see the current state of support for language features is <https://compat-table.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Como programadores, nós gostaríamos de usar as funcionalidades mais recentes. Quantas mais forem as coisas boas - melhor!
 
@@ -40,9 +50,15 @@ Agora, o código reescrito está adequado a interpretadores de JavaScript antigo
 
 Geralmente, um desenvolvedor executa o transpiler na sua própria máquina, e depois coloca o código transpilado no servidor.
 
+<<<<<<< HEAD
 Falando em nomes, o [Babel](https://babeljs.io) é um dos mais prominentes transpilers por aí.
 
 Sistemas para a construção de projetos modernos, tais como o [webpack](https://webpack.js.org/), fornecem meios para automaticamente correr o transpiler em cada alteração do código, e assim é muito fácil o integrar no processo de desenvolvimento.
+=======
+Speaking of names, [Babel](https://babeljs.io) is one of the most prominent transpilers out there.
+
+Modern project build systems, such as [webpack](https://webpack.js.org/), provide a means to run a transpiler automatically on every code change, so it's very easy to integrate into the development process.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ## Polyfills
 
@@ -69,6 +85,7 @@ if (!Math.trunc) { // se a função não existir
 }
 ```
 
+<<<<<<< HEAD
 O JavaScript é uma linguagem altamente dinâmica. Scripts podem adicionar/modificar quaisquer funções, incluindo até incorporadas.
 
 Duas interessantes bibliotecas de polyfills são:
@@ -76,15 +93,32 @@ Duas interessantes bibliotecas de polyfills são:
 - [polyfill.io](http://polyfill.io) um serviço que fornece um script com polyfills, dependendo das funcionalidades e do navegador do utilizador.
 
 ## Resumo
+=======
+JavaScript is a highly dynamic language. Scripts may add/modify any function, even built-in ones.
+
+One interesting polyfill library is [core-js](https://github.com/zloirock/core-js), which supports a wide range of features and allows you to include only the ones you need.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Neste capítulo, gostaríamos de o motivar a estudar funcionalidades modernas ou até em esboço da linguagem, mesmo que elas ainda não tenham um bom suporte pelos interpretadores de JavaScript.
 
 Apenas não se esqueça de usar um transpiler (se empregar sintaxe ou operadores modernos) e polyfills (para adicionar funções que possam estar ausentes). E eles irão garantir que o código funcione.
 
+<<<<<<< HEAD
 Por exemplo, mais adiante quando estiver familiarizado com o JavaScript, você pode configurar um sistema para a construção de código com base no [webpack](https://webpack.js.org/) e com o plugin [babel-loader](https://github.com/babel/babel-loader).
 
 Bons recursos que mostram o estágio atual do suporte para várias funcionalidades:
 - <https://compat-table.github.io/compat-table/es6/> - para puro JavaScript.
 - <https://caniuse.com/> - para funções com relação ao navegador.
+=======
+Just don't forget to use a transpiler (if using modern syntax or operators) and polyfills (to add functions that may be missing). They'll ensure that the code works.
+
+For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](https://webpack.js.org/) with the [babel-loader](https://github.com/babel/babel-loader) plugin.
+
+Good resources that show the current state of support for various features:
+- <https://compat-table.github.io/compat-table/es6/> - for pure JavaScript.
+- <https://caniuse.com/> - for browser-related functions.
+
+P.S. Google Chrome is usually the most up-to-date with language features, try it if a tutorial demo fails. Most tutorial demos work with any modern browser though.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 P.S. O Google Chrome, geralmente é o mais atualizado relativamente a funcionalidades da linguagem, experimente-o se um exemplo no tutorial falhar. Contudo, a maioria dos exemplos no tutorial funcionam com qualquer navegador moderno.

@@ -44,7 +44,11 @@ O objeto `user` resultante, pode ser imaginado como um fichário com dois fichei
 
 ![user object](object-user.svg)
 
+<<<<<<< HEAD
 Podemos adicionar, remover ou ler ficheiros dele em qualquer momento.
+=======
+We can add, remove and read files from it at any time.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Valores de propriedades podem ser acedidos usando a notação por ponto (*dot notation*):
 
@@ -62,7 +66,11 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
+<<<<<<< HEAD
 Para remover uma propriedade, podemos usar o operador `delete`:
+=======
+To remove a property, we can use the `delete` operator:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js
 delete user.age;
@@ -201,13 +209,21 @@ let bag = {
 };
 ```
 
+<<<<<<< HEAD
 Parênteses retos, são mais poderosos que a notação por ponto. Eles permitem quaisquer nomes de propriedades e variáveis. Mas, eles também dão mais trabalho para escrever.
+=======
+Square brackets are much more powerful than dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Assim, na maior parte as vezes, quando os nomes de propriedades são conhecidos e simples, o ponto é utilizado. E, se precisarmos de algo mais complexo, mudamos para os parênteses retos.
 
 ## Abreviação do valor da propriedade
 
+<<<<<<< HEAD
 Em código real, muitas vezes usamos nomes de propriedades e nomes de variáveis iguais.
+=======
+In real code, we often use existing variables as values for property names.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Por exemplo:
 
@@ -252,7 +268,11 @@ let user = {
 
 ## Limitações dos nomes de propriedades
 
+<<<<<<< HEAD
 Como já sabemos, uma variável não pode ter um nome igual a uma palavra reservada da linguagem, como "for", "let", "return" etc.
+=======
+As we already know, a variable cannot have a name equal to one of the language-reserved words like "for", "let", "return" etc.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Mas, para propriedades de objetos não há tal restrição.
 
@@ -325,7 +345,11 @@ alert( "blabla" in user ); // false, 'user.blabla' não existe
 
 Por favor, note que no lado esquerdo de `in` deve existir um *nome de propriedade*. Geralmente, é uma *string* entre aspas.
 
+<<<<<<< HEAD
 Se omitirmos as aspas, isso terá o significado de uma variável que contém o nome a ser testado. Por exemplo:
+=======
+If we omit quotes, that means a variable should contain the actual name to be tested. For instance:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 let user = { age: 30 };
@@ -355,7 +379,11 @@ No código acima, a propriedade `obj.test` tecnicamente existe. Assim, o operado
 Situações como esta muito raramente ocorrem, porque `undefined` não deveria ser explicitamente atribuído. Em geral, empregamos `null` para valores "desconhecidos" ou "vazios". Assim, o operador `in` é um convidado exótico na codificação.
 
 
+<<<<<<< HEAD
 ## O laço "for..in"
+=======
+## The "for..in" loop [#forin]
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Para navegar por todas as chaves (*keys*) de um objeto, existe uma forma especial de laço (*loop*): `for..in`. Esta, é uma coisa completamente diferente da construção `for(;;)` que estudámos antes.
 
@@ -412,7 +440,11 @@ for (let code in codes) {
 */!*
 ```
 
+<<<<<<< HEAD
 O objeto pode ser usado para sugerir uma lista de opções para o utilizador. Se, estivermos a construir um *site* maioritariamente para uma audiência Alemã, então provavelmente queremos `49` como o primeiro.
+=======
+The object may be used to suggest a list of options to the user. If we're making a site mainly for a German audience then we probably want `49` to be the first.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Mas, ao correr o código, temos uma imagem totalmente diferente:
 
@@ -424,6 +456,7 @@ Os indicativos telefónicos, são ordenados por ordem ascendente, porque são in
 ````smart header="Propriedades inteiras? O que é isso?"
 O termo "propriedade inteira" aqui, significa que uma *string* pode ser convertida para inteiro ('integer'), e convertida de volta sem qualquer alteração.
 
+<<<<<<< HEAD
 Assim, "49" é um nome de propriedade inteiro porque, ao ser transformado num número inteiro e reconvertido, continua o mesmo. Mas, "+49" e "1.2" não são:
 
 ```js run
@@ -431,6 +464,16 @@ Assim, "49" é um nome de propriedade inteiro porque, ao ser transformado num n�
 alert( String(Math.trunc(Number("49"))) ); // "49", inalterado ⇒ propriedade inteira
 alert( String(Math.trunc(Number("+49"))) ); // "49", não o mesmo que "+49" ⇒ não é uma propriedade inteira
 alert( String(Math.trunc(Number("1.2"))) ); // "1", não o mesmo que "1.2" ⇒ não é uma propriedade inteira
+=======
+So, `"49"` is an integer property name, because when it's transformed to an integer number and back, it's still the same. But `"+49"` and `"1.2"` are not:
+
+```js run
+// Number(...) explicitly converts to a number
+// Math.trunc is a built-in function that removes the decimal part
+alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
+alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
+alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 ```
 ````
 
@@ -479,9 +522,15 @@ Eles armazenam propriedades (pares chave-valor), onde:
 - As chaves das propriedades devem ser *strings* ou símbolos (geralmente *strings*).
 - Os valores podem ser de qualquer tipo.
 
+<<<<<<< HEAD
 Para aceder a uma propriedade, podemos utilizar:
 - A notação por ponto: `obj.property`.
 - A notação por parênteses retos `obj["property"]`. Os parênteses retos permitem receber a chave a partir de uma variável, como por exemplo `obj[varWithKey]`.
+=======
+To access a property, we can use:
+- The dot notation: `obj.property`.
+- Square brackets notation `obj["property"]`. Square brackets allow taking the key from a variable, like `obj[varWithKey]`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Operadores adicionais:
 - Para remover uma propriedade: `delete obj.prop`.
