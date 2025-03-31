@@ -50,8 +50,13 @@ describe("pow", function() {
 
 Uma *spec* tem três principais blocos construtores, como pode ver acima:
 
+<<<<<<< HEAD
 `describe("título", function() { ... })`
 : Que funcionalidade estamos a descrever. No nosso caso, estamos a descrever a função `pow`. São usados para agrupar "executores" ("*workers*") -- os blocos `it`.
+=======
+`describe("title", function() { ... })`
+: What functionality we're describing? In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 `it("descrição do caso exemplo", function() { ... })`
 : No título de `it` nós, *de uma forma claramente legível*, descrevemos o caso exemplo em questão, e no segundo argumento está uma função que o testa.
@@ -59,8 +64,46 @@ Uma *spec* tem três principais blocos construtores, como pode ver acima:
 `assert.equal(valor1, valor2)`
 : O código dentro do bloco `it`, se a implementação estiver correta, não deverá mostrar erros.
 
+<<<<<<< HEAD
 ```text
 Funções `assert.*` são usadas para verificar se `pow` funciona como esperado. Aqui mesmo, estamos a usar uma delas -- `assert.equal`, que compara argumentos e dá como resultado um erro se eles não forem iguais. Aqui, ela verifica se o resultado de `pow(2, 3)` é `8`. Existem outros tipos de comparações e verificações, que adicionaremos mais adiante.
+=======
+    Functions `assert.*` are used to check whether `pow` works as expected. Right here we're using one of them -- `assert.equal`, it compares arguments and yields an error if they are not equal. Here it checks that the result of `pow(2, 3)` equals `8`. There are other types of comparisons and checks, that we'll add later.
+
+The specification can be executed, and it will run the test specified in `it` block. We'll see that later.
+
+## The development flow
+
+The flow of development usually looks like this:
+
+1. An initial spec is written, with tests for the most basic functionality.
+2. An initial implementation is created.
+3. To check whether it works, we run the testing framework [Mocha](https://mochajs.org/) (more details soon) that runs the spec. While the functionality is not complete, errors are displayed. We make corrections until everything works.
+4. Now we have a working initial implementation with tests.
+5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
+6. Go to 3, update the implementation till tests give no errors.
+7. Repeat steps 3-6 till the functionality is ready.
+
+So, the development is *iterative*. We write the spec, implement it, make sure tests pass, then write more tests, make sure they work etc. At the end we have both a working implementation and tests for it.
+
+Let's see this development flow in our practical case.
+
+The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use a few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
+
+## The spec in action
+
+Here in the tutorial we'll be using the following JavaScript libraries for tests:
+
+- [Mocha](https://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
+- [Chai](https://www.chaijs.com/) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
+- [Sinon](https://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
+
+These libraries are suitable for both in-browser and server-side testing. Here we'll consider the browser variant.
+
+The full HTML page with these frameworks and `pow` spec:
+
+```html src="index.html"
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 ```
 
 A especificação pode ser executada, e irá correr o teste especificado no bloco `it`. O que veremos mais adiante.
@@ -342,6 +385,7 @@ Os testes agora adicionados falham, porque a nossa implementação não possui s
 
 ```smart header="Outras asserções"
 
+<<<<<<< HEAD
 Por favor, observe a asserção `assert.isNaN`: ela verifica por `NaN`.
 
 Existem ainda outras asserções em [Chai](http://chaijs.com), como por exemplo:
@@ -352,6 +396,16 @@ Existem ainda outras asserções em [Chai](http://chaijs.com), como por exemplo:
 - `assert.isTrue(valor)` -- verifica se `valor === true`
 - `assert.isFalse(valor)` -- verifica se `valor === false`
 - ...a lista completa está em [docs](http://chaijs.com/api/assert/)
+=======
+There are other assertions in [Chai](https://www.chaijs.com/) as well, for instance:
+
+- `assert.equal(value1, value2)` -- checks the equality  `value1 == value2`.
+- `assert.strictEqual(value1, value2)` -- checks the strict equality `value1 === value2`.
+- `assert.notEqual`, `assert.notStrictEqual` -- inverse checks to the ones above.
+- `assert.isTrue(value)` -- checks that `value === true`
+- `assert.isFalse(value)` -- checks that `value === false`
+- ...the full list is in the [docs](https://www.chaijs.com/api/assert/)
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 ```
 
 Assim, nós deveríamos adicionar algumas linhas a `pow`:

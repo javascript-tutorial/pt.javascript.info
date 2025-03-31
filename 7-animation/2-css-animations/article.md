@@ -80,7 +80,11 @@ Note que nem todas as propriedades podem ser animadas, mas [a maioria das propri
 
 ## transition-duration
 
+<<<<<<< HEAD
 Em `transition-duration` especificamos quanto tempo a animação deve durar. Ele deve estar em [formato de tempo CSS](http://www.w3.org/TR/css3-values/#time): em segundos `s` ou milissegundos `ms`.
+=======
+In `transition-duration` we can specify how long the animation should take. The time should be in [CSS time format](https://www.w3.org/TR/css3-values/#time): in seconds `s` or milliseconds `ms`.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 ## transition-delay
 
@@ -210,7 +214,6 @@ Outros nomes são usados como abreviações para as seguintes `cubic-bezier`:
 
 Então, podemos usar `ease-out` para desacelerar nosso trem:
 
-
 ```css
 .train {
   left: 0;
@@ -225,7 +228,12 @@ Mas ele parece um pouco diferente.
 
 Os pontos de controle da curva podem ter qualquer valor para a coordenada `y`: até mesmo negativo ou enorme. Então, a curva Bezier também pularia muito baixo ou muito alto, fazendo com que a animação vá além de seu alcance normal.
 
+<<<<<<< HEAD
 No exemplo abaixo, o código da animação é:
+=======
+In the example below the animation code is:
+
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 ```css
 .train {
   left: 100px;
@@ -254,7 +262,19 @@ Como sabemos, `y` mede "o estado do processo da animação". O valor `y = 0` cor
 
 Essa é uma variação "leve". Se definirmos valores de `y` como `-99` e `99` então, o trem pularia ainda mais fora de seu alcance.
 
+<<<<<<< HEAD
 Mas, como criar uma curva Bezier para uma tarefa específica? Existem várias ferramentas. Por exemplo, podemos fazer isso em <http://cubic-bezier.com/>.
+=======
+But how do we make a Bezier curve for a specific task? There are many tools.
+
+- For instance, we can do it on the site <https://cubic-bezier.com>.
+- Browser developer tools also have special support for Bezier curves in CSS:
+    1. Open the developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
+    2. Select the `Elements` tab, then pay attention to the `Styles` sub-panel at the right side.
+    3. CSS properties with a word `cubic-bezier` will have an icon before this word.
+    4. Click this icon to edit the curve.
+
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 ### Steps (Passos)
 
@@ -266,7 +286,23 @@ Aqui está uma lista de dígitos, sem nenhuma animação, apenas a fonte:
 
 [codetabs src="step-list"]
 
+<<<<<<< HEAD
 Nós iremos fazer com que os dígitos apareçam de uma forma discreta, tornando invisível a parte da lista fora da "janela" vermelha e deslocando a lista para a esquerda a cada passo.
+=======
+In the HTML, a stripe of digits is enclosed into a fixed-length `<div id="digits">`:
+
+```html
+<div id="digit">
+  <div id="stripe">0123456789</div>
+</div>
+```
+
+The `#digit` div has a fixed width and a border, so it looks like a red window.
+
+We'll make a timer: the digits will appear one by one, in a discrete way.
+
+To achieve that, we'll hide the `#stripe` outside of `#digit` using `overflow: hidden`, and then shift the `#stripe` to the left step-by-step.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 Haverá 9 passos, um para cada dígito:
 
@@ -277,27 +313,48 @@ Haverá 9 passos, um para cada dígito:
 }
 ```
 
+<<<<<<< HEAD
 Em ação:
 
 [codetabs src="step"]
 
 O primeiro argumento de `steps(9, start)` é o número de passos. A transformação será dividida em 9 partes (10% cada). O intervalo de tempo é dividido automaticamente em 9 partes também, então `transition: 9s` nos dá 9 segundos para a animação inteira -- 1 segundo por dígito.
+=======
+The first argument of `steps(9, start)` is the number of steps. The transform will be split into 9 parts (10% each). The time interval is automatically divided into 9 parts as well, so `transition: 9s` gives us 9 seconds for the whole animation – 1 second per digit.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 O segundo argumento é umas das duas palavras: `start`("início") ou `end`("fim").
 
 O `start` significa que, no início da animação, precisamos executar o primeiro passo imediatamente.
 
+<<<<<<< HEAD
 Nós podemos observar isso na animação: quando clicamos no dígito, ele muda para `1` (o primeiro passo) imediatamente, e depois muda para o início do segundo passo.
+=======
+In action:
+
+[codetabs src="step"]
+
+A click on the digit changes it to `1` (the first step) immediately, and then changes in the beginning of the next second.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 O processo evolui assim:
 
 - `0s` -- `-10%` (primeira mudança no início do primeiro segundo, imediatamente)
 - `1s` -- `-20%`
 - ...
+<<<<<<< HEAD
 - `8s` -- `-80%`
 - (o último segundo mostra o valor final).
 
 O valor alternativo `end` significaria que a mudança devesse ser aplicada não no início, mas ao final de cada segundo.
+=======
+- `8s` -- `-90%`
+- (the last second shows the final value).
+
+Here, the first change was immediate because of `start` in the `steps`.
+
+The alternative value `end` would mean that the change should be applied not in the beginning, but at the end of each second.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 Então, o processo para `steps(9, end)` evoluiria assim:
 
@@ -307,20 +364,36 @@ Então, o processo para `steps(9, end)` evoluiria assim:
 - ...
 - `9s` -- `-90%`
 
+<<<<<<< HEAD
 Aqui está o `steps(9, end)` em ação (note a pausa antes da primeira mudança de dígito):
 
 [codetabs src="step-end"]
 
 Existem também valores abreviados:
+=======
+Here's `steps(9, end)` in action (note the pause before the first digit change):
+
+[codetabs src="step-end"]
+
+There are also some pre-defined shorthands for `steps(...)`:
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 - `step-start` -- é o mesmo que `steps(1, start)`. Isto é, a animação inicia-se imediatamente e leva 1 passo. Então, ela começa e acaba imediatamente, como se não houvesse animação.
 - `step-end` -- o mesmo que `steps(1, end)`: executa a animação em um único passo ao final de `transition-duration`.
 
+<<<<<<< HEAD
 Esses valores são usados raramente, porque não são realmente animações, mas sim, uma mudança de um único passo.
 
 ## Evento *transitionend* (transitado)
 
 Quando a animação CSS é finalizada, o evento `transitionend` é disparado.
+=======
+These values are rarely used, as they represent not a real animation, but rather a single-step change. We mention them here for completeness.
+
+## Event: "transitionend"
+
+When the CSS animation finishes, the `transitionend` event triggers.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 É amplamente usado para executar uma ação assim que animação é finalizada. Também podemos utilizadas são animáveis-lo para encadear animações.
 
@@ -441,7 +514,11 @@ A propriedade `opacity` também nunca desencadeia Layout (e também salta Paint 
 
 Formando um par com `transform` e `opacity` geralmente pode resolver muitas das nossas necessidades, provendo animações fluidas e com bom aspeto.
 
+<<<<<<< HEAD
 Por exemplo, clicando aqui no elemento `#boat` é adicionada a classe com `transform: translateX(300)` e `opacity: 0`, fazendo-o mover `300px` para a direita e desaparecer:
+=======
+For example, here clicking on the `#boat` element adds the class with `transform: translateX(300px)` and `opacity: 0`, thus making it move `300px` to the right and disappear:
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 ```html run height=260 autorun no-beautify
 <img src="https://js.cx/clipart/boat.png" id="boat">

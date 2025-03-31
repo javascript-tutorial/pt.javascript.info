@@ -72,7 +72,11 @@ promise.then(function(result) {
 });
 ```
 
+<<<<<<< HEAD
 O que fizemos aqui é apenas utilizar uma série de tratadores em uma promessa. Eles não passam o resultado uns para os outros; pelo contrário, eles o processam de maneira independente.
+=======
+What we did here is just adding several handlers to one promise. They don't pass the result to each other; instead they process it independently.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 Aqui está uma imagem (compare-a com a cadeia acima):
 
@@ -224,7 +228,11 @@ Essa funcionalidade nos permite integrar objetos customizáveis com cadeias de p
 
 ## Maior exemplo: fetch
 
+<<<<<<< HEAD
 Em programação frontend, promessas são com frequência utilizadas em requisições de rede. Então vamos ver um exemplo estendido disso.
+=======
+In frontend programming, promises are often used for network requests. So let's see an extended example of that.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 Vamos usar o método [fetch](info:fetch) para carregar de um servidor remoto informações sobre o usuário. Ele possui vários parâmetros opcionais abordados em [separate chapters](info:fetch), mas a sintaxe básica é bem simples:
 
