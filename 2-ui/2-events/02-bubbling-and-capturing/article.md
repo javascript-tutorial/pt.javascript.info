@@ -177,57 +177,57 @@ Vejamos a captura e o borbulhamento em ação:
 </script>
 ```
 
-The code sets click handlers on *every* element in the document to see which ones are working.
+O código define manipuladores de clique em todos elementos do documento para ver quais estão funcionando
 
-If you click on `<p>`, then the sequence is:
+Se você clicar no `<p>`, a sequência é:
 
-1. `HTML` -> `BODY` -> `FORM` -> `DIV -> P` (capturing phase, the first listener):
-2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
+1. `HTML` -> `BODY` -> `FORM` -> `DIV -> P` (fase de captura, o primeiro manipulador):
+2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (fase de borbulhamento, o segundo manipulador).
 
-Please note, the `P` shows up twice, because we've set two listeners: capturing and bubbling. The target triggers at the end of the first and at the beginning of the second phase.
+Note que `P` aparece duas vezes, pois definimos dois manipuladores: um para captura e outro para borbulhamento. O alvo é acionado no final da primeira fase e no início da segunda.
 
-There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
+Existe a propriedade `event.eventPhase` que nos diz o número da fase em que o evento foi capturado. Raramente é usada, pois geralmente sabemos a fase no manipulador.
 
-```smart header="To remove the handler, `removeEventListener` needs the same phase"
-If we `addEventListener(..., true)`, then we should mention the same phase in `removeEventListener(..., true)` to correctly remove the handler.
+```smart header="Para remover o manipulador, `removeEventListener` deve especificar a mesma fase"
+Se usarmos `addEventListener(..., true)`, devemos especificar a mesma fase em `removeEventListener(..., true)` para remover corretamente o manipulador.
 ```
 
-````smart header="Listeners on the same element and same phase run in their set order"
-If we have multiple event handlers on the same phase, assigned to the same element with `addEventListener`, they run in the same order as they are created:
+````smart header="Manipuladores no mesmo elemento e na mesma fase são executados na ordem de atribuição"
+Se tivermos múltiplos manipuladores de evento na mesma fase, atribuídos ao mesmo elemento com  `addEventListener`, eles executarão na ordem em que foram criados:
 
 ```js
-elem.addEventListener("click", e => alert(1)); // guaranteed to trigger first
+elem.addEventListener("click", e => alert(1)); // dispara primeiro
 elem.addEventListener("click", e => alert(2));
 ```
 ````
 
-```smart header="The `event.stopPropagation()` during the capturing also prevents the bubbling"
-The `event.stopPropagation()` method and its sibling `event.stopImmediatePropagation()` can also be called on the capturing phase. Then not only the futher capturing is stopped, but the bubbling as well.
+```smart header="O `event.stopPropagation()` durante a captura também impede o borbulhamento"
+O `event.stopPropagation()` método e seu irmão `event.stopImmediatePropagation()` também podem ser chamados na fase de captura. Portanto, não só a próxima fase de captura é interrompida como também a fase de borbullhamento.
 
-In other words, normally the event goes first down ("capturing") and then up ("bubbling"). But if `event.stopPropagation()` is called during the capturing phase, then the event travel stops, no bubbling will occur.
+Em outras palavras, normalmente o evento "desce" ("capturing") e depois sobe ("bubbling"). Mas se `event.stopPropagation()` é chamado na fase de captura, a viagem para, nenhum borbulhamento ocorerá.
 ```
 
 
-## Summary
+## Resumo
 
-When an event happens -- the most nested element where it happens gets labeled as the "target element" (`event.target`).
+Quando um evento acontece -- o elemento mais aninhado onde ocorre é etiquetado como o "elemento alvo" (`event.target`).
 
-- Then the event moves down from the document root to `event.target`, calling handlers assigned with `addEventListener(..., true)` on the way (`true` is a shorthand for `{capture: true}`).
-- Then handlers are called on the target element itself.
-- Then the event bubbles up from `event.target` to the root, calling handlers assigned using `on<event>`, HTML attributes and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
+- Em seguida, o evento se move da raiz do documento para o `event.target`, chamando manipuladores atribuídos com `addEventListener(..., true)` no caminho (`true` is a shorthand for `{capture: true}`).
+- Os manipuladores são chamados no próprio elemento alvo.
+- Por fim, o evento borbulha do `event.target` até a raiz do documento, chamando manipuladores atribuídps usando `on<event>`, atributos HTML e `addEventListener` without the 3rd argument osem o terceiro argumento ou com o terceiro elemento como `false/{capture:false}`.
 
-Each handler can access `event` object properties:
+Todo manipulador pode acessar as propriedades do objeto `event`:
 
-- `event.target` -- the deepest element that originated the event.
-- `event.currentTarget` (=`this`) -- the current element that handles the event (the one that has the handler on it)
-- `event.eventPhase` -- the current phase (capturing=1, target=2, bubbling=3).
+- `event.target` -- o elemento mais profundo que originou o evento.
+- `event.currentTarget` (=`this`) -- o elemento que atualmente manipula o evento (o elemento ao qual o manipulador foi atribuído)
+- `event.eventPhase` -- a fase atual (captura=1, alvo=2, borbulhamento=3).
 
-Any event handler can stop the event by calling `event.stopPropagation()`, but that's not recommended, because we can't really be sure we won't need it above, maybe for completely different things.
+Qualquer manipulador de evento pode parar o evento chhamando `event.stopPropagation()`, mas isso não é recomendado, pois não teremos certeza se não precisaremos dele posteriormente, talvez, para coisas completamente diferentes.
 
-The capturing phase is used very rarely, usually we handle events on bubbling. And there's a logical explanation for that.
+A fase de captura é raramente usada, normalmente lidamos com eventos na fase de borbulhamento. Existe uma explicação lógica para isso.
 
-In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then higher-level authorities if needed.
+No mundo real, quando um acidente acontece, autoridades locais reagem primeiro. Eles conhecem melhor a área onde aconteceu. Em seguida, as autoridades de nível superior caso necessário.
 
-The same for event handlers. The code that set the handler on a particular element knows maximum details about the element and what it does. A handler on a particular `<td>` may be suited for that exactly `<td>`, it knows everything about it, so it should get the chance first. Then its immediate parent also knows about the context, but a little bit less, and so on till the very top element that handles general concepts and runs the last one.
+É o mesmo com manipuladores de eventos. O código que define o manipulador em um elemento específico sabe o máximo de detalhes sobre o elemento e o que ele faz. Um manipulador em um `<td>` particular pode ser adequado exatamente para esse `<td>`, o manipulador conhece tudo sobre o elemento, portanto deve ter a oportunidade primeiro. O elemento pai também sabe o contexto, um pouco menos, é dessa forma em diante até o elemento no topo, que lida com conceitos gerais e executa o último.
 
-Bubbling and capturing lay the foundation for "event delegation" -- an extremely powerful event handling pattern that we study in the next chapter.
+Borbulhamento e captura são as bases para o "event delegation" -- um manipulador de eventos extremamente poderoso que estudaremos no próximo capítulo.
