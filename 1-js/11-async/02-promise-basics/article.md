@@ -46,7 +46,7 @@ Later we'll see how "fans" can subscribe to these changes.
 
 Here's an example of a promise constructor and a simple executor function with  "producing code" that takes time (via `setTimeout`):
 
-```js run
+```js
 let promise = new Promise(function(resolve, reject) {
   // the function is executed automatically when the promise is constructed
 
@@ -222,7 +222,11 @@ The idea of `finally` is to set up a handler for performing cleanup/finalizing a
 
 E.g. stopping loading indicators, closing no longer needed connections, etc.
 
+<<<<<<< HEAD
 Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
+=======
+Think of it as a party finisher. Irresepective of whether a party was good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 The code may look like this:
 

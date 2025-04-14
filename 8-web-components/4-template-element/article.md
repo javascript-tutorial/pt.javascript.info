@@ -1,7 +1,11 @@
 
 # Elemento `template`
 
+<<<<<<< HEAD
 O elemento nativo `<template>` atua como um armazenamento para modelos de marcação HTML. O navegador ignora seu conteúdo, apenas verifica a validade da sintaxe, mas podemos acessá-lo e usá-lo em JavaScript para criar outros elementos.
+=======
+A built-in `<template>` element serves as a storage for HTML markup templates. The browser ignores its contents, only checks for syntax validity, but we can access and use it in JavaScript, to create other elements.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Em teoria, poderíamos criar qualquer elemento invisível em algum lugar do HTML para fins de armazenamento de marcação HTML. O que há de especial no `<template>`?
 

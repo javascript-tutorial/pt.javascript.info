@@ -48,7 +48,11 @@ Como pode ver, `(a, b) => a + b` significa uma função que aceita dois argument
     alert( double(3) ); // 6
     ```
 
+<<<<<<< HEAD
 - Se não houver argumentos, os parênteses irão estar vazios (mas devem estar presentes):
+=======
+- If there are no arguments, parentheses are empty, but they must be present:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
     ```js run
     let sayHi = () => alert("Olá!");
@@ -64,8 +68,13 @@ Por exemplo, para criar dinamicamente uma função:
 let age = prompt("Que idade tem?", 18);
 
 let welcome = (age < 18) ?
+<<<<<<< HEAD
   () => alert('Olá') :
   () => alert("Saudações!");
+=======
+  () => alert('Hello!') :
+  () => alert("Greetings!");
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 welcome();
 ```
@@ -76,9 +85,15 @@ Elas são muito convenientes para ações simples numa única-linha, quando esta
 
 ## Funções seta de múltiplas linhas
 
+<<<<<<< HEAD
 Os exemplos acima tomaram os argumentos à esquerda de `=>` e avaliaram a expressão à direita com eles.
 
 Por vezes, precisamos de algo um pouco mais complexo, como de múltiplas expressões ou instruções. Isso também é possível, mas devemos colocar elas dentro de chavetas. Depois, usamos um `return` normal com elas.
+=======
+The arrow functions that we've seen so far were very simple. They took arguments from the left of `=>`, evaluated and returned the right-side expression with them.
+
+Sometimes we need a more complex function, with multiple expressions and statements. In that case, we can enclose them in curly braces. The major difference is that curly braces require a `return` within them to return a value (just like a regular function does).
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Desta forma:
 
@@ -105,7 +120,14 @@ Por ora, podemos já usar funções seta para ações numa única-linha e *callb
 
 ## Resumo
 
+<<<<<<< HEAD
 Funções seta são práticas para ações numa única-linha. Elas vêm em dois sabores:
 
 1. Sem chavetas: `(...args) => expression` -- o lado direito é uma expressão: a função a avalia e retorna o resultado.
 2. Com chavetas: `(...args) => { body }` -- chavetas nos permitem escrever múltiplas instruções dentro da função, mas precisamos de um explícito `return` para retornar alguma coisa.
+=======
+Arrow functions are handy for simple actions, especially for one-liners. They come in two flavors:
+
+1. Without curly braces: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result. Parentheses can be omitted, if there's only a single argument, e.g. `n => n*2`.
+2. With curly braces: `(...args) => { body }` -- brackets allow us to write multiple statements inside the function, but we need an explicit `return` to return something.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
