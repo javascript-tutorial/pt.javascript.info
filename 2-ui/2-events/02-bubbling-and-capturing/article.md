@@ -47,7 +47,7 @@ Então, se clicarmos no `<p>`, veremos 3 *alerts*: `p` -> `div` -> `form`.
 
 O processo se chama "bubbling", porque o evento "borbulha" do elemento mais interno para os elementos pais, com uma bolha na água.
 
-```warn header="*Quase todos os eventos burbulham."
+```warn header="*Quase todos os eventos borbulham."
 A palavra-chave nessa frase é "quase".
 
 Por exemplo, um evento `focus` não borbulha. Existem outros exemplos também, que iremos conhecer. Mas ainda assim é uma exceção, e não a regra. A maioria dos eventos borbulha.
@@ -62,7 +62,7 @@ Um manipulador em um elemento pai sempre pode obter detalhes sobre onde o evento
 Note a diferença de `this` (=`event.currentTarget`):
 
 - `event.target` - é o elemento "*target*(alvo)" que iniciou o evento, ele não muda durante o processo *bubbling*.
-- `this` - é o elemento "*current*(atual)", que contém um manipulador em execução.
+- `this` - é o elemento que esta atualmente executando o manipulador.
 
 Por exemplo, se tivermos um único manipulador `form.onclick`, ele poderá capturar todos os cliques dentro do `<form>`. Não importa onde o clique aconteceu, ele borbulha até `<form>` e executa o manipulador.
 
@@ -94,14 +94,14 @@ Por exemplo, aqui `body.onclick` não funciona se você clicar no `<button>`:
 ```
 
 ```smart header="event.stopImmediatePropagation()"
-Se um elemento tem múltiplos manipuladores para um único evento, então mesmo que um deles interrompa o *bubbling*, os outros ainda serão executados.
+Se um elemento tem múltiplos manipuladores para um único evento, mesmo que um deles interrompa o *bubbling*, os outros ainda serão executados.
 
 Em outras palavras, `event.stopPropagation()` interrompe o movimento ascendente, mas no elemento atual todos os manipuladores serão executados.
 
-Para parar o *bubbling* e previnir que os manipualadores do elemento atual sejam executados, existe um método `event.stopImmediatePropagation()`. Após isso, nenhum manipulador será executado.
+Para parar o *bubbling* e prevenir que os manipuladores do elemento atual sejam executados, existe um método `event.stopImmediatePropagation()`. Após isso, nenhum manipulador será executado.
 ```
 
-```warn header="Não interrompa o *bubbling* sem necessidade!"
+```warn header="Não interrompa o *bubbling* desnecessariamente!"
 *Bubbling* é conveniente. Não o interrompa sem uma razão óbvia e arquiteturalmente planejada.
 
 Às vezes, `event.stopPropagation()` cria armadilhas que se tornam problemas futuramente.
@@ -112,31 +112,31 @@ Por exemplo:
 2. Depois decidimos capturar cliques em toda a *window* para observar o comportamento do usuário (onde as pessoas clicam). Algum sistemas analíticos fazem isso. Em geral, os códigos usam `document.addEventListener('click'…)` para capturar todos os cliques.
 3. Nossa análise não funcionará nas áreas onde os cliques são interrompidos por `stopPropagation`. Infelizmente, temos uma "zona morta".
 
-Geralmente, não existe necessidade de prevenir o *bubbling*. Uma tarefa que aparentemente necessita disso pode ser resolvida por outros meios. Um deles é usar eventos customizados, que veremos em breve. Também podemos escrever nossos dados dentro do objeto `event` em um manipulador e lê-los em outro, para que possamos passar informações sobre o processamento aos manipuladores dos elementos pais.
+Geralmente, não existe necessidade de prevenir o *bubbling*. Uma tarefa que aparentemente necessita disso pode ser resolvida por outros meios. Um deles é usar eventos customizados, que veremos em breve. Também podemos escrever nossos dados no objeto `event` em um manipulador e lê-los em outro, para podermos passar informações sobre o processamento aos manipuladores dos elementos pais.
 ```
 
 
 ## Capturing
 
-There's another phase of event processing called "capturing". It is rarely used in real code, but sometimes can be useful.
+Existe outra fase do processamento de eventos chamada *capturing*(captura). Raramente é usado no dia a dia, mas pode ser útil às vezes.
 
-The standard [DOM Events](https://www.w3.org/TR/DOM-Level-3-Events/) describes 3 phases of event propagation:
+O Padrão [DOM Events](https://www.w3.org/TR/DOM-Level-3-Events/) descreve três fases da propagação de eventos:
 
-1. Capturing phase -- the event goes down to the element.
-2. Target phase -- the event reached the target element.
-3. Bubbling phase -- the event bubbles up from the element.
+1. Fase de captura -- o evento desce até o elemento.
+2. Fase alvo -- o evento alcança o elemento alvo.
+3. Fase de borbulhamento -- o evento borbulha do elemento.
 
-Here's the picture, taken from the specification, of the capturing `(1)`, target `(2)` and bubbling `(3)` phases for a click event on a `<td>` inside a table:
+Aqui está a imagem da especificação, das fases de captura `(1)`, alvo `(2)` e borbulhamento `(3)` para um evento clique no `<td>` dentro de um table:
 
 ![](eventflow.svg)
 
-That is: for a click on `<td>` the event first goes through the ancestors chain down to the element (capturing phase), then it reaches the target and triggers there (target phase), and then it goes up (bubbling phase), calling handlers on its way.
+Isto é: um evento clique no `<td>`, o evento passa pela cadeia de ancestrais até o elemento (fase de captura), chega ao alvo e aciona lá (fase alvo), depois sobe (fase de borbulhamento), acionando os manipuladores no caminho.
 
-Until now, we only talked about bubbling, because the capturing phase is rarely used.
+Até agora, só falamos do *bubbling*, *capturing* raramente é utilizado.
 
-In fact, the capturing phase was invisible for us, because handlers added using `on<event>`-property or using HTML attributes or using two-argument `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
+Na verdade, a fase de captura é invisível para nós, porque manipuladores adicionados usando a propriedade `on<event>`, atributos HTML ou `addEventListener(event, handler)` não lidam com a captura, sendo executados somente na segunda e terceira fases.
 
-To catch an event on the capturing phase, we need to set the handler `capture` option to `true`:
+Para pegarmos um evento na fase de captura, nós precisamos configurar a opção `capture` do manipulador como `true`:
 
 ```js
 elem.addEventListener(..., {capture: true})
@@ -145,15 +145,15 @@ elem.addEventListener(..., {capture: true})
 elem.addEventListener(..., true)
 ```
 
-There are two possible values of the `capture` option:
+A opção `capture` tem dois valores possíveis:
 
-- If it's `false` (default), then the handler is set on the bubbling phase.
-- If it's `true`, then the handler is set on the capturing phase.
+- Se for `false` (padrão),  o manipulador é configurado na fase de borbulhamento.
+- Se for `true`, o manipulador é configurado para a fase de captura.
 
 
-Note that while formally there are 3 phases, the 2nd phase ("target phase": the event reached the element) is not handled separately: handlers on both capturing and bubbling phases trigger at that phase.
+Embora existam três fases, a segunda fase (fase alvo: o evento alcançou o elemento) não é tratada separadamente. Manipuladores definidos para as fases de captura e borbulhamento também são acionados nessa fase.
 
-Let's see both capturing and bubbling in action:
+Vejamos a captura e o borbulhamento em ação:
 
 ```html run autorun height=140 edit
 <style>
