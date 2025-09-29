@@ -98,7 +98,11 @@ The "trailing comma" style makes it easier to insert/remove items, because all l
 
 Let's say we want the last element of the array.
 
+<<<<<<< HEAD
 Some programming languages allow to use negative indexes for the same purpose, like `fruits[-1]`.
+=======
+Some programming languages allow the use of negative indexes for the same purpose, like `fruits[-1]`.
+>>>>>>> 51bc6d3cdc16b6eb79cb88820a58c4f037f3bf19
 
 Although, in JavaScript it won't work. The result will be `undefined`, because the index in square brackets is treated literally.
 
@@ -426,7 +430,7 @@ let matrix = [
   [7, 8, 9]
 ];
 
-alert( matrix[1][1] ); // 5, the central element
+alert( matrix[0][1] ); // 2, the second value of the first inner array
 ```
 
 ## toString

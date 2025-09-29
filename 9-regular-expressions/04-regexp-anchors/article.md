@@ -16,8 +16,13 @@ O padrão `pattern:^Maria` quer dizer: "início da string, e então Maria"
 Da mesma maneira, podemos testar se a string termina com `neve` usando `pattern:neve$`:
 
 ```js run
+<<<<<<< HEAD
 let str1 = "Seu velo era branco como a neve";
 alert( /neve$/.test(str1) ); // true
+=======
+let str1 = "its fleece was white as snow";
+alert( /snow$/.test(str1) ); // true
+>>>>>>> 51bc6d3cdc16b6eb79cb88820a58c4f037f3bf19
 ```
 
 Nesses casos em particular, poderíamos usar os métodos do objeto string `startsWith/endsWith` em seu lugar. Expressões regulares devem ser usadas para testes mais complexos.

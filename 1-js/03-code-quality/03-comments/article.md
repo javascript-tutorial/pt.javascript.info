@@ -143,7 +143,11 @@ Tais comentários, nos permitem compreender o propósito da função e a usar de
 
 A propósito, muitos editores, como o [WebStorm](https://www.jetbrains.com/webstorm/, podem também os perceber e os usar para fornecer completação automática de palavras (*autocomplete*), e algumas verificações de código (*code-checking*) automáticas.
 
+<<<<<<< HEAD
 Também, existem ferramentas como o [JSDoc 3](https://github.com/jsdoc3/jsdoc), que podem gerar documentação HTML a partir de comentários. Pode ler mais informação sobre o JSDoc em <http://usejsdoc.org/>.
+=======
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <https://jsdoc.app>.
+>>>>>>> 51bc6d3cdc16b6eb79cb88820a58c4f037f3bf19
 
 Porque é a tarefa solucionada dessa forma?
 : O que está escrito é importante. Mas, o que *não* está escrito pode ser ainda mais importante, para se compreender o que se passa. Porque é a tarefa solucionada exatamente dessa forma? O código não dá resposta alguma.
