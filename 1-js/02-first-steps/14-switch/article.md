@@ -87,7 +87,7 @@ alert( 'Muito alto' );
 alert( "Não conheço tais valores" );
 ```
 
-````smart header="Qualquer expressão pode servir de argumento a 'switch/case'"
+````smart header="Qualquer expressão pode servir de argumento a `switch/case`"
 Ambos `switch` e `case` permitem expressões arbitrárias.
 
 Por exemplo:
@@ -107,7 +107,7 @@ switch (+a) {
     alert("isto não é executado");
 }
 ```
-Aqui `+a` dá `1`, que é comparado no `case` a `b + 1`, e o código correspondente é executado.
+Aqui `+a` é `1`, que é comparado no `case` a `b + 1`, e o código correspondente é executado.
 ````
 
 ## Grupos de "case"
