@@ -214,7 +214,7 @@ setInterval(() => elem.setAttribute('datetime', new Date()), 1000); // (5)
 2. Chamamos ele uma vez quando o elemento é inserido na página.
 3. Para uma mudança de atributo, listado em `observedAttributes()`, `attributeChangedCallback` é disparado.
 4. ...e re-renderiza o elemento.
-5. No final, podemos facilmente fazer um timer ao vivo.
+5. No final, podemos facilmente fazer um temporizador ao vivo.
 
 ## Ordem de renderização
 
@@ -230,7 +230,7 @@ Por exemplo, se um elemento customizado tentar acessar `innerHTML` em `connected
 
     connectedCallback() {
   *!*
-      alert(this.innerHTML); // empty (*)
+      alert(this.innerHTML); // vazio (*)
   */!*
     }
 
@@ -284,8 +284,8 @@ Vamos demonstrar isso no exemplo:
     "user-info",
     class extends HTMLElement {
       connectedCallback() {
-        alert(`${this.id} connected.`);
-        setTimeout(() => alert(`${this.id} initialized.`));
+        alert(`${this.id} conectado.`);
+        setTimeout(() => alert(`${this.id} inicializado.`));
       }
     }
   );
@@ -300,14 +300,14 @@ Vamos demonstrar isso no exemplo:
 
 Ordem de saída:
 
-1. outer connected.
-2. inner connected.
-3. outer initialized.
-4. inner initialized.
+1. outer conectado.
+2. inner conectado.
+3. outer inicializado.
+4. inner inicializado.
 
 Podemos claramente ver que o elemento externo termina a inicialização `(3)` antes do interno `(4)`.
 
-Não há callback nativo que seja disparado após elementos aninhados estarem prontos. Se necessário, podemos implementar tal coisa por conta própria. Por exemplo, elementos internos podem disparar eventos como `initialized`, e os externos podem escutar e reagir a eles.
+Não há callback nativo que seja disparado após elementos aninhados estarem prontos. Se necessário, podemos implementar tal coisa por conta própria. Por exemplo, elementos internos podem disparar eventos como `inicializado`, e os externos podem escutar e reagir a eles.
 
 ## Elementos nativos customizados
 
@@ -344,13 +344,13 @@ Aqui está um exemplo completo:
 
 ```html run autorun="no-epub"
 <script>
-  // O botão que diz "hello" ao clicar
+  // O botão que diz "olá" ao clicar
   class HelloButton extends HTMLButtonElement {
   *!*
     constructor() {
   */!*
       super();
-      this.addEventListener('click', () => alert("Hello!"));
+      this.addEventListener('click', () => alert("Olá!"));
     }
   }
 
@@ -360,9 +360,9 @@ Aqui está um exemplo completo:
 </script>
 
 *!*
-<button is="hello-button">Click me</button>
+<button is="hello-button">Clique em mim</button>
 */!* *!*
-<button is="hello-button" disabled>Disabled</button>
+<button is="hello-button" disabled>Desabilitado</button>
 */!*
 ```
 
