@@ -1,4 +1,4 @@
-# Elemento timer ao vivo
+# Elemento temporizador ao vivo
 
 Já temos o elemento `<time-formatted>` para mostrar um tempo bem formatado.
 
