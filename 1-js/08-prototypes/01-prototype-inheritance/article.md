@@ -131,10 +131,15 @@ Só existem duas limitações:
 
 Além disso, só pode haver um `[[Prototype]]`. Um objeto não pode ser herdeiro de outros dois.
 
+<<<<<<< HEAD
 ```smart header="`__proto__` é um getter/setter histórico para `[[Prototype]]`"
 É um erro comum, desenvolvedores novatos não saberem a diferença entre esses dois.
 
 Mas note que `__proto__` *não é o mesmo* que a propriedade interna `[[Prototype]]`. Ele é um getter/setter para o `[[Prototype]]`. Mais tarde veremos situações nas quais isso importa, por ora vamos apenar manter isso em mente enquanto construimos nossa compreensão da linguagem Javascript.
+=======
+```smart header="`__proto__` is a historical getter/setter for `[[Prototype]]`"
+It's a common mistake of novice developers not to know the difference between these two.
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 A propriedade `__proto__` está um pouco ultrapassada, ela existe por motivos históricos. O Javascript moderno sugere que nós usemos as funções `Object.getPrototypeOf/Object.setPrototypeOf` no lugar, que também fazem get/set do protótipo. Nós também vamos cobrir essas funções mais tarde. 
 

@@ -209,8 +209,16 @@ Por que examinamos esses exemplos? Devemos nos lembrar dessas peculiaridades o t
 
 ## Resumo
 
+<<<<<<< HEAD
 - Os operadores de comparação retornam um valor booleano.
 - As strings são comparadas letra a letra na ordem do "dicionário".
 - Quando valores de tipos diferentes são comparados, eles são convertidos em números (com a exclusão de uma verificação de igualdade estrita).
 - Os valores `null` e `undefined` são iguais `==` entre si e não são iguais a nenhum outro valor.
 - Tenha cuidado ao usar comparações, como `>` ou `<`, com variáveis ​​que possam ocasionalmente ser `null/undefined`. Verificar por `null/undefined` separadamente é uma boa ideia.
+=======
+- Comparison operators return a boolean value.
+- Strings are compared letter-by-letter in the "dictionary" order.
+- When values of different types are compared, they get converted to numbers (with the exclusion of a strict equality check).
+- The values `null` and `undefined` are equal `==` to themselves and each other, but do not equal any other value.
+- Be careful when using comparisons like `>` or `<` with variables that can occasionally be `null/undefined`. Checking for `null/undefined` separately is a good idea.
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
