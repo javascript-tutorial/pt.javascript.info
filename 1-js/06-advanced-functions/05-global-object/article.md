@@ -25,7 +25,11 @@ var gVar = 5;
 alert(window.gVar); // 5 (se torna uma propriedade do objeto global)
 ```
 
+<<<<<<< HEAD
 O mesmo efeito têm declarações de função (instruções com a palavra-chave `function` no fluxo principal do código, não expressões de função).
+=======
+Function declarations have the same effect (statements with `function` keyword in the main code flow, not function expressions).
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Por favor, não confie nisso! Esse comportamento existe por motivos de compatibilidade. Scripts modernos usam [JavaScript modules](info:modules) onde tal coisa não acontece.
 

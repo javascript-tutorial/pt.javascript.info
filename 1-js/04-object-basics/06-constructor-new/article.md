@@ -168,8 +168,13 @@ alert( new SmallUser().name );  // John
 
 Geralmente os construtores não têm uma declaração `return`. Aqui, nós mencionamos o comportamento especial com objetos retornados principalmente por uma questão de integralidade.
 
+<<<<<<< HEAD
 ````smart header="Omitindo parênteses"
 A propósito, nós podemos omitir os parênteses depois de `new`:
+=======
+````smart header="Omitting parentheses"
+By the way, we can omit parentheses after `new`:
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ```js
 let user = new User; // <-- sem parênteses

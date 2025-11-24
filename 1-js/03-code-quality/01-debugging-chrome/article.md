@@ -38,7 +38,11 @@ Se pressionarmos `key:Esc`, um terminal (*Console*) se abrirá abaixo. Assim per
 
 Depois de uma instrução ser executada, o resultado será mostrado logo a seguir.
 
+<<<<<<< HEAD
 Por exemplo, a instrução `1+2` resultará em `3`, enquanto a chamada de função `hello("debugger")` não retornará nada, assim tendo como resultado `undefined`:
+=======
+For example, here `1+2` results in `3`, while the function call `hello("debugger")` returns nothing, so the result is `undefined`:
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ![](chrome-sources-console.svg)
 
@@ -62,13 +66,22 @@ Uma lista de *breakpoints* sempre estará disponível no painel à direita. Muit
 - Remover o breakpoint, clicando com o botão direito do mouse e selecionando *Remove*.
 - ...E assim por diante.
 
+<<<<<<< HEAD
 ```smart header="*Breakpoints* condicionais"
 *Clicar com o botão direito do mouse* sobre um número de linha permite a criação de um *breakpoint condicional* o qual será ativado apenas quando a expressão inserida for verdadeira.
+=======
+```smart header="Conditional breakpoints"
+*Right click* on the line number allows to create a *conditional* breakpoint. It only triggers when the given expression, that you should provide when you create it, is truthy.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 É prático quando precisamos de suspender a execução apenas para valores determinados de certa variável ou para parâmetros específicos numa função.
 ```
 
+<<<<<<< HEAD
 ## O comando *debugger*
+=======
+## The command "debugger"
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Podemos também suspender o código utilizando o comando `debugger`, desta forma:
 
@@ -84,9 +97,13 @@ function hello(name) {
 }
 ```
 
+<<<<<<< HEAD
 Este comando só irá funcionar quando a interface de ferramentas de desenvolvedor do navegador estiver aberta, caso contrário, será ignorado.
 
 ## Pause e dê uma olhada
+=======
+Such command works only when the development tools are open, otherwise the browser ignores it.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 No nosso exemplo, a função `hello()` é chamada durante o carregamento da página, assim a forma mais fácil para ativar o *debugger* (depois de termos colocado os *breakpoints*) seria recarregar a página. Desta forma, vamos pressionar `key:F5` (Windows, Linux) ou `key:Cmd+R` (Mac).
 
@@ -98,7 +115,11 @@ Por favor, abra as secções de *dropdown* informacionais à direita (apontadas 
 
 1. **`Watch` -- mostra valores atuais das expressões.**
 
+<<<<<<< HEAD
     É possível clicar no `+` e inserir uma expressão. O *debugger* mostrará o valor da expressão e continuará recalculando-a ao longo do processo de execução.
+=======
+    You can click the plus `+` and input an expression. The debugger will show its value, automatically recalculating it in the process of execution.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 2. **`Call Stack` -- mostra a sequência de chamadas de funções aninhadas.**
 
@@ -133,12 +154,21 @@ Existem botões para isso no topo do painel direito. Vamos interagir com eles.
 
     Continuando a clicar nele, passará por todas as instruções do programa, uma por uma.
 
+<<<<<<< HEAD
 <span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": execute o próximo comando, *mas não vá para dentro de uma função*, atalho `key:F10`.
 : Similar ao comando "Step" anterior mas com um comportamento diferente se a próxima instrução for uma chamada de função. Isto é: não uma incorporada (*built-in*), como `alert`, mas uma função nossa.
 
     O comando "Step", vai para dentro dessa função e suspende a execução na sua primeira linha, ao contrário de "Step over" que executa essa chamada de função aninhada de forma invisível para nós, pulando todo seu funcionamento interno.
 
     É feita uma pausa na execução imediatamente depois dessa função.
+=======
+<span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": run the next command, but *don't go into a function*, hotkey `key:F10`.
+: Similar to the previous "Step" command, but behaves differently if the next statement is a function call (not a built-in, like `alert`, but a function of our own).
+
+    If we compare them, the "Step" command goes into a nested function call and pauses the execution at its first line, while "Step over" executes the nested function call invisibly to us, skipping the function internals.
+
+    The execution is then paused immediately after that function call.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
     É util quando não se está interessado em ver o que acontece dentro da chamada de uma função.
 
@@ -153,8 +183,13 @@ Existem botões para isso no topo do painel direito. Vamos interagir com eles.
 <span class="devtools" style="background-position:-61px -74px"></span> -- ativar/desativar todos os *breakpoints*.
 : Esse botão não move a execução. Simplesmente ativa/desativa *breakpoints* em conjunto.
 
+<<<<<<< HEAD
 <span class="devtools" style="background-position:-90px -146px"></span> -- ativar/desativar a pausa automática em caso de erro.
 : Quando ativo e as ferramentas do desenvolvedor abertas, um erro no código automáticamente suspende a execução do código. Assim permitindo a análise de variáveis para entender o que ocorreu de errado. Desta forma, se o código falhar por um erro, é possível abrir o *debugger*, ativar esta opção e recarregar a página afim de se observar onde e em que contexto a falha ocorreu.
+=======
+<span class="devtools" style="background-position:-90px -146px"></span> -- enable/disable automatic pause in case of an error.
+: When enabled, if the developer tools is open, an error during the script execution automatically pauses it. Then we can analyze variables in the debugger to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ```smart header="Continue até aqui"
 Ao clicar com o botão direito do mouse sobre uma linha de código, abre-se o menu de contexto com uma ótima opção chamada "Continue até aqui" (*Continue to here*).
@@ -186,7 +221,11 @@ Como podemos ver, existem três formas principais para pausar a execução de um
 2. As instruções `debugger`.
 3. Um erro (se as ferramentas do desenvolvedor [*dev tools*] estiverem abertas, e o botão <span class="devtools" style="background-position:-90px -146px"></span> estiver "ativo").
 
+<<<<<<< HEAD
 Enquanto suspenso, podemos depurar erros - examinar variáveis e rastear o código para ver que parte da execução ocorre com erros.
+=======
+When paused, we can debug: examine variables and trace the code to see where the execution goes wrong.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Existem muitas outras opções nas ferramentas do desenvolvedor além das já cobertas ao longo desta leitura. O manual completo está em <https://developers.google.com/web/tools/chrome-devtools>.
 

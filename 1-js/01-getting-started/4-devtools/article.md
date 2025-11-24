@@ -22,7 +22,7 @@ As ferramentas de desenvolvedor serão abertas na aba Console por padrão.
 
 É parecido com isto:
 
-![chrome](chrome.png)
+![chrome](chrome.webp)
 
 O aspecto exato das ferramentas de desenvolvimento depende da sua versão do Chrome. Ele muda de vez em quando, mas deve ser semelhante.
 
@@ -48,7 +48,11 @@ A interface deles é bem parecida. Uma vez que você saiba como usar uma dessas 
 
 O Safari (navegador do Mac, não suportado pelo Windows/Linux) é um pouco especial aqui. Precisamos primeiro habilitar o "Develop menu".
 
+<<<<<<< HEAD
 Abra Preferências e vá para o painel "Avançado". Há uma caixa de seleção na parte inferior:
+=======
+Open Settings and go to the "Advanced" pane. There's a checkbox at the bottom:
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ![safari](safari.png)
 

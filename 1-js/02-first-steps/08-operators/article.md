@@ -50,8 +50,14 @@ O resultado de `a % b` é o [resto](https://pt.wikipedia.org/wiki/Resto_da_divis
 Por exemplo:
 
 ```js run
+<<<<<<< HEAD
 alert( 5 % 2 ); // 1, o resto de 5 dividido por 2
 alert( 8 % 3 ); // 2, o resto de 8 dividido por 3
+=======
+alert( 5 % 2 ); // 1, the remainder of 5 divided by 2
+alert( 8 % 3 ); // 2, the remainder of 8 divided by 3
+alert( 8 % 4 ); // 0, the remainder of 8 divided by 4
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 ```
 
 ### Exponenciação **
@@ -68,7 +74,11 @@ alert( 2 ** 3 ); // 2³ = 8
 alert( 2 ** 4 ); // 2⁴ = 16
 ```
 
+<<<<<<< HEAD
 Assim como na matemática, o operador de exponenciação também é definido para números não-inteiros.
+=======
+Just like in maths, the exponentiation operator is defined for non-integer numbers as well.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Por exemplo, a raiz quadrada é uma exponenciação por ½:
 
@@ -80,7 +90,11 @@ alert( 8 ** (1/3) ); // 2 (a potência de 1/3 é o mesmo que a raiz cúbica)
 
 ## Concatenação de strings com + binário
 
+<<<<<<< HEAD
 Vamos conhecer os recursos dos operadores JavaScript que estão para além da aritmética escolar.
+=======
+Let's meet the features of JavaScript operators that are beyond school arithmetics.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Normalmente o operador mais `+` soma números.
 
@@ -194,6 +208,7 @@ Aqui está um extrato da [tabela de precedência](https://developer.mozilla.org/
 | Precedência | Nome | Sinal |
 |------------|------|------|
 | ... | ... | ... |
+<<<<<<< HEAD
 | 15 | positivo unário | `+` |
 | 15 | negativo unário | `-` |
 | 14 | exponenciação | `**` |
@@ -201,11 +216,24 @@ Aqui está um extrato da [tabela de precedência](https://developer.mozilla.org/
 | 13 | divisão | `/` |
 | 12 | adição | `+` |
 | 12 | subtração | `-` |
+=======
+| 14 | unary plus | `+` |
+| 14 | unary negation | `-` |
+| 13 | exponentiation | `**` |
+| 12 | multiplication | `*` |
+| 12 | division | `/` |
+| 11 | addition | `+` |
+| 11 | subtraction | `-` |
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 | ... | ... | ... |
 | 2 | atribuição | `=` |
 | ... | ... | ... |
 
+<<<<<<< HEAD
 Como podemos ver, o "positivo unário" tem uma prioridade de `15` que é maior que a de `12` da "adição" (positivo binário). É por este motivo que na expressão `"+apples + +oranges"`, positivos unários operam antes da adição.
+=======
+As we can see, the "unary plus" has a priority of `14` which is higher than the `11` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## Atribuição
 
@@ -303,7 +331,11 @@ Tais operadores têm a mesma precedência que uma atribuição normal, de modo q
 ```js run
 let n = 2;
 
+<<<<<<< HEAD
 n *= 3 + 5; // parte à direita avaliada primeiro, o mesmo que n *= 8
+=======
+n *= 3 + 5; // right part evaluated first, same as n *= 8
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 alert( n ); // 16
 ```
@@ -437,7 +469,11 @@ A lista de operadores:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
+<<<<<<< HEAD
 Estes operadores são muito raramente usados, e acontece quando nós precisamos mexer com números no nível mais baixo (bit a bit). Nós não precisaremos destes operadores tão cedo, já que desenvolvimento web faz pouco uso deles, mas em algumas áreas específicas, como em criptografia, eles são úteis. Você pode ler o capítulo [Operadores bit a bit](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Expressions_and_Operators#operadores_bit_a_bit) na MDN quando surgir a necessidade.
+=======
+These operators are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. We won't need these operators any time soon, as web development has little use of them, but in some special areas, such as cryptography, they are useful. You can read the [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) chapter on MDN when a need arises.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## Vírgula
 
