@@ -1,0 +1,24 @@
+<!doctype html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
+
+A função <code>handler</code> é chamada nesta entrada:
+<br>
+<input id="input1" placeholder="type here">
+
+<p>
+
+A função <code>debounce(handler, 1000)</code> reduzida é chamada nesta entrada:
+<br>
+<input id="input2" placeholder="type here">
+
+<p>
+<button id="result">A <code>handler</code> coloca o resultado aqui</button>
+
+<script>
+  function handler(event) {
+    result.innerHTML = event.target.value;
+  }
+
+  input1.oninput = handler;
+  input2.oninput = _.debounce(handler, 1000);
+</script>

@@ -1,12 +1,12 @@
-**Yes, it will.**
+**Sim, vai.**
 
-Any string except an empty one (and `"0"` is not empty) becomes `true` in the logical context.
+Qualquer "string" exceto uma vazia (e `"0"` não está vazia) se torna `true` no contexto lógico.
 
-We can run and check:
+Podemos executar e verificar:
 
 ```js run
 if ("0") {
-  alert( 'Hello' );
+  alert( 'Olá' );
 }
 ```
 

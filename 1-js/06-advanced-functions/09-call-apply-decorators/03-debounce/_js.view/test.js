@@ -1,41 +1,48 @@
-describe("debounce", function() {
-  before(function() {
+describe('debounce', function () {
+  before(function () {
     this.clock = sinon.useFakeTimers();
   });
 
-  after(function() {
+  after(function () {
     this.clock.restore();
   });
 
-  it("calls the function at maximum once in ms milliseconds", function() {
-    let log = '';
+  it('para uma chamada - execute-a após um determinado ms', function () {
+    const f = sinon.spy();
+    const debounced = debounce(f, 1000);
 
-    function f(a) {
-      log += a;
-    }
-
-    f = debounce(f, 1000);
-
-    f(1); // runs at once
-    f(2); // ignored
-
-    setTimeout(() => f(3), 100);  // ignored (too early)
-    setTimeout(() => f(4), 1100); // runs (1000 ms passed)
-    setTimeout(() => f(5), 1500); // ignored (less than 1000 ms from the last run)
-
-    this.clock.tick(5000);
-    assert.equal(log, "14");
+    debounced('test');
+    assert(f.notCalled, 'não é chamada imediatamente');
+    this.clock.tick(1000);
+    assert(f.calledOnceWith('test'), 'chamada após 1000ms');
   });
 
-  it("keeps the context of the call", function() {
+  it('para 3 chamadas - executa a última após determinados ms', function () {
+    const f = sinon.spy();
+    const debounced = debounce(f, 1000);
+
+    debounced('a');
+    setTimeout(() => debounced('b'), 200); // ignorada (demasiado cedo)
+    setTimeout(() => debounced('c'), 500); // executar (1000ms passados)
+    this.clock.tick(1000);
+
+    assert(f.notCalled, 'não é chamada após 1000ms');
+
+    this.clock.tick(500);
+
+    assert(f.calledOnceWith('c'), 'chamada após 1500ms');
+  });
+
+  it('mantém o contexto da chamada', function () {
     let obj = {
       f() {
         assert.equal(this, obj);
-      }
+      },
     };
 
     obj.f = debounce(obj.f, 1000);
-    obj.f("test");
+    obj.f('test');
+    this.clock.tick(5000);
   });
-
+  
 });

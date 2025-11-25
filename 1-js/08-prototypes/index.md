@@ -1,1 +1,1 @@
-# Prototypes, inheritance
+# Protótipos, herança

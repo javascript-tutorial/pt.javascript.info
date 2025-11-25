@@ -1,14 +1,14 @@
 # Console do desenvolvedor
 
-O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está * inevitavelmente * cometendo erros, pelo menos se você for um humano, não um [robô] (https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).
+O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está *inevitavelmente* cometendo erros, pelo menos se você for um humano, não um [robô](https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).
 
-Mas no navegador, os usuários não vêem os erros por padrão. Assim, se algo correr mal no script, não veremos de onde está partindo e não poderemos corrigir.
+Mas no navegador, os usuários não veem os erros por padrão. Assim, se algo correr mal no script, não veremos de onde está partindo e não poderemos corrigir.
 
 Para que possamos visualizar erros e obter muitas outras informações úteis sobre scripts, as "ferramentas de desenvolvedor" foram incorporadas aos navegadores.
 
 A maioria dos desenvolvedores escolhem o Chrome ou o Firefox para o desenvolvimento porque esses navegadores têm as melhores ferramentas de desenvolvedor. Outros navegadores também fornecem ferramentas de desenvolvedor, às vezes com recursos especiais, mas geralmente estão jogando "catch-up" no Chrome ou Firefox. Assim, a maioria dos desenvolvedores tem um navegador "favorito" e muda para outros se um problema é específico do navegador.
 
-As ferramentas do desenvolvedor são potentes; elas têm muitos recursos. Para começar, vamos aprender como abri-las, olhar para erros e executar comandos JavaScript.
+As ferramentas do desenvolvedor são potentes; elas têm muitos recursos. Para começar, vamos aprender como as abrir, olhar para erros e executar comandos JavaScript.
 
 ## Google Chrome
 
@@ -29,9 +29,14 @@ O aspecto exato das ferramentas de desenvolvimento depende da sua versão do Chr
 - Aqui podemos ver a mensagem de erro de cor vermelha. Neste caso, o script contém um comando "lalala" desconhecido.
 - À direita, há um link clicável para o código-fonte `bug.html:12` com o número da linha onde o erro ocorreu.
 
-Abaixo da mensagem de erro, há um símbolo azul `>`. Ele marca uma "linha de comando" onde podemos digitar comandos JavaScript. Pressione `key:Enter` para executá-los (`key:Shift+Enter` para introduzir comandos multi-linha).
+Abaixo da mensagem de erro, há um símbolo azul `>`. Ele marca uma "linha de comando" onde podemos digitar comandos JavaScript. Pressione `key:Enter` para executá-los.
 
 Agora podemos ver erros, e isso é suficiente para começar. Voltaremos mais tarde às ferramentas de desenvolvedor e abordaremos a depuração mais profundamente no capítulo <info:debugging-chrome>.
+
+```smart header="Múltiplas linhas de comando"
+Normalmente, quando colocamos uma linha de código no console e pressionamos `key:Enter`, o código sera executado.
+Para inserir várias linhas, pressione `key:Shift+Enter`. Dessa forma, será possível inserir longos fragmentos de código JavaScript.
+```
 
 ## Firefox, Edge, e outros
 
@@ -48,12 +53,6 @@ Abra Preferências e vá para o painel "Avançado". Há uma caixa de seleção n
 ![safari](safari.png)
 
 Agora o `key:Cmd+Opt+C` pode alternar o console. Além disso, note que o novo item do menu superior chamado "Develop" apareceu. Ele tem muitos comandos e opções.
-
-## Entrada multi-linha
-
-Normalmente, quando colocamos uma linha de código no console, e então pressionamos `key:Enter`, ele executa.
-
-Para inserir várias linhas, pressione `key:Shift+Enter`.
 
 ## Resumo
 

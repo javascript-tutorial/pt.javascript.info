@@ -2,38 +2,53 @@
 
 # Introduction: callbacks
 
-Many actions in JavaScript are *asynchronous*.
+```warn header="We use browser methods in examples here"
+To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods: specifically, loading scripts and performing simple document manipulations.
 
-For instance, take a look at the function `loadScript(src)`:
+If you're not familiar with these methods, and their usage in the examples is confusing, you may want to read a few chapters from the [next part](/document) of the tutorial.
+
+Although, we'll try to make things clear anyway. There won't be anything really complex browser-wise.
+```
+
+Many functions are provided by JavaScript host environments that allow you to schedule *asynchronous* actions. In other words, actions that we initiate now, but they finish later.
+
+For instance, one such function is the `setTimeout` function.
+
+There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
+
+Take a look at the function `loadScript(src)`, that loads a script with the given `src`:
 
 ```js
 function loadScript(src) {
+  // creates a <script> tag and append it to the page
+  // this causes the script with given src to start loading and run when complete
   let script = document.createElement('script');
   script.src = src;
   document.head.append(script);
 }
 ```
 
-The purpose of the function is to load a new script. When it adds the `<script src="…">` to the document, the browser loads and executes it.
+It inserts into the document a new, dynamically created, tag `<script src="…">` with the given `src`. The browser automatically starts loading it and executes when complete.
 
-We can use it like this:
+We can use this function like this:
 
 ```js
-// loads and executes the script
+// load and execute the script at the given path
 loadScript('/my/script.js');
 ```
 
-The function is called "asynchronously," because the action (script loading) finishes not now, but later.
+The script is executed "asynchronously", as it starts loading now, but runs later, when the function has already finished.
 
-The call initiates the script loading, then the execution continues. While the script is loading, the code below may finish executing, and if the loading takes time, other scripts may run meanwhile too.
+If there's any code below `loadScript(…)`, it doesn't wait until the script loading finishes.
 
 ```js
 loadScript('/my/script.js');
-// the code below loadScript doesn't wait for the script loading to finish
+// the code below loadScript
+// doesn't wait for the script loading to finish
 // ...
 ```
 
-Now let's say we want to use the new script when it loads. It probably declares new functions, so we'd like to run them.
+Let's say we need to use the new script as soon as it loads. It declares new functions, and we want to run them.
 
 But if we do that immediately after the `loadScript(…)` call, that wouldn't work:
 
@@ -45,7 +60,7 @@ newFunction(); // no such function!
 */!*
 ```
 
-Naturally, the browser probably didn't have time to load the script. So the immediate call to the new function fails. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
+Naturally, the browser probably didn't have time to load the script. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
 
 Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
 
@@ -61,6 +76,8 @@ function loadScript(src, *!*callback*/!*) {
   document.head.append(script);
 }
 ```
+
+The `onload` event is described in the article <info:onload-onerror#loading-a-script>, it basically executes a function after the script is loaded and executed.
 
 Now if we want to call new functions from the script, we should write that in the callback:
 
@@ -86,15 +103,15 @@ function loadScript(src, callback) {
 
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
-  alert(`Cool, the ${script.src} is loaded`);
-  alert( _ ); // function declared in the loaded script
+  alert(`Cool, the script ${script.src} is loaded`);
+  alert( _ ); // _ is a function declared in the loaded script
 });
 */!*
 ```
 
 That's called a "callback-based" style of asynchronous programming. A function that does something asynchronously should provide a `callback` argument where we put the function to run after it's complete.
 
-Here we did it in `loadScript`, but of course, it's a general approach.
+Here we did it in `loadScript`, but of course it's a general approach.
 
 ## Callback in callback
 
@@ -131,7 +148,7 @@ loadScript('/my/script.js', function(script) {
     });
 */!*
 
-  })
+  });
 
 });
 ```
@@ -144,7 +161,7 @@ In the above examples we didn't consider errors. What if the script loading fail
 
 Here's an improved version of `loadScript` that tracks loading errors:
 
-```js run
+```js
 function loadScript(src, callback) {
   let script = document.createElement('script');
   script.src = src;
@@ -181,9 +198,9 @@ So the single `callback` function is used both for reporting errors and passing 
 
 ## Pyramid of Doom
 
-From the first look, it's a viable way of asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
+At first glance, it looks like a viable approach to asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
 
-But for multiple asynchronous actions that follow one after another we'll have code like this:
+But for multiple asynchronous actions that follow one after another, we'll have code like this:
 
 ```js
 loadScript('1.js', function(error, script) {
@@ -208,17 +225,17 @@ loadScript('1.js', function(error, script) {
         });
 
       }
-    })
+    });
   }
 });
 ```
 
 In the code above:
-1. We load `1.js`, then if there's no error.
-2. We load `2.js`, then if there's no error.
+1. We load `1.js`, then if there's no error...
+2. We load `2.js`, then if there's no error...
 3. We load `3.js`, then if there's no error -- do something else `(*)`.
 
-As calls become more nested, the code becomes deeper and increasingly more difficult to manage, especially if we have a real code instead of `...`, that may include more loops, conditional statements and so on.
+As calls become more nested, the code becomes deeper and increasingly more difficult to manage, especially if we have real code instead of `...` that may include more loops, conditional statements and so on.
 
 That's sometimes called "callback hell" or "pyramid of doom."
 
@@ -241,7 +258,7 @@ loadScript('1.js', function(error, script) {
           }
         });
       }
-    })
+    });
   }
 });
 -->
@@ -281,15 +298,15 @@ function step3(error, script) {
   } else {
     // ...continue after all scripts are loaded (*)
   }
-};
+}
 ```
 
-See? It does the same, and there's no deep nesting now because we made every action a separate top-level function.
+See? It does the same thing, and there's no deep nesting now because we made every action a separate top-level function.
 
 It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that one needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
 
-Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of a namespace cluttering here.
+Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of namespace cluttering here.
 
 We'd like to have something better.
 
-Luckily, there are other ways to avoid such pyramids. One of the best ways is to use "promises," described in the next chapter.
+Luckily, there are other ways to avoid such pyramids. One of the best ways is to use "promises", described in the next chapter.

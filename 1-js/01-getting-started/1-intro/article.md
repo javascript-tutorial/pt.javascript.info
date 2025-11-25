@@ -12,8 +12,8 @@ Os scripts são fornecidos e executados como texto puro. Eles não precisam de p
 
 Neste aspecto, o JavaScript é muito diferente de outra linguagem chamada [Java](https://pt.wikipedia.org/wiki/Java_(linguagem_de_programação)).
 
-```smart header="Por que <u>Java</u>Script?"
-Quando foi criado, inicialmente o JavaScript tinha outro nome: "LiveScript". Mas Java era muito popular naquela época, então foi decidido que posicionar uma nova linguagem como um "irmão mais novo" de Java ajudaria.
+```smart header="Por que é chamado <u>Java</u>Script?"
+Quando o JavaScript foi criado, inicialmente tinha outro nome: "LiveScript". Mas Java era muito popular naquela época, então foi decidido que posicionar uma nova linguagem como um "irmão mais novo" de Java ajudaria.
 
 Mas à medida que ele evoluiu, o JavaScript se tornou uma linguagem totalmente independente com sua própria especificação chamada [ECMAScript] (http://en.wikipedia.org/wiki/ECMAScript), e agora ele não tem nenhuma relação com Java.
 ```
@@ -24,11 +24,11 @@ O navegador tem um interpretador(motor) incorporado, às vezes chamado de "máqu
 
 Interpretadores diferentes têm "codinomes" diferentes. Por exemplo:
 
-- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- no Chrome e no Opera.
+- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- no Chrome, Opera e Edge.
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- no Firefox.
-- ...Há outros codinomes como "Trident" e "Chakra" para diferentes versões do IE, "ChakraCore" para Microsoft Edge, "Nitro" e "SquirrelFish" para Safari, etc.
+- ...Há outros codinomes como "Chakra" para o IE, "JavaScriptCore", "Nitro" e "SquirrelFish" para Safari, etc.
 
-Os termos acima são bons para lembrar, pois são usados em artigos de desenvolvedores na internet. Vamos usá-los também. Por exemplo, se "um recurso X é suportado pelo V8", então ele provavelmente funciona no Chrome e no Opera.
+Os termos acima são bons para lembrar, pois são usados em artigos de desenvolvedores na internet. Vamos usá-los também. Por exemplo, se "um recurso X é suportado pelo V8", então ele provavelmente funciona no Chrom, Opera e Edge.
 
 ```smart header="Como funcionam os interpretadores?"
 
@@ -38,14 +38,14 @@ Os interpretadores são complicados. Mas o básico é fácil.
 2. Depois converte ("compila") o script para a linguagem da máquina.
 3. E então o código da máquina é executado, bem rápido.
 
-O interpretador aplica otimizações em cada etapa do processo. Ele ainda observa o script compilado enquanto ele roda, analisa os dados que passam por ele e aplica otimizações ao código da máquina com base nesse conhecimento. Quando isso é feito, os scripts são executados rapidamente.
+O interpretador aplica otimizações em cada etapa do processo. Ele ainda observa o script compilado enquanto ele roda, analisa os dados que passam por ele e aplica otimizações ao código da máquina com base nesse conhecimento.
 ```
 
 ## O que o JavaScript no navegador pode fazer?
 
 JavaScript moderno é uma linguagem de programação "segura". Ele não fornece acesso de baixo nível à memória ou CPU, porque foi inicialmente criado para navegadores que não necessitam dele.
 
-As capacidades do JavaScript dependem muito do ambiente em que está sendo executado. Por exemplo, [Node.js](https://wikipedia.org/wiki/Node.js) suporta funções que permitem ao JavaScript ler/gravar arquivos arbitrários, executar solicitações de rede, etc.
+As capacidades do JavaScript dependem muito do ambiente em que está sendo executado. Por exemplo, [Node.js]https://pt.wikipedia.org/wiki/Node.js) suporta funções que permitem ao JavaScript ler/gravar arquivos arbitrários, executar solicitações de rede, etc.
 
 O JavaScript no navegador pode fazer tudo relacionado à manipulação de páginas web, interação com o usuário e o servidor web.
 
@@ -94,7 +94,6 @@ Isso é o que torna o JavaScript único. É por isso que é a ferramenta mais di
 
 Ao passo que planeja aprender uma nova tecnologia, é benéfico verificar suas perspectivas. Então, vamos seguir para as tendências modernas que o afetam, incluindo novas linguagens e habilidades de navegador.
 
-
 ## Linguagens "sobre" JavaScript
 
 A sintaxe do JavaScript não se adapta às necessidades de todos. Pessoas diferentes querem características diferentes.
@@ -108,10 +107,13 @@ Ferramentas modernas tornam a transpilação muito rápida e transparente, permi
 Exemplos de tais linguagens:
 
 - [CoffeeScript](http://coffeescript.org/) é um "açúcar sintático" para JavaScript. Ele introduz uma sintaxe mais curta, permitindo-nos escrever um código mais claro e preciso. Normalmente, Ruby devs gostam dele.
-- [TypeScript](http://www.typescriptlang.org/) está concentrado em adicionar "dados estritos de digitação" para simplificar o desenvolvimento e suporte de sistemas complexos. É desenvolvido pela Microsoft.
-- [Dart](https://www.dartlang.org/) é uma linguagem autônoma que tem seu próprio mecanismo que roda em ambientes sem navegador (como aplicativos móveis). Ela foi inicialmente oferecida pelo Google como um substituto para JavaScript, mas a partir de agora, os navegadores exigem que ela seja transpilada para JavaScript da mesma forma que as anteriores.
+- [TypeScript](http://www.typescriptlang.org/) está concentrado em adicionar "estritos tipos de dados" para simplificar o desenvolvimento e suporte de sistemas complexos. É desenvolvido pela Microsoft.
+- [Flow](http://flow.org/) também adiciona tipos de dados, mas de uma forma diferente. Desenvolvido pela Facebook.
+- [Dart](https://www.dartlang.org/) é uma linguagem autônoma que tem seu próprio interpretador que roda em ambientes fora do navegador (como aplicativos móveis), mas também pode ser transpilada para JavaScript. Desenvolvida pela Google.
+- [Brython](https://brython.info/) é um transpilador de Python para JavaScript que permite escrever aplicativos em puro Python, sem JavaScript.
+- [Kotlin](https://kotlinlang.org/docs/js-overview.html) é uma linguagem de programação moderna, concisa e segura, que pode ser usada no navegador ou no Node.
 
-Há mais. Claro que, mesmo que usemos uma dessas linguagens, também devemos saber JavaScript para entender o que estamos fazendo.
+Há mais. Claro que, mesmo que usemos uma dessas linguagens transpiladas, também devemos saber JavaScript para entender o que estamos fazendo.
 
 ## Resumo
 

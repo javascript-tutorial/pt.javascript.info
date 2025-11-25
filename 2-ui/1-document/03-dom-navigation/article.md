@@ -182,30 +182,34 @@ Por favor, não! O loop `for..in` itera sobre todas as propriedades enumeráveis
 
 ## Irmãos e pais
 
-*Irmãos* são nós filhos do mesmo pai. Por exemplo, `<head>` e `<body>` são irmãos:
+*Irmãos* são nós filhos do mesmo pai. 
+
+Por exemplo, `<head>` e `<body>` são irmãos:
+
+```html
+<html>
+  <head>...</head><body>...</body>
+</html>
+```
 
 - É dito que `<body>` é o irmão "próximo" ou "à direita" de `<head>`,
 - É dito que `<head>` é o irmão "anterior" ou "à esquerda" de `<body>`.
 
-O pai está acessível como `parentNode`.
-
 O próximo nó (próximo irmão) no mesmo pai é `nextSibling`, e o anterior é `previousSibling`.
+
+O pai está acessível como `parentNode`.
 
 Por exemplo:
 
-```html run
-<html><head></head><body><script>
-  // O HTML é "burro" para evitar nós de textos "em branco".
+```js run
+// o pai de <body> é <html>
+alert( document.body.parentNode === document.documentElement ); // true
 
-  // o pai de <body> é <html>
-  alert( document.body.parentNode === document.documentElement ); // true
+// depois de <head> vem <body>
+alert( document.head.nextSibling ); // HTMLBodyElement
 
-  // depois de <head> vem <body>
-  alert( document.head.nextSibling ); // HTMLBodyElement
-
-  // antes de <body> vem <head>
-  alert( document.body.previousSibling ); // HTMLHeadElement
-</script></body></html>
+// antes de <body> vem <head>
+alert( document.body.previousSibling ); // HTMLHeadElement
 ```
 
 ## Navegação apenas por elementos
@@ -235,12 +239,12 @@ alert( document.documentElement.parentNode ); // document
 alert( document.documentElement.parentElement ); // null
 ```
 
-Em outras palavras, o `documentElement` (`<html>`) é o nó raiz. Formalmente, tem `document` como pai. Mas o `document` não é um nó de elemento, portanto, somente `parentNode` o retorna. `parentElement` não.
+O motivo é que o nó raiz `document.documentElement` (`<html>`) tem `document` como pai. Mas o `document` não é um nó de elemento, então `parentNode` o retorna mas `parentElement` não.
 
-Este laço de repetição percorre de um elemento arbitrário `elem` até `<html>`, mas não até o `document`:
+Esse detalhe pode ser útil quando queremos percorrer um caminho a partir de um elemento arbitrário `elem` até `<html>`, mas não até o `document`:
 ```js
 while(elem = elem.parentElement) {
-  alert( elem ); // sequência de pais até <html>
+  alert( elem ); // percorrer o caminho até <html>
 }
 ```
 ````
@@ -281,7 +285,7 @@ As tabelas são um ótimo exemplo e um importante caso particular disso.
 O elemento **`<table>`** suporta, além do explicado anteriormente, estas propriedades:
 - `table.rows` -- a coleção de elementos `<tr>` da tabela.
 - `table.caption/tHead/tFoot` -- referências aos elementos `<caption>`, `<thead>`, `<tfoot>`.
-- `table.tBodies` -- a coleção de elementos `<tbody>` (pode haver muitos, de acordo com o padrão normatizador).
+- `table.tBodies` -- a coleção de elementos `<tbody>` (pode haver muitos, de acordo com o padrão, mas sempre haverá pelo menos um -- mesmo que não esteja no HTML de origem, o navegador o colocará no DOM).
 
 **`<thead>`, `<tfoot>`, `<tbody>`** elementos que fornecem a propriedade `rows`:
 - `tbody.rows` -- a coleção de `<tr>` internas.
@@ -307,8 +311,9 @@ Um exemplo de uso:
 </table>
 
 <script>
-  // obter o conteúdo da primeira linha, segunda célula
-  alert( table.*!*rows[0].cells[1]*/!*.innerHTML ) // "dois"
+  // obter td com "dois" (primeira linha, segunda coluna)
+  let td = table.*!*rows[0].cells[1]*/!*;
+  td.style.backgroundColor = "red"; // destaque-o
 </script>
 ```
 
@@ -318,7 +323,7 @@ Também há propriedades de navegação adicionais para formulários HTML. Verem
 
 # Resumo
 
-Quando nos referimos a um nó DOM, podemos ir para seus vizinhos diretos usando propriedades de navegação.
+Dado um nó DOM, podemos navegar até seus vizinhos imediatos usando propriedades de navegação.
 
 Existem dois conjuntos principais:
 
