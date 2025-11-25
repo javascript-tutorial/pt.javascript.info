@@ -106,7 +106,7 @@ O exemplo abaixo mostra os filhos de `document.body`:
   <script>
 *!*
     for (let i = 0; i < document.body.childNodes.length; i++) {
-      alert( document.body.childNodes[i] ); // text, div, text, ul, ..., SCRIPT
+      alert( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT
     }
 */!*
   </script>
