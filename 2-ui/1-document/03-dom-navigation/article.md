@@ -243,8 +243,8 @@ O motivo é que o nó raiz `document.documentElement` (`<html>`) tem `document` 
 
 Esse detalhe pode ser útil quando queremos percorrer um caminho a partir de um elemento arbitrário `elem` até `<html>`, mas não até o `document`:
 ```js
-while(elem = elem.parentElement) {
-  alert( elem ); // percorrer o caminho até <html>
+while(elem = elem.parentElement) { // percorre o caminho até <html>
+  alert( elem );
 }
 ```
 ````
