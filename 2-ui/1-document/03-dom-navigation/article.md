@@ -265,7 +265,7 @@ Vamos modificar um dos exemplos acima: substitua `childNodes` por `children`. Ag
   <script>
 *!*
     for (let elem of document.body.children) {
-      alert(elem); // div, ul, div, SCRIPT
+      alert(elem); // DIV, UL, DIV, SCRIPT
     }
 */!*
   </script>
