@@ -300,7 +300,7 @@ function step3(error, script) {
 
 Viu? Isso faz a mesma coisa, e não tem aninhamento profundo agora porque nós transformamos cada ação em uma função de nível superior separada.
 
-Funciona, porém o código parece uma planilha dividida. É difícil de ler, e você provavelmente percebeu que precisamos de pular entre as partes do código enquanto estamos lendo ele. Isso é inconveniente, especialmente se o leitor não estiver familiarizado com o código e não souber para onde pular.
+Funciona, porém, o código parece uma planilha dividida. É difícil de ler, e você provavelmente percebeu que precisamos de pular entre as partes do código enquanto estamos lendo ele. Isso é inconveniente, especialmente se o leitor não estiver familiarizado com o código e não souber para onde pular.
 
 Além disso, as funções chamadas `step*` são todas utilizadas apenas uma vez. Elas são criadas apenas pra evitar a "pirâmide da perdição." Ninguém vai reutilizá-las fora da cadeia de ações. Então tem um pouco de bagunça aqui.
 
