@@ -150,7 +150,7 @@ loadScript('/my/script.js', function(script) {
 });
 ```
 
-Então, toda ação nova fica dentro de um callback. Tudo bem para poucas ações, mas não é bom para muitas ações. Por isso nós vamos ver outras variantes em breve.
+Então, toda ação nova fica em um callback. Tudo bem para poucas ações, mas não é bom para muitas ações. Por isso nós vamos ver outras variantes em breve.
 
 ## Tratando erros
 
