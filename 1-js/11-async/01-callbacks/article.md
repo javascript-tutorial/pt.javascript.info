@@ -106,7 +106,7 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 */!*
 ```
 
-Isso é chamado de programação assíncrona "baseada em callbacks". A função que faz alguma coisa assincronamente deve prover um argumento `callback` onde nós colocamos a função que vai executar depois que ela estiver completa.
+Isso é chamado de programação assíncrona "baseada em callbacks". A função que faz algo assincronamente deve prover um argumento `callback` onde nós colocamos a função que vai executar depois que ela estiver completa.
 
 Aqui nós fizemos isso em `loadScript`, mas é claro que isso é uma abordagem genérica.
 
