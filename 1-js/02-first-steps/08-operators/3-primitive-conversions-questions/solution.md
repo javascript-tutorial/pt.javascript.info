@@ -16,10 +16,10 @@ undefined + 1 = NaN // (6)
 " \t \n" - 2 = -2 // (7)
 ```
 
-1. The addition with a string `"" + 1` converts `1` to a string: `"" + 1 = "1"`, and then we have `"1" + 0`, the same rule is applied.
-2. The subtraction `-` (like most math operations) only works with numbers, it converts an empty string `""` to `0`.
-3. The addition with a string appends the number `5` to the string.
-4. The subtraction always converts to numbers, so it makes `"  -9  "` a number `-9` (ignoring spaces around it).
-5. `null` becomes `0` after the numeric conversion.
-6. `undefined` becomes `NaN` after the numeric conversion.
-7. Space characters, are trimmed off string start and end when a string is converted to a number. Here the whole string consists of space characters, such as `\t`, `\n` and a "regular" space between them. So, similarly to an empty string, it becomes `0`.
+1. A adição de uma string `"" + 1` converte `1` para uma string: `"" + 1 = "1"`, e quando nós temos `"1" + 0`, a mesma regra é aplicada.
+2. A subtração `-` (como a maioria das operações matemáticas) apenas funciona com números, e converte uma string vazia `""` para `0`.
+3. A adição a uma string anexa o número `5` à string.
+4. A subtração sempre converte para números, de modo que esta transforma `"  -9  "` no número `-9` (ignorando os espaços em volta deste).
+5. `null` se torna `0` após a conversão numérica.
+6. `undefined` se torna `NaN` após a conversão numérica.
+7. Caracteres de espaço, são aparados do início e final de uma string quando esta é convertida em um número. Aqui a string inteira consiste em caracteres de espaço, tais como `\t`, `\n` e um espaço "regular" entre eles. Então, similarmente à string vazia, isto se torna `0`.

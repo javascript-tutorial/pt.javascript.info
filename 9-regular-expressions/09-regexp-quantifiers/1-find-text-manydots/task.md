@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-#  How to find an ellipsis "..." ?
+# Como encontrar reticências "..." ?
 
-Create a regexp to find ellipsis: 3 (or more?) dots in a row.
+Crie uma expressão regular que reconhece reticências: 3 (ou mais?) pontos consecutivos.
 
-Check it:
+Seu teste:
 
 ```js
-let regexp = /your regexp/g;
-alert( "Hello!... How goes?.....".match(regexp) ); // ..., .....
+let regexp = /sua expressão/g;
+alert( "Olá!... Como está?.....".match(regexp) ); // ..., .....
 ```

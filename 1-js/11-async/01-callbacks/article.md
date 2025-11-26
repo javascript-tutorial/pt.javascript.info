@@ -43,7 +43,8 @@ Se tiver algum código abaixo de `loadScript(…)`, ele não espera até que o s
 
 ```js
 loadScript('/my/script.js');
-// o código embaixo de loadScript não espera o carregamento do script terminar
+// o código embaixo de loadScript
+// não espera o carregamento do script terminar
 // ...
 ```
 
@@ -59,7 +60,7 @@ newFunction(); // a função não existe!
 */!*
 ```
 
-Naturalmente, o navegador provavelmente não teve tempo de carregar o script. Então a chamada imediata para a nova função falha. Do jeito que está, a função `loadScript` não provê uma maneira de saber quando o carregamento termina. O script carrega e é eventualmente executado, isso é tudo. Mas nós queremos saber quando isso acontece, para podermos usar as novas funções e variáveis daquele script.
+Naturalmente, o navegador provavelmente não teve tempo de carregar o script. Atualmente, a função `loadScript` não oferece uma maneira de rastrear a conclusão do carregamento. O script carrega e eventualmente é executado, e isso é tudo. Mas gostaríamos de saber quando isso acontece, para usar novas funções e variáveis desse script.
 
 Vamos adicionar uma função `callback` como segundo argumento em `loadScript` que deve executar quando o script terminar de carregar:
 
@@ -75,6 +76,8 @@ function loadScript(src, *!*callback*/!*) {
   document.head.append(script);
 }
 ```
+
+O evento `onload` é descrito no artigo <info:onload-onerror#loading-a-script>, e basicamente executa uma função após o script ser carregado e executado.
 
 Agora se nós quisermos chamar as novas funções do script, nós podemos fazer isso no callback:
 
@@ -101,7 +104,7 @@ function loadScript(src, callback) {
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
   alert(`Legal, o script ${script.src} está carregado`);
-  alert( _ ); // função declarada no script carregado
+  alert( _ ); // _ é a função declarada no script carregado
 });
 */!*
 ```
