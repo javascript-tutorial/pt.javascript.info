@@ -1,10 +1,10 @@
-To bounce we can use CSS property `top` and `position:absolute` for the ball inside the field with `position:relative`.
+Para quicar, podemos usar a propriedade CSS `top` e `position:absolute` para a bola dentro do campo com `position:relative`.
 
-The bottom coordinate of the field is `field.clientHeight`. The CSS `top` property refers to the upper edge of the ball. So it should go from `0` till `field.clientHeight - ball.clientHeight`, that's the final lowest position of the upper edge of the ball.
+A coordenada inferior do campo é `field.clientHeight`. Mas a propriedade `top` fornece coordenadas para o topo da bola Então animamos a propriedade `top` a partir de `0` até `field.clientHeight - ball.clientHeight`, isto é até à posição mais baixa do topo da bola.
 
-To get the "bouncing" effect we can use the timing function `bounce` in `easeOut` mode.
+Para obter o efeito de "quique", podemos usar a função de tempo `bounce` no modo `easeOut`.
 
-Here's the final code for the animation:
+Aqui está o código final para a animação:
 
 ```js
 let to = field.clientHeight - ball.clientHeight;
