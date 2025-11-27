@@ -1,6 +1,6 @@
 # Console do desenvolvedor
 
-O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está *inevitavelmente* cometendo erros, pelo menos se você for um humano, não um [robô](https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).
+O código é propenso a erros. Você provavelmente cometerá erros ... Oh, do que estou falando? Você está _inevitavelmente_ cometendo erros, pelo menos se você for um humano, não um [robô](https://pt.wikipedia.org/wiki/Bender_Bending_Rodr%C3%ADguez).
 
 Mas no navegador, os usuários não veem os erros por padrão. Assim, se algo correr mal no script, não veremos de onde está partindo e não poderemos corrigir.
 
@@ -48,11 +48,7 @@ A interface deles é bem parecida. Uma vez que você saiba como usar uma dessas 
 
 O Safari (navegador do Mac, não suportado pelo Windows/Linux) é um pouco especial aqui. Precisamos primeiro habilitar o "Develop menu".
 
-<<<<<<< HEAD
 Abra Preferências e vá para o painel "Avançado". Há uma caixa de seleção na parte inferior:
-=======
-Open Settings and go to the "Advanced" pane. There's a checkbox at the bottom:
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ![safari](safari.png)
 
