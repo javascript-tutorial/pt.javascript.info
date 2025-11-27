@@ -7,29 +7,19 @@ importance: 4
 Examine o seguinte código:
 
 ```js
-const birthday = '18.04.1982';
+const birthday = "18.04.1982";
 
 const age = someCode(birthday);
 ```
 
-<<<<<<< HEAD
-Aqui temos uma constante `birthday` e a `age` que é calculada apartir de `birthday` com a ajuda de algum código (não é fornecido por falta de tempo, e porque os detalhes não importam aqui).
-=======
-Here we have a constant `birthday` for the date, and also the `age` constant.
+Aqui temos uma constante `birthday` para a data, e também a constante `age`.
 
-The `age` is calculated from `birthday` using `someCode()`, which means a function call that we didn't explain yet (we will soon!), but the details don't matter here, the point is that `age` is calculated somehow based on the `birthday`.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
+A `age` é calculada a partir de `birthday` usando `someCode()`, o que significa uma chamada de função que ainda não explicamos (falaremos em breve!), mas os detalhes não importam aqui; o importante é que a `age` é calculada de alguma forma com base na `birthday`.
 
 Seria correcto utilizar maiúsculas para `birthday`? Para `age`? Ou mesmo para ambos?
 
 ```js
-<<<<<<< HEAD
-const BIRTHDAY = '18.04.1982'; // fazer maiúsculas?
+const BIRTHDAY = "18.04.1982"; // fazer birthday maiúscula?
 
-const AGE = someCode(BIRTHDAY); // fazer maiúsculas?
-=======
-const BIRTHDAY = '18.04.1982'; // make birthday uppercase?
-
-const AGE = someCode(BIRTHDAY); // make age uppercase?
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
+const AGE = someCode(BIRTHDAY); // fazer age maiúscula?
 ```
