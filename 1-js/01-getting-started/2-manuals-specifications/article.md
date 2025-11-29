@@ -1,6 +1,6 @@
 # Manuais e especificações
 
-Este livro é um _tutorial_. Ele tem como objetivo lhe ajudar a aprender gradualmente a linguagem. Mas uma vez familiarizado com o básico, irá precisar de outros recursos.
+Este livro é um *tutorial*. Ele tem como objetivo lhe ajudar a aprender gradualmente a linguagem. Mas uma vez familiarizado com o básico, irá precisar de outros recursos.
 
 ## Especificação
 
@@ -10,7 +10,7 @@ Mas, estando num formato mais formal, fica difícil de entender à primeira vist
 
 Uma nova versão dessa especificação é lançada todos os anos. Entre estes lançamentos, a sua última versão de esboço se encontra em <https://tc39.es/ecma262/>.
 
-Para ler sobre as mais novas funcionalidades (_bleeding-edge features_), incluindo as que estão em fase de padronização (chamadas também de "estágio 3"), veja as suas propostas em <https://github.com/tc39/proposals>.
+Para ler sobre as mais novas funcionalidades (*bleeding-edge features*), incluindo as que estão em fase de padronização (chamadas também de "estágio 3"), veja as suas propostas em <https://github.com/tc39/proposals>.
 
 E mais, se você está desenvolvendo para browsers, há outras especificações que cobrem esta demanda na [segunda parte](info:browser-environment) do tutorial.
 
@@ -26,7 +26,7 @@ E mais, se você está desenvolvendo para browsers, há outras especificações 
 
 JavaScript é uma linguagem em desenvolvimento, novas funcionalidades são adicionadas regularmente.
 
-Para verificar o suporte dessas funcionalidades entre interpretadores de JavaScript (_JavaScript engines_) para browsers ou para outras aplicações, veja em:
+Para verificar o suporte dessas funcionalidades entre interpretadores de JavaScript (*JavaScript engines*) para browsers ou para outras aplicações, veja em:
 
 - <http://caniuse.com> - mostra uma tabela de compatibilidade por funcionalidade, por exemplo, para verificar quais interpretadores suportam funções de criptografia moderna: <http://caniuse.com/#feat=cryptography>.
 - <https://kangax.github.io/compat-table> - uma tabela com funcionalidades da linguagem e os interpretadores que as suportam ou não.
