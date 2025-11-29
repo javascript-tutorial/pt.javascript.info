@@ -7,7 +7,7 @@ importance: 4
 Examine o seguinte código:
 
 ```js
-const birthday = "18.04.1982";
+const birthday = '18.04.1982';
 
 const age = someCode(birthday);
 ```
@@ -19,7 +19,7 @@ A `age` é calculada a partir de `birthday` usando `someCode()`, o que significa
 Seria correcto utilizar maiúsculas para `birthday`? Para `age`? Ou mesmo para ambos?
 
 ```js
-const BIRTHDAY = "18.04.1982"; // fazer birthday maiúscula?
+const BIRTHDAY = '18.04.1982'; // fazer birthday maiúscula?
 
 const AGE = someCode(BIRTHDAY); // fazer age maiúscula?
 ```
