@@ -46,7 +46,7 @@ alert( arr instanceof Object ); // true
 
 Perceba que `arr` também pertence à classe `Object`. Isso porque `Array` de forma prototípica herda de `Object`.
 
-Normalmente `instanceof` examina a cadeia de protótipos para a verificação. Também podemos definir uma lógica customizada no método estático `Symbol.hasInstance`. 
+Normalmente `instanceof` examina a cadeia de protótipos para a verificação. Também podemos definir uma lógica customizada no método estático `Symbol.hasInstance`.
 
 O algoritmo de `obj instanceof Class` funciona mais ou menos da seguinte forma:
 
@@ -55,13 +55,8 @@ O algoritmo de `obj instanceof Class` funciona mais ou menos da seguinte forma:
     Por exemplo:
 
     ```js run
-<<<<<<< HEAD
     // configura a verificação de instanceOf para assumir que
     // qualquer coisa com a propriedade canEat é um animal
-=======
-    // set up instanceof check that assumes that
-    // anything with canEat property is an animal
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
     class Animal {
       static [Symbol.hasInstance](obj) {
         if (obj.canEat) return true;
@@ -73,11 +68,7 @@ O algoritmo de `obj instanceof Class` funciona mais ou menos da seguinte forma:
     alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) é executado
     ```
 
-<<<<<<< HEAD
 2. A maioria das classes não possui `Symbol.hasInstance`. Nesse caso, a lógica padrão é usada: `obj instanceOf Class` verfica se  `Class.prototype` é igual a um dos protótipos na cadeia de protótipos de `obj`.
-=======
-2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceof Class` checks whether `Class.prototype` is equal to one of the prototypes in the `obj` prototype chain.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
     Em outras palavras, compara um após o outro:
     ```js
@@ -91,7 +82,7 @@ O algoritmo de `obj instanceof Class` funciona mais ou menos da seguinte forma:
 
     No exemplo acima `rabbit.__proto__ === Rabbit.prototype`, de modo que dá a resposta imediatamente.
 
-    No caso de uma herança, a correspondência será na segunda etapa: 
+    No caso de uma herança, a correspondência será na segunda etapa:
 
     ```js run
     class Animal {}
@@ -114,9 +105,9 @@ Aqui está a ilustração do que `rabbit instanceof Animal` vai comparar com `An
 
 A propósito, também existe um método [objA.isPrototypeOf(objB)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf), que retorna `true` se `objA` está em algum lugar na cadeia de protótipos do `objB`. Então o teste de `obj instanceof Class` pode ser reescrito como `Class.prototype.isPrototypeOf(obj)`.
 
-É engraçado, mas o próprio construtor `Class` não participa na verificação! Apenas a cadeia de protótipos e `Class.prototype` importam.  
+É engraçado, mas o próprio construtor `Class` não participa na verificação! Apenas a cadeia de protótipos e `Class.prototype` importam.
 
-Isso pode levar a consequências interessantes quando uma propriedade `prototype` é alterada depois que um objeto é criado. 
+Isso pode levar a consequências interessantes quando uma propriedade `prototype` é alterada depois que um objeto é criado.
 
 Como nesse exemplo:
 
