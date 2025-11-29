@@ -68,13 +68,9 @@ if (cond) {
 
 ## A cláusula "else"
 
-<<<<<<< HEAD
 A instrução `if` pode conter um bloco opcional "else" (senão). Ele é executado quando a condição é falsa.
 
 Por exemplo:
-=======
-The `if` statement may contain an optional `else` block. It executes when the condition is falsy.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ```js run
 let year = prompt('Em que ano foi publicada a especificação ECMAScript-2015?', '');
@@ -131,7 +127,7 @@ alert(accessAllowed);
 
 O chamado operador "condicional" ou "ponto de interrogação" nos permite fazer isso de uma forma curta e simples.
 
-O operador é representado por um ponto de interrogação `?`. Às vezes é chamado de "ternário", porque o operador possui três operandos. Na verdade, é o único operador em JavaScript que possui tantos. 
+O operador é representado por um ponto de interrogação `?`. Às vezes é chamado de "ternário", porque o operador possui três operandos. Na verdade, é o único operador em JavaScript que possui tantos.
 
 A sintaxe é:
 
@@ -187,17 +183,10 @@ alert( message );
 
 Pode ser difícil no início entender o que está acontecendo. Mas depois de um olhar mais atento, percebemos que é apenas uma sequência comum de testes:
 
-<<<<<<< HEAD
 1. O primeiro ponto de interrogação verifica se `age < 3`.
 2. Se for verdadeiro -- retorna `'Oi, bebê!'`. Caso contrário, continua para a expressão após os dois pontos ":", verificando `age < 18`.
 3. Se for verdade -- retorna `'Olá!'`. Caso contrário, continua para a expressão após os próximos dois pontos ":", verificando `age < 100`.
 4. Se for verdade -- retorna `'Saudações!'`. Caso contrário, continua com a expressão após os últimos dois-pontos ":", retornando `'Que idade incomum!'`.
-=======
-1. The first question mark checks whether `age < 3`.
-2. If true -- it returns `'Hi, baby!'`. Otherwise, it continues to the expression after the colon ":", checking `age < 18`.
-3. If that's true -- it returns `'Hello!'`. Otherwise, it continues to the expression after the next colon ":", checking `age < 100`.
-4. If that's true -- it returns `'Greetings!'`. Otherwise, it continues to the expression after the last colon ":", returning `'What an unusual age!'`.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Veja como isso fica usando `if..else`:
 
