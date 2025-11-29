@@ -24,11 +24,7 @@ A palavra-chave `function` vem primeiro, depois vem o *nome da função*, e uma 
 
 ```js
 function name(parameter1, parameter2, ... parameterN) {
-<<<<<<< HEAD
-  ...corpo...
-=======
- // body
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
+ // corpo
 }
 ```
 
@@ -179,13 +175,8 @@ Quando um valor é passado como um parâmetro de função, ele também é chamad
 
 Em outras palavras, para colocar esses termos em ordem:
 
-<<<<<<< HEAD
 - Um parâmetro é a variável listada entre parênteses na declaração da função (é um termo de tempo de declaração)
 - Um argumento é o valor passado para a função quando ela é chamada (é um termo de tempo de chamada).
-=======
-- A parameter is the variable listed inside the parentheses in the function declaration (it's a declaration time term).
-- An argument is the value that is passed to the function when it is called (it's a call time term).
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Declaramos funções listando seus parâmetros e as chamamos de passagem de argumentos.
 
@@ -214,17 +205,13 @@ function showMessage(from, *!*text = "nenhum texto fornecido"*/!*) {
 showMessage("Ann"); // Ann: nenhum texto fornecido
 ```
 
-<<<<<<< HEAD
 Agora se o parâmetro `text` não for passado, ele receberá o valor `"nenhum texto fornecido"`
-=======
-Now if the `text` parameter is not passed, it will get the value `"no text given"`.
 
-The default value also jumps in if the parameter exists, but strictly equals `undefined`, like this:
+O valor padrão também entra em ação se o parâmetro existir, mas é estritamente igual a `undefined`, assim:
 
 ```js
-showMessage("Ann", undefined); // Ann: no text given
+showMessage("Ann", undefined); // Ann: nenhum texto fornecido
 ```
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Aqui `"nenhum texto fornecido"` é uma string, mas pode ser uma expressão mais complexa, que só é avaliada e atribuída se o parâmetro estiver ausente. Então, isso também é possível:
 
@@ -243,23 +230,18 @@ No exemplo acima, `anotherFunction()` não é chamado se o parâmetro `text` for
 Por outro lado, é chamado independentemente toda vez que `text` está faltando.
 ```
 
-<<<<<<< HEAD
-### Parâmetros padrão alternativos
+````smart header="Parâmetros padrão em códigos antigos de JavaScript"
+Há alguns anos, o JavaScript não suportava a sintaxe para parâmetros padrão. Por isso, as pessoas usavam outros meios para defini-los.
 
-Às vezes, faz sentido atribuir valores padrão para parâmetros não na declaração da função, mas em um estágio posterior.
-=======
-````smart header="Default parameters in old JavaScript code"
-Several years ago, JavaScript didn't support the syntax for default parameters. So people used other ways to specify them.
+Hoje em dia, ainda podemos encontrá-los em scripts antigos.
 
-Nowadays, we can come across them in old scripts.
-
-For example, an explicit check for `undefined`:
+Por exemplo, uma verificação explícita para `undefined`:
 
 ```js
 function showMessage(from, text) {
 *!*
   if (text === undefined) {
-    text = 'no text given';
+    text = 'nenhum texto fornecido';
   }
 */!*
 
@@ -267,23 +249,22 @@ function showMessage(from, text) {
 }
 ```
 
-...Or using the `||` operator:
+...Ou usando o operador `||`:
 
 ```js
 function showMessage(from, text) {
-  // If the value of text is falsy, assign the default value
-  // this assumes that text == "" is the same as no text at all
-  text = text || 'no text given';
+  // Se o valor de text for falso, atribua o valor padrão
+  // Isso pressupõe que text == "" seja o mesmo que nenhum text.
+  text = text || 'nenhum texto fornecido';
   ...
 }
 ```
 ````
 
 
-### Alternative default parameters
+### Parâmetros padrão alternativos
 
-Sometimes it makes sense to assign default values for parameters at a later stage after the function declaration.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
+Às vezes, faz sentido atribuir valores padrão para parâmetros não na declaração da função, mas em um estágio posterior.
 
 Podemos verificar se o parâmetro é passado durante a execução da função, comparando-o com `undefined`:
 
@@ -478,11 +459,7 @@ Esses exemplos assumem significados comuns de prefixos. Você e sua equipe são 
 ```smart header="Nomes de função ultracurtos"
 As funções que são usadas *com muita frequência* às vezes têm nomes ultracurtos.
 
-<<<<<<< HEAD
 Por exemplo, o framework [jQuery](http://jquery.com) define uma função com `$`. A biblioteca [Lodash](http://lodash.com/) tem sua função central chamada `_`.
-=======
-For example, the [jQuery](https://jquery.com/) framework defines a function with `$`. The [Lodash](https://lodash.com/) library has its core function named `_`.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Estas são exceções. Geralmente, os nomes das funções devem ser concisos e descritivos.
 ```
@@ -550,11 +527,7 @@ function name(parameters, delimited, by, comma) {
 
 Para tornar o código limpo e fácil de entender, é recomendável usar principalmente variáveis ​​e parâmetros locais na função, não variáveis ​​externas.
 
-<<<<<<< HEAD
 É sempre mais fácil entender uma função que obtém parâmetros, trabalha com eles e retorna um resultado do que uma função que não obtém parâmetros, mas modifica variáveis ​​externas como efeito colateral.
-=======
-It is always easier to understand a function which gets parameters, works with them and returns a result than a function which gets no parameters, but modifies outer variables as a side effect.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Nomenclatura da função:
 
