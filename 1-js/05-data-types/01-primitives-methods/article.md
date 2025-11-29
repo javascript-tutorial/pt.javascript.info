@@ -39,13 +39,8 @@ Objetos são "mais pesados" que primitivos. Eles exigem recursos adicionais para
 
 Aqui está o paradoxo enfrentado pelo criador do JavaScript:
 
-<<<<<<< HEAD
 - Há muitas coisas que alguém poderia querer fazer com um primitivo como uma string ou um número. Seria ótimo acessá-los usando métodos.
 - Primitivos devem ser o mais rápidos e leves possível.
-=======
-- There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.
-- Primitives must be as fast and lightweight as possible.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 A solução parece um pouco estranha, mas aqui está:
 
@@ -109,16 +104,10 @@ if (zero) { // zero é true (verdadeiro), por que é um objeto
 }
 ```
 
-<<<<<<< HEAD
 Por outro lado, usar as mesmas funções `String / Number / Boolean` sem` new` é uma coisa totalmente sensata e útil. Eles convertem um valor para o tipo correspondente: para uma string, um número ou um booleano (primitivo).
 
 Por exemplo, isso é inteiramente válido:
-=======
-On the other hand, using the same functions `String/Number/Boolean` without `new` is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
 
-For example, this is entirely valid:
-
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 ```js
 let num = Number("123"); // converte a string para número
 ```
