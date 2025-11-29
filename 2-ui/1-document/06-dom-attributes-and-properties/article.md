@@ -8,7 +8,7 @@ Mas o mapeamento entre atributo e propriedade não é de um para um! Nesse capí
 
 ## Propriedades DOM
 
-Nós já vimos propriedades DOM incorporadas. Há várias delas, mas tecnicamente ninguém nos limita, e se não há propriedades suficientes, nós podemos adicionar nossas próprias. 
+Nós já vimos propriedades DOM incorporadas. Há várias delas, mas tecnicamente ninguém nos limita, e se não há propriedades suficientes, nós podemos adicionar nossas próprias.
 
 Nós do DOM são objetos JavaScript comuns. Nós podemos alterar eles.
 
@@ -138,9 +138,9 @@ Observe:
 1. `getAttribute('About')` -- a primeira letra aqui está em maiúsculo, e no HTML está totalmente em minúsculo. Mas isso não importa: os nomes dos atributos não diferenciam maiúsculas de minúsculas.
 2. Nós podemos atribuir qualquer coisa a um atributo, mas se tornará uma string. Então, aqui temos `"123"` como o valor.
 3. Todos os atributos, incluindo os que estão definidos, são visíveis no `outerHTML`.
-4. A coleção `attributes` é iterável e tem todos os atributos do elemento (padrões e não padrões) como objetos com propriedades `name` e `value`. 
+4. A coleção `attributes` é iterável e tem todos os atributos do elemento (padrões e não padrões) como objetos com propriedades `name` e `value`.
 
-## Sincronização entre propriedade e atributo 
+## Sincronização entre propriedade e atributo
 
 Quando um campo padrão muda, a propriedade correspondente é automaticamente atualizada, e (com algumas exceções) vice-versa.
 
@@ -162,11 +162,7 @@ No exemplo abaixo `id` é modificado como um atributo, e nós podemos ver a prop
 </script>
 ```
 
-<<<<<<< HEAD
 Mas há algumas exceções, por exemplo, `input.value` sincroniza a partir de atributo -> propriedade, mas o contrário não ocorre:
-=======
-But there are exclusions, for instance `input.value` synchronizes only from attribute -> property, but not back:
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ```html run
 <input>
@@ -194,7 +190,7 @@ Essa "característica", na verdade, pode ser útil, porque as ações do usuári
 
 ## Propriedades DOM são tipadas
 
-Propriedades DOM nem sempre são strings. Por exemplo, a propriedade `input.checked` (para caixas de seleção) é um booleano: 
+Propriedades DOM nem sempre são strings. Por exemplo, a propriedade `input.checked` (para caixas de seleção) é um booleano:
 
 ```html run
 <input id="input" type="checkbox" checked> checkbox
@@ -205,7 +201,7 @@ Propriedades DOM nem sempre são strings. Por exemplo, a propriedade `input.chec
 </script>
 ```
 
-Há outros exemplos. O campo `style` é uma string, mas a propriedade `style` é um objeto: 
+Há outros exemplos. O campo `style` é uma string, mas a propriedade `style` é um objeto:
 
 ```html run
 <div id="div" style="color:red;font-size:120%">Hello</div>
@@ -316,7 +312,7 @@ Para evitar tais conflitos, existem os atributos [data-*](https://html.spec.what
 
 **Todos os atributos começando com "data-" são reservados para programadores usarem. Eles estão disponíveis na propriedade `dataset`.
 
-Por exemplo, se um `elem` tiver um atributo chamado `"data-about"`, ele estará disponível em `elem.dataset.about`. 
+Por exemplo, se um `elem` tiver um atributo chamado `"data-about"`, ele estará disponível em `elem.dataset.about`.
 
 Bem assim:
 
@@ -385,5 +381,5 @@ Métodos para trabalhar com atributos são:
 
 Para a maioria das situações, usar propriedades DOM tem preferência. Nós devemos nos referir a atributos apenas quando propriedades DOM não são cabíveis, quando precisamos de atributos exatos, por exemplo:
 
-- Quando precisamos de atributos não padronizados. Mas se começar com `data-`, então devemos usar `dataset`. 
-- Quando precisamos ler o valor do HTML "a risca". O valor da propriedade DOM pode ser diferente, por exemplo, o `href` é sempre uma URL completa, e nós talvez queremos o valor "original". 
+- Quando precisamos de atributos não padronizados. Mas se começar com `data-`, então devemos usar `dataset`.
+- Quando precisamos ler o valor do HTML "a risca". O valor da propriedade DOM pode ser diferente, por exemplo, o `href` é sempre uma URL completa, e nós talvez queremos o valor "original".
