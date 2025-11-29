@@ -100,17 +100,13 @@ Aqui está o diagrama (veja a parte direita):
 
 Isso porque os métodos `sayHi` e `sayBye` foram inicialmente criados em `sayHiMixin`. Portanto, mesmo que tenham sido copiados, suas propriedades internas `[[HomeObject]]` referenciam a `sayHiMixin`, como mostrado na figura acima.
 
-<<<<<<< HEAD
 Como `super` procura por métodos pais em `[[HomeObject]].[[Prototype]]`, isso significa que procura em `sayHiMixin.[[Prototype]]`.
-=======
-As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## EventMixin
 
 Vamos criar um mixin para a vida real.
 
-Uma característica importante de muitos objetos do navegador (por exemplo) é que eles podem gerar eventos. Eventos são uma ótima maneira de "transmitir informação" para qualquer um que a quiser. Então, vamos criar um mixin que nos permita facilmente adicionar funções relacionadas a eventos a qualquer classe/objeto. 
+Uma característica importante de muitos objetos do navegador (por exemplo) é que eles podem gerar eventos. Eventos são uma ótima maneira de "transmitir informação" para qualquer um que a quiser. Então, vamos criar um mixin que nos permita facilmente adicionar funções relacionadas a eventos a qualquer classe/objeto.
 
 - O mixin vai fornecer um método `.trigger(name, [...data])` para "gerar um evento" quando algo importante acontecer com ele. O argumento `name` é o nome do evento, e é opcionalmente seguido de argumentos provendo dados do evento.
 - E também o método `.on(name, handler)` que adiciona a função `handler` como ouvinte de eventos com o dado nome. Ela será chamada quando um evento com o dado `name` disparar, e irá obter os argumentos da chamada de `.trigger`
