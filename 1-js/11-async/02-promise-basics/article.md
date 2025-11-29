@@ -222,11 +222,7 @@ The idea of `finally` is to set up a handler for performing cleanup/finalizing a
 
 E.g. stopping loading indicators, closing no longer needed connections, etc.
 
-<<<<<<< HEAD
-Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
-=======
 Think of it as a party finisher. Irresepective of whether a party was good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 The code may look like this:
 
