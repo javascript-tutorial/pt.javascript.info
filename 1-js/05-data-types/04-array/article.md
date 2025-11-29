@@ -98,15 +98,9 @@ The "trailing comma" style makes it easier to insert/remove items, because all l
 
 Let's say we want the last element of the array.
 
-<<<<<<< HEAD
 Some programming languages allow to use negative indexes for the same purpose, like `fruits[-1]`.
 
 Although, in JavaScript it won't work. The result will be `undefined`, because the index in square brackets is treated literally.
-=======
-Some programming languages allow the use of negative indexes for the same purpose, like `fruits[-1]`.
-
-However, in JavaScript it won't work. The result will be `undefined`, because the index in square brackets is treated literally.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 We can explicitly calculate the last element index and then access it: `fruits[fruits.length - 1]`.
 
