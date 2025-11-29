@@ -6,7 +6,7 @@ Isto pode ser feito usando as funções construtoras e o operador `"new"` .
 
 ## Funções construtoras
 
-Funções construtoras são tecnicamente, funções regulares. Entretanto, existem duas convenções: 
+Funções construtoras são tecnicamente, funções regulares. Entretanto, existem duas convenções:
 
 1. Elas são nomeadas com a primeira letra em maiúsculas.
 2. Elas devem ser executadas apenas através do operador `"new"`.
@@ -86,7 +86,7 @@ Esse construtor não pode ser chamado novamente porque ele não está salvo em n
 ## Teste para o modo construtor: new.target
 
 ```smart header="Material avançado"
-A sintaxe desta seção é raramente usada, pule a menos que você queira saber sobre tudo. 
+A sintaxe desta seção é raramente usada, pule a menos que você queira saber sobre tudo.
 ```
 
 Dentro de uma função, nós podemos checar se ela foi chamada com `new` ou sem ele, usando a propriedade especial `new.target`.
@@ -168,13 +168,8 @@ alert( new SmallUser().name );  // John
 
 Geralmente os construtores não têm uma declaração `return`. Aqui, nós mencionamos o comportamento especial com objetos retornados principalmente por uma questão de integralidade.
 
-<<<<<<< HEAD
 ````smart header="Omitindo parênteses"
 A propósito, nós podemos omitir os parênteses depois de `new`:
-=======
-````smart header="Omitting parentheses"
-By the way, we can omit parentheses after `new`:
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ```js
 let user = new User; // <-- sem parênteses
