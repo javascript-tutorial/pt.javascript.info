@@ -9,11 +9,11 @@ Variáveis são usadas para armazenar esta informação.
 
 ## Uma variável
 
-Uma [variável](<https://pt.wikipedia.org/wiki/Variável_(programação)>) é um "armazenamento nomeado" para dados. Podemos usar variáveis para armazenar artigos, visitantes e outros dados.
+Uma [variável](https://pt.wikipedia.org/wiki/Variável_(programação)) é um "armazenamento nomeado" para dados. Podemos usar variáveis para armazenar artigos, visitantes e outros dados.
 
 Para criar uma variável em JavaScript, use a palavra-chave `let`.
 
-A declaração abaixo cria (em outras palavras: _declara_) uma variável com o nome "message":
+A declaração abaixo cria (em outras palavras: *declara*) uma variável com o nome "message":
 
 ```js
 let message;
@@ -43,7 +43,7 @@ alert(message); // mostra o conteúdo da variável
 Para ser conciso, podemos combinar a declaração de variável e atribuição em uma única linha:
 
 ```js run
-let message = "Olá!"; // define a variável e atribui o valor
+let message = 'Olá!'; // define a variável e atribui o valor
 
 alert(message); // Olá!
 ```
@@ -51,9 +51,9 @@ alert(message); // Olá!
 Podemos também declarar múltiplas variáveis em uma linha:
 
 ```js no-beautify
-let user = "John",
+let user = 'John',
   age = 25,
-  message = "Olá";
+  message = 'Olá';
 ```
 
 Isso pode parecer mais curto, mas não o recomendamos. Por uma questão de melhor legibilidade, use uma única linha por variável.
@@ -61,25 +61,25 @@ Isso pode parecer mais curto, mas não o recomendamos. Por uma questão de melho
 A variante multilinha é um pouco mais longa, mas mais fácil de ler:
 
 ```js
-let user = "John";
+let user = 'John';
 let age = 25;
-let message = "Olá";
+let message = 'Olá';
 ```
 
 Algumas pessoas também definem múltiplas variáveis nesse estilo multilinha:
 
 ```js no-beautify
-let user = "John",
+let user = 'John',
   age = 25,
-  message = "Olá";
+  message = 'Olá';
 ```
 
 ... Ou até mesmo no estilo "vírgula-primeiro":
 
 ```js no-beautify
-let user = "John",
+let user = 'John',
   age = 25,
-  message = "Olá";
+  message = 'Olá';
 ```
 
 Tecnicamente, todas estas variantes fazem a mesma coisa. Então, é uma questão de gosto pessoal e estética.
@@ -101,7 +101,7 @@ Existem diferenças sutis entre `let` e `var`, mas elas ainda não são importan
 
 Podemos facilmente compreender o conceito de uma "variável" se a imaginarmos como uma "caixa" para dados, com um adesivo de nome exclusivo.
 
-Por exemplo, a variável `mensagem` pode ser imaginada como uma caixa chamada `"message"`com o valor `"Olá"`!:
+Por exemplo, a variável `mensagem` pode ser imaginada como uma caixa chamada `"message"`com o valor `'Olá'`!:
 
 ![](variable.svg)
 
@@ -151,7 +151,7 @@ let message = "Isto";
 let message = "Aquilo"; // SyntaxError: 'message' has already been declared (Erro-de-sintaxe: 'message' já foi declarada)
 ```
 Assim, devemos declarar uma variável apenas uma vez e depois fazer referência a ela sem o `let`.
-`````
+````
 
 ```smart header="Linguagens funcionais"
 É interessante notar que existem linguagens de programação [funcionais](https://en.wikipedia.org/wiki/Functional_programming), como [Scala](http://www.scala-lang.org/) ou [Erlang](http://www.erlang.org/), que proíbem a modificação de valores de variáveis.
