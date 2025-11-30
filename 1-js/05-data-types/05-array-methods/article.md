@@ -239,11 +239,7 @@ The methods [arr.indexOf](mdn:js/Array/indexOf) and [arr.includes](mdn:js/Array/
 - `arr.indexOf(item, from)` -- looks for `item` starting from index `from`, and returns the index where it was found, otherwise `-1`.
 - `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
 
-<<<<<<< HEAD
 Usually these methods are used with only one argument: the `item` to search. By default, the search is from the beginning.
-=======
-Usually, these methods are used with only one argument: the `item` to search. By default, the search is from the beginning.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 For instance:
 
@@ -259,11 +255,7 @@ alert( arr.includes(1) ); // true
 
 Please note that `indexOf` uses the strict equality `===` for comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
 
-<<<<<<< HEAD
 If we want to check if `item` exists in the array, and don't need the index, then `arr.includes` is preferred.
-=======
-If we want to check if `item` exists in the array and don't need the index, then `arr.includes` is preferred.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 The method [arr.lastIndexOf](mdn:js/Array/lastIndexOf) is the same as `indexOf`, but looks for from right to left.
 
@@ -282,11 +274,7 @@ const arr = [NaN];
 alert( arr.indexOf(NaN) ); // -1 (wrong, should be 0)
 alert( arr.includes(NaN) );// true (correct)
 ```
-<<<<<<< HEAD
 That's because `includes` was added to JavaScript much later and uses the more up to date comparison algorithm internally.
-=======
-That's because `includes` was added to JavaScript much later and uses the more up-to-date comparison algorithm internally.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 ````
 
 ### find and findIndex/findLastIndex
@@ -329,11 +317,7 @@ In real life, arrays of objects are a common thing, so the `find` method is very
 
 Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. That's typical, other arguments of this function are rarely used.
 
-<<<<<<< HEAD
 The [arr.findIndex](mdn:js/Array/findIndex) method has the same syntax, but returns the index where the element was found instead of the element itself. The value of `-1` is returned if nothing is found.
-=======
-The [arr.findIndex](mdn:js/Array/findIndex) method has the same syntax but returns the index where the element was found instead of the element itself. The value of `-1` is returned if nothing is found.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 The [arr.findLastIndex](mdn:js/Array/findLastIndex) method is like `findIndex`, but searches from right to left, similar to `lastIndexOf`.
 
@@ -680,11 +664,7 @@ arr.reduce((sum, current) => sum + current);
 
 So it's advised to always specify the initial value.
 
-<<<<<<< HEAD
 The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
-=======
-The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same but goes from right to left.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## Array.isArray
 

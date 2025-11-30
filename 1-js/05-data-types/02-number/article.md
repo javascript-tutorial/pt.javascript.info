@@ -4,11 +4,7 @@ In modern JavaScript, there are two types of numbers:
 
 1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
 
-<<<<<<< HEAD
 2. BigInt numbers represent integers of arbitrary length. They are sometimes needed because a regular integer number can't safely exceed <code>(2<sup>53</sup>-1)</code> or be less than <code>-(2<sup>53</sup>-1)</code>, as we mentioned earlier in the chapter <info:types>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
-=======
-2. BigInt numbers represent integers of arbitrary length. They are sometimes needed because a regular integer number can't safely exceed <code>(2<sup>53</sup>-1)</code> or be less than <code>-(2<sup>53</sup>-1)</code>, as we mentioned earlier in the chapter <info:types>. As bigints are used in a few special areas, we devote them to a special chapter <info:bigint>.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 So here we'll talk about regular numbers. Let's expand our knowledge of them.
 
@@ -194,11 +190,7 @@ There are two ways to do so:
     alert( num.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits
     ```
 
-<<<<<<< HEAD
     We can convert it to a number using the unary plus or a `Number()` call, e.g write `+num.toFixed(5)`.
-=======
-    We can convert it to a number using the unary plus or a `Number()` call, e.g. write `+num.toFixed(5)`.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## Imprecise calculations
 
@@ -232,9 +224,6 @@ But why does this happen?
 
 A number is stored in memory in its binary form, a sequence of bits - ones and zeroes. But fractions like `0.1`, `0.2` that look simple in the decimal numeric system are actually unending fractions in their binary form.
 
-<<<<<<< HEAD
-What is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
-=======
 ```js run
 alert(0.1.toString(2)); // 0.0001100110011001100110011001100110011001100110011001101
 alert(0.2.toString(2)); // 0.001100110011001100110011001100110011001100110011001101
@@ -242,7 +231,6 @@ alert((0.1 + 0.2).toString(2)); // 0.0100110011001100110011001100110011001100110
 ```
 
 What is `0.1`? It is one divided by ten `1/10`, one-tenth. In the decimal numeral system, such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 So, division by powers `10` is guaranteed to work well in the decimal system, but division by `3` is not. For the same reason, in the binary numeral system, the division by powers of `2` is guaranteed to work, but `1/10` becomes an endless binary fraction.
 
@@ -357,11 +345,7 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
 ````smart header="`Number.isNaN` and `Number.isFinite`"
 [Number.isNaN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN) and [Number.isFinite](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite) methods are the more "strict" versions of `isNaN` and `isFinite` functions. They do not autoconvert their argument into a number, but check if it belongs to the `number` type instead.
 
-<<<<<<< HEAD
 - `Number.isNaN(value)` returns `true` if the argument belongs to the `number` type and it is `NaN`. In any other case it returns `false`.
-=======
-- `Number.isNaN(value)` returns `true` if the argument belongs to the `number` type and it is `NaN`. In any other case, it returns `false`.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
     ```js run
     alert( Number.isNaN(NaN) ); // true
@@ -372,11 +356,7 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
     alert( isNaN("str") ); // true, because isNaN converts string "str" into a number and gets NaN as a result of this conversion
     ```
 
-<<<<<<< HEAD
 - `Number.isFinite(value)` returns `true` if the argument belongs to the `number` type and it is not `NaN/Infinity/-Infinity`. In any other case it returns `false`.
-=======
-- `Number.isFinite(value)` returns `true` if the argument belongs to the `number` type and it is not `NaN/Infinity/-Infinity`. In any other case, it returns `false`.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
     ```js run
     alert( Number.isFinite(123) ); // true
@@ -395,11 +375,7 @@ In a way, `Number.isNaN` and `Number.isFinite` are simpler and more straightforw
 There is a special built-in method `Object.is` that compares values like `===`, but is more reliable for two edge cases:
 
 1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
-<<<<<<< HEAD
 2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's correct, because internally the number has a sign bit that may be different even if all other bits are zeroes.
-=======
-2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's correct because internally the number has a sign bit that may be different even if all other bits are zeroes.
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 In all other cases, `Object.is(a, b)` is the same as `a === b`.
 

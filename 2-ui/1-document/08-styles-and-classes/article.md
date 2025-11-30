@@ -135,25 +135,8 @@ document.body.style.background = 'red'; // define a cor de fundo para vermelho
 setTimeout(() => document.body.style.removeProperty('background'), 1000); // remove o fundo após um segundo
 ```
 
-<<<<<<< HEAD
 ````smart header="Reescrita completa com `style.cssText`"
 Normalmente, usamos `style.*` para atribuir propriedades de estilos individuais. Não podemos definir o estilo completo como `div.style="color: red; width: 100px"`, pois `div.style` é um objeto sendo somente para leitura.
-=======
-If we set `style.display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `style.display` property at all.
-
-Also there is a special method for that, `elem.style.removeProperty('style property')`. So, We can remove a property like this:
-
-```js run
-document.body.style.background = 'red'; //set background to red
-
-setTimeout(() => document.body.style.removeProperty('background'), 1000); // remove background after 1 second
-```
-
-````smart header="Full rewrite with `style.cssText`"
-Normally, we use `style.*` to assign individual style properties. We can't set the full style like `div.style="color: red; width: 100px"`, because `div.style` is an object, and it's read-only.
-
-To set the full style as a string, there's a special property `style.cssText`:
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Para definir o estilo completo como uma string, existe uma propriedade especial `style.cssText`:
 ```html run
