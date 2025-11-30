@@ -46,7 +46,7 @@ A tag `<script>` contém código JavaScript que é executado automaticamente qua
 A tag `<script>` tem alguns atributos que raramente são usados hoje em dia, mas que ainda podem ser encontrados em código antigo:
 
 O atributo `type`: <code>&lt;script <u>type</u>=...&gt;</code>
-: O antigo padrão HTML, HTML4, requeria um script para ter um `type`. Normalmente era `type="text/javascript"`. Não é mais necessário. Além disso, o moderno padrão HTML, HTML5, mudou totalmente o significado deste atributo. Agora, ele pode ser usado para módulos JavaScript. Mas esse é um tópico avançado; vamos falar sobre módulos em outra parte do tutorial.
+: O antigo padrão HTML, o HTML4, requeria que um script tivesse um `type`. Normalmente era `type="text/javascript"`. Não é mais necessário. Além disso, o moderno padrão HTML, HTML5, mudou totalmente o significado deste atributo. Agora, ele pode ser usado para módulos JavaScript. Mas esse é um tópico avançado; vamos falar sobre módulos em outra parte do tutorial.
 
 O atributo `language`: <code>&lt;script <u>language</u>=...&gt;</code>
 : Este atributo foi criado para mostrar o idioma do script. Este atributo não faz mais sentido porque JavaScript é a linguagem padrão. Não há necessidade de o usar.
