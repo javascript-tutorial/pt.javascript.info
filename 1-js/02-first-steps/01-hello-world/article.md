@@ -43,10 +43,10 @@ A tag `<script>` contém código JavaScript que é executado automaticamente qua
 
 ## Marcação moderna
 
-A tag `<script>` tem alguns atributos que raramente são usados hoje em dia, mas que ainda podem ser encontrados em códigos antigos:
+A tag `<script>` tem alguns atributos que raramente são usados hoje em dia, mas que ainda podem ser encontrados em código antigo:
 
 O atributo `type`: <code>&lt;script <u>type</u>=...&gt;</code>
-: O antigo padrão HTML, HTML4, requeria um script para ter um `type`. Normalmente era `type="text/javascript"`. Não é mais necessário. Além disso, o moderno padrão HTML, HTML5, mudou totalmente o significado deste atributo. Agora, ele pode ser usado para módulos JavaScript. Mas esse é um tópico avançado; vamos falar sobre módulos em outra parte do tutorial. 
+: O antigo padrão HTML, o HTML4, requeria que um script tivesse um `type`. Normalmente era `type="text/javascript"`. Não é mais necessário. Além disso, o moderno padrão HTML, HTML5, mudou totalmente o significado deste atributo. Agora, ele pode ser usado para módulos JavaScript. Mas esse é um tópico avançado; vamos falar sobre módulos em outra parte do tutorial.
 
 O atributo `language`: <code>&lt;script <u>language</u>=...&gt;</code>
 : Este atributo foi criado para mostrar o idioma do script. Este atributo não faz mais sentido porque JavaScript é a linguagem padrão. Não há necessidade de o usar.
@@ -54,13 +54,13 @@ O atributo `language`: <code>&lt;script <u>language</u>=...&gt;</code>
 Comentários antes e depois dos scripts.
 : Em livros e guias realmente antigos, você pode encontrar comentários dentro de tags `<script>`, assim:
 
-    ```html no-beautify
-    <script type="text/javascript"><!--
-        ...
-    //--></script>
-    ```
+```html no-beautify
+<script type="text/javascript"><!--
+    ...
+//--></script>
+```
 
-    Esse truque não é usado no JavaScript moderno. Esses comentários esconderam código JavaScript de navegadores antigos que não sabiam como processar a tag `<script>`. Como os navegadores lançados nos últimos 15 anos não têm esse problema, esse tipo de comentário pode ajudá-lo a identificar códigos realmente antigos.
+Esse truque não é usado no JavaScript moderno. Esses comentários escondiam código JavaScript de navegadores antigos que não sabiam como processar a tag `<script>`. Como os navegadores lançados nos últimos 15 anos não têm esse problema, esse tipo de comentário pode ajudá-lo a identificar código realmente antigo.
 
 
 ## Scripts externos
@@ -92,7 +92,7 @@ Para anexar vários scripts, use múltiplas tags:
 ```smart
 Como regra, apenas os scripts mais simples são colocados em HTML. Os mais complexos residem em arquivos separados.
 
-O benefício de um arquivo separado é que o navegador irá baixá-lo e armazená-lo em seu [cache] (https://pt.wikipedia.org/wiki/Web_cache).
+O benefício de um arquivo separado é que o navegador irá baixá-lo e armazená-lo em seu [cache](https://pt.wikipedia.org/wiki/Web_cache).
 
 Outras páginas que referenciam o mesmo script o tirarão do cache ao invés de baixá-lo, então o arquivo é baixado apenas uma vez.
 
@@ -128,5 +128,4 @@ O exemplo acima pode ser dividido em dois scripts para funcionar:
 - Os atributos `type` e `language` não são necessários.
 - Um script em um arquivo externo pode ser inserido com `<script src="path/to/script.js"></script>`.
 
-
-Há muito mais a aprender sobre os scripts dos navegadores e sua interação com a página. Mas vamos ter em mente que esta parte do tutorial é dedicada à linguagem JavaScript, então não devemos nos distrair com implementações específicas de navegadores. Estaremos usando o navegador como uma maneira de rodar JavaScript, que é muito conveniente para leitura online, mas apenas um de muitos.
+Há muito mais a aprender sobre os scripts dos navegadores e sua interação com a página. Mas vamos ter em mente que esta parte do tutorial é dedicada à linguagem JavaScript, então não devemos nos distrair com implementações específicas de navegadores. Estaremos usando o navegador como uma maneira de rodar JavaScript, que é muito conveniente para leitura online, mas é apenas uma maneira  de muitas.

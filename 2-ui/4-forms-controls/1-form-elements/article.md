@@ -155,7 +155,7 @@ Let's talk about form controls.
 
 ### input and textarea
 
-We can access their value as `input.value` (string) or `input.checked` (boolean) for checkboxes.
+We can access their value as `input.value` (string) or `input.checked` (boolean) for checkboxes and radio buttons.
 
 Like this:
 
@@ -244,7 +244,7 @@ This syntax is optional. We can use `document.createElement('option')` and set a
 - `defaultSelected` -- if `true`, then `selected` HTML-attribute is created,
 - `selected` -- if `true`, then the option is selected.
 
-The difference between `defaultSelected` and `selected` is that `defaultSelected` sets the HTML-attribute (that we can get using `option.getAttribute('selected')`, while `selected` sets whether the option is selected or not.
+The difference between `defaultSelected` and `selected` is that `defaultSelected` sets the HTML-attribute (that we can get using `option.getAttribute('selected')`), while `selected` sets whether the option is selected or not.
 
 In practice, one should usually set _both_ values to `true` or `false`. (Or, simply omit them; both default to `false`.)
 

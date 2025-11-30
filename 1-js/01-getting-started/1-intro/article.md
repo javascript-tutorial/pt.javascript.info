@@ -67,13 +67,15 @@ Exemplos de tais restrições incluem:
 
     Os navegadores modernos permitem que ele trabalhe com arquivos, mas o acesso é limitado e fornecido apenas se o usuário executar determinadas ações, como "dropping" de um arquivo em uma janela do navegador ou selecioná-lo por meio de uma entrada de formulário.
 
-    Existem maneiras de interagir com a câmera/microfone e outros dispositivos, mas eles exigem permissão explícita do usuário. Assim, uma página com o JavaScript ativo não pode às encondidas habilitar uma câmera web, observar os arredores e enviar as informações para a [Agência de Segurança Nacional (NSA)](https://pt.wikipedia.org/wiki/Ag%C3%AAncia_de_Seguran%C3%A7a_Nacional).
-- Diferentes abas/janelas geralmente não se conhecem mutuamente. Mas às vezes sim, por exemplo, quando uma janela usa JavaScript para abrir outra. Mas, mesmo neste caso, o JavaScript numa página pode não acessar a outra se elas vierem de sites diferentes (de um domínio, protocolo ou porta diferentes).
+    Existem maneiras de interagir com a câmera / microfone e outros dispositivos, mas eles exigem permissão explícita do usuário. Assim, uma página habilitada para JavaScript pode não habilmente habilitar uma câmera web, observar os arredores e enviar as informações para a [NSA](https://pt.wikipedia.org/wiki/Ag%C3%AAncia_de_Seguran%C3%A7a_Nacional).
+
+- Diferentes abas/janelas geralmente não se conhecem mutuamente. Às vezes sim, por exemplo, quando uma janela usa JavaScript para abrir a outra. Mas mesmo neste caso, JavaScript de uma página pode não acessar a outra se eles vierem de sites diferentes (de um domínio, protocolo ou porta diferente).
 
     Isto é chamado de "Política de mesma origem". Para contornar isso, *ambas as páginas* devem concordar em trocar dados e conter código JavaScript específico para o fazer.
 
     Essa limitação é, novamente, para a segurança do usuário. Uma página de `http://umsitequalquer.com.br` que um usuário abriu não deve poder alcançar uma outra aba do navegador com a URL `http://gmail.com` e roubar a informação de lá.
-- O JavaScript pode se comunicar facilmente pela rede com o servidor de onde a página atual veio. Mas a sua capacidade de receber dados de outros sites/domínios é limitada. Embora possível, requer acordo explícito (expresso em cabeçalhos HTTP) do lado remoto. Mais uma vez, esta é uma limitação de segurança.
+
+- O JavaScript pode se comunicar facilmente pela rede com o servidor de onde a página atual veio. Mas sua capacidade de receber dados de outros sites / domínios é prejudicada. Embora possível, requer acordo explícito (expresso em cabeçalhos HTTP) do lado remoto. Mais uma vez, isso é uma limitação de segurança.
 
 ![](limitations.svg)
 
@@ -88,11 +90,12 @@ Há pelo menos *três* grandes aspectos do JavaScript:
 + Coisas simples são feitas de forma simples.
 + Suporte em todos os principais navegadores, e ativado por padrão.
 ```
-O JavaScript é a única tecnologia de navegador que combina estas três qualidades.
+
+JavaScript é a única tecnologia de navegador que combina estas três qualidades.
 
 Isso é o que torna o JavaScript único. É por isso que é a ferramenta mais difundida para criar interfaces de navegador.
 
-Dito isto, o JavaScript pode ser usado para criar servidores, aplicativos móveies, etc.
+Dito isso, o JavaScript pode ser usado para criar servidores, aplicativos móveis, etc.
 
 ## Linguagens "sobre" JavaScript
 

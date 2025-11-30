@@ -232,11 +232,11 @@ Vamos usar o método [fetch](info:fetch) para carregar de um servidor remoto inf
 let promise = fetch(url);
 ```
 
-Isso faz uma requisição de rede para a `url` e retorna uma promessa. A promessa é resolvida com um objeto `response` quando o servidor remoto responde com os cabeçalhos, mas *antes do download completo da resposta*.  
+Isso faz uma requisição de rede para a `url` e retorna uma promessa. A promessa é resolvida com um objeto `response` quando o servidor remoto responde com os cabeçalhos, mas *antes do download completo da resposta*.
 
 Para ler a resposta completa, devemos chamar o método `response.text()`: isso retorna uma promessa que é resolvida quando o texto completo é baixado do servidor remoto, com esse texto como resultado.
 
-O código abaixo faz uma requisição a `user.json` e carrega seu texto do servidor:  
+O código abaixo faz uma requisição a `user.json` e carrega seu texto do servidor:
 
 ```js run
 fetch('/article/promise-chaining/user.json')

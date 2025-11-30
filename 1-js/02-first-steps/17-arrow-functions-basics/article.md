@@ -78,7 +78,7 @@ Elas são muito convenientes para ações simples numa única-linha, quando esta
 
 Os exemplos acima tomaram os argumentos à esquerda de `=>` e avaliaram a expressão à direita com eles.
 
-Por vezes, precisamos de algo um pouco mais complexo, como de múltiplas expressões ou instruções. Isso também é possível, mas devemos colocar elas dentro de chavetas. Depois, usamos um `return` normal com elas.
+Sometimes we need a more complex function, with multiple expressions and statements. In that case, we can enclose them in curly braces. The major difference is that curly braces require a `return` within them to return a value (just like a regular function does).
 
 Desta forma:
 

@@ -1,36 +1,36 @@
-There are many ways to do it.
 
-Here are some of them:
+Existem muitas maneiras de fazer isso.
+
+Aqui estão algumas delas:
 
 ```js
-// 1. The table with `id="age-table"`.
+// 1. A tabela com `id="age-table"`.
 let table = document.getElementById('age-table')
 
-// 2. All label elements inside that table
+// 2. Todos os elementos label dentro dessa tabela
 table.getElementsByTagName('label')
-// or
+// ou
 document.querySelectorAll('#age-table label')
 
-// 3. The first td in that table (with the word "Age").
+// 3. O primeiro td nessa tabela (com a palavra "Idade")
 table.rows[0].cells[0]
-// or
+// ou
 table.getElementsByTagName('td')[0]
-// or
+// ou
 table.querySelector('td')
 
-// 4. The form with the name "search".
-// assuming there's only one element with name="search"
+// 4. O formulário com o nome "search"
+// assumindo que existe apenas um elemento com name="search" no documento
 let form = document.getElementsByName('search')[0]
-// or, form specifically
+// ou, especificamente, o formulário
 document.querySelector('form[name="search"]')
 
-// 5. The first input in that form.
+// 5. O primeiro input nesse formulário.
 form.getElementsByTagName('input')[0]
-// or
+// ou
 form.querySelector('input')
 
-// 6. The last input in that form.
-// there's no direct query for that
-let inputs = form.querySelectorAll('input') // search all
-inputs[inputs.length-1] // take last
+// 6. O último input nesse formulário
+let inputs = form.querySelectorAll('input') // find all inputs
+inputs[inputs.length-1] // take the last one
 ```
