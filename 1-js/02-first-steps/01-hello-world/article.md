@@ -60,7 +60,7 @@ Comentários antes e depois dos scripts.
 //--></script>
 ```
 
-Esse truque não é usado no JavaScript moderno. Esses comentários esconderam código JavaScript de navegadores antigos que não sabiam como processar a tag `<script>`. Como os navegadores lançados nos últimos 15 anos não têm esse problema, esse tipo de comentário pode ajudá-lo a identificar códigos realmente antigos.
+Esse truque não é usado no JavaScript moderno. Esses comentários escondiam código JavaScript de navegadores antigos que não sabiam como processar a tag `<script>`. Como os navegadores lançados nos últimos 15 anos não têm esse problema, esse tipo de comentário pode ajudá-lo a identificar código realmente antigo.
 
 
 ## Scripts externos
