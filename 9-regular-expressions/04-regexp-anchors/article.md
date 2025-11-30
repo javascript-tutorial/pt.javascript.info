@@ -16,13 +16,8 @@ O padrão `pattern:^Maria` quer dizer: "início da string, e então Maria"
 Da mesma maneira, podemos testar se a string termina com `neve` usando `pattern:neve$`:
 
 ```js run
-<<<<<<< HEAD
 let str1 = "Seu velo era branco como a neve";
 alert( /neve$/.test(str1) ); // true
-=======
-let str1 = "its fleece was white as snow";
-alert( /snow$/.test(str1) ); // true
->>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 ```
 
 Nesses casos em particular, poderíamos usar os métodos do objeto string `startsWith/endsWith` em seu lugar. Expressões regulares devem ser usadas para testes mais complexos.
@@ -33,7 +28,7 @@ Frequentemente, ambas as âncoras `pattern:^...$` são usadas juntas para verifi
 
 Vamos verificar se uma string é um horário no formato `12:34`. Isto é: dois dígitos, seguido de dois pontos (':'), e então mais dois dígitos.
 
-Em expressões regulares, isso fica `pattern:\d\d:\d\d`: 
+Em expressões regulares, isso fica `pattern:\d\d:\d\d`:
 
 ```js run
 let goodInput = "12:34";
