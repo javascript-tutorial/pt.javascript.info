@@ -68,7 +68,7 @@ Uma lista de *breakpoints* sempre estará disponível no painel à direita. Muit
 É prático quando precisamos de suspender a execução apenas para valores determinados de certa variável ou para parâmetros específicos numa função.
 ```
 
-## O comando *debugger*
+## O comando "debugger"
 
 Podemos também suspender o código utilizando o comando `debugger`, desta forma:
 

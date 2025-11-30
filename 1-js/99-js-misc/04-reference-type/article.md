@@ -87,11 +87,11 @@ O resultado de um acesso à propriedade `user.hi` não é uma função, mas um v
 (user, "hi", true)
 ```
 
-Quando parênteses são chamados no tipo de referência, eles recebem todas as informações sobre o objeto e o seu método, e podem definir o `this` correto (`user` nesse caso).
+Quando parênteses `()` são chamados no tipo de referência, eles recebem todas as informações sobre o objeto e o seu método, e podem definir o `this` correto (`user` nesse caso).
 
 O tipo de referência é um tipo interno especial "intermediário", com o propósito de transmitir informações do ponto `.` para os parênteses de chamada `()`.
 
-Qualquer outra operação, como a atribuição `hi = user.hi`, descarta o tipo de referência como um todo, pega o valor de `user.hi` (uma função) e o repassa. Portanto, qualquer operação subsequente "perde" o `this`. 
+Qualquer outra operação, como a atribuição `hi = user.hi`, descarta o tipo de referência como um todo, pega o valor de `user.hi` (uma função) e o repassa. Portanto, qualquer operação subsequente "perde" o `this`.
 
 Então, como resultado, o valor de `this` é apenas passado corretamente apenas se a função for chamada diretamente usando a sintaxe de ponto `obj.method()` ou colchetes `obj['method']()` (ambas fazem o mesmo aqui). Existem várias maneiras de resolver esse problema, como [func.bind()](/bind#solution-2-bind).
 

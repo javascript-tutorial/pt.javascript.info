@@ -22,7 +22,7 @@ As ferramentas de desenvolvedor serão abertas na aba Console por padrão.
 
 É parecido com isto:
 
-![chrome](chrome.png)
+![chrome](chrome.webp)
 
 O aspecto exato das ferramentas de desenvolvimento depende da sua versão do Chrome. Ele muda de vez em quando, mas deve ser semelhante.
 

@@ -29,7 +29,7 @@ Alterar uma classe é uma das ações mais utilizadas em scripts.
 
 Antigamente, havia uma limitação no JavaScript: uma palavra reservada como `"class"` não poderia ser uma propriedade de objeto. Esta limitação não existe hoje, porém naquela época era impossível haver uma propriedade `"class"`, como `elem.class`.
 
-Portanto, para classes, uma propriedade semelhante, `"className"`, foi introduzida: o `elem.className` corresponde ao atributo `"class"`.  
+Portanto, para classes, uma propriedade semelhante, `"className"`, foi introduzida: o `elem.className` corresponde ao atributo `"class"`.
 
 Por exemplo:
 
@@ -57,12 +57,12 @@ Por exemplo:
     document.body.classList.add('article');
 */!*
 
-    alert(document.body.className); // class article da página principal 
+    alert(document.body.className); // class article da página principal
   </script>
 </body>
 ```
 
-Então, podemos manipular tanto a string de classes completa usando `className` quanto classes individuais usando `classList`. A escolha depende das nossas necessidades. 
+Então, podemos manipular tanto a string de classes completa usando `className` quanto classes individuais usando `classList`. A escolha depende das nossas necessidades.
 
 Métodos de `classList`:
 
@@ -213,7 +213,7 @@ Por exemplo, aqui `style` não consegue ver a margem:
 ```
 ...Mas e se precisarmos, por exemplo, aumentar a margem em `20px`? Nós iriamos querer o valor atual dela.
 
-Existe um outro método para isso: `getComputedStyle`. 
+Existe um outro método para isso: `getComputedStyle`.
 
 A sintaxe é:
 
@@ -271,7 +271,7 @@ Por exemplo, se existem propriedades `paddingLeft/paddingTop`, então o que deve
 
 Links visitados podem ser coloridos usando a pseudo-classe CSS `:visited`.
 
-No entanto, `getComputedStyle` não dá acesso a essa cor, pois, caso contrário, uma página arbitrária poderia descobrir se o usuário visitou um link ao criá-lo na página e verificar os estilos. 
+No entanto, `getComputedStyle` não dá acesso a essa cor, pois, caso contrário, uma página arbitrária poderia descobrir se o usuário visitou um link ao criá-lo na página e verificar os estilos.
 
 O JavaScript pode não conseguir visualizar os estilos aplicados pela pseudo-classe `:visited`. Além disso, existe uma limitação no CSS que proíbe a aplicação de estilos que alteram a geometria em `:visited`. Isso garante que não haja uma maneira indireta de uma página mal-intencionada testar se um link foi visitado e, assim, quebrar a privacidade.
 ```
@@ -287,7 +287,7 @@ Para modificar os estilos:
 
 - A propriedade `style` é um objeto com estilos em camelCase. Ler e escrever nela tem equivale a modificar propriedades individuais no atributo `"style"`. Para ver como aplicar `important` e outras coisas raras há uma lista de métodos no [MDN](mdn:api/CSSStyleDeclaration)
 
-- A propriedade `style.cssText` corresponde a atributo `"style"` inteiro, a string completa de estilos. 
+- A propriedade `style.cssText` corresponde a atributo `"style"` inteiro, a string completa de estilos.
 
 Para ler os estilos resolvidos (considerando todas as classes, após a aplicação de todo o CSS e cálculo dos valores finais):
 

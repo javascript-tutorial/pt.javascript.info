@@ -28,14 +28,15 @@ A pasta é nomeada como `N-url`, onde `N` é um número para fins de classifica�
 
 O tipo do material é definido pelo arquivo dentro da pasta:
 
-  - `index.md` significa um capítulo
-  - `article.md` significa um artigo
-  - `task.md` representa uma tarefa (a solução também deve ser fornecida no arquivo `solution.md`)
+- `index.md` significa um capítulo
+- `article.md` significa um artigo
+- `task.md` representa uma tarefa (a solução também deve ser fornecida no arquivo `solution.md`)
 
 Cada um desses arquivos começa no `# Cabeçalho principal`.
 
 É muito fácil adicionar algo novo.
 
----  
-♥  
+---
+
+♥
 Ilya Kantor @iliakan

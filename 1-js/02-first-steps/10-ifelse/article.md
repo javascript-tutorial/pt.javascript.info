@@ -127,7 +127,7 @@ alert(accessAllowed);
 
 O chamado operador "condicional" ou "ponto de interrogação" nos permite fazer isso de uma forma curta e simples.
 
-O operador é representado por um ponto de interrogação `?`. Às vezes é chamado de "ternário", porque o operador possui três operandos. Na verdade, é o único operador em JavaScript que possui tantos. 
+O operador é representado por um ponto de interrogação `?`. Às vezes é chamado de "ternário", porque o operador possui três operandos. Na verdade, é o único operador em JavaScript que possui tantos.
 
 A sintaxe é:
 

@@ -71,9 +71,7 @@ if (!Math.trunc) { // se a função não existir
 
 O JavaScript é uma linguagem altamente dinâmica. Scripts podem adicionar/modificar quaisquer funções, incluindo até incorporadas.
 
-Duas interessantes bibliotecas de polyfills são:
-- [core js](https://github.com/zloirock/core-js) que suporta muitas funcionalidades, e permite apenas incluir aquelas necessárias.
-- [polyfill.io](http://polyfill.io) um serviço que fornece um script com polyfills, dependendo das funcionalidades e do navegador do utilizador.
+Uma biblioteca interessante de polyfill é [core js](https://github.com/zloirock/core-js) que suporta muitas funcionalidades, e permite apenas incluir aquelas necessárias.
 
 ## Resumo
 

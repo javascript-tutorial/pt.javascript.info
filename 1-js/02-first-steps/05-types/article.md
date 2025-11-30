@@ -21,7 +21,7 @@ let n = 123;
 n = 12.345;
 ```
 
-O tipo *número* representa números inteiros e números de ponto flutuante.
+O tipo _número_ representa números inteiros e números de ponto flutuante.
 
 Existem muitas operações para números, por exemplo, multiplicação `*`, divisão `/`, adição `+`, subtração `-`, e assim por diante.
 
@@ -29,32 +29,33 @@ Além dos números regulares, existem os chamados "valores numéricos especiais"
 
 - `Infinito` representa a matemática [Infinity](https://en.wikipedia.org/wiki/Infinity) ∞. É um valor especial que é maior que qualquer número.
 
-    Podemos obtê-lo como resultado da divisão por zero:
+  Podemos obtê-lo como resultado da divisão por zero:
 
-    ```js run
-    alert( 1 / 0 ); // Infinito
-    ```
+  ```js run
+  alert(1 / 0); // Infinito
+  ```
 
-     Ou apenas referi-lo diretamente:
+  Ou apenas referi-lo diretamente:
 
-    ```js run
-    alert( Infinity ); // Infinito
-    ```
+  ```js run
+  alert(Infinity); // Infinito
+  ```
+
 - `NaN` representa um erro computacional. É o resultado de uma operação matemática incorreta ou indefinida, por exemplo:
 
-    ```js run
-    alert( "not a number" / 2 ); // NaN, tal divisão é errônea
-    ```
+  ```js run
+  alert("not a number" / 2); // NaN, tal divisão é errônea
+  ```
 
-    `NaN` é pegajoso. Qualquer outra operação matemática com `NaN` retorna `NaN`:
+  `NaN` é pegajoso. Qualquer outra operação matemática com `NaN` retorna `NaN`:
 
-    ```js run
-    alert( NaN + 1 ); // NaN
-    alert( 3 * NaN ); // NaN
-    alert( "not a number" / 2 - 1 ); // NaN
-    ```
+  ```js run
+  alert(NaN + 1); // NaN
+  alert(3 * NaN); // NaN
+  alert("not a number" / 2 - 1); // NaN
+  ```
 
-     Então, se há um `NaN` em algum lugar em uma expressão matemática, ele se propaga para o resultado inteiro (existe apenas uma exceção nisto: `NaN ** 0` é `1`).
+  Então, se há um `NaN` em algum lugar em uma expressão matemática, ele se propaga para o resultado inteiro (existe apenas uma exceção nisto: `NaN ** 0` é `1`).
 
 ```smart header="As operações matemáticas são seguras"
 Fazer matemática é "seguro" em JavaScript. Podemos fazer qualquer coisa: dividir por zero, tratar strings não-numéricas como números, etc.
@@ -68,22 +69,22 @@ Veremos mais sobre como trabalhar com números no capítulo <info:number>.
 
 ## BigInt [#bigint-type]
 
-Em JavaScript, o tipo "number" não pode representar com segurança valores inteiros maiores que <code>(2<sup>53</sup>-1)</code> (que é `9007199254740991`) ou menores que <code>-( 2<sup>53</sup>-1)</code> para negativos.
+Em JavaScript, o tipo "number" não pode representar com segurança valores inteiros maiores que <code>(2<sup>53</sup>-1)</code> (ou seja, `9007199254740991`), ou menores que <code>-(2<sup>53</sup>-1)</code> para valores negativos.
 
-Para ser realmente preciso, o tipo "number" pode armazenar números inteiros maiores (até <code>1.7976931348623157 * 10<sup>308</sup></code>), mas fora do intervalo de números inteiros seguros <code>±(2 <sup>53</sup>-1)</code> haverá um erro de precisão, porque nem todos os dígitos cabem no armazenamento fixo de 64 bits. Portanto, um valor “aproximado” pode ser armazenado.
+Para sermos mais precisos, o tipo "number" pode armazenar inteiros maiores (até <code>1.7976931348623157 \* 10<sup>308</sup></code>), mas fora do intervalo seguro de inteiros <code>±(2<sup>53</sup>-1)</code> haverá um erro de precisão, porque nem todos os dígitos cabem no armazenamento fixo de 64 bits. Portanto, um valor "aproximado" pode ser armazenado.
 
-Por exemplo, estes dois números (logo acima da faixa segura) são iguais:
+Por exemplo, estes dois números (logo acima do intervalo seguro) são iguais:
 
 ```js
 console.log(9007199254740991 + 1); // 9007199254740992
 console.log(9007199254740991 + 2); // 9007199254740992
 ```
 
-Por assim dizer, todos os números inteiros ímpares maiores que <code>(2<sup>53</sup>-1)</code> não podem ser armazenados no tipo "número".
+Em outras palavras, todos os inteiros ímpares maiores que <code>(2<sup>53</sup>-1)</code> não podem ser armazenados no tipo "number".
 
-Para a maioria dos propósitos, o intervalo <code>±(2<sup>53</sup>-1)</code> é suficiente, mas às vezes precisamos de todo o intervalo de números inteiros realmente grandes, por exemplo, para criptografia ou carimbo do instante exato da data ou hora com precisão de microssegundos.
+Para a maioria dos propósitos, o intervalo <code>±(2<sup>53</sup>-1)</code> é suficiente, mas às vezes precisamos de toda a gama de inteiros realmente grandes, por exemplo, para criptografia ou timestamps com precisão de microssegundos.
 
-O tipo `BigInt` foi adicionado recentemente à linguagem para representar inteiros de comprimento arbitrário. 
+O tipo `BigInt` foi adicionado recentemente à linguagem para representar inteiros de comprimento arbitrário.
 
 Um valor `BigInt` é criado anexando `n` ao final de um inteiro:
 
@@ -94,19 +95,13 @@ const bigInt = 1234567890123456789012345678901234567890n;
 
 Como os números `BigInt` raramente são necessários, nós não os cobrimos aqui, mas dedicamos-lhes um capítulo separado <info:bigint>. Leia-o quando precisar de números tão grandes.
 
-```smart header="Problemas de compatibilidade"
-No momento, o `BigInt` é suportado no Firefox/Chrome/Edge/Safari, mas não no IE.
-```
-
-Você pode verificar a [tabela de compatibilidade do *MDN* sobre BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) para saber quais versões de um navegador são suportadas.
-
 ## String
 
 Uma string em JavaScript deve estar entre aspas.
 
 ```js
 let str = "Olá";
-let str2 = 'Aspas simples também são ok';
+let str2 = "Aspas simples também são ok";
 let phrase = `pode incorporar outra ${str}`;
 ```
 
@@ -124,17 +119,18 @@ Backticks são citações de "funcionalidade estendida". Eles nos permitem incor
 let name = "John";
 
 // Incorporando uma variável
-alert( `Olá, *!*${name}*/!*!` ); // Olá, John!
+alert(`Olá, *!*${name}*/!*!`); // Olá, John!
 
 // Incorporando uma expressão
-alert( `o resultado é *!*${1 + 2}*/!*` ); // o resultado é 3
+alert(`o resultado é *!*${1 + 2}*/!*`); // o resultado é 3
 ```
 
 A expressão dentro de `${…}` é avaliada e o resultado torna-se uma parte da string. Podemos colocar qualquer coisa lá: uma variável como `name` ou uma expressão aritmética como `1 + 2` ou algo mais complexo.
 
 Por favor, note que isso só pode ser feito com backticks. Outras citações não têm esta funcionalidade de incorporação!
+
 ```js run
-alert( "o resultado é ${1 + 2}" ); // o resultado é ${1 + 2} (aspas duplas não fazem nada)
+alert("o resultado é ${1 + 2}"); // o resultado é ${1 + 2} (aspas duplas não fazem nada)
 ```
 
 Abordaremos as strings mais detalhadamente no capítulo <info:string>.
@@ -163,7 +159,7 @@ Os valores booleanos também vêm como resultado de comparações:
 ```js run
 let isGreater = 4 > 1;
 
-alert( isGreater ); // true (o resultado da comparação é "sim")
+alert(isGreater); // true (o resultado da comparação é "sim")
 ```
 
 Abordaremos os booleanos mais profundamente no capítulo <info:logical-operators>.
@@ -273,14 +269,16 @@ Algumas pessoas preferem `typeof(x)`, embora a sintaxe `typeof x` seja muito mai
 
 Existem 8 tipos básicos em JavaScript.
 
-- `number` para números de qualquer tipo: inteiro ou ponto flutuante; inteiros estão limitados a <code>±(2<sup>53</sup>-1)</code>.
-- `bigint` é para números inteiros de comprimento arbitrário.
-- `string` para cadeias-de-caracteres. Uma *string* pode ter zero ou mais caracteres, não há nenhum tipo de caractere único separado.
-- `boolean` para `true`/`false`.
-- `null` para valores desconhecidos -- um tipo autônomo que tem um único valor `null`.
-- `undefined` para valores não atribuídos -- um tipo autônomo que tem um único valor `undefined`.
-- `object` para estruturas de dados mais complexas.
-- `symbol` para identificadores exclusivos.
+- Sete tipos de dados primitivos:
+    - `number` para números de qualquer tipo: inteiro ou de ponto flutuante. Os inteiros são limitados por ±(2⁵³-1).
+    - `bigint` para números inteiros de comprimento arbitrário.
+    - `string` para strings. Uma string pode ter zero ou mais caracteres; não existe um tipo separado para um único caractere.
+    - `boolean` para `true`/`false`.
+    - `null` para valores desconhecidos — um tipo independente que possui um único valor `null`.
+    - `undefined` para valores não atribuídos — um tipo independente que possui um único valor `undefined`.
+    - `symbol` para identificadores únicos.
+- E um tipo de dado não primitivo:
+    - `object` para estruturas de dados mais complexas.
 
 O operador `typeof` nos permite ver que tipo está armazenado em uma variável.
 

@@ -107,6 +107,7 @@ if (zero) { // zero é true (verdadeiro), por que é um objeto
 Por outro lado, usar as mesmas funções `String / Number / Boolean` sem` new` é uma coisa totalmente sensata e útil. Eles convertem um valor para o tipo correspondente: para uma string, um número ou um booleano (primitivo).
 
 Por exemplo, isso é inteiramente válido:
+
 ```js
 let num = Number("123"); // converte a string para número
 ```

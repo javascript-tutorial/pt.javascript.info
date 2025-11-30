@@ -1,4 +1,3 @@
-
 # Manuais e especificações
 
 Este livro é um *tutorial*. Ele tem como objetivo lhe ajudar a aprender gradualmente a linguagem. Mas uma vez familiarizado com o básico, irá precisar de outros recursos.
@@ -17,11 +16,11 @@ E mais, se você está desenvolvendo para browsers, há outras especificações 
 
 ## Manuais
 
-- **MDN (Mozilla) JavaScript Reference**  é um manual com exemplos e outras informações. É ótimo para um entendimento sobre funções da linguagem, métodos , etc.
+- **MDN (Mozilla) JavaScript Reference** é um manual com exemplos e outras informações. É ótimo para um entendimento sobre funções da linguagem, métodos , etc.
 
-	Pode ser encontrado em <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
+  Pode ser encontrado em <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
 
-	Porém, às vezes é melhor fazer uma busca na internet. Apenas use "MDN [termo]" na busca, por exemplo: <https://google.com/search?q=MDN+parseInt> para procurar pela função `parseInt`.
+  Porém, às vezes é melhor fazer uma busca na internet. Apenas use "MDN [termo]" na busca, por exemplo: <https://google.com/search?q=MDN+parseInt> para procurar pela função `parseInt`.
 
 ## Tabelas de compatibilidade
 

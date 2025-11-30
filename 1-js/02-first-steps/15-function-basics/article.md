@@ -24,7 +24,7 @@ A palavra-chave `function` vem primeiro, depois vem o *nome da função*, e uma 
 
 ```js
 function name(parameter1, parameter2, ... parameterN) {
-  ...corpo...
+ // corpo
 }
 ```
 
@@ -207,6 +207,12 @@ showMessage("Ann"); // Ann: nenhum texto fornecido
 
 Agora se o parâmetro `text` não for passado, ele receberá o valor `"nenhum texto fornecido"`
 
+O valor padrão também entra em ação se o parâmetro existir, mas é estritamente igual a `undefined`, assim:
+
+```js
+showMessage("Ann", undefined); // Ann: nenhum texto fornecido
+```
+
 Aqui `"nenhum texto fornecido"` é uma string, mas pode ser uma expressão mais complexa, que só é avaliada e atribuída se o parâmetro estiver ausente. Então, isso também é possível:
 
 ```js run
@@ -223,6 +229,38 @@ No exemplo acima, `anotherFunction()` não é chamado se o parâmetro `text` for
 
 Por outro lado, é chamado independentemente toda vez que `text` está faltando.
 ```
+
+````smart header="Parâmetros padrão em códigos antigos de JavaScript"
+Há alguns anos, o JavaScript não suportava a sintaxe para parâmetros padrão. Por isso, as pessoas usavam outros meios para defini-los.
+
+Hoje em dia, ainda podemos encontrá-los em scripts antigos.
+
+Por exemplo, uma verificação explícita para `undefined`:
+
+```js
+function showMessage(from, text) {
+*!*
+  if (text === undefined) {
+    text = 'nenhum texto fornecido';
+  }
+*/!*
+
+  alert( from + ": " + text );
+}
+```
+
+...Ou usando o operador `||`:
+
+```js
+function showMessage(from, text) {
+  // Se o valor de text for falso, atribua o valor padrão
+  // Isso pressupõe que text == "" seja o mesmo que nenhum text.
+  text = text || 'nenhum texto fornecido';
+  ...
+}
+```
+````
+
 
 ### Parâmetros padrão alternativos
 

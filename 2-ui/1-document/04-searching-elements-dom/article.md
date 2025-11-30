@@ -37,7 +37,7 @@ Além disso, existe uma variável global nomeada por `id` que referencia o eleme
   // elem é uma referência para o elemento do DOM com id="elem"
   elem.style.background = 'red';
 
-  // id="elem-content" tem um hífen dentro, então não pode ser um nome de variável 
+  // id="elem-content" tem um hífen dentro, então não pode ser um nome de variável
   // ...mas podemos acessá-lo usando colchetes: window['elem-content']
 </script>
 ```

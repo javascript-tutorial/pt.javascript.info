@@ -46,7 +46,7 @@ Além disso, podemos colocar `export` separadamente.
 
 Aqui primeiro declaramos e então exportamos:
 
-```js  
+```js
 // 📁 say.js
 function sayHi(user) {
   alert(`Olá, ${user}!`);
@@ -93,25 +93,14 @@ say.sayBye('John');
 
 Bem, existem algumas razões.
 
-1. Ferramentas modernas de build ([webpack](http://webpack.github.io) e outras) agrupam os módulos e os otimizam para acelerar o carregamento e remover itens não utilizados.
+1. Listar explicitamente o que importar resulta em nomes mais curtos: `sayHi()` em vez de `say.sayHi()`.
+2. Uma lista explícita de importações proporciona uma visão geral melhor da estrutura do código: o que é usado e onde. Isso facilita a manutenção e a refatoração do código.
 
-    Digamos que adicionamos a biblioteca externa `say.js` em nosso projeto com muitas funções:
-    ```js
-    // 📁 say.js
-    export function sayHi() { ... }
-    export function sayBye() { ... }
-    export function becomeSilent() { ... }
-    ```
+```smart header="Não tenha medo de importar demais."
+Ferramentas de compilação modernas, como o [webpack](https://webpack.js.org/) e outras, agrupam módulos e os otimizam para acelerar o carregamento. Elas também removem importações não utilizadas.
 
-    Agora, se precisarmos apenas de uma das funções de `say.js` em nosso projeto:
-    ```js
-    // 📁 main.js
-    import {sayHi} from './say.js';
-    ```
-    ...Então o otimizador vai ver isso e remover as outras funções não utilizadas no código agrupado, tornando o build menor. Isso é chamado de "tree-shaking".
-
-2. Listar explicitamente o que importar nos fornece nomes mais curtos: `sayHi()` ao invés de `say.sayHi()`.
-3. Uma lista explícita do que importar fornece uma visão geral melhor da estrutura do código: o que é usado e onde. Torna o código fácil de prover suporte e de refatorar.
+Por exemplo, se você `import * as library` de uma biblioteca de código enorme e usar apenas alguns métodos, os métodos não utilizados [não serão incluídos](https://github.com/webpack/webpack/tree/main/examples/harmony-unused#examplejs) no pacote otimizado.
+```
 
 ## Import "as"
 
@@ -224,7 +213,7 @@ Sem `default`, esse export causaria um erro:
 export class { // Erro! (exports que não são default precisam de um nome)
   constructor() {}
 }
-```     
+```
 
 ### O nome "default"
 
@@ -326,7 +315,7 @@ Imagine, we're writing a "package": a folder with a lot of modules, with some of
 A estrutura de arquivos pode ser assim:
 ```
 auth/
-    index.js  
+    index.js
     user.js
     helpers.js
     tests/
@@ -393,7 +382,7 @@ Digamos que nós temos `user.js` com o `export default class User` e gostaríamo
 export default class User {
   // ...
 }
-```   
+```
 
 Podemos nos deparar com dois problemas para isso:
 
@@ -430,7 +419,7 @@ Import:
 
 - Importando exports com nome:
   - `import {x [as y], ...} from "module"`
-- Importando o export default:  
+- Importando o export default:
   - `import x from "module"`
   - `import {default as x} from "module"`
 - Importar tudo:

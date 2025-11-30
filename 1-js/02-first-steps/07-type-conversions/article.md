@@ -31,7 +31,7 @@ alert(typeof value); // string
 ```
 
 Conversões para string são as mais fáceis. `false` se torna `"false"`, `null` vira `"null"`, e assim por diante.
- 
+
 ## Conversões Numéricas
 
 As conversões numéricas acontecem automaticamente em funções e expressões matemáticas.

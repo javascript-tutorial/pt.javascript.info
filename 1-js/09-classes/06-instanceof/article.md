@@ -46,7 +46,7 @@ alert( arr instanceof Object ); // true
 
 Perceba que `arr` também pertence à classe `Object`. Isso porque `Array` de forma prototípica herda de `Object`.
 
-Normalmente `instanceof` examina a cadeia de protótipos para a verificação. Também podemos definir uma lógica customizada no método estático `Symbol.hasInstance`. 
+Normalmente `instanceof` examina a cadeia de protótipos para a verificação. Também podemos definir uma lógica customizada no método estático `Symbol.hasInstance`.
 
 O algoritmo de `obj instanceof Class` funciona mais ou menos da seguinte forma:
 
@@ -82,7 +82,7 @@ O algoritmo de `obj instanceof Class` funciona mais ou menos da seguinte forma:
 
     No exemplo acima `rabbit.__proto__ === Rabbit.prototype`, de modo que dá a resposta imediatamente.
 
-    No caso de uma herança, a correspondência será na segunda etapa: 
+    No caso de uma herança, a correspondência será na segunda etapa:
 
     ```js run
     class Animal {}
@@ -105,9 +105,9 @@ Aqui está a ilustração do que `rabbit instanceof Animal` vai comparar com `An
 
 A propósito, também existe um método [objA.isPrototypeOf(objB)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf), que retorna `true` se `objA` está em algum lugar na cadeia de protótipos do `objB`. Então o teste de `obj instanceof Class` pode ser reescrito como `Class.prototype.isPrototypeOf(obj)`.
 
-É engraçado, mas o próprio construtor `Class` não participa na verificação! Apenas a cadeia de protótipos e `Class.prototype` importam.  
+É engraçado, mas o próprio construtor `Class` não participa na verificação! Apenas a cadeia de protótipos e `Class.prototype` importam.
 
-Isso pode levar a consequências interessantes quando uma propriedade `prototype` é alterada depois que um objeto é criado. 
+Isso pode levar a consequências interessantes quando uma propriedade `prototype` é alterada depois que um objeto é criado.
 
 Como nesse exemplo:
 
