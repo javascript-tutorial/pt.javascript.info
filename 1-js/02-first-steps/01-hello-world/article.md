@@ -128,4 +128,4 @@ O exemplo acima pode ser dividido em dois scripts para funcionar:
 - Os atributos `type` e `language` não são necessários.
 - Um script em um arquivo externo pode ser inserido com `<script src="path/to/script.js"></script>`.
 
-Há muito mais a aprender sobre os scripts dos navegadores e sua interação com a página. Mas vamos ter em mente que esta parte do tutorial é dedicada à linguagem JavaScript, então não devemos nos distrair com implementações específicas de navegadores. Estaremos usando o navegador como uma maneira de rodar JavaScript, que é muito conveniente para leitura online, mas apenas um de muitos.
+Há muito mais a aprender sobre os scripts dos navegadores e sua interação com a página. Mas vamos ter em mente que esta parte do tutorial é dedicada à linguagem JavaScript, então não devemos nos distrair com implementações específicas de navegadores. Estaremos usando o navegador como uma maneira de rodar JavaScript, que é muito conveniente para leitura online, mas é apenas uma maneira  de muitas.
