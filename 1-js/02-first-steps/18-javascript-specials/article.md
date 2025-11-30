@@ -274,7 +274,7 @@ Cobrimos três maneiras de criar uma função em JavaScript:
 
 
 - As funções podem ter variáveis locais: aquelas declaradas dentro de seu corpo ou em sua lista de parâmetros. Tais variáveis são visíveis apenas dentro da função.
-- Os parâmetros podem ter valores padrão: `function soma(a = 1, b = 2) {...}`.
+- Os parâmetros podem ter valores padrão: `function sum(a = 1, b = 2) {...}`.
 - As funções sempre retornam algo. Se não houver uma instrução `return`, o valor retornado será `undefined`.
 
 Detalhes: veja <info:function-basics>, <info:arrow-functions-basics>.
