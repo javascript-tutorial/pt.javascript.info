@@ -43,7 +43,7 @@ A tag `<script>` contém código JavaScript que é executado automaticamente qua
 
 ## Marcação moderna
 
-A tag `<script>` tem alguns atributos que raramente são usados hoje em dia, mas que ainda podem ser encontrados em códigos antigos:
+A tag `<script>` tem alguns atributos que raramente são usados hoje em dia, mas que ainda podem ser encontrados em código antigo:
 
 O atributo `type`: <code>&lt;script <u>type</u>=...&gt;</code>
 : O antigo padrão HTML, HTML4, requeria um script para ter um `type`. Normalmente era `type="text/javascript"`. Não é mais necessário. Além disso, o moderno padrão HTML, HTML5, mudou totalmente o significado deste atributo. Agora, ele pode ser usado para módulos JavaScript. Mas esse é um tópico avançado; vamos falar sobre módulos em outra parte do tutorial.
