@@ -23,7 +23,7 @@ result = a !== null && a !== undefined ? a : b;
 
 Agora, deveria estar completamente claro o que `??` faz. Vamos ver onde ele é útil.
 
-O caso de uso comum para `??` é obter um valor padrão para uma variável potencialmente indefinida.
+O caso de uso comum para `??` é obter um valor padrão.
 
 Por exemplo, aqui exibimos `Anônimo` se `user` não for definido:
 
@@ -38,14 +38,14 @@ Aqui está o exemplo com um nome atribuído a `user`:
 ```js run
 let user = "João";
 
-alert(user ?? "Anônimo"); // João ("user" está definido)
+alert(user ?? "Anônimo"); // João ("user" não é null/undefined)
 ```
 
 Podemos também usar uma sequência de `??` para selecionar o primeiro valor em uma lista que não seja `null/undefined`.
 
 Digamos que temos dados de um usuário nas variáveis `nome`, `sobrenome` ou `apelido`. Todos eles podem ser indefinidos, se o usuário optar por não entrar com um valor.
 
-Gostaríamos de exibir o nome do usuário usando uma dessas variáveis, ou exibir "Anônimo" se todas elas forem indefinidas.
+Gostaríamos de exibir o nome do usuário usando uma dessas variáveis, ou exibir "Anônimo" se todas elas forem `null/undefined`.
 
 Para isso usaremos o operador `??`:
 
@@ -112,7 +112,7 @@ A precedência do operador `??` é a mesma que a de `||`. Ambos são iguais a '4
 
 Isto significa que, tal como `||`, o operador de coalescência nula `??` é avaliado antes de `=` e `?`, mas após a maioria dos outros operadores, como `+` e `*`.
 
-Então, se quiser selecionar um valor com `??` em uma expressão com outros operadores, considere o uso de parênteses:
+Portanto, talvez seja necessário adicionar parênteses em expressões como esta:
 
 ```js run
 let height = null;
@@ -131,7 +131,7 @@ Caso contrário, se omitirmos os parênteses, como `*` tem maior precedência qu
 let area = height ?? 100 * width ?? 50;
 
 // ...funciona desta forma (provavelmente não como gostaríamos):
-let area = height ?? 100 * width ?? 50;
+let area = height ?? (100 * width) ?? 50;
 ```
 
 ### Usando ?? com && ou ||

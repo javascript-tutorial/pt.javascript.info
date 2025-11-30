@@ -52,6 +52,7 @@ Por exemplo:
 ```js run
 alert( 5 % 2 ); // 1, o resto de 5 dividido por 2
 alert( 8 % 3 ); // 2, o resto de 8 dividido por 3
+alert( 8 % 4 ); // 0, o resto de 8 dividido por 4
 ```
 
 ### Exponenciação **
@@ -194,18 +195,18 @@ Aqui está um extrato da [tabela de precedência](https://developer.mozilla.org/
 | Precedência | Nome | Sinal |
 |------------|------|------|
 | ... | ... | ... |
-| 15 | positivo unário | `+` |
-| 15 | negativo unário | `-` |
-| 14 | exponenciação | `**` |
-| 13 | multiplicação | `*` |
-| 13 | divisão | `/` |
-| 12 | adição | `+` |
-| 12 | subtração | `-` |
+| 14 | positivo unário | `+` |
+| 14 | negativo unário | `-` |
+| 13 | exponenciação | `**` |
+| 12 | multiplicação | `*` |
+| 12 | divisão | `/` |
+| 11 | adição | `+` |
+| 11 | subtração | `-` |
 | ... | ... | ... |
 | 2 | atribuição | `=` |
 | ... | ... | ... |
 
-Como podemos ver, o "positivo unário" tem uma prioridade de `15` que é maior que a de `12` da "adição" (positivo binário). É por este motivo que na expressão `"+apples + +oranges"`, positivos unários operam antes da adição.
+Como podemos ver, o "positivo unário" tem uma prioridade de `14` que é maior que a de `11` da "adição" (positivo binário). É por este motivo que na expressão `"+apples + +oranges"`, positivos unários operam antes da adição.
 
 ## Atribuição
 
@@ -286,7 +287,7 @@ n = n + 5;
 n = n * 2;
 ```
 
-Esta notação pode ser encurtada usando os operadores `+=` e `*=`: 
+Esta notação pode ser encurtada usando os operadores `+=` e `*=`:
 
 ```js run
 let n = 2;

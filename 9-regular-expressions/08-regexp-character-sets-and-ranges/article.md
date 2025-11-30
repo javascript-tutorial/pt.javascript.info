@@ -97,7 +97,7 @@ Outra opção é utilizar alcances de caracteres da língua relevante, como `pat
 
 Além dos alcances normais, existem os alcances negados que usam a sintaxe `pattern:[^…]`.
 
-Eles são demarcados pelo acento circunflexo `^` no começo e correspondem a qualquer caractere *exceto os incluídos no alcance* 
+Eles são demarcados pelo acento circunflexo `^` no começo e correspondem a qualquer caractere *exceto os incluídos no alcance*
 
 Por exemplo:
 

@@ -451,4 +451,4 @@ Certamente poderíamos melhorá-las, adicionar mais recursos adicionais supérfl
 
 Animações com JavaScript podem usar qualquer função de tempo. Cobrimos muitos exemplos e transformações para fazê-las ainda mais versáteis. Ao contrário de CSS, não estamos limitados às curvas de Bezier.
 
-É o mesmo com `draw`: podemos animar qualquer coisa, não só propriedades CSS.
+O mesmo se aplica ao `draw`: podemos animar qualquer coisa, não apenas propriedades CSS.

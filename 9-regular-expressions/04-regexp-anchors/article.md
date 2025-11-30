@@ -28,7 +28,7 @@ Frequentemente, ambas as âncoras `pattern:^...$` são usadas juntas para verifi
 
 Vamos verificar se uma string é um horário no formato `12:34`. Isto é: dois dígitos, seguido de dois pontos (':'), e então mais dois dígitos.
 
-Em expressões regulares, isso fica `pattern:\d\d:\d\d`: 
+Em expressões regulares, isso fica `pattern:\d\d:\d\d`:
 
 ```js run
 let goodInput = "12:34";
