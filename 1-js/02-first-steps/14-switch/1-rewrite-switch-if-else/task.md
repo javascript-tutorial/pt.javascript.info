@@ -9,18 +9,18 @@ Escreva o código empregando `if..else` que corresponda ao seguinte `switch`:
 ```js
 switch (browser) {
   case 'Edge':
-    alert( "Você usa o Edge!" );
+    alert( "Você tem o Edge!" );
     break;
 
   case 'Chrome':
   case 'Firefox':
   case 'Safari':
   case 'Opera':
-    alert( 'Okay, também suportamos esse navegador' );
+    alert( 'Ok, nós também suportamos esses navegadores' );
     break;
 
   default:
-    alert( 'Esperamos que esta página tenha uma boa apresentação!' );
+    alert( 'Esperamos que esta página pareça bem!' );
 }
 ```
 
