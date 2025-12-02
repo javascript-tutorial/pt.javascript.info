@@ -29,11 +29,11 @@ Ambas as ações mostram um `alert` e o formulário não é enviado a lugar nenh
 ```
 
 ````smart header="Relação entre `submit` e `click`"
-Quando um formulário é eviado usando `key:Enter` no campo de entrada, um evento de `click` dispara no `<input type="submit">`.
+Quando um formulário é enviado usando `key:Enter` no campo de entrada, um evento de `click` dispara no `<input type="submit">`.
 
 Isso é até bem engraçado, porque não houve nenhum clique.
 
-Aqui está uma demostração:
+Aqui está uma demonstração:
 ```html autorun height=60
 <form onsubmit="return false">
  <input type="text" size="30" value="Focus here and press enter">
