@@ -7,7 +7,7 @@ describe("delay", function() {
     this.clock.restore();
   });
 
-  it("calls the function after the specified timeout", function() {
+  it("chama a função após o tempo de espera especificado", function() {
     let start = Date.now();
 
     function f(x) {
@@ -16,12 +16,12 @@ describe("delay", function() {
     f = sinon.spy(f);
 
     let f1000 = delay(f, 1000);
-    f1000("test");
+    f1000("teste");
     this.clock.tick(2000);
-    assert(f.calledOnce, 'calledOnce check fails');
+    assert(f.calledOnce, 'a verificação de calledOnce falha');
   });
 
-  it("passes arguments and this", function() {
+  it("passa os argumentos e o contexto de this", function() {
     let start = Date.now();
     let user = {
       sayHi: function(phrase, who) {
@@ -37,10 +37,10 @@ describe("delay", function() {
     let spy = user.sayHi;
     user.sayHi = delay(user.sayHi, 1500);
 
-    user.sayHi("Hello", "John");
+    user.sayHi("Olá", "John");
 
     this.clock.tick(2000);
 
-    assert(spy.calledOnce, 'calledOnce check failed');
+    assert(spy.calledOnce, 'a verificação de calledOnce falhou');
   });
 });

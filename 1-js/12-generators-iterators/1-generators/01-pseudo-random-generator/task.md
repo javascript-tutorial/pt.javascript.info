@@ -1,29 +1,29 @@
 
-# Pseudo-random generator
+# Gerador pseudoaleatório
 
-There are many areas where we need random data.
+Existem muitas áreas onde precisamos de dados aleatórios.
 
-One of them is testing. We may need random data: text, numbers, etc. to test things out well.
+Uma delas é em testes. Podemos precisar de dados aleatórios: texto, números, etc. para testar as coisas adequadamente.
 
-In JavaScript, we could use `Math.random()`. But if something goes wrong, we'd like to be able to repeat the test, using exactly the same data.
+Em JavaScript, poderíamos usar `Math.random()`. Mas se algo der errado, gostaríamos de poder repetir o teste, usando exatamente os mesmos dados.
 
-For that, so called "seeded pseudo-random generators" are used. They take a "seed", the first value, and then generate the next ones using a formula so that the same seed yields the same sequence, and hence the whole flow is easily reproducible. We only need to remember the seed to repeat it.
+Para isso, são usados os chamados "geradores pseudoaleatórios com semente". Eles recebem uma "semente", o primeiro valor, e em seguida gera os próximos usando a fórmula para que a mesma semente produza a mesma sequência, tornando todo o fluxo fácil de se reproduzir. Precisamos apenas lembrar da semente para repeti-lo. 
 
-An example of such formula, that generates somewhat uniformly distributed values:
+Um exemplo de tal fórmula, que gera valores distribuídos de maneira um tanto uniforme:
 
 ```
 next = previous * 16807 % 2147483647
 ```
 
-If we use `1` as the seed, the values will be:
+Se usarmos `1` como semente, os valores serão:
 1. `16807`
 2. `282475249`
 3. `1622650073`
-4. ...and so on...
+4. ...e assim por diante...
 
-The task is to create a generator function `pseudoRandom(seed)` that takes `seed` and creates the generator with this formula.
+A tarefa é criar uma função geradora `pseudoRandom(semente)` que recebe uma `semente` e cria o gerador com esta fórmula.
 
-Usage example:
+Exemplo de uso:
 
 ```js
 let generator = pseudoRandom(1);

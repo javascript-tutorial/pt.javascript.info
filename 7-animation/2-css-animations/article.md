@@ -210,7 +210,6 @@ Outros nomes são usados como abreviações para as seguintes `cubic-bezier`:
 
 Então, podemos usar `ease-out` para desacelerar nosso trem:
 
-
 ```css
 .train {
   left: 0;
@@ -226,6 +225,7 @@ Mas ele parece um pouco diferente.
 Os pontos de controle da curva podem ter qualquer valor para a coordenada `y`: até mesmo negativo ou enorme. Então, a curva Bezier também pularia muito baixo ou muito alto, fazendo com que a animação vá além de seu alcance normal.
 
 No exemplo abaixo, o código da animação é:
+
 ```css
 .train {
   left: 100px;
@@ -254,7 +254,14 @@ Como sabemos, `y` mede "o estado do processo da animação". O valor `y = 0` cor
 
 Essa é uma variação "leve". Se definirmos valores de `y` como `-99` e `99` então, o trem pularia ainda mais fora de seu alcance.
 
-Mas, como criar uma curva Bezier para uma tarefa específica? Existem várias ferramentas. Por exemplo, podemos fazer isso em <http://cubic-bezier.com/>.
+Mas, como criar uma curva Bezier para uma tarefa específica? Existem várias ferramentas.
+
+- Por exemplo, podemos fazer isso em <http://cubic-bezier.com/>.
+- As ferramentas de desenvolvedor do navegador também oferecem suporte especial para curvas de Bézier em CSS:
+    1. Abra as ferramentas de desenvolvedor com a tecla `key:F12` (Mac: `key:Cmd+Opt+I`).
+    2. Selecione a guia `Elementos` e observe o subpainel `Estilos` à direita.
+    3. As propriedades CSS com a palavra `cubic-bezier` terão um ícone antes dessa palavra.
+    4. Clique nesse ícone para editar a curva.
 
 ### Steps (Passos)
 
@@ -266,7 +273,19 @@ Aqui está uma lista de dígitos, sem nenhuma animação, apenas a fonte:
 
 [codetabs src="step-list"]
 
-Nós iremos fazer com que os dígitos apareçam de uma forma discreta, tornando invisível a parte da lista fora da "janela" vermelha e deslocando a lista para a esquerda a cada passo.
+No HTML, uma sequência de dígitos é envolvida por um elemento de comprimento fixo.`<div id="digits">`:
+
+```html
+<div id="digit">
+  <div id="stripe">0123456789</div>
+</div>
+```
+
+A div `#digit` possui largura fixa e borda, por isso parece uma janela vermelha.
+
+Vamos criar um cronômetro: os dígitos aparecerão um a um, de forma discreta.
+
+Para conseguir isso, vamos ocultar a `#stripe` fora de `#digit` usando `overflow: hidden`, e então deslocar a `#stripe` para a esquerda passo a passo.
 
 Haverá 9 passos, um para cada dígito:
 
@@ -277,25 +296,27 @@ Haverá 9 passos, um para cada dígito:
 }
 ```
 
-Em ação:
-
-[codetabs src="step"]
-
 O primeiro argumento de `steps(9, start)` é o número de passos. A transformação será dividida em 9 partes (10% cada). O intervalo de tempo é dividido automaticamente em 9 partes também, então `transition: 9s` nos dá 9 segundos para a animação inteira -- 1 segundo por dígito.
 
 O segundo argumento é umas das duas palavras: `start`("início") ou `end`("fim").
 
 O `start` significa que, no início da animação, precisamos executar o primeiro passo imediatamente.
 
-Nós podemos observar isso na animação: quando clicamos no dígito, ele muda para `1` (o primeiro passo) imediatamente, e depois muda para o início do segundo passo.
+Em ação:
+
+[codetabs src="step"]
+
+Um clique no dígito o altera para `1` (o primeiro passo) imediatamente e, em seguida, muda no início do segundo seguinte.
 
 O processo evolui assim:
 
 - `0s` -- `-10%` (primeira mudança no início do primeiro segundo, imediatamente)
 - `1s` -- `-20%`
 - ...
-- `8s` -- `-80%`
+- `8s` -- `-90%`
 - (o último segundo mostra o valor final).
+
+Aqui, a primeira mudança foi imediata devido ao `start` nos `steps`.
 
 O valor alternativo `end` significaria que a mudança devesse ser aplicada não no início, mas ao final de cada segundo.
 
@@ -311,12 +332,12 @@ Aqui está o `steps(9, end)` em ação (note a pausa antes da primeira mudança 
 
 [codetabs src="step-end"]
 
-Existem também valores abreviados:
+Existem também valores abreviados para `steps(...)`:
 
 - `step-start` -- é o mesmo que `steps(1, start)`. Isto é, a animação inicia-se imediatamente e leva 1 passo. Então, ela começa e acaba imediatamente, como se não houvesse animação.
 - `step-end` -- o mesmo que `steps(1, end)`: executa a animação em um único passo ao final de `transition-duration`.
 
-Esses valores são usados raramente, porque não são realmente animações, mas sim, uma mudança de um único passo.
+Esses valores são usados raramente, porque não são realmente animações, mas sim, uma mudança de um único passo. Mencionamos esses pontos aqui para que a informação fique completa.
 
 ## Evento *transitionend* (transitado)
 

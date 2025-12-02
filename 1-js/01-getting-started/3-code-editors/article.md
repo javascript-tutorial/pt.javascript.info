@@ -31,7 +31,6 @@ Na prática, os editores leves podem ter muitos plug-ins, incluindo analisadores
 
 As seguintes opções merecem sua atenção:
 
-- [Atom](https://atom.io/) (plataforma cruzada, livre).
 - [Sublime Text](http://www.sublimetext.com) (plataforma cruzada, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, livre).
 - [Vim](http://www.vim.org/) e [Emacs](https://www.gnu.org/software/emacs/) também são legais se você sabe como usá-los.
@@ -43,3 +42,9 @@ Os editores nas listas acima são aqueles que eu ou os meus amigos que eu consid
 Há outros grandes editores no nosso grande mundo. Por favor, escolha o que você mais gosta.
 
 A escolha de um editor, como qualquer outra ferramenta, é individual e depende de seus projetos, hábitos e preferências pessoais.
+
+Opinião pessoal do autor:
+
+- Eu usaria o [Visual Studio Code](https://code.visualstudio.com/) se desenvolvesse principalmente para o frontend.
+
+- Caso contrário, se o desenvolvimento for principalmente em outra linguagem/plataforma e parcialmente em frontend, considere outros editores, como o Xcode (Mac), o Visual Studio (Windows) ou a família JetBrains (WebStorm, PHPStorm, RubyMine etc., dependendo da linguagem).

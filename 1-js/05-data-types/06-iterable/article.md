@@ -174,7 +174,7 @@ When we use JavaScript for practical tasks in a browser or any other environment
 
 For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
 
-But an iterable may be not array-like. And vice versa an array-like may be not iterable.
+But an iterable may not be array-like. And vice versa an array-like may not be iterable.
 
 For example, the `range` in the example above is iterable, but not array-like, because it does not have indexed properties and `length`.
 
@@ -218,7 +218,7 @@ alert(arr.pop()); // World (method works)
 
 The same happens for an iterable:
 
-```js
+```js run
 // assuming that range is taken from the example above
 let arr = Array.from(range);
 alert(arr); // 1,2,3,4,5 (array toString conversion works)
@@ -233,7 +233,7 @@ The optional second argument `mapFn` can be a function that will be applied to e
 
 For instance:
 
-```js
+```js run
 // assuming that range is taken from the example above
 
 // square each number

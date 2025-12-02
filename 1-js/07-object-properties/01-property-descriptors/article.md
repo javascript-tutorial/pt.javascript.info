@@ -63,7 +63,7 @@ Object.defineProperty(obj, propertyName, descriptor)
 ```
 
 `obj`, `propertyName`
-: O objeto e a propriedade nos quais atuar.
+: O objeto e sua propriedade para aplicar o descritor.
 
 `descriptor`
 : Descritor de propriedade de objeto a aplicar.
@@ -141,7 +141,7 @@ Object.defineProperty(user, "name", {
 });
 
 alert(user.name); // John
-user.name = "Alice"; // Erro
+user.name = "Pete"; // Erro
 ```
 
 
@@ -319,7 +319,7 @@ for (let key in user) {
 
 ...Mas isso não copia os sinalizadores. Assim, se nós quisermos um clone "melhor" então é preferível `Object.defineProperties`.
 
-Outra diferença é que `for..in` ignora propriedades simbólicas, mas `Object.getOwnPropertyDescriptors` returna *todas* as propriedades descritoras, incluindo as simbólicas.
+Outra diferença é que `for..in` ignora propriedades simbólicas, mas `Object.getOwnPropertyDescriptors` returna *todas* as propriedades descritoras, incluindo as simbólicas e as não enumeráveis.
 
 ## Selando um objeto globalmente
 
