@@ -39,7 +39,8 @@ Diga a eles que o curto é sempre melhor. Introduza eles no caminho do ninja.
 ## Variáveis de uma letra
 
 ```quote author="Lao Zi (Tao Te Ching)"
-O Caminho é invisível e não tem nome.
+O Dao se esconde na ausência de palavras. Apenas o Dao está bem iniciado e bem
+concluído.
 Assim, apenas o Caminho é bom em auxiliar e concluir.
 ```
 
