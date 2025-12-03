@@ -34,7 +34,7 @@ i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 
 Legal, né? Se você escrever dessa forma, um desenvolvedor que passar por essa linha e tentar entender qual o valor de `i` irá gastar um bom tempo. E então irá até você pedindo uma resposta.
 
-Diga a eles que o curto é sempre melhor. Introduza eles ao caminho do ninja.
+Diga a eles que o curto é sempre melhor. Introduza eles no caminho do ninja.
 
 ## Variáveis de letra única
 
