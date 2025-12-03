@@ -220,7 +220,7 @@ Aqueles desenvolvedores que tentarem escrever `if (checaPermissao(..))`, vai se 
 
 ```quote author="Lao Zi (Tao Te Ching)"
 O grande Tao flui por toda parte,<br>
-Pode ser encontrado na esquerda e na direita
+tanto para a esquerda quanto para a direita.
 ```
 
 Não limite a função pelo o que está escrito em seu nome. Seja amplo.
