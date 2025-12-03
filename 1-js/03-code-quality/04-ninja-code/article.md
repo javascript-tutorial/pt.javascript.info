@@ -5,7 +5,7 @@
 Estudo sem pensamento é trabalho perdido; pensamento sem estudo é perigoso.
 ```
 
-Programadores ninjas do passado usavam truques para moldar a mente dos mantenedores de códigos.
+Programadores ninjas do passado usavam estes truques para moldar a mente dos mantenedores de código.
 
 Os gurus da revisão de código procuram por essas artimanhas em testes avaliativos.
 
