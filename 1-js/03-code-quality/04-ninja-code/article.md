@@ -1,7 +1,7 @@
 # Código ninja
 
 
-```quote author="Confúcio"
+```quote author="Confúcio (Analects)"
 Estudo sem pensamento é trabalho perdido; pensamento sem estudo é perigoso.
 ```
 
