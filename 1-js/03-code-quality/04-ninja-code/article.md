@@ -43,7 +43,7 @@ O Caminho é invisível e não tem nome.
 Assim, apenas o Caminho é bom em auxiliar e concluir.
 ```
 
-Outra forma de escrever código mais rápido é usar nomes de variáveis de letra única em todo lugar. Como `a`, `b`, ou `c`.
+Outra forma de escrever código mais curto é usar nomes de variáveis com uma única letra em todo lugar. Como `a`, `b`, ou `c`.
 
 Uma variável curta desaparece no código como um ninja de verdade desaparece na floresta. Ninguém conseguirá encontrar ela usando a ferramenta de pesquisa do editor. E mesmo se alguém o fizer, não será capaz de decifrar o que o nome `a` ou `b` significam.
 
