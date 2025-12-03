@@ -145,7 +145,7 @@ Isso fará com que seja bem mais difícil identificar o que exatamente está den
 Por exemplo:
 
 ```js
-function funcaoNinja(elem) {
+function ninjaFunction(elem) {
   // 20 linhas de código trabalhando com elem
 
   elem = clone(elem);
@@ -170,7 +170,7 @@ Um ninja inteligente põe sublinhas em uma parte do código e evita elas em outr
 
 Faça com que todos vejam a grandiosidade das suas entidades! Nomes como `superElemento`, `megaFrame` e `itemLegal` com certeza irão iluminar um leitor.
 
-Aliás, por um lado, algo é escrito como: `super..`, `mega..`, `legal..` Mas por outro -- isso não traz detalhe nenhum. Um leitor talvez decida procurar por um signifcado oculto e meditar por uma hora ou duas.
+Aliás, por um lado, algo é escrito como: `super..`, `mega..`, `nice..` Mas por outro -- isso não traz detalhe nenhum. Um leitor talvez decida procurar por um signifcado oculto e meditar por uma hora ou duas.
 
 
 
@@ -184,10 +184,10 @@ Quando na escuridão, pode ver tudo na luz.
 Use os mesmos nomes para variáveis dentro e fora de uma função. Bem simples. Sem esforço.
 
 ```js
-let *!*usuario*/!* = autenticaUsuario();
+let *!*user*/!* = autenticateUser();
 
 function render() {
-  let *!*usuario*/!* = outroValor();
+  let *!*user*/!* = anotherValue();
   ...
   ...muitas linhas...
   ...
@@ -196,22 +196,22 @@ function render() {
 }
 ```
 
-Um programador que olhar dentro de `render` provavelmente vai falhar em notar que já existe um `usuario` local substituindo a variável exterior à função.
+Um programador que olhar dentro de `render` provavelmente vai falhar em notar que já existe um `user` local substituindo a variável exterior à função.
 
-Então ele vai tentar trabalhar com `usuario` assumindo que é a variável exterior, o resultado de `autenticaUsuario()`... A armadilha tá feita! Olá, debugger...
+Então ele vai tentar trabalhar com `user` assumindo que é a variável exterior, o resultado de `authenticateUser()`... A armadilha tá feita! Olá, debugger...
 
 
 ## Efeitos colaterais em todo lugar!
 
-Existem funções que parecem que não alteram nada. Como `estaPronto()`, `checaPermissao()`, `encontraTags()`... Elas são feitas para realizar cálculos, encontrar e retornar o dado, sem mudar nada fora delas. Em outras palavras, sem "efeito colateral".
+Existem funções que parecem que não alteram nada. Como `isReady()`, `checkPermission()`, `findTags()`... Elas são feitas para realizar cálculos, encontrar e retornar o dado, sem mudar nada fora delas. Em outras palavras, sem "efeito colateral".
 
 **Um truque ótimo é adicionar uma ação "útil" a elas, além da sua tarefa principal.**
 
-Uma expressão de surpresa atordoada na cara dos seus colegas quando eles virem uma função com nome `é...`, `checa...` ou `encontra...` mudando alguma coisa -- vai definitivamente ampliar seus limites da razão.
+Uma expressão de surpresa atordoada na cara dos seus colegas quando eles virem uma função com nome `is..`, `check..` ou `find..` mudando alguma coisa -- vai definitivamente ampliar seus limites da razão.
 
 **Uma outra forma de surpreender é retornar um valor não padrão.**
 
-Mostre o que é pensar fora da caixa! Faça com que a chamada de `checaPermissao` retorne não um `true/false`, mas sim um complexo objeto com o resultado da checagem.
+Mostre o que é pensar fora da caixa! Faça com que a chamada de `checkPermission` retorne não um `true/false`, mas sim um complexo objeto com o resultado da checagem.
 
 Aqueles desenvolvedores que tentarem escrever `if (checaPermissao(..))`, vai se perguntar por que não funciona. Diga a eles: "Leia a documentação!". E mostre este artigo.
 
