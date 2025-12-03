@@ -36,7 +36,7 @@ Legal, né? Se você escrever dessa forma, um desenvolvedor que passar por essa 
 
 Diga a eles que o curto é sempre melhor. Introduza eles no caminho do ninja.
 
-## Variáveis de letra única
+## Variáveis de uma letra
 
 ```quote author="Lao Zi (Tao Te Ching)"
 O Caminho é invisível e não tem nome.
