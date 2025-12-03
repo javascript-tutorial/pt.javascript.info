@@ -105,7 +105,7 @@ Uma leitura rápida no código se torna impossível. E quando temos um erro de d
 
 ## Sinônimos inteligentes
 
-```quote author="Confúcio"
+```quote author="Lao Zi (Tao Te Ching)"
 O Tao que pode ser narrado não é o Tao eterno. O nome que pode ser nomeado não é o nome eterno.
 ```
 
@@ -126,9 +126,9 @@ Por exemplo, a função `imprimePagina(pagina)` vai usar a impressora. E a funç
 ## Reuse nomes
 
 ```quote author="Lao Zi (Tao Te Ching)"
-Mas quando ocorre a limitação
-Logo surgem os nomes.
-Quando os nomes surgem
+Uma vez o todo dividido, as partes<br>
+precisam de nomes.<br>
+Já existem nomes suficientes.<br>
 Deve-se então saber parar.
 ```
 
@@ -136,7 +136,7 @@ Adicione uma variável nova apenas quando for absolutamente necessário.
 
 Ao invés disso, reuse os nomes já existentes. Apenas atribua novos valores para eles.
 
-Em uma função tente usar apenas as funções usadas como parâmetros.
+Em uma função tente apenas usar variáveis passadas como parâmetros.
 
 Isso fará com que seja bem mais difícil identificar o que exatamente está dentro da variável *agora*. E também de onde ela vem. Uma pessoa com intuição fraca terá que analisar o código linha por linha e observar as mudanças através de cada parte do código.
 
@@ -156,21 +156,21 @@ function funcaoNinja(elem) {
 
 Um colega programador que quiser trabalhar com `elem` será surpreendido na segunda metade da função... Somente durante o debug, depois de um exame do código, ele irá descobrir que estava trabalhando com um clone!
 
-Isso é visto frequentemente em códigos. Mortalmente efetivo até mesmo com os ninjas mais experientes.
+Isso é visto frequentemente em códigos. Mortalmente efetivo até mesmo contra os ninjas mais experientes.
 
 ## Sublinhas por diversão
 
-Coloque sublinhas `_` e `__` antes dos nomes das variáveis. Como `_nome` ou `__valor`. Será melhor ainda se apenas você souber o significado disso. Ou, melhor, adicione apenas por diversão, sem um signifcado em particular. Ou significados diferentes em lugares diferentes.
+Coloque sublinhas `_` e `__` antes dos nomes das variáveis. Como `_nome` ou `__valor`. Seria melhor ainda se apenas você soubesse o significado disso. Ou, melhor, adicione apenas por diversão, sem um signifcado em particular. Ou significados diferentes em lugares diferentes.
 
-Você mata dois coelhos numa paulada só. Primeiro, o código se torna mais longo e menos legível, e segundo, um colega desenvolvedor terá que gastar um bom tempo tentando entender o que significam as sublinhas.
+Você mata dois coelhos numa paulada só. Primeiro, o código se torna mais longo e menos legível, e segundo, um colega desenvolvedor pode gastar um bom tempo tentando entender o que significam as sublinhas.
 
-Um ninja inteligente põe sublinhas em uma parte do código e evita elas em outras partes. Isso deixa o código ainda mais frágil e aumentam as chances de futuros erros.
+Um ninja inteligente põe sublinhas em uma parte do código e evita elas em outras partes. Isso deixa o código ainda mais frágil e aumenta as chances de futuros erros.
 
 ## Mostre seu amor
 
-Faça com que todos vejam a grandiosidade das suas entidades! Nomes como `superElemento`, `megaFrame` e `itemLegal` com certeza irão deixar isso bem claro para o leitor.
+Faça com que todos vejam a grandiosidade das suas entidades! Nomes como `superElemento`, `megaFrame` e `itemLegal` com certeza irão iluminar um leitor.
 
-Aliás, por um lado, algo é escrito como: `super..`, `mega..`, `legal..` Mas por outro -- isso não traz detalhe nenhum. Um leitor talvez decida procurar por um signifcado e irá meditar por uma hora ou duas.
+Aliás, por um lado, algo é escrito como: `super..`, `mega..`, `legal..` Mas por outro -- isso não traz detalhe nenhum. Um leitor talvez decida procurar por um signifcado oculto e meditar por uma hora ou duas.
 
 
 
@@ -207,7 +207,7 @@ Existem funções que parecem que não alteram nada. Como `estaPronto()`, `checa
 
 **Um truque ótimo é adicionar uma ação "útil" a elas, além da sua tarefa principal.**
 
-Uma expressão de surpresa atordoada na cara dos seus colegas quando eles virem uma função com nome `esta...`, `checa...` ou `encontra...` mudando alguma coisa -- vai definitivamente ampliar seus limites da razão.
+Uma expressão de surpresa atordoada na cara dos seus colegas quando eles virem uma função com nome `é...`, `checa...` ou `encontra...` mudando alguma coisa -- vai definitivamente ampliar seus limites da razão.
 
 **Uma outra forma de surpreender é retornar um valor não padrão.**
 
@@ -223,20 +223,20 @@ O grande Tao flui por toda parte,<br>
 tanto para a esquerda quanto para a direita.
 ```
 
-Não limite a função pelo o que está escrito em seu nome. Seja amplo.
+Não limite a função pelo que está escrito em seu nome. Seja amplo.
 
-Por exemplo, uma função `validaEmail(email)` poderia (além de checar a validade do email) mostrar uma mensagem de erro e perguntar para reescrever o email.
+Por exemplo, uma função `validaEmail(email)` poderia (além de checar a validade do email) mostrar uma mensagem de erro e pedir para re-entrar o email.
 
 Açoes adicionais não devem ser óbvias pelo nome da função. Um verdadeiro programador ninja também as tornará não óbvias assim como o resto do código.
 
 **Juntar várias ações em uma protegerá seu código de ser reutilizado.**
 
-Imagine, algum outro desenvolvedor quer apenas checar o email, mas não mostrar uma mensagem. Sua função `validaEmail(email)` que executa as duas ações não servirá pra ele. Então ele não irá interromper sua meditação perguntando sobre ela.
+Imagine, algum outro desenvolvedor quer apenas checar o email, mas não mostrar uma mensagem. Sua função `validaEmail(email)` que executa as duas ações não servirá pra ele. Assim, ele não irá interromper a sua meditação perguntando algo sobre ela.
 
 ## Sumário
 
-Todas as "peças de conselhos" acima são de códigos reais... Algumas escritas por desenvolvedores experientes. Talvez até mais experientes do que você ;)
+Todas as "peças de conselho" acima são de códigos reais... Algumas escritas por desenvolvedores experientes. Talvez até mais experientes do que você ;)
 
 - Siga algumas delas, e seu código se tornará cheio de surpresas.
 - Siga muitas delas, e seu código se tornará realmente seu, ninguém irá querer alterá-lo.
-- Siga todas, e seu código se tornará uma lição valiosa para novos desenvolvedores procurando pela iluminação.
+- Siga todas, e seu código se tornará numa lição valiosa para novos desenvolvedores procurando pela iluminação.
