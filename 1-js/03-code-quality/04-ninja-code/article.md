@@ -218,7 +218,7 @@ Aqueles desenvolvedores que tentarem escrever `if (checaPermissao(..))`, vai se 
 ## Funções superpoderosas!
 
 ```quote author="Lao Zi (Tao Te Ching)"
-O Grande Caminho é vasto
+O grande Tao flui por toda parte,<br>
 Pode ser encontrado na esquerda e na direita
 ```
 
