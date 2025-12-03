@@ -106,7 +106,7 @@ Uma leitura rápida no código se torna impossível. E quando temos um erro de d
 ## Sinônimos inteligentes
 
 ```quote author="Confúcio"
-A coisa mais difícil do mundo é encontrar um gato preto numa sala escura, especialmente se não existir um gato.
+O Tao que pode ser narrado não é o Tao eterno. O nome que pode ser nomeado não é o nome eterno.
 ```
 
 Usando nomes *similares* para as *mesmas* coisas faz da vida mais interessante e expõe a sua criatividade para o público.
