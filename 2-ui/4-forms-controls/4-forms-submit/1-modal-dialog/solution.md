@@ -1,4 +1,4 @@
-A modal window can be implemented using a half-transparent `<div id="cover-div">` that covers the whole window, like this:
+Uma janela de modal pode ser implementada usando um elemento semitransparente  `<div id="cover-div">` que cobre toda a janela, como por exemplo:
 
 ```css
 #cover-div {
@@ -13,8 +13,8 @@ A modal window can be implemented using a half-transparent `<div id="cover-div">
 }
 ```
 
-Because the `<div>` covers everything, it gets all clicks, not the page below it.
+Por conta da `<div>` cobrir todo o espaço, irá capturar todos os cliques feito dentro nela, e não na página abaixo dela.
 
-Also we can prevent page scroll by setting `body.style.overflowY='hidden'`.
+Também podemos impedir a rolagem da página definindo `body.style.overflowY='hidden'`.
 
-The form should be not in the `<div>`, but next to it, because we don't want it to have `opacity`.
+O formulário não deve estar dentro da `<div>`, mas sim ao lado dela, porque não queremos que ele tenha `opacity`.
