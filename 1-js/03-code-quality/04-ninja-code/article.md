@@ -176,7 +176,7 @@ Aliás, por um lado, algo é escrito como: `super..`, `mega..`, `legal..` Mas po
 ## Sobreponha variáveis externas
 
 ```quote author="Guan Yin Zi"
-Quando na luz, não podes ver nada na escuridão.
+Quando na luz, não pode ver nada na escuridão.<br>
 Quando na escuridão, pode ver tudo na luz.
 ```
 
