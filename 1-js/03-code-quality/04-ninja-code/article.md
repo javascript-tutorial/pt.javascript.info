@@ -177,7 +177,7 @@ Aliás, por um lado, algo é escrito como: `super..`, `mega..`, `legal..` Mas po
 
 ```quote author="Guan Yin Zi"
 Quando na luz, não podes ver nada na escuridão.
-Quando na escuridão, não podes ver nada na luz.
+Quando na escuridão, pode ver tudo na luz.
 ```
 
 Use os mesmos nomes para variáveis dentro e fora de uma função. Bem simples. Sem esforço.
