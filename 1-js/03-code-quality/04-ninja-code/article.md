@@ -48,7 +48,7 @@ Outra forma de escrever código mais curto é usar nomes de variáveis com uma �
 
 Uma variável curta desaparece no código como um ninja de verdade desaparece na floresta. Ninguém conseguirá encontrar ela usando a ferramenta de pesquisa do editor. E mesmo se alguém o fizer, não será capaz de decifrar o que o nome `a` ou `b` significam.
 
-...Mas há uma exceção. Um ninja de verdade nunca usa `i` como o contador de um loop `for`. Em qualquer lugar, menos aqui. Veja em sua volta, existem várias outras letras exóticas. Por exemplo, `x` ou `y`.
+...Mas há uma exceção. Um ninja de verdade nunca usa `i` como o contador de um loop `"for"`. Em qualquer lugar, menos aqui. Veja em sua volta, existem várias outras letras exóticas. Por exemplo, `x` ou `y`.
 
 Uma variável exótica como um contador de loop é especialmente legal se o corpo do loop tiver uma ou duas páginas (faça ele mais longo se puder). Então se alguma pessoa der uma olhada dentro do loop, ela não será capaz de entender logo que aquela variável nomeada como `x` é simplesmente o contador do loop.
 
@@ -74,11 +74,11 @@ O grande som carece de ruído<br>
 A grande imagem não tem forma.
 ```
 
-Ao escolher um nome tente usar a palavra mais abstrata possível. Como `obj`, `dado`, `valor`, `item`, `elem` e assim por diante.
+Ao escolher um nome tente usar a palavra mais abstrata possível. Como `obj`, `data`, `value`, `item`, `elem` e assim por diante.
 
-- **O nome ideal para uma variável é `dado`.** Use ele em todo lugar que você puder. Aliás, toda variável armazena um *dado*, né?
+- **O nome ideal para uma variável é `data`.** Use ele em todo lugar que você puder. Aliás, toda variável armazena um *dado*, né?
 
-    ...Mas o que fazer se `dado` já foi usado? Tente `valor`, também é universal. No fim das contas, uma variável eventualmente terá um *valor*.
+    ...Mas o que fazer se `data` já foi usado? Tente `value`, também é universal. No fim das contas, uma variável eventualmente terá um *valor*.
 
 - **Nomeie uma variável pelo seu tipo: `str`, `num`...**
 
@@ -90,13 +90,13 @@ Ao escolher um nome tente usar a palavra mais abstrata possível. Como `obj`, `d
 
     Não existe nenhuma outra forma de descobrir isso sem uma boa meditaçao!
 
-- **...Mas e se não há mais nenhum desses nomes disponíveis?** Simplesmente adicione números: `dado1, item2, elem5`...
+- **...Mas e se não há mais nenhum desses nomes disponíveis?** Simplesmente adicione números: `data1, item2, elem5`...
 
 ## Teste de perspicácia
 
 Apenas um programador perspicaz será capaz de entender o seu código. Mas como testar isso?
 
-**Uma das formas -- use nomes similares para variáveis como `dado` e `data`.**
+**Uma das formas -- use nomes similares para variáveis como `date` e `data`.**
 
 Misture onde você puder.
 
@@ -111,17 +111,17 @@ O Tao que pode ser narrado não é o Tao eterno. O nome que pode ser nomeado nã
 
 Usando nomes *similares* para as *mesmas* coisas faz da vida mais interessante e expõe a sua criatividade para o público.
 
-Por exemplo, considere o prefixo de funções. Se uma função mostra uma mensagem na tela -- começe ela com `mostra...`, como `mostraMensagem`. E se outra função mostra na tela alguma outra coisa, como o nome de um usário, começe com `exibe...` (como `exibeNome`).
+Por exemplo, considere o prefixo de funções. Se uma função mostra uma mensagem na tela -- começe ela com `display...`, como `displayMessage`. E se outra função mostra na tela alguma outra coisa, como o nome de um usuário, comece com `show...` (como `showName`).
 
 Insinue que há uma pequena diferença entre as duas funções, quando na verdade não há.
 
-Faça um pacto com seus parceiros ninjas do time: se João inicia funções de "exibir" com `mostra...` no código dele, então Pedro pode usar `renderiza...`, e Ana -- `imprime...`. Note como o código se torna bem mais interessante e diverso.
+Faça um pacto com seus parceiros ninjas do time: se João inicia funções de "exibir" com `display...` no código dele, então Pedro pode usar `render...`, e Ana -- `paint...`. Note como o código se torna bem mais interessante e diverso.
 
 ...Agora o pulo do gato!
 
 Para duas funções com diferenças consideráveis -- use o mesmo prefixo!
 
-Por exemplo, a função `imprimePagina(pagina)` vai usar a impressora. E a função `imprimeTexto(texto)` vai mostrar o texto na tela. Deixe um leitor não familiarizado refletir sobre a função com nome similar `imprimeMensagem`: "Onde isso vai pôr a mensagem? Na impressora ou na tela?". Para ficar ainda mais brilhante, `imprimeMensage(mensagem)` deveria mostrar sua saída numa nova janela!
+Por exemplo, a função `printPage(page)` vai usar a impressora. E a função `printText(text)` vai mostrar o texto na tela. Deixe um leitor não familiarizado refletir sobre a função com nome similar `printMessage`: "Onde isso vai pôr a mensagem? Na impressora ou na tela?". Para ficar ainda mais brilhante, `printMessage(message)` deveria mostrar sua saída numa nova janela!
 
 ## Reuse nomes
 
@@ -168,7 +168,7 @@ Um ninja inteligente põe sublinhas em uma parte do código e evita elas em outr
 
 ## Mostre seu amor
 
-Faça com que todos vejam a grandiosidade das suas entidades! Nomes como `superElemento`, `megaFrame` e `itemLegal` com certeza irão iluminar um leitor.
+Faça com que todos vejam a grandiosidade das suas entidades! Nomes como `superElement`, `megaFrame` e `niceItem` com certeza irão iluminar um leitor.
 
 Aliás, por um lado, algo é escrito como: `super..`, `mega..`, `nice..` Mas por outro -- isso não traz detalhe nenhum. Um leitor talvez decida procurar por um signifcado oculto e meditar por uma hora ou duas.
 
@@ -213,7 +213,7 @@ Uma expressão de surpresa atordoada na cara dos seus colegas quando eles virem 
 
 Mostre o que é pensar fora da caixa! Faça com que a chamada de `checkPermission` retorne não um `true/false`, mas sim um complexo objeto com o resultado da checagem.
 
-Aqueles desenvolvedores que tentarem escrever `if (checaPermissao(..))`, vai se perguntar por que não funciona. Diga a eles: "Leia a documentação!". E mostre este artigo.
+Aqueles desenvolvedores que tentarem escrever `if (checkPermission(..))`, vai se perguntar por que não funciona. Diga a eles: "Leia a documentação!". E mostre este artigo.
 
 
 ## Funções superpoderosas!
@@ -225,13 +225,13 @@ tanto para a esquerda quanto para a direita.
 
 Não limite a função pelo que está escrito em seu nome. Seja amplo.
 
-Por exemplo, uma função `validaEmail(email)` poderia (além de checar a validade do email) mostrar uma mensagem de erro e pedir para re-entrar o email.
+Por exemplo, uma função `validateEmail(email)` poderia (além de checar a validade do email) mostrar uma mensagem de erro e pedir para re-entrar o email.
 
 Açoes adicionais não devem ser óbvias pelo nome da função. Um verdadeiro programador ninja também as tornará não óbvias assim como o resto do código.
 
 **Juntar várias ações em uma protegerá seu código de ser reutilizado.**
 
-Imagine, algum outro desenvolvedor quer apenas checar o email, mas não mostrar uma mensagem. Sua função `validaEmail(email)` que executa as duas ações não servirá pra ele. Assim, ele não irá interromper a sua meditação perguntando algo sobre ela.
+Imagine, algum outro desenvolvedor quer apenas checar o email, mas não mostrar uma mensagem. Sua função `validateEmail(email)` que executa as duas ações não servirá pra ele. Assim, ele não irá interromper a sua meditação perguntando algo sobre ela.
 
 ## Sumário
 
