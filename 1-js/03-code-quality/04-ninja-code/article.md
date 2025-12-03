@@ -2,7 +2,7 @@
 
 
 ```quote author="Confúcio (Analects)"
-Estudo sem pensamento é trabalho perdido; pensamento sem estudo é perigoso.
+Aprender sem pensar é trabalho perdido; pensar sem aprender é perigoso.
 ```
 
 Programadores ninjas do passado usavam estes truques para moldar a mente dos mantenedores de código.
