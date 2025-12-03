@@ -1,99 +1,99 @@
+# Escapes, caracteres especiais
 
-# Escaping, special characters
+Como vimos anteriormente, a contrabarra `pattern:\` é usada para demarcar classes de caracteres, como `pattern:\d` por exemplo. Sendo então, um caractere especial em regexes (bem como em strings normais).
 
-As we've seen, a backslash `pattern:\` is used to denote character classes, e.g. `pattern:\d`. So it's a special character in regexps (just like in regular strings).
+Existem outros caracteres especiais que também tem significados especias numa regex, como `pattern:[ ] { } ( ) \ ^ $ . | ? * +`. Esses são usados para realizar buscas mais poderosas.
 
-There are other special characters as well, that have special meaning in a regexp. They are used to do more powerful searches. Here's a full list of them: `pattern:[ \ ^ $ . | ? * + ( )`.
+Não tente decorar a lista -- em breve vamos cobrir cada um deles, e no processo você irá decorá-los automaticamente.
 
-Don't try to remember the list -- soon we'll deal with each of them separately and you'll know them by heart automatically.
+## Escapes
 
-## Escaping
+Digamos que precisamos buscar um ponto '.' literal. Não "qualquer caractere", apenas um ponto.
 
-Let's say we want to find literally a dot. Not "any character", but just a dot.
+Para usar um caractere especial como um caractere comum, adicionamos uma contrabarra dessa forma: `pattern:\.`.
 
-To use a special character as a regular one, prepend it with a backslash: `pattern:\.`.
+Isso também é conhecido como "escapar um caractere".
 
-That's also called "escaping a character".
+Por exemplo:
 
-For example:
 ```js run
-alert( "Chapter 5.1".match(/\d\.\d/) ); // 5.1 (match!)
-alert( "Chapter 511".match(/\d\.\d/) ); // null (looking for a real dot \.)
+alert("Chapter 5.1".match(/\d\.\d/)); // 5.1 (match!)
+alert("Chapter 511".match(/\d\.\d/)); // null (procurando por um ponto literal \.)
 ```
 
-Parentheses are also special characters, so if we want them, we should use `pattern:\(`. The example below looks for a string `"g()"`:
+Parênteses também são caracteres especiais, então se quisermos usá-los, devemos usar `pattern:\(`. O exemplo abaixo procura a string `"g()"`:
 
 ```js run
-alert( "function g()".match(/g\(\)/) ); // "g()"
+alert("function g()".match(/g\(\)/)); // "g()"
 ```
 
-If we're looking for a backslash `\`, it's a special character in both regular strings and regexps, so we should double it.
+Se estivermos buscando por uma contrabarra `\`, que é um caractere especial tanto em strings comuns quanto em regexes, devemos escapá-la também.
 
 ```js run
-alert( "1\\2".match(/\\/) ); // '\'
+alert("1\\2".match(/\\/)); // '\'
 ```
 
-## A slash
+## Uma barra
 
-A slash symbol `'/'` is not a special character, but in JavaScript it is used to open and close the regexp: `pattern:/...pattern.../`, so we should escape it too.
+O caractere de barra `'/'` não é um caractere especial, mas no JavaScript é usado para delimitar regexes: `pattern:/...pattern.../`, então devemos escapá-la também.
 
-Here's what a search for a slash `'/'` looks like:
+Uma busca por uma barra `'/'` fica assim:
 
 ```js run
-alert( "/".match(/\//) ); // '/'
+alert("/".match(/\//)); // '/'
 ```
 
-On the other hand, if we're not using `pattern:/.../`, but create a regexp using `new RegExp`, then we don't need to escape it:
+Por outro lado, se não estivermos usando a sintaxe `pattern:/.../`, mas sim o construtor `new RegExp`, não é necessário usar um escape:
 
 ```js run
-alert( "/".match(new RegExp("/")) ); // finds /
+alert("/".match(new RegExp("/"))); // busca um /
 ```
 
 ## new RegExp
 
-If we are creating a regular expression with `new RegExp`, then we don't have to escape `/`, but need to do some other escaping.
+Se estivermos criando uma expressão regular com o `new RegExp`, não precisamos escapar o `/`, mas precisamos aplicar outros escapes.
 
-For instance, consider this:
-
-```js run
-let regexp = new RegExp("\d\.\d");
-
-alert( "Chapter 5.1".match(regexp) ); // null
-```
-
-The similar search in one of previous examples worked with `pattern:/\d\.\d/`, but `new RegExp("\d\.\d")` doesn't work, why?
-
-The reason is that backslashes are "consumed" by a string. As we may recall, regular strings have their own special characters, such as `\n`, and a backslash is used for escaping.
-
-Here's how "\d\.\d" is preceived:
+Considere esse exemplo:
 
 ```js run
-alert("\d\.\d"); // d.d
+let regexp = new RegExp("d.d");
+
+alert("Chapter 5.1".match(regexp)); // null
 ```
 
-String quotes "consume" backslashes and interpret them on their own, for instance:
+Uma busca muito similar em um dos exemplos anteriores funcionou com o `pattern:/\d\.\d/`, mas nosso `new RegExp("\d\.\d")` não. Por quê?
 
-- `\n` -- becomes a newline character,
-- `\u1234` -- becomes the Unicode character with such code,
-- ...And when there's no special meaning: like `pattern:\d` or `\z`, then the backslash is simply removed.
+Isso acontece porque contrabarras são "consumidas" pela string. Como deve se lembrar, strings comuns tem seus próprios caracteres especiais, como o `\n`, e contrabarras são usadas para escapes.
 
-So `new RegExp` gets a string without backslashes. That's why the search doesn't work!
+Veja como "\d\.\d" é interpretado:
 
-To fix it, we need to double backslashes, because string quotes turn `\\` into `\`:
+```js run
+alert("d.d"); // d.d
+```
+
+Strings comuns "consomem" contrabarras e interpretam-nas separadamente, por exemplo:
+
+- `\n` -- se torna um caractere de quebra de linha,
+- `\u1234` -- se torna o caractere Unicode com o código fornecido,
+- ...E quando não há nenhum significado especial, como `pattern:\d` ou `\z`, a contrabarra é simplesmente removida.
+
+Então `new RegExp` recebe uma string sem contrabarras. Por isso que a busca não funciona!
+
+Para consertar isso, precisamos escapar a contrabarra, já que strings comuns tornam `\\` em `\`:
 
 ```js run
 *!*
 let regStr = "\\d\\.\\d";
 */!*
-alert(regStr); // \d\.\d (correct now)
+alert(regStr); // \d\.\d (correto)
 
 let regexp = new RegExp(regStr);
 
 alert( "Chapter 5.1".match(regexp) ); // 5.1
 ```
 
-## Summary
+## Resumo
 
-- To search for special characters `pattern:[ \ ^ $ . | ? * + ( )` literally, we need to prepend them with a backslash `\` ("escape them").
-- We also need to escape `/` if we're inside `pattern:/.../` (but not inside `new RegExp`).
-- When passing a string `new RegExp`, we need to double backslashes `\\`, cause string quotes consume one of them.
+- Para usar caracteres especiais `pattern:[ \ ^ $ . | ? * + ( )` de maneira literal, precisamos usar a contrabarra `\` ("escapar os caracteres").
+- Nós também precisamos escapar a `/` se estivermos dentro do `pattern:/.../` (mas não do `new RegExp`).
+- Quando passarmos uma string para `new RegExp`, precisamos escapar contrabarras, (`\\`) já que strings consomem uma delas.

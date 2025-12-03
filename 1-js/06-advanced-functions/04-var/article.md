@@ -4,7 +4,7 @@
 ```smart header="This article is for understanding old scripts"
 The information in this article is useful for understanding old scripts.
 
-That's not how we write a new code.
+That's not how we write new code.
 ```
 
 In the very first chapter about [variables](info:variables), we mentioned three ways of variable declaration:
@@ -28,15 +28,11 @@ On the other hand, it's important to understand differences when migrating old s
 
 ## "var" has no block scope
 
-<<<<<<< HEAD
-`var` variables are either function-wide or global, they are visible through blocks.
-=======
 Variables, declared with `var`, are either function-scoped or global-scoped. They are visible through blocks.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 For instance:
 
-```js
+```js run
 if (true) {
   var test = true; // use "var" instead of "let"
 }
@@ -46,11 +42,23 @@ alert(test); // true, the variable lives after if
 */!*
 ```
 
-If we used `let test` on the 2nd line, then it wouldn't be visible to `alert`. But `var` ignores code blocks, so we've got a global `test`.
+As `var` ignores code blocks, we've got a global variable `test`.
+
+If we used `let test` instead of `var test`, then the variable would only be visible inside `if`:
+
+```js run
+if (true) {
+  let test = true; // use "let"
+}
+
+*!*
+alert(test); // ReferenceError: test is not defined
+*/!*
+```
 
 The same thing for loops: `var` cannot be block- or loop-local:
 
-```js
+```js run
 for (var i = 0; i < 10; i++) {
   var one = 1;
   // ...
@@ -64,7 +72,7 @@ alert(one); // 1, "one" is visible after loop, it's a global variable
 
 If a code block is inside a function, then `var` becomes a function-level variable:
 
-```js
+```js run
 function sayHi() {
   if (true) {
     var phrase = "Hello";
@@ -74,7 +82,7 @@ function sayHi() {
 }
 
 sayHi();
-alert(phrase); // Error: phrase is not defined
+alert(phrase); // ReferenceError: phrase is not defined
 ```
 
 As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript, blocks had no Lexical Environments, and `var` is a remnant of that.
@@ -96,14 +104,10 @@ var user = "Pete";
 var user = "John"; // this "var" does nothing (already declared)
 // ...it doesn't trigger an error
 
-<<<<<<< HEAD
-## "var" are processed at the function start
-=======
 alert(user); // John
 ```
 
 ## "var" variables can be declared below their use
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 `var` declarations are processed when the function starts (or script starts for globals).
 
@@ -111,7 +115,7 @@ In other words, `var` variables are defined from the beginning of the function, 
 
 So this code:
 
-```js
+```js run
 function sayHi() {
   phrase = "Hello";
 
@@ -121,11 +125,12 @@ function sayHi() {
   var phrase;
 */!*
 }
+sayHi();
 ```
 
 ...Is technically the same as this (moved `var phrase` above):
 
-```js
+```js run
 function sayHi() {
 *!*
   var phrase;
@@ -135,11 +140,12 @@ function sayHi() {
 
   alert(phrase);
 }
+sayHi();
 ```
 
 ...Or even as this (remember, code blocks are ignored):
 
-```js
+```js run
 function sayHi() {
   phrase = "Hello"; // (*)
 
@@ -151,6 +157,7 @@ function sayHi() {
 
   alert(phrase);
 }
+sayHi();
 ```
 
 People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
@@ -163,7 +170,7 @@ That's best demonstrated with an example:
 
 ```js run
 function sayHi() {
-  alert(phrase);  
+  alert(phrase);
 
 *!*
   var phrase = "Hello";
@@ -224,7 +231,7 @@ The Function Expression is wrapped with parenthesis `(function {...})`, because 
 
 ```js run
 // Tries to declare and immediately call a function
-function() { // <-- Error: Function statements require a function name
+function() { // <-- SyntaxError: Function statements require a function name
 
   var message = "Hello";
 
@@ -249,11 +256,11 @@ There exist other ways besides parentheses to tell JavaScript that we mean a Fun
 ```js run
 // Ways to create IIFE
 
-(function() {
+*!*(*/!*function() {
   alert("Parentheses around the function");
 }*!*)*/!*();
 
-(function() {
+*!*(*/!*function() {
   alert("Parentheses around the whole thing");
 }()*!*)*/!*;
 
@@ -270,16 +277,11 @@ In all the above cases we declare a Function Expression and run it immediately. 
 
 ## Summary
 
-There are two main differences of `var`:
+There are two main differences of `var` compared to `let/const`:
 
-<<<<<<< HEAD
-1. Variables have no block scope, they are visible minimum at the function level.
-2. Variable declarations are processed at function start.
-=======
-1. `var` variables have no block scope; their visibility is scoped to current function, or global, if declared outside function.
+1. `var` variables have no block scope, their visibility is scoped to current function, or global, if declared outside function.
 2. `var` declarations are processed at function start (script start for globals).
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 There's one more very minor difference related to the global object, that we'll cover in the next chapter.
 
-These differences are actually a bad thing most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.
+These differences make `var` worse than `let` most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.

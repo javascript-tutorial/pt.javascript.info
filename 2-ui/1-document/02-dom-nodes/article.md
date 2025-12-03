@@ -8,13 +8,6 @@ libs:
 
 The backbone of an HTML document is tags.
 
-<<<<<<< HEAD
-According to Document Object Model (DOM), every HTML-tag is an object. Nested tags are called "children" of the enclosing one.
-
-The text inside a tag it is an object as well.
-
-All these objects are accessible using JavaScript.
-=======
 According to the Document Object Model (DOM), every HTML tag is an object. Nested tags are  "children" of the enclosing one. The text inside a tag is an object as well.
 
 All these objects are accessible using JavaScript, and we can use them to modify the page.
@@ -30,7 +23,6 @@ setTimeout(() => document.body.style.background = '', 3000); // return back
 ```
 
 Here we used `style.background` to change the background color of `document.body`, but there are many other properties, such as:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 - `innerHTML` -- HTML contents of the node.
 - `offsetWidth` -- the node width (in pixels)
@@ -40,11 +32,7 @@ Soon we'll learn more ways to manipulate the DOM, but first we need to know abou
 
 ## An example of the DOM
 
-<<<<<<< HEAD
-For instance, let's explore the DOM for this document:
-=======
 Let's start with the following simple document:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```html run no-beautify
 <!DOCTYPE HTML>
@@ -63,7 +51,7 @@ The DOM represents HTML as a tree structure of tags. Here's how it looks:
 <div class="domtree"></div>
 
 <script>
-let node1 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n    "},{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]},{"name":"#text","nodeType":3,"content":"\n  "}]},{"name":"#text","nodeType":3,"content":"\n  "},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk."}]}]}
+let node1 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  "},{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]},{"name":"#text","nodeType":3,"content":"\n"}]},{"name":"#text","nodeType":3,"content":"\n"},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n"}]}]}
 
 drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
@@ -72,13 +60,9 @@ drawHtmlTree(node1, 'div.domtree', 690, 320);
 On the picture above, you can click on element nodes and their children will open/collapse.
 ```
 
-<<<<<<< HEAD
-Tags are called *element nodes* (or just elements). Nested tags become children of the enclosing ones. As a result we have a tree of elements: `<html>` is at the root, then `<head>` and `<body>` are its children, etc.
-=======
 Every tree node is an object.
 
 Tags are *element nodes* (or just elements) and form the tree structure: `<html>` is at the root, then `<head>` and `<body>` are its children, etc.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 The text inside elements forms *text nodes*, labelled as `#text`. A text node contains only a string. It may not have children and is always a leaf of the tree.
 
@@ -89,11 +73,7 @@ Please note the special characters in text nodes:
 - a newline: `↵` (in JavaScript known as `\n`)
 - a space: `␣`
 
-<<<<<<< HEAD
-Spaces and newlines -- are totally valid characters, they form text nodes and become a part of the DOM. So, for instance, in the example above the `<head>` tag contains some spaces before `<title>`, and that text becomes a `#text` node (it contains a newline and some spaces only).
-=======
 Spaces and newlines are totally valid characters, like letters and digits. They form text nodes and become a part of the DOM. So, for instance, in the example above the `<head>` tag contains some spaces before `<title>`, and that text becomes a `#text` node (it contains a newline and some spaces only).
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 There are only two top-level exclusions:
 1. Spaces and newlines before `<head>` are ignored for historical reasons.
@@ -116,14 +96,13 @@ let node2 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node2, 'div.domtree', 690, 210);
 </script>
 
-```smart header="Edge spaces and in-between empty text are usually hidden in tools"
+```smart header="Spaces at string start/end and space-only text nodes are usually hidden in tools"
 Browser tools (to be covered soon) that work with DOM usually do not show spaces at the start/end of the text and empty text nodes (line-breaks) between tags.
 
-That's because they are mainly used to decorate HTML, and do not affect how it is shown (in most cases).
+Developer tools save screen space this way.
 
-On further DOM pictures we'll sometimes omit them where they are irrelevant, to keep things short.
+On further DOM pictures we'll sometimes omit them when they are irrelevant. Such spaces usually do not affect how the document is displayed.
 ```
-
 
 ## Autocorrection
 
@@ -144,11 +123,7 @@ drawHtmlTree(node3, 'div.domtree', 690, 150);
 
 While generating the DOM, browsers automatically process errors in the document, close tags and so on.
 
-<<<<<<< HEAD
-Such an "invalid" document:
-=======
 A document with unclosed tags:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```html no-beautify
 <p>Hello
@@ -168,7 +143,7 @@ drawHtmlTree(node4, 'div.domtree', 690, 360);
 </script>
 
 ````warn header="Tables always have `<tbody>`"
-An interesting "special case" is tables. By the DOM specification they must have `<tbody>`, but HTML text may (officially) omit it. Then the browser creates `<tbody>` in the DOM automatically.
+An interesting "special case" is tables. By DOM specification they must have `<tbody>` tag, but HTML text may omit it. Then the browser creates `<tbody>` in the DOM automatically.
 
 For the HTML:
 
@@ -185,12 +160,14 @@ let node5 = {"name":"TABLE","nodeType":1,"children":[{"name":"TBODY","nodeType":
 drawHtmlTree(node5,  'div.domtree', 600, 200);
 </script>
 
-You see? The `<tbody>` appeared out of nowhere. You should keep this in mind while working with tables to avoid surprises.
+You see? The `<tbody>` appeared out of nowhere. We should keep this in mind while working with tables to avoid surprises.
 ````
 
 ## Other node types
 
-Let's add more tags and a comment to the page:
+There are some other node types besides elements and text nodes.
+
+For example, comments:
 
 ```html
 <!DOCTYPE HTML>
@@ -211,18 +188,18 @@ Let's add more tags and a comment to the page:
 <div class="domtree"></div>
 
 <script>
-let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n    "},{"name":"OL","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n      "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"An elk is a smart"}]},{"name":"#text","nodeType":3,"content":"\n      "},{"name":"#comment","nodeType":8,"content":"comment"},{"name":"#text","nodeType":3,"content":"\n      "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"...and cunning animal!"}]},{"name":"#text","nodeType":3,"content":"\n    "}]},{"name":"#text","nodeType":3,"content":"\n  \n"}]}]};
+let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n  "},{"name":"OL","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n    "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"An elk is a smart"}]},{"name":"#text","nodeType":3,"content":"\n    "},{"name":"#comment","nodeType":8,"content":"comment"},{"name":"#text","nodeType":3,"content":"\n    "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"...and cunning animal!"}]},{"name":"#text","nodeType":3,"content":"\n  "}]},{"name":"#text","nodeType":3,"content":"\n\n\n"}]}]};
 
 drawHtmlTree(node6, 'div.domtree', 690, 500);
 </script>
 
-Here we see a new tree node type -- *comment node*, labeled as `#comment`.
+We can see here a new tree node type -- *comment node*, labeled as `#comment`, between two text nodes.
 
 We may think -- why is a comment added to the DOM? It doesn't affect the visual representation in any way. But there's a rule -- if something's in HTML, then it also must be in the DOM tree.
 
 **Everything in HTML, even comments, becomes a part of the DOM.**
 
-Even the `<!DOCTYPE...>` directive at the very beginning of HTML is also a DOM node. It's in the DOM tree right before `<html>`. We are not going to touch that node, we even don't draw it on diagrams for that reason, but it's there.
+Even the `<!DOCTYPE...>` directive at the very beginning of HTML is also a DOM node. It's in the DOM tree right before `<html>`. Few people know about that. We are not going to touch that node, we even don't draw it on diagrams, but it's there.
 
 The `document` object that represents the whole document is, formally, a DOM node as well.
 
@@ -235,9 +212,7 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
 ## See it for yourself
 
-To see the DOM structure in real-time, try [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up as a DOM at an instant.
-
-## In the browser inspector
+To see the DOM structure in real-time, try [Live DOM Viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up as a DOM at an instant.
 
 Another way to explore the DOM is to use the browser developer tools. Actually, that's what we use when developing.
 
@@ -267,10 +242,12 @@ The best way to study them is to click around. Most values are editable in-place
 
 ## Interaction with console
 
-As we explore the DOM, we also may want to apply JavaScript to it. Like: get a node and run some code to modify it, to see how it looks. Here are few tips to travel between the Elements tab and the console.
+As we work the DOM, we also may want to apply JavaScript to it. Like: get a node and run some code to modify it, to see the result. Here are few tips to travel between the Elements tab and the console.
 
-- Select the first `<li>` in the Elements tab.
-- Press `key:Esc` -- it will open console right below the Elements tab.
+For the start:
+
+1. Select the first `<li>` in the Elements tab.
+2. Press `key:Esc` -- it will open console right below the Elements tab.
 
 Now the last selected element is available as `$0`, the previously selected is `$1` etc.
 
@@ -278,13 +255,11 @@ We can run commands on them. For instance, `$0.style.background = 'red'` makes t
 
 ![](domconsole0.svg)
 
-From the other side, if we're in console and have a variable referencing a DOM node, then we can use the command `inspect(node)` to see it in the Elements pane.
+That's how to get a node from Elements in Console.
 
-<<<<<<< HEAD
-Or we can just output it in the console and explore "at-place", like `document.body` below:
-=======
+There's also a road back. If there's a variable referencing a DOM node, then we can use the command `inspect(node)` in Console to see it in the Elements pane.
+
 Or we can just output the DOM node in the console and explore "in-place", like `document.body` below:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ![](domconsole1.svg)
 

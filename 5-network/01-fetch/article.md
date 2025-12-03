@@ -27,7 +27,7 @@ let promise = fetch(url, [options])
 - **`url`** -- the URL to access.
 - **`options`** -- optional parameters: method, headers etc.
 
-Without `options`, that is a simple GET request, downloading the contents of the `url`.
+Without `options`, this is a simple GET request, downloading the contents of the `url`.
 
 The browser starts the request right away and returns a promise that the calling code should use to get the result.
 
@@ -65,11 +65,7 @@ if (response.ok) { // if HTTP-status is 200-299
 - **`response.json()`** -- parse the response as JSON,
 - **`response.formData()`** -- return the response as `FormData` object (explained in the [next chapter](info:formdata)),
 - **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
-<<<<<<< HEAD
-- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level representaion of binary data),
-=======
 - **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level representation of binary data),
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 - additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows you to read the body chunk-by-chunk, we'll see an example later.
 
 For instance, let's get a JSON-object with latest commits from GitHub:
@@ -199,7 +195,7 @@ To make a `POST` request, or a request with another method, we need to use `fetc
 - **`method`** -- HTTP-method, e.g. `POST`,
 - **`body`** -- the request body, one of:
   - a string (e.g. JSON-encoded),
-  - `FormData` object, to submit the data as `form/multipart`,
+  - `FormData` object, to submit the data as `multipart/form-data`,
   - `Blob`/`BufferSource` to send binary data,
   - [URLSearchParams](info:url), to submit the data in `x-www-form-urlencoded` encoding, rarely used.
 
@@ -302,13 +298,13 @@ fetch(url, options)
 
 Response properties:
 - `response.status` -- HTTP code of the response,
-- `response.ok` -- `true` is the status is 200-299.
+- `response.ok` -- `true` if the status is 200-299.
 - `response.headers` -- Map-like object with HTTP headers.
 
 Methods to get response body:
 - **`response.text()`** -- return the response as text,
 - **`response.json()`** -- parse the response as JSON object,
-- **`response.formData()`** -- return the response as `FormData` object (form/multipart encoding, see the next chapter),
+- **`response.formData()`** -- return the response as `FormData` object (`multipart/form-data` encoding, see the next chapter),
 - **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
 - **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level binary data),
 

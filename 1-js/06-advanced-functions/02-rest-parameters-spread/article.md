@@ -23,7 +23,7 @@ function sum(a, b) {
 alert( sum(1, 2, 3, 4, 5) );
 ```
 
-There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted.
+There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted, so the result in the code above is `3`.
 
 The rest of the parameters can be included in the function definition by using three dots `...` followed by the name of the array that will contain them. The dots literally mean "gather the remaining parameters into an array".
 
@@ -225,20 +225,19 @@ But there's a subtle difference between `Array.from(obj)` and `[...obj]`:
 So, for the task of turning something into an array, `Array.from` tends to be more universal.
 
 
-## Get a new copy of an array/object
+## Copy an array/object
 
-<<<<<<< HEAD:1-js/06-advanced-functions/02-rest-parameters-spread/article.md
-Remember when we talked about `Object.assign()` [in the past](https://javascript.info/object#cloning-and-merging-object-assign)?
-=======
 Remember when we talked about `Object.assign()` [in the past](info:object-copy#cloning-and-merging-object-assign)?
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3:1-js/06-advanced-functions/02-rest-parameters-spread/article.md
 
 It is possible to do the same thing with the spread syntax.
 
 ```js run
 let arr = [1, 2, 3];
+
+*!*
 let arrCopy = [...arr]; // spread the array into a list of parameters
                         // then put the result into a new array
+*/!*
 
 // do the arrays have the same contents?
 alert(JSON.stringify(arr) === JSON.stringify(arrCopy)); // true
@@ -256,8 +255,11 @@ Note that it is possible to do the same thing to make a copy of an object:
 
 ```js run
 let obj = { a: 1, b: 2, c: 3 };
+
+*!*
 let objCopy = { ...obj }; // spread the object into a list of parameters
                           // then return the result in a new object
+*/!*
 
 // do the objects have the same contents?
 alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // true
@@ -271,7 +273,7 @@ alert(JSON.stringify(obj)); // {"a":1,"b":2,"c":3,"d":4}
 alert(JSON.stringify(objCopy)); // {"a":1,"b":2,"c":3}
 ```
 
-This way of copying an object is much shorter than `let objCopy = Object.assign({}, obj);` or for an array `let arrCopy = Object.assign([], arr);` so we prefer to use it whenever we can.
+This way of copying an object is much shorter than `let objCopy = Object.assign({}, obj)` or for an array `let arrCopy = Object.assign([], arr)` so we prefer to use it whenever we can.
 
 
 ## Summary

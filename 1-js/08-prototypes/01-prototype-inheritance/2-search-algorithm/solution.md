@@ -1,5 +1,5 @@
 
-1. Let's add `__proto__`:
+1. Vamos adicionar `__proto__`:
 
     ```js run
     let head = {
@@ -27,6 +27,6 @@
     alert( table.money ); // undefined
     ```
 
-2. In modern engines, performance-wise, there's no difference whether we take a property from an object or its prototype. They remember where the property was found and reuse it in the next request.
+2. Em interpretadores de JavaScript modernos, em termos de performance (*performance-wise*), não há diferença entre obtermos uma propriedade de um objeto ou do seu protótipo. Eles se lembram onde a propriedade foi encontrada e reutilizam isso na próxima requisição.
 
-    For instance, for `pockets.glasses` they remember where they found `glasses` (in `head`), and next time will search right there. They are also smart enough to update internal caches if something changes, so that optimization is safe.
+    Por exemplo, para `pockets.glasses` eles se lembram onde encontraram `glasses` (em `head`), e na próxima vez vão procurar lá. Eles também são inteligentes o suficiente para atualizar caches internos se algo mudar, então essa otimização é segura.

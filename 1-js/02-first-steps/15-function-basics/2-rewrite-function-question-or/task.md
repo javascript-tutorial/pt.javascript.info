@@ -2,25 +2,25 @@ importance: 4
 
 ---
 
-# Rewrite the function using '?' or '||'
+# Reescreva a função usando '?' ou '||'
 
-The following function returns `true` if the parameter `age` is greater than `18`.
+A função a seguir retorna `true` se o parâmetro `age` for maior que `18`.
 
-Otherwise it asks for a confirmation and returns its result.
+Caso contrário, ele pede uma confirmação e retorna seu resultado.
 
 ```js
 function checkAge(age) {
   if (age > 18) {
     return true;
   } else {
-    return confirm('Did parents allow you?');
+    return confirm('Seus pais permitiram?');
   }
 }
 ```
 
-Rewrite it, to perform the same, but without `if`, in a single line.
+Reescreva-o, para executar o mesmo, mas sem `if`, em uma única linha.
 
-Make two variants of `checkAge`:
+Faça duas variantes de `checkAge`:
 
-1. Using a question mark operator `?`
-2. Using OR `||`
+1. Usando o operador de ponto de interrogação `?`
+2. Usando OR `||`

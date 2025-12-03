@@ -130,11 +130,7 @@ Such snippet in an HTML markup looks like this:
 
 For better readability and at the same time, to beautify it, we'll be using a JavaScript syntax highlighting library on our site, like [Prism.js](https://prismjs.com/). To get syntax highlighting for above snippet in Prism, `Prism.highlightElem(pre)` is called, which examines the contents of such `pre` elements and adds special tags and styles for colored syntax highlighting into those elements, similar to what you see in examples here, on this page.
 
-<<<<<<< HEAD
-When exactly to run that highlighting method? We can do it on `DOMContentLoaded` event, or at the bottom of the page. At that moment we have our DOM ready, can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
-=======
 When exactly should we run that highlighting method? Well, we can do it on `DOMContentLoaded` event, or put the script at the bottom of the page. The moment our DOM is ready, we can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js
 // highlight all code snippets on the page
@@ -240,15 +236,9 @@ There's a method to stop observing the node:
 
 - `observer.disconnect()` -- stops the observation.
 
-<<<<<<< HEAD
-When we stop the observing, it might be possible that some changes were not processed by the observer yet.
-
-- `observer.takeRecords()` -- gets a list of unprocessed mutation records, those that happened, but the callback did not handle them.
-=======
 When we stop the observing, it might be possible that some changes were not yet processed by the observer. In such cases, we use
 
 - `observer.takeRecords()` -- gets a list of unprocessed mutation records - those that happened, but the callback has not handled them.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 These methods can be used together, like this:
 
@@ -263,15 +253,6 @@ observer.disconnect();
 ...
 ```
 
-<<<<<<< HEAD
-// handle unprocessed some mutations
-let mutationRecords = observer.takeRecords();
-...
-```
-
-```smart header="Garbage collection interaction"
-Observers use weak references to nodes internally. That is: if a node is removed from DOM, and becomes unreachable, then it becomes garbage collected.
-=======
 
 ```smart header="Records returned by `observer.takeRecords()` are removed from the processing queue"
 The callback won't be called for records, returned by `observer.takeRecords()`.
@@ -279,7 +260,6 @@ The callback won't be called for records, returned by `observer.takeRecords()`.
 
 ```smart header="Garbage collection interaction"
 Observers use weak references to nodes internally. That is, if a node is removed from the DOM, and becomes unreachable, then it can be garbage collected.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 The mere fact that a DOM node is observed doesn't prevent the garbage collection.
 ```

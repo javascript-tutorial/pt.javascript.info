@@ -12,10 +12,9 @@ function throttle(func, ms) {
       savedThis = this;
       return;
     }
+    isThrottled = true;
 
     func.apply(this, arguments); // (1)
-
-    isThrottled = true;
 
     setTimeout(function() {
       isThrottled = false; // (3)
@@ -30,10 +29,10 @@ function throttle(func, ms) {
 }
 ```
 
-A call to `throttle(func, ms)` returns `wrapper`.
+Uma chamada a `throttle(func, ms)` retorna `wrapper`.
 
-1. During the first call, the `wrapper` just runs `func` and sets the cooldown state (`isThrottled = true`).
-2. In this state all calls are memorized in `savedArgs/savedThis`. Please note that both the context and the arguments are equally important and should be memorized. We need them simultaneously to reproduce the call.
-3. After `ms` milliseconds pass, `setTimeout` triggers. The cooldown state is removed (`isThrottled = false`) and, if we had ignored calls, `wrapper` is executed with the last memorized arguments and context.
+1. Durante a primeira chamada, o `wrapper` apenas executa a `func` e define o estado de arrefecimento (`isThrottled = true`).
+2. Neste estado todas as chamadas são memorizadas em `savedArgs/savedThis`. É de notar que tanto o contexto como os argumentos são igualmente importantes e devem ser memorizados. Nós precisamos destes simultaneamente para reproduzir a chamada.
+3. Após `ms` milissegundos, `setTimeout` é acionada. O estado de arrefecimento é removido (`isThrottled = false`) e, se tivermos ignorado chamadas, o `wrapper` é executado com os últimos argumentos e contexto memorizados.
 
-The 3rd step runs not `func`, but `wrapper`, because we not only need to execute `func`, but once again enter the cooldown state and setup the timeout to reset it.
+O terceiro passo não executa a `func`, mas sim o `wrapper`, porque não só precisamos de executar a `func`, como também entrar novamente no estado de arrefecimento e configurar o tempo de espera para reiniciá-lo.

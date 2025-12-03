@@ -4,11 +4,7 @@ Vamos revisitar as *arrow functions*.
 
 As *arrow functions* não são somente uma "abreviação" para escrevermos menos código.
 
-<<<<<<< HEAD
 O *JavaScript* está cheio de situações onde precisamos escrever uma pequena função que será executada em um outro lugar.
-=======
-JavaScript is full of situations where we need to write a small function that's executed somewhere else.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Por exemplo:
 
@@ -56,7 +52,7 @@ let group = {
 *!*
     this.students.forEach(function(student) {
       // Error: Cannot read property 'title' of undefined
-      alert(this.title + ': ' + student)
+      alert(this.title + ': ' + student);
     });
 */!*
   }
@@ -91,7 +87,7 @@ Por exemplo, `defer(f, ms)` recebe uma função e retorna um *wrapper* (invóluc
 ```js run
 function defer(f, ms) {
   return function() {
-    setTimeout(() => f.apply(this, arguments), ms)
+    setTimeout(() => f.apply(this, arguments), ms);
   };
 }
 
@@ -122,18 +118,8 @@ Aqui precisamos criar as variáveis adicionais `args` e `ctx` para que a funçã
 
 *Arrow functions* (funções seta):
 
-<<<<<<< HEAD
-- Não possuem `this`.
 - Não possuem `arguments`.
 - Não podem ser chamadas com `new`.
 - (Elas também não possuem `super`, mas ainda não a estudamos. Veremos no capítulo <info:class-inheritance>).
 
 Isso porque elas são feitas para pequenos trechos de código que não possuem seus próprios "contextos", mas sim utilizam o contexto em que estão inseridas. E elas realmente brilham nesses casos.
-=======
-- Do not have `this`
-- Do not have `arguments`
-- Can't be called with `new`
-- They also don't have `super`, but we didn't study it yet. We will on the chapter <info:class-inheritance>
-
-That's because they are meant for short pieces of code that do not have their own "context", but rather work in the current one. And they really shine in that use case.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3

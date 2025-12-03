@@ -1,11 +1,11 @@
 
 # Object.keys, values, entries
 
-Let's step away from the individual data structures and talk about the iterations over them. 
+Let's step away from the individual data structures and talk about the iterations over them.
 
 In the previous chapter we saw methods `map.keys()`, `map.values()`, `map.entries()`.
 
-These methods are generic, there is a common agreement to use them for data structures. If we ever create a data structure of our own, we should implement them too. 
+These methods are generic, there is a common agreement to use them for data structures. If we ever create a data structure of our own, we should implement them too.
 
 They are supported for:
 
@@ -23,7 +23,7 @@ For plain objects, the following methods are available:
 - [Object.values(obj)](mdn:js/Object/values) -- returns an array of values.
 - [Object.entries(obj)](mdn:js/Object/entries) -- returns an array of `[key, value]` pairs.
 
-...But please note the distinctions (compared to map for example):
+Please note the distinctions (compared to map for example):
 
 |             | Map              | Object       |
 |-------------|------------------|--------------|
@@ -32,7 +32,7 @@ For plain objects, the following methods are available:
 
 The first difference is that we have to call `Object.keys(obj)`, and not `obj.keys()`.
 
-Why so? The main reason is flexibility. Remember, objects are a base of all complex structures in JavaScript. So we may have an object of our own like `order` that implements its own `order.values()` method. And we still can call `Object.values(order)` on it.
+Why so? The main reason is flexibility. Remember, objects are a base of all complex structures in JavaScript. So we may have an object of our own like `data` that implements its own `data.values()` method. And we still can call `Object.values(data)` on it.
 
 The second difference is that `Object.*` methods return "real" array objects, not just an iterable. That's mainly for historical reasons.
 
@@ -63,13 +63,6 @@ for (let value of Object.values(user)) {
 }
 ```
 
-<<<<<<< HEAD
-## Object.keys/values/entries ignore symbolic properties
-
-Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
-
-Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, the method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) returns *all* keys.
-=======
 ```warn header="Object.keys/values/entries ignore symbolic properties"
 Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
 
@@ -84,7 +77,7 @@ Objects lack many methods that exist for arrays, e.g. `map`, `filter` and others
 If we'd like to apply them, then we can use `Object.entries` followed by `Object.fromEntries`:
 
 1. Use `Object.entries(obj)` to get an array of key/value pairs from `obj`.
-2. Use array methods on that array, e.g. `map`.
+2. Use array methods on that array, e.g. `map`, to transform these key/value pairs.
 3. Use `Object.fromEntries(array)` on the resulting array to turn it back into an object.
 
 For example, we have an object with prices, and would like to double them:
@@ -98,13 +91,13 @@ let prices = {
 
 *!*
 let doublePrices = Object.fromEntries(
-  // convert to array, map, and then fromEntries gives back the object
-  Object.entries(prices).map(([key, value]) => [key, value * 2])
+  // convert prices to array, map each key/value pair into another pair
+  // and then fromEntries gives back the object
+  Object.entries(prices).map(entry => [entry[0], entry[1] * 2])
 );
 */!*
 
 alert(doublePrices.meat); // 8
-```   
+```
 
-It may look difficult from the first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way. 
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+It may look difficult at first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way.

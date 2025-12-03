@@ -57,7 +57,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 `new Date(year, month, date, hours, minutes, seconds, ms)`
 : Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
 
-    - The `year` must have 4 digits: `2013` is okay, `98` is not.
+    - The `year` should have 4 digits. For compatibility, 2 digits are also accepted and considered `19xx`, e.g. `98` is the same as `1998` here, but always using 4 digits is strongly encouraged.
     - The `month` count starts with `0` (Jan), up to `11` (Dec).
     - The `date` parameter is actually the day of month, if absent then `1` is assumed.
     - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
@@ -348,7 +348,7 @@ let time1 = 0;
 let time2 = 0;
 
 *!*
-// run bench(upperSlice) and bench(upperLoop) each 10 times alternating
+// run bench(diffSubtract) and bench(diffGetTime) each 10 times alternating
 for (let i = 0; i < 10; i++) {
   time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
@@ -376,7 +376,7 @@ for (let i = 0; i < 10; i++) {
 ```warn header="Be careful doing microbenchmarking"
 Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator works, or a built-in function. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
 
-The great pack of articles about V8 can be found at <http://mrale.ph>.
+The great pack of articles about V8 can be found at <https://mrale.ph>.
 ```
 
 ## Date.parse from a string
@@ -388,7 +388,7 @@ The string format should be: `YYYY-MM-DDTHH:mm:ss.sssZ`, where:
 - `YYYY-MM-DD` -- is the date: year-month-day.
 - The character `"T"` is used as the delimiter.
 - `HH:mm:ss.sss` -- is the time: hours, minutes, seconds and milliseconds.
-- The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` that would mean UTC+0.
+- The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` would mean UTC+0.
 
 Shorter variants are also possible, like `YYYY-MM-DD` or `YYYY-MM` or even `YYYY`.
 
@@ -407,7 +407,7 @@ We can instantly create a `new Date` object from the timestamp:
 ```js run
 let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
 
-alert(date);  
+alert(date);
 ```
 
 ## Summary
@@ -427,7 +427,7 @@ Sometimes we need more precise time measurements. JavaScript itself does not hav
 alert(`Loading started ${performance.now()}ms ago`);
 // Something like: "Loading started 34731.26000000001ms ago"
 // .26 is microseconds (260 microseconds)
-// more than 3 digits after the decimal point are precision errors, but only the first 3 are correct
+// more than 3 digits after the decimal point are precision errors, only the first 3 are correct
 ```
 
 Node.js has `microtime` module and other ways. Technically, almost any device and environment allows to get more precision, it's just not in `Date`.

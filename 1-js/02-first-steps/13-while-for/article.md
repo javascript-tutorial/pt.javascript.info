@@ -6,6 +6,19 @@ For example, outputting goods from a list one after another or just running the 
 
 *Loops* are a way to repeat the same code multiple times.
 
+```smart header="The for..of and for..in loops"
+A small announcement for advanced readers.
+
+This article covers only basic loops: `while`, `do..while` and `for(..;..;..)`.
+
+If you came to this article searching for other types of loops, here are the pointers:
+
+- See [for..in](info:object#forin) to loop over object properties.
+- See [for..of](info:array#loops) and [iterables](info:iterable) for looping over arrays and iterable objects.
+
+Otherwise, please read on.
+```
+
 ## The "while" loop
 
 The `while` loop has the following syntax:
@@ -17,7 +30,7 @@ while (condition) {
 }
 ```
 
-While the `condition` is `true`, the `code` from the loop body is executed.
+While the `condition` is truthy, the `code` from the loop body is executed.
 
 For instance, the loop below outputs `i` while `i < 3`:
 
@@ -47,8 +60,8 @@ while (i) { // when i becomes 0, the condition becomes falsy, and the loop stops
 }
 ```
 
-````smart header="Brackets are not required for a single-line body"
-If the loop body has a single statement, we can omit the brackets `{…}`:
+````smart header="Curly braces are not required for a single-line body"
+If the loop body has a single statement, we can omit the curly braces `{…}`:
 
 ```js run
 let i = 3;
@@ -84,7 +97,7 @@ This form of syntax should only be used when you want the body of the loop to ex
 
 ## The "for" loop
 
-The `for` loop is the most commonly used loop.
+The `for` loop is more complex, but it's also the most commonly used loop.
 
 It looks like this:
 
@@ -106,13 +119,13 @@ Let's examine the `for` statement part-by-part:
 
 | part  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
-| begin | `i = 0`    | Executes once upon entering the loop.                                      |
+| begin | `let i = 0`    | Executes once upon entering the loop.                                      |
 | condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
 | body | `alert(i)`| Runs again and again while the condition is truthy.                         |
 | step| `i++`      | Executes after the body on each iteration. |
 
-
 The general loop algorithm works like this:
+
 ```
 Run begin
 → (if condition → run body and run step)
@@ -120,6 +133,8 @@ Run begin
 → (if condition → run body and run step)
 → ...
 ```
+
+That is, `begin` executes once, and then it iterates: after each `condition` test, `body` and `step` are executed.
 
 If you are new to loops, it could help to go back to the example and reproduce how it runs step-by-step on a piece of paper.
 
@@ -160,9 +175,7 @@ for (i = 0; i < 3; i++) { // use an existing variable
 
 alert(i); // 3, visible, because declared outside of the loop
 ```
-
 ````
-
 
 ### Skipping parts
 
@@ -266,7 +279,7 @@ for (let i = 0; i < 10; i++) {
 
 From a technical point of view, this is identical to the example above. Surely, we can just wrap the code in an `if` block instead of using `continue`.
 
-But as a side-effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
+But as a side effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
 ````
 
 ````warn header="No `break/continue` to the right side of '?'"
@@ -284,13 +297,11 @@ if (i > 5) {
 
 ...and rewrite it using a question mark:
 
-
 ```js no-beautify
 (i > 5) ? alert(i) : *!*continue*/!*; // continue isn't allowed here
 ```
 
-...it stops working. Code like this will give a syntax error:
-
+...it stops working: there's a syntax error.
 
 This is just another reason not to use the question mark operator `?` instead of `if`.
 ````
@@ -317,9 +328,10 @@ alert('Done!');
 
 We need a way to stop the process if the user cancels the input.
 
-The ordinary `break` after `input` would only break the inner loop. That's not sufficient--labels, come to the rescue!
+The ordinary `break` after `input` would only break the inner loop. That's not sufficient -- labels, come to the rescue!
 
 A *label* is an identifier with a colon before a loop:
+
 ```js
 labelName: for (...) {
   ...
@@ -341,6 +353,7 @@ The `break <labelName>` statement in the loop below breaks out to the label:
     // do something with the value...
   }
 }
+
 alert('Done!');
 ```
 
@@ -357,17 +370,30 @@ for (let i = 0; i < 3; i++) { ... }
 
 The `continue` directive can also be used with a label. In this case, code execution jumps to the next iteration of the labeled loop.
 
-````warn header="Labels are not a \"goto\""
+````warn header="Labels do not allow to \"jump\" anywhere"
 Labels do not allow us to jump into an arbitrary place in the code.
 
 For example, it is impossible to do this:
+
 ```js
-break label;  // jumps to label? No.
+break label; // jump to the label below (doesn't work)
 
 label: for (...)
 ```
 
-A call to `break/continue` is only possible from inside a loop and the label must be somewhere above the directive.
+A `break` directive must be inside a code block. Technically, any labelled code block will do, e.g.:
+
+```js
+label: {
+  // ...
+  break label; // works
+  // ...
+}
+```
+
+...Although, 99.9% of the time `break` is used inside loops, as we've seen in the examples above.
+
+A `continue` is only possible from inside a loop.
 ````
 
 ## Summary

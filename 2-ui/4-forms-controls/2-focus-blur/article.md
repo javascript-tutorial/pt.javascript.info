@@ -2,13 +2,13 @@
 
 An element receives the focus when the user either clicks on it or uses the `key:Tab` key on the keyboard. There's also an `autofocus` HTML attribute that puts the focus onto an element by default when a page loads and other means of getting the focus.
 
-Focusing generally means: "prepare to accept the data here", so that's the moment when we can run the code to initialize or load something.
+Focusing on an element generally means: "prepare to accept the data here", so that's the moment when we can run the code to initialize the required functionality.
 
 The moment of losing the focus ("blur") can be even more important. That's when a user clicks somewhere else or presses `key:Tab` to go to the next form field, or there are other means as well.
 
 Losing the focus generally means: "the data has been entered", so we can run the code to check it or even to save it to the server and so on.
 
-There are important peculiarities when working with focus events. We'll do the best to cover them here.
+There are important peculiarities when working with focus events. We'll do the best to cover them further on.
 
 ## Events focus/blur
 
@@ -90,6 +90,8 @@ If we enter something into the input and then try to use `key:Tab` or click away
 
 Please note that we can't "prevent losing focus" by calling `event.preventDefault()` in `onblur`, because `onblur` works *after* the element lost the focus.
 
+In practice though, one should think well, before implementing something like this, because we generally *should show errors* to the user, but *should not prevent their progress* in filling our form. They may want to fill other fields first.
+
 ```warn header="JavaScript-initiated focus loss"
 A focus loss can occur for many reasons.
 
@@ -104,7 +106,7 @@ The best recipe is to be careful when using these events. If we want to track us
 ```
 ## Allow focusing on any element: tabindex
 
-By default many elements do not support focusing.
+By default, many elements do not support focusing.
 
 The list varies a bit between browsers, but one thing is always correct: `focus/blur` support is guaranteed for elements that a visitor can interact with: `<button>`, `<input>`, `<select>`, `<a>` and so on.
 
@@ -118,7 +120,7 @@ That is: if we have two elements, the first has `tabindex="1"`, and the second h
 
 The switch order is: elements with `tabindex` from `1` and above go first (in the `tabindex` order), and then elements without `tabindex` (e.g. a regular `<input>`).
 
-Elements with matching `tabindex` are switched in the document source order (the default order).
+Elements without matching `tabindex` are switched in the document source order (the default order).
 
 There are two special values:
 
@@ -208,7 +210,6 @@ So here's another working variant:
 
 <script>
 *!*
-  // put the handler on capturing phase (last argument true)
   form.addEventListener("focusin", () => form.classList.add('focused'));
   form.addEventListener("focusout", () => form.classList.remove('focused'));
 */!*

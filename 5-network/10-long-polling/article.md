@@ -1,6 +1,6 @@
 # Long polling
 
-Long polling is the simplest way of having persistent connection with server, that doesn't use any specific protocol like WebSocket or Server Side Events.
+Long polling is the simplest way of having persistent connection with server, that doesn't use any specific protocol like WebSocket or Server Sent Events.
 
 Being very easy to implement, it's also good enough in a lot of cases.
 
@@ -29,7 +29,7 @@ The flow:
 3. When a message appears - the server responds to the request with it.
 4. The browser makes a new request immediately.
 
-The situation when the browser sent a request and has a pending connection with the server, is standard for this method. Only when a message is delivered, the connection is reestablished.
+This situation, where the browser has sent a request and keeps a pending connection with the server, is standard for this method. Only when a message is delivered, the connection is closed and reestablished.
 
 ![](long-polling.svg)
 
@@ -70,7 +70,7 @@ As you can see, `subscribe` function makes a fetch, then waits for the response,
 ```warn header="Server should be ok with many pending connections"
 The server architecture must be able to work with many pending connections.
 
-Certain server architectures run one process per connection; resulting in there being as many processes as there are connections, while each process consumes quite a bit of memory. So, too many connections will just consume it all.
+Certain server architectures run one process per connection, resulting in there being as many processes as there are connections, while each process consumes quite a bit of memory. So, too many connections will just consume it all.
 
 That's often the case for backends written in languages like PHP and Ruby.
 

@@ -1,6 +1,6 @@
 # Olá, mundo!
 
-O tutorial que você está lendo é sobre a core do JavaScript, que é independente de plataforma. Mais tarde, você vai aprender sobre Node.js e outras plataformas que o usam.
+Esta parte do tutorial é sobre a core do JavaScript, a própria linguagem.
 
 Mas precisamos de um ambiente de trabalho para rodar nossos scripts e, como esse livro está online, o navegador é uma boa escolha. Vamos manter a quantidade de comandos específicos do navegador (como `alert`) no mínimo para que você não gaste tempo com eles se você planeja se concentrar em outro ambiente (como Node.js). Vamos focar em JavaScript no navegador na [próxima parte](/ui) do tutorial.
 
@@ -9,7 +9,7 @@ Então, primeiro, vamos ver como anexar um script a uma página. Para ambientes 
 
 ## A tag "script"
 
-Os programas JavaScript podem ser inseridos em qualquer parte de um documento HTML com a ajuda da tag `<script>`.
+Os programas JavaScript podem ser inseridos em quase qualquer parte de um documento HTML com a ajuda da tag `<script>`.
 
 Por exemplo:
 
@@ -43,33 +43,24 @@ A tag `<script>` contém código JavaScript que é executado automaticamente qua
 
 ## Marcação moderna
 
-A tag `<script>` tem alguns atributos que raramente são usados hoje em dia, mas que ainda podem ser encontrados em códigos antigos:
+A tag `<script>` tem alguns atributos que raramente são usados hoje em dia, mas que ainda podem ser encontrados em código antigo:
 
-<<<<<<< HEAD
 O atributo `type`: <code>&lt;script <u>type</u>=...&gt;</code>
-: O antigo padrão HTML, HTML4, requeria um script para ter um `type`. Normalmente era `type="text/javascript"`. Não é mais necessário. Além disso, o moderno padrão HTML, HTML5, mudou totalmente o significado deste atributo. Agora, ele pode ser usado para módulos JavaScript. Mas esse é um tópico avançado; vamos falar sobre módulos em outra parte do tutorial. 
-=======
-The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
-: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic, we'll talk about modules in another part of the tutorial.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+: O antigo padrão HTML, o HTML4, requeria que um script tivesse um `type`. Normalmente era `type="text/javascript"`. Não é mais necessário. Além disso, o moderno padrão HTML, HTML5, mudou totalmente o significado deste atributo. Agora, ele pode ser usado para módulos JavaScript. Mas esse é um tópico avançado; vamos falar sobre módulos em outra parte do tutorial.
 
 O atributo `language`: <code>&lt;script <u>language</u>=...&gt;</code>
-: Este atributo foi criado para mostrar o idioma do script. Este atributo não faz mais sentido porque JavaScript é a linguagem padrão. Não há necessidade de usá-lo.
+: Este atributo foi criado para mostrar o idioma do script. Este atributo não faz mais sentido porque JavaScript é a linguagem padrão. Não há necessidade de o usar.
 
 Comentários antes e depois dos scripts.
 : Em livros e guias realmente antigos, você pode encontrar comentários dentro de tags `<script>`, assim:
 
-    ```html no-beautify
-    <script type="text/javascript"><!--
-        ...
-    //--></script>
-    ```
+```html no-beautify
+<script type="text/javascript"><!--
+    ...
+//--></script>
+```
 
-<<<<<<< HEAD
-    Esse truque não é usado no JavaScript moderno. Esses comentários esconderam código JavaScript de navegadores antigos que não sabiam como processar a tag `<script>`. Como os navegadores lançados nos últimos 15 anos não têm esse problema, esse tipo de comentário pode ajudá-lo a identificar códigos realmente antigos.
-=======
-    This trick isn't used in modern JavaScript. These comments hide JavaScript code from old browsers that didn't know how to process the `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+Esse truque não é usado no JavaScript moderno. Esses comentários escondiam código JavaScript de navegadores antigos que não sabiam como processar a tag `<script>`. Como os navegadores lançados nos últimos 15 anos não têm esse problema, esse tipo de comentário pode ajudá-lo a identificar código realmente antigo.
 
 
 ## Scripts externos
@@ -82,9 +73,7 @@ Os arquivos de script são anexados ao HTML com o atributo `src`:
 <script src="/path/to/script.js"></script>
 ```
 
-Aqui, `/path/to/script.js` é um caminho absoluto para o arquivo script (da raiz do site).
-
-Você também pode fornecer um caminho relativo a partir da página atual. Por exemplo, `src="script.js"` significaria um arquivo `"script.js"` na pasta atual.
+Aqui, `/path/to/script.js` é um caminho absoluto para o arquivo (script) da raiz do site. Você também pode fornecer um caminho relativo a partir da página atual. Por exemplo, `src="script.js"`, tal como `src="./script.js"`, significaria um arquivo `"script.js"` na pasta atual.
 
 Nós também podemos dar uma URL completa. Por exemplo:
 
@@ -103,7 +92,7 @@ Para anexar vários scripts, use múltiplas tags:
 ```smart
 Como regra, apenas os scripts mais simples são colocados em HTML. Os mais complexos residem em arquivos separados.
 
-O benefício de um arquivo separado é que o navegador irá baixá-lo e armazená-lo em seu [cache] (https://pt.wikipedia.org/wiki/Web_cache).
+O benefício de um arquivo separado é que o navegador irá baixá-lo e armazená-lo em seu [cache](https://pt.wikipedia.org/wiki/Web_cache).
 
 Outras páginas que referenciam o mesmo script o tirarão do cache ao invés de baixá-lo, então o arquivo é baixado apenas uma vez.
 
@@ -139,5 +128,4 @@ O exemplo acima pode ser dividido em dois scripts para funcionar:
 - Os atributos `type` e `language` não são necessários.
 - Um script em um arquivo externo pode ser inserido com `<script src="path/to/script.js"></script>`.
 
-
-Há muito mais a aprender sobre os scripts dos navegadores e sua interação com a página. Mas vamos ter em mente que esta parte do tutorial é dedicada à linguagem JavaScript, então não devemos nos distrair com implementações específicas de navegadores. Estaremos usando o navegador como uma maneira de rodar JavaScript, que é muito conveniente para leitura online, mas apenas um de muitos.
+Há muito mais a aprender sobre os scripts dos navegadores e sua interação com a página. Mas vamos ter em mente que esta parte do tutorial é dedicada à linguagem JavaScript, então não devemos nos distrair com implementações específicas de navegadores. Estaremos usando o navegador como uma maneira de rodar JavaScript, que é muito conveniente para leitura online, mas é apenas uma maneira  de muitas.
