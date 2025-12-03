@@ -50,7 +50,7 @@ Uma variável curta desaparece no código como um ninja de verdade desaparece na
 
 ...Mas há uma exceção. Um ninja de verdade nunca usa `i` como o contador de um loop `for`. Em qualquer lugar, menos aqui. Veja em sua volta, existem várias outras letras exóticas. Por exemplo, `x` ou `y`.
 
-Uma variável exótica como um contador de loop é especialmente legal se o corpo do loop tiver uma ou duas páginas (faça ele bem longo se puder). Então se alguma pessoa der uma olhada dentro do loop, ela não será capaz de entender logo que aquela variável nomeada como `x` é simplesmente o contador do loop.
+Uma variável exótica como um contador de loop é especialmente legal se o corpo do loop tiver uma ou duas páginas (faça ele mais longo se puder). Então se alguma pessoa der uma olhada dentro do loop, ela não será capaz de entender logo que aquela variável nomeada como `x` é simplesmente o contador do loop.
 
 ## Use abreviações
 
