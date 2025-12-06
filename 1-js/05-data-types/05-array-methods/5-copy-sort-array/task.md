@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Copy and sort array
+# Copie e ordene o array
 
-We have an array of strings `arr`. We'd like to have a sorted copy of it, but keep `arr` unmodified.
+Temos um array de strings `arr`. Gostaríamos de ter uma copia ordenada desse array, porém mantenha `arr` do mesmo jeito, sem modificações.
 
-Create a function `copySorted(arr)` that returns such a copy.
+Crie uma função `copySorted(arr)` que retorna a copia.
 
 ```js
 let arr = ["HTML", "JavaScript", "CSS"];
@@ -14,5 +14,5 @@ let arr = ["HTML", "JavaScript", "CSS"];
 let sorted = copySorted(arr);
 
 alert( sorted ); // CSS, HTML, JavaScript
-alert( arr ); // HTML, JavaScript, CSS (no changes)
+alert( arr ); // HTML, JavaScript, CSS (arr sem alterções)
 ```
