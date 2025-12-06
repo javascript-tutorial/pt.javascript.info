@@ -209,7 +209,6 @@ arr.forEach(function(item, index, array) {
   // ... faça algo com o item
 });
 ```
-`index` sendo a posição do item.
 
 Observe o exemplo abaixo, o código mostra cada elemento de um array:
 
