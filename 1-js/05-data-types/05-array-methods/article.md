@@ -583,8 +583,9 @@ let value = arr.reduce(function(accumulator, item, index, array) {
   // ...
 }, [initial]);
 ```
+A função é aplicada a todos os elementos do array um após o outro e "repassa" seu resultado para a próxima chamada.
 
-A função é aplicada nos elementos. Você pode ter notado os argumentos familiares, começando pelo o segundo:
+- Arguments:
 
 - `accumulator` -- é o resultado da chamada anterior de função, é igual a `initial` na primeira vez (se `initial` for fornecido).
 - `item` -- é o atual item da array.
@@ -603,14 +604,9 @@ Aqui vamos somar os elementos de um array:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
+let result = arr.reduce((sum, current) => sum + current, 0);
 
-let resultado = arr.reduce((sum, current) => {
-  
-  return  sum + current,
-
-}, 0);
-
-alert(resultado); // 15
+alert(result); // 15
 ```
 
 A função passada para `reduce` usa apenas 2 argumentos, o que normalmente é suficiente.
@@ -627,7 +623,7 @@ Abaixo, a imagem mostra o fluxo da calculação:
 
 Ou por meio de uma tabela, onde cada linha representa uma chamada da função no próximo elemento do array:
 
-|   |`sum`|`current`|`resultado`|
+|   |`sum`|`current`|`result`|
 |---|-----|---------|---------|
 |1º chamada|`0`|`1`|`1`|
 |2º chamada|`1`|`2`|`3`|
@@ -728,7 +724,7 @@ let users = [
 ];
 
 *!*
-// Encontrar usuários para os quais army.canJoin retorna true.
+// Encontrar usuários para os quais army.canJoin retorna true
 let soldiers = users.filter(army.canJoin, army);
 */!*
 
@@ -797,7 +793,7 @@ Este métodos são os mais usados, eles cobrem 99% em casos de uso. Porém, exis
 
 - [arr.copyWithin(target, start, end)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin) -- copia *seus próprios elementos* e os leva para outra posição *dentro da mesma array*. A cópia dos elementos começa a partir da posição `start` até a posição `end`, e os elementos são realocados para a posição `target` (sobescrevendo os elementos existentes). Este método não adiciona novos itens ao array.
 
-- [arr.flat(depth)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)/[arr.flatMap(fn)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap) cria uma nova matriz plana a partir de uma matriz multidimensional..
+- [arr.flat(depth)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)/[arr.flatMap(fn)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap) cria um novo array plano a partir de um array multidimensional..
 
 Para a lista completa, veja o [manual](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array).
 
