@@ -79,9 +79,9 @@ Abaixo podemos ver que `splice` retorna um array dos elementos removidos:
 let arr = [*!*"Eu", "estudo",*/!* "JavaScript", "agora", "mesmo"];
 
 // remove os 2 primeiros elementos
-let removido = arr.splice(0, 2);
+let removed = arr.splice(0, 2);
 
-alert( removido ); // "Eu", "estudo" <-- array de elementos removidos
+alert( removed ); // "Eu", "estudo" <-- array de elementos removidos
 ```
 
 O método `splice` também permite inserir elementos sem remover outros. Para isso, devemos colocar a `deleteCount` em `0`:
@@ -639,13 +639,9 @@ Podemos também omitir o valor inicial:
 let arr = [1, 2, 3, 4, 5];
 
 // valor inicial de reduce foi removido (sem 0)
-let resultado = arr.reduce((sum, current) => {
+let resultado = arr.reduce((sum, current) => sum + current);
 
-  return sum + current
-
-});
-
-alert( resultado ); // 15
+alert( result ); // 15
 ```
 
 O resultado é o mesmo. Isto ocorre porque, se não houver um valor inicial, `reduce` irá pegar o primeiro elemento do array como este valor e `current` começará a partir do 2º elemento.
