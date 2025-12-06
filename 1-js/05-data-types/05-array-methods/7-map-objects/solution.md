@@ -37,7 +37,7 @@ let usersMapped = users.map(user => *!*{*/!*
 
 Como sabemos, existem dois tipos de arrow functions: sem corpo `value => expr` e com corpo `value => {...}`.
 
-JavaScript irá tratar `{` como o começo do corpo de uma função, não o começo do objeto. A *gambiarra* é os colocar em volta de colchetes "normais", ou seja, primeiro os parênteses e depois os colchetes `({ ... })`:
+JavaScript irá tratar `{` como o começo do corpo de uma função, não o começo do objeto. A *gambiarra* é os colocar em volta de colchetes "normais":
 
 ```js
 let usersMapped = users.map(user => *!*({*/!*
