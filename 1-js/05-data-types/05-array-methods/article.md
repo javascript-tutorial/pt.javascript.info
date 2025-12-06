@@ -519,7 +519,6 @@ arr.reverse();
 alert( arr ); // 5,4,3,2,1
 ```
 
-It also returns the array `arr` after the reversal.
 Ele também retornar o array `arr` depois de revertê-lo.
 
 ### split e join
