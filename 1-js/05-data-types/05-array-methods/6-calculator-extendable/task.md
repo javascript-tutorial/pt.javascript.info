@@ -25,9 +25,8 @@ A atividade consiste de duas partes.
     let multCalc = new Calculator;
     let divCalc = new Calculator;
     let powerCalc = new Calculator;
-    
-    multCalc.addMethod("*", (a, b) => a * b);
-    divCalc.addMethod("/", (a, b) => a / b);
+    powerCalc.addMethod("*", (a, b) => a * b);
+    powerCalc.addMethod("/", (a, b) => a / b);
     powerCalc.addMethod("**", (a, b) => a ** b);
 
     let result = powerCalc.calculate("2 ** 3");
