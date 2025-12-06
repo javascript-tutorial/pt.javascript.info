@@ -32,7 +32,7 @@ alert( arr.length ); // 3
 
 O elemento foi removido, mas o array ainda possui 3 elementos, nós podemos ver que `arr.length == 3`.
 
-Isso é normal porque `delete obj.chave` remove o valor pela `chave`. É um bom uso para objetos, mas para arrays, nós, normalmente, queremos que o resto dos elementos se movam e ocupem o espaço liberado. Esperávamos um array com menos elementos.
+Isso é normal porque `delete obj.key` remove o valor pela `key`. É um bom uso para objetos, mas para arrays, nós, normalmente, queremos que o resto dos elementos se movam e ocupem o espaço liberado. Esperávamos um array com menos elementos.
 
 Dessa forma, métodos especiais devem ser usados.
 
