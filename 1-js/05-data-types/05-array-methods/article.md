@@ -119,10 +119,10 @@ O método [arr.slice](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Re
 Sua sintaxe é:
 
 ```js
-arr.slice(start, end)
+arr.slice([start], [end])
 ```
 
-Ele retorna um novo array contendo todos os itens a partir da posição `"start"` até `"end"` (ele não inclui o valor da posição `"end"`). Ambos `start` e `end` podem ser negativos, nesse caso, a posição do final da array é assumida.
+Ele retorna um novo array contendo todos os itens a partir da posição `start` até `end` (ele não inclui o valor da posição `end`). Ambos `start` e `end` podem ser negativos, nesse caso, a posição do final da array é assumida.
 
 Funciona como `str.slice`, porém este cria subarrays em vez de substrings.
 
@@ -140,7 +140,7 @@ We can also call it without arguments: `arr.slice()` creates a copy of `arr`. Th
 
 ### concat
 
-O método [arr.concat](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/concat) une um array com outros arrays e/ou itens.
+O método [arr.concat](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/concat) Cria um novo array que inclui valores de outros arrays e itens adicionais.
 
 Sua sintaxe é:
 
@@ -152,7 +152,7 @@ Este método aceita qualquer número de argumentos -- sendo arrays ou valores.
 
 O resultado vai ser um novo array contendo itens do `arr`, e também do `arg1`, `arg2` etc.
 
-Se o argumento `argN` for uma matriz, todos os seus elementos serão copiados. Caso contrário, o próprio argumento será copiado.
+Se o argumento `argN` for um array, todos os seus elementos serão copiados. Caso contrário, o próprio argumento será copiado.
 
 Veja o exemplo:
 
@@ -174,7 +174,7 @@ Normalmente, ele somente copia elementos de um array. Outros objetos, mesmo que 
 ```js run
 let arr = [1, 2];
 
-let exemploDeArray = {
+let arrayLike = {
   0: "algo",
   length: 1
 };
@@ -182,12 +182,12 @@ let exemploDeArray = {
 alert( arr.concat(arrayLike) ); // 1,2,[objeto Objeto]
 ```
 
-...Mas se um array parecido com um objeto possui a propriedade `Symbol.isConcatSpreadable`, então é tratado como uma matriz pelo `concat`: seus elementos são somados:
+...Mas se um array parecido com um objeto possui a propriedade `Symbol.isConcatSpreadable`, então é tratado como um array pelo `concat` seus elementos são somados:
 
 ```js run
 let arr = [1, 2];
 
-let exemploDeArray = {
+let arrayLike = {
   0: "qualquer",
   1: "coisa",
 *!*
@@ -196,7 +196,7 @@ let exemploDeArray = {
   length: 2
 };
 
-alert( arr.concat(exemploDeArray) ); // 1,2,qualquer,coisa
+alert( arr.concat(arrayLike) ); // 1,2,qualquer,coisa
 ```
 
 ## Iterate: forEach
