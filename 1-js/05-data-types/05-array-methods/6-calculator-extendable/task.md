@@ -22,8 +22,6 @@ A atividade consiste de duas partes.
     Por exemplo, vamos adicionar multiplicação `*`, divisão `/` e potenciação `**`:
 
     ```js
-    let multCalc = new Calculator;
-    let divCalc = new Calculator;
     let powerCalc = new Calculator;
     powerCalc.addMethod("*", (a, b) => a * b);
     powerCalc.addMethod("/", (a, b) => a / b);
