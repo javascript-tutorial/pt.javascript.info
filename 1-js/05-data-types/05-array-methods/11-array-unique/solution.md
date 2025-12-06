@@ -36,4 +36,4 @@ Então se `arr.length` for `10000` vamos ter algo como: `10000*10000` = 100 milh
 
 Então, essa solução é somente boa para arrays pequenas.
 
-Mais adiante no capítulo <info:map-set-weakmap-weakset> vamos ver como otimizar isso.
+Mais adiante no capítulo <info:map-set> vamos ver como otimizar isso.

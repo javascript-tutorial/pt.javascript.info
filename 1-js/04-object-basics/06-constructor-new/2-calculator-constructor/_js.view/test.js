@@ -10,12 +10,17 @@ describe("calculator", function() {
     calculator = new Calculator();
     calculator.read();
   });
+  
+  it("o método read solicita por 2 valores usando o prompt e os guarda em propriedades do objeto", function() {
+    assert.equal(calculator.a, 2);
+    assert.equal(calculator.b, 3);
+  });
 
-  it("when 2 and 3 are entered, the sum is 5", function() {
+  it("quando 2 e 3 são inseridos, a soma é 5", function() {
     assert.equal(calculator.sum(), 5);
   });
 
-  it("when 2 and 3 are entered, the product is 6", function() {
+  it("quando 2 e 3 são inseridos, o produto é 6", function() {
     assert.equal(calculator.mul(), 6);
   });
 

@@ -1,15 +1,13 @@
 # Métodos de primitivos
 
-JavaScript nos permite trabalhar com primitivos (strings, números, etc.) como se fossem objetos.
-
-Eles também fornecem métodos para chamar como se fossem objetos. Estudaremos isso em breve, mas primeiro veremos como isso funciona, porque, é claro, os primitivos não são objetos (e aqui deixaremos isso ainda mais claro).
+JavaScript nos permite trabalhar com primitivos (strings, números, etc.) como se fossem objetos. Eles também fornecem métodos para chamar como se fossem objetos. Estudaremos isso em breve, mas primeiro veremos como isso funciona, porque, é claro, os primitivos não são objetos (e aqui deixaremos isso ainda mais claro).
 
 Vejamos as principais diferenças entre primitivos e objetos.
 
 Um primitivo
 
 - É um valor de um tipo primitivo.
-- Existem 6 tipos primitivos: `string`, `number`, `boolean`, `symbol`, `null` e `undefined`.
+- Existem 7 tipos primitivos: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` e `undefined`.
 
 Um objeto
 
@@ -41,8 +39,8 @@ Objetos são "mais pesados" que primitivos. Eles exigem recursos adicionais para
 
 Aqui está o paradoxo enfrentado pelo criador do JavaScript:
 
-- Há muitas coisas que alguém poderia querer fazer com um primitivo como uma string ou um número. Seria ótimo acessá-los como métodos.
-- Primitivos devem ser o mais rápido e leve possível.
+- Há muitas coisas que alguém poderia querer fazer com um primitivo como uma string ou um número. Seria ótimo acessá-los usando métodos.
+- Primitivos devem ser o mais rápidos e leves possível.
 
 A solução parece um pouco estranha, mas aqui está:
 
@@ -50,9 +48,9 @@ A solução parece um pouco estranha, mas aqui está:
 2. A linguagem permite acesso a métodos e propriedades de strings, números, booleanos e símbolos.
 3. Quando isso acontece, um "invólucro de objeto" especial que fornece a funcionalidade extra é criado e, em seguida, é destruído.
 
-Os "invólucros de objeto" são diferentes para cada tipo primitivo e são chamados: `String`, `Number`, `Boolean` e `Symbol`. Assim, eles fornecem diferentes conjuntos de métodos.
+Os "invólucros de objeto" são diferentes para cada tipo primitivo e são chamados: `String`, `Number`, `Boolean`, `Symbol` e `BigInt`. Assim, eles fornecem diferentes conjuntos de métodos.
 
-Por exemplo, existe um método [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) que retorna uma string em letras maiúsculas.
+Por exemplo, existe um método para *strings* [str.toUpperCase()](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) que retorna `str` em letras maiúsculas.
 
 Veja como isso funciona:
 
@@ -72,7 +70,7 @@ Portanto, os primitivos podem fornecer métodos, mas ainda permanecem leves.
 
 O mecanismo do JavaScript otimiza muito esse processo. Pode até ignorar a criação do objeto extra. Mas ainda deve seguir a especificação e se comportar como se criasse um.
 
-Um número tem métodos próprios, por exemplo, [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) arredonda o número para a precisão dada:
+Um número tem métodos próprios, por exemplo, [toFixed(n)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) arredonda o número para a precisão dada:
 
 ```js run
 let n = 1.23456;
@@ -109,6 +107,7 @@ if (zero) { // zero é true (verdadeiro), por que é um objeto
 Por outro lado, usar as mesmas funções `String / Number / Boolean` sem` new` é uma coisa totalmente sensata e útil. Eles convertem um valor para o tipo correspondente: para uma string, um número ou um booleano (primitivo).
 
 Por exemplo, isso é inteiramente válido:
+
 ```js
 let num = Number("123"); // converte a string para número
 ```

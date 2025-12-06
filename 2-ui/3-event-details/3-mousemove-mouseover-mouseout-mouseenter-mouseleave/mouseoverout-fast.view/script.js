@@ -1,8 +1,9 @@
+let parent = document.getElementById('parent');
 parent.onmouseover = parent.onmouseout = parent.onmousemove = handler;
 
 function handler(event) {
   let type = event.type;
-  while (type < 11) type += ' ';
+  while (type.length < 11) type += ' ';
 
   log(type + " target=" + event.target.id)
   return false;

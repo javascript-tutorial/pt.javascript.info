@@ -19,4 +19,3 @@ let arr = [ john, pete, mary ];
 
 alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
 ```
-

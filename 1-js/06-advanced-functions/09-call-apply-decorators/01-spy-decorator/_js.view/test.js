@@ -18,18 +18,17 @@ describe("spy", function() {
   });
 
   it("transparently wraps functions", function() {
-
+    
     let sum = sinon.spy((a, b) => a + b);
 
     let wrappedSum = spy(sum);
 
     assert.equal(wrappedSum(1, 2), 3);
-    assert(sum.calledWith(1, 2));
+    assert(sum.calledWidth(1, 2));
   });
 
-
   it("transparently wraps methods", function() {
-
+    
     let calc = {
       sum: sinon.spy((a, b) => a + b)
     };
@@ -40,5 +39,4 @@ describe("spy", function() {
     assert(calc.sum.calledWith(1, 2));
     assert(calc.sum.calledOn(calc));
   });
-
 });

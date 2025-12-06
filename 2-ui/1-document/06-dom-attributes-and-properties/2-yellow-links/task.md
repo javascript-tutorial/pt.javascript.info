@@ -2,18 +2,18 @@ importance: 3
 
 ---
 
-# Make external links orange
+# Faça com que links externos fiquem laranja
 
-Make all external links orange by altering their `style` property.
+Faça com que todos os links externos fiquem laranjas alterando a propriedade `style`.
 
-A link is external if:
-- Its `href` has `://` in it
-- But doesn't start with `http://internal.com`.
+Um link é externo se:
+- Seu `href` contém `://`.
+- Mas não começa com `http://internal.com`.
 
-Example:
+Por exemplo:
 
 ```html run
-<a name="list">the list</a>
+<a name="list">a lista</a>
 <ul>
   <li><a href="http://google.com">http://google.com</a></li>
   <li><a href="/tutorial">/tutorial.html</a></li>
@@ -24,12 +24,12 @@ Example:
 </ul>
 
 <script>
-  // setting style for a single link
+  // Definindo o estilo para um único link
   let link = document.querySelector('a');
   link.style.color = 'orange';
 </script>
 ```
 
-The result should be:
+O resultado deverá ser:
 
 [iframe border=1 height=180 src="solution"]
