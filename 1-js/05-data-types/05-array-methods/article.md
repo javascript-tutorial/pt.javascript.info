@@ -583,6 +583,7 @@ let value = arr.reduce(function(accumulator, item, index, array) {
   // ...
 }, [initial]);
 ```
+
 A função é aplicada a todos os elementos do array um após o outro e "repassa" seu resultado para a próxima chamada.
 
 - Arguments:
