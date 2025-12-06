@@ -271,7 +271,7 @@ Uma característica menor, mas notável, do `includes` é que ele lida corretame
 
 ```js run
 const arr = [NaN];
-alert( arr.indexOf(NaN) ); // -1 (deveria ser 0, mas === igualdade não funciona com NaN)
+alert( arr.indexOf(NaN) ); // -1 (errado, deveria ser 0)
 alert( arr.includes(NaN) );// true (correto)
 ```
 That's because `includes` was added to JavaScript much later and uses the more up to date comparison algorithm internally.
@@ -291,7 +291,7 @@ let result = arr.find(function(item, index, array) {
 });
 ```
 
-A função é chamada para cada elemento da matriz, um após o outro:
+A função é chamada para cada elemento do array, um após o outro:
 
 - `item` é o elemento.
 - `index` é sua posição.
@@ -302,15 +302,15 @@ Se a função resultar em `true`, a busca é parada e o `item` é retornado. Se 
 Por exemplo, nós temos um array de usuários, cada um com os campos `id` e `nome`. Vamos achar o usuário com `id == 1`:
 
 ```js run
-let usuarios = [
-  {id: 1, nome: "John"},
-  {id: 2, nome: "Pete"},
-  {id: 3, nome: "Mary"}
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"}
 ];
 
-let user = usuarios.find(item => item.id == 1);
+let user = users.find(item => item.id == 1);
 
-alert(user.nome); // John
+alert(user.name); // John
 ```
 
 Na vida real, arrays de objetos é uma coisa comum, dessa forma, o método `find` é muito útil.
@@ -344,7 +344,7 @@ O método `find` procura por um único (e o primeiro) elemento que fizer a funç
 
 Se quisermos que retorne mais de um elemento, podemos usar [arr.filter(fn)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/filtro).
 
-A sintaxe é semelhante à de `find`, mas `filter` retorna uma matriz com todos os elementos correspondentes:
+A sintaxe é semelhante à de `find`, mas `filter` retorna um array com todos os elementos correspondentes:
 
 ```js
 let results = arr.filter(function(item, index, array) {
@@ -356,16 +356,16 @@ let results = arr.filter(function(item, index, array) {
 Por exemplo:
 
 ```js run
-let usuarios = [
-  {id: 1, nome: "John"},
-  {id: 2, nome: "Pete"},
-  {id: 3, nome: "Mary"}
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"}
 ];
 
 //retorna um array com os dois primeiros usuários
-let algunsUsuarios = usuarios.filter(item => item.id < 3);
+let someUsers = users.filter(item => item.id < 3);
 
-alert(algunsUsuarios.length); // 2
+alert(someUsers.length); // 2
 ```
 
 ## Transformando um array
@@ -376,7 +376,7 @@ Esta seção irá abordar os métodos que transformam ou reorganizam um array.
 
 O método [arr.map](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/map) é um dos mais úteis e usados por programadores.
 
-A função é chamada para cada elemento da matriz e retorna a matriz de resultados.
+A função é chamada para cada elemento do array e retorna o array de resultados.
 
 Sua sintaxe é:
 
@@ -418,9 +418,9 @@ A ordem ficou `1, 15, 2`. Incorreto. Mas por quê?
 
 Literalmente, todos os elementos são convertidos para strings e então comparados. A ordenação lexicográfica é aplicada e, de fato, `"2" > "15"`.
 
-Para usar nossa própria ordenação, precisamos produzir uma função que recebe dois argumentos como argumento de `arr.sort()`.
+Para usar nossa própria ordenação, precisamos fornecer uma função como argumento de `arr.sort()`.
 
-A função deve funcionar desse jeito:
+A função deve comparar dois valores arbitrários e retornar:
 
 ```js
 function compare(a, b) {
@@ -529,11 +529,11 @@ O método [str.split(delim)](https://www.devmedia.com.br/javascript-split-dividi
 No exemplo abaixo, nós separamos por uma vírgula seguido por um espaço:
 
 ```js run
-let nomes = 'Bilbo, Gandalf, Nazgul';
+let names = 'Bilbo, Gandalf, Nazgul';
 
-let arr = nomes.split(', ');
+let arr = names.split(', ');
 
-for (let nome of arr) {
+for (let name of arr) {
   alert( `Uma mensagem para ${name}.` ); // Uma mensagem para Bilbo  (outros nomes)
 }
 ```
