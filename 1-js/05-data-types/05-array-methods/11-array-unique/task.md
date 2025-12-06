@@ -6,7 +6,7 @@ importance: 4
 
 Deixe `arr` ser um array.
 
-Crie a função `unique(arr)` que recebe um array `string` e retorna outro array `arr` com itens únicos/que mais se repetem do array recebido.
+Crie a função `unique(arr)` que deve retornar um array com itens únicos de `arr`.
 
 Por exemplo:
 
