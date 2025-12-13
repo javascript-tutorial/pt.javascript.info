@@ -1,13 +1,13 @@
 function concat(arrays) {
-  // sum of individual array lengths
+  // soma dos comprimentos individuais dos arrays
   let totalLength = arrays.reduce((acc, value) => acc + value.length, 0);
 
   let result = new Uint8Array(totalLength);
-  
+
   if (!arrays.length) return result;
 
-  // for each array - copy it over result
-  // next array is copied right after the previous one
+  // para cada array - copie-o sobre o resultado
+  // O próximo array é copiado imediatamente após o anterior.
   let length = 0;
   for(let array of arrays) {
     result.set(array, length);
