@@ -1,4 +1,4 @@
 
-# Concatenate typed arrays
+# Concatenar arrays tipados
 
-Given an array of `Uint8Array`, write a function `concat(arrays)` that returns a concatenation of them into a single array.
+Dado um array de `Uint8Array`, escreva uma função `concat(arrays)` que retorna uma concatenação deles em um único array.
