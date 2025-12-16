@@ -5,14 +5,14 @@ describe("concat", function() {
     new Uint8Array([6, 7, 8])
   ];
 
-  it("result has the same array type", function() {
+  it("resultado possui o mesmo tipo de array", function() {
 
     let result = concat(chunks);
 
     assert.equal(result.constructor, Uint8Array);
   });
 
-  it("concatenates arrays", function() {
+  it("concatena arrays", function() {
 
     let result = concat(chunks);
 
@@ -20,7 +20,7 @@ describe("concat", function() {
 
   });
 
-  it("returns empty array on empty input", function() {
+  it("Retorna um array vazio se a entrada estiver vazia.", function() {
 
     let result = concat([]);
 
