@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Output even numbers in the loop
+# Exiba números pares no laço
 
-Use the `for` loop to output even numbers from `2` to `10`.
+Use o laço `for` para exibir números pares de `2` a `10`.
 
 [demo]
