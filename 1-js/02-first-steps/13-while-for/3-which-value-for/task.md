@@ -2,18 +2,18 @@ importance: 4
 
 ---
 
-# Which values get shown by the "for" loop?
+# Quais valores o laço "for" mostra?
 
-For each loop write down which values it is going to show. Then compare with the answer.
+Para cada laço, escreva quais valores ele vai mostrar. Depois compare com a resposta.
 
-Both loops `alert` same values or not?
+Ambos os laços exibem os mesmos valores via `alert`, ou não?
 
-1. The postfix form:
+1. A forma pós-fixa:
 
     ```js
     for (let i = 0; i < 5; i++) alert( i );
     ```
-2. The prefix form:
+2. A forma prefixa:
 
     ```js
     for (let i = 0; i < 5; ++i) alert( i );
