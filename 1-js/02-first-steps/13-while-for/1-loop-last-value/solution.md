@@ -1,4 +1,4 @@
-The answer: `1`.
+A resposta: `1`.
 
 ```js run
 let i = 3;
@@ -8,18 +8,18 @@ while (i) {
 }
 ```
 
-Every loop iteration decreases `i` by `1`. The check `while(i)` stops the loop when `i = 0`.
+Cada iteração do laço diminui `i` em `1`. A verificação `while(i)` para o laço quando `i = 0`.
 
-Hence, the steps of the loop form the following sequence ("loop unrolled"):
+Portanto, os passos do laço formam a seguinte sequência ("laço desenrolado"):
 
 ```js
 let i = 3;
 
-alert(i--); // shows 3, decreases i to 2
+alert(i--); // mostra 3, diminui i para 2
 
-alert(i--) // shows 2, decreases i to 1
+alert(i--) // mostra 2, diminui i para 1
 
-alert(i--) // shows 1, decreases i to 0
+alert(i--) // mostra 1, diminui i para 0
 
-// done, while(i) check stops the loop
+// fim, a verificação while(i) para o laço
 ```
