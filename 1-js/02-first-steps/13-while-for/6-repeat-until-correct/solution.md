@@ -3,13 +3,13 @@
 let num;
 
 do {
-  num = prompt("Enter a number greater than 100?", 0);
+  num = prompt("Digite um número maior que 100?", 0);
 } while (num <= 100 && num);
 ```
 
-The loop `do..while` repeats while both checks are truthy:
+O laço `do..while` repete enquanto ambas as verificações são verdadeiras:
 
-1. The check for `num <= 100` -- that is, the entered value is still not greater than `100`.
-2. The check `&& num` is false when `num` is `null` or an empty string. Then the `while` loop stops too.
+1. A verificação `num <= 100` -- ou seja, o valor inserido ainda não é maior que `100`.
+2. A verificação `&& num` é falsa quando `num` é `null` ou uma string vazia. Então o laço `while` também para.
 
-P.S. If `num` is `null` then `num <= 100` is `true`, so without the 2nd check the loop wouldn't stop if the user clicks CANCEL. Both checks are required.
+P.S. Se `num` é `null` então `num <= 100` é `true`, então sem a 2ª verificação o laço não pararia se o usuário clicasse CANCELAR. Ambas as verificações são necessárias.

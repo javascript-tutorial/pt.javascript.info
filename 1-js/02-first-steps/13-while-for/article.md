@@ -1,67 +1,67 @@
-# Loops: while and for
+# Laços: while e for
 
-We often need to repeat actions.
+Frequentemente precisamos repetir ações.
 
-For example, outputting goods from a list one after another or just running the same code for each number from 1 to 10.
+Por exemplo, exibir produtos de uma lista um após o outro, ou apenas executar o mesmo código para cada número de 1 a 10.
 
-*Loops* are a way to repeat the same code multiple times.
+*Laços* são uma forma de repetir o mesmo código múltiplas vezes.
 
-```smart header="The for..of and for..in loops"
-A small announcement for advanced readers.
+```smart header="Os laços for..of e for..in"
+Um pequeno aviso para leitores avançados.
 
-This article covers only basic loops: `while`, `do..while` and `for(..;..;..)`.
+Este artigo cobre apenas laços básicos: `while`, `do..while` e `for(..;..;..)`.
 
-If you came to this article searching for other types of loops, here are the pointers:
+Se você veio a este artigo procurando outros tipos de laços, aqui estão as referências:
 
-- See [for..in](info:object#forin) to loop over object properties.
-- See [for..of](info:array#loops) and [iterables](info:iterable) for looping over arrays and iterable objects.
+- Veja [for..in](info:object#forin) para iterar sobre propriedades de objetos.
+- Veja [for..of](info:array#loops) e [iteráveis](info:iterable) para iterar sobre arrays e objetos iteráveis.
 
-Otherwise, please read on.
+Caso contrário, por favor continue lendo.
 ```
 
-## The "while" loop
+## O laço "while"
 
-The `while` loop has the following syntax:
+O laço `while` tem a seguinte sintaxe:
 
 ```js
 while (condition) {
-  // code
-  // so-called "loop body"
+  // código
+  // chamado de "corpo do laço"
 }
 ```
 
-While the `condition` is truthy, the `code` from the loop body is executed.
+Enquanto a `condition` for verdadeira, o `código` do corpo do laço é executado.
 
-For instance, the loop below outputs `i` while `i < 3`:
+Por exemplo, o laço abaixo exibe `i` enquanto `i < 3`:
 
 ```js run
 let i = 0;
-while (i < 3) { // shows 0, then 1, then 2
+while (i < 3) { // mostra 0, depois 1, depois 2
   alert( i );
   i++;
 }
 ```
 
-A single execution of the loop body is called *an iteration*. The loop in the example above makes three iterations.
+Uma única execução do corpo do laço é chamada de *iteração*. O laço no exemplo acima faz três iterações.
 
-If `i++` was missing from the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and in server-side JavaScript, we can kill the process.
+Se `i++` estivesse faltando no exemplo acima, o laço repetiria (em teoria) para sempre. Na prática, o navegador fornece formas de parar tais laços, e no JavaScript do lado do servidor, podemos encerrar o processo.
 
-Any expression or variable can be a loop condition, not just comparisons: the condition is evaluated and converted to a boolean by `while`.
+Qualquer expressão ou variável pode ser uma condição de laço, não apenas comparações: a condição é avaliada e convertida para um booleano pelo `while`.
 
-For instance, a shorter way to write `while (i != 0)` is `while (i)`:
+Por exemplo, uma forma mais curta de escrever `while (i != 0)` é `while (i)`:
 
 ```js run
 let i = 3;
 *!*
-while (i) { // when i becomes 0, the condition becomes falsy, and the loop stops
+while (i) { // quando i se torna 0, a condição se torna falsa, e o laço para
 */!*
   alert( i );
   i--;
 }
 ```
 
-````smart header="Curly braces are not required for a single-line body"
-If the loop body has a single statement, we can omit the curly braces `{…}`:
+````smart header="Chaves não são necessárias para um corpo de uma única linha"
+Se o corpo do laço tem uma única instrução, podemos omitir as chaves `{…}`:
 
 ```js run
 let i = 3;
@@ -71,19 +71,19 @@ while (i) alert(i--);
 ```
 ````
 
-## The "do..while" loop
+## O laço "do..while"
 
-The condition check can be moved *below* the loop body using the `do..while` syntax:
+A verificação da condição pode ser movida para *abaixo* do corpo do laço usando a sintaxe `do..while`:
 
 ```js
 do {
-  // loop body
+  // corpo do laço
 } while (condition);
 ```
 
-The loop will first execute the body, then check the condition, and, while it's truthy, execute it again and again.
+O laço primeiro executa o corpo, depois verifica a condição, e, enquanto ela for verdadeira, executa novamente e novamente.
 
-For example:
+Por exemplo:
 
 ```js run
 let i = 0;
@@ -93,107 +93,107 @@ do {
 } while (i < 3);
 ```
 
-This form of syntax should only be used when you want the body of the loop to execute **at least once** regardless of the condition being truthy. Usually, the other form is preferred: `while(…) {…}`.
+Esta forma de sintaxe deve ser usada apenas quando você quer que o corpo do laço execute **pelo menos uma vez**, independentemente da condição ser verdadeira. Geralmente, a outra forma é preferida: `while(…) {…}`.
 
-## The "for" loop
+## O laço "for"
 
-The `for` loop is more complex, but it's also the most commonly used loop.
+O laço `for` é mais complexo, mas também é o laço mais comumente usado.
 
-It looks like this:
+Ele se parece com isto:
 
 ```js
 for (begin; condition; step) {
-  // ... loop body ...
+  // ... corpo do laço ...
 }
 ```
 
-Let's learn the meaning of these parts by example. The loop below runs `alert(i)` for `i` from `0` up to (but not including) `3`:
+Vamos aprender o significado dessas partes pelo exemplo. O laço abaixo executa `alert(i)` para `i` de `0` até (mas não incluindo) `3`:
 
 ```js run
-for (let i = 0; i < 3; i++) { // shows 0, then 1, then 2
+for (let i = 0; i < 3; i++) { // mostra 0, depois 1, depois 2
   alert(i);
 }
 ```
 
-Let's examine the `for` statement part-by-part:
+Vamos examinar a instrução `for` parte por parte:
 
-| part  |          |                                                                            |
+| parte  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
-| begin | `let i = 0`    | Executes once upon entering the loop.                                      |
-| condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
-| body | `alert(i)`| Runs again and again while the condition is truthy.                         |
-| step| `i++`      | Executes after the body on each iteration. |
+| begin | `let i = 0`    | Executa uma vez ao entrar no laço.                                      |
+| condition | `i < 3`| Verificada antes de cada iteração do laço. Se falsa, o laço para.              |
+| body | `alert(i)`| Executa repetidamente enquanto a condição for verdadeira.                         |
+| step| `i++`      | Executa após o corpo em cada iteração. |
 
-The general loop algorithm works like this:
+O algoritmo geral do laço funciona assim:
 
 ```
-Run begin
-→ (if condition → run body and run step)
-→ (if condition → run body and run step)
-→ (if condition → run body and run step)
+Executa begin
+→ (se condition → executa body e executa step)
+→ (se condition → executa body e executa step)
+→ (se condition → executa body e executa step)
 → ...
 ```
 
-That is, `begin` executes once, and then it iterates: after each `condition` test, `body` and `step` are executed.
+Ou seja, `begin` executa uma vez, e então itera: após cada teste de `condition`, `body` e `step` são executados.
 
-If you are new to loops, it could help to go back to the example and reproduce how it runs step-by-step on a piece of paper.
+Se você é novo em laços, pode ajudar voltar ao exemplo e reproduzir como ele executa passo a passo em um pedaço de papel.
 
-Here's exactly what happens in our case:
+Aqui está exatamente o que acontece no nosso caso:
 
 ```js
 // for (let i = 0; i < 3; i++) alert(i)
 
-// run begin
+// executa begin
 let i = 0
-// if condition → run body and run step
+// se condition → executa body e executa step
 if (i < 3) { alert(i); i++ }
-// if condition → run body and run step
+// se condition → executa body e executa step
 if (i < 3) { alert(i); i++ }
-// if condition → run body and run step
+// se condition → executa body e executa step
 if (i < 3) { alert(i); i++ }
-// ...finish, because now i == 3
+// ...fim, porque agora i == 3
 ```
 
-````smart header="Inline variable declaration"
-Here, the "counter" variable `i` is declared right in the loop. This is called an "inline" variable declaration. Such variables are visible only inside the loop.
+````smart header="Declaração de variável em linha"
+Aqui, a variável "contador" `i` é declarada diretamente no laço. Isto é chamado de declaração de variável "em linha". Tais variáveis são visíveis apenas dentro do laço.
 
 ```js run
 for (*!*let*/!* i = 0; i < 3; i++) {
   alert(i); // 0, 1, 2
 }
-alert(i); // error, no such variable
+alert(i); // erro, não existe tal variável
 ```
 
-Instead of defining a variable, we could use an existing one:
+Em vez de definir uma variável, poderíamos usar uma existente:
 
 ```js run
 let i = 0;
 
-for (i = 0; i < 3; i++) { // use an existing variable
+for (i = 0; i < 3; i++) { // usa uma variável existente
   alert(i); // 0, 1, 2
 }
 
-alert(i); // 3, visible, because declared outside of the loop
+alert(i); // 3, visível, porque declarada fora do laço
 ```
 ````
 
-### Skipping parts
+### Omitindo partes
 
-Any part of `for` can be skipped.
+Qualquer parte do `for` pode ser omitida.
 
-For example, we can omit `begin` if we don't need to do anything at the loop start.
+Por exemplo, podemos omitir `begin` se não precisamos fazer nada no início do laço.
 
-Like here:
+Como aqui:
 
 ```js run
-let i = 0; // we have i already declared and assigned
+let i = 0; // já temos i declarada e atribuída
 
-for (; i < 3; i++) { // no need for "begin"
+for (; i < 3; i++) { // não precisa de "begin"
   alert( i ); // 0, 1, 2
 }
 ```
 
-We can also remove the `step` part:
+Também podemos remover a parte `step`:
 
 ```js run
 let i = 0;
@@ -203,32 +203,32 @@ for (; i < 3;) {
 }
 ```
 
-This makes the loop identical to `while (i < 3)`.
+Isso torna o laço idêntico a `while (i < 3)`.
 
-We can actually remove everything, creating an infinite loop:
+Na verdade, podemos remover tudo, criando um laço infinito:
 
 ```js
 for (;;) {
-  // repeats without limits
+  // repete sem limites
 }
 ```
 
-Please note that the two `for` semicolons `;` must be present. Otherwise, there would be a syntax error.
+Por favor note que os dois ponto-e-vírgulas `;` do `for` devem estar presentes. Caso contrário, haveria um erro de sintaxe.
 
-## Breaking the loop
+## Interrompendo o laço
 
-Normally, a loop exits when its condition becomes falsy.
+Normalmente, um laço termina quando sua condição se torna falsa.
 
-But we can force the exit at any time using the special `break` directive.
+Mas podemos forçar a saída a qualquer momento usando a diretiva especial `break`.
 
-For example, the loop below asks the user for a series of numbers, "breaking" when no number is entered:
+Por exemplo, o laço abaixo pede ao usuário uma série de números, "interrompendo" quando nenhum número é inserido:
 
 ```js run
 let sum = 0;
 
 while (true) {
 
-  let value = +prompt("Enter a number", '');
+  let value = +prompt("Digite um número", '');
 
 *!*
   if (!value) break; // (*)
@@ -237,35 +237,35 @@ while (true) {
   sum += value;
 
 }
-alert( 'Sum: ' + sum );
+alert( 'Soma: ' + sum );
 ```
 
-The `break` directive is activated at the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing control to the first line after the loop. Namely, `alert`.
+A diretiva `break` é ativada na linha `(*)` se o usuário inserir uma linha vazia ou cancelar a entrada. Ela para o laço imediatamente, passando o controle para a primeira linha após o laço. Nomeadamente, `alert`.
 
-The combination "infinite loop + `break` as needed" is great for situations when a loop's condition must be checked not in the beginning or end of the loop, but in the middle or even in several places of its body.
+A combinação "laço infinito + `break` quando necessário" é ótima para situações quando a condição do laço deve ser verificada não no início ou fim do laço, mas no meio ou até em vários lugares do seu corpo.
 
-## Continue to the next iteration [#continue]
+## Continue para a próxima iteração [#continue]
 
-The `continue` directive is a "lighter version" of `break`. It doesn't stop the whole loop. Instead, it stops the current iteration and forces the loop to start a new one (if the condition allows).
+A diretiva `continue` é uma "versão mais leve" do `break`. Ela não para o laço inteiro. Em vez disso, ela para a iteração atual e força o laço a iniciar uma nova (se a condição permitir).
 
-We can use it if we're done with the current iteration and would like to move on to the next one.
+Podemos usá-la se terminamos com a iteração atual e gostaríamos de passar para a próxima.
 
-The loop below uses `continue` to output only odd values:
+O laço abaixo usa `continue` para exibir apenas valores ímpares:
 
 ```js run no-beautify
 for (let i = 0; i < 10; i++) {
 
-  // if true, skip the remaining part of the body
+  // se verdadeiro, pula a parte restante do corpo
   *!*if (i % 2 == 0) continue;*/!*
 
-  alert(i); // 1, then 3, 5, 7, 9
+  alert(i); // 1, depois 3, 5, 7, 9
 }
 ```
 
-For even values of `i`, the `continue` directive stops executing the body and passes control to the next iteration of `for` (with the next number). So the `alert` is only called for odd values.
+Para valores pares de `i`, a diretiva `continue` para a execução do corpo e passa o controle para a próxima iteração do `for` (com o próximo número). Então o `alert` é chamado apenas para valores ímpares.
 
-````smart header="The `continue` directive helps decrease nesting"
-A loop that shows odd values could look like this:
+````smart header="A diretiva `continue` ajuda a diminuir aninhamento"
+Um laço que mostra valores ímpares poderia ser assim:
 
 ```js run
 for (let i = 0; i < 10; i++) {
@@ -277,15 +277,15 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-From a technical point of view, this is identical to the example above. Surely, we can just wrap the code in an `if` block instead of using `continue`.
+Do ponto de vista técnico, isso é idêntico ao exemplo acima. Certamente, podemos apenas envolver o código em um bloco `if` em vez de usar `continue`.
 
-But as a side effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
+Mas como efeito colateral, isso criou mais um nível de aninhamento (a chamada `alert` dentro das chaves). Se o código dentro do `if` for maior que algumas linhas, isso pode diminuir a legibilidade geral.
 ````
 
-````warn header="No `break/continue` to the right side of '?'"
-Please note that syntax constructs that are not expressions cannot be used with the ternary operator `?`. In particular, directives such as `break/continue` aren't allowed there.
+````warn header="Não use `break/continue` do lado direito de '?'"
+Por favor note que construções de sintaxe que não são expressões não podem ser usadas com o operador ternário `?`. Em particular, diretivas como `break/continue` não são permitidas lá.
 
-For example, if we take this code:
+Por exemplo, se pegarmos este código:
 
 ```js
 if (i > 5) {
@@ -295,42 +295,42 @@ if (i > 5) {
 }
 ```
 
-...and rewrite it using a question mark:
+...e reescrevê-lo usando um ponto de interrogação:
 
 ```js no-beautify
-(i > 5) ? alert(i) : *!*continue*/!*; // continue isn't allowed here
+(i > 5) ? alert(i) : *!*continue*/!*; // continue não é permitido aqui
 ```
 
-...it stops working: there's a syntax error.
+...ele para de funcionar: há um erro de sintaxe.
 
-This is just another reason not to use the question mark operator `?` instead of `if`.
+Esta é apenas mais uma razão para não usar o operador ponto de interrogação `?` em vez de `if`.
 ````
 
-## Labels for break/continue
+## Rótulos para break/continue
 
-Sometimes we need to break out from multiple nested loops at once.
+Às vezes precisamos sair de múltiplos laços aninhados de uma vez.
 
-For example, in the code below we loop over `i` and `j`, prompting for the coordinates `(i, j)` from `(0,0)` to `(2,2)`:
+Por exemplo, no código abaixo iteramos sobre `i` e `j`, pedindo as coordenadas `(i, j)` de `(0,0)` a `(2,2)`:
 
 ```js run no-beautify
 for (let i = 0; i < 3; i++) {
 
   for (let j = 0; j < 3; j++) {
 
-    let input = prompt(`Value at coords (${i},${j})`, '');
+    let input = prompt(`Valor nas coordenadas (${i},${j})`, '');
 
-    // what if we want to exit from here to Done (below)?
+    // e se quisermos sair daqui para Concluído (abaixo)?
   }
 }
 
-alert('Done!');
+alert('Concluído!');
 ```
 
-We need a way to stop the process if the user cancels the input.
+Precisamos de uma forma de parar o processo se o usuário cancelar a entrada.
 
-The ordinary `break` after `input` would only break the inner loop. That's not sufficient -- labels, come to the rescue!
+O `break` comum após `input` só quebraria o laço interno. Isso não é suficiente -- rótulos, venham ao resgate!
 
-A *label* is an identifier with a colon before a loop:
+Um *rótulo* é um identificador com dois-pontos antes de um laço:
 
 ```js
 labelName: for (...) {
@@ -338,74 +338,74 @@ labelName: for (...) {
 }
 ```
 
-The `break <labelName>` statement in the loop below breaks out to the label:
+A instrução `break <labelName>` no laço abaixo sai para o rótulo:
 
 ```js run no-beautify
 *!*outer:*/!* for (let i = 0; i < 3; i++) {
 
   for (let j = 0; j < 3; j++) {
 
-    let input = prompt(`Value at coords (${i},${j})`, '');
+    let input = prompt(`Valor nas coordenadas (${i},${j})`, '');
 
-    // if an empty string or canceled, then break out of both loops
+    // se uma string vazia ou cancelado, então sai de ambos os laços
     if (!input) *!*break outer*/!*; // (*)
 
-    // do something with the value...
+    // faz algo com o valor...
   }
 }
 
-alert('Done!');
+alert('Concluído!');
 ```
 
-In the code above, `break outer` looks upwards for the label named `outer` and breaks out of that loop.
+No código acima, `break outer` procura acima pelo rótulo chamado `outer` e sai daquele laço.
 
-So the control goes straight from `(*)` to `alert('Done!')`.
+Então o controle vai direto de `(*)` para `alert('Concluído!')`.
 
-We can also move the label onto a separate line:
+Também podemos mover o rótulo para uma linha separada:
 
 ```js no-beautify
 outer:
 for (let i = 0; i < 3; i++) { ... }
 ```
 
-The `continue` directive can also be used with a label. In this case, code execution jumps to the next iteration of the labeled loop.
+A diretiva `continue` também pode ser usada com um rótulo. Neste caso, a execução do código pula para a próxima iteração do laço rotulado.
 
-````warn header="Labels do not allow to \"jump\" anywhere"
-Labels do not allow us to jump into an arbitrary place in the code.
+````warn header="Rótulos não permitem \"pular\" para qualquer lugar"
+Rótulos não nos permitem pular para um lugar arbitrário no código.
 
-For example, it is impossible to do this:
+Por exemplo, é impossível fazer isso:
 
 ```js
-break label; // jump to the label below (doesn't work)
+break label; // pula para o rótulo abaixo (não funciona)
 
 label: for (...)
 ```
 
-A `break` directive must be inside a code block. Technically, any labelled code block will do, e.g.:
+Uma diretiva `break` deve estar dentro de um bloco de código. Tecnicamente, qualquer bloco de código rotulado serve, por exemplo:
 
 ```js
 label: {
   // ...
-  break label; // works
+  break label; // funciona
   // ...
 }
 ```
 
-...Although, 99.9% of the time `break` is used inside loops, as we've seen in the examples above.
+...Embora, 99,9% das vezes `break` é usado dentro de laços, como vimos nos exemplos acima.
 
-A `continue` is only possible from inside a loop.
+Um `continue` só é possível de dentro de um laço.
 ````
 
-## Summary
+## Resumo
 
-We covered 3 types of loops:
+Cobrimos 3 tipos de laços:
 
-- `while` -- The condition is checked before each iteration.
-- `do..while` -- The condition is checked after each iteration.
-- `for (;;)` -- The condition is checked before each iteration, additional settings available.
+- `while` -- A condição é verificada antes de cada iteração.
+- `do..while` -- A condição é verificada após cada iteração.
+- `for (;;)` -- A condição é verificada antes de cada iteração, configurações adicionais disponíveis.
 
-To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
+Para fazer um laço "infinito", geralmente a construção `while(true)` é usada. Tal laço, assim como qualquer outro, pode ser parado com a diretiva `break`.
 
-If we don't want to do anything in the current iteration and would like to forward to the next one, we can use the `continue` directive.
+Se não queremos fazer nada na iteração atual e gostaríamos de avançar para a próxima, podemos usar a diretiva `continue`.
 
-`break/continue` support labels before the loop. A label is the only way for `break/continue` to escape a nested loop to go to an outer one.
+`break/continue` suportam rótulos antes do laço. Um rótulo é a única forma para `break/continue` escapar de um laço aninhado para ir para um externo.

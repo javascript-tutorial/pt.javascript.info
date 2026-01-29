@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# Repeat until the input is correct
+# Repita até a entrada estar correta
 
-Write a loop which prompts for a number greater than `100`. If the visitor enters another number -- ask them to input again.
+Escreva um laço que solicite um número maior que `100`. Se o visitante inserir outro número -- peça para ele inserir novamente.
 
-The loop must ask for a number until either the visitor enters a number greater than `100` or cancels the input/enters an empty line.
+O laço deve pedir um número até que o visitante insira um número maior que `100` ou cancele a entrada/insira uma linha vazia.
 
-Here we can assume that the visitor only inputs numbers. There's no need to implement a special handling for a non-numeric input in this task.
+Aqui podemos assumir que o visitante só insere números. Não há necessidade de implementar um tratamento especial para entrada não numérica nesta tarefa.
 
 [demo]
