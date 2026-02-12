@@ -2,17 +2,17 @@ importance: 5
 
 ---
 
-# Create a calculator
+# Crie uma calculadora
 
-Create an object `calculator` with three methods:
+Crie um objeto `calculator` com três métodos:
 
-- `read()` prompts for two values and saves them as object properties with names `a` and `b` respectively.
-- `sum()` returns the sum of saved values.
-- `mul()` multiplies saved values and returns the result.
+- `read()` solicita dois valores e os salva como propriedades do objeto com os nomes `a` e `b` respectivamente.
+- `sum()` retorna a soma dos valores salvos.
+- `mul()` multiplica os valores salvos e retorna o resultado.
 
 ```js
 let calculator = {
-  // ... your code ...
+  // ... seu código ...
 };
 
 calculator.read();
