@@ -1,4 +1,4 @@
-To make the search case-insensitive, let's bring the string to lower case and then search:
+Para fazer a procura insensível a maiúsculas e minúsculas vamos transformar a string em minúsculas e então procurar:
 
 ```js run demo
 function checkSpam(str) {

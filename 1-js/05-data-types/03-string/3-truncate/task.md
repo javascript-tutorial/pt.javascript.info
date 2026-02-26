@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Truncate the text
+# Cortar o texto
 
-Create a function `truncate(str, maxlength)` that checks the length of the `str` and, if it exceeds `maxlength` -- replaces the end of `str` with the ellipsis character `"…"`, to make its length equal to `maxlength`.
+Crie uma função `truncate(str, maxlength)` que checa se o tamanho do `str` e, se exceder `maxlength` -- substitua o fim de `str` com o caractere de reticências `"…"`, para fazer seu tamanho igual ao `maxlength`.
 
-The result of the function should be the truncated (if needed) string.
+O resultado da função deve ser a string cortada(se necessário).
 
-For instance:
+Por exemplo:
 
 ```js
 truncate("What I'd like to tell on this topic is:", 20) == "What I'd like to te…"
