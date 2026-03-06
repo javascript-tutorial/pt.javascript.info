@@ -5,7 +5,6 @@ Como sabemos, pelo capítulo <info:types>, existem oito tipos de dados em JavaSc
 
 Em contraste, objetos são usados para armazenar, por meio de uma chave, coleções de vários dados e entidades mais complexas. Em JavaScript, os objetos penetram em quase todos os aspetos da linguagem. Portanto, devemos primeiro os compreender antes de nos envolver com detalhe em algo mais.
 
-<<<<<<< HEAD
 Um objeto pode ser criado por chavetas `{…}`, com uma lista opcional de *propriedades*. Uma propriedade é um par "key: value" (chave: valor), onde `key` é uma *string* (também chamada de "nome da propriedade"), e `value` pode ser qualquer coisa.
 =======
 An object can be created with curly braces `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
