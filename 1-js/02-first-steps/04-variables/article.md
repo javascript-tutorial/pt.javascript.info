@@ -176,9 +176,6 @@ let test123;
 ```
 
 Quando o nome contém várias palavras, o [camelCase](https://en.wikipedia.org/wiki/CamelCase) é normalmente utilizado. Isto é: as palavras vão uma após a outra, e cada palavra exceto a primeira começa com uma letra maiúscula: `myVeryLongName`.
-=======
-When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, with each word except the first starting with a capital letter: `myVeryLongName`.
->>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 O que é interessante -- o sinal de dólar `'$'` e o sublinhado `'_'` também podem ser usados em nomes. Eles são símbolos regulares, assim como letras, sem nenhum significado especial.
 
