@@ -20,7 +20,6 @@ let user = {};  // sintaxe de "objeto literal"
 
 ![](object-user-empty.svg)
 
-<<<<<<< HEAD
 Geralmente, são utilizadas as chavetas `{...}`. Essa declaração é chamada de *objeto literal*.
 =======
 Usually, the curly braces `{...}` are used. That declaration is called an *object literal*.
