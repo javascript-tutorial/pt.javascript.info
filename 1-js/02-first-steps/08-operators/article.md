@@ -266,7 +266,6 @@ alert( c ); // 4
 
 Atribuições encadeadas são avaliadas da direita para a esquerda. Primeiro, a expressão mais à direita `2 + 2` é avaliada e então atribuída às variáveis na esquerda: `c`, `b` e `a`. No fim, todas as variáveis compartilham um mesmo valor.
 
-<<<<<<< HEAD
 Uma vez mais, para o propósito de legibilidade é melhor dividir tal código em algumas linhas:
 =======
 Once again, for the purposes of readability it's better to split such code into a few lines:
