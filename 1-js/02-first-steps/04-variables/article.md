@@ -175,7 +175,6 @@ let userName;
 let test123;
 ```
 
-<<<<<<< HEAD
 Quando o nome contém várias palavras, o [camelCase](https://en.wikipedia.org/wiki/CamelCase) é normalmente utilizado. Isto é: as palavras vão uma após a outra, e cada palavra exceto a primeira começa com uma letra maiúscula: `myVeryLongName`.
 =======
 When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, with each word except the first starting with a capital letter: `myVeryLongName`.
