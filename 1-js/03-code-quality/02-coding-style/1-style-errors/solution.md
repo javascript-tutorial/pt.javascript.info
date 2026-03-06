@@ -2,7 +2,6 @@
 Poderia notar o seguinte:
 
 ```js no-beautify
-<<<<<<< HEAD
 function pow(x,n)  // <- nenhum espaço entre argumentos
 {  // <- chaveta de abertura numa linha em separado
   let result=1;   // <- nenhum espaço antes ou depois de =
