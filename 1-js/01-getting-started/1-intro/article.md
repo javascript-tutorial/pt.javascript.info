@@ -71,7 +71,6 @@ Exemplos de tais restrições incluem:
 
 - Diferentes abas/janelas geralmente não se conhecem mutuamente. Às vezes sim, por exemplo, quando uma janela usa JavaScript para abrir a outra. Mas mesmo neste caso, JavaScript de uma página pode não acessar a outra se eles vierem de sites diferentes (de um domínio, protocolo ou porta diferente).
 
-<<<<<<< HEAD
     Isto é chamado de "Política de mesma origem". Para contornar isso, *ambas as páginas* devem concordar em trocar dados e conter código JavaScript específico para o fazer.
 
     Essa limitação é, novamente, para a segurança do usuário. Uma página de `http://umsitequalquer.com.br` que um usuário abriu não deve poder alcançar uma outra aba do navegador com a URL `http://gmail.com` e roubar a informação de lá.
