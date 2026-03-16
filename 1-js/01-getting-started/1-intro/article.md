@@ -76,10 +76,6 @@ Exemplos de tais restrições incluem:
     Essa limitação é, novamente, para a segurança do usuário. Uma página de `http://umsitequalquer.com.br` que um usuário abriu não deve poder alcançar uma outra aba do navegador com a URL `http://gmail.com` e roubar a informação de lá.
 
 - O JavaScript pode se comunicar facilmente pela rede com o servidor de onde a página atual veio. Mas sua capacidade de receber dados de outros sites / domínios é prejudicada. Embora possível, requer acordo explícito (expresso em cabeçalhos HTTP) do lado remoto. Mais uma vez, isso é uma limitação de segurança.
-=======
-    This limitation is, again, for the user's safety. A page from `http://anysite.com` which a user has opened must not be able to access another browser tab with the URL `http://gmail.com`, for example, and steal information from there.
-- JavaScript can easily communicate over the net to the server where the current page came from. But its ability to receive data from other sites/domains is severely limited. Though possible, it requires explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's a safety limitation.
->>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ![](limitations.svg)
 
