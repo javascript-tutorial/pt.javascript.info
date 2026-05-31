@@ -1,6 +1,6 @@
 # O Tutorial de JavaScript Moderno
 
-Este repositório aloja o conteúdo em português do Tutorial Moderno de JavaScript, publicado em [https://javascript.info](https://javascript.info).
+Este repositório aloja o conteúdo em português do _Modern JavaScript Tutorial_, publicado em [https://javascript.info](https://javascript.info).
 
 ## Traduções
 
