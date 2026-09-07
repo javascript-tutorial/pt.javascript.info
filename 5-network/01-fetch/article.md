@@ -99,7 +99,7 @@ let text = await response.text(); // lê o body da resposta como texto
 alert(text.slice(0, 80) + '...');
 ````
 
-Como exemplo de leitura em formato binário, vamos buscar e obter a imagem da logo da [especificação do "fetch"](https://fetch.spec.whatwg.org) (veja o capítulo [Blob](info:blob) para mais detalhes sobre operações com `Blob`):
+Como exemplo de leitura em formato binário, vamos buscar e exibir a logo da [especificação do "fetch"](https://fetch.spec.whatwg.org) (veja o capítulo [Blob](info:blob) para mais detalhes sobre operações com `Blob`):
 
 ````js async run
 let response = await fetch('/article/fetch/logo-fetch.svg');
