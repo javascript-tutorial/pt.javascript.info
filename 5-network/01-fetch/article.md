@@ -25,7 +25,7 @@ let promise = fetch(url, [options])
 ````
 
 - **`url`** -- a URL a ser acessada.
-- **`options`** -- parâmetros opcionais: método, cabeçalhos etc.
+- **`options`** -- parâmetros opcionais: método, headers etc.
 
 Sem `options`, é uma simples requisição GET que baixa o conteúdo da `url`.
 
