@@ -1,3 +1,4 @@
+
 # Fetch
 
 Com JavaScript é possível enviar requisições de rede ao servidor e carregar novas informações sempre que necessário.
