@@ -36,7 +36,7 @@ Receber uma resposta normalmente é um processo de duas fases.
 
 Nesse momento já podemos verificar o status HTTP, para saber se foi bem-sucedida ou não, e os headers — mas ainda não temos o body.
 
-A promise é rejeitada se o `fetch` não conseguir fazer a requisição HTTP — por exemplo, por problemas de rede ou se o site não existir. Status HTTP anormais, como 404 ou 500, **não** causam um erro.
+A promise é rejeitada se o `fetch` não conseguir fazer a requisição HTTP — por exemplo, por problemas de rede ou se o site não existir. Status HTTP anormais, como 404 ou 500, não causam um erro.
 
 Podemos ver o status HTTP nas propriedades da resposta:
 
