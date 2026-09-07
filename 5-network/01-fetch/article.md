@@ -33,7 +33,7 @@ O navegador inicia a requisição imediatamente e retorna uma promise — quem f
 
 Receber uma resposta normalmente é um processo de duas fases.
 
-**Primeiro, a `promise` retornada por `fetch` é resolvida com um objeto da classe nativa [Response](https://fetch.spec.whatwg.org/#response-class) assim que o servidor responde com os cabeçalhos.**
+**Primeiro, a `promise` retornada por `fetch` é resolvida com um objeto da classe nativa [Response](https://fetch.spec.whatwg.org/#response-class) assim que o servidor responde com os headers.**
 
 Nesse momento já podemos verificar o status HTTP, para saber se foi bem-sucedida ou não, e os headers — mas ainda não temos o body.
 
