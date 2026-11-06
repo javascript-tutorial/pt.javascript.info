@@ -1,4 +1,4 @@
-# Atribuição via desestruturação
+# Atribuição de desestruturação
 
 As duas estruturas de dados mais usadas em JavaScript são `Object` e `Array`.
 
@@ -7,7 +7,7 @@ As duas estruturas de dados mais usadas em JavaScript são `Object` e `Array`.
 
 Porém, quando passamos esses dados para uma função, nem sempre precisamos de tudo. A função pode precisar apenas de alguns elementos ou propriedades específicas.
 
-*Atribuição via desestruturação* é uma sintaxe especial que nos permite "desempacotar" arrays ou objetos em um monte de variáveis, já que às vezes isso é mais conveniente.
+*Atribuição de desestruturação* é uma sintaxe especial que nos permite "desempacotar" arrays ou objetos em um monte de variáveis, já que às vezes isso é mais conveniente.
 
 A desestruturação também funciona muito bem com funções complexas, que têm muitos parâmetros, valores padrão, e por aí vai. Vamos ver isso em breve.
 
@@ -20,7 +20,7 @@ Aqui está um exemplo de como um array é desestruturado em variáveis:
 let arr = ["John", "Smith"]
 
 *!*
-// atribuição via desestruturação
+// atribuição de desestruturação
 // define firstName = arr[0]
 // e surname = arr[1]
 let [firstName, surname] = arr;
@@ -43,7 +43,7 @@ alert(surname);  // Smith
 Como você pode ver, a sintaxe é simples. Porém, existem alguns detalhes curiosos. Vamos ver mais exemplos para entender melhor.
 
 ````smart header="\"Desestruturar\" não significa \"destruir\"."
-Chama-se "atribuição via desestruturação" porque ela "desestrutura" o dado ao copiar seus itens para variáveis. No entanto, o array em si não é modificado.
+Chama-se "atribuição de desestruturação" porque ela "desestrutura" o dado ao copiar seus itens para variáveis. No entanto, o array em si não é modificado.
 
 É apenas uma forma mais curta de escrever:
 ```js
@@ -76,7 +76,7 @@ No código acima, o segundo elemento do array é pulado, o terceiro é atribuíd
 let [a, b, c] = "abc"; // ["a", "b", "c"]
 let [one, two, three] = new Set([1, 2, 3]);
 ```
-Isso funciona porque, internamente, uma atribuição via desestruturação itera sobre o valor do lado direito. É um tipo de açúcar sintático para chamar `for..of` sobre o valor à direita do `=` e atribuir os valores.
+Isso funciona porque, internamente, uma atribuição de desestruturação itera sobre o valor do lado direito. É um tipo de açúcar sintático para chamar `for..of` sobre o valor à direita do `=` e atribuir os valores.
 ````
 
 
@@ -130,7 +130,7 @@ for (let [key, value] of user) {
 ````
 
 ````smart header="Truque para trocar variáveis de valor"
-Existe um truque bem conhecido para trocar o valor de duas variáveis usando uma atribuição via desestruturação:
+Existe um truque bem conhecido para trocar o valor de duas variáveis usando uma atribuição de desestruturação:
 
 ```js run
 let guest = "Jane";
@@ -178,7 +178,7 @@ alert(rest.length); // 2
 
 O valor de `rest` é o array com os elementos restantes.
 
-Podemos usar qualquer outro nome de variável no lugar de `rest`, só precisamos garantir que ele tenha três pontos antes e que venha por último na atribuição via desestruturação.
+Podemos usar qualquer outro nome de variável no lugar de `rest`, só precisamos garantir que ele tenha três pontos antes e que venha por último na atribuição de desestruturação.
 
 ```js run
 let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
@@ -226,7 +226,7 @@ Perceba: o `prompt` só vai rodar para o valor ausente (`surname`).
 
 ## Desestruturação de objetos
 
-A atribuição via desestruturação também funciona com objetos.
+A atribuição de desestruturação também funciona com objetos.
 
 A sintaxe básica é:
 
@@ -358,7 +358,7 @@ alert(title); // Menu
 
 E se o objeto tiver mais propriedades do que temos variáveis? Dá pra pegar algumas e jogar "o resto" em outro lugar?
 
-Podemos usar o padrão de resto, assim como fizemos com arrays. Ele não é suportado em alguns navegadores mais antigos (IE, use o Babel para fazer o polyfill), mas funciona nos navegadores modernos.
+Podemos usar o padrão de resto, assim como fizemos com arrays. Ele não é suportado em alguns navegadores mais antigos (no IE, use o Babel para dar suporte), mas funciona nos navegadores modernos.
 
 Fica assim:
 
@@ -432,7 +432,7 @@ let options = {
   extra: true
 };
 
-// atribuição via desestruturação dividida em várias linhas, para ficar mais claro
+// atribuição de desestruturação dividida em várias linhas, para ficar mais claro
 let {
   size: { // coloca size aqui
     width,
@@ -469,7 +469,7 @@ function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
 }
 ```
 
-Na prática, o problema é como lembrar a ordem dos argumentos. Normalmente as IDEs tentam nos ajudar, principalmente se o código estiver bem documentado, mas ainda assim... Outro problema é como chamar uma função quando a maioria dos parâmetros já está bom com o valor padrão.
+Na prática, o problema é como lembrar a ordem dos argumentos. Normalmente as IDEs tentam nos ajudar, principalmente se o código estiver bem documentado, mas ainda assim... Outro problema é como chamar uma função quando a maioria dos parâmetros já está boa com o valor padrão.
 
 Tipo assim?
 
@@ -495,7 +495,7 @@ let options = {
 function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}*/!*) {
   // title, items – vêm de options,
   // width, height – usam o valor padrão
-  alert( `${title} ${width} ${height}` ); // My Menu 200 100
+  alert( `${title} ${width} ${height}` ); // My menu 200 100
   alert( items ); // Item1, Item2
 }
 
@@ -518,7 +518,7 @@ function showMenu({
   items: [item1, item2] // primeiro elemento de items vai para item1, segundo para item2
 }) {
 */!*
-  alert( `${title} ${w} ${h}` ); // My Menu 100 200
+  alert( `${title} ${w} ${h}` ); // My menu 100 200
   alert( item1 ); // Item1
   alert( item2 ); // Item2
 }
@@ -526,7 +526,7 @@ function showMenu({
 showMenu(options);
 ```
 
-A sintaxe completa é a mesma de uma atribuição via desestruturação:
+A sintaxe completa é a mesma de uma atribuição de desestruturação:
 ```js
 function({
   incomingProperty: varName = defaultValue
@@ -558,7 +558,7 @@ No código acima, todo o objeto de argumentos é `{}` por padrão, então sempre
 
 ## Resumo
 
-- A atribuição via desestruturação permite mapear instantaneamente um objeto ou array em várias variáveis.
+- A atribuição de desestruturação permite mapear instantaneamente um objeto ou array em várias variáveis.
 - A sintaxe completa para objetos:
     ```js
     let {prop : varName = defaultValue, ...rest} = object

@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Atribuição via desestruturação
+# Atribuição de desestruturação
 
 Temos um objeto:
 
@@ -13,7 +13,7 @@ let user = {
 };
 ```
 
-Escreva a atribuição via desestruturação que leia:
+Escreva a atribuição de desestruturação que extraia:
 
 - A propriedade `name` para a variável `name`.
 - A propriedade `years` para a variável `age`.
