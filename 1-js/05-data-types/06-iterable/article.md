@@ -3,7 +3,7 @@
 
 Objetos *iteráveis* são uma generalização dos arrays. Esse é um conceito que permite usar qualquer objeto em um laço `for..of`.
 
-Claro, Arrays são iteráveis. Mas existem vários outros objetos nativos que também são iteráveis. Strings, por exemplo, também são iteráveis.
+Claro, arrays são iteráveis. Mas existem vários outros objetos nativos que também são iteráveis. Strings, por exemplo, também são iteráveis.
 
 Se um objeto não é tecnicamente um array, mas representa uma coleção (lista, conjunto) de alguma coisa, o `for..of` é uma ótima sintaxe para percorrê-lo -- então vamos ver como fazer isso funcionar.
 
@@ -75,7 +75,7 @@ Observe a característica central dos objetos iteráveis: a separação de respo
 
 Ou seja, o objeto iterador fica separado do objeto sobre o qual ele itera.
 
-Na prática, podemos juntar os dois e usar o próprio `range` como iterador, deixando o código mais simples.
+Tecnicamente, podemos juntar os dois e usar o próprio `range` como iterador, deixando o código mais simples.
 
 Desta forma:
 
@@ -103,7 +103,7 @@ for (let num of range) {
 }
 ```
 
-Agora `range[Symbol.iterator]()` retorna o próprio objeto `range`: ele já tem o método `next()` necessário e guarda o progresso da iteração atual em `this.current`. Mais curto? Sim. E às vezes isso é até melhor.
+Agora `range[Symbol.iterator]()` retorna o próprio objeto `range`: ele já tem o método `next()` necessário e guarda o progresso da iteração atual em `this.current`. Mais curto? Sim. E às vezes isso também serve.
 
 A desvantagem é que agora fica impossível ter dois laços `for..of` rodando sobre o objeto ao mesmo tempo: eles vão compartilhar o estado da iteração, já que existe apenas um iterador -- o próprio objeto. Mas dois `for..of` em paralelo é algo raro, mesmo em cenários assíncronos.
 
@@ -129,7 +129,7 @@ for (let char of "test") {
 }
 ```
 
-E funciona corretamente até com pares substitutos (surrogate pairs)!
+E funciona corretamente até com pares substitutos!
 
 ```js run
 let str = '𝒳😂';
@@ -163,25 +163,25 @@ while (true) {
 
 Isso raramente é necessário, mas nos dá mais controle sobre o processo do que o `for..of`. Por exemplo, podemos dividir o processo de iteração: iterar um pouco, parar, fazer outra coisa, e continuar depois.
 
-## Iteráveis e array-likes [#array-like]
+## Iteráveis e objetos semelhantes a array [#array-like]
 
 Dois termos oficiais parecem semelhantes, mas são bem diferentes. Entenda-os bem para não se confundir.
 
 - *Iteráveis* são objetos que implementam o método `Symbol.iterator`, como descrito acima.
-- *Array-likes* (ou "parecidos com array") são objetos que têm índices e `length`, e por isso se parecem com arrays.
+- *Array-likes* (ou "semelhantes a array") são objetos que têm índices e `length`, e por isso se parecem com arrays.
 
-Quando usamos JavaScript em tarefas práticas, seja no navegador ou em qualquer outro ambiente, podemos encontrar objetos que são iteráveis, array-likes, ou os dois ao mesmo tempo.
+Quando usamos JavaScript em tarefas práticas, seja no navegador ou em qualquer outro ambiente, podemos encontrar objetos que são iteráveis, semelhantes a array, ou os dois ao mesmo tempo.
 
-Strings, por exemplo, são tanto iteráveis (o `for..of` funciona nelas) quanto array-likes (elas têm índices numéricos e `length`).
+Strings, por exemplo, são tanto iteráveis (o `for..of` funciona nelas) quanto semelhantes a array (elas têm índices numéricos e `length`).
 
-Mas um objeto iterável pode não ser array-like. E o contrário também é verdade: um array-like pode não ser iterável.
+Mas um objeto iterável pode não ser semelhante a array. E o contrário também é verdade: um objeto semelhante a array pode não ser iterável.
 
-Por exemplo, o `range` do exemplo acima é iterável, mas não é array-like, porque não tem propriedades indexadas nem `length`.
+Por exemplo, o `range` do exemplo acima é iterável, mas não é semelhante a array, porque não tem propriedades indexadas nem `length`.
 
-E aqui está um objeto que é array-like, mas não é iterável:
+E aqui está um objeto que é semelhante a array, mas não é iterável:
 
 ```js run
-let arrayLike = { // tem índices e length, então é array-like
+let arrayLike = { // tem índices e length, então é semelhante a array
   0: "Hello",
   1: "World",
   length: 2
@@ -193,11 +193,11 @@ for (let item of arrayLike) {}
 */!*
 ```
 
-Tanto os iteráveis quanto os array-likes geralmente *não são arrays*: eles não têm `push`, `pop`, etc. Isso é bem inconveniente quando temos um objeto desse tipo e queremos trabalhar com ele como se fosse um array. Por exemplo, gostaríamos de usar métodos de array no `range`. Como conseguir isso?
+Tanto os iteráveis quanto os objetos semelhantes a array geralmente *não são arrays*: eles não têm `push`, `pop`, etc. Isso é bem inconveniente quando temos um objeto desse tipo e queremos trabalhar com ele como se fosse um array. Por exemplo, gostaríamos de usar métodos de array no `range`. Como conseguir isso?
 
 ## Array.from
 
-Existe um método universal, [Array.from](mdn:js/Array/from), que recebe um valor iterável ou array-like e cria um `Array` "de verdade" a partir dele. Depois disso, podemos chamar métodos de array nesse novo array.
+Existe um método universal, [Array.from](mdn:js/Array/from), que recebe um valor iterável ou semelhante a array e cria um `Array` "de verdade" a partir dele. Depois disso, podemos chamar métodos de array nesse novo array.
 
 Por exemplo:
 
@@ -214,7 +214,7 @@ let arr = Array.from(arrayLike); // (*)
 alert(arr.pop()); // World (o método funciona)
 ```
 
-Na linha `(*)`, o `Array.from` recebe o objeto, verifica se ele é iterável ou array-like, cria um novo array e copia todos os itens para ele.
+Na linha `(*)`, o `Array.from` recebe o objeto, verifica se ele é iterável ou semelhante a array, cria um novo array e copia todos os itens para ele.
 
 O mesmo acontece com um iterável:
 
@@ -300,8 +300,8 @@ Objetos que podem ser usados em um `for..of` são chamados de *iteráveis*.
 - O iterador de string sabe lidar com pares substitutos.
 
 
-Objetos que têm propriedades indexadas e `length` são chamados de *array-like*. Esses objetos também podem ter outras propriedades e métodos, mas não têm os métodos nativos dos arrays.
+Objetos que têm propriedades indexadas e `length` são chamados de *semelhantes a array*. Esses objetos também podem ter outras propriedades e métodos, mas não têm os métodos nativos dos arrays.
 
-Se olharmos para dentro da especificação, veremos que a maioria dos métodos nativos assume que está trabalhando com iteráveis ou array-likes, em vez de arrays "de verdade", porque isso é mais abstrato.
+Se olharmos para dentro da especificação, veremos que a maioria dos métodos nativos assume que está trabalhando com iteráveis ou semelhantes a array, em vez de arrays "de verdade", porque isso é mais abstrato.
 
-`Array.from(obj[, mapFn, thisArg])` cria um `Array` de verdade a partir de um iterável ou array-like `obj`, e aí podemos usar métodos de array nele. Os argumentos opcionais `mapFn` e `thisArg` nos permitem aplicar uma função a cada item.
+`Array.from(obj[, mapFn, thisArg])` cria um `Array` de verdade a partir de um iterável ou semelhante a array `obj`, e aí podemos usar métodos de array nele. Os argumentos opcionais `mapFn` e `thisArg` nos permitem aplicar uma função a cada item.
