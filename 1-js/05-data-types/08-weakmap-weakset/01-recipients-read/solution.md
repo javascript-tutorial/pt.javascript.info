@@ -19,7 +19,7 @@ readMessages.add(messages[0]);
 // readMessages ainda tem 2 elementos únicos
 
 // resposta: a message[0] foi lida?
-alert("Read message 0: " + readMessages.has(messages[0])); // true
+alert("Mensagem 0 lida: " + readMessages.has(messages[0])); // true
 
 messages.shift();
 // agora readMessages tem 1 elemento (tecnicamente a memória pode ser limpa depois)
@@ -27,7 +27,7 @@ messages.shift();
 
 O `WeakSet` nos permite guardar um conjunto de mensagens e verificar facilmente se uma mensagem existe nele.
 
-Ele se limpa automaticamente. A desvantagem é que não podemos iterar sobre ele, nem obter "todas as mensagens lidas" diretamente. Mas conseguimos fazer isso iterando sobre todas as mensagens e filtrando as que estão no set.
+Ele se limpa automaticamente. A desvantagem é que não podemos iterar sobre ele, nem obter "todas as mensagens lidas" diretamente. Mas conseguimos fazer isso iterando sobre todas as mensagens e filtrando as que estão no `WeakSet`.
 
 Outra solução, diferente, seria adicionar uma propriedade como `message.isRead=true` a uma mensagem depois que ela for lida. Como os objetos de mensagem são gerenciados por outro código, isso geralmente é desaconselhado, mas podemos usar uma propriedade simbólica para evitar conflitos.
 

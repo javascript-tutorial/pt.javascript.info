@@ -16,7 +16,7 @@ let messages = [
 
 Seu código pode acessá-lo, mas as mensagens são gerenciadas pelo código de outra pessoa. Mensagens novas são adicionadas, as antigas são removidas regularmente por esse código, e você não sabe os momentos exatos em que isso acontece.
 
-Agora, qual estrutura de dados você poderia usar para guardar a informação de que a mensagem "já foi lida"? A estrutura precisa ser bem adequada para responder "ela foi lida?" para um determinado objeto de mensagem.
+Agora, qual estrutura de dados você poderia usar para guardar a informação sobre se a mensagem "já foi lida"? A estrutura precisa ser bem adequada para responder "ela foi lida?" para um determinado objeto de mensagem.
 
 P.S. Quando uma mensagem é removida de `messages`, ela também deve desaparecer da sua estrutura.
 

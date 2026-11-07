@@ -33,12 +33,12 @@ john = null; // sobrescreve a referência
 
 *!*
 // o objeto anteriormente referenciado por john está guardado dentro do array,
-// por isso ele não será coletado pelo garbage collector
+// por isso ele não será removido pelo coletor de lixo
 // podemos obtê-lo através de array[0]
 */!*
 ```
 
-De forma parecida, se usamos um objeto como chave em um `Map` comum, então, enquanto o `Map` existir, esse objeto também vai existir. Ele ocupa memória e pode não ser coletado pelo garbage collector.
+De forma parecida, se usamos um objeto como chave em um `Map` comum, então, enquanto o `Map` existir, esse objeto também vai existir. Ele ocupa memória e pode não ser removido pela coleta de lixo.
 
 Por exemplo:
 
@@ -56,7 +56,7 @@ john = null; // sobrescreve a referência
 */!*
 ```
 
-[`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) é fundamentalmente diferente nesse aspecto. Ele não impede que os objetos usados como chave sejam coletados pelo garbage collector.
+[`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) é fundamentalmente diferente nesse aspecto. Ele não impede que os objetos usados como chave sejam removidos pelo coletor de lixo.
 
 Vamos ver o que isso significa através de exemplos.
 
@@ -77,7 +77,7 @@ weakMap.set("test", "Whoops"); // Erro, porque "test" não é um objeto
 */!*
 ```
 
-Agora, se usamos um objeto como chave nele, e não existe mais nenhuma outra referência a esse objeto -- ele será removido da memória (e do map) automaticamente.
+Agora, se usamos um objeto como chave nele, e não existe mais nenhuma outra referência a esse objeto -- ele será removido da memória (e do `WeakMap`) automaticamente.
 
 ```js
 let john = { name: "John" };
@@ -90,7 +90,7 @@ john = null; // sobrescreve a referência
 // john é removido da memória!
 ```
 
-Compare isso com o exemplo do `Map` comum, visto acima. Agora, se `john` existe apenas como chave do `WeakMap` -- ele será automaticamente apagado do map (e da memória).
+Compare isso com o exemplo do `Map` comum, visto acima. Agora, se `john` existe apenas como chave do `WeakMap` -- ele será automaticamente removido do `WeakMap` (e da memória).
 
 O `WeakMap` não suporta iteração nem os métodos `keys()`, `values()`, `entries()`, então não há como obter todas as chaves ou valores dele.
 
@@ -101,7 +101,7 @@ O `WeakMap` tem apenas os seguintes métodos:
 - [`weakMap.delete(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/delete)
 - [`weakMap.has(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/has)
 
-Por que essa limitação? É por motivos técnicos. Se um objeto perdeu todas as outras referências (como `john` no código acima), ele deve ser coletado pelo garbage collector automaticamente. Mas, tecnicamente, não é exatamente especificado *quando a limpeza acontece*.
+Por que essa limitação? É por motivos técnicos. Se um objeto perdeu todas as outras referências (como `john` no código acima), ele deve ser removido automaticamente pela coleta de lixo. Mas, tecnicamente, não é exatamente especificado *quando a limpeza acontece*.
 
 Quem decide isso é o motor do JavaScript. Ele pode escolher fazer a limpeza de memória imediatamente, ou esperar e fazer a limpeza mais tarde, quando mais remoções acontecerem. Então, tecnicamente, a quantidade atual de elementos de um `WeakMap` não é conhecida. O motor pode ter limpado tudo, ou nada, ou feito isso parcialmente. Por esse motivo, os métodos que acessam todas as chaves/valores não são suportados.
 
@@ -113,7 +113,7 @@ A principal área de aplicação do `WeakMap` é um *armazenamento de dados adic
 
 Se estamos trabalhando com um objeto que "pertence" a outro código, talvez até a uma biblioteca de terceiros, e gostaríamos de guardar alguns dados associados a ele, que devem existir apenas enquanto o objeto estiver vivo -- então o `WeakMap` é exatamente o que precisamos.
 
-Colocamos os dados em um `WeakMap`, usando o objeto como chave, e quando o objeto é coletado pelo garbage collector, esses dados também desaparecem automaticamente.
+Colocamos os dados em um `WeakMap`, usando o objeto como chave, e quando o objeto é removido pela coleta de lixo, esses dados também desaparecem automaticamente.
 
 ```js
 weakMap.set(john, "documentos secretos");
@@ -122,7 +122,7 @@ weakMap.set(john, "documentos secretos");
 
 Vamos ver um exemplo.
 
-Por exemplo, temos um código que mantém uma contagem de visitas de usuários. A informação é guardada em um map: um objeto de usuário é a chave, e a contagem de visitas é o valor. Quando um usuário vai embora (seu objeto é coletado pelo garbage collector), não queremos mais guardar a contagem de visitas dele.
+Por exemplo, temos um código que mantém uma contagem de visitas de usuários. A informação é guardada em um `Map`: um objeto de usuário é a chave, e a contagem de visitas é o valor. Quando um usuário vai embora (seu objeto é removido pela coleta de lixo), não queremos mais guardar a contagem de visitas dele.
 
 Aqui está um exemplo de uma função de contagem usando `Map`:
 
@@ -149,7 +149,7 @@ countUser(john); // conta a visita dele
 john = null;
 ```
 
-Agora, o objeto `john` deveria ser coletado pelo garbage collector, mas permanece na memória, pois é uma chave em `visitsCountMap`.
+Agora, o objeto `john` deveria ser removido pela coleta de lixo, mas permanece na memória, pois é uma chave em `visitsCountMap`.
 
 Precisamos limpar o `visitsCountMap` quando removemos usuários, senão ele vai crescer indefinidamente na memória. Essa limpeza pode se tornar uma tarefa bem cansativa em arquiteturas complexas.
 
@@ -170,7 +170,7 @@ Agora não precisamos mais limpar o `visitsCountMap`. Depois que o objeto `john`
 
 ## Caso de uso: cache
 
-Outro exemplo comum é o cache. Podemos guardar ("cachear") os resultados de uma função, para que chamadas futuras sobre o mesmo objeto possam reaproveitá-los.
+Outro exemplo comum é o cache. Podemos guardar em cache os resultados de uma função, para que chamadas futuras sobre o mesmo objeto possam reaproveitá-los.
 
 Para conseguir isso, podemos usar `Map` (não é o cenário ideal):
 
@@ -210,7 +210,7 @@ alert(cache.size); // 1 (Ops! O objeto ainda está no cache, ocupando memória!)
 
 Em múltiplas chamadas de `process(obj)` com o mesmo objeto, o resultado só é calculado na primeira vez, e depois é apenas obtido do `cache`. A desvantagem é que precisamos limpar o `cache` quando o objeto não for mais necessário.
 
-Se trocarmos o `Map` por `WeakMap`, esse problema desaparece. O resultado em cache será removido automaticamente da memória depois que o objeto for coletado pelo garbage collector.
+Se trocarmos o `Map` por `WeakMap`, esse problema desaparece. O resultado em cache será removido automaticamente da memória depois que o objeto for removido pela coleta de lixo.
 
 ```js run
 // 📁 cache.js
@@ -241,7 +241,7 @@ obj = null;
 
 // Não dá pra pegar cache.size, já que é um WeakMap,
 // mas ele é 0 ou logo será 0
-// Quando obj for coletado pelo garbage collector, os dados em cache também serão removidos
+// Quando obj for removido pela coleta de lixo, os dados em cache também serão removidos
 ```
 
 ## WeakSet
@@ -249,8 +249,8 @@ obj = null;
 [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) se comporta de forma parecida:
 
 - É análogo ao `Set`, mas só podemos adicionar objetos ao `WeakSet` (não primitivos).
-- Um objeto existe no set enquanto for alcançável de algum outro lugar.
-- Assim como o `Set`, ele suporta [`add`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Weakset/add), [`has`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Weakset/has) e [`delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Weakset/delete), mas não `size`, `keys()`, e não há iterações.
+- Um objeto existe no `WeakSet` enquanto for alcançável de algum outro lugar.
+- Assim como o `Set`, ele suporta [`add`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet/add), [`has`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet/has) e [`delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet/delete), mas não `size`, `keys()`, e não há iterações.
 
 Por ser "weak" (fraco), ele também serve como armazenamento adicional. Mas não para dados arbitrários, e sim para fatos do tipo "sim/não". A presença de um objeto em um `WeakSet` pode significar algo sobre esse objeto.
 
@@ -288,7 +288,7 @@ A limitação mais notável de `WeakMap` e `WeakSet` é a ausência de iteraçõ
 
 [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) é uma coleção parecida com `Set` que guarda apenas objetos, e os remove assim que se tornam inacessíveis por outros meios.
 
-Sua principal vantagem é que eles têm uma referência fraca aos objetos, então eles podem ser facilmente removidos pelo garbage collector.
+Sua principal vantagem é que eles têm uma referência fraca aos objetos, então eles podem ser facilmente removidos pela coleta de lixo.
 
 Isso tem um custo: não há suporte para `clear`, `size`, `keys`, `values`...
 
