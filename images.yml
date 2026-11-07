@@ -46,3 +46,22 @@ love-html5-classes.svg:
   "I love":
     "text": "Eu amo"
     "position": "center"
+try-catch-flow.svg:
+  "Begin":
+    text: "Início"
+    position: center
+  "No Errors":
+    text: "Sem erros"
+    position: center
+  "An error occured in the code":
+    text: "Ocorreu um erro no código"
+    position: center
+  "Ignore catch block":
+    text: "Ignora o bloco catch"
+    position: center
+  "Ignore the rest of try":
+    text: "Ignora o resto do try"
+    position: center
+  "Execute catch block":
+    text: "Executa o bloco catch"
+    position: center

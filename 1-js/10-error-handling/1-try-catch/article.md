@@ -85,7 +85,7 @@ try {
 }
 ```
 
-O motor do JavaScript primeiro lê o código, e só depois o executa. Os erros que ocorrem na fase de leitura são chamados de erros de "parse-time" (tempo de análise), e são irrecuperáveis (de dentro daquele código). Isso acontece porque o motor não consegue entender o código.
+O motor do JavaScript primeiro lê o código, e só depois o executa. Os erros que ocorrem na fase de leitura são chamados de erros de "tempo de análise" (*parse-time*), e são irrecuperáveis (de dentro daquele código). Isso acontece porque o motor não consegue entender o código.
 
 Então, o `try...catch` só consegue tratar erros que ocorrem em código válido. Esses erros são chamados de "erros em tempo de execução" ou, às vezes, "exceções".
 ````
@@ -161,11 +161,11 @@ try {
 }
 ```
 
-## Ligação opcional do "catch"
+## Parâmetro opcional do "catch"
 
 [recent browser=new]
 
-Se não precisarmos dos detalhes do erro, o `catch` pode omiti-los:
+Se não precisarmos dos detalhes do erro, o `catch` pode omitir o parâmetro:
 
 ```js
 try {
@@ -183,7 +183,7 @@ Como já sabemos, o JavaScript suporta o método [JSON.parse(str)](mdn:js/JSON/p
 
 Geralmente ele é usado para decodificar dados recebidos pela rede, do servidor ou de outra fonte.
 
-Nós recebemos e chamamos `JSON.parse` assim:
+Recebemos os dados e chamamos `JSON.parse` assim:
 
 ```js run
 let json = '{"name":"John", "age": 30}'; // dados vindos do servidor
@@ -227,7 +227,7 @@ try {
 }
 ```
 
-Aqui usamos o bloco `catch` só pra mostrar a mensagem, mas podemos fazer muito mais: enviar uma nova requisição de rede, sugerir uma alternativa ao visitante, enviar informações sobre o erro pra um serviço de log, ... . Tudo isso é bem melhor do que simplesmente morrer.
+Aqui usamos o bloco `catch` só pra mostrar a mensagem, mas podemos fazer muito mais: enviar uma nova requisição de rede, sugerir uma alternativa ao visitante, enviar informações sobre o erro pra um serviço de registro, ... . Tudo isso é bem melhor do que simplesmente morrer.
 
 ## Lançando nossos próprios erros
 
@@ -283,10 +283,10 @@ Para erros nativos (não para qualquer objeto, só para erros), a propriedade `n
 Por exemplo:
 
 ```js run
-let error = new Error("Things happen o_O");
+let error = new Error("Coisas acontecem o_O");
 
 alert(error.name); // Error
-alert(error.message); // Things happen o_O
+alert(error.message); // Coisas acontecem o_O
 ```
 
 Vamos ver que tipo de erro o `JSON.parse` gera:
@@ -324,7 +324,7 @@ try {
   alert( user.name );
 
 } catch (err) {
-  alert( "JSON Error: " + err.message ); // JSON Error: Incomplete data: no name
+  alert( "Erro de JSON: " + err.message ); // Erro de JSON: Incomplete data: no name
 }
 ```
 
@@ -346,14 +346,14 @@ try {
 
   // ...
 } catch (err) {
-  alert("JSON Error: " + err); // JSON Error: ReferenceError: user is not defined
+  alert("Erro de JSON: " + err); // Erro de JSON: ReferenceError: user is not defined
   // (na verdade, não é um erro de JSON)
 }
 ```
 
-Claro, tudo é possível! Programadores cometem erros. Mesmo em utilitários open-source usados por milhões de pessoas há décadas -- de repente pode ser descoberto um bug que leva a hacks terríveis.
+Claro, tudo é possível! Programadores cometem erros. Mesmo em utilitários de código aberto usados por milhões de pessoas há décadas -- de repente pode ser descoberta uma falha que leva a ataques terríveis.
 
-No nosso caso, o `try...catch` foi colocado pra capturar erros de "dados incorretos". Mas, por sua natureza, o `catch` recebe *todos* os erros vindos do `try`. Aqui ele recebe um erro inesperado, mas mesmo assim mostra a mesma mensagem `"JSON Error"`. Isso está errado, e também torna o código mais difícil de depurar.
+No nosso caso, o `try...catch` foi colocado pra capturar erros de "dados incorretos". Mas, por sua natureza, o `catch` recebe *todos* os erros vindos do `try`. Aqui ele recebe um erro inesperado, mas mesmo assim mostra a mesma mensagem `"Erro de JSON"`. Isso está errado, e também torna o código mais difícil de depurar.
 
 Pra evitar esses problemas, podemos usar a técnica de "relançamento" (rethrowing). A regra é simples:
 
@@ -379,7 +379,7 @@ try {
 }
 ```
 
-Também podemos obter o nome da classe do erro pela propriedade `err.name`. Todos os erros nativos têm ela. Outra opção é ler `err.constructor.name`.
+Também podemos obter o nome da classe do erro pela propriedade `err.name`. Todos os erros nativos a possuem. Outra opção é ler `err.constructor.name`.
 
 No código abaixo, usamos o relançamento para que o `catch` só trate `SyntaxError`:
 
@@ -403,7 +403,7 @@ try {
 
 *!*
   if (err instanceof SyntaxError) {
-    alert( "JSON Error: " + err.message );
+    alert( "Erro de JSON: " + err.message );
   } else {
     throw err; // relança (*)
   }
@@ -414,7 +414,7 @@ try {
 
 O erro lançado na linha `(*)`, de dentro do bloco `catch`, "cai fora" do `try...catch` e pode ser capturado por um `try...catch` externo (se existir), ou mata o script.
 
-Então o bloco `catch`, na verdade, só trata os erros que ele sabe como lidar, e "pula" todos os outros.
+Então o bloco `catch`, na verdade, só trata os erros com que sabe lidar, e "pula" todos os outros.
 
 O exemplo abaixo demonstra como esses erros podem ser capturados por mais um nível de `try...catch`:
 
@@ -441,7 +441,7 @@ try {
   readData();
 } catch (err) {
 *!*
-  alert( "External catch got: " + err ); // capturou!
+  alert( "Catch externo capturou: " + err ); // capturou!
 */!*
 }
 ```
@@ -498,13 +498,13 @@ A cláusula `finally` é um ótimo lugar pra terminar as medições, não import
 Aqui o `finally` garante que o tempo será medido corretamente nas duas situações -- tanto em caso de uma execução bem-sucedida do `fib` quanto em caso de erro nela:
 
 ```js run
-let num = +prompt("Enter a positive integer number?", 35)
+let num = +prompt("Digite um número inteiro positivo:", 35)
 
 let diff, result;
 
 function fib(n) {
   if (n < 0 || Math.trunc(n) != n) {
-    throw new Error("Must not be negative, and also an integer.");
+    throw new Error("Não pode ser negativo, e deve ser inteiro.");
   }
   return n <= 1 ? n : fib(n - 1) + fib(n - 2);
 }
@@ -521,9 +521,9 @@ try {
 }
 */!*
 
-alert(result || "error occurred");
+alert(result || "ocorreu um erro");
 
-alert( `execution took ${diff}ms` );
+alert( `a execução levou ${diff}ms` );
 ```
 
 Você pode conferir rodando o código e digitando `35` no `prompt` -- ele executa normalmente, `finally` depois do `try`. E então digite `-1` -- vai dar um erro imediato, e a execução vai levar `0ms`. As duas medições são feitas corretamente.
@@ -559,7 +559,7 @@ function func() {
   }
 }
 
-alert( func() ); // primeiro funciona o alert do finally, e depois esse aqui
+alert( func() ); // primeiro executa o alert do finally, e depois este
 ```
 ````
 
