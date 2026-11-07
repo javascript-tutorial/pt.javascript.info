@@ -1,5 +1,5 @@
 
-There are no tricks here. Just replace `.catch` with `try..catch` inside `demoGithubUser` and add `async/await` where needed:
+Não tem nenhum truque aqui. Só substitua o `.catch` por `try..catch` dentro de `demoGithubUser` e adicione `async/await` onde for necessário:
 
 ```js run
 class HttpError extends Error {
@@ -19,29 +19,29 @@ async function loadJson(url) {
   }
 }
 
-// Ask for a user name until github returns a valid user
+// Pede um nome de usuário até o github retornar um usuário válido
 async function demoGithubUser() {
 
   let user;
   while(true) {
-    let name = prompt("Enter a name?", "iliakan");
+    let name = prompt("Digite um nome:", "iliakan");
 
     try {
       user = await loadJson(`https://api.github.com/users/${name}`);
-      break; // no error, exit loop
+      break; // sem erro, sai do laço
     } catch(err) {
       if (err instanceof HttpError && err.response.status == 404) {
-        // loop continues after the alert
-        alert("No such user, please reenter.");
+        // o laço continua depois do alert
+        alert("Esse usuário não existe, digite de novo.");
       } else {
-        // unknown error, rethrow
+        // erro desconhecido, relança
         throw err;
       }
     }      
   }
 
 
-  alert(`Full name: ${user.name}.`);
+  alert(`Nome completo: ${user.name}.`);
   return user;
 }
 
