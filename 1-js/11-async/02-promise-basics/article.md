@@ -10,11 +10,11 @@ Essa é uma analogia da vida real para algo que acontece com frequência na prog
 
 1. Um "código produtor" que faz alguma coisa e leva um tempo pra isso. Por exemplo, algum código que carrega dados pela rede. Esse é o "cantor".
 2. Um "código consumidor" que quer o resultado do "código produtor" assim que ele estiver pronto. Várias funções podem precisar desse resultado. Esses são os "fãs".
-3. Uma *promise* é um objeto especial do JavaScript que liga o "código produtor" e o "código consumidor". Em termos da nossa analogia: essa é a "lista de inscrição". O "código produtor" leva o tempo que precisar para produzir o resultado prometido, e a "promise" disponibiliza esse resultado para todo o código inscrito assim que ele estiver pronto.
+3. Uma *promessa* é um objeto especial do JavaScript que liga o "código produtor" e o "código consumidor". Em termos da nossa analogia: essa é a "lista de inscrição". O "código produtor" leva o tempo que precisar para produzir o resultado prometido, e a "promessa" disponibiliza esse resultado para todo o código inscrito assim que ele estiver pronto.
 
-A analogia não é totalmente precisa, porque as promises do JavaScript são mais complexas do que uma simples lista de inscrição: elas têm recursos e limitações adicionais. Mas está de bom tamanho pra começar.
+A analogia não é totalmente precisa, porque as promessas do JavaScript são mais complexas do que uma simples lista de inscrição: elas têm recursos e limitações adicionais. Mas está de bom tamanho pra começar.
 
-A sintaxe do construtor para um objeto promise é:
+A sintaxe do construtor da promessa é:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
@@ -44,11 +44,11 @@ Então o executor acaba movendo a `promise` para um desses estados:
 
 Mais adiante vamos ver como os "fãs" podem se inscrever para essas mudanças.
 
-Aqui está um exemplo de um construtor de promise e uma função executora simples, com um "código produtor" que leva um tempo (via `setTimeout`):
+Aqui está um exemplo de um construtor de promessa e uma função executora simples, com um "código produtor" que leva um tempo (via `setTimeout`):
 
 ```js
 let promise = new Promise(function(resolve, reject) {
-  // a função é executada automaticamente quando a promise é construída
+  // a função é executada automaticamente quando a promessa é construída
 
   // depois de 1 segundo, sinaliza que o trabalho terminou com o resultado "done"
   setTimeout(() => *!*resolve("done")*/!*, 1000);
@@ -64,9 +64,9 @@ Podemos perceber duas coisas rodando o código acima:
 
     ![](promise-resolve-1.svg)
 
-Esse foi um exemplo de uma conclusão de trabalho bem-sucedida, uma "promise cumprida" (fulfilled).
+Esse foi um exemplo de uma conclusão de trabalho bem-sucedida, uma "promessa resolvida" (fulfilled).
 
-E agora um exemplo do executor rejeitando a promise com um erro:
+E agora um exemplo do executor rejeitando a promessa com um erro:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
@@ -75,13 +75,13 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-A chamada a `reject(...)` move o objeto promise para o estado `"rejected"`:
+A chamada a `reject(...)` move o objeto promessa para o estado `"rejected"`:
 
 ![](promise-reject-1.svg)
 
-Resumindo, o executor deve realizar um trabalho (geralmente algo que leva tempo) e então chamar `resolve` ou `reject` para mudar o estado da promise correspondente.
+Resumindo, o executor deve realizar um trabalho (geralmente algo que leva tempo) e então chamar `resolve` ou `reject` para mudar o estado da promessa correspondente.
 
-Uma promise que foi resolvida ou rejeitada é chamada de "settled" (encerrada/resolvida), em contraste com uma promise inicialmente "pending" (pendente).
+Uma promessa que foi resolvida ou rejeitada é chamada de "estabelecida" (settled), em contraste com uma promessa inicialmente "pendente" (pending).
 
 ````smart header="Só pode haver um único resultado ou um único erro"
 O executor deve chamar apenas um `resolve` ou um `reject`. Qualquer mudança de estado é final.
@@ -120,7 +120,7 @@ let promise = new Promise(function(resolve, reject) {
 
 Por exemplo, isso pode acontecer quando começamos a fazer um trabalho, mas então percebemos que tudo já foi concluído e está em cache.
 
-Tudo bem. Temos imediatamente uma promise resolvida.
+Tudo bem. Temos imediatamente uma promessa resolvida.
 ````
 
 ```smart header="`state` e `result` são internos"
@@ -144,11 +144,11 @@ promise.then(
 );
 ```
 
-O primeiro argumento de `.then` é uma função que roda quando a promise é resolvida, e recebe o resultado.
+O primeiro argumento de `.then` é uma função que roda quando a promessa é resolvida, e recebe o resultado.
 
-O segundo argumento de `.then` é uma função que roda quando a promise é rejeitada, e recebe o erro.
+O segundo argumento de `.then` é uma função que roda quando a promessa é rejeitada, e recebe o erro.
 
-Por exemplo, aqui está uma reação a uma promise resolvida com sucesso:
+Por exemplo, aqui está uma reação a uma promessa resolvida com sucesso:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
@@ -216,9 +216,9 @@ A chamada `.catch(f)` é um análogo completo de `.then(null, f)`, é só uma fo
 
 Assim como existe uma cláusula `finally` em um `try {...} catch {...}` comum, existe `finally` em promises também.
 
-A chamada `.finally(f)` é parecida com `.then(f, f)`, no sentido de que `f` sempre roda quando a promise é resolvida (settled): seja em `resolve` ou `reject`.
+A chamada `.finally(f)` é parecida com `.then(f, f)`, no sentido de que `f` sempre roda quando a promessa é estabelecida (settled): seja em `resolve` ou `reject`.
 
-A ideia do `finally` é configurar um handler para fazer a limpeza/finalização depois que as operações anteriores forem concluídas.
+A ideia do `finally` é configurar um tratador para fazer a limpeza/finalização depois que as operações anteriores forem concluídas.
 
 Por exemplo, parar indicadores de carregamento, fechar conexões que não são mais necessárias, etc.
 
@@ -231,21 +231,21 @@ new Promise((resolve, reject) => {
   /* faz algo que leva tempo, e então chama resolve ou talvez reject */
 })
 *!*
-  // roda quando a promise é resolvida, não importa se com sucesso ou não
+  // roda quando a promessa é estabelecida, não importa se com sucesso ou não
   .finally(() => para o indicador de carregamento)
   // assim o indicador de carregamento sempre é parado antes de continuarmos
 */!*
-  .then(resultado => mostra o resultado, erro => mostra o erro)
+  .then(result => mostra o resultado, err => mostra o erro)
 ```
 
 Repare que `finally(f)` não é exatamente um apelido de `then(f,f)`, porém.
 
 Existem diferenças importantes:
 
-1. Um handler de `finally` não tem argumentos. No `finally`, não sabemos se a promise teve sucesso ou não. Tudo bem, porque nossa tarefa geralmente é realizar procedimentos de finalização "gerais".
+1. Um tratador de `finally` não tem argumentos. No `finally`, não sabemos se a promessa teve sucesso ou não. Tudo bem, porque nossa tarefa geralmente é realizar procedimentos de finalização "gerais".
 
-    Dê uma olhada no exemplo acima: como você pode ver, o handler de `finally` não tem argumentos, e o resultado da promise é tratado pelo próximo handler.
-2. Um handler de `finally` "repassa" o resultado ou o erro para o próximo handler adequado.
+    Dê uma olhada no exemplo acima: como você pode ver, o tratador de `finally` não tem argumentos, e o resultado da promessa é tratado pelo próximo tratador.
+2. Um tratador de `finally` "repassa" o resultado ou o erro para o próximo tratador adequado.
 
     Por exemplo, aqui o resultado é repassado através do `finally` para o `then`:
 
@@ -257,9 +257,9 @@ Existem diferenças importantes:
       .then(result => alert(result)); // <-- .then mostra "value"
     ```
 
-    Como você pode ver, o `value` retornado pela primeira promise é repassado através do `finally` até o próximo `then`.
+    Como você pode ver, o `value` retornado pela primeira promessa é repassado através do `finally` até o próximo `then`.
 
-    Isso é bem conveniente, porque o `finally` não é feito pra processar o resultado de uma promise. Como dito, ele é um lugar pra fazer uma limpeza genérica, não importa qual foi o resultado.
+    Isso é bem conveniente, porque o `finally` não é feito pra processar o resultado de uma promessa. Como dito, ele é um lugar pra fazer uma limpeza genérica, não importa qual foi o resultado.
 
     E aqui está um exemplo de um erro, pra vermos como ele é repassado através do `finally` até o `catch`:
 
@@ -271,35 +271,35 @@ Existem diferenças importantes:
       .catch(err => alert(err));  // <-- .catch mostra o erro
     ```
 
-3. Um handler de `finally` também não deveria retornar nada. Se retornar, o valor retornado é silenciosamente ignorado.
+3. Um tratador de `finally` também não deveria retornar nada. Se retornar, o valor retornado é silenciosamente ignorado.
 
-    A única exceção a essa regra é quando um handler de `finally` lança um erro. Nesse caso, o erro vai para o próximo handler, no lugar de qualquer resultado anterior.
+    A única exceção a essa regra é quando um tratador de `finally` lança um erro. Nesse caso, o erro vai para o próximo tratador, no lugar de qualquer resultado anterior.
 
 Resumindo:
 
-- Um handler de `finally` não recebe o resultado do handler anterior (ele não tem argumentos). Esse resultado é repassado adiante, para o próximo handler adequado.
-- Se um handler de `finally` retornar alguma coisa, ela é ignorada.
-- Quando `finally` lança um erro, a execução vai para o handler de erro mais próximo.
+- Um tratador de `finally` não recebe o resultado do tratador anterior (ele não tem argumentos). Esse resultado é repassado adiante, para o próximo tratador adequado.
+- Se um tratador de `finally` retornar alguma coisa, ela é ignorada.
+- Quando `finally` lança um erro, a execução vai para o tratador de erro mais próximo.
 
 Esses recursos são úteis e fazem as coisas funcionarem do jeito certo, se usarmos o `finally` da forma como ele deve ser usado: para procedimentos genéricos de limpeza.
 
-````smart header="Podemos anexar handlers a promises já resolvidas"
-Se uma promise está pendente, os handlers `.then/catch/finally` esperam pelo resultado dela.
+````smart header="Podemos anexar tratadores a promessas já estabelecidas"
+Se uma promessa está pendente, os tratadores `.then/catch/finally` esperam pelo resultado dela.
 
-Às vezes, pode ser que uma promise já esteja resolvida (settled) quando adicionamos um handler a ela.
+Às vezes, pode ser que uma promessa já esteja estabelecida (settled) quando adicionamos um tratador a ela.
 
-Nesse caso, esses handlers simplesmente rodam imediatamente:
+Nesse caso, esses tratadores simplesmente rodam imediatamente:
 
 ```js run
-// a promise se torna resolvida imediatamente após ser criada
+// a promessa se torna resolvida imediatamente após ser criada
 let promise = new Promise(resolve => resolve("done!"));
 
 promise.then(alert); // done! (aparece agora mesmo)
 ```
 
-Repare que isso torna as promises mais poderosas do que o cenário real da "lista de inscrição". Se o cantor já lançou a música e, depois, uma pessoa se inscreve na lista, provavelmente ela não vai receber aquela música. Inscrições na vida real precisam ser feitas antes do evento.
+Repare que isso torna as promessas mais poderosas do que o cenário real da "lista de inscrição". Se o cantor já lançou a música e, depois, uma pessoa se inscreve na lista, provavelmente ela não vai receber aquela música. Inscrições na vida real precisam ser feitas antes do evento.
 
-Promises são mais flexíveis. Podemos adicionar handlers a qualquer momento: se o resultado já estiver lá, eles simplesmente executam.
+Promessas são mais flexíveis. Podemos adicionar tratadores a qualquer momento: se o resultado já estiver lá, eles simplesmente executam.
 ````
 
 ## Exemplo: loadScript [#loadscript]
@@ -324,7 +324,7 @@ function loadScript(src, callback) {
 
 Vamos reescrevê-la usando Promises.
 
-A nova função `loadScript` não vai precisar de um callback. Em vez disso, ela vai criar e retornar um objeto Promise, que é resolvido quando o carregamento é concluído. O código externo pode adicionar handlers (funções inscritas) a ela usando `.then`:
+A nova função `loadScript` não vai precisar de um callback. Em vez disso, ela vai criar e retornar um objeto Promise, que é resolvido quando o carregamento é concluído. O código externo pode adicionar tratadores (funções inscritas) a ela usando `.then`:
 
 ```js run
 function loadScript(src) {
@@ -350,7 +350,7 @@ promise.then(
   error => alert(`Error: ${error.message}`)
 );
 
-promise.then(script => alert('Another handler...'));
+promise.then(script => alert('Outro tratador...'));
 ```
 
 Já conseguimos ver algumas vantagens em comparação com o padrão baseado em callback:
@@ -358,7 +358,7 @@ Já conseguimos ver algumas vantagens em comparação com o padrão baseado em c
 
 | Promises | Callbacks |
 |----------|-----------|
-| Promises nos permitem fazer as coisas na ordem natural. Primeiro, rodamos `loadScript(script)`, e `.then` escrevemos o que fazer com o resultado. | Precisamos ter uma função `callback` disponível ao chamar `loadScript(script, callback)`. Em outras palavras, precisamos saber o que fazer com o resultado *antes* de `loadScript` ser chamado. |
-| Podemos chamar `.then` em uma Promise quantas vezes quisermos. A cada vez, estamos adicionando um novo "fã", uma nova função inscrita, à "lista de inscrição". Mais sobre isso no próximo capítulo: [](info:promise-chaining). | Só pode haver um único callback. |
+| Promessas nos permitem fazer as coisas na ordem natural. Rodamos `loadScript(script)`, e depois (`.then`) escrevemos o que fazer com o resultado. | Precisamos ter uma função `callback` disponível ao chamar `loadScript(script, callback)`. Em outras palavras, precisamos saber o que fazer com o resultado *antes* de `loadScript` ser chamado. |
+| Podemos chamar `.then` em uma promessa quantas vezes quisermos. A cada vez, estamos adicionando um novo "fã", uma nova função inscrita, à "lista de inscrição". Mais sobre isso no próximo capítulo: [](info:promise-chaining). | Só pode haver um único callback. |
 
-Então as promises nos dão um melhor fluxo de código e mais flexibilidade. Mas tem mais. Vamos ver isso nos próximos capítulos.
+Então as promessas nos dão um melhor fluxo de código e mais flexibilidade. Mas tem mais. Vamos ver isso nos próximos capítulos.

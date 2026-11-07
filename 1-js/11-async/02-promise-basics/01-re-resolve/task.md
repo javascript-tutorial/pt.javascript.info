@@ -1,5 +1,5 @@
 
-# Resolver uma promise de novo?
+# Resolver uma promessa de novo?
 
 
 Qual é a saída do código abaixo?

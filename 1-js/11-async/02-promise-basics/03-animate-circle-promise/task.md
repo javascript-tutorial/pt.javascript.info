@@ -1,7 +1,7 @@
 
-# Círculo animado com promise
+# Círculo animado com promessa
 
-Reescreva a função `showCircle`, da solução da tarefa <info:task/animate-circle-callback>, para que ela retorne uma promise em vez de receber um callback.
+Reescreva a função `showCircle`, da solução da tarefa <info:task/animate-circle-callback>, para que ela retorne uma promessa em vez de receber um callback.
 
 O novo uso:
 
