@@ -46,3 +46,16 @@ love-html5-classes.svg:
   "I love":
     "text": "Eu amo"
     "position": "center"
+promiseQueue.svg:
+  '"code finished"':
+    text: '"código terminado"'
+    position: center
+  "handler enqueued":
+    text: "tratador enfileirado"
+    position: center
+  "queued handler runs":
+    text: "tratador enfileirado executa"
+    position: center
+  "script execution finished":
+    text: "execução do script terminada"
+    position: center
