@@ -1,4 +1,4 @@
-Let's store read messages in `WeakSet`:
+Vamos guardar as mensagens lidas em um `WeakSet`:
 
 ```js run
 let messages = [
@@ -9,35 +9,35 @@ let messages = [
 
 let readMessages = new WeakSet();
 
-// two messages have been read
+// duas mensagens foram lidas
 readMessages.add(messages[0]);
 readMessages.add(messages[1]);
-// readMessages has 2 elements
+// readMessages tem 2 elementos
 
-// ...let's read the first message again!
+// ...vamos ler a primeira mensagem de novo!
 readMessages.add(messages[0]);
-// readMessages still has 2 unique elements
+// readMessages ainda tem 2 elementos únicos
 
-// answer: was the message[0] read?
-alert("Read message 0: " + readMessages.has(messages[0])); // true
+// resposta: a message[0] foi lida?
+alert("Mensagem 0 lida: " + readMessages.has(messages[0])); // true
 
 messages.shift();
-// now readMessages has 1 element (technically memory may be cleaned later)
+// agora readMessages tem 1 elemento (tecnicamente a memória pode ser limpa depois)
 ```
 
-The `WeakSet` allows to store a set of messages and easily check for the existence of a message in it.
+O `WeakSet` nos permite guardar um conjunto de mensagens e verificar facilmente se uma mensagem existe nele.
 
-It cleans up itself automatically. The tradeoff is that we can't iterate over it,  can't get "all read messages" from it directly. But we can do it by iterating over all messages and filtering those that are in the set.
+Ele se limpa automaticamente. A desvantagem é que não podemos iterar sobre ele, nem obter "todas as mensagens lidas" diretamente. Mas conseguimos fazer isso iterando sobre todas as mensagens e filtrando as que estão no `WeakSet`.
 
-Another, different solution could be to add a property like `message.isRead=true` to a message after it's read. As messages objects are managed by another code, that's generally discouraged, but we can use a symbolic property to avoid conflicts.
+Outra solução, diferente, seria adicionar uma propriedade como `message.isRead=true` a uma mensagem depois que ela for lida. Como os objetos de mensagem são gerenciados por outro código, isso geralmente é desaconselhado, mas podemos usar uma propriedade simbólica para evitar conflitos.
 
-Like this:
+Assim:
 ```js
-// the symbolic property is only known to our code
+// a propriedade simbólica só é conhecida pelo nosso código
 let isRead = Symbol("isRead");
 messages[0][isRead] = true;
 ```
 
-Now third-party code probably won't see our extra property.
+Agora, o código de terceiros provavelmente não vai ver nossa propriedade extra.
 
-Although symbols allow to lower the probability of problems, using `WeakSet` is better from the architectural point of view.
+Embora símbolos reduzam a probabilidade de problemas, usar `WeakSet` é melhor do ponto de vista arquitetural.
