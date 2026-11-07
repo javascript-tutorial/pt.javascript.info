@@ -1,11 +1,11 @@
 
 # Object.keys, values, entries
 
-Vamos dar um passo atrás das estruturas de dados individuais e falar sobre como iterar sobre elas.
+Vamos deixar de lado as estruturas de dados individuais e falar sobre como iterar sobre elas.
 
 No capítulo anterior, vimos os métodos `map.keys()`, `map.values()`, `map.entries()`.
 
-Esses métodos são genéricos, existe um acordo comum para usá-los em estruturas de dados. Se um dia criarmos nossa própria estrutura de dados, devemos implementá-los também.
+Esses métodos são genéricos: há uma convenção de usá-los em estruturas de dados. Se um dia criarmos nossa própria estrutura de dados, devemos implementá-los também.
 
 Eles são suportados por:
 
@@ -25,16 +25,16 @@ Para objetos simples, os seguintes métodos estão disponíveis:
 
 Repare nas diferenças (comparando com o map, por exemplo):
 
-|             | Map              | Object       |
-|-------------|------------------|--------------|
+|                    | Map           | Object                                   |
+|--------------------|---------------|-------------------------------------------|
 | Sintaxe de chamada | `map.keys()`  | `Object.keys(obj)`, mas não `obj.keys()` |
-| Retorna     | iterável    | Array "de verdade"                     |
+| Retorna            | iterável      | Array "de verdade"                       |
 
 A primeira diferença é que precisamos chamar `Object.keys(obj)`, e não `obj.keys()`.
 
-Por que assim? O principal motivo é flexibilidade. Lembre-se, objetos são a base de todas as estruturas complexas em JavaScript. Então podemos ter um objeto nosso, chamado `data`, que implementa seu próprio método `data.values()`. E ainda assim podemos chamar `Object.values(data)` sobre ele.
+Por que assim? O principal motivo é flexibilidade. Lembre-se, objetos são a base de todas as estruturas complexas em JavaScript. Então podemos ter um objeto nosso, chamado `data`, que implementa seu próprio método `data.values()`. E ainda assim podemos chamar `Object.values(data)`.
 
-A segunda diferença é que os métodos `Object.*` retornam objetos "array de verdade", e não apenas um iterável. Isso é, principalmente, por motivos históricos.
+A segunda diferença é que os métodos `Object.*` retornam arrays "de verdade", e não apenas iteráveis. Isso se deve principalmente a motivos históricos.
 
 Por exemplo:
 
@@ -100,4 +100,4 @@ let doublePrices = Object.fromEntries(
 alert(doublePrices.meat); // 8
 ```
 
-Pode parecer difícil à primeira vista, mas fica fácil de entender depois que você usa uma ou duas vezes. Dá pra montar cadeias de transformações bem poderosas dessa forma.
+Pode parecer difícil à primeira vista, mas fica fácil de entender depois que você usa uma ou duas vezes. Dá para montar cadeias de transformações bem poderosas dessa forma.

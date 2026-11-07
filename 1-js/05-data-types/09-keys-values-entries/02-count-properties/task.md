@@ -17,5 +17,5 @@ alert( count(user) ); // 2
 
 Tente deixar o código o mais curto possível.
 
-P.S. Ignore propriedades simbólicas, conte apenas as "normais".
+P.S. Ignore propriedades simbólicas, conte apenas as propriedades "comuns" (com chaves do tipo string).
 
