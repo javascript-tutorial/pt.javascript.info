@@ -8,7 +8,7 @@ Então aqui está a correção:
 class Rabbit extends Object {
   constructor(name) {
 *!*
-    super(); // precisamos chamar o construtor do pai ao herdar
+    super(); // precisamos chamar o construtor da classe pai ao herdar
 */!*
     this.name = name;
   }

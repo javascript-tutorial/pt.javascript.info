@@ -67,7 +67,7 @@ alert( articles[0].title ); // CSS
 
 Aqui o método `Article.compare` fica "acima" dos artigos, como um meio de compará-los. Não é um método de um artigo, mas sim de toda a classe.
 
-Outro exemplo seria um método chamado de "fábrica" (factory).
+Outro exemplo seria um método chamado de "fábrica".
 
 Digamos que precisamos de várias formas de criar um artigo:
 
@@ -89,14 +89,14 @@ class Article {
 *!*
   static createTodays() {
     // lembre-se, this = Article
-    return new this("Today's digest", new Date());
+    return new this("Resumo de hoje", new Date());
   }
 */!*
 }
 
 let article = Article.createTodays();
 
-alert( article.title ); // Today's digest
+alert( article.title ); // Resumo de hoje
 ```
 
 Agora, toda vez que precisarmos criar um resumo de hoje, podemos chamar `Article.createTodays()`. Mais uma vez, isso não é um método de um artigo, mas um método de toda a classe.
@@ -124,7 +124,7 @@ article.createTodays(); /// Error: article.createTodays is not a function
 
 [recent browser=Chrome]
 
-Propriedades estáticas também são possíveis, elas se parecem com propriedades comuns de classe, mas são precedidas por `static`:
+Propriedades estáticas também são possíveis. Elas se parecem com propriedades comuns de classe, mas são precedidas por `static`:
 
 ```js run
 class Article {
@@ -221,7 +221,7 @@ Métodos estáticos são usados para funcionalidades que pertencem à classe "co
 
 Por exemplo, um método de comparação `Article.compare(article1, article2)` ou um método de fábrica `Article.createTodays()`.
 
-Eles são identificados pela palavra `static` na declaração da classe.
+Eles são identificados pela palavra-chave `static` na declaração da classe.
 
 Propriedades estáticas são usadas quando queremos guardar dados no nível da classe, também não vinculados a uma instância.
 

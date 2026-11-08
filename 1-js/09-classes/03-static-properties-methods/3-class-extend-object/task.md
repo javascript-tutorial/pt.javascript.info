@@ -2,7 +2,7 @@ importance: 3
 
 ---
 
-# Class extends Object?
+# Classe estende Object?
 
 Como sabemos, todos os objetos normalmente herdam de `Object.prototype` e têm acesso aos métodos "genéricos" de objeto, como `hasOwnProperty`, etc.
 
