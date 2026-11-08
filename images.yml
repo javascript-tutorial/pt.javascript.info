@@ -65,3 +65,16 @@ try-catch-flow.svg:
   "Execute catch block":
     text: "Executa o bloco catch"
     position: center
+promiseQueue.svg:
+  '"code finished"':
+    text: '"código terminado"'
+    position: center
+  "handler enqueued":
+    text: "tratador enfileirado"
+    position: left
+  "queued handler runs":
+    text: "tratador enfileirado é executado"
+    position: left
+  "script execution finished":
+    text: "execução do script terminada"
+    position: left
