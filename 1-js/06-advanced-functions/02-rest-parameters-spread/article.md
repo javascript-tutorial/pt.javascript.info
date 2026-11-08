@@ -150,14 +150,14 @@ E certamente não podemos listar manualmente os itens no código `Math.max(arr[0
 
 A *sintaxe spread* vem ao resgate! Ela se parece com os parâmetros rest, também usando `...`, mas faz exatamente o oposto.
 
-Quando `...arr` é usado numa chamada de função, ele "expande" um objeto iterável `arr` na lista de argumentos.
+Quando `...arr` é usado numa chamada de função, a sintaxe spread "expande" o objeto iterável `arr` na lista de argumentos.
 
 Para `Math.max`:
 
 ```js run
 let arr = [3, 5, 1];
 
-alert( Math.max(...arr) ); // 5 (o spread transforma o array numa lista de argumentos)
+alert( Math.max(...arr) ); // 5 (a sintaxe spread transforma o array numa lista de argumentos)
 ```
 
 Também podemos passar vários iteráveis dessa forma:
