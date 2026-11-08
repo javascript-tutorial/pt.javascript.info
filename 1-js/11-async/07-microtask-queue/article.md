@@ -1,5 +1,5 @@
 
-# Microtasks
+# Microtarefas
 
 Tratadores de promessas `.then`/`.catch`/`.finally` são sempre assíncronos.
 
@@ -21,9 +21,9 @@ Isso é estranho, porque a promessa claramente já está pronta desde o início.
 
 Por que o `.then` disparou depois? O que está acontecendo?
 
-## Fila de microtasks
+## Fila de microtarefas
 
-Tarefas assíncronas precisam de um gerenciamento adequado. Para isso, o padrão ECMA especifica uma fila interna `PromiseJobs`, mais comumente chamada de "fila de microtasks" (termo do V8).
+Tarefas assíncronas precisam de um gerenciamento adequado. Para isso, o padrão ECMA especifica uma fila interna `PromiseJobs`, mais comumente chamada de "fila de microtarefas" (*microtask queue*, termo do V8).
 
 Como dito na [especificação](https://tc39.github.io/ecma262/#sec-jobs-and-job-queues):
 
@@ -58,7 +58,7 @@ Lembra do evento `unhandledrejection` do artigo <info:promise-error-handling>?
 
 Agora podemos ver exatamente como o JavaScript descobre que houve uma rejeição não tratada.
 
-**Uma "rejeição não tratada" acontece quando um erro de promessa não é tratado até o fim da fila de microtasks.**
+**Uma "rejeição não tratada" acontece quando um erro de promessa não é tratado até o fim da fila de microtarefas.**
 
 Normalmente, se esperamos um erro, adicionamos `.catch` à cadeia de promessas para tratá-lo:
 
@@ -72,7 +72,7 @@ promise.catch(err => alert('capturado'));
 window.addEventListener('unhandledrejection', event => alert(event.reason));
 ```
 
-Mas se esquecermos de adicionar o `.catch`, então, depois que a fila de microtasks fica vazia, o motor dispara o evento:
+Mas se esquecermos de adicionar o `.catch`, então, depois que a fila de microtarefas fica vazia, o motor dispara o evento:
 
 ```js run
 let promise = Promise.reject(new Error("A promessa falhou!"));
@@ -95,18 +95,18 @@ window.addEventListener('unhandledrejection', event => alert(event.reason));
 
 Agora, se rodarmos isso, vamos ver `A promessa falhou!` primeiro e depois `capturado`.
 
-Se não soubéssemos sobre a fila de microtasks, poderíamos nos perguntar: "Por que o tratador de `unhandledrejection` rodou? Nós capturamos e tratamos o erro!"
+Se não soubéssemos sobre a fila de microtarefas, poderíamos nos perguntar: "Por que o tratador de `unhandledrejection` rodou? Nós capturamos e tratamos o erro!"
 
-Mas agora entendemos que o `unhandledrejection` é gerado quando a fila de microtasks está completa: o motor examina as promessas e, se qualquer uma delas estiver no estado "rejected", o evento dispara.
+Mas agora entendemos que o `unhandledrejection` é gerado quando a fila de microtarefas termina de ser processada: o motor examina as promessas e, se qualquer uma delas estiver no estado "rejected", o evento dispara.
 
 No exemplo acima, o `.catch` adicionado pelo `setTimeout` também dispara. Mas isso acontece depois, após o `unhandledrejection` já ter ocorrido, então não muda nada.
 
 ## Resumo
 
-O tratamento de promessas é sempre assíncrono, já que todas as ações de promessas passam pela fila interna de "promise jobs", também chamada de "fila de microtasks" (termo do V8).
+O tratamento de promessas é sempre assíncrono, já que todas as ações de promessas passam pela fila interna de "promise jobs", também chamada de "fila de microtarefas" (termo do V8).
 
 Então os tratadores `.then/catch/finally` são sempre chamados depois que o código atual termina.
 
 Se precisarmos garantir que um trecho de código seja executado depois de `.then/catch/finally`, podemos adicioná-lo em uma chamada `.then` encadeada.
 
-Na maioria dos motores JavaScript, incluindo navegadores e Node.js, o conceito de microtasks está intimamente ligado ao "event loop" e às "macrotasks". Como eles não têm relação direta com promessas, são cobertos em outra parte do tutorial, no artigo <info:event-loop>.
+Na maioria dos motores JavaScript, incluindo navegadores e Node.js, o conceito de microtarefas está intimamente ligado ao "loop de eventos" e às "macrotarefas". Como eles não têm relação direta com promessas, são abordados em outra parte do tutorial, no artigo <info:event-loop>.

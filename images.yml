@@ -52,10 +52,10 @@ promiseQueue.svg:
     position: center
   "handler enqueued":
     text: "tratador enfileirado"
-    position: center
+    position: left
   "queued handler runs":
-    text: "tratador enfileirado executa"
-    position: center
+    text: "tratador enfileirado é executado"
+    position: left
   "script execution finished":
     text: "execução do script terminada"
-    position: center
+    position: left
