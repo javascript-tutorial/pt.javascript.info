@@ -72,7 +72,7 @@ Vamos reforçar: o `await` literalmente suspende a execução da função até q
 É só uma sintaxe mais elegante de obter o resultado da promessa do que o `promise.then`. E é mais fácil de ler e escrever.
 
 ````warn header="Não dá para usar `await` em funções comuns"
-Se tentarmos usar `await` em uma função que não seja `async`, haveria um erro de sintaxe:
+Se tentarmos usar `await` em uma função que não seja `async`, teremos um erro de sintaxe:
 
 ```js run
 function f() {
@@ -122,7 +122,7 @@ showAvatar();
 Bem limpo e fácil de ler, não é? Bem melhor do que antes.
 
 ````smart header="Navegadores modernos permitem `await` de nível superior em módulos"
-Em navegadores modernos, o `await` em nível superior funciona perfeitamente bem, quando estamos dentro de um módulo. Vamos cobrir módulos no artigo <info:modules-intro>.
+Em navegadores modernos, o `await` em nível superior funciona perfeitamente bem, quando estamos dentro de um módulo. Vamos abordar módulos no artigo <info:modules-intro>.
 
 Por exemplo:
 
@@ -275,7 +275,7 @@ Se esquecermos de adicionar o `.catch` ali, então temos um erro de promessa nã
 ```smart header="`async/await` e `promise.then/catch`"
 Quando usamos `async/await`, raramente precisamos do `.then`, porque o `await` cuida da espera para nós. E podemos usar um `try..catch` normal em vez de `.catch`. Isso geralmente é (mas nem sempre) mais conveniente.
 
-Mas no nível superior do código, quando estamos fora de qualquer função `async`, não conseguimos usar `await` sintaticamente, então é uma prática normal adicionar `.then/catch` para tratar o resultado final ou o erro que "cai através", como na linha `(*)` do exemplo acima.
+Mas no nível superior do código, quando estamos fora de qualquer função `async`, não conseguimos usar `await` sintaticamente, então é uma prática normal adicionar `.then/catch` para tratar o resultado final ou algum erro que não foi tratado, como na linha `(*)` do exemplo acima.
 ```
 
 ````smart header="`async/await` funciona bem com `Promise.all`"
