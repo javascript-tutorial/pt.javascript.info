@@ -46,13 +46,3 @@ love-html5-classes.svg:
   "I love":
     "text": "Eu amo"
     "position": "center"
-class-inheritance-rabbit-animal.svg:
-  "methods of Animal":
-    text: "métodos de Animal"
-    position: center
-  "methods of Rabbit":
-    text: "métodos de Rabbit"
-    position: center
-  "properties of rabbit":
-    text: "propriedades de rabbit"
-    position: center

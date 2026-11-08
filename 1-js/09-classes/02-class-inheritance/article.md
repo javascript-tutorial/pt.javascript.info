@@ -36,7 +36,7 @@ Aqui está como podemos representar graficamente o objeto `animal` e a classe `A
 
 Como coelhos são animais, a classe `Rabbit` deveria ser baseada em `Animal`, ter acesso aos métodos de animal, para que coelhos possam fazer o que animais "genéricos" conseguem fazer.
 
-A sintaxe para estender outra classe é: `class Filha extends Pai`.
+A sintaxe para estender outra classe é: `class Child extends Parent`.
 
 Vamos criar a `class Rabbit` que herda de `Animal`:
 
@@ -156,15 +156,15 @@ rabbit.stop(); // White Rabbit stands still. White Rabbit hides!
 
 Agora `Rabbit` tem o método `stop` que chama o `super.stop()` do pai durante o processo.
 
-````smart header="Funções arrow não têm `super`"
-Como foi mencionado no capítulo <info:arrow-functions>, funções arrow não têm `super`.
+````smart header="Funções seta não têm `super`"
+Como foi mencionado no capítulo <info:arrow-functions>, funções seta não têm `super`.
 
 Se acessado, ele é obtido da função externa. Por exemplo:
 
 ```js
 class Rabbit extends Animal {
   stop() {
-    setTimeout(() => super.stop(), 1000); // chama o stop do pai depois de 1seg
+    setTimeout(() => super.stop(), 1000); // chama o stop do pai depois de 1 segundo
   }
 }
 ```
@@ -607,21 +607,21 @@ let rabbit = {
 };
 
 *!*
-rabbit.eat();  // Error calling super (because there's no [[HomeObject]])
+rabbit.eat();  // Error calling super (porque não existe [[HomeObject]])
 */!*
 ```
 
 ## Resumo
 
-1. Para estender uma classe: `class Filha extends Pai`:
-    - Isso significa que `Filha.prototype.__proto__` vai ser `Pai.prototype`, então os métodos são herdados.
+1. Para estender uma classe: `class Child extends Parent`:
+    - Isso significa que `Child.prototype.__proto__` vai ser `Parent.prototype`, então os métodos são herdados.
 2. Ao sobrescrever um construtor:
-    - Precisamos chamar o construtor do pai com `super()` no construtor de `Filha` antes de usar `this`.
+    - Precisamos chamar o construtor do pai com `super()` no construtor de `Child` antes de usar `this`.
 3. Ao sobrescrever outro método:
-    - Podemos usar `super.method()` em um método de `Filha` para chamar o método de `Pai`.
+    - Podemos usar `super.method()` em um método de `Child` para chamar o método de `Parent`.
 4. Detalhes internos:
     - Os métodos lembram sua classe/objeto na propriedade interna `[[HomeObject]]`. É assim que o `super` resolve os métodos do pai.
     - Então não é seguro copiar um método com `super` de um objeto para outro.
 
 Além disso:
-- Funções arrow não têm seu próprio `this` ou `super`, então elas se encaixam de forma transparente no contexto ao redor.
+- Funções seta não têm seu próprio `this` ou `super`, então elas se encaixam de forma transparente no contexto ao redor.
