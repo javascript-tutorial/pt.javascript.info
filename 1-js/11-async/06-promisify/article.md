@@ -23,7 +23,7 @@ function loadScript(src, callback) {
 // loadScript('path/script.js', (err, script) => {...})
 ```
 
-A função carrega um script com o `src` fornecido, e então chama `callback(err)` em caso de erro, ou `callback(null, script)` em caso de carregamento bem-sucedido. Esse é um acordo bastante difundido para usar callbacks, já vimos isso antes.
+A função carrega um script com o `src` fornecido, e então chama `callback(err)` em caso de erro, ou `callback(null, script)` em caso de carregamento bem-sucedido. Essa é uma convenção bastante difundida para usar callbacks, já vimos isso antes.
 
 Vamos promisificá-la.
 
@@ -46,7 +46,7 @@ let loadScriptPromise = function(src) {
 // loadScriptPromise('path/script.js').then(...)
 ```
 
-Como podemos ver, a nova função é um invólucro ao redor da função original `loadScript`. Ela a chama fornecendo seu próprio callback que traduz para `resolve/reject` da promessa.
+Como podemos ver, a nova função é um invólucro ao redor da função original `loadScript`. Ela a chama fornecendo seu próprio callback, que converte o resultado em `resolve/reject` da promessa.
 
 Agora a `loadScriptPromise` se encaixa bem em código baseado em promessas. Se gostamos mais de promessas do que de callbacks (e logo vamos ver mais motivos para isso), então vamos usá-la no lugar.
 
@@ -82,11 +82,11 @@ O código pode parecer um pouco complexo, mas é essencialmente o mesmo que escr
 
 Uma chamada a `promisify(f)` retorna um invólucro ao redor de `f` `(*)`. Esse invólucro retorna uma promessa e encaminha a chamada para o `f` original, rastreando o resultado no callback personalizado `(**)`.
 
-Aqui, o `promisify` assume que a função original espera um callback com exatamente dois argumentos `(err, result)`. Isso é o que encontramos com mais frequência. Então nosso callback personalizado está exatamente no formato certo, e o `promisify` funciona ótimo para esse caso.
+Aqui, o `promisify` assume que a função original espera um callback com exatamente dois argumentos `(err, result)`. Isso é o que encontramos com mais frequência. Então nosso callback personalizado está exatamente no formato certo, e o `promisify` funciona muito bem para esse caso.
 
-Mas e se o `f` original espera um callback com mais argumentos `callback(err, res1, res2, ...)`?
+Mas e se o `f` original esperar um callback com mais argumentos `callback(err, res1, res2, ...)`?
 
-Podemos melhorar nosso auxiliar. Vamos fazer uma versão mais avançada do `promisify`.
+Podemos melhorar nossa função auxiliar. Vamos fazer uma versão mais avançada do `promisify`.
 
 - Quando chamado como `promisify(f)`, deve funcionar parecido com a versão acima.
 - Quando chamado como `promisify(f, true)`, deve retornar a promessa que é resolvida com o array dos resultados do callback. Isso é exatamente para callbacks com muitos argumentos.
@@ -117,7 +117,7 @@ f = promisify(f, true);
 f(...).then(arrayOfResults => ..., err => ...);
 ```
 
-Como você pode ver, é essencialmente o mesmo que acima, mas o `resolve` é chamado com apenas um ou com todos os argumentos, dependendo se `manyArgs` é verdadeiro.
+Como você pode ver, é essencialmente o mesmo que acima, mas o `resolve` é chamado com apenas um ou com todos os argumentos, dependendo se `manyArgs` tem um valor verdadeiro.
 
 Para formatos de callback mais exóticos, como aqueles sem `err` de jeito nenhum: `callback(result)`, podemos promisificar essas funções manualmente, sem usar a função auxiliar.
 
