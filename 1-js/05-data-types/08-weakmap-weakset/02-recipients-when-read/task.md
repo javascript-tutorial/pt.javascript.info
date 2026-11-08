@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Store read dates
+# Guarde as datas de leitura
 
-There's an array of messages as in the [previous task](info:task/recipients-read). The situation is similar.
+Existe um array de mensagens, igual ao da [tarefa anterior](info:task/recipients-read). A situação é parecida.
 
 ```js
 let messages = [
@@ -14,8 +14,8 @@ let messages = [
 ];
 ```
 
-The question now is: which data structure you'd suggest to store the information: "when the message was read?".
+A pergunta agora é: qual estrutura de dados você sugeriria para guardar a informação "quando a mensagem foi lida?".
 
-In the previous task we only needed to store the "yes/no" fact. Now we need to store the date, and it should only remain in memory until the message is garbage collected.
+Na tarefa anterior, só precisávamos guardar o fato "sim/não". Agora precisamos guardar a data, e ela só deve permanecer na memória até que a mensagem seja removida pela coleta de lixo.
 
-P.S. Dates can be stored as objects of built-in `Date` class, that we'll cover later.
+P.S. Datas podem ser guardadas como objetos da classe nativa `Date`, que veremos mais adiante.

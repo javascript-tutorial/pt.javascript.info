@@ -1,14 +1,14 @@
 
-# Delay with a promise
+# Atraso com uma promessa
 
-The built-in function `setTimeout` uses callbacks. Create a promise-based alternative.
+A função nativa `setTimeout` usa callbacks. Crie uma alternativa baseada em promessa.
 
-The function `delay(ms)` should return a promise. That promise should resolve after `ms` milliseconds, so that we can add `.then` to it, like this:
+A função `delay(ms)` deve retornar uma promessa. Essa promessa deve ser resolvida depois de `ms` milissegundos, de forma que possamos adicionar `.then` a ela, assim:
 
 ```js
 function delay(ms) {
-  // your code
+  // seu código
 }
 
-delay(3000).then(() => alert('runs after 3 seconds'));
+delay(3000).then(() => alert('roda depois de 3 segundos'));
 ```

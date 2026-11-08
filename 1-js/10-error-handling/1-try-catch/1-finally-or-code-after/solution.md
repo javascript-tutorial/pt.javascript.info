@@ -1,47 +1,47 @@
-The difference becomes obvious when we look at the code inside a function.
+A diferença fica óbvia quando olhamos o código dentro de uma função.
 
-The behavior is different if there's a "jump out" of `try...catch`.
+O comportamento é diferente quando há um "salto para fora" do `try...catch`.
 
-For instance, when there's a `return` inside `try...catch`. The `finally` clause works in case of *any* exit from `try...catch`, even via the `return` statement: right after `try...catch` is done, but before the calling code gets the control.
+Por exemplo, quando há um `return` dentro do `try...catch`. A cláusula `finally` funciona em caso de *qualquer* saída do `try...catch`, mesmo através do comando `return`: logo depois que o `try...catch` termina, mas antes do código que fez a chamada receber o controle.
 
 ```js run
 function f() {
   try {
-    alert('start');
+    alert('início');
 *!*
     return "result";
 */!*
   } catch (err) {
     /// ...
   } finally {
-    alert('cleanup!');
+    alert('limpeza!');
   }
 }
 
-f(); // cleanup!
+f(); // limpeza!
 ```
 
-...Or when there's a `throw`, like here:
+...Ou quando há um `throw`, como aqui:
 
 ```js run
 function f() {
   try {
-    alert('start');
+    alert('início');
     throw new Error("an error");
   } catch (err) {
     // ...
-    if("can't handle the error") {
+    if("não sabe tratar o erro") {
 *!*
       throw err;
 */!*
     }
 
   } finally {
-    alert('cleanup!')
+    alert('limpeza!')
   }
 }
 
-f(); // cleanup!
+f(); // limpeza!
 ```
 
-It's `finally` that guarantees the cleanup here. If we just put the code at the end of `f`, it wouldn't run in these situations.
+É o `finally` que garante a limpeza aqui. Se apenas colocássemos o código no fim de `f`, ele não rodaria nessas situações.
