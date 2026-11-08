@@ -78,20 +78,3 @@ promiseQueue.svg:
   "script execution finished":
     text: "execução do script terminada"
     position: left
-array-pop.svg:
-  "clear":
-    text: "limpar"
-    position: center
-array-shift.svg:
-  "clear":
-    text: "limpar"
-    position: center
-  "move":
-    text: "mover"
-    position: left
-  "elements":
-    text: "elementos"
-    position: left
-  "to the left":
-    text: "para a esquerda"
-    position: left
