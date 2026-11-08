@@ -2,14 +2,14 @@ importance: 5
 
 ---
 
-# Set and decrease for counter
+# Define e diminui o contador
 
-Modify the code of `makeCounter()` so that the counter can also decrease and set the number:
+Modifique o código de `makeCounter()` para que o contador também possa diminuir e definir o número:
 
-- `counter()` should return the next number (as before).
-- `counter.set(value)` should set the counter to `value`.
-- `counter.decrease()` should decrease the counter by 1.
+- `counter()` deve retornar o próximo número (como antes).
+- `counter.set(value)` deve definir o contador para `value`.
+- `counter.decrease()` deve diminuir o contador em 1.
 
-See the sandbox code for the complete usage example.
+Veja o código do sandbox para o exemplo completo de uso.
 
-P.S. You can use either a closure or the function property to keep the current count. Or write both variants.
+P.S. Você pode usar tanto uma closure quanto a propriedade de função para manter a contagem atual. Ou escrever as duas variantes.
