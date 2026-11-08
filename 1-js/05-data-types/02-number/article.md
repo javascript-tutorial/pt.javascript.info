@@ -2,7 +2,7 @@
 
 No JavaScript moderno, existem dois tipos de números:
 
-1. Os números comuns do JavaScript são armazenados no formato de 64 bits [IEEE-754](https://pt.wikipedia.org/wiki/IEEE_754), também conhecido como "números de ponto flutuante de precisão dupla". Esses são os números que usamos na maior parte do tempo, e vamos falar sobre eles neste capítulo.
+1. Os números comuns do JavaScript são armazenados no formato de 64 bits [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754), também conhecido como "números de ponto flutuante de precisão dupla". Esses são os números que usamos na maior parte do tempo, e vamos falar sobre eles neste capítulo.
 
 2. Os números BigInt representam números inteiros de tamanho arbitrário. Às vezes eles são necessários porque um número inteiro comum não pode exceder com segurança <code>(2<sup>53</sup>-1)</code> nem ser menor que <code>-(2<sup>53</sup>-1)</code>, como mencionamos antes no capítulo <info:types>. Como os bigints são usados em poucas áreas especiais, dedicamos um capítulo especial a eles: <info:bigint>.
 
@@ -194,7 +194,7 @@ Há duas formas de fazer isso:
 
 ## Cálculos imprecisos
 
-Internamente, um número é representado no formato de 64 bits [IEEE-754](https://pt.wikipedia.org/wiki/IEEE_754), então há exatamente 64 bits para armazenar um número: 52 deles são usados para armazenar os dígitos, 11 deles armazenam a posição do ponto decimal, e 1 bit é para o sinal.
+Internamente, um número é representado no formato de 64 bits [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754), então há exatamente 64 bits para armazenar um número: 52 deles são usados para armazenar os dígitos, 11 deles armazenam a posição do ponto decimal, e 1 bit é para o sinal.
 
 Se um número for realmente enorme, ele pode ultrapassar o armazenamento de 64 bits e se tornar um valor numérico especial, `Infinity`:
 
