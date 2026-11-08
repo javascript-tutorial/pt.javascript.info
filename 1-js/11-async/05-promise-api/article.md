@@ -1,10 +1,10 @@
-# API do Promise
+# API de Promise
 
-Existem 6 métodos estáticos na classe `Promise`. Vamos cobrir rapidamente os seus casos de uso aqui.
+Existem 6 métodos estáticos na classe `Promise`. Vamos abordar rapidamente os seus casos de uso aqui.
 
 ## Promise.all
 
-Digamos que queremos que várias promessas sejam executadas em paralelo e esperar até que todas estejam prontas.
+Digamos que queremos executar várias promessas em paralelo e esperar até que todas estejam prontas.
 
 Por exemplo, baixar várias URLs em paralelo e processar o conteúdo assim que todas terminarem.
 
@@ -32,7 +32,7 @@ Promise.all([
 
 Repare que a ordem dos membros do array resultante é a mesma das promessas de origem. Mesmo que a primeira promessa leve o maior tempo para ser resolvida, ela continua sendo a primeira no array de resultados.
 
-Um truque comum é mapear um array de dados de trabalho em um array de promessas, e então envolver isso em um `Promise.all`.
+Um truque comum é mapear um array de dados em um array de promessas, e então envolver isso em um `Promise.all`.
 
 Por exemplo, se temos um array de URLs, podemos buscar todas assim:
 
@@ -46,7 +46,7 @@ let urls = [
 // mapeia cada url para a promessa do fetch
 let requests = urls.map(url => fetch(url));
 
-// Promise.all espera até que todas os trabalhos sejam resolvidos
+// Promise.all espera até que todos os trabalhos sejam resolvidos
 Promise.all(requests)
   .then(responses => responses.forEach(
     response => alert(`${response.url}: ${response.status}`)
@@ -96,10 +96,10 @@ Se uma promessa é rejeitada, o `Promise.all` é imediatamente rejeitado, esquec
 
 Por exemplo, se houver múltiplas chamadas `fetch`, como no exemplo acima, e uma delas falhar, as outras ainda vão continuar a ser executadas, mas o `Promise.all` não vai mais observá-las. Elas provavelmente serão estabelecidas, mas os resultados delas serão ignorados.
 
-O `Promise.all` não faz nada para cancelá-las, já que não existe o conceito de "cancelamento" em promessas. Em [outro capítulo](info:fetch-abort) vamos cobrir o `AbortController`, que pode ajudar com isso, mas ele não é parte da API do Promise.
+O `Promise.all` não faz nada para cancelá-las, já que não existe o conceito de "cancelamento" em promessas. Em [outro capítulo](info:fetch-abort) vamos abordar o `AbortController`, que pode ajudar com isso, mas ele não é parte da API de Promise.
 ```
 
-````smart header="`Promise.all(iterable)` permite valores "normais" (não promessas) no `iterable`"
+````smart header="`Promise.all(iterable)` permite valores \"normais\" (não promessas) no `iterable`"
 Normalmente, o `Promise.all(...)` aceita um iterável (na maioria dos casos, um array) de promessas. Mas se qualquer um desses objetos não for uma promessa, ele é passado "como está" para o array resultante.
 
 Por exemplo, aqui os resultados são `[1, 2, 3]`:
@@ -128,7 +128,7 @@ Promise.all([
   fetch('/template.html'),
   fetch('/style.css'),
   fetch('/data.json')
-]).then(render); // o método render precisa dos resultados de todos os fetches
+]).then(render); // o método render precisa dos resultados de todas as requisições
 ```
 
 O `Promise.allSettled` apenas espera que todas as promessas sejam estabelecidas, independentemente do resultado. O array resultante tem:
@@ -169,7 +169,7 @@ O `results` na linha `(*)` acima será:
 ]
 ```
 
-Então, para cada promessa, obtemos o status e o `value`/`error` dela.
+Então, para cada promessa, obtemos o status e o `value`/`reason` dela.
 
 ### Polyfill
 
@@ -219,7 +219,7 @@ A primeira promessa aqui foi a mais rápida, então ela se tornou o resultado. D
 
 ## Promise.any
 
-Parecido com o `Promise.race`, mas espera apenas pela primeira promessa resolvida e pega o resultado dela. Se todas as promessas dadas forem rejeitadas, então a promessa retornada é rejeitada com [`AggregateError`](mdn:js/AggregateError) - um objeto de erro especial que guarda todos os erros das promessas na sua propriedade `errors`.
+Parecido com o `Promise.race`, mas espera apenas pela primeira promessa cumprida e pega o resultado dela. Se todas as promessas dadas forem rejeitadas, então a promessa retornada é rejeitada com [`AggregateError`](mdn:js/AggregateError) - um objeto de erro especial que guarda todos os erros das promessas na sua propriedade `errors`.
 
 A sintaxe é:
 
@@ -237,7 +237,7 @@ Promise.any([
 ]).then(alert); // 1
 ```
 
-A primeira promessa aqui foi a mais rápida, mas foi rejeitada, então a segunda promessa se tornou o resultado. Depois que a primeira promessa resolvida "vence a corrida", todos os outros resultados são ignorados.
+A primeira promessa aqui foi a mais rápida, mas foi rejeitada, então a segunda promessa se tornou o resultado. Depois que a primeira promessa cumprida "vence a corrida", todos os outros resultados são ignorados.
 
 Aqui está um exemplo de quando todas as promessas falham:
 
@@ -256,9 +256,9 @@ Como você pode ver, os objetos de erro das promessas que falharam ficam dispon�
 
 ## Promise.resolve/reject
 
-Os métodos `Promise.resolve` e `Promise.reject` raramente são necessários no código moderno, porque a sintaxe `async/await` (vamos cobrir isso [um pouco mais adiante](info:async-await)) os torna meio obsoletos.
+Os métodos `Promise.resolve` e `Promise.reject` raramente são necessários no código moderno, porque a sintaxe `async/await` (vamos abordar isso [um pouco mais adiante](info:async-await)) os torna meio obsoletos.
 
-Vamos cobri-los aqui por completude, e para quem não pode usar `async/await` por algum motivo.
+Vamos abordá-los aqui por completude, e para quem não pode usar `async/await` por algum motivo.
 
 ### Promise.resolve
 
@@ -314,10 +314,10 @@ Existem 6 métodos estáticos da classe `Promise`:
 1. `Promise.all(promises)` -- espera que todas as promessas sejam resolvidas e retorna um array dos resultados delas. Se qualquer uma das promessas dadas for rejeitada, isso se torna o erro do `Promise.all`, e todos os outros resultados são ignorados.
 2. `Promise.allSettled(promises)` (método adicionado recentemente) -- espera que todas as promessas sejam estabelecidas e retorna os resultados delas como um array de objetos com:
     - `status`: `"fulfilled"` ou `"rejected"`
-    - `value` (se resolvida) ou `reason` (se rejeitada).
+    - `value` (se cumprida) ou `reason` (se rejeitada).
 3. `Promise.race(promises)` -- espera que a primeira promessa seja estabelecida, e o resultado/erro dela se torna o resultado final.
 4. `Promise.any(promises)` (método adicionado recentemente) -- espera que a primeira promessa seja resolvida, e o resultado dela se torna o resultado final. Se todas as promessas dadas forem rejeitadas, [`AggregateError`](mdn:js/AggregateError) se torna o erro do `Promise.any`.
-5. `Promise.resolve(value)` -- faz uma promessa resolvida com o valor dado.
-6. `Promise.reject(error)` -- faz uma promessa rejeitada com o erro dado.
+5. `Promise.resolve(value)` -- cria uma promessa resolvida com o valor dado.
+6. `Promise.reject(error)` -- cria uma promessa rejeitada com o erro dado.
 
 De todos esses, o `Promise.all` é provavelmente o mais comum na prática.
