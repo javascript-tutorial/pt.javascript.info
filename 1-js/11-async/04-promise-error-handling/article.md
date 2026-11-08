@@ -42,7 +42,7 @@ Normalmente, esse `.catch` nem dispara. Mas se qualquer uma das promessas acima 
 
 ## try..catch implícito
 
-O código de um executor de promessa e dos tratadores de promessa tem um "try..catch invisível" ao redor dele. Se uma exceção acontece, ela é capturada e tratada como uma rejeição.
+O código de um executor de promessa e dos tratadores de promessa tem um "`try..catch` invisível" ao redor dele. Se uma exceção acontece, ela é capturada e tratada como uma rejeição.
 
 Por exemplo, este código:
 
@@ -64,7 +64,7 @@ new Promise((resolve, reject) => {
 }).catch(alert); // Error: Whoops!
 ```
 
-O "try..catch invisível" ao redor do executor captura o erro automaticamente e o transforma em uma promessa rejeitada.
+O "`try..catch` invisível" ao redor do executor captura o erro automaticamente e o transforma em uma promessa rejeitada.
 
 Isso acontece não só na função executora, mas também nos seus tratadores. Se dermos um `throw` dentro de um tratador de `.then`, isso significa uma promessa rejeitada, então o controle salta para o tratador de erro mais próximo.
 
@@ -100,7 +100,7 @@ Como já percebemos, o `.catch` no final da cadeia é parecido com `try..catch`.
 
 Em um `try..catch` normal, podemos analisar o erro e talvez relançá-lo se não puder ser tratado. A mesma coisa é possível com promessas.
 
-Se dermos um `throw` dentro do `.catch`, o controle vai para o próximo tratador de erro mais próximo. E se tratarmos o erro e terminarmos normalmente, então ele continua para o próximo tratador `.then` de sucesso mais próximo.
+Se dermos um `throw` dentro do `.catch`, o controle vai para o tratador de erro mais próximo. E se tratarmos o erro e terminarmos normalmente, então ele continua para o tratador `.then` de sucesso mais próximo.
 
 No exemplo abaixo, o `.catch` trata o erro com sucesso:
 
@@ -130,7 +130,7 @@ new Promise((resolve, reject) => {
 }).catch(function(error) { // (*)
 
   if (error instanceof URIError) {
-    // trata isso
+    // trate o erro aqui
   } else {
     alert("Não sei lidar com esse tipo de erro");
 
@@ -160,7 +160,7 @@ new Promise(function() {
   noSuchFunction(); // Erro aqui (não existe essa função)
 })
   .then(() => {
-    // tratadores de promessa bem-sucedidos, um ou mais
+    // tratadores de sucesso da promessa, um ou mais
   }); // sem .catch no final!
 ```
 
@@ -202,4 +202,4 @@ Em ambientes que não são navegador, como o Node.js, existem outras formas de r
 - O `.then` também captura erros da mesma forma, se receber o segundo argumento (que é o tratador de erro).
 - Devemos colocar o `.catch` exatamente nos lugares onde queremos tratar erros e sabemos como tratá-los. O tratador deve analisar os erros (classes de erro personalizadas ajudam) e relançar os desconhecidos (talvez sejam erros de programação).
 - Não tem problema não usar `.catch` de jeito nenhum, se não houver como se recuperar de um erro.
-- Em qualquer caso, devemos ter o tratador do evento `unhandledrejection` (para navegadores, e equivalentes para outros ambientes) para rastrear erros não tratados e informar o usuário (e provavelmente nosso servidor) sobre eles, para que nosso app nunca "simplesmente morra".
+- Em qualquer caso, devemos ter o tratador do evento `unhandledrejection` (para navegadores, e equivalentes para outros ambientes) para rastrear erros não tratados e informar o usuário (e provavelmente nosso servidor) sobre eles, para que nossa aplicação nunca "simplesmente morra".
