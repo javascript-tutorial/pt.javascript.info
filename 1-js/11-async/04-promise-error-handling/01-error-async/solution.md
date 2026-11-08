@@ -1,4 +1,4 @@
-The answer is: **no, it won't**:
+A resposta é: **não, não vai**:
 
 ```js run
 new Promise(function(resolve, reject) {
@@ -8,6 +8,6 @@ new Promise(function(resolve, reject) {
 }).catch(alert);
 ```
 
-As said in the chapter, there's an "implicit `try..catch`" around the function code. So all synchronous errors are handled.
+Como dito no capítulo, existe um "`try..catch` implícito" ao redor do código da função. Então todos os erros síncronos são tratados.
 
-But here the error is generated not while the executor is running, but later. So the promise can't handle it. 
+Mas aqui o erro é gerado não enquanto o executor está rodando, e sim depois. Então a promessa não consegue tratá-lo.
