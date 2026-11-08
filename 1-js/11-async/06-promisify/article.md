@@ -1,12 +1,12 @@
-# Promisification
+# Promisificação
 
-"Promisification" is a long word for a simple transformation. It's the conversion of a function that accepts a callback into a function that returns a promise.
+"Promisificação" é uma palavra longa para uma transformação simples. É a conversão de uma função que aceita um callback em uma função que retorna uma promessa.
 
-Such transformations are often required in real-life, as many functions and libraries are callback-based. But promises are more convenient, so it makes sense to promisify them.
+Esse tipo de transformação é frequentemente necessário na vida real, já que muitas funções e bibliotecas são baseadas em callback. Mas promessas são mais convenientes, então faz sentido promisificá-las.
 
-For better understanding, let's see an example.
+Para entender melhor, vamos ver um exemplo.
 
-For instance, we have `loadScript(src, callback)` from the chapter <info:callbacks>.
+Por exemplo, temos a `loadScript(src, callback)` do capítulo <info:callbacks>.
 
 ```js run
 function loadScript(src, callback) {
@@ -19,19 +19,19 @@ function loadScript(src, callback) {
   document.head.append(script);
 }
 
-// usage:
+// uso:
 // loadScript('path/script.js', (err, script) => {...})
 ```
 
-The function loads a script with the given `src`, and then calls `callback(err)` in case of an error, or `callback(null, script)` in case of successful loading. That's a widespread agreement for using callbacks, we saw it before.
+A função carrega um script com o `src` fornecido, e então chama `callback(err)` em caso de erro, ou `callback(null, script)` em caso de carregamento bem-sucedido. Essa é uma convenção bastante difundida para usar callbacks, já vimos isso antes.
 
-Let's promisify it.
+Vamos promisificá-la.
 
-We'll make a new function `loadScriptPromise(src)`, that does the same (loads the script), but returns a promise instead of using callbacks.
+Vamos criar uma nova função `loadScriptPromise(src)`, que faz a mesma coisa (carrega o script), mas retorna uma promessa em vez de usar callbacks.
 
-In other words, we pass it only `src` (no `callback`) and get a promise in return, that resolves with `script` when the load is successful, and rejects with the error otherwise.
+Em outras palavras, passamos a ela só o `src` (sem `callback`) e recebemos uma promessa de volta, que é resolvida com `script` quando o carregamento tem sucesso, e rejeitada com o erro caso contrário.
 
-Here it is:
+Aqui está:
 ```js
 let loadScriptPromise = function(src) {
   return new Promise((resolve, reject) => {
@@ -42,23 +42,23 @@ let loadScriptPromise = function(src) {
   });
 };
 
-// usage:
+// uso:
 // loadScriptPromise('path/script.js').then(...)
 ```
 
-As we can see, the new function is a wrapper around the original `loadScript` function. It calls it providing its own callback that translates to promise `resolve/reject`.
+Como podemos ver, a nova função é um invólucro ao redor da função original `loadScript`. Ela a chama fornecendo seu próprio callback, que converte o resultado em `resolve/reject` da promessa.
 
-Now `loadScriptPromise` fits well in promise-based code. If we like promises more than callbacks (and soon we'll see more reasons for that), then we will use it instead.
+Agora a `loadScriptPromise` se encaixa bem em código baseado em promessas. Se gostamos mais de promessas do que de callbacks (e logo vamos ver mais motivos para isso), então vamos usá-la no lugar.
 
-In practice we may need to promisify more than one function, so it makes sense to use a helper.
+Na prática, podemos precisar promisificar mais de uma função, então faz sentido usar uma função auxiliar.
 
-We'll call it `promisify(f)`: it accepts a to-promisify function `f` and returns a wrapper function.
+Vamos chamá-la de `promisify(f)`: ela aceita uma função `f` a ser promisificada e retorna uma função invólucro.
 
 ```js
 function promisify(f) {
-  return function (...args) { // return a wrapper-function (*)
+  return function (...args) { // retorna uma função invólucro (*)
     return new Promise((resolve, reject) => {
-      function callback(err, result) { // our custom callback for f (**)
+      function callback(err, result) { // nosso callback personalizado para f (**)
         if (err) {
           reject(err);
         } else {
@@ -66,41 +66,41 @@ function promisify(f) {
         }
       }
 
-      args.push(callback); // append our custom callback to the end of f arguments
+      args.push(callback); // adiciona nosso callback personalizado ao final dos argumentos de f
 
-      f.call(this, ...args); // call the original function
+      f.call(this, ...args); // chama a função original
     });
   };
 }
 
-// usage:
+// uso:
 let loadScriptPromise = promisify(loadScript);
 loadScriptPromise(...).then(...);
 ```
 
-The code may look a bit complex, but it's essentially the same that we wrote above, while promisifying `loadScript` function.
+O código pode parecer um pouco complexo, mas é essencialmente o mesmo que escrevemos acima, quando promisificamos a função `loadScript`.
 
-A call to `promisify(f)` returns a wrapper around `f` `(*)`. That wrapper returns a promise and forwards the call to the original `f`, tracking the result in the custom callback `(**)`.
+Uma chamada a `promisify(f)` retorna um invólucro ao redor de `f` `(*)`. Esse invólucro retorna uma promessa e encaminha a chamada para o `f` original, rastreando o resultado no callback personalizado `(**)`.
 
-Here, `promisify` assumes that the original function expects a callback with exactly two arguments `(err, result)`. That's what we encounter most often. Then our custom callback is in exactly the right format, and `promisify` works great for such a case.
+Aqui, o `promisify` assume que a função original espera um callback com exatamente dois argumentos `(err, result)`. Isso é o que encontramos com mais frequência. Então nosso callback personalizado está exatamente no formato certo, e o `promisify` funciona muito bem para esse caso.
 
-But what if the original `f` expects a callback with more arguments `callback(err, res1, res2, ...)`?
+Mas e se o `f` original esperar um callback com mais argumentos `callback(err, res1, res2, ...)`?
 
-We can improve our helper. Let's make a more advanced version of `promisify`.
+Podemos melhorar nossa função auxiliar. Vamos fazer uma versão mais avançada do `promisify`.
 
-- When called as `promisify(f)` it should work similar to the version above.
-- When called as `promisify(f, true)`, it should return the promise that resolves with the array of callback results. That's exactly for callbacks with many arguments.
+- Quando chamado como `promisify(f)`, deve funcionar parecido com a versão acima.
+- Quando chamado como `promisify(f, true)`, deve retornar a promessa que é resolvida com o array dos resultados do callback. Isso é exatamente para callbacks com muitos argumentos.
 
 ```js
-// promisify(f, true) to get array of results
+// promisify(f, true) para obter um array de resultados
 function promisify(f, manyArgs = false) {
   return function (...args) {
     return new Promise((resolve, reject) => {
-      function *!*callback(err, ...results*/!*) { // our custom callback for f
+      function *!*callback(err, ...results*/!*) { // nosso callback personalizado para f
         if (err) {
           reject(err);
         } else {
-          // resolve with all callback results if manyArgs is specified
+          // resolve com todos os resultados do callback se manyArgs for especificado
           *!*resolve(manyArgs ? results : results[0]);*/!*
         }
       }
@@ -112,21 +112,21 @@ function promisify(f, manyArgs = false) {
   };
 }
 
-// usage:
+// uso:
 f = promisify(f, true);
 f(...).then(arrayOfResults => ..., err => ...);
 ```
 
-As you can see it's essentially the same as above, but `resolve` is called with only one or all arguments depending on whether `manyArgs` is truthy.
+Como você pode ver, é essencialmente o mesmo que acima, mas o `resolve` é chamado com apenas um ou com todos os argumentos, dependendo se `manyArgs` tem um valor verdadeiro.
 
-For more exotic callback formats, like those without `err` at all: `callback(result)`, we can promisify such functions manually without using the helper.
+Para formatos de callback mais exóticos, como aqueles sem `err` de jeito nenhum: `callback(result)`, podemos promisificar essas funções manualmente, sem usar a função auxiliar.
 
-There are also modules with a bit more flexible promisification functions, e.g. [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify). In Node.js, there's a built-in `util.promisify` function for that.
+Também existem módulos com funções de promisificação um pouco mais flexíveis, por exemplo [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify). No Node.js, existe uma função nativa `util.promisify` para isso.
 
 ```smart
-Promisification is a great approach, especially when you use `async/await` (covered later in the chapter <info:async-await>), but not a total replacement for callbacks.
+A promisificação é uma ótima abordagem, especialmente quando usamos `async/await` (coberto mais adiante, no capítulo <info:async-await>), mas não substitui totalmente os callbacks.
 
-Remember, a promise may have only one result, but a callback may technically be called many times.
+Lembre-se, uma promessa pode ter apenas um resultado, mas um callback pode, tecnicamente, ser chamado várias vezes.
 
-So promisification is only meant for functions that call the callback once. Further calls will be ignored.
+Então a promisificação só serve para funções que chamam o callback uma única vez. Chamadas seguintes serão ignoradas.
 ```
