@@ -1,158 +1,158 @@
 
-# WeakRef and FinalizationRegistry
+# WeakRef e FinalizationRegistry
 
-```warn header="\"Hidden\" features of the language"
-This article covers a very narrowly focused topic, that most developers extremely rarely encounter in practice (and may not even be aware of its existence).  
+```warn header="Recursos \"ocultos\" da linguagem"
+Este artigo aborda um tópico muito específico, que a maioria dos desenvolvedores raramente encontra na prática (e pode até não ter conhecimento da sua existência).
 
-We recommend skipping this chapter if you have just started learning JavaScript.
+Recomendamos pular este capítulo se você está apenas começando a aprender JavaScript.
 ```
 
-Recalling the basic concept of the *reachability principle* from the <info:garbage-collection> chapter,
-we can note that the JavaScript engine is guaranteed to keep values in memory that are accessible or in use.
+Recordando o conceito básico do *princípio de alcançabilidade* do capítulo <info:garbage-collection>,
+podemos notar que o motor JavaScript garante manter em memória os valores que são acessíveis ou estão em uso.
 
-For example:
+Por exemplo:
 
 
 ```js
-//  the user variable holds a strong reference to the object
+//  a variável user mantém uma referência forte ao objeto
 let user = { name: "John" };
 
-// let's overwrite the value of the user variable
+// vamos sobrescrever o valor da variável user
 user = null;
 
-// the reference is lost and the object will be deleted from memory
+// a referência é perdida e o objeto será excluído da memória
 
 ```
 
-Or a similar, but slightly more complicated code with two strong references:
+Ou um código similar, mas um pouco mais complexo, com duas referências fortes:
 
 ```js
-//  the user variable holds a strong reference to the object
+//  a variável user mantém uma referência forte ao objeto
 let user = { name: "John" };
 
-// copied the strong reference to the object into the admin variable
+// copiamos a referência forte ao objeto para a variável admin
 *!*
 let admin = user;
 */!*
 
-// let's overwrite the value of the user variable
+// vamos sobrescrever o valor da variável user
 user = null;
 
-// the object is still reachable through the admin variable
+// o objeto ainda é alcançável através da variável admin
 ```
-The object `{ name: "John" }` would only be deleted from memory if there were no strong references to it (if we also overwrote the value of the `admin` variable).  
+O objeto `{ name: "John" }` só seria excluído da memória se não houvesse referências fortes a ele (se também sobrescrevêssemos o valor da variável `admin`).
 
-In JavaScript, there is a concept called `WeakRef`, which behaves slightly differently in this case.
+Em JavaScript, existe um conceito chamado `WeakRef`, que se comporta de forma um pouco diferente nesse caso.
 
 
-````smart header="Terms: \"Strong reference\", \"Weak reference\""
-**Strong reference** - is a reference to an object or value, that prevents them from being deleted by the garbage collector. Thereby, keeping the object or value in memory, to which it points.  
+````smart header="Termos: \"Referência forte\", \"Referência fraca\""
+**Referência forte** - é uma referência a um objeto ou valor, que impede que ele seja excluído pelo coletor de lixo. Com isso, mantém o objeto ou valor ao qual aponta na memória.
 
-This means, that the object or value remains in memory and is not collected by the garbage collector as long, as there are active strong references to it.  
+Isso significa que o objeto ou valor permanece na memória e não é coletado pelo coletor de lixo enquanto houver referências fortes ativas a ele.
 
-In JavaScript, ordinary references to objects are strong references. For example:
+Em JavaScript, referências comuns a objetos são referências fortes. Por exemplo:
 
 ```js
-// the user variable holds a strong reference to this object
+// a variável user mantém uma referência forte a este objeto
 let user = { name: "John" };
 ```
-**Weak reference** - is a reference to an object or value, that does *not* prevent them from being deleted by the garbage collector.
-An object or value can be deleted by the garbage collector if, the only remaining references to them are weak references.
+**Referência fraca** - é uma referência a um objeto ou valor, que *não* impede que ele seja excluído pelo coletor de lixo.
+Um objeto ou valor pode ser excluído pelo coletor de lixo se as únicas referências restantes a ele forem referências fracas.
 ````
 
 ## WeakRef
 
 
-````warn header="Note of caution"
-Before we dive into it, it is worth noting that the correct use of the structures discussed in this article requires very careful thought, and they are best avoided if possible. 
+````warn header="Nota de cautela"
+Antes de nos aprofundarmos nisso, vale ressaltar que o uso correto das estruturas discutidas neste artigo exige muita atenção, e, se possível, é melhor evitá-las.
 ````
 
-`WeakRef` - is an object, that contains a weak reference to another object, called `target` or `referent`. 
+`WeakRef` - é um objeto que contém uma referência fraca a outro objeto, chamado `target` ou `referent`.
 
-The peculiarity of `WeakRef` is that it does not prevent the garbage collector from deleting its referent-object. In other words, a `WeakRef` object does not keep the `referent` object alive.  
+A particularidade do `WeakRef` é que ele não impede que o coletor de lixo exclua seu objeto-referente. Em outras palavras, um objeto `WeakRef` não mantém o objeto `referent` vivo.
 
-Now let's take the `user` variable as the "referent" and create a weak reference from it to the `admin` variable.
-To create a weak reference, you need to use the `WeakRef` constructor, passing in the target object (the object you want a weak reference to).
+Agora vamos usar a variável `user` como o "referent" e criar uma referência fraca dela para a variável `admin`.
+Para criar uma referência fraca, é preciso usar o construtor `WeakRef`, passando o objeto de destino (o objeto ao qual se quer criar uma referência fraca).
 
-In our case — this is the `user` variable:
+No nosso caso — essa é a variável `user`:
 
 
 ```js
-//  the user variable holds a strong reference to the object
+//  a variável user mantém uma referência forte ao objeto
 let user = { name: "John" };
 
-//  the admin variable holds a weak reference to the object
+//  a variável admin mantém uma referência fraca ao objeto
 *!*
 let admin = new WeakRef(user);
 */!*
 
 ```
 
-The diagram below depicts two types of references: a strong reference using the `user` variable and a weak reference using the `admin` variable:
+O diagrama abaixo representa dois tipos de referências: uma referência forte usando a variável `user` e uma referência fraca usando a variável `admin`:
 
-![](weakref-finalizationregistry-01.svg)  
+![](weakref-finalizationregistry-01.svg)
 
-Then, at some point, we stop using the `user` variable - it gets overwritten, goes out of scope, etc., while keeping the `WeakRef` instance in the `admin` variable:
+Então, em algum momento, deixamos de usar a variável `user` - ela é sobrescrita, sai de escopo, etc., enquanto mantemos a instância de `WeakRef` na variável `admin`:
 
 ```js
-// let's overwrite the value of the user variable
+// vamos sobrescrever o valor da variável user
 user = null;
 ```
 
-A weak reference to an object is not enough to keep it "alive". When the only remaining references to a referent-object are weak references, the garbage collector is free to destroy this object and use its memory for something else.
+Uma referência fraca a um objeto não é suficiente para mantê-lo "vivo". Quando as únicas referências restantes a um objeto-referente são referências fracas, o coletor de lixo tem liberdade para destruir esse objeto e usar sua memória para outra coisa.
 
-However, until the object is actually destroyed, the weak reference may return it, even if there are no more strong references to this object.
-That is, our object becomes a kind of "[Schrödinger's cat](https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat)" – we cannot know for sure whether it's "alive" or "dead":
+No entanto, até que o objeto seja de fato destruído, a referência fraca pode retorná-lo, mesmo que não haja mais referências fortes a esse objeto.
+Ou seja, nosso objeto se torna uma espécie de "[gato de Schrödinger](https://pt.wikipedia.org/wiki/Gato_de_Schr%C3%B6dinger)" – não podemos saber com certeza se ele está "vivo" ou "morto":
 
 ![](weakref-finalizationregistry-02.svg)
 
-At this point, to get the object from the `WeakRef` instance, we will use its `deref()` method.  
+Neste ponto, para obter o objeto a partir da instância de `WeakRef`, usaremos seu método `deref()`.
 
-The `deref()` method returns the referent-object that the `WeakRef` points to, if the object is still in memory. If the object has been deleted by the garbage collector, then the `deref()` method will return `undefined`:
+O método `deref()` retorna o objeto-referente ao qual o `WeakRef` aponta, se o objeto ainda estiver na memória. Se o objeto já foi excluído pelo coletor de lixo, então o método `deref()` retornará `undefined`:
 
 
 ```js
 let ref = admin.deref();
 
 if (ref) {
-  // the object is still accessible: we can perform any manipulations with it
+  // o objeto ainda é acessível: podemos realizar qualquer manipulação com ele
 } else {
-  // the object has been collected by the garbage collector
+  // o objeto já foi coletado pelo coletor de lixo
 }
 ```
 
-## WeakRef use cases
+## Casos de uso do WeakRef
 
-`WeakRef` is typically used to create caches or [associative arrays](https://en.wikipedia.org/wiki/Associative_array) that store resource-intensive objects.
-This allows one to avoid preventing these objects from being collected by the garbage collector solely based on their presence in the cache or associative array.  
+`WeakRef` é normalmente usado para criar caches ou [arrays associativos](https://en.wikipedia.org/wiki/Associative_array) que armazenam objetos que consomem muitos recursos.
+Isso permite evitar que esses objetos sejam impedidos de serem coletados pelo coletor de lixo apenas por estarem presentes no cache ou array associativo.
 
-One of the primary examples - is a situation when we have numerous binary image objects (for instance, represented as `ArrayBuffer` or `Blob`), and we want to associate a name or path with each image.
-Existing data structures are not quite suitable for these purposes:
+Um dos principais exemplos - é uma situação em que temos numerosos objetos binários de imagem (por exemplo, representados como `ArrayBuffer` ou `Blob`), e queremos associar um nome ou caminho a cada imagem.
+As estruturas de dados existentes não são muito adequadas para esse propósito:
 
-- Using `Map` to create associations between names and images, or vice versa, will keep the image objects in memory since they are present in the `Map` as keys or values.
-- `WeakMap` is ineligible for this goal either: because the objects represented as `WeakMap` keys use weak references, and are not protected from deletion by the garbage collector.
+- Usar `Map` para criar associações entre nomes e imagens, ou vice-versa, manterá os objetos de imagem na memória, já que eles estão presentes no `Map` como chaves ou valores.
+- `WeakMap` também não é adequado para esse objetivo: porque os objetos representados como chaves de `WeakMap` usam referências fracas, e não estão protegidos contra exclusão pelo coletor de lixo.
 
-But, in this situation, we need a data structure that would use weak references in its values.
+Mas, nessa situação, precisamos de uma estrutura de dados que use referências fracas em seus valores.
 
-For this purpose, we can use a `Map` collection, whose values are `WeakRef` instances referring to the large objects we need.
-Consequently, we will not keep these large and unnecessary objects in memory longer than they should be.  
+Para esse propósito, podemos usar uma coleção `Map`, cujos valores são instâncias de `WeakRef` referindo-se aos objetos grandes de que precisamos.
+Consequentemente, não manteremos esses objetos grandes e desnecessários na memória por mais tempo do que deveríamos.
 
-Otherwise, this is a way to get the image object from the cache if it is still reachable.
-If it has been garbage collected, we will re-generate or re-download it again.  
+De outra forma, essa é uma maneira de obter o objeto de imagem do cache se ele ainda estiver alcançável.
+Se ele já foi coletado pelo coletor de lixo, iremos gerá-lo ou baixá-lo novamente.
 
-This way, less memory is used in some situations.  
+Dessa forma, menos memória é usada em algumas situações.
 
-## Example №1: using WeakRef for caching
+## Exemplo №1: usando WeakRef para cache
 
-Below is a code snippet that demonstrates the technique of using `WeakRef`.  
+Abaixo está um trecho de código que demonstra a técnica de uso do `WeakRef`.
 
-In short, we use a `Map` with string keys and `WeakRef` objects as their values.
-If the `WeakRef` object has not been collected by the garbage collector, we get it from the cache.
-Otherwise, we re-download it again and put it in the cache for further possible reuse:  
+Em resumo, usamos um `Map` com chaves de string e objetos `WeakRef` como seus valores.
+Se o objeto `WeakRef` não tiver sido coletado pelo coletor de lixo, nós o obtemos do cache.
+Caso contrário, nós o baixamos novamente e o colocamos no cache para possível reutilização futura:
 
 ```js
 function fetchImg() {
-    // abstract function for downloading images...
+    // função abstrata para baixar imagens...
 }
 
 function weakRefCache(fetchImg) { // (1)
@@ -173,157 +173,157 @@ function weakRefCache(fetchImg) { // (1)
 }
 
 const getCachedImg = weakRefCache(fetchImg);
-```  
+```
 
-Let's delve into the details of what happened here:
-1. `weakRefCache` - is a higher-order function that takes another function, `fetchImg`, as an argument. In this example, we can neglect a detailed description of the `fetchImg` function, since it can be any logic for downloading images.
-2. `imgCache` - is a cache of images, that stores cached results of the `fetchImg` function, in the form of string keys (image name) and `WeakRef` objects as their values.
-3. Return an anonymous function that takes the image name as an argument. This argument will be used as a key for the cached image.
-4. Trying to get the cached result from the cache, using the provided key (image name).
-5. If the cache contains a value for the specified key, and the `WeakRef` object has not been deleted by the garbage collector, return the cached result.
-6. If there is no entry in the cache with the requested key, or `deref()` method returns `undefined` (meaning that the `WeakRef` object has been garbage collected), the `fetchImg` function downloads the image again.
-7. Put the downloaded image into the cache as a `WeakRef` object.  
+Vamos nos aprofundar nos detalhes do que aconteceu aqui:
+1. `weakRefCache` - é uma função de ordem superior que recebe outra função, `fetchImg`, como argumento. Neste exemplo, podemos desconsiderar uma descrição detalhada da função `fetchImg`, já que ela pode ser qualquer lógica para baixar imagens.
+2. `imgCache` - é um cache de imagens, que armazena os resultados em cache da função `fetchImg`, na forma de chaves de string (nome da imagem) e objetos `WeakRef` como seus valores.
+3. Retorna uma função anônima que recebe o nome da imagem como argumento. Esse argumento será usado como chave para a imagem em cache.
+4. Tentando obter o resultado em cache a partir do cache, usando a chave fornecida (nome da imagem).
+5. Se o cache contiver um valor para a chave especificada, e o objeto `WeakRef` não tiver sido excluído pelo coletor de lixo, retorna o resultado em cache.
+6. Se não houver entrada no cache com a chave solicitada, ou o método `deref()` retornar `undefined` (significando que o objeto `WeakRef` foi coletado pelo coletor de lixo), a função `fetchImg` baixa a imagem novamente.
+7. Coloca a imagem baixada no cache como um objeto `WeakRef`.
 
-Now we have a `Map` collection, where the keys - are image names as strings, and values - are `WeakRef` objects containing the images themselves.
+Agora temos uma coleção `Map`, onde as chaves - são nomes de imagens como strings, e os valores - são objetos `WeakRef` contendo as próprias imagens.
 
-This technique helps to avoid allocating a large amount of memory for resource-intensive objects, that nobody uses anymore.
-It also saves memory and time in case of reusing cached objects.  
+Essa técnica ajuda a evitar a alocação de uma grande quantidade de memória para objetos que consomem muitos recursos e que não são mais usados por ninguém.
+Também economiza memória e tempo no caso de reutilização de objetos em cache.
 
-Here is a visual representation of what this code looks like:  
+Aqui está uma representação visual de como esse código se parece:
 
-![](weakref-finalizationregistry-03.svg) 
+![](weakref-finalizationregistry-03.svg)
 
-But, this implementation has its drawbacks: over time, `Map` will be filled with strings as keys, that point to a `WeakRef`, whose referent-object has already been garbage collected:  
+Mas essa implementação tem suas desvantagens: com o tempo, o `Map` será preenchido com strings como chaves, que apontam para um `WeakRef` cujo objeto-referente já foi coletado pelo coletor de lixo:
 
 ![](weakref-finalizationregistry-04.svg)
 
-One way to handle this problem - is to periodically scavenge the cache and clear out "dead" entries.
-Another way - is to use finalizers, which we will explore next.  
+Uma forma de lidar com esse problema - é limpar periodicamente o cache e remover as entradas "mortas".
+Outra forma - é usar finalizadores, que exploraremos a seguir.
 
 
-## Example №2: Using WeakRef to track DOM objects
+## Exemplo №2: Usando WeakRef para rastrear objetos do DOM
 
-Another use case for `WeakRef` - is tracking DOM objects.  
+Outro caso de uso para `WeakRef` - é rastrear objetos do DOM.
 
-Let's imagine a scenario where some third-party code or library interacts with elements on our page as long as they exist in the DOM.
-For example, it could be an external utility for monitoring and notifying about the system's state (commonly so-called "logger" – a program that sends informational messages called "logs").
+Vamos imaginar um cenário em que algum código ou biblioteca de terceiros interage com elementos da nossa página enquanto eles existirem no DOM.
+Por exemplo, pode ser um utilitário externo para monitorar e notificar sobre o estado do sistema (comumente chamado de "logger" – um programa que envia mensagens informativas chamadas "logs").
 
-Interactive example:  
+Exemplo interativo:
 
-[codetabs height=420 src="weakref-dom"]  
+[codetabs height=420 src="weakref-dom"]
 
-When the "Start sending messages" button is clicked, in the so-called "logs display window" (an element with the `.window__body` class), messages (logs) start to appear.  
+Quando o botão "Começar a enviar mensagens" é clicado, na chamada "janela de exibição de logs" (um elemento com a classe `.window__body`), mensagens (logs) começam a aparecer.
 
-But, as soon as this element is deleted from the DOM, the logger should stop sending messages.
-To reproduce the removal of this element, just click the "Close" button in the top right corner.  
+Mas, assim que esse elemento é excluído do DOM, o logger deve parar de enviar mensagens.
+Para reproduzir a remoção desse elemento, basta clicar no botão "Fechar" no canto superior direito.
 
-In order not to complicate our work, and not to notify third-party code every time our DOM-element is available, and when it is not, it will be enough to create a weak reference to it using `WeakRef`.    
+Para não complicar nosso trabalho, e não notificar o código de terceiros a cada vez que nosso elemento do DOM está disponível, e quando não está, será suficiente criar uma referência fraca a ele usando `WeakRef`.
 
-Once the element is removed from the DOM, the logger will notice it and stop sending messages.  
+Uma vez que o elemento é removido do DOM, o logger irá notar isso e parar de enviar mensagens.
 
-Now let's take a closer look at the source code (*tab `index.js`*):
+Agora vamos dar uma olhada mais de perto no código-fonte (*aba `index.js`*):
 
-1. Get the DOM-element of the "Start sending messages" button.
-2. Get the DOM-element of the "Close" button.
-3. Get the DOM-element of the logs display window using the `new WeakRef()` constructor. This way, the `windowElementRef` variable holds a weak reference to the DOM-element.
-4. Add an event listener on the "Start sending messages" button, responsible for starting the logger when clicked.
-5. Add an event listener on the "Close" button, responsible for closing the logs display window when clicked.
-6. Use `setInterval` to start displaying a new message every second.
-7. If the DOM-element of the logs display window is still accessible and kept in memory, create and send a new message.
-8. If the `deref()` method returns `undefined`, it means that the DOM-element has been deleted from memory. In this case, the logger stops displaying messages and clears the timer.
-9. `alert`, which will be called, after the DOM-element of the logs display window is deleted from memory (i.e. after clicking the "Close" button). **Note, that deletion from memory may not happen immediately, as it depends only on the internal mechanisms of the garbage collector.**
+1. Obtém o elemento do DOM do botão "Começar a enviar mensagens".
+2. Obtém o elemento do DOM do botão "Fechar".
+3. Obtém o elemento do DOM da janela de exibição de logs usando o construtor `new WeakRef()`. Dessa forma, a variável `windowElementRef` mantém uma referência fraca ao elemento do DOM.
+4. Adiciona um ouvinte de evento no botão "Começar a enviar mensagens", responsável por iniciar o logger quando clicado.
+5. Adiciona um ouvinte de evento no botão "Fechar", responsável por fechar a janela de exibição de logs quando clicado.
+6. Usa `setInterval` para começar a exibir uma nova mensagem a cada segundo.
+7. Se o elemento do DOM da janela de exibição de logs ainda estiver acessível e mantido na memória, cria e envia uma nova mensagem.
+8. Se o método `deref()` retornar `undefined`, significa que o elemento do DOM foi excluído da memória. Nesse caso, o logger para de exibir mensagens e limpa o temporizador.
+9. `alert`, que será chamado, depois que o elemento do DOM da janela de exibição de logs for excluído da memória (ou seja, após clicar no botão "Fechar"). **Observe que a exclusão da memória pode não ocorrer imediatamente, pois depende apenas dos mecanismos internos do coletor de lixo.**
 
-   We cannot control this process directly from the code. However, despite this, we still have the option to force garbage collection from the browser.
+   Não podemos controlar esse processo diretamente a partir do código. No entanto, apesar disso, ainda temos a opção de forçar a coleta de lixo a partir do navegador.
 
-   In Google Chrome, for example, to do this, you need to open the developer tools (`key:Ctrl` + `key:Shift` + `key:J` on Windows/Linux or `key:Option` + `key:⌘` + `key:J` on macOS), go to the "Performance" tab, and click on the bin icon button – "Collect garbage":
+   No Google Chrome, por exemplo, para fazer isso, é necessário abrir as ferramentas de desenvolvedor (`key:Ctrl` + `key:Shift` + `key:J` no Windows/Linux ou `key:Option` + `key:⌘` + `key:J` no macOS), ir até a aba "Performance" e clicar no botão do ícone de lixeira – "Collect garbage":
 
    ![](google-chrome-developer-tools.png)
 
     <br>
-    This functionality is supported in most modern browsers. After the actions are taken, the <code>alert</code> will trigger immediately.
+    Essa funcionalidade é suportada na maioria dos navegadores modernos. Após as ações serem realizadas, o <code>alert</code> será disparado imediatamente.
 
 ## FinalizationRegistry
 
-Now it is time to talk about finalizers. Before we move on, let's clarify the terminology:  
+Agora é hora de falar sobre finalizadores. Antes de continuarmos, vamos esclarecer a terminologia:
 
-**Cleanup callback (finalizer)** - is a function that is executed, when an object, registered in the `FinalizationRegistry`, is deleted from memory by the garbage collector.  
+**Callback de limpeza (finalizador)** - é uma função que é executada, quando um objeto, registrado no `FinalizationRegistry`, é excluído da memória pelo coletor de lixo.
 
-Its purpose - is to provide the ability to perform additional operations, related to the object, after it has been finally deleted from memory.  
+Seu propósito - é fornecer a capacidade de realizar operações adicionais, relacionadas ao objeto, depois que ele foi finalmente excluído da memória.
 
-**Registry** (or `FinalizationRegistry`) - is a special object in JavaScript that manages the registration and unregistration of objects and their cleanup callbacks.  
+**Registro** (ou `FinalizationRegistry`) - é um objeto especial em JavaScript que gerencia o registro e o cancelamento de registro de objetos e seus callbacks de limpeza.
 
-This mechanism allows registering an object to track and associate a cleanup callback with it.
-Essentially it is a structure that stores information about registered objects and their cleanup callbacks, and then automatically invokes those callbacks when the objects are deleted from memory.  
+Esse mecanismo permite registrar um objeto para rastreamento e associar um callback de limpeza a ele.
+Essencialmente, é uma estrutura que armazena informações sobre objetos registrados e seus callbacks de limpeza, e então invoca automaticamente esses callbacks quando os objetos são excluídos da memória.
 
-To create an instance of the `FinalizationRegistry`, it needs to call its constructor, which takes a single argument - the cleanup callback (finalizer).  
+Para criar uma instância de `FinalizationRegistry`, é necessário chamar seu construtor, que recebe um único argumento - o callback de limpeza (finalizador).
 
-Syntax:
+Sintaxe:
 
 ```js
-function cleanupCallback(heldValue) { 
-  // cleanup callback code 
+function cleanupCallback(heldValue) {
+  // código do callback de limpeza
 }
 
 const registry = new FinalizationRegistry(cleanupCallback);
 ```
 
-Here:
+Aqui:
 
-- `cleanupCallback` - a cleanup callback that will be automatically called when a registered object is deleted from memory.
-- `heldValue` - the value that is passed as an argument to the cleanup callback. If `heldValue` is an object, the registry keeps a strong reference to it.
-- `registry` - an instance of `FinalizationRegistry`.
+- `cleanupCallback` - um callback de limpeza que será chamado automaticamente quando um objeto registrado for excluído da memória.
+- `heldValue` - o valor que é passado como argumento para o callback de limpeza. Se `heldValue` for um objeto, o registro mantém uma referência forte a ele.
+- `registry` - uma instância de `FinalizationRegistry`.
 
-`FinalizationRegistry` methods:
+Métodos do `FinalizationRegistry`:
 
-- `register(target, heldValue [, unregisterToken])` - used to register objects in the registry.
+- `register(target, heldValue [, unregisterToken])` - usado para registrar objetos no registro.
 
-  `target` - the object being registered for tracking. If the `target` is garbage collected, the cleanup callback will be called with `heldValue` as its argument.
+  `target` - o objeto sendo registrado para rastreamento. Se o `target` for coletado pelo coletor de lixo, o callback de limpeza será chamado com `heldValue` como seu argumento.
 
-  Optional `unregisterToken` – an unregistration token. It can be passed to unregister an object before the garbage collector deletes it. Typically, the `target` object is used as `unregisterToken`, which is the standard practice.
-- `unregister(unregisterToken)` - the `unregister` method is used to unregister an object from the registry. It takes one argument - `unregisterToken` (the unregister token that was obtained when registering the object).  
+  `unregisterToken` opcional – um token de cancelamento de registro. Ele pode ser passado para cancelar o registro de um objeto antes que o coletor de lixo o exclua. Normalmente, o próprio objeto `target` é usado como `unregisterToken`, o que é a prática padrão.
+- `unregister(unregisterToken)` - o método `unregister` é usado para cancelar o registro de um objeto no registro. Ele recebe um argumento - `unregisterToken` (o token de cancelamento de registro que foi obtido ao registrar o objeto).
 
-Now let's move on to a simple example. Let's use the already-known `user` object and create an instance of `FinalizationRegistry`:  
+Agora vamos avançar para um exemplo simples. Vamos usar o objeto `user` já conhecido e criar uma instância de `FinalizationRegistry`:
 
 ```js
 let user = { name: "John" };
 
 const registry = new FinalizationRegistry((heldValue) => {
-  console.log(`${heldValue} has been collected by the garbage collector.`);
+  console.log(`${heldValue} foi coletado pelo coletor de lixo.`);
 });
 ```
 
-Then, we will register the object, that requires a cleanup callback by calling the `register` method:
+Então, vamos registrar o objeto que requer um callback de limpeza chamando o método `register`:
 
 ```js
 registry.register(user, user.name);
 ```
 
-The registry does not keep a strong reference to the object being registered, as this would defeat its purpose. If the registry kept a strong reference, then the object would never be garbage collected.  
+O registro não mantém uma referência forte ao objeto registrado, pois isso frustraria seu propósito. Se o registro mantivesse uma referência forte, então o objeto nunca seria coletado pelo coletor de lixo.
 
-If the object is deleted by the garbage collector, our cleanup callback may be called at some point in the future, with the `heldValue` passed to it:
+Se o objeto for excluído pelo coletor de lixo, nosso callback de limpeza pode ser chamado em algum momento futuro, com o `heldValue` passado para ele:
 
 ```js
-// When the user object is deleted by the garbage collector, the following message will be printed in the console:
-"John has been collected by the garbage collector."
+// Quando o objeto user é excluído pelo coletor de lixo, a seguinte mensagem será exibida na console:
+"John foi coletado pelo coletor de lixo."
 ```
 
-There are also situations where, even in implementations that use a cleanup callback, there is a chance that it will not be called.
+Também existem situações em que, mesmo em implementações que usam um callback de limpeza, há uma chance de que ele não seja chamado.
 
-For example:
-- When the program fully terminates its operation (for example, when closing a tab in a browser).
-- When the `FinalizationRegistry` instance itself is no longer reachable to JavaScript code.
-  If the object that creates the `FinalizationRegistry` instance goes out of scope or is deleted, the cleanup callbacks registered in that registry might also not be invoked.
+Por exemplo:
+- Quando o programa termina completamente sua operação (por exemplo, ao fechar uma aba do navegador).
+- Quando a própria instância de `FinalizationRegistry` não é mais alcançável pelo código JavaScript.
+  Se o objeto que cria a instância de `FinalizationRegistry` sai de escopo ou é excluído, os callbacks de limpeza registrados nesse registro também podem não ser chamados.
 
-## Caching with FinalizationRegistry
+## Cache com FinalizationRegistry
 
-Returning to our *weak* cache example, we can notice the following:
-- Even though the values wrapped in the `WeakRef` have been collected by the garbage collector, there is still an issue of "memory leakage" in the form of the remaining keys, whose values have been collected by the garbage collector.
+Voltando ao nosso exemplo de cache *fraco*, podemos notar o seguinte:
+- Mesmo que os valores encapsulados em `WeakRef` tenham sido coletados pelo coletor de lixo, ainda há um problema de "vazamento de memória" na forma das chaves restantes, cujos valores já foram coletados pelo coletor de lixo.
 
-Here is an improved caching example using `FinalizationRegistry`:
+Aqui está um exemplo melhorado de cache usando `FinalizationRegistry`:
 
 ```js
 function fetchImg() {
-  // abstract function for downloading images...
+  // função abstrata para baixar imagens...
 }
 
 function weakRefCache(fetchImg) {
@@ -338,7 +338,7 @@ function weakRefCache(fetchImg) {
 
   return (imgName) => {
     const cachedImg = imgCache.get(imgName);
-    
+
     if (cachedImg?.deref()) {
       return cachedImg?.deref();
     }
@@ -356,128 +356,128 @@ function weakRefCache(fetchImg) {
 const getCachedImg = weakRefCache(fetchImg);
 ```
 
-1. To manage the cleanup of "dead" cache entries, when the associated `WeakRef` objects are collected by the garbage collector, we create a `FinalizationRegistry` cleanup registry.
+1. Para gerenciar a limpeza de entradas "mortas" do cache, quando os objetos `WeakRef` associados são coletados pelo coletor de lixo, criamos um registro de limpeza `FinalizationRegistry`.
 
-   The important point here is, that in the cleanup callback, it should be checked, if the entry was deleted by the garbage collector and not re-added, in order not to delete a "live" entry.
-2. Once the new value (image) is downloaded and put into the cache, we register it in the finalizer registry to track the `WeakRef` object.
+   O ponto importante aqui é que, no callback de limpeza, deve-se verificar se a entrada foi excluída pelo coletor de lixo e não foi adicionada novamente, para não excluir uma entrada "viva".
+2. Depois que o novo valor (imagem) é baixado e colocado no cache, nós o registramos no registro do finalizador para rastrear o objeto `WeakRef`.
 
-This implementation contains only actual or "live" key/value pairs.
-In this case, each `WeakRef` object is registered in the `FinalizationRegistry`.
-And after the objects are cleaned up by the garbage collector, the cleanup callback will delete all `undefined` values.
+Essa implementação contém apenas pares chave/valor atuais, ou "vivos".
+Nesse caso, cada objeto `WeakRef` é registrado no `FinalizationRegistry`.
+E depois que os objetos são limpos pelo coletor de lixo, o callback de limpeza excluirá todos os valores `undefined`.
 
-Here is a visual representation of the updated code:  
+Aqui está uma representação visual do código atualizado:
 
 ![](weakref-finalizationregistry-05.svg)
 
-A key aspect of the updated implementation is that finalizers allow parallel processes to be created between the "main" program and cleanup callbacks.
-In the context of JavaScript, the "main" program - is our JavaScript-code, that runs and executes in our application or web page.  
+Um aspecto fundamental da implementação atualizada é que os finalizadores permitem criar processos paralelos entre o programa "principal" e os callbacks de limpeza.
+No contexto do JavaScript, o programa "principal" - é nosso código JavaScript, que roda e é executado na nossa aplicação ou página web.
 
-Hence, from the moment an object is marked for deletion by the garbage collector, and to the actual execution of the cleanup callback, there may be a certain time gap.
-It is important to understand that during this time gap, the main program can make any changes to the object or even bring it back to memory.  
+Portanto, do momento em que um objeto é marcado para exclusão pelo coletor de lixo, até a execução real do callback de limpeza, pode haver um certo intervalo de tempo.
+É importante entender que, durante esse intervalo de tempo, o programa principal pode fazer qualquer alteração no objeto ou até trazê-lo de volta à memória.
 
-That's why, in the cleanup callback, we must check to see if an entry has been added back to the cache by the main program to avoid deleting "live" entries.
-Similarly, when searching for a key in the cache, there is a chance that the value has been deleted by the garbage collector, but the cleanup callback has not been executed yet.  
+É por isso que, no callback de limpeza, devemos verificar se uma entrada foi adicionada novamente ao cache pelo programa principal, para evitar excluir entradas "vivas".
+Da mesma forma, ao procurar uma chave no cache, há uma chance de que o valor já tenha sido excluído pelo coletor de lixo, mas o callback de limpeza ainda não tenha sido executado.
 
-Such situations require special attention if you are working with `FinalizationRegistry`.
+Tais situações exigem atenção especial se você está trabalhando com `FinalizationRegistry`.
 
-## Using WeakRef and FinalizationRegistry in practice
+## Usando WeakRef e FinalizationRegistry na prática
 
-Moving from theory to practice, imagine a real-life scenario, where a user synchronizes their photos on a mobile device with some cloud service
-(such as [iCloud](https://en.wikipedia.org/wiki/ICloud) or [Google Photos](https://en.wikipedia.org/wiki/Google_Photos)),
-and wants to view them from other devices. In addition to the basic functionality of viewing photos, such services offer a lot of additional features, for example:  
+Passando da teoria para a prática, imagine um cenário da vida real, em que um usuário sincroniza suas fotos em um dispositivo móvel com algum serviço de nuvem
+(como [iCloud](https://en.wikipedia.org/wiki/ICloud) ou [Google Photos](https://en.wikipedia.org/wiki/Google_Photos)),
+e quer visualizá-las a partir de outros dispositivos. Além da funcionalidade básica de visualização de fotos, esses serviços oferecem muitos recursos adicionais, por exemplo:
 
-- Photo editing and video effects.
-- Creating "memories" and albums.
-- Video montage from a series of photos.
-- ...and much more.
+- Edição de fotos e efeitos de vídeo.
+- Criação de "memórias" e álbuns.
+- Montagem de vídeo a partir de uma série de fotos.
+- ...e muito mais.
 
-Here, as an example, we will use a fairly primitive implementation of such a service.
-The main point - is to show a possible scenario of using `WeakRef` and `FinalizationRegistry` together in real life.
+Aqui, como exemplo, usaremos uma implementação bastante primitiva de um serviço desse tipo.
+O ponto principal - é mostrar um possível cenário de uso de `WeakRef` e `FinalizationRegistry` juntos na vida real.
 
-Here is what it looks like:
+Veja como ele se parece:
 
 ![](weakref-finalizationregistry-demo-01.png)
 
 <br>
-On the left side, there is a cloud library of photos (they are displayed as thumbnails).
-We can select the images we need and create a collage, by clicking the "Create collage" button on the right side of the page.
-Then, the resulting collage can be downloaded as an image.
+No lado esquerdo, há uma biblioteca de fotos na nuvem (exibidas como miniaturas).
+Podemos selecionar as imagens que precisamos e criar uma colagem, clicando no botão "Criar colagem" no lado direito da página.
+Em seguida, a colagem resultante pode ser baixada como uma imagem.
 </br><br>
 
-To increase page loading speed, it would be reasonable to download and display photo thumbnails in *compressed* quality.
-But, to create a collage from selected photos, download and use them in *full-size* quality.  
+Para aumentar a velocidade de carregamento da página, seria razoável baixar e exibir as miniaturas das fotos em qualidade *comprimida*.
+Mas, para criar uma colagem a partir das fotos selecionadas, baixá-las e usá-las em qualidade *tamanho real*.
 
-Below, we can see, that the intrinsic size of the thumbnails is 240x240 pixels.
-The size was chosen on purpose to increase loading speed.
-Moreover, we do not need full-size photos in preview mode.
+Abaixo, podemos ver que o tamanho intrínseco das miniaturas é 240x240 pixels.
+O tamanho foi escolhido propositalmente para aumentar a velocidade de carregamento.
+Além disso, não precisamos de fotos em tamanho real no modo de pré-visualização.
 
 ![](weakref-finalizationregistry-demo-02.png)
 
 <br>
-Let's assume, that we need to create a collage of 4 photos: we select them, and then click the "Create collage" button.
-At this stage, the already known to us <code>weakRefCache</code> function checks whether the required image is in the cache.
-If not, it downloads it from the cloud and puts it in the cache for further use.
-This happens for each selected image:
+Vamos supor que precisamos criar uma colagem de 4 fotos: nós as selecionamos e, então, clicamos no botão "Criar colagem".
+Nesta etapa, a já conhecida função <code>weakRefCache</code> verifica se a imagem necessária está no cache.
+Se não estiver, ela a baixa da nuvem e a coloca no cache para uso futuro.
+Isso acontece para cada imagem selecionada:
 </br><br>
 
 ![](weakref-finalizationregistry-demo-03.gif)
 
 </br>
 
-Paying attention to the output in the console, you can see, which of the photos were downloaded from the cloud - this is indicated by <span style="background-color:#133159;color:white;font-weight:500">FETCHED_IMAGE</span>.
-Since this is the first attempt to create a collage, this means, that at this stage the "weak cache" was still empty, and all the photos were downloaded from the cloud and put in it.
+Observando a saída na console, você pode ver quais das fotos foram baixadas da nuvem - isso é indicado por <span style="background-color:#133159;color:white;font-weight:500">FETCHED_IMAGE</span>.
+Como esta é a primeira tentativa de criar uma colagem, isso significa que, nesta etapa, o "cache fraco" ainda estava vazio, e todas as fotos foram baixadas da nuvem e colocadas nele.
 
-But, along with the process of downloading images, there is also a process of memory cleanup by the garbage collector.
-This means, that the object stored in the cache, which we refer to, using a weak reference, is deleted by the garbage collector.
-And our finalizer executes successfully, thereby deleting the key, by which the image was stored in the cache.
-<span style="background-color:#901e30;color:white;font-weight:500;">CLEANED_IMAGE</span> notifies us about it:
+Mas, junto com o processo de download de imagens, há também um processo de limpeza de memória pelo coletor de lixo.
+Isso significa que o objeto armazenado no cache, ao qual nos referimos usando uma referência fraca, é excluído pelo coletor de lixo.
+E nosso finalizador é executado com sucesso, excluindo assim a chave pela qual a imagem estava armazenada no cache.
+<span style="background-color:#901e30;color:white;font-weight:500;">CLEANED_IMAGE</span> nos notifica sobre isso:
 
 ![](weakref-finalizationregistry-demo-04.jpg)
 
 <br>
-Next, we realize that we do not like the resulting collage, and decide to change one of the images and create a new one.
-To do this, just deselect the unnecessary image, select another one, and click the "Create collage" button again:
+A seguir, percebemos que não gostamos da colagem resultante e decidimos trocar uma das imagens e criar uma nova.
+Para fazer isso, basta desmarcar a imagem desnecessária, selecionar outra e clicar no botão "Criar colagem" novamente:
 </br><br>
 
 ![](weakref-finalizationregistry-demo-05.gif)
 
 <br>
-But this time not all images were downloaded from the network, and one of them was taken from the weak cache: the <span style="background-color:#385950;color:white;font-weight:500;">CACHED_IMAGE</span> message tells us about it.
-This means that at the time of collage creation, the garbage collector had not yet deleted our image, and we boldly took it from the cache,
-thereby reducing the number of network requests and speeding up the overall time of the collage creation process:
+Mas, desta vez, nem todas as imagens foram baixadas da rede, e uma delas foi retirada do cache fraco: a mensagem <span style="background-color:#385950;color:white;font-weight:500;">CACHED_IMAGE</span> nos informa sobre isso.
+Isso significa que, no momento da criação da colagem, o coletor de lixo ainda não havia excluído nossa imagem, e nós, com segurança, a retiramos do cache,
+reduzindo assim o número de requisições de rede e acelerando o tempo geral do processo de criação da colagem:
 </br><br>
 
 ![](weakref-finalizationregistry-demo-06.jpg)
 
 <br>
-Let's "play around" a little more, by replacing one of the images again and creating a new collage:
+Vamos "brincar" um pouco mais, substituindo uma das imagens novamente e criando uma nova colagem:
 </br><br>
 
 ![](weakref-finalizationregistry-demo-07.gif)
 
 <br>
-This time the result is even more impressive. Of the 4 images selected, 3 of them were taken from the weak cache, and only one had to be downloaded from the network.
-The reduction in network load was about 75%. Impressive, isn't it?
+Desta vez, o resultado é ainda mais impressionante. Das 4 imagens selecionadas, 3 delas foram retiradas do cache fraco, e apenas uma precisou ser baixada da rede.
+A redução na carga de rede foi de cerca de 75%. Impressionante, não é?
 </br><br>
 
 ![](weakref-finalizationregistry-demo-08.jpg)
 
 </br>
 
-Of course, it is important to remember, that such behavior is not guaranteed, and depends on the specific implementation and operation of the garbage collector.  
+É claro que é importante lembrar que esse comportamento não é garantido e depende da implementação e operação específicas do coletor de lixo.
 
-Based on this, a completely logical question immediately arises: why do not we use an ordinary cache, where we can manage its entities ourselves, instead of relying on the garbage collector?
-That's right, in the vast majority of cases there is no need to use `WeakRef` and `FinalizationRegistry`.  
+Com base nisso, surge imediatamente uma pergunta completamente lógica: por que não usamos um cache comum, onde podemos gerenciar suas entidades nós mesmos, em vez de depender do coletor de lixo?
+É isso mesmo, na grande maioria dos casos não há necessidade de usar `WeakRef` e `FinalizationRegistry`.
 
-Here, we simply demonstrated an alternative implementation of similar functionality, using a non-trivial approach with interesting language features.
-Still, we cannot rely on this example, if we need a constant and predictable result.
+Aqui, simplesmente demonstramos uma implementação alternativa de funcionalidade semelhante, usando uma abordagem não trivial com recursos interessantes da linguagem.
+Ainda assim, não podemos confiar neste exemplo se precisarmos de um resultado constante e previsível.
 
-You can [open this example in the sandbox](sandbox:weakref-finalizationregistry).
+Você pode [abrir este exemplo no sandbox](sandbox:weakref-finalizationregistry).
 
-## Summary
+## Resumo
 
-`WeakRef` - designed to create weak references to objects, allowing them to be deleted from memory by the garbage collector if there are no longer strong references to them.
-This is beneficial for addressing excessive memory usage and optimizing the utilization of system resources in applications.
+`WeakRef` - projetado para criar referências fracas a objetos, permitindo que eles sejam excluídos da memória pelo coletor de lixo caso não haja mais referências fortes a eles.
+Isso é benéfico para resolver o uso excessivo de memória e otimizar a utilização de recursos do sistema em aplicações.
 
-`FinalizationRegistry` - is a tool for registering callbacks, that are executed when objects that are no longer strongly referenced, are destroyed.
-This allows releasing resources associated with the object or performing other necessary operations before deleting the object from memory.
+`FinalizationRegistry` - é uma ferramenta para registrar callbacks, que são executados quando objetos que não têm mais referências fortes são destruídos.
+Isso permite liberar recursos associados ao objeto ou realizar outras operações necessárias antes de excluir o objeto da memória.
