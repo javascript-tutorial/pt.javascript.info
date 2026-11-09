@@ -1,5 +1,5 @@
 
-Using `setInterval`:
+Usando `setInterval`:
 
 ```js run
 function printNumbers(from, to) {
@@ -14,11 +14,11 @@ function printNumbers(from, to) {
   }, 1000);
 }
 
-// usage:
+// uso:
 printNumbers(5, 10);
 ```
 
-Using nested `setTimeout`:
+Usando `setTimeout` aninhado:
 
 
 ```js run
@@ -34,13 +34,13 @@ function printNumbers(from, to) {
   }, 1000);
 }
 
-// usage:
+// uso:
 printNumbers(5, 10);
 ```
 
-Note that in both solutions, there is an initial delay before the first output. The function is called after `1000ms` the first time.
+Observe que, nas duas soluções, há um atraso inicial antes da primeira exibição. A função é chamada pela primeira vez depois de `1000ms`.
 
-If we also want the function to run immediately, then we can add an additional call on a separate line, like this:
+Se também quisermos que a função rode imediatamente, podemos adicionar uma chamada extra numa linha separada, assim:
 
 ```js run
 function printNumbers(from, to) {
