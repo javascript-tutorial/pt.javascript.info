@@ -3,17 +3,17 @@ libs:
 
 ---
 
-# Function binding
+# Vínculo de função
 
-When passing object methods as callbacks, for instance to `setTimeout`, there's a known problem: "losing `this`".
+Ao passar métodos de objeto como callbacks, por exemplo para `setTimeout`, existe um problema conhecido: "perder o `this`".
 
-In this chapter we'll see the ways to fix it.
+Neste capítulo vamos ver as formas de corrigir isso.
 
-## Losing "this"
+## Perdendo o "this"
 
-We've already seen examples of losing `this`. Once a method is passed somewhere separately from the object -- `this` is lost.
+Já vimos exemplos de perda do `this`. Assim que um método é passado separadamente do objeto -- o `this` é perdido.
 
-Here's how it may happen with `setTimeout`:
+Veja como isso pode acontecer com `setTimeout`:
 
 ```js run
 let user = {
@@ -28,22 +28,22 @@ setTimeout(user.sayHi, 1000); // Hello, undefined!
 */!*
 ```
 
-As we can see, the output shows not "John" as `this.firstName`, but `undefined`!
+Como podemos ver, a saída não mostra "John" como `this.firstName`, mas `undefined`!
 
-That's because `setTimeout` got the function `user.sayHi`, separately from the object. The last line can be rewritten as:
+Isso acontece porque `setTimeout` recebeu a função `user.sayHi`, separadamente do objeto. A última linha pode ser reescrita como:
 
 ```js
 let f = user.sayHi;
-setTimeout(f, 1000); // lost user context
+setTimeout(f, 1000); // perdeu o contexto de user
 ```
 
-The method `setTimeout` in-browser is a little special: it sets `this=window` for the function call (for Node.js, `this` becomes the timer object, but doesn't really matter here). So for `this.firstName` it tries to get `window.firstName`, which does not exist. In other similar cases, usually `this` just becomes `undefined`.
+O método `setTimeout`, no navegador, é um pouco especial: ele define `this=window` para a chamada da função (para o Node.js, `this` se torna o objeto timer, mas isso não importa muito aqui). Então, para `this.firstName`, ele tenta obter `window.firstName`, que não existe. Em outros casos parecidos, normalmente `this` simplesmente se torna `undefined`.
 
-The task is quite typical -- we want to pass an object method somewhere else (here -- to the scheduler) where it will be called. How to make sure that it will be called in the right context?
+A tarefa é bem típica -- queremos passar um método de objeto para algum outro lugar (aqui -- para o agendador) onde ele vai ser chamado. Como garantir que ele vai ser chamado no contexto certo?
 
-## Solution 1: a wrapper
+## Solução 1: um invólucro
 
-The simplest solution is to use a wrapping function:
+A solução mais simples é usar uma função de invólucro:
 
 ```js run
 let user = {
@@ -60,17 +60,17 @@ setTimeout(function() {
 */!*
 ```
 
-Now it works, because it receives `user` from the outer lexical environment, and then calls the method normally.
+Agora funciona, porque ela recebe `user` do ambiente léxico externo, e então chama o método normalmente.
 
-The same, but shorter:
+A mesma coisa, mas mais curta:
 
 ```js
 setTimeout(() => user.sayHi(), 1000); // Hello, John!
 ```
 
-Looks fine, but a slight vulnerability appears in our code structure.
+Parece bom, mas surge uma pequena vulnerabilidade na estrutura do nosso código.
 
-What if before `setTimeout` triggers (there's one second delay!) `user` changes value? Then, suddenly, it will call the wrong object!
+E se, antes do `setTimeout` disparar (há um atraso de um segundo!), `user` mudar de valor? Então, de repente, vai chamar o objeto errado!
 
 
 ```js run
@@ -83,7 +83,7 @@ let user = {
 
 setTimeout(() => user.sayHi(), 1000);
 
-// ...the value of user changes within 1 second
+// ...o valor de user muda dentro de 1 segundo
 user = {
   sayHi() { alert("Another user in setTimeout!"); }
 };
@@ -91,24 +91,24 @@ user = {
 // Another user in setTimeout!
 ```
 
-The next solution guarantees that such thing won't happen.
+A próxima solução garante que isso não vai acontecer.
 
-## Solution 2: bind
+## Solução 2: bind
 
-Functions provide a built-in method [bind](mdn:js/Function/bind) that allows to fix `this`.
+Funções oferecem um método nativo, [bind](mdn:js/Function/bind), que permite fixar o `this`.
 
-The basic syntax is:
+A sintaxe básica é:
 
 ```js
-// more complex syntax will come a little later
+// uma sintaxe mais complexa vem um pouco mais tarde
 let boundFunc = func.bind(context);
 ```
 
-The result of `func.bind(context)` is a special function-like "exotic object", that is callable as function and transparently passes the call to `func` setting `this=context`.
+O resultado de `func.bind(context)` é um "objeto exótico" especial, parecido com uma função, que é chamável como uma função e passa a chamada para `func` de forma transparente, definindo `this=context`.
 
-In other words, calling `boundFunc` is like `func` with fixed `this`.
+Em outras palavras, chamar `boundFunc` é como chamar `func` com `this` fixo.
 
-For instance, here `funcUser` passes a call to `func` with `this=user`:
+Por exemplo, aqui `funcUser` passa uma chamada para `func` com `this=user`:
 
 ```js run  
 let user = {
@@ -125,9 +125,9 @@ funcUser(); // John
 */!*
 ```
 
-Here `func.bind(user)` is a "bound variant" of `func`, with fixed `this=user`.
+Aqui `func.bind(user)` é uma "variante vinculada" de `func`, com `this=user` fixo.
 
-All arguments are passed to the original `func` "as is", for instance:
+Todos os argumentos são passados para o `func` original "como estão", por exemplo:
 
 ```js run  
 let user = {
@@ -138,15 +138,15 @@ function func(phrase) {
   alert(phrase + ', ' + this.firstName);
 }
 
-// bind this to user
+// vincula this a user
 let funcUser = func.bind(user);
 
 *!*
-funcUser("Hello"); // Hello, John (argument "Hello" is passed, and this=user)
+funcUser("Hello"); // Hello, John (o argumento "Hello" é passado, e this=user)
 */!*
 ```
 
-Now let's try with an object method:
+Agora vamos tentar com um método de objeto:
 
 
 ```js run
@@ -161,21 +161,21 @@ let user = {
 let sayHi = user.sayHi.bind(user); // (*)
 */!*
 
-// can run it without an object
+// pode rodar sem um objeto
 sayHi(); // Hello, John!
 
 setTimeout(sayHi, 1000); // Hello, John!
 
-// even if the value of user changes within 1 second
-// sayHi uses the pre-bound value which is reference to the old user object
+// mesmo que o valor de user mude dentro de 1 segundo
+// sayHi usa o valor pré-vinculado, que é uma referência ao antigo objeto user
 user = {
   sayHi() { alert("Another user in setTimeout!"); }
 };
 ```
 
-In the line `(*)` we take the method `user.sayHi` and bind it to `user`. The `sayHi` is a "bound" function, that can be called alone or passed to `setTimeout` -- doesn't matter, the context will be right.
+Na linha `(*)` pegamos o método `user.sayHi` e o vinculamos a `user`. O `sayHi` é uma função "vinculada", que pode ser chamada sozinha ou passada para `setTimeout` -- não importa, o contexto vai estar certo.
 
-Here we can see that arguments are passed "as is", only `this` is fixed by `bind`:
+Aqui podemos ver que os argumentos são passados "como estão", só o `this` é fixado pelo `bind`:
 
 ```js run
 let user = {
@@ -187,12 +187,12 @@ let user = {
 
 let say = user.say.bind(user);
 
-say("Hello"); // Hello, John! ("Hello" argument is passed to say)
-say("Bye"); // Bye, John! ("Bye" is passed to say)
+say("Hello"); // Hello, John! (o argumento "Hello" é passado para say)
+say("Bye"); // Bye, John! ("Bye" é passado para say)
 ```
 
-````smart header="Convenience method: `bindAll`"
-If an object has many methods and we plan to actively pass it around, then we could bind them all in a loop:
+````smart header="Método de conveniência: `bindAll`"
+Se um objeto tem muitos métodos e planejamos passá-lo adiante ativamente, podemos vincular todos eles num laço:
 
 ```js
 for (let key in user) {
@@ -202,24 +202,24 @@ for (let key in user) {
 }
 ```
 
-JavaScript libraries also provide functions for convenient mass binding , e.g. [_.bindAll(object, methodNames)](https://lodash.com/docs#bindAll) in lodash.
+Bibliotecas JavaScript também fornecem funções para vinculação em massa de forma conveniente, ex.: [_.bindAll(object, methodNames)](https://lodash.com/docs#bindAll) no lodash.
 ````
 
-## Partial functions
+## Funções parciais
 
-Until now we have only been talking about binding `this`. Let's take it a step further.
+Até agora só falamos sobre vincular o `this`. Vamos dar um passo além.
 
-We can bind not only `this`, but also arguments. That's rarely done, but sometimes can be handy.
+Podemos vincular não só o `this`, mas também argumentos. Isso raramente é feito, mas às vezes pode ser útil.
 
-The full syntax of `bind`:
+A sintaxe completa do `bind`:
 
 ```js
 let bound = func.bind(context, [arg1], [arg2], ...);
 ```
 
-It allows to bind context as `this` and starting arguments of the function.
+Isso permite vincular o contexto como `this` e os argumentos iniciais da função.
 
-For instance, we have a multiplication function `mul(a, b)`:
+Por exemplo, temos uma função de multiplicação `mul(a, b)`:
 
 ```js
 function mul(a, b) {
@@ -227,7 +227,7 @@ function mul(a, b) {
 }
 ```
 
-Let's use `bind` to create a function `double` on its base:
+Vamos usar `bind` para criar uma função `double` com base nela:
 
 ```js run
 function mul(a, b) {
@@ -243,13 +243,13 @@ alert( double(4) ); // = mul(2, 4) = 8
 alert( double(5) ); // = mul(2, 5) = 10
 ```
 
-The call to `mul.bind(null, 2)` creates a new function `double` that passes calls to `mul`, fixing `null` as the context and `2` as the first argument. Further arguments are passed "as is".
+A chamada a `mul.bind(null, 2)` cria uma nova função `double` que passa chamadas para `mul`, fixando `null` como o contexto e `2` como o primeiro argumento. Os argumentos seguintes são passados "como estão".
 
-That's called [partial function application](https://en.wikipedia.org/wiki/Partial_application) -- we create a new function by fixing some parameters of the existing one.
+Isso é chamado de [aplicação parcial de função](https://en.wikipedia.org/wiki/Partial_application) -- criamos uma nova função fixando alguns parâmetros da existente.
 
-Please note that we actually don't use `this` here. But `bind` requires it, so we must put in something like `null`.
+Observe que, na verdade, não usamos o `this` aqui. Mas o `bind` exige ele, então precisamos colocar algo como `null`.
 
-The function `triple` in the code below triples the value:
+A função `triple` no código abaixo triplica o valor:
 
 ```js run
 function mul(a, b) {
@@ -265,23 +265,23 @@ alert( triple(4) ); // = mul(3, 4) = 12
 alert( triple(5) ); // = mul(3, 5) = 15
 ```
 
-Why do we usually make a partial function?
+Por que normalmente fazemos uma função parcial?
 
-The benefit is that we can create an independent function with a readable name (`double`, `triple`). We can use it and not provide the first argument every time as it's fixed with `bind`.
+O benefício é que podemos criar uma função independente com um nome legível (`double`, `triple`). Podemos usá-la e não precisar fornecer o primeiro argumento toda vez, já que ele está fixado pelo `bind`.
 
-In other cases, partial application is useful when we have a very generic function and want a less universal variant of it for convenience.
+Em outros casos, a aplicação parcial é útil quando temos uma função bem genérica e queremos uma variante menos universal dela, por conveniência.
 
-For instance, we have a function `send(from, to, text)`. Then, inside a `user` object we may want to use a partial variant of it: `sendTo(to, text)` that sends from the current user.
+Por exemplo, temos uma função `send(from, to, text)`. Então, dentro de um objeto `user`, podemos querer usar uma variante parcial dela: `sendTo(to, text)`, que envia a partir do usuário atual.
 
-## Going partial without context
+## Indo parcial sem contexto
 
-What if we'd like to fix some arguments, but not the context `this`? For example, for an object method.
+E se quisermos fixar alguns argumentos, mas não o contexto `this`? Por exemplo, para um método de objeto.
 
-The native `bind` does not allow that. We can't just omit the context and jump to arguments.
+O `bind` nativo não permite isso. Não podemos simplesmente omitir o contexto e pular para os argumentos.
 
-Fortunately, a function `partial` for binding only arguments can be easily implemented.
+Felizmente, uma função `partial` para vincular apenas argumentos pode ser facilmente implementada.
 
-Like this:
+Assim:
 
 ```js run
 *!*
@@ -292,7 +292,7 @@ function partial(func, ...argsBound) {
 }
 */!*
 
-// Usage:
+// Uso:
 let user = {
   firstName: "John",
   say(time, phrase) {
@@ -300,29 +300,29 @@ let user = {
   }
 };
 
-// add a partial method with fixed time
+// adiciona um método parcial com o horário fixo
 user.sayNow = partial(user.say, new Date().getHours() + ':' + new Date().getMinutes());
 
 user.sayNow("Hello");
-// Something like:
+// Algo como:
 // [10:00] John: Hello!
 ```
 
-The result of `partial(func[, arg1, arg2...])` call is a wrapper `(*)` that calls `func` with:
-- Same `this` as it gets (for `user.sayNow` call it's `user`)
-- Then gives it `...argsBound` -- arguments from the `partial` call (`"10:00"`)
-- Then gives it `...args` -- arguments given to the wrapper (`"Hello"`)
+O resultado da chamada `partial(func[, arg1, arg2...])` é um invólucro `(*)` que chama `func` com:
+- O mesmo `this` que recebe (para a chamada `user.sayNow` é `user`)
+- Depois passa a ele `...argsBound` -- argumentos da chamada `partial` (`"10:00"`)
+- Depois passa a ele `...args` -- argumentos dados ao invólucro (`"Hello"`)
 
-So easy to do it with the spread syntax, right?
+Fácil de fazer com a sintaxe spread, não é?
 
-Also there's a ready [_.partial](https://lodash.com/docs#partial) implementation from lodash library.
+Também existe uma implementação pronta, [_.partial](https://lodash.com/docs#partial), da biblioteca lodash.
 
-## Summary
+## Resumo
 
-Method `func.bind(context, ...args)` returns a "bound variant" of function `func` that fixes the context `this` and first arguments if given.
+O método `func.bind(context, ...args)` retorna uma "variante vinculada" da função `func` que fixa o contexto `this` e os primeiros argumentos, se fornecidos.
 
-Usually we apply `bind` to fix `this` for an object method, so that we can pass it somewhere. For example, to `setTimeout`.
+Normalmente aplicamos o `bind` para fixar o `this` de um método de objeto, para que possamos passá-lo adiante. Por exemplo, para `setTimeout`.
 
-When we fix some arguments of an existing function, the resulting (less universal) function is called *partially applied* or *partial*.
+Quando fixamos alguns argumentos de uma função existente, a função resultante (menos universal) é chamada de *parcialmente aplicada* ou *parcial*.
 
-Partials are convenient when we don't want to repeat the same argument over and over again. Like if we have a `send(from, to)` function, and `from` should always be the same for our task, we can get a partial and go on with it.
+Parciais são convenientes quando não queremos repetir o mesmo argumento o tempo todo. Tipo se temos uma função `send(from, to)`, e `from` deveria ser sempre o mesmo para a nossa tarefa, podemos obter uma parcial e seguir com ela.

@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Fix a function that loses "this"
+# Corrija uma função que perde o "this"
 
-The call to `askPassword()` in the code below should check the password and then call `user.loginOk/loginFail` depending on the answer.
+A chamada a `askPassword()` no código abaixo deveria verificar a senha e então chamar `user.loginOk/loginFail` dependendo da resposta.
 
-But it leads to an error. Why?
+Mas ela causa um erro. Por quê?
 
-Fix the highlighted line for everything to start working right (other lines are not to be changed).
+Corrija a linha destacada para que tudo comece a funcionar direito (as outras linhas não devem ser mudadas).
 
 ```js run
 function askPassword(ok, fail) {
