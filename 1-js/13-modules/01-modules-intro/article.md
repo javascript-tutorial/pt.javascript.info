@@ -31,7 +31,7 @@ Por exemplo, se temos um arquivo `sayHi.js` exportando uma função:
 ```js
 // 📁 sayHi.js
 export function sayHi(user) {
-  alert(`Hello, ${user}!`);
+  alert(`Olá, ${user}!`);
 }
 ```
 
@@ -42,7 +42,7 @@ export function sayHi(user) {
 import {sayHi} from './sayHi.js';
 
 alert(sayHi); // function...
-sayHi('John'); // Hello, John!
+sayHi('John'); // Olá, John!
 ```
 
 A diretiva `import` carrega o módulo pelo caminho `./sayHi.js`, relativo ao arquivo atual, e atribui a função exportada `sayHi` à variável correspondente.
@@ -58,7 +58,7 @@ Assim:
 O navegador automaticamente busca e avalia o módulo importado (e suas importações, se necessário), e então roda o script.
 
 ```warn header="Módulos só funcionam via HTTP(s), não localmente"
-Se você tentar abrir uma página web localmente, via protocolo `file://`, vai perceber que as diretivas `import/export` não funcionam. Use um servidor web local, como [static-server](https://www.npmjs.com/package/static-server#getting-started) ou use o recurso de "live server" do seu editor, como a [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) do VS Code, pra testar módulos.
+Se você tentar abrir uma página web localmente, via protocolo `file://`, vai perceber que as diretivas `import/export` não funcionam. Use um servidor web local, como [static-server](https://www.npmjs.com/package/static-server#getting-started) ou use o recurso de "live server" do seu editor, como a [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) do VS Code, para testar módulos.
 ```
 
 ## Recursos principais dos módulos
@@ -69,7 +69,7 @@ Existem recursos principais, válidos tanto para o JavaScript do navegador quant
 
 ### Sempre "use strict"
 
-Módulos sempre funcionam em modo estrito. Ex.: atribuir a uma variável não declarada vai gerar um erro.
+Módulos sempre funcionam em modo estrito. Por exemplo, atribuir a uma variável não declarada vai gerar um erro.
 
 ```html run
 <script type="module">
@@ -114,14 +114,14 @@ Aqui estão dois scripts na mesma página, ambos `type="module"`. Eles não veem
 ```
 
 ```smart
-No navegador, podemos tornar uma variável global em nível de window atribuindo-a explicitamente a uma propriedade de `window`, ex.: `window.user = "John"`. 
+No navegador, podemos tornar uma variável global, no nível de `window`, atribuindo-a explicitamente a uma propriedade de `window`, por exemplo, `window.user = "John"`.
 
 Então todos os scripts vão vê-la, tanto com `type="module"` quanto sem. 
 
 Dito isso, criar esse tipo de variável global é malvisto. Tente evitá-las.
 ```
 
-### Um código de módulo é avaliado só na primeira vez em que é importado
+### O código de um módulo é avaliado só na primeira vez em que é importado
 
 Se o mesmo módulo é importado por vários outros módulos, seu código é executado só uma vez, na primeira importação. Depois, suas exportações são entregues a todos os importadores seguintes.
 
@@ -140,10 +140,10 @@ alert("O módulo foi avaliado!");
 // Importa o mesmo módulo a partir de arquivos diferentes
 
 // 📁 1.js
-import `./alert.js`; // O módulo foi avaliado!
+import './alert.js'; // O módulo foi avaliado!
 
 // 📁 2.js
-import `./alert.js`; // (não mostra nada)
+import './alert.js'; // (não mostra nada)
 ```
 
 A segunda importação não mostra nada, porque o módulo já foi avaliado.
@@ -186,21 +186,21 @@ Isso acontece exatamente porque o módulo é executado só uma vez. As exportaç
 
 **Esse comportamento é, na verdade, bem conveniente, porque nos permite *configurar* módulos.**
 
-Em outras palavras, um módulo pode fornecer uma funcionalidade genérica que precisa de uma configuração. Ex.: autenticação precisa de credenciais. Então ele pode exportar um objeto de configuração esperando que o código externo atribua valores a ele.
+Em outras palavras, um módulo pode fornecer uma funcionalidade genérica que precisa de uma configuração. Por exemplo, autenticação precisa de credenciais. Então ele pode exportar um objeto de configuração esperando que o código externo atribua valores a ele.
 
 Aqui está o padrão clássico:
-1. Um módulo exporta algum meio de configuração, ex.: um objeto de configuração.
+1. Um módulo exporta algum meio de configuração, por exemplo, um objeto de configuração.
 2. Na primeira importação, nós o inicializamos, escrevendo em suas propriedades. O script principal da aplicação pode fazer isso.
 3. As importações seguintes usam o módulo.
 
-Por exemplo, o módulo `admin.js` pode fornecer certa funcionalidade (ex.: autenticação), mas espera que as credenciais venham de fora pro objeto `config`:
+Por exemplo, o módulo `admin.js` pode fornecer certa funcionalidade (ex.: autenticação), mas espera que as credenciais venham de fora para o objeto `config`:
 
 ```js
 // 📁 admin.js
 export let config = { };
 
 export function sayHi() {
-  alert(`Ready to serve, ${config.user}!`);
+  alert(`Pronto para atender, ${config.user}!`);
 }
 ```
 
@@ -222,7 +222,7 @@ Os importadores seguintes podem chamá-lo, e ele mostra corretamente o usuário 
 // 📁 another.js
 import {sayHi} from './admin.js';
 
-sayHi(); // Ready to serve, *!*Pete*/!*!
+sayHi(); // Pronto para atender, *!*Pete*/!*!
 ```
 
 
@@ -241,7 +241,7 @@ Seu conteúdo depende do ambiente. No navegador, ele contém a URL do script, ou
 
 ### Num módulo, o "this" é undefined
 
-Esse é meio que um recurso secundário, mas, pra ficar completo, devemos mencioná-lo.
+Esse é um recurso secundário, mas, para ficar completo, devemos mencioná-lo.
 
 Num módulo, o `this` de nível superior é undefined.
 
@@ -354,7 +354,7 @@ import {sayHi} from 'sayHi'; // Erro, módulo "solto"
 // o módulo precisa ter um caminho, ex.: './sayHi.js' ou onde quer que o módulo esteja
 ```
 
-Certos ambientes, como Node.js ou ferramentas de empacotamento, permitem módulos "soltos", sem nenhum caminho, já que têm suas próprias formas de encontrar módulos e ganchos pra ajustá-los. Mas navegadores ainda não suportam módulos "soltos".
+Certos ambientes, como Node.js ou ferramentas de empacotamento, permitem módulos "soltos", sem nenhum caminho, já que têm suas próprias formas de encontrar módulos e ganchos para ajustá-los. Mas navegadores ainda não suportam módulos "soltos".
 
 ### Compatibilidade, "nomodule"
 
@@ -371,17 +371,17 @@ Navegadores antigos não entendem `type="module"`. Scripts de tipo desconhecido 
 </script>
 ```
 
-## Ferramentas de build
+## Ferramentas de empacotamento (build)
 
-Na vida real, módulos de navegador raramente são usados na sua forma "crua". Normalmente, nós os empacotamos juntos com uma ferramenta especial, como o [Webpack](https://webpack.js.org/), e fazemos o deploy pro servidor de produção.
+Na vida real, módulos de navegador raramente são usados na sua forma "crua". Normalmente, nós os empacotamos juntos com uma ferramenta especial, como o [Webpack](https://webpack.js.org/), e fazemos o deploy para o servidor de produção.
 
 Um dos benefícios de usar empacotadores -- eles dão mais controle sobre como os módulos são resolvidos, permitindo módulos "soltos" e muito mais, como módulos CSS/HTML.
 
-Ferramentas de build fazem o seguinte:
+Ferramentas de empacotamento fazem o seguinte:
 
 1. Pegam um módulo "principal", aquele que vai ser colocado em `<script type="module">` no HTML.
 2. Analisam suas dependências: importações e depois importações das importações etc.
-3. Constroem um único arquivo com todos os módulos (ou vários arquivos, isso é ajustável), substituindo as chamadas nativas de `import` por funções do empacotador, pra que tudo funcione. Tipos "especiais" de módulo, como módulos HTML/CSS, também são suportados.
+3. Constroem um único arquivo com todos os módulos (ou vários arquivos, isso é ajustável), substituindo as chamadas nativas de `import` por funções do empacotador, para que tudo funcione. Tipos "especiais" de módulo, como módulos HTML/CSS, também são suportados.
 4. No processo, outras transformações e otimizações podem ser aplicadas:
     - Código inalcançável é removido.
     - Exportações não usadas são removidas ("tree-shaking").
@@ -402,7 +402,7 @@ Dito isso, módulos nativos também são utilizáveis. Então não vamos usar o 
 
 Resumindo, os conceitos principais são:
 
-1. Um módulo é um arquivo. Pra fazer `import/export` funcionar, os navegadores precisam de `<script type="module">`. Módulos têm várias diferenças:
+1. Um módulo é um arquivo. Para fazer `import/export` funcionar, os navegadores precisam de `<script type="module">`. Módulos têm várias diferenças:
     - Adiados por padrão.
     - Async funciona em scripts inline.
     - Pra carregar scripts externos de outra origem (domínio/protocolo/porta), cabeçalhos CORS são necessários.
@@ -411,8 +411,8 @@ Resumindo, os conceitos principais são:
 3. Módulos sempre usam `use strict`.
 4. O código de um módulo é executado só uma vez. Exportações são criadas uma vez e compartilhadas entre os importadores.
 
-Quando usamos módulos, cada módulo implementa a funcionalidade e a exporta. Então usamos `import` pra importá-la diretamente onde é necessária. O navegador carrega e avalia os scripts automaticamente.
+Quando usamos módulos, cada módulo implementa a funcionalidade e a exporta. Então usamos `import` para importá-la diretamente onde é necessária. O navegador carrega e avalia os scripts automaticamente.
 
-Em produção, as pessoas costumam usar empacotadores como o [Webpack](https://webpack.js.org) pra empacotar os módulos juntos, por motivos de desempenho e outros.
+Em produção, as pessoas costumam usar empacotadores como o [Webpack](https://webpack.js.org) para empacotar os módulos juntos, por motivos de desempenho e outros.
 
 No próximo capítulo vamos ver mais exemplos de módulos, e como as coisas podem ser exportadas/importadas.
