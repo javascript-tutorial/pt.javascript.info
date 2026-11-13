@@ -78,3 +78,76 @@ promiseQueue.svg:
   "script execution finished":
     text: "execução do script terminada"
     position: left
+closure-function-declaration.svg:
+  "execution start":
+    text: "início da execução"
+    position: left
+closure-variable-phrase.svg:
+  "execution start":
+    text: "início da execução"
+    position: left
+lexical-environment-global-2.svg:
+  "execution start":
+    text: "início da execução"
+    position: left
+lexical-environment-global-3.svg:
+  "execution start":
+    text: "início da execução"
+    position: left
+closure-makecounter-nested-call-2.svg:
+  "modified here":
+    text: "modificado aqui"
+    position: left
+lexenv-nested-makecounter-6.svg:
+  "modified here":
+    text: "modificado aqui"
+    position: left
+lexical-environment-global.svg:
+  "Lexical Environment":
+    text: "Ambiente Léxico"
+    position: left
+lexical-environment-simple.svg:
+  "Lexical Environment of the call":
+    text: "Ambiente Léxico da chamada"
+    position: left
+closure-makecounter.svg:
+  "global LexicalEnvironment":
+    text: "Ambiente Léxico global"
+    position: right
+  "LexicalEnvironment":
+    text: "Ambiente Léxico"
+    position: left
+  "of makeCounter() call":
+    text: "da chamada de makeCounter()"
+    position: left
+lexenv-nested-makecounter-2.svg:
+  "global LexicalEnvironment":
+    text: "Ambiente Léxico global"
+    position: right
+  "LexicalEnvironment":
+    text: "Ambiente Léxico"
+    position: left
+  "of makeCounter() call":
+    text: "da chamada de makeCounter()"
+    position: left
+lexenv-makearmy-empty.svg:
+  "LexicalEnvironment":
+    text: "Ambiente Léxico"
+    position: left
+  "while iteration":
+    text: "iteração do while"
+    position: left
+lexenv-makearmy-for-fixed.svg:
+  "LexicalEnvironment":
+    text: "Ambiente Léxico"
+    position: left
+  "for iteration":
+    text: "iteração do for"
+    position: left
+lexenv-makearmy-while-fixed.svg:
+  "LexicalEnvironment":
+    text: "Ambiente Léxico"
+    position: left
+  "while iteration":
+    text: "iteração do while"
+    position: left

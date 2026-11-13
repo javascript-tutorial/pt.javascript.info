@@ -1,12 +1,12 @@
-For the second parentheses to work, the first ones must return a function.
+Para o segundo parênteses funcionar, o primeiro precisa retornar uma função.
 
-Like this:
+Assim:
 
 ```js run
 function sum(a) {
 
   return function(b) {
-    return a + b; // takes "a" from the outer lexical environment
+    return a + b; // pega "a" do ambiente léxico externo
   };
 
 }

@@ -1,9 +1,9 @@
-The answer is: **Pete**.
+A resposta é: **Pete**.
 
-The `work()` function in the code below gets `name` from the place of its origin through the outer lexical environment reference:
+A função `work()` no código abaixo pega `name` do seu lugar de origem, através da referência do ambiente léxico externo:
 
 ![](lexenv-nested-work.svg)
 
-So, the result is `"Pete"` here.
+Então, o resultado aqui é `"Pete"`.
 
-But if there were no `let name` in `makeWorker()`, then the search would go outside and take the global variable as we can see from the chain above. In that case the result would be `"John"`.
+Mas se não houvesse `let name` em `makeWorker()`, então a busca iria para fora e pegaria a variável global, como podemos ver pela cadeia acima. Nesse caso, o resultado seria `"John"`.
