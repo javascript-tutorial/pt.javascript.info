@@ -1,1 +1,1 @@
-alert(user); // no such variable (each module has independent variables)
+alert(user); // essa variável não existe (cada módulo tem variáveis independentes)
