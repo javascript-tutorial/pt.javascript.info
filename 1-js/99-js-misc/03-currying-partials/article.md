@@ -11,7 +11,7 @@ Currying é uma transformação de funções que converte uma função chamável
 
 Currying não chama uma função. Ele apenas a transforma.
 
-Vamos ver um exemplo primeiro, pra entender melhor do que estamos falando, e depois as aplicações práticas.
+Vamos ver um exemplo primeiro, para entender melhor do que estamos falando, e depois as aplicações práticas.
 
 Vamos criar uma função auxiliar `curry(f)` que faz o currying de uma `f` de dois argumentos. Em outras palavras, `curry(f)`, para uma `f(a, b)` de dois argumentos, a converte numa função que roda como `f(a)(b)`:
 
@@ -39,8 +39,8 @@ alert( curriedSum(1)(2) ); // 3
 Como você pode ver, a implementação é direta: são só dois invólucros.
 
 - O resultado de `curry(func)` é um invólucro `function(a)`.
-- Quando ele é chamado como `curriedSum(1)`, o argumento é salvo no Ambiente Léxico, e um novo invólucro é retornado, `function(b)`.
-- Então esse invólucro é chamado com `2` como argumento, e ele passa a chamada pra `sum` original.
+- Quando ele é chamado como `curriedSum(1)`, o argumento é salvo no Ambiente Lexical, e um novo invólucro é retornado, `function(b)`.
+- Então esse invólucro é chamado com `2` como argumento, e ele passa a chamada para a `sum` original.
 
 Implementações mais avançadas de currying, como o [_.curry](https://lodash.com/docs#curry) da biblioteca lodash, retornam um invólucro que permite que uma função seja chamada tanto normalmente quanto parcialmente:
 
@@ -55,9 +55,9 @@ alert( curriedSum(1, 2) ); // 3, ainda chamável normalmente
 alert( curriedSum(1)(2) ); // 3, chamado parcialmente
 ```
 
-## Currying? Pra quê?
+## Currying? Para quê?
 
-Pra entender os benefícios, precisamos de um bom exemplo da vida real.
+Para entender os benefícios, precisamos de um bom exemplo da vida real.
 
 Por exemplo, temos a função de log `log(date, importance, message)` que formata e exibe a informação. Em projetos reais, essas funções têm muitos recursos úteis, como enviar logs pela rede, mas aqui vamos só usar `alert`:
 
@@ -85,7 +85,7 @@ log(new Date(), "DEBUG", "some debug"); // log(a, b, c)
 log(new Date())("DEBUG")("some debug"); // log(a)(b)(c)
 ```
 
-Agora podemos facilmente fazer uma função de conveniência para os logs atuais:
+Agora podemos facilmente fazer uma função de conveniência para os logs com a hora atual:
 
 ```js
 // logNow será a parcial de log com o primeiro argumento fixo
@@ -97,7 +97,7 @@ logNow("INFO", "message"); // [HH:mm] INFO message
 
 Agora `logNow` é o `log` com o primeiro argumento fixo, em outras palavras, uma "função parcialmente aplicada", ou "parcial" para simplificar.
 
-Podemos ir além e fazer uma função de conveniência para os logs de debug atuais:
+Podemos ir além e fazer uma função de conveniência para os logs de debug com a hora atual:
 
 ```js
 let debugNow = logNow("DEBUG");
@@ -162,9 +162,9 @@ function curried(...args) {
 };
 ```
 
-Quando rodamos ela, existem duas ramificações de execução do `if`:
+Quando a executamos, existem duas ramificações de execução do `if`:
 
-1. Se a quantidade de `args` passados for igual ou maior do que a função original tem na sua definição (`func.length`), então só passa a chamada pra ela usando `func.apply`. 
+1. Se a quantidade de `args` passados for igual ou maior do que a quantidade que a função original tem na sua definição (`func.length`), então simplesmente repassa a chamada para ela usando `func.apply`. 
 2. Caso contrário, obtém uma parcial: ainda não chamamos `func`. Em vez disso, outro invólucro é retornado, que vai reaplicar `curried`, fornecendo os argumentos anteriores junto com os novos. 
 
 Então, se a chamarmos de novo, vamos obter ou uma nova parcial (se não houver argumentos suficientes) ou, finalmente, o resultado.
@@ -172,13 +172,13 @@ Então, se a chamarmos de novo, vamos obter ou uma nova parcial (se não houver 
 ```smart header="Só funções de tamanho fixo"
 O currying exige que a função tenha um número fixo de argumentos.
 
-Uma função que usa parâmetros rest, como `f(...args)`, não pode ter o currying feito dessa forma.
+Uma função que usa parâmetros rest, como `f(...args)`, não pode passar por currying dessa forma.
 ```
 
 ```smart header="Um pouco mais do que currying"
 Por definição, o currying deveria converter `sum(a, b, c)` em `sum(a)(b)(c)`.
 
-Mas a maioria das implementações de currying no JavaScript são avançadas, como descrito: elas também mantêm a função chamável na variante com múltiplos argumentos.
+Mas a maioria das implementações de currying no JavaScript é avançada, como descrito: também mantém a função chamável na variante com múltiplos argumentos.
 ```
 
 ## Resumo
