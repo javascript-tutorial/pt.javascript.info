@@ -218,13 +218,13 @@ export const CONSOLE_ERROR = [
 
 // Layouts.
 export const LAYOUT_4_COLUMNS = {
-    name: "Layout 4 columns",
+    name: "Layout de 4 colunas",
     columns: 4,
     itemWidth: 240,
     itemHeight: 240,
 };
 export const LAYOUT_8_COLUMNS = {
-    name: "Layout 8 columns",
+    name: "Layout de 8 colunas",
     columns: 8,
     itemWidth: 240,
     itemHeight: 240,
@@ -236,7 +236,7 @@ export const createImageFile = async (src) =>
         const img = new Image();
         img.src = src;
         img.onload = () => resolve(img);
-        img.onerror = () => reject(new Error("Failed to construct image."));
+        img.onerror = () => reject(new Error("Falha ao criar a imagem."));
     });
 
 export const loadImage = async (url) => {
