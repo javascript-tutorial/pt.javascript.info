@@ -3,22 +3,22 @@
 
 O que acontece quando objetos são somados `obj1 + obj2`, subtraídos `obj1 - obj2` ou exibidos usando `alert(obj)`?
 
-O JavaScript não permite que você personalize como os operadores funcionam em objetos. Diferente de outras linguagens de programação, como Ruby ou C++, não podemos implementar um método especial de objeto pra lidar com a adição (ou outros operadores).
+O JavaScript não permite que você personalize como os operadores funcionam em objetos. Diferente de outras linguagens de programação, como Ruby ou C++, não podemos implementar um método especial de objeto para lidar com a adição (ou outros operadores).
 
 Nesse tipo de operação, os objetos são convertidos automaticamente para primitivos, e então a operação é realizada sobre esses primitivos, resultando num valor primitivo.
 
 Essa é uma limitação importante: o resultado de `obj1 + obj2` (ou outra operação matemática) não pode ser outro objeto!
 
-Ex.: não podemos fazer objetos representando vetores ou matrizes (ou conquistas ou qualquer outra coisa), somá-los e esperar um objeto "somado" como resultado. Esses feitos arquiteturais são automaticamente "tirados de cena".
+Por exemplo, não podemos fazer objetos representando vetores ou matrizes (ou conquistas ou qualquer outra coisa), somá-los e esperar um objeto "somado" como resultado. Esses feitos arquiteturais estão automaticamente "fora de cogitação".
 
-Então, como tecnicamente não dá pra fazer muita coisa aqui, não existe matemática com objetos em projetos reais. Quando acontece, com raras exceções, é por causa de um erro de código.
+Então, como tecnicamente não dá para fazer muita coisa aqui, não existe matemática com objetos em projetos reais. Quando acontece, com raras exceções, é por causa de um erro de código.
 
 Neste capítulo vamos abordar como um objeto é convertido para primitivo e como personalizar isso.
 
 Temos dois propósitos:
 
 1. Vai nos permitir entender o que está acontecendo em caso de erros de código, quando esse tipo de operação acontece acidentalmente.
-2. Existem exceções, onde esse tipo de operação é possível e fica legal. Ex.: subtrair ou comparar datas (objetos `Date`). Vamos nos deparar com elas mais tarde.
+2. Existem exceções, onde esse tipo de operação é possível e faz sentido. Por exemplo, subtrair ou comparar datas (objetos `Date`). Vamos nos deparar com elas mais tarde.
 
 ## Regras de conversão
 
@@ -69,7 +69,7 @@ Existem três variantes de conversão de tipo, que acontecem em várias situaç�
 `"default"`
 : Ocorre em casos raros, quando o operador "não tem certeza" de qual tipo esperar.
 
-    Por exemplo, o mais binário `+` pode funcionar tanto com strings (concatenando elas) quanto com números (somando eles). Então, se um mais binário recebe um objeto como argumento, ele usa o hint `"default"` pra convertê-lo.
+    Por exemplo, o mais binário `+` pode funcionar tanto com strings (concatenando-as) quanto com números (somando-os). Então, se um mais binário recebe um objeto como argumento, ele usa o hint `"default"` para convertê-lo.
 
     Além disso, se um objeto é comparado usando `==` com uma string, número ou symbol, também não fica claro qual conversão deve ser feita, então o hint `"default"` é usado.
 
@@ -89,9 +89,9 @@ Todos os objetos nativos, com exceção de um caso (o objeto `Date`, que vamos a
 
 Ainda assim, é importante saber sobre os 3 hints, logo veremos por quê.
 
-**Pra fazer a conversão, o JavaScript tenta encontrar e chamar três métodos de objeto:**
+**Para fazer a conversão, o JavaScript tenta encontrar e chamar três métodos de objeto:**
 
-1. Chama `obj[Symbol.toPrimitive](hint)` -- o método com a chave simbólica `Symbol.toPrimitive` (symbol do sistema), se esse método existir,
+1. Chama `obj[Symbol.toPrimitive](hint)` - o método com a chave simbólica `Symbol.toPrimitive` (symbol do sistema), se esse método existir,
 2. Caso contrário, se o hint for `"string"`
     - tenta chamar `obj.toString()` ou `obj.valueOf()`, o que existir.
 3. Caso contrário, se o hint for `"number"` ou `"default"`
@@ -105,7 +105,7 @@ Vamos começar pelo primeiro método. Existe um symbol nativo chamado `Symbol.to
 obj[Symbol.toPrimitive] = function(hint) {
   // aqui vai o código para converter este objeto para um primitivo
   // ele precisa retornar um valor primitivo
-  // hint = um de "string", "number", "default"
+  // hint = um entre "string", "number", "default"
 };
 ```
 
@@ -157,7 +157,7 @@ alert(user); // [object Object]
 alert(user.valueOf() === user); // true
 ```
 
-Então, se tentarmos usar um objeto como uma string, tipo num `alert` ou algo assim, então por padrão vemos `[object Object]`.
+Então, se tentarmos usar um objeto como uma string, como num `alert` ou similar, então por padrão vemos `[object Object]`.
 
 O `valueOf` padrão é mencionado aqui só pelo bem da completude, para evitar qualquer confusão. Como você pode ver, ele retorna o próprio objeto, e por isso é ignorado. Não me pergunte por quê, isso é por motivos históricos. Então podemos considerar que ele não existe.
 
@@ -210,7 +210,7 @@ Na ausência de `Symbol.toPrimitive` e `valueOf`, `toString` vai lidar com todas
 
 A coisa importante de se saber sobre todos os métodos de conversão de primitivo é que eles não necessariamente retornam o primitivo "sugerido pelo hint".
 
-Não há nenhum controle sobre se `toString` retorna exatamente uma string, ou se o método `Symbol.toPrimitive` retorna um número para o hint `"number"`.
+Não há nenhuma verificação de que `toString` retorne exatamente uma string, ou de que o método `Symbol.toPrimitive` retorne um número para o hint `"number"`.
 
 A única coisa obrigatória: esses métodos precisam retornar um primitivo, não um objeto.
 
@@ -222,7 +222,7 @@ Em contraste, `Symbol.toPrimitive` é mais rigoroso, ele *precisa* retornar um p
 
 ## Mais conversões
 
-Como já sabemos, muitos operadores e funções realizam conversões de tipo, ex.: a multiplicação `*` converte os operandos para números.
+Como já sabemos, muitos operadores e funções realizam conversões de tipo, por exemplo, a multiplicação `*` converte os operandos para números.
 
 Se passarmos um objeto como argumento, então existem duas etapas de cálculo:
 1. O objeto é convertido para um primitivo (usando as regras descritas acima).
