@@ -259,13 +259,13 @@ export const weakRefCache = (fetchImg) => {
         if (cachedImg && !cachedImg.deref()) {
             imgCache.delete(imgName);
             console.log(
-                `%cCLEANED_IMAGE: URL: ${imgName}, Tamanho: ${size}, Tipo: ${type}`,
+                `%cCLEANED_IMAGE: Url: ${imgName}, Size: ${size}, Type: ${type}`,
                 CONSOLE_ERROR,
             );
 
             const logEl = document.createElement("div");
             logEl.classList.add("logger-item", "logger--error");
-            logEl.innerHTML = `CLEANED_IMAGE: URL: ${imgName}, Tamanho: ${size}, Tipo: ${type}`;
+            logEl.innerHTML = `CLEANED_IMAGE: Url: ${imgName}, Size: ${size}, Type: ${type}`;
             loggerContainerEl.appendChild(logEl);
             loggerContainerEl.scrollTop = loggerContainerEl.scrollHeight;
         }
@@ -276,13 +276,13 @@ export const weakRefCache = (fetchImg) => {
 
         if (cachedImg?.deref() !== undefined) {
             console.log(
-                `%cCACHED_IMAGE: URL: ${imgName}, Tamanho: ${cachedImg.size}, Tipo: ${cachedImg.type}`,
+                `%cCACHED_IMAGE: Url: ${imgName}, Size: ${cachedImg.size}, Type: ${cachedImg.type}`,
                 CONSOLE_SUCCESS,
             );
 
             const logEl = document.createElement("div");
             logEl.classList.add("logger-item", "logger--success");
-            logEl.innerHTML = `CACHED_IMAGE: URL: ${imgName}, Tamanho: ${cachedImg.size}, Tipo: ${cachedImg.type}`;
+            logEl.innerHTML = `CACHED_IMAGE: Url: ${imgName}, Size: ${cachedImg.size}, Type: ${cachedImg.type}`;
             loggerContainerEl.appendChild(logEl);
             loggerContainerEl.scrollTop = loggerContainerEl.scrollHeight;
 
@@ -291,13 +291,13 @@ export const weakRefCache = (fetchImg) => {
 
         const newImg = await fetchImg(imgName);
         console.log(
-            `%cFETCHED_IMAGE: URL: ${imgName}, Tamanho: ${newImg.size}, Tipo: ${newImg.type}`,
+            `%cFETCHED_IMAGE: Url: ${imgName}, Size: ${newImg.size}, Type: ${newImg.type}`,
             CONSOLE_PRIMARY,
         );
 
         const logEl = document.createElement("div");
         logEl.classList.add("logger-item", "logger--primary");
-        logEl.innerHTML = `FETCHED_IMAGE: URL: ${imgName}, Tamanho: ${newImg.size}, Tipo: ${newImg.type}`;
+        logEl.innerHTML = `FETCHED_IMAGE: Url: ${imgName}, Size: ${newImg.size}, Type: ${newImg.type}`;
         loggerContainerEl.appendChild(logEl);
         loggerContainerEl.scrollTop = loggerContainerEl.scrollHeight;
 

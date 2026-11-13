@@ -303,7 +303,7 @@ O registro não mantém uma referência forte ao objeto registrado, pois isso fr
 Se o objeto for excluído pelo coletor de lixo, nosso callback de limpeza pode ser chamado em algum momento futuro, com o `heldValue` passado para ele:
 
 ```js
-// Quando o objeto user é excluído pelo coletor de lixo, a seguinte mensagem será exibida na console:
+// Quando o objeto user é excluído pelo coletor de lixo, a seguinte mensagem será exibida no console:
 "John foi coletado pelo coletor de lixo."
 ```
 
@@ -394,6 +394,8 @@ e quer visualizá-las a partir de outros dispositivos. Além da funcionalidade b
 Aqui, como exemplo, usaremos uma implementação bastante primitiva de um serviço desse tipo.
 O ponto principal - é mostrar um possível cenário de uso de `WeakRef` e `FinalizationRegistry` juntos na vida real.
 
+*Nota: as capturas de tela abaixo são imagens estáticas e mostram a interface e os logs no idioma original (inglês); elas não puderam ser traduzidas.*
+
 Veja como ele se parece:
 
 ![](weakref-finalizationregistry-demo-01.png)
@@ -405,7 +407,7 @@ Em seguida, a colagem resultante pode ser baixada como uma imagem.
 </br><br>
 
 Para aumentar a velocidade de carregamento da página, seria razoável baixar e exibir as miniaturas das fotos em qualidade *comprimida*.
-Mas, para criar uma colagem a partir das fotos selecionadas, baixá-las e usá-las em qualidade *tamanho real*.
+Mas, para criar uma colagem a partir das fotos selecionadas, baixá-las e usá-las em *tamanho real*.
 
 Abaixo, podemos ver que o tamanho intrínseco das miniaturas é 240x240 pixels.
 O tamanho foi escolhido propositalmente para aumentar a velocidade de carregamento.
@@ -424,7 +426,7 @@ Isso acontece para cada imagem selecionada:
 
 </br>
 
-Observando a saída na console, você pode ver quais das fotos foram baixadas da nuvem - isso é indicado por <span style="background-color:#133159;color:white;font-weight:500">FETCHED_IMAGE</span>.
+Observando a saída no console, você pode ver quais das fotos foram baixadas da nuvem - isso é indicado por <span style="background-color:#133159;color:white;font-weight:500">FETCHED_IMAGE</span>.
 Como esta é a primeira tentativa de criar uma colagem, isso significa que, nesta etapa, o "cache fraco" ainda estava vazio, e todas as fotos foram baixadas da nuvem e colocadas nele.
 
 Mas, junto com o processo de download de imagens, há também um processo de limpeza de memória pelo coletor de lixo.
