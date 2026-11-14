@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Output every second
+# Exiba a cada segundo
 
-Write a function `printNumbers(from, to)` that outputs a number every second, starting from `from` and ending with `to`.
+Escreva uma função `printNumbers(from, to)` que exiba um número a cada segundo, começando de `from` e terminando em `to`.
 
-Make two variants of the solution.
+Faça duas variantes da solução.
 
-1. Using `setInterval`.
-2. Using nested `setTimeout`.
+1. Usando `setInterval`.
+2. Usando `setTimeout` aninhado.
