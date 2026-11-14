@@ -1,12 +1,12 @@
 
 
 ```js run demo
-let a = +prompt("The first number?", "");
-let b = +prompt("The second number?", "");
+let a = +prompt("O primeiro número?", "");
+let b = +prompt("O segundo número?", "");
 
 alert( a + b );
 ```
 
-Note the unary plus `+` before `prompt`. It immediately converts the value to a number.
+Observe o mais unário `+` antes de `prompt`. Ele converte o valor para um número imediatamente.
 
-Otherwise, `a` and `b` would be string their sum would be their concatenation, that is: `"1" + "2" = "12"`.
+Caso contrário, `a` e `b` seriam strings e a soma delas seria a concatenação, ou seja: `"1" + "2" = "12"`.

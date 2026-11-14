@@ -8,29 +8,29 @@ afterEach(function() {
 
 describe("readNumber", function() {
 
-  it("if a number, returns it", function() {
+  it("se for um número, retorna ele", function() {
     prompt.returns("123");
     assert.strictEqual(readNumber(), 123);
   });
 
-  it("if 0, returns it", function() {
+  it("se for 0, retorna ele", function() {
     prompt.returns("0");
     assert.strictEqual(readNumber(), 0);
   });
 
-  it("continues the loop until meets a number", function() {
-    prompt.onCall(0).returns("not a number");
-    prompt.onCall(1).returns("not a number again");
+  it("continua o laço até encontrar um número", function() {
+    prompt.onCall(0).returns("não é um número");
+    prompt.onCall(1).returns("não é um número de novo");
     prompt.onCall(2).returns("1");
     assert.strictEqual(readNumber(), 1);
   });
 
-  it("if an empty line, returns null", function() {
+  it("se for uma linha vazia, retorna null", function() {
     prompt.returns("");
     assert.isNull(readNumber());
   });
 
-  it("if cancel, returns null", function() {
+  it("se for cancelado, retorna null", function() {
     prompt.returns(null);
     assert.isNull(readNumber());
   });

@@ -2,9 +2,9 @@ importance: 4
 
 ---
 
-# An occasional infinite loop
+# Um laço infinito ocasional
 
-This loop is infinite. It never ends. Why?
+Este laço é infinito. Ele nunca termina. Por quê?
 
 ```js
 let i = 0;
