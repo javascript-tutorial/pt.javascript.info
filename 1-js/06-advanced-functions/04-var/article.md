@@ -1,50 +1,50 @@
 
-# The old "var"
+# O antigo "var"
 
-```smart header="This article is for understanding old scripts"
-The information in this article is useful for understanding old scripts.
+```smart header="Este artigo é para entender scripts antigos"
+A informação neste artigo é útil para entender scripts antigos.
 
-That's not how we write new code.
+Não é assim que escrevemos código novo.
 ```
 
-In the very first chapter about [variables](info:variables), we mentioned three ways of variable declaration:
+No primeiro capítulo sobre [variáveis](info:variables), mencionamos três formas de declarar uma variável:
 
 1. `let`
 2. `const`
 3. `var`
 
-The `var` declaration is similar to `let`. Most of the time we can replace `let` by `var` or vice-versa and expect things to work:
+A declaração `var` é parecida com `let`. Na maior parte do tempo podemos substituir `let` por `var` ou vice-versa e esperar que tudo funcione:
 
 ```js run
 var message = "Hi";
 alert(message); // Hi
 ```
 
-But internally `var` is a very different beast, that originates from very old times. It's generally not used in modern scripts, but still lurks in the old ones.
+Mas internamente `var` é uma fera bem diferente, que vem de tempos bem antigos. Geralmente não é usado em scripts modernos, mas ainda se esconde nos antigos.
 
-If you don't plan on meeting such scripts you may even skip this chapter or postpone it.
+Se você não pretende lidar com esse tipo de script, pode até pular este capítulo ou deixá-lo para depois.
 
-On the other hand, it's important to understand differences when migrating old scripts from `var` to `let`, to avoid odd errors.
+Por outro lado, é importante entender as diferenças ao migrar scripts antigos de `var` para `let`, para evitar erros estranhos.
 
-## "var" has no block scope
+## "var" não tem escopo de bloco
 
-Variables, declared with `var`, are either function-scoped or global-scoped. They are visible through blocks.
+Variáveis declaradas com `var` têm escopo de função ou escopo global. Elas são visíveis através dos blocos.
 
-For instance:
+Por exemplo:
 
 ```js run
 if (true) {
-  var test = true; // use "var" instead of "let"
+  var test = true; // use "var" em vez de "let"
 }
 
 *!*
-alert(test); // true, the variable lives after if
+alert(test); // true, a variável sobrevive após o if
 */!*
 ```
 
-As `var` ignores code blocks, we've got a global variable `test`.
+Como `var` ignora os blocos de código, acabamos com uma variável global `test`.
 
-If we used `let test` instead of `var test`, then the variable would only be visible inside `if`:
+Se tivéssemos usado `let test` em vez de `var test`, então a variável só seria visível dentro do `if`:
 
 ```js run
 if (true) {
@@ -52,11 +52,11 @@ if (true) {
 }
 
 *!*
-alert(test); // ReferenceError: test is not defined
+alert(test); // ReferenceError: test não está definido
 */!*
 ```
 
-The same thing for loops: `var` cannot be block- or loop-local:
+O mesmo vale para laços: `var` não pode ser local a um bloco ou a um laço:
 
 ```js run
 for (var i = 0; i < 10; i++) {
@@ -65,12 +65,12 @@ for (var i = 0; i < 10; i++) {
 }
 
 *!*
-alert(i);   // 10, "i" is visible after loop, it's a global variable
-alert(one); // 1, "one" is visible after loop, it's a global variable
+alert(i);   // 10, "i" é visível depois do laço, é uma variável global
+alert(one); // 1, "one" é visível depois do laço, é uma variável global
 */!*
 ```
 
-If a code block is inside a function, then `var` becomes a function-level variable:
+Se um bloco de código estiver dentro de uma função, então `var` se torna uma variável de nível de função:
 
 ```js run
 function sayHi() {
@@ -78,42 +78,42 @@ function sayHi() {
     var phrase = "Hello";
   }
 
-  alert(phrase); // works
+  alert(phrase); // funciona
 }
 
 sayHi();
-alert(phrase); // ReferenceError: phrase is not defined
+alert(phrase); // ReferenceError: phrase não está definido
 ```
 
-As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript, blocks had no Lexical Environments, and `var` is a remnant of that.
+Como podemos ver, `var` atravessa o `if`, o `for` ou outros blocos de código. Isso acontece porque, há muito tempo, no JavaScript os blocos não tinham Ambientes Léxicos, e `var` é um resquício disso.
 
-## "var" tolerates redeclarations
+## "var" tolera redeclarações
 
-If we declare the same variable with `let` twice in the same scope, that's an error:
+Se declararmos a mesma variável com `let` duas vezes no mesmo escopo, isso é um erro:
 
 ```js run
 let user;
 let user; // SyntaxError: 'user' has already been declared
 ```
 
-With `var`, we can redeclare a variable any number of times. If we use `var` with an already-declared variable, it's just ignored:
+Com `var`, podemos redeclarar uma variável quantas vezes quisermos. Se usarmos `var` com uma variável já declarada, isso simplesmente é ignorado:
 
 ```js run
 var user = "Pete";
 
-var user = "John"; // this "var" does nothing (already declared)
-// ...it doesn't trigger an error
+var user = "John"; // esse "var" não faz nada (já declarado)
+// ...não dispara um erro
 
 alert(user); // John
 ```
 
-## "var" variables can be declared below their use
+## Variáveis "var" podem ser declaradas depois de serem usadas
 
-`var` declarations are processed when the function starts (or script starts for globals).
+As declarações `var` são processadas quando a função começa (ou quando o script começa, para variáveis globais).
 
-In other words, `var` variables are defined from the beginning of the function, no matter where the definition is (assuming that the definition is not in the nested function).
+Em outras palavras, as variáveis `var` são definidas desde o início da função, não importa onde a definição esteja (assumindo que a definição não está numa função aninhada).
 
-So this code:
+Então este código:
 
 ```js run
 function sayHi() {
@@ -128,7 +128,7 @@ function sayHi() {
 sayHi();
 ```
 
-...Is technically the same as this (moved `var phrase` above):
+...É tecnicamente igual a este (movemos `var phrase` para cima):
 
 ```js run
 function sayHi() {
@@ -143,7 +143,7 @@ function sayHi() {
 sayHi();
 ```
 
-...Or even as this (remember, code blocks are ignored):
+...Ou até mesmo a este (lembre-se, blocos de código são ignorados):
 
 ```js run
 function sayHi() {
@@ -160,13 +160,13 @@ function sayHi() {
 sayHi();
 ```
 
-People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
+As pessoas também chamam esse comportamento de "hoisting" (elevação), porque todos os `var` são "elevados" (hoisted) para o topo da função.
 
-So in the example above, `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function, so at the moment of `(*)` the variable exists.
+Então, no exemplo acima, o ramo `if (false)` nunca é executado, mas isso não importa. O `var` dentro dele é processado no início da função, então, no momento do `(*)`, a variável já existe.
 
-**Declarations are hoisted, but assignments are not.**
+**As declarações são elevadas, mas as atribuições não.**
 
-That's best demonstrated with an example:
+Isso fica melhor demonstrado com um exemplo:
 
 ```js run
 function sayHi() {
@@ -180,40 +180,40 @@ function sayHi() {
 sayHi();
 ```
 
-The line `var phrase = "Hello"` has two actions in it:
+A linha `var phrase = "Hello"` tem duas ações nela:
 
-1. Variable declaration `var`
-2. Variable assignment `=`.
+1. Declaração da variável `var`
+2. Atribuição da variável `=`.
 
-The declaration is processed at the start of function execution ("hoisted"), but the assignment always works at the place where it appears. So the code works essentially like this:
+A declaração é processada no início da execução da função ("hoisted"/elevada), mas a atribuição sempre acontece no lugar onde ela aparece. Então o código funciona essencialmente assim:
 
 ```js run
 function sayHi() {
 *!*
-  var phrase; // declaration works at the start...
+  var phrase; // a declaração funciona no início...
 */!*
 
   alert(phrase); // undefined
 
 *!*
-  phrase = "Hello"; // ...assignment - when the execution reaches it.
+  phrase = "Hello"; // ...atribuição - quando a execução chega até ela.
 */!*
 }
 
 sayHi();
 ```
 
-Because all `var` declarations are processed at the function start, we can reference them at any place. But variables are undefined until the assignments.
+Como todas as declarações `var` são processadas no início da função, podemos referenciá-las em qualquer lugar. Mas as variáveis ficam undefined até as atribuições.
 
-In both examples above, `alert` runs without an error, because the variable `phrase` exists. But its value is not yet assigned, so it shows `undefined`.
+Em ambos os exemplos acima, o `alert` roda sem erro, porque a variável `phrase` existe. Mas seu valor ainda não foi atribuído, então ele mostra `undefined`.
 
 ## IIFE
 
-In the past, as there was only `var`, and it has no block-level visibility, programmers invented a way to emulate it. What they did was called "immediately-invoked function expressions" (abbreviated as IIFE).
+No passado, como só existia `var`, e ele não tem visibilidade em nível de bloco, os programadores inventaram uma forma de emular isso. O que eles fizeram foi chamado de "expressões de função imediatamente invocadas" (abreviado como IIFE, do inglês *immediately-invoked function expressions*).
 
-That's not something we should use nowadays, but you can find them in old scripts.
+Isso não é algo que devemos usar hoje em dia, mas você pode encontrar isso em scripts antigos.
 
-An IIFE looks like this:
+Uma IIFE se parece com isto:
 
 ```js run
 (function() {
@@ -225,12 +225,12 @@ An IIFE looks like this:
 })();
 ```
 
-Here, a Function Expression is created and immediately called. So the code executes right away and has its own private variables.
+Aqui, uma Expressão de Função é criada e chamada imediatamente. Então o código é executado na hora e tem suas próprias variáveis privadas.
 
-The Function Expression is wrapped with parenthesis `(function {...})`, because when JavaScript engine encounters `"function"` in the main code, it understands it as the start of a Function Declaration. But a Function Declaration must have a name, so this kind of code will give an error:
+A Expressão de Função é envolvida por parênteses `(function {...})`, porque quando o motor do JavaScript encontra `"function"` no código principal, ele entende isso como o início de uma Declaração de Função. Mas uma Declaração de Função precisa ter um nome, então esse tipo de código vai gerar um erro:
 
 ```js run
-// Tries to declare and immediately call a function
+// Tenta declarar e chamar imediatamente uma função
 function() { // <-- SyntaxError: Function statements require a function name
 
   var message = "Hello";
@@ -240,48 +240,48 @@ function() { // <-- SyntaxError: Function statements require a function name
 }();
 ```
 
-Even if we say: "okay, let's add a name", that won't work, as JavaScript does not allow Function Declarations to be called immediately:
+Mesmo que digamos: "ok, vamos adicionar um nome", isso não vai funcionar, já que o JavaScript não permite que Declarações de Função sejam chamadas imediatamente:
 
 ```js run
-// syntax error because of parentheses below
+// erro de sintaxe por causa dos parênteses abaixo
 function go() {
 
-}(); // <-- can't call Function Declaration immediately
+}(); // <-- não é possível chamar uma Declaração de Função imediatamente
 ```
 
-So, the parentheses around the function is a trick to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression: it needs no name and can be called immediately.
+Então, os parênteses em torno da função são um truque para mostrar ao JavaScript que a função é criada no contexto de outra expressão, e, portanto, é uma Expressão de Função: ela não precisa de nome e pode ser chamada imediatamente.
 
-There exist other ways besides parentheses to tell JavaScript that we mean a Function Expression:
+Existem outras formas, além dos parênteses, de dizer ao JavaScript que queremos dizer uma Expressão de Função:
 
 ```js run
-// Ways to create IIFE
+// Formas de criar uma IIFE
 
 *!*(*/!*function() {
-  alert("Parentheses around the function");
+  alert("Parênteses em torno da função");
 }*!*)*/!*();
 
 *!*(*/!*function() {
-  alert("Parentheses around the whole thing");
+  alert("Parênteses em torno de tudo");
 }()*!*)*/!*;
 
 *!*!*/!*function() {
-  alert("Bitwise NOT operator starts the expression");
+  alert("Operador NOT bit a bit inicia a expressão");
 }();
 
 *!*+*/!*function() {
-  alert("Unary plus starts the expression");
+  alert("Operador unário de adição inicia a expressão");
 }();
 ```
 
-In all the above cases we declare a Function Expression and run it immediately. Let's note again: nowadays there's no reason to write such code.
+Em todos os casos acima, declaramos uma Expressão de Função e a executamos imediatamente. Vamos observar de novo: hoje em dia não há motivo para escrever esse tipo de código.
 
-## Summary
+## Resumo
 
-There are two main differences of `var` compared to `let/const`:
+Existem duas diferenças principais de `var` em comparação com `let/const`:
 
-1. `var` variables have no block scope, their visibility is scoped to current function, or global, if declared outside function.
-2. `var` declarations are processed at function start (script start for globals).
+1. As variáveis `var` não têm escopo de bloco, sua visibilidade tem escopo na função atual, ou global, se declaradas fora de uma função.
+2. As declarações `var` são processadas no início da função (início do script, para variáveis globais).
 
-There's one more very minor difference related to the global object, that we'll cover in the next chapter.
+Existe mais uma diferença bem pequena relacionada ao objeto global, que vamos abordar no próximo capítulo.
 
-These differences make `var` worse than `let` most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.
+Essas diferenças fazem com que `var` seja pior que `let` na maior parte do tempo. Variáveis de nível de bloco são algo muito bom. É por isso que `let` foi introduzido no padrão há muito tempo, e hoje é a principal forma (junto com `const`) de declarar uma variável.
