@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Excluir referências cíclicas
+# Excluir referências circulares
 
 Em casos simples de referências circulares, podemos excluir uma propriedade problemática da serialização pelo seu nome.
 

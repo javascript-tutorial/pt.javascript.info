@@ -1,3 +1,4 @@
+
 ```js run
 let room = {
   number: 23
@@ -26,3 +27,4 @@ alert( JSON.stringify(meetup, function replacer(key, value) {
 ```
 
 Aqui também precisamos testar `key==""` para excluir a primeira chamada, em que é normal que `value` seja `meetup`.
+

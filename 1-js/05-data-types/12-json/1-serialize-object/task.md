@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Transforme o objeto em JSON e de volta
+# Converta o objeto em JSON e de volta para objeto
 
 Transforme o `user` em JSON e depois leia-o de volta em outra variável.
 

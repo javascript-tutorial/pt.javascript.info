@@ -444,7 +444,7 @@ let json = `{
   *!*name*/!*: "John",                     // erro: nome da propriedade sem aspas
   "surname": *!*'Smith'*/!*,               // erro: aspas simples no valor (devem ser duplas)
   *!*'isAdmin'*/!*: false                  // erro: aspas simples na chave (devem ser duplas)
-  "birthday": *!*new Date(2000, 2, 3)*/!*, // erro: não é permitido usar "new", apenas valores soltos
+  "birthday": *!*new Date(2000, 2, 3)*/!*, // erro: não é permitido usar "new", apenas valores literais
   "friends": [0,1,2,3]              // aqui está tudo certo
 }`;
 ```
@@ -484,7 +484,7 @@ Opa! Um erro!
 
 O valor de `meetup.date` é uma string, não um objeto `Date`. Como o `JSON.parse` saberia que deveria transformar essa string em um `Date`?
 
-Vamos passar para o `JSON.parse` a função `reviver` como segundo argumento, que retorna todos os valores "como estão", mas `date` se tornará um `Date`:
+Vamos passar para o `JSON.parse` a função de restauração (*reviver*) como segundo argumento, que retorna todos os valores "como estão", mas `date` se tornará um `Date`:
 
 ```js run
 let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
