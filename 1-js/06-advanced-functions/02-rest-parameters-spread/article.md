@@ -96,9 +96,9 @@ showName("Julius", "Caesar");
 showName("Ilya");
 ```
 
-Antigamente, os parâmetros rest não existiam na linguagem, e usar `arguments` era a única forma de obter todos os argumentos da função. E ainda funciona, dá pra encontrar isso em código antigo.
+Antigamente, os parâmetros rest não existiam na linguagem, e usar `arguments` era a única forma de obter todos os argumentos da função. E ainda funciona; podemos encontrá-lo em código antigo.
 
-Mas a desvantagem é que, embora `arguments` seja parecido com um array e também seja iterável, ele não é um array de verdade. Ele não suporta métodos de array, então não podemos chamar `arguments.map(...)`, por exemplo.
+Mas a desvantagem é que, embora `arguments` seja semelhante a array e também seja iterável, ele não é um array de verdade. Ele não suporta métodos de array, então não podemos chamar `arguments.map(...)`, por exemplo.
 
 Além disso, ele sempre contém todos os argumentos. Não conseguimos capturá-los parcialmente, como fazemos com os parâmetros rest.
 
@@ -227,7 +227,7 @@ Então, para a tarefa de transformar algo em um array, `Array.from` tende a ser 
 
 ## Copiar um array/objeto
 
-Lembra quando falamos sobre `Object.assign()` [no passado](info:object-copy#cloning-and-merging-object-assign)?
+Lembra quando falamos sobre `Object.assign()` [anteriormente](info:object-copy#cloning-and-merging-object-assign)?
 
 É possível fazer a mesma coisa com a sintaxe spread.
 
@@ -278,11 +278,11 @@ Essa forma de copiar um objeto é bem mais curta do que `let objCopy = Object.as
 
 ## Resumo
 
-Quando vemos `"..."` no código, é ou um parâmetro rest ou a sintaxe spread.
+Quando vemos `"..."` no código, são parâmetros rest ou a sintaxe spread.
 
 Há uma forma fácil de diferenciar os dois:
 
-- Quando `...` está no final dos parâmetros de uma função, é um "parâmetro rest" e reúne o restante da lista de argumentos em um array.
+- Quando `...` está no final dos parâmetros de uma função, são "parâmetros rest" e reúnem o restante da lista de argumentos em um array.
 - Quando `...` ocorre numa chamada de função ou algo parecido, é chamado de "sintaxe spread" e expande um array em uma lista.
 
 Padrões de uso:
