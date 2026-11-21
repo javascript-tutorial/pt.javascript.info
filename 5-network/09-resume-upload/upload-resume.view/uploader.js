@@ -4,8 +4,8 @@ class Uploader {
     this.file = file;
     this.onProgress = onProgress;
 
-    // create fileId that uniquely identifies the file
-    // we could also add user session identifier (if had one), to make it even more unique
+    // cria o fileId que identifica unicamente o arquivo
+    // também poderíamos adicionar um identificador de sessão do usuário (se tivéssemos um), para deixar ainda mais único
     this.fileId = file.name + '-' + file.size + '-' + file.lastModified;
   }
 
@@ -17,7 +17,7 @@ class Uploader {
     });
 
     if (response.status != 200) {
-      throw new Error("Can't get uploaded bytes: " + response.statusText);
+      throw new Error("Não foi possível obter os bytes enviados: " + response.statusText);
     }
 
     let text = await response.text();
@@ -31,35 +31,35 @@ class Uploader {
     let xhr = this.xhr = new XMLHttpRequest();
     xhr.open("POST", "upload", true);
 
-    // send file id, so that the server knows which file to resume
+    // envia o id do arquivo, para que o servidor saiba qual arquivo retomar
     xhr.setRequestHeader('X-File-Id', this.fileId);
-    // send the byte we're resuming from, so the server knows we're resuming
+    // envia o byte a partir do qual estamos retomando, para que o servidor saiba que estamos retomando
     xhr.setRequestHeader('X-Start-Byte', this.startByte);
 
     xhr.upload.onprogress = (e) => {
       this.onProgress(this.startByte + e.loaded, this.startByte + e.total);
     };
 
-    console.log("send the file, starting from", this.startByte);
+    console.log("enviando o arquivo, a partir de", this.startByte);
     xhr.send(this.file.slice(this.startByte));
 
-    // return
-    //   true if upload was successful,
-    //   false if aborted
-    // throw in case of an error
+    // retorna
+    //   true se o upload foi bem-sucedido,
+    //   false se foi abortado
+    // lança um erro em caso de falha
     return await new Promise((resolve, reject) => {
 
       xhr.onload = xhr.onerror = () => {
-        console.log("upload end status:" + xhr.status + " text:" + xhr.statusText);
+        console.log("status final do upload:" + xhr.status + " texto:" + xhr.statusText);
 
         if (xhr.status == 200) {
           resolve(true);
         } else {
-          reject(new Error("Upload failed: " + xhr.statusText));
+          reject(new Error("Falha no upload: " + xhr.statusText));
         }
       };
 
-      // onabort triggers only when xhr.abort() is called
+      // onabort só dispara quando xhr.abort() é chamado
       xhr.onabort = () => resolve(false);
 
     });

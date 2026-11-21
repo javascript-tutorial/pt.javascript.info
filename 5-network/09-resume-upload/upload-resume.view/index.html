@@ -4,13 +4,13 @@
 
 <form name="upload" method="POST" enctype="multipart/form-data" action="/upload">
   <input type="file" name="myfile">
-  <input type="submit" name="submit" value="Upload (Resumes automatically)">
+  <input type="submit" name="submit" value="Enviar (Retoma automaticamente)">
 </form>
 
-<button onclick="uploader.stop()">Stop upload</button>
+<button onclick="uploader.stop()">Parar upload</button>
 
 
-<div id="log">Progress indication</div>
+<div id="log">Indicação de progresso</div>
 
 <script>
   function log(html) {
@@ -19,7 +19,7 @@
   }
 
   function onProgress(loaded, total) {
-    log("progress " + loaded + ' / ' + total);
+    log("progresso " + loaded + ' / ' + total);
   }
 
   let uploader;
@@ -36,14 +36,14 @@
       let uploaded = await uploader.upload();
 
       if (uploaded) {
-        log('success');
+        log('sucesso');
       } else {
-        log('stopped');
+        log('parado');
       }
 
     } catch(err) {
       console.error(err);
-      log('error');
+      log('erro');
     }
   };
 
