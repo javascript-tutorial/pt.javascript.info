@@ -2,7 +2,7 @@
 
 A lógica recursiva aqui é um pouco mais complicada.
 
-Primeiro precisamos exibir o resto da lista e *depois* exibir a atual:
+Primeiro precisamos exibir o resto da lista e *depois* exibir o atual:
 
 ```js run
 let list = {

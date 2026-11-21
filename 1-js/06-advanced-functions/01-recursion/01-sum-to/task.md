@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Some todos os números até o dado
+# Some todos os números até o número dado
 
 Escreva uma função `sumTo(n)` que calcule a soma dos números `1 + 2 + ... + n`.
 

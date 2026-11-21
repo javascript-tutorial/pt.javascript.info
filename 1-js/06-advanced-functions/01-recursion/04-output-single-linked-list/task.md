@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Exiba uma lista encadeada simples
+# Exiba uma lista ligada simples
 
-Digamos que temos uma lista encadeada simples (como descrito no capítulo <info:recursion>):
+Digamos que temos uma lista ligada simples (como descrito no capítulo <info:recursion>):
 
 ```js
 let list = {

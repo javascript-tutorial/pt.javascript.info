@@ -132,7 +132,7 @@ Podemos esboçar isso como:
   </li>
 </ul>
 
-É quando a função começa a executar. A condição `n == 1` é falsa, então o fluxo continua para segunda ramificação do `if`:
+É quando a função começa a executar. A condição `n == 1` é falsa, então o fluxo continua para a segunda ramificação do `if`:
 
 ```js run
 function pow(x, n) {
@@ -339,7 +339,7 @@ Vamos tentar a recursão.
 Como podemos ver, quando nossa função recebe um departamento para somar, existem dois casos possíveis:
 
 1. Ou é um departamento "simples", com um *array* de pessoas -- então podemos somar os salários num laço simples.
-2. Ou é *um objeto* com `N` subdepartamentos -- então podemos fazer `N` chamadas recursivas para obter a soma de cada um dos subdeps e combinar os resultados.
+2. Ou é *um objeto* com `N` subdepartamentos -- então podemos fazer `N` chamadas recursivas para obter a soma de cada um dos subdepartamentos e combinar os resultados.
 
 O 1º caso é a base da recursão, o caso trivial, quando recebemos um array.
 
@@ -513,7 +513,7 @@ Naturalmente, listas nem sempre são melhores que arrays. Senão todo mundo usar
 
 A principal desvantagem é que não conseguimos acessar facilmente um elemento pelo seu número. Num array isso é fácil: `arr[n]` é uma referência direta. Mas na lista precisamos começar do primeiro item e seguir `next` `N` vezes para chegar ao N-ésimo elemento.
 
-...Mas nem sempre precisamos desse tipo de operação. Por exemplo, quando precisamos de uma fila ou até de um [deque](https://pt.wikipedia.org/wiki/Deque_(estruturas_de_dados)) -- a estrutura ordenada que precisa permitir adicionar/remover elementos muito rapidamente dos dois lados, mas o acesso ao meio não é necessário.
+...Mas nem sempre precisamos desse tipo de operação. Por exemplo, quando precisamos de uma fila ou até de um [deque](https://pt.wikipedia.org/wiki/Deque_%28estruturas_de_dados%29) -- a estrutura ordenada que precisa permitir adicionar/remover elementos muito rapidamente dos dois lados, mas o acesso ao meio não é necessário.
 
 Listas podem ser aprimoradas:
 - Podemos adicionar a propriedade `prev`, além de `next`, para referenciar o elemento anterior, para voltar facilmente.
@@ -527,7 +527,7 @@ Termos:
 
     Quando uma função chama a si mesma, isso é chamado de *passo de recursão*. A *base* da recursão são os argumentos da função que tornam a tarefa tão simples que a função não faz mais chamadas.
 
-- Uma estrutura de dados [definida recursivamente](https://en.wikipedia.org/wiki/Recursive_data_type) é uma estrutura de dados que pode ser definida usando a si mesma.
+- Uma estrutura de dados [definida recursivamente](https://pt.wikipedia.org/wiki/Tipo_recursivo) é uma estrutura de dados que pode ser definida usando a si mesma.
 
     Por exemplo, a lista ligada pode ser definida como uma estrutura de dados consistindo de um objeto referenciando uma lista (ou null).
 
@@ -537,6 +537,6 @@ Termos:
 
     Árvores como a árvore de elementos HTML ou a árvore de departamentos deste capítulo também são naturalmente recursivas: elas têm ramificações, e cada ramificação pode ter outras ramificações.
 
-    Funções recursivas podem ser usadas para percorrê-las, como vimos no exemplo do `sumSalary`.
+    Funções recursivas podem ser usadas para percorrê-las, como vimos no exemplo do `sumSalaries`.
 
 Qualquer função recursiva pode ser reescrita como uma iterativa. E isso às vezes é necessário para otimizar coisas. Mas, para muitas tarefas, uma solução recursiva é rápida o suficiente e mais fácil de escrever e manter.
