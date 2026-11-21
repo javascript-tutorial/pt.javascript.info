@@ -24,7 +24,7 @@ function sayHi() {
 alert(sayHi.name); // sayHi
 ```
 
-O que é meio engraçado, a lógica de atribuição do nome é esperta. Ela também atribui o nome correto a uma função mesmo quando ela é criada sem um nome, e depois imediatamente atribuída:
+Curiosamente, a lógica de atribuição do nome é esperta. Ela também atribui o nome correto a uma função mesmo quando ela é criada sem um nome, e depois imediatamente atribuída:
 
 ```js run
 let sayHi = function() {
@@ -147,7 +147,7 @@ sayHi.counter = 0; // valor inicial
 sayHi(); // Hi
 sayHi(); // Hi
 
-alert( `Chamada ${sayHi.counter} vezes` ); // Chamada 2 vezes
+alert( `Called ${sayHi.counter} times` ); // Called 2 times
 ```
 
 ```warn header="Uma propriedade não é uma variável"
@@ -326,7 +326,7 @@ welcome(); // Hello, Guest (a chamada aninhada funciona)
 
 Agora funciona, porque o nome `"func"` é local à função. Ele não é pego de fora (e nem é visível lá fora). A especificação garante que ele sempre vai referenciar a função atual.
 
-O código externo ainda tem sua variável `sayHi` ou `welcome`. E `func` é um "nome interno de função", a forma da função chamar a si mesma de forma confiável.
+O código externo ainda tem sua variável `sayHi` ou `welcome`. E `func` é um "nome interno de função", a forma de a função chamar a si mesma de forma confiável.
 
 ```smart header="Não existe algo assim para Declaração de Função"
 O recurso de "nome interno" descrito aqui está disponível apenas para Expressões de Função, não para Declarações de Função. Para Declarações de Função, não existe sintaxe para adicionar um nome "interno".
