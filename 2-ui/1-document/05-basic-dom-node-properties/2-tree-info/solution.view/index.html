@@ -3,36 +3,36 @@
 <body>
 
   <ul>
-    <li>Animals
+    <li>Animais
       <ul>
-        <li>Mammals
+        <li>Mamíferos
           <ul>
-            <li>Cows</li>
-            <li>Donkeys</li>
-            <li>Dogs</li>
-            <li>Tigers</li>
+            <li>Vacas</li>
+            <li>Burros</li>
+            <li>Cachorros</li>
+            <li>Tigres</li>
           </ul>
         </li>
-        <li>Other
+        <li>Outros
           <ul>
-            <li>Snakes</li>
-            <li>Birds</li>
-            <li>Lizards</li>
+            <li>Cobras</li>
+            <li>Pássaros</li>
+            <li>Lagartos</li>
           </ul>
         </li>
       </ul>
     </li>
-    <li>Fishes
+    <li>Peixes
       <ul>
-        <li>Aquarium
+        <li>Aquário
           <ul>
             <li>Guppy</li>
-            <li>Angelfish</li>
+            <li>Peixe-anjo</li>
           </ul>
         </li>
-        <li>Sea
+        <li>Mar
           <ul>
-            <li>Sea trout</li>
+            <li>Truta marinha</li>
           </ul>
         </li>
       </ul>
@@ -41,12 +41,12 @@
 
   <script>
     for (let li of document.querySelectorAll('li')) {
-      // get the title from the text node
+      // obtém o título a partir do nó de texto
       let title = li.firstChild.data;
 
-      title = title.trim(); // remove extra spaces from ends
+      title = title.trim(); // remove espaços extras das pontas
 
-      // get the descendants count
+      // obtém a contagem de descendentes
       let count = li.getElementsByTagName('li').length;
 
       alert(title + ': ' + count);
