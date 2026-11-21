@@ -9,7 +9,7 @@ O segundo tipo de propriedade é algo novo. É uma *propriedade de acesso*. Elas
 
 ## Getters e setters
 
-Propriedades de acesso são representadas por métodos "getter" e "setter". Num objeto literal, eles são indicados por `get` e `set`:
+Propriedades de acesso são representadas por métodos "getter" e "setter". Em um literal de objeto, eles são indicados por `get` e `set`:
 
 ```js
 let obj = {
@@ -34,7 +34,7 @@ let user = {
 };
 ```
 
-Agora queremos adicionar uma propriedade `fullName`, que deve ser `"John Smith"`. Claro, não queremos copiar e colar informações já existentes, então podemos implementá-la como um acessor:
+Agora queremos adicionar uma propriedade `fullName`, que deve ser `"John Smith"`. Claro, não queremos copiar e colar informações já existentes, então podemos implementá-la como uma propriedade de acesso:
 
 ```js run
 let user = {
@@ -109,7 +109,7 @@ Ou seja, um descritor de acesso pode ter:
 - **`enumerable`** -- igual às propriedades de dados,
 - **`configurable`** -- igual às propriedades de dados.
 
-Por exemplo, para criar um acessor `fullName` com `defineProperty`, podemos passar um descritor com `get` e `set`:
+Por exemplo, para criar uma propriedade de acesso `fullName` com `defineProperty`, podemos passar um descritor com `get` e `set`:
 
 ```js run
 let user = {
@@ -134,13 +134,13 @@ alert(user.fullName); // John Smith
 for(let key in user) alert(key); // name, surname
 ```
 
-Observe que uma propriedade pode ser um acessor (tem métodos `get/set`) ou uma propriedade de dados (tem um `value`), mas não as duas coisas.
+Observe que uma propriedade pode ser uma propriedade de acesso (tem métodos `get/set`) ou uma propriedade de dados (tem um `value`), mas não as duas coisas.
 
 Se tentarmos fornecer `get` e `value` no mesmo descritor, vai haver um erro:
 
 ```js run
 *!*
-// Erro: Invalid property descriptor.
+// Erro: Invalid property descriptor (descritor de propriedade inválido).
 */!*
 Object.defineProperty({}, 'prop', {
   get() {
@@ -151,9 +151,9 @@ Object.defineProperty({}, 'prop', {
 });
 ```
 
-## Getters/setters mais espertos
+## Getters/setters mais inteligentes
 
-Getters/setters podem ser usados como invólucros sobre valores "reais" de propriedades, pra ganhar mais controle sobre as operações com eles.
+Getters/setters podem ser usados como invólucros sobre valores "reais" de propriedades, para ganhar mais controle sobre as operações com eles.
 
 Por exemplo, se quisermos proibir nomes muito curtos para `user`, podemos ter um setter `name` e manter o valor numa propriedade separada, `_name`:
 
@@ -185,7 +185,7 @@ Tecnicamente, código externo consegue acessar o nome diretamente usando `user._
 
 ## Usando para compatibilidade
 
-Um dos grandes usos dos acessores é que eles permitem assumir o controle sobre uma propriedade de dados "normal" a qualquer momento, substituindo-a por um getter e um setter e ajustando seu comportamento.
+Um dos grandes usos das propriedades de acesso é que elas permitem assumir o controle sobre uma propriedade de dados "normal" a qualquer momento, substituindo-a por um getter e um setter e ajustando seu comportamento.
 
 Imagine que começamos a implementar objetos de usuário usando as propriedades de dados `name` e `age`:
 
@@ -215,7 +215,7 @@ Agora, o que fazer com o código antigo que ainda usa a propriedade `age`?
 
 Podemos tentar encontrar todos esses lugares e corrigi-los, mas isso leva tempo e pode ser difícil se esse código for usado por muitas outras pessoas. E, além disso, `age` é algo bom de se ter em `user`, não é?
 
-Vamos mantê-lo.
+Vamos mantê-la.
 
 Adicionar um getter para `age` resolve o problema:
 
