@@ -95,3 +95,69 @@ array-shift.svg:
   "to the left":
     text: "para a esquerda"
     position: left
+metric-client-left-top-rtl.svg:
+  "= border":
+    text: "= borda"
+    position: left
+metric-client-left-top.svg:
+  " = border":
+    text: " = borda"
+    position: left
+metric-client-width-height.svg:
+  "border":
+    text: "borda"
+    position: left
+  "padding":
+    text: "preenchimento"
+    position: left
+  "content width:":
+    text: "largura do conteúdo:"
+    position: left
+  "scrollbar":
+    text: "barra de rolagem"
+    position: left
+  "height:":
+    text: "altura:"
+    position: left
+metric-client-width-nopadding.svg:
+  "= content width":
+    text: "= largura do conteúdo"
+    position: left
+  "CSS width:":
+    text: "largura CSS:"
+    position: left
+metric-css.svg:
+  "padding:":
+    text: "preenchimento:"
+    position: left
+  "height:":
+    text: "altura:"
+    position: left
+  "border":
+    text: "borda"
+    position: left
+  "padding":
+    text: "preenchimento"
+    position: left
+  "content width:":
+    text: "largura do conteúdo:"
+    position: left
+  "scrollbar":
+    text: "barra de rolagem"
+    position: left
+metric-offset-width-height.svg:
+  "border":
+    text: "borda"
+    position: left
+  "padding":
+    text: "preenchimento"
+    position: left
+  "content width:":
+    text: "largura do conteúdo:"
+    position: left
+  "height:":
+    text: "altura:"
+    position: left
+  "scrollbar":
+    text: "barra de rolagem"
+    position: left

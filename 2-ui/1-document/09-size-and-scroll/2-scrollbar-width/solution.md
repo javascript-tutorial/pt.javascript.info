@@ -1,16 +1,16 @@
-To get the scrollbar width, we can create an element with the scroll, but without borders and paddings.
+Para obter a largura da barra de rolagem, podemos criar um elemento com rolagem, mas sem bordas e preenchimentos.
 
-Then the difference between its full width `offsetWidth` and the inner content area width `clientWidth` will be exactly the scrollbar:
+Então a diferença entre sua largura total `offsetWidth` e a largura da área de conteúdo interna `clientWidth` será exatamente a barra de rolagem:
 
 ```js run
-// create a div with the scroll
+// cria um div com rolagem
 let div = document.createElement('div');
 
 div.style.overflowY = 'scroll';
 div.style.width = '50px';
 div.style.height = '50px';
 
-// must put it in the document, otherwise sizes will be 0
+// precisa colocá-lo no documento, senão os tamanhos serão 0
 document.body.append(div);
 let scrollWidth = div.offsetWidth - div.clientWidth;
 

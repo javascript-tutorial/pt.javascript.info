@@ -2,10 +2,10 @@ importance: 3
 
 ---
 
-# What is the scrollbar width?
+# Qual é a largura da barra de rolagem?
 
-Write the code that returns the width of a standard scrollbar.
+Escreva o código que retorna a largura de uma barra de rolagem padrão.
 
-For Windows it usually varies between `12px` and `20px`. If the browser doesn't reserve any space for it (the scrollbar is half-translucent over the text, also happens), then it may be `0px`.
+No Windows, geralmente varia entre `12px` e `20px`. Se o navegador não reservar nenhum espaço para ela (a barra de rolagem fica semitransparente sobre o texto, isso também acontece), então pode ser `0px`.
 
-P.S. The code should work for any HTML document, do not depend on its content.
+P.S. O código deve funcionar para qualquer documento HTML, sem depender do seu conteúdo.
