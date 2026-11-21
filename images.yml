@@ -118,7 +118,7 @@ closure-makecounter.svg:
     text: "Ambiente Léxico"
     position: left
   "of makeCounter() call":
-    text: "da chamada de makeCounter()"
+    text: "de makeCounter()"
     position: left
 lexenv-nested-makecounter-2.svg:
   "global LexicalEnvironment":
@@ -128,7 +128,7 @@ lexenv-nested-makecounter-2.svg:
     text: "Ambiente Léxico"
     position: left
   "of makeCounter() call":
-    text: "da chamada de makeCounter()"
+    text: "de makeCounter()"
     position: left
 lexenv-makearmy-empty.svg:
   "LexicalEnvironment":

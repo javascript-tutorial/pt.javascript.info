@@ -109,7 +109,7 @@ Podemos usar isso para organizar nosso código, assim:
 ```js
 function sayHiBye(firstName, lastName) {
 
-  // função aninhada auxiliar pra usar abaixo
+  // função aninhada auxiliar para usar abaixo
   function getFullName() {
     return firstName + " " + lastName;
   }
@@ -153,10 +153,10 @@ Entender essas coisas é ótimo para o conhecimento geral do JavaScript e benéf
 ```warn header="Aqui existem dragões!"
 A explicação técnica aprofundada vem a seguir.
 
-Por mais que eu gostaria de evitar detalhes de baixo nível da linguagem, qualquer entendimento sem eles ficaria incompleto e deficiente, então se prepare.
+Por mais que eu gostasse de evitar detalhes de baixo nível da linguagem, qualquer entendimento sem eles ficaria incompleto e deficiente, então se prepare.
 ```
 
-Para clareza, a explicação é dividida em várias etapas.
+Para clareza, a explicação é dividida em vários passos.
 
 ### Passo 1. Variáveis
 
@@ -208,7 +208,7 @@ Uma função também é um valor, assim como uma variável.
 
 **A diferença é que uma Declaração de Função é totalmente inicializada instantaneamente.**
 
-Quando um Ambiente Léxico é criado, uma Declaração de Função se torna imediatamente uma função pronta pra uso (diferente de `let`, que fica inutilizável até a declaração).
+Quando um Ambiente Léxico é criado, uma Declaração de Função se torna imediatamente uma função pronta para uso (diferente de `let`, que fica inutilizável até a declaração).
 
 É por isso que podemos usar uma função, declarada como Declaração de Função, até mesmo antes da própria declaração.
 
@@ -286,7 +286,7 @@ Todas as funções lembram o Ambiente Léxico no qual foram criadas. Tecnicament
 
 Então, `counter.[[Environment]]` tem a referência ao Ambiente Léxico `{count: 0}`. É assim que a função lembra onde foi criada, não importa onde seja chamada. A referência `[[Environment]]` é definida uma vez e para sempre no momento da criação da função.
 
-Mais tarde, quando `counter()` é chamada, um novo Ambiente Léxico é criado para a chamada, e sua referência de Ambiente Léxico externo é pega de `counter.[[Environment]]`:
+Mais tarde, quando `counter()` é chamada, um novo Ambiente Léxico é criado para a chamada, e sua referência de Ambiente Léxico externo é obtida de `counter.[[Environment]]`:
 
 ![](closure-makecounter-nested-call.svg)
 
@@ -303,7 +303,7 @@ Se chamarmos `counter()` várias vezes, a variável `count` vai aumentar para `2
 ```smart header="Closure"
 Existe um termo geral de programação, "closure", que os desenvolvedores geralmente deveriam conhecer.
 
-Uma [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) é uma função que lembra suas variáveis externas e consegue acessá-las. Em algumas linguagens, isso não é possível, ou uma função precisa ser escrita de uma forma especial pra isso acontecer. Mas, como explicado acima, no JavaScript, todas as funções são naturalmente closures (existe só uma exceção, que será coberta em <info:new-function>).
+Uma [closure](https://pt.wikipedia.org/wiki/Clausura_(ci%C3%AAncia_da_computa%C3%A7%C3%A3o)) é uma função que lembra suas variáveis externas e consegue acessá-las. Em algumas linguagens, isso não é possível, ou uma função precisa ser escrita de uma forma especial para isso acontecer. Mas, como explicado acima, no JavaScript, todas as funções são naturalmente closures (existe só uma exceção, que será coberta em <info:new-function>).
 
 Ou seja: elas lembram automaticamente onde foram criadas usando uma propriedade oculta `[[Environment]]`, e então seu código pode acessar as variáveis externas.
 
@@ -394,7 +394,7 @@ g();
 
 Como você pôde ver -- não existe essa variável! Em teoria, ela deveria ser acessível, mas o motor a otimizou e removeu.
 
-Isso pode levar a problemas de depuração engraçados (se não tão demorados). Um deles -- podemos ver uma variável externa de mesmo nome em vez da esperada:
+Isso pode levar a problemas de depuração engraçados (se não fossem tão demorados). Um deles -- podemos ver uma variável externa de mesmo nome em vez da esperada:
 
 ```js run global
 let value = "Surprise!";

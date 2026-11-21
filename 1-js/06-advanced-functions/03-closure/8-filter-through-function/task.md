@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Filtra através de uma função
+# Filtrar através de uma função
 
 Temos um método nativo `arr.filter(f)` para arrays. Ele filtra todos os elementos através da função `f`. Se ela retornar `true`, então esse elemento é incluído no array resultante.
 
-Faça um conjunto de filtros "prontos pra usar":
+Faça um conjunto de filtros "prontos para usar":
 
 - `inBetween(a, b)` -- entre `a` e `b` ou igual a eles (de forma inclusiva).
 - `inArray([...])` -- está no array dado.

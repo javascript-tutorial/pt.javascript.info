@@ -1,4 +1,4 @@
-Para o segundo parênteses funcionar, o primeiro precisa retornar uma função.
+Para os segundos parênteses funcionarem, os primeiros precisam retornar uma função.
 
 Assim:
 

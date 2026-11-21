@@ -22,7 +22,7 @@ let name = "John";
 // cria uma função
 let work = makeWorker();
 
-// a chama
+// chama a função
 work(); // o que vai mostrar?
 ```
 
