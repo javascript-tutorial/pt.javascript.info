@@ -1,4 +1,4 @@
-# Eval: executa uma string de código
+# Eval: executando uma string de código
 
 A função nativa `eval` permite executar uma string de código.
 
@@ -30,7 +30,7 @@ let value = eval('let i = 0; ++i');
 alert(value); // 1
 ```
 
-O código executado pelo eval roda no Ambiente Léxico atual, então ele consegue ver as variáveis externas:
+O código executado pelo eval roda no Ambiente Lexical atual, então ele consegue ver as variáveis externas:
 
 ```js run no-beautify
 let a = 1;
@@ -54,7 +54,7 @@ eval("x = 10");
 alert(x); // 10, valor modificado
 ```
 
-No modo estrito, `eval` tem seu próprio Ambiente Léxico. Então funções e variáveis declaradas dentro do eval não são visíveis fora:
+No modo estrito, `eval` tem seu próprio Ambiente Lexical. Então funções e variáveis declaradas dentro do eval não são visíveis fora:
 
 ```js untrusted refresh run
 // lembrete: 'use strict' é ativado por padrão em exemplos executáveis
@@ -65,7 +65,7 @@ alert(typeof x); // undefined (essa variável não existe)
 // a função f também não é visível
 ```
 
-Sem `use strict`, `eval` não tem seu próprio Ambiente Léxico, então veríamos `x` e `f` fora.
+Sem `use strict`, `eval` não tem seu próprio Ambiente Lexical, então veríamos `x` e `f` fora.
 
 ## Usando o "eval"
 
@@ -77,7 +77,7 @@ Hoje em dia, quase não há motivo para usar `eval`. Se alguém está usando, h�
 
 Observe que sua capacidade de acessar variáveis externas tem efeitos colaterais.
 
-Minificadores de código (ferramentas usadas antes do JS ir pra produção, pra comprimi-lo) renomeiam variáveis locais para nomes mais curtos (tipo `a`, `b` etc.) pra deixar o código menor. Isso normalmente é seguro, mas não quando `eval` é usado, já que variáveis locais podem ser acessadas a partir da string de código do eval. Então os minificadores não fazem essa renomeação para todas as variáveis potencialmente visíveis a partir do `eval`. Isso afeta negativamente a taxa de compressão do código.
+Minificadores de código (ferramentas usadas antes do JS ir para produção, para comprimi-lo) renomeiam variáveis locais para nomes mais curtos (como `a`, `b` etc.) para deixar o código menor. Isso normalmente é seguro, mas não quando `eval` é usado, já que variáveis locais podem ser acessadas a partir da string de código do eval. Então os minificadores não fazem essa renomeação para todas as variáveis potencialmente visíveis a partir do `eval`. Isso afeta negativamente a taxa de compressão do código.
 
 Usar variáveis locais externas dentro do `eval` também é considerado uma má prática de programação, já que torna a manutenção do código mais difícil.
 
@@ -110,5 +110,5 @@ A construção `new Function` é explicada no capítulo <info:new-function>. Ela
 Uma chamada a `eval(code)` roda a string de código e retorna o resultado da última instrução.
 - Raramente usado no JavaScript moderno, já que normalmente não há necessidade.
 - Pode acessar variáveis locais externas. Isso é considerado má prática.
-- Em vez disso, para executar o `eval` do código no escopo global, use `window.eval(code)`.
+- Em vez disso, para executar o código com `eval` no escopo global, use `window.eval(code)`.
 - Ou, se seu código precisa de alguns dados do escopo externo, use `new Function` e os passe como argumentos.
