@@ -1,4 +1,4 @@
-Observe o detalhe sutil, mas importante, da solução. Não convertemos `value` para número logo depois do `prompt`, porque depois de `value = +value` não conseguiríamos mais distinguir uma string vazia (sinal de parada) do zero (número válido). Fazemos isso mais tarde, em vez disso.
+Observe o detalhe sutil, mas importante, da solução. Não convertemos `value` para número logo depois do `prompt`, porque depois de `value = +value` não conseguiríamos mais distinguir uma string vazia (sinal de parada) do zero (número válido). Em vez disso, fazemos isso mais tarde.
 
 
 ```js run demo

@@ -264,8 +264,8 @@ Mas o motor vai perceber que estamos trabalhando com o array como se fosse um ob
 Formas de usar um array incorretamente:
 
 - Adicionar uma propriedade não numérica, como `arr.test = 5`.
-- Criar buracos, tipo: adicionar `arr[0]` e depois `arr[1000]` (e nada entre eles).
-- Preencher o array na ordem reversa, tipo `arr[1000]`, `arr[999]` e assim por diante.
+- Criar buracos, como adicionar `arr[0]` e depois `arr[1000]` (e nada entre eles).
+- Preencher o array na ordem reversa, como `arr[1000]`, `arr[999]` e assim por diante.
 
 Pense nos arrays como estruturas especiais para trabalhar com *dados ordenados*. Eles oferecem métodos especiais para isso. Os arrays são cuidadosamente ajustados dentro dos motores do JavaScript para trabalhar com dados ordenados e contíguos, por favor, use-os dessa forma. E se você precisar de chaves arbitrárias, é bem provável que você precise, na verdade, de um objeto comum `{}`.
 
@@ -309,7 +309,7 @@ fruits.pop(); // pega 1 elemento do final
 
 O mesmo vale para o método `push`.
 
-## Laços
+## Laços [#loops]
 
 Uma das formas mais antigas de percorrer os itens de um array é o laço `for` sobre os índices:
 
@@ -384,7 +384,7 @@ let arr = [1, 2, 3, 4, 5];
 arr.length = 2; // trunca para 2 elementos
 alert( arr ); // [1, 2]
 
-arr.length = 5; // retorna o length de volta
+arr.length = 5; // restaura o length original
 alert( arr[3] ); // undefined: os valores não voltam
 ```
 
@@ -463,7 +463,7 @@ alert( "1,2" + 1 ); // "1,21"
 
 ## Não compare arrays com ==
 
-Arrays no JavaScript, diferente de outras linguagens de programação, não devem ser comparados com o operador `==`.
+Arrays no JavaScript, diferente de algumas outras linguagens de programação, não devem ser comparados com o operador `==`.
 
 Esse operador não tem nenhum tratamento especial para arrays, ele funciona com eles como com qualquer objeto.
 

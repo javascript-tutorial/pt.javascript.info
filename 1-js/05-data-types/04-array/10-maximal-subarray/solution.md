@@ -1,6 +1,6 @@
 # Solução lenta
 
-Podemos calcular todas as somas parciais possíveis.
+Podemos calcular todas as subsomas possíveis.
 
 A forma mais simples é pegar cada elemento e calcular as somas de todos os subarrays a partir dele.
 
@@ -33,7 +33,7 @@ Por exemplo, para `[-1, 2, 3, -9, 11]`:
 11
 ```
 
-O código, na verdade, é um laço aninhado: o laço externo percorre os elementos do array, e o interno conta as somas parciais começando pelo elemento atual.
+O código, na verdade, é um laço aninhado: o laço externo percorre os elementos do array, e o interno conta as subsomas começando pelo elemento atual.
 
 ```js run
 function getMaxSubSum(arr) {
