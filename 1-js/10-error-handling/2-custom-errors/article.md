@@ -17,7 +17,7 @@ Aqui está um exemplo de como um `json` válido pode parecer:
 let json = `{ "name": "John", "age": 30 }`;
 ```
 
-Internamente, vamos usar `JSON.parse`. Se ele receber um `json` malformado, então lança `SyntaxError`. Mas mesmo que o `json` seja sintaticamente correto, isso não significa que seja um usuário válido, certo? Pode faltar os dados necessários. Por exemplo, pode não ter as propriedades `name` e `age`, que são essenciais para nossos usuários.
+Internamente, vamos usar `JSON.parse`. Se ele receber um `json` malformado, então lança `SyntaxError`. Mas mesmo que o `json` seja sintaticamente correto, isso não significa que seja um usuário válido, certo? Podem faltar os dados necessários. Por exemplo, pode não ter as propriedades `name` e `age`, que são essenciais para nossos usuários.
 
 Nossa função `readUser(json)` não vai só ler o JSON, mas também verificar ("validar") os dados. Se faltarem campos obrigatórios, ou o formato estiver errado, isso é um erro. E não é um `SyntaxError`, porque os dados são sintaticamente corretos, mas outro tipo de erro. Vamos chamá-lo de `ValidationError` e criar uma classe para ele. Um erro desse tipo também deve carregar a informação sobre o campo problemático.
 
@@ -123,7 +123,7 @@ A versão com `instanceof` é bem melhor, porque no futuro vamos estender `Valid
 
 Também é importante que, se o `catch` encontrar um erro desconhecido, ele o relance na linha `(**)`. O bloco `catch` só sabe tratar erros de validação e de sintaxe; outros tipos (causados por um erro de digitação no código ou outros motivos desconhecidos) devem passar adiante.
 
-## Mais herança
+## Herança adicional
 
 A classe `ValidationError` é bem genérica. Muitas coisas podem dar errado. A propriedade pode estar ausente, ou pode estar em um formato errado (como um valor string para `age` em vez de um número). Vamos criar uma classe mais concreta, `PropertyRequiredError`, exatamente para propriedades ausentes. Ela vai carregar informações adicionais sobre a propriedade que está faltando.
 
@@ -180,7 +180,7 @@ try {
 
 A nova classe `PropertyRequiredError` é fácil de usar: só precisamos passar o nome da propriedade: `new PropertyRequiredError(property)`. A `message` legível para humanos é gerada pelo construtor.
 
-Repare que o `this.name` no construtor de `PropertyRequiredError` é, de novo, atribuído manualmente. Isso pode ficar meio repetitivo -- atribuir `this.name = <nome da classe>` em cada classe de erro personalizada. Podemos evitar isso criando nossa própria classe "básica de erro" que atribui `this.name = this.constructor.name`. E então herdar todos os nossos erros personalizados dela.
+Repare que o `this.name` no construtor de `PropertyRequiredError` é, de novo, atribuído manualmente. Isso pode ficar meio repetitivo -- atribuir `this.name = <nome da classe>` em cada classe de erro personalizada. Podemos evitar isso criando nossa própria classe de erro "base" que atribui `this.name = this.constructor.name`. E então herdar todos os nossos erros personalizados dela.
 
 Vamos chamá-la de `MyError`.
 
@@ -211,7 +211,7 @@ alert( new PropertyRequiredError("field").name ); // PropertyRequiredError
 
 Agora os erros personalizados ficam bem mais curtos, especialmente `ValidationError`, já que nos livramos da linha `"this.name = ..."` no construtor.
 
-## Empacotando exceções
+## Encapsulando exceções
 
 O propósito da função `readUser` no código acima é "ler os dados do usuário". Diferentes tipos de erro podem ocorrer durante o processo. No momento, temos `SyntaxError` e `ValidationError`, mas no futuro a função `readUser` pode crescer e provavelmente gerar outros tipos de erros.
 
@@ -241,7 +241,7 @@ Se a função `readUser` gerar vários tipos de erro, então deveríamos nos per
 
 Muitas vezes a resposta é "Não": gostaríamos de estar "um nível acima de tudo isso". Só queremos saber se houve um "erro de leitura de dados" -- o motivo exato pelo qual aconteceu, muitas vezes, é irrelevante (a mensagem de erro já descreve isso). Ou, melhor ainda, gostaríamos de ter uma forma de obter os detalhes do erro, mas só se precisarmos.
 
-A técnica que descrevemos aqui é chamada de "empacotamento de exceções" (*wrapping exceptions*).
+A técnica que descrevemos aqui é chamada de "encapsulamento de exceções" (*wrapping exceptions*).
 
 1. Vamos criar uma nova classe `ReadError` para representar um erro genérico de "leitura de dados".
 2. A função `readUser` vai capturar os erros de leitura de dados que ocorrerem dentro dela, como `ValidationError` e `SyntaxError`, e gerar um `ReadError` no lugar.
@@ -321,7 +321,7 @@ No código acima, `readUser` funciona exatamente como descrito -- captura erros 
 
 Então o código externo checa `instanceof ReadError`, e só isso. Não precisa listar todos os tipos possíveis de erro.
 
-A abordagem é chamada de "empacotamento de exceções", porque pegamos exceções de "baixo nível" e as "empacotamos" em um `ReadError`, que é mais abstrato. Isso é amplamente usado em programação orientada a objetos.
+A abordagem é chamada de "encapsulamento de exceções", porque pegamos exceções de "baixo nível" e as "encapsulamos" em um `ReadError`, que é mais abstrato. Isso é amplamente usado em programação orientada a objetos.
 
 ## Resumo
 
