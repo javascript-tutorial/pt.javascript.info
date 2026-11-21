@@ -28,4 +28,4 @@ alert(dictionary); // "apple,__proto__"
 
 Quando criamos uma propriedade usando um descritor, seus sinalizadores são `false` por padrão. Então, no código acima, `dictionary.toString` é não enumerável.
 
-Veja o capítulo [](info:property-descriptors) pra revisar.
+Veja o capítulo [](info:property-descriptors) para revisar.
