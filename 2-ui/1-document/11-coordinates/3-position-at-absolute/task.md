@@ -2,10 +2,10 @@ importance: 5
 
 ---
 
-# Show a note near the element (absolute)
+# Mostre uma nota perto do elemento (absolute)
 
-Modify the solution of the [previous task](info:task/position-at) so that the note uses `position:absolute` instead of `position:fixed`.
+Modifique a solução da [tarefa anterior](info:task/position-at) para que a nota use `position:absolute` em vez de `position:fixed`.
 
-That will prevent its "runaway" from the element when the page scrolls.
+Isso vai impedir que ela "escape" do elemento quando a página rolar.
 
-Take the solution of that task as a starting point. To test the scroll, add the style `<body style="height: 2000px">`.
+Use a solução daquela tarefa como ponto de partida. Para testar a rolagem, adicione o estilo `<body style="height: 2000px">`.

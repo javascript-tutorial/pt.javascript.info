@@ -1,4 +1,4 @@
-In this task we only need to accurately calculate the coordinates. See the code for details.
+Nesta tarefa só precisamos calcular as coordenadas com precisão. Veja o código para os detalhes.
 
-Please note: the elements must be in the document to read `offsetHeight` and other properties.
-A hidden (`display:none`) or out of the document element has no size.
+Note: os elementos precisam estar no documento para ler `offsetHeight` e outras propriedades.
+Um elemento oculto (`display:none`) ou fora do documento não tem tamanho.

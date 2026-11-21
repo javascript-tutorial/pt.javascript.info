@@ -12,10 +12,10 @@
     esse sequi officia sapiente.</p>
 
   <blockquote>
-    Teacher: Why are you late?
-    Student: There was a man who lost a hundred dollar bill.
-    Teacher: That's nice. Were you helping him look for it?
-    Student: No. I was standing on it.
+    Professor: Por que você está atrasado?
+    Aluno: Tinha um homem que perdeu uma nota de cem dólares.
+    Professor: Que legal. Você estava ajudando ele a procurar?
+    Aluno: Não. Eu estava em cima dela.
   </blockquote>
 
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae
@@ -24,13 +24,13 @@
 
   <script>
     /**
-     * Positions elem relative to anchor as said in position.
+     * Posiciona elem em relação a anchor, de acordo com position.
      *
-     * @param {Node} anchor     Anchor element for positioning
-     * @param {string} position One of: top/right/bottom
-     * @param {Node} elem       Element to position
+     * @param {Node} anchor     Elemento de referência para o posicionamento
+     * @param {string} position Um de: top/right/bottom
+     * @param {Node} elem       Elemento a ser posicionado
      *
-     * Both elements: elem and anchor must be in the document
+     * Ambos os elementos, elem e anchor, devem estar no documento
      */
     function positionAt(anchor, position, elem) {
 
@@ -56,8 +56,8 @@
     }
 
     /**
-     * Shows a note with the given html at the given position
-     * relative to the anchor element.
+     * Mostra uma nota com o html dado na posição dada
+     * em relação ao elemento de referência.
      */
     function showNote(anchor, position, html) {
 
@@ -69,12 +69,12 @@
       positionAt(anchor, position, note);
     }
 
-    // test it
+    // teste
     let blockquote = document.querySelector('blockquote');
 
-    showNote(blockquote, "top", "note above");
-    showNote(blockquote, "right", "note at the right");
-    showNote(blockquote, "bottom", "note below");
+    showNote(blockquote, "top", "nota acima");
+    showNote(blockquote, "right", "nota à direita");
+    showNote(blockquote, "bottom", "nota abaixo");
   </script>
 
 
