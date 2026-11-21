@@ -3,7 +3,7 @@ libs:
 
 ---
 
-# Vínculo de função
+# Vinculação de função
 
 Ao passar métodos de objeto como callbacks, por exemplo para `setTimeout`, existe um problema conhecido: "perder o `this`".
 
@@ -39,7 +39,7 @@ setTimeout(f, 1000); // perdeu o contexto de user
 
 O método `setTimeout`, no navegador, é um pouco especial: ele define `this=window` para a chamada da função (para o Node.js, `this` se torna o objeto timer, mas isso não importa muito aqui). Então, para `this.firstName`, ele tenta obter `window.firstName`, que não existe. Em outros casos parecidos, normalmente `this` simplesmente se torna `undefined`.
 
-A tarefa é bem típica -- queremos passar um método de objeto para algum outro lugar (aqui -- para o agendador) onde ele vai ser chamado. Como garantir que ele vai ser chamado no contexto certo?
+A situação é bem típica -- queremos passar um método de objeto para algum outro lugar (aqui -- para o agendador) onde ele vai ser chamado. Como garantir que ele vai ser chamado no contexto certo?
 
 ## Solução 1: um invólucro
 
@@ -273,7 +273,7 @@ Em outros casos, a aplicação parcial é útil quando temos uma função bem ge
 
 Por exemplo, temos uma função `send(from, to, text)`. Então, dentro de um objeto `user`, podemos querer usar uma variante parcial dela: `sendTo(to, text)`, que envia a partir do usuário atual.
 
-## Indo parcial sem contexto
+## Aplicação parcial sem contexto
 
 E se quisermos fixar alguns argumentos, mas não o contexto `this`? Por exemplo, para um método de objeto.
 
@@ -325,4 +325,4 @@ Normalmente aplicamos o `bind` para fixar o `this` de um método de objeto, para
 
 Quando fixamos alguns argumentos de uma função existente, a função resultante (menos universal) é chamada de *parcialmente aplicada* ou *parcial*.
 
-Parciais são convenientes quando não queremos repetir o mesmo argumento o tempo todo. Tipo se temos uma função `send(from, to)`, e `from` deveria ser sempre o mesmo para a nossa tarefa, podemos obter uma parcial e seguir com ela.
+Parciais são convenientes quando não queremos repetir o mesmo argumento o tempo todo. Por exemplo, se temos uma função `send(from, to)`, e `from` deveria ser sempre o mesmo para a nossa tarefa, podemos obter uma parcial e seguir com ela.
