@@ -95,3 +95,28 @@ array-shift.svg:
   "to the left":
     text: "para a esquerda"
     position: left
+long-polling.svg:
+  "Browser":
+    text: "Navegador"
+    position: center
+  "Server":
+    text: "Servidor"
+    position: center
+  "request":
+    text: "requisição"
+    position: center
+  "data":
+    text: "dados"
+    position: center
+  "connection":
+    text: "conexão"
+    position: center
+  "hangs":
+    text: "pendente"
+    position: center
+  "connection breaks":
+    text: "conexão é encerrada"
+    position: center
+  "end of request":
+    text: "fim da requisição"
+    position: center
