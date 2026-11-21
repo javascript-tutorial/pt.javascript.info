@@ -27,7 +27,7 @@
 
 <body style="height:2000px">
 
-  Click on a field to move the ball there.
+  Clique em um campo para mover a bola para lá.
   <br>
 
 
@@ -39,29 +39,29 @@
   <script>
     field.onclick = function(event) {
 
-      // window-relative field coordinates
+      // coordenadas do campo relativas à janela
       let fieldCoords = this.getBoundingClientRect();
 
-      // the ball has position:absolute, the field: position:relative
-      // so ball coordinates are relative to the field inner left-upper corner
+      // a bola tem position:absolute, o campo: position:relative
+      // então as coordenadas da bola são relativas ao canto interno superior-esquerdo do campo
       let ballCoords = {
         top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,
         left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2
       };
 
-      // prevent crossing the top field boundary
+      // impede cruzar o limite superior do campo
       if (ballCoords.top < 0) ballCoords.top = 0;
 
-      // prevent crossing the left field boundary
+      // impede cruzar o limite esquerdo do campo
       if (ballCoords.left < 0) ballCoords.left = 0;
 
 
-      // // prevent crossing the right field boundary
+      // // impede cruzar o limite direito do campo
       if (ballCoords.left + ball.clientWidth > field.clientWidth) {
         ballCoords.left = field.clientWidth - ball.clientWidth;
       }
 
-      // prevent crossing the bottom field boundary
+      // impede cruzar o limite inferior do campo
       if (ballCoords.top + ball.clientHeight > field.clientHeight) {
         ballCoords.top = field.clientHeight - ball.clientHeight;
       }

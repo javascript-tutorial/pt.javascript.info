@@ -2,20 +2,20 @@ importance: 5
 
 ---
 
-# Move the ball across the field
+# Mova a bola pelo campo
 
-Move the ball across the field to a click. Like this:
+Mova a bola pelo campo ao clicar. Assim:
 
 [iframe src="solution" height="260" link]
 
-Requirements:
+Requisitos:
 
-- The ball center should come exactly under the pointer on click (if possible without crossing the field edge).
-- CSS-animation is welcome.
-- The ball must not cross field boundaries.
-- When the page is scrolled, nothing should break.
+- O centro da bola deve ficar exatamente sob o ponteiro ao clicar (se possível, sem cruzar a borda do campo).
+- Animação CSS é bem-vinda.
+- A bola não deve cruzar os limites do campo.
+- Quando a página é rolada, nada deve quebrar.
 
-Notes:
+Notas:
 
-- The code should also work with different ball and field sizes, not be bound to any fixed values.
-- Use properties `event.clientX/event.clientY` for click coordinates.
+- O código também deve funcionar com tamanhos diferentes de bola e campo, sem ficar amarrado a nenhum valor fixo.
+- Use as propriedades `event.clientX/event.clientY` para as coordenadas do clique.
