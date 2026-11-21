@@ -1,7 +1,7 @@
 <!doctype html>
 <form name="publish">
   <input type="text" name="message" maxlength="50"/>
-  <input type="submit" value="Send"/>
+  <input type="submit" value="Enviar"/>
 </form>
 
 <div id="messages"></div>
@@ -9,12 +9,12 @@
 <script>
 let url = location.host == 'localhost' ?
   'ws://localhost:8080/ws' : location.host == 'javascript.local' ?
-  `ws://javascript.local/article/websocket/chat/ws` : // dev integration with local site
-  `wss://javascript.info/article/websocket/chat/ws`; // prod integration with javascript.info
+  `ws://javascript.local/article/websocket/chat/ws` : // integração de desenvolvimento com o site local
+  `wss://javascript.info/article/websocket/chat/ws`; // integração de produção com javascript.info
 
 let socket = new WebSocket(url);
 
-// send message from the form
+// envia a mensagem do formulário
 document.forms.publish.onsubmit = function() {
   let outgoingMessage = this.message.value;
 
@@ -22,7 +22,7 @@ document.forms.publish.onsubmit = function() {
   return false;
 };
 
-// handle incoming messages
+// trata mensagens recebidas
 socket.onmessage = function(event) {
   let incomingMessage = event.data;
   showMessage(incomingMessage);
@@ -30,7 +30,7 @@ socket.onmessage = function(event) {
 
 socket.onclose = event => console.log(`Closed ${event.code}`);
 
-// show message in div#messages
+// mostra a mensagem em div#messages
 function showMessage(message) {
   let messageElem = document.createElement('div');
   messageElem.textContent = message;

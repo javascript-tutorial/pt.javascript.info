@@ -95,3 +95,25 @@ array-shift.svg:
   "to the left":
     text: "para a esquerda"
     position: left
+websocket-handshake.svg:
+  "Browser":
+    text: "Navegador"
+    position: center
+  "Server":
+    text: "Servidor"
+    position: center
+  "HTTP-request":
+    text: "Requisição HTTP"
+    position: center
+  '"Hey, server, let''s talk WebSocket?"':
+    text: '"Ei, servidor, vamos falar WebSocket?"'
+    position: center
+  "HTTP-response":
+    text: "Resposta HTTP"
+    position: center
+  '"Okay!"':
+    text: '"Combinado!"'
+    position: center
+  "WebSocket protocol":
+    text: "Protocolo WebSocket"
+    position: center

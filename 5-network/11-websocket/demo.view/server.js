@@ -4,13 +4,13 @@ const ws = require('ws');
 const wss = new ws.Server({noServer: true});
 
 function accept(req, res) {
-  // all incoming requests must be websockets
+  // todas as requisições recebidas devem ser websockets
   if (!req.headers.upgrade || req.headers.upgrade.toLowerCase() != 'websocket') {
     res.end();
     return;
   }
 
-  // can be Connection: keep-alive, Upgrade
+  // pode ser Connection: keep-alive, Upgrade
   if (!req.headers.connection.match(/\bupgrade\b/i)) {
     res.end();
     return;
