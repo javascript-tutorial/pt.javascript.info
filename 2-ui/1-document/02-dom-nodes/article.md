@@ -6,33 +6,33 @@ libs:
 
 # DOM tree
 
-The backbone of an HTML document is tags.
+A espinha dorsal de um documento HTML são as tags.
 
-According to the Document Object Model (DOM), every HTML tag is an object. Nested tags are  "children" of the enclosing one. The text inside a tag is an object as well.
+De acordo com o Document Object Model (DOM), toda tag HTML é um objeto. Tags aninhadas são "filhas" da que as envolve. O texto dentro de uma tag também é um objeto.
 
-All these objects are accessible using JavaScript, and we can use them to modify the page.
+Todos esses objetos são acessíveis usando JavaScript, e podemos usá-los para modificar a página.
 
-For example, `document.body` is the object representing the `<body>` tag.
+Por exemplo, `document.body` é o objeto que representa a tag `<body>`.
 
-Running this code will make the `<body>` red for 3 seconds:
+Rodar este código vai deixar o `<body>` vermelho por 3 segundos:
 
 ```js run
-document.body.style.background = 'red'; // make the background red
+document.body.style.background = 'red'; // deixa o fundo vermelho
 
-setTimeout(() => document.body.style.background = '', 3000); // return back
+setTimeout(() => document.body.style.background = '', 3000); // volta ao normal
 ```
 
-Here we used `style.background` to change the background color of `document.body`, but there are many other properties, such as:
+Aqui usamos `style.background` para mudar a cor de fundo de `document.body`, mas existem muitas outras propriedades, como:
 
-- `innerHTML` -- HTML contents of the node.
-- `offsetWidth` -- the node width (in pixels)
-- ...and so on.
+- `innerHTML` -- conteúdo HTML do nó.
+- `offsetWidth` -- a largura do nó (em pixels)
+- ...e assim por diante.
 
-Soon we'll learn more ways to manipulate the DOM, but first we need to know about its structure.
+Em breve vamos aprender mais formas de manipular o DOM, mas primeiro precisamos conhecer sua estrutura.
 
-## An example of the DOM
+## Um exemplo do DOM
 
-Let's start with the following simple document:
+Vamos começar com o seguinte documento simples:
 
 ```html run no-beautify
 <!DOCTYPE HTML>
@@ -46,7 +46,7 @@ Let's start with the following simple document:
 </html>
 ```
 
-The DOM represents HTML as a tree structure of tags. Here's how it looks:
+O DOM representa o HTML como uma estrutura em árvore de tags. Veja como ela se parece:
 
 <div class="domtree"></div>
 
@@ -57,31 +57,31 @@ drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
 
 ```online
-On the picture above, you can click on element nodes and their children will open/collapse.
+Na imagem acima, você pode clicar nos nós de elemento e seus filhos vão abrir/fechar.
 ```
 
-Every tree node is an object.
+Todo nó da árvore é um objeto.
 
-Tags are *element nodes* (or just elements) and form the tree structure: `<html>` is at the root, then `<head>` and `<body>` are its children, etc.
+Tags são *nós de elemento* (ou só elementos) e formam a estrutura em árvore: `<html>` está na raiz, depois `<head>` e `<body>` são seus filhos, etc.
 
-The text inside elements forms *text nodes*, labelled as `#text`. A text node contains only a string. It may not have children and is always a leaf of the tree.
+O texto dentro de elementos forma *nós de texto*, rotulados como `#text`. Um nó de texto contém só uma string. Ele não pode ter filhos e é sempre uma folha da árvore.
 
-For instance, the `<title>` tag has the text `"About elk"`.
+Por exemplo, a tag `<title>` tem o texto `"About elk"`.
 
-Please note the special characters in text nodes:
+Observe os caracteres especiais nos nós de texto:
 
-- a newline: `↵` (in JavaScript known as `\n`)
-- a space: `␣`
+- uma quebra de linha: `↵` (no JavaScript conhecida como `\n`)
+- um espaço: `␣`
 
-Spaces and newlines are totally valid characters, like letters and digits. They form text nodes and become a part of the DOM. So, for instance, in the example above the `<head>` tag contains some spaces before `<title>`, and that text becomes a `#text` node (it contains a newline and some spaces only).
+Espaços e quebras de linha são caracteres totalmente válidos, como letras e dígitos. Eles formam nós de texto e se tornam parte do DOM. Então, por exemplo, no exemplo acima a tag `<head>` contém alguns espaços antes de `<title>`, e esse texto se torna um nó `#text` (ele contém uma quebra de linha e alguns espaços apenas).
 
-There are only two top-level exclusions:
-1. Spaces and newlines before `<head>` are ignored for historical reasons.
-2. If we put something after `</body>`, then that is automatically moved inside the `body`, at the end, as the HTML spec requires that all content must be inside `<body>`. So there can't be any spaces after `</body>`.
+Existem só duas exclusões de nível superior:
+1. Espaços e quebras de linha antes de `<head>` são ignorados por motivos históricos.
+2. Se colocarmos algo depois de `</body>`, então isso é movido automaticamente para dentro do `body`, no final, já que a especificação HTML exige que todo o conteúdo esteja dentro de `<body>`. Então não pode haver nenhum espaço depois de `</body>`.
 
-In other cases everything's straightforward -- if there are spaces (just like any character) in the document, then they become text nodes in the DOM, and if we remove them, then there won't be any.
+Em outros casos, tudo é direto -- se houver espaços (assim como qualquer caractere) no documento, então eles se tornam nós de texto no DOM, e se os removermos, então não vai haver nenhum.
 
-Here are no space-only text nodes:
+Aqui não há nós de texto só com espaço:
 
 ```html no-beautify
 <!DOCTYPE HTML>
@@ -96,21 +96,21 @@ let node2 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node2, 'div.domtree', 690, 210);
 </script>
 
-```smart header="Spaces at string start/end and space-only text nodes are usually hidden in tools"
-Browser tools (to be covered soon) that work with DOM usually do not show spaces at the start/end of the text and empty text nodes (line-breaks) between tags.
+```smart header="Espaços no início/fim de strings e nós de texto só com espaço geralmente ficam ocultos nas ferramentas"
+Ferramentas de navegador (que vamos abordar em breve) que trabalham com o DOM geralmente não mostram espaços no início/fim do texto e nós de texto vazios (quebras de linha) entre tags.
 
-Developer tools save screen space this way.
+As ferramentas de desenvolvedor economizam espaço na tela dessa forma.
 
-On further DOM pictures we'll sometimes omit them when they are irrelevant. Such spaces usually do not affect how the document is displayed.
+Em imagens futuras do DOM, às vezes vamos omiti-los quando forem irrelevantes. Esses espaços geralmente não afetam como o documento é exibido.
 ```
 
-## Autocorrection
+## Autocorreção
 
-If the browser encounters malformed HTML, it automatically corrects it when making the DOM.
+Se o navegador encontrar HTML malformado, ele o corrige automaticamente ao criar o DOM.
 
-For instance, the top tag is always `<html>`. Even if it doesn't exist in the document, it will exist in the DOM, because the browser will create it. The same goes for `<body>`.
+Por exemplo, a tag do topo é sempre `<html>`. Mesmo que ela não exista no documento, ela vai existir no DOM, porque o navegador vai criá-la. O mesmo vale para `<body>`.
 
-As an example, if the HTML file is the single word `"Hello"`, the browser will wrap it into `<html>` and `<body>`, and add the required `<head>`, and the DOM will be:
+Como exemplo, se o arquivo HTML for só a palavra `"Hello"`, o navegador vai envolvê-la em `<html>` e `<body>`, e adicionar o `<head>` necessário, e o DOM vai ser:
 
 
 <div class="domtree"></div>
@@ -121,9 +121,9 @@ let node3 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node3, 'div.domtree', 690, 150);
 </script>
 
-While generating the DOM, browsers automatically process errors in the document, close tags and so on.
+Ao gerar o DOM, os navegadores processam automaticamente erros no documento, fecham tags e assim por diante.
 
-A document with unclosed tags:
+Um documento com tags não fechadas:
 
 ```html no-beautify
 <p>Hello
@@ -132,7 +132,7 @@ A document with unclosed tags:
 <li>Dad
 ```
 
-...will become a normal DOM as the browser reads tags and restores the missing parts:
+...vai se tornar um DOM normal conforme o navegador lê as tags e restaura as partes que faltam:
 
 <div class="domtree"></div>
 
@@ -142,16 +142,16 @@ let node4 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node4, 'div.domtree', 690, 360);
 </script>
 
-````warn header="Tables always have `<tbody>`"
-An interesting "special case" is tables. By DOM specification they must have `<tbody>` tag, but HTML text may omit it. Then the browser creates `<tbody>` in the DOM automatically.
+````warn header="Tabelas sempre têm `<tbody>`"
+Um "caso especial" interessante são as tabelas. Pela especificação do DOM elas devem ter a tag `<tbody>`, mas o texto HTML pode omiti-la. Então o navegador cria `<tbody>` no DOM automaticamente.
 
-For the HTML:
+Para o HTML:
 
 ```html no-beautify
 <table id="table"><tr><td>1</td></tr></table>
 ```
 
-DOM-structure will be:
+A estrutura do DOM vai ser:
 <div class="domtree"></div>
 
 <script>
@@ -160,14 +160,14 @@ let node5 = {"name":"TABLE","nodeType":1,"children":[{"name":"TBODY","nodeType":
 drawHtmlTree(node5,  'div.domtree', 600, 200);
 </script>
 
-You see? The `<tbody>` appeared out of nowhere. We should keep this in mind while working with tables to avoid surprises.
+Viu? A `<tbody>` apareceu do nada. Devemos ter isso em mente ao trabalhar com tabelas para evitar surpresas.
 ````
 
-## Other node types
+## Outros tipos de nó
 
-There are some other node types besides elements and text nodes.
+Existem alguns outros tipos de nó além de elementos e nós de texto.
 
-For example, comments:
+Por exemplo, comentários:
 
 ```html
 <!DOCTYPE HTML>
@@ -193,90 +193,90 @@ let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node6, 'div.domtree', 690, 500);
 </script>
 
-We can see here a new tree node type -- *comment node*, labeled as `#comment`, between two text nodes.
+Podemos ver aqui um novo tipo de nó da árvore -- *nó de comentário*, rotulado como `#comment`, entre dois nós de texto.
 
-We may think -- why is a comment added to the DOM? It doesn't affect the visual representation in any way. But there's a rule -- if something's in HTML, then it also must be in the DOM tree.
+Podemos pensar -- por que um comentário é adicionado ao DOM? Ele não afeta a representação visual de forma alguma. Mas existe uma regra -- se algo está no HTML, então também deve estar na árvore DOM.
 
-**Everything in HTML, even comments, becomes a part of the DOM.**
+**Tudo no HTML, até mesmo comentários, se torna parte do DOM.**
 
-Even the `<!DOCTYPE...>` directive at the very beginning of HTML is also a DOM node. It's in the DOM tree right before `<html>`. Few people know about that. We are not going to touch that node, we even don't draw it on diagrams, but it's there.
+Até a diretiva `<!DOCTYPE...>` bem no início do HTML também é um nó do DOM. Ela está na árvore DOM bem antes de `<html>`. Pouca gente sabe disso. Não vamos mexer nesse nó, nem desenhá-lo nos diagramas, mas ele está lá.
 
-The `document` object that represents the whole document is, formally, a DOM node as well.
+O objeto `document`, que representa o documento inteiro, também é, formalmente, um nó do DOM.
 
-There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usually work with 4 of them:
+Existem [12 tipos de nó](https://dom.spec.whatwg.org/#node). Na prática, geralmente trabalhamos com 4 deles:
 
-1. `document` -- the "entry point" into DOM.
-2. element nodes -- HTML-tags, the tree building blocks.
-3. text nodes -- contain text.
-4. comments -- sometimes we can put information there, it won't be shown, but JS can read it from the DOM.
+1. `document` -- o "ponto de entrada" no DOM.
+2. nós de elemento -- tags HTML, os blocos de construção da árvore.
+3. nós de texto -- contêm texto.
+4. comentários -- às vezes podemos colocar informações ali, elas não vão ser mostradas, mas o JS pode lê-las do DOM.
 
-## See it for yourself
+## Veja por si mesmo
 
-To see the DOM structure in real-time, try [Live DOM Viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up as a DOM at an instant.
+Para ver a estrutura do DOM em tempo real, experimente o [Live DOM Viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/). Só digite o documento, e ele vai aparecer como um DOM instantaneamente.
 
-Another way to explore the DOM is to use the browser developer tools. Actually, that's what we use when developing.
+Outra forma de explorar o DOM é usar as ferramentas de desenvolvedor do navegador. Na verdade, é isso que usamos ao desenvolver.
 
-To do so, open the web page [elk.html](elk.html), turn on the browser developer tools and switch to the Elements tab.
+Para fazer isso, abra a página web [elk.html](elk.html), ligue as ferramentas de desenvolvedor do navegador e mude para a aba Elements.
 
-It should look like this:
+Deve se parecer com isto:
 
 ![](elk.svg)
 
-You can see the DOM, click on elements, see their details and so on.
+Você pode ver o DOM, clicar nos elementos, ver seus detalhes e assim por diante.
 
-Please note that the DOM structure in developer tools is simplified. Text nodes are shown just as text. And there are no "blank" (space only) text nodes at all. That's fine, because most of the time we are interested in element nodes.
+Observe que a estrutura do DOM nas ferramentas de desenvolvedor é simplificada. Nós de texto são mostrados só como texto. E não há nenhum nó de texto "em branco" (só espaço). Tudo bem, porque na maior parte do tempo estamos interessados nos nós de elemento.
 
-Clicking the <span class="devtools" style="background-position:-328px -124px"></span> button in the left-upper corner allows us to choose a node from the webpage using a mouse (or other pointer devices) and "inspect" it (scroll to it in the Elements tab). This works great when we have a huge HTML page (and corresponding huge DOM) and would like to see the place of a particular element in it.
+Clicar no botão <span class="devtools" style="background-position:-328px -124px"></span> no canto superior esquerdo nos permite escolher um nó da página web usando o mouse (ou outros dispositivos apontadores) e "inspecioná-lo" (rolar até ele na aba Elements). Isso funciona muito bem quando temos uma página HTML enorme (e o DOM enorme correspondente) e gostaríamos de ver o lugar de um elemento específico nela.
 
-Another way to do it would be just right-clicking on a webpage and selecting "Inspect" in the context menu.
+Outra forma de fazer isso seria só clicar com o botão direito numa página web e selecionar "Inspecionar" no menu de contexto.
 
 ![](inspect.svg)
 
-At the right part of the tools there are the following subtabs:
-- **Styles** -- we can see CSS applied to the current element rule by rule, including built-in rules (gray). Almost everything can be edited in-place, including the dimensions/margins/paddings of the box below.
-- **Computed** -- to see CSS applied to the element by property: for each property we can see a rule that gives it (including CSS inheritance and such).
-- **Event Listeners** -- to see event listeners attached to DOM elements (we'll cover them in the next part of the tutorial).
-- ...and so on.
+Na parte direita das ferramentas existem as seguintes subabas:
+- **Styles** -- podemos ver o CSS aplicado ao elemento atual regra por regra, incluindo regras nativas (em cinza). Quase tudo pode ser editado no local, incluindo as dimensões/margens/preenchimentos da caixa abaixo.
+- **Computed** -- para ver o CSS aplicado ao elemento por propriedade: para cada propriedade podemos ver uma regra que a define (incluindo herança de CSS e afins).
+- **Event Listeners** -- para ver os ouvintes de evento anexados a elementos do DOM (vamos abordá-los na próxima parte do tutorial).
+- ...e assim por diante.
 
-The best way to study them is to click around. Most values are editable in-place.
+A melhor forma de estudá-los é clicar por aí. A maioria dos valores é editável no local.
 
-## Interaction with console
+## Interação com o console
 
-As we work the DOM, we also may want to apply JavaScript to it. Like: get a node and run some code to modify it, to see the result. Here are few tips to travel between the Elements tab and the console.
+Conforme trabalhamos com o DOM, também podemos querer aplicar JavaScript a ele. Tipo: pegar um nó e rodar algum código para modificá-lo, para ver o resultado. Aqui estão algumas dicas para transitar entre a aba Elements e o console.
 
-For the start:
+Para começar:
 
-1. Select the first `<li>` in the Elements tab.
-2. Press `key:Esc` -- it will open console right below the Elements tab.
+1. Selecione o primeiro `<li>` na aba Elements.
+2. Pressione `key:Esc` -- isso vai abrir o console bem abaixo da aba Elements.
 
-Now the last selected element is available as `$0`, the previously selected is `$1` etc.
+Agora o último elemento selecionado está disponível como `$0`, o selecionado anteriormente como `$1` etc.
 
-We can run commands on them. For instance, `$0.style.background = 'red'` makes the selected list item red, like this:
+Podemos rodar comandos neles. Por exemplo, `$0.style.background = 'red'` deixa o item de lista selecionado vermelho, assim:
 
 ![](domconsole0.svg)
 
-That's how to get a node from Elements in Console.
+É assim que se obtém um nó dos Elements no Console.
 
-There's also a road back. If there's a variable referencing a DOM node, then we can use the command `inspect(node)` in Console to see it in the Elements pane.
+Também existe um caminho de volta. Se houver uma variável referenciando um nó do DOM, então podemos usar o comando `inspect(node)` no Console para vê-lo no painel Elements.
 
-Or we can just output the DOM node in the console and explore "in-place", like `document.body` below:
+Ou podemos simplesmente exibir o nó do DOM no console e explorá-lo "no local", como `document.body` abaixo:
 
 ![](domconsole1.svg)
 
-That's for debugging purposes of course. From the next chapter on we'll access and modify DOM using JavaScript.
+Isso é para fins de depuração, claro. A partir do próximo capítulo vamos acessar e modificar o DOM usando JavaScript.
 
-The browser developer tools are a great help in development: we can explore the DOM, try things and see what goes wrong.
+As ferramentas de desenvolvedor do navegador são uma grande ajuda no desenvolvimento: podemos explorar o DOM, tentar coisas e ver o que dá errado.
 
-## Summary
+## Resumo
 
-An HTML/XML document is represented inside the browser as the DOM tree.
+Um documento HTML/XML é representado dentro do navegador como a árvore DOM.
 
-- Tags become element nodes and form the structure.
-- Text becomes text nodes.
-- ...etc, everything in HTML has its place in DOM, even comments.
+- Tags se tornam nós de elemento e formam a estrutura.
+- Texto se torna nós de texto.
+- ...etc, tudo no HTML tem seu lugar no DOM, até mesmo comentários.
 
-We can use developer tools to inspect DOM and modify it manually.
+Podemos usar as ferramentas de desenvolvedor para inspecionar o DOM e modificá-lo manualmente.
 
-Here we covered the basics, the most used and important actions to start with. There's an extensive documentation about Chrome Developer Tools at <https://developers.google.com/web/tools/chrome-devtools>. The best way to learn the tools is to click here and there, read menus: most options are obvious. Later, when you know them in general, read the docs and pick up the rest.
+Aqui abordamos o básico, as ações mais usadas e importantes para começar. Existe uma documentação extensa sobre as Chrome Developer Tools em <https://developers.google.com/web/tools/chrome-devtools>. A melhor forma de aprender as ferramentas é clicar aqui e ali, ler os menus: a maioria das opções é óbvia. Depois, quando você já souber delas em geral, leia a documentação e pegue o resto.
 
-DOM nodes have properties and methods that allow us to travel between them, modify them, move around the page, and more. We'll get down to them in the next chapters.
+Nós do DOM têm propriedades e métodos que nos permitem transitar entre eles, modificá-los, mover pela página, e mais. Vamos entrar nisso nos próximos capítulos.
