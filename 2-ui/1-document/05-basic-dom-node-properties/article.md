@@ -1,81 +1,81 @@
 # Node properties: type, tag and contents
 
-Let's get a more in-depth look at DOM nodes.
+Vamos dar uma olhada mais a fundo nos nós do DOM.
 
-In this chapter we'll see more into what they are and learn their most used properties.
+Neste capítulo vamos ver mais sobre o que eles são e aprender suas propriedades mais usadas.
 
-## DOM node classes
+## Classes de nó do DOM
 
-Different DOM nodes may have different properties. For instance, an element node corresponding to tag `<a>` has link-related properties, and the one corresponding to `<input>` has input-related properties and so on. Text nodes are not the same as element nodes. But there are also common properties and methods between all of them, because all classes of DOM nodes form a single hierarchy.
+Nós do DOM diferentes podem ter propriedades diferentes. Por exemplo, um nó de elemento correspondente à tag `<a>` tem propriedades relacionadas a link, e o correspondente a `<input>` tem propriedades relacionadas a input e assim por diante. Nós de texto não são iguais a nós de elemento. Mas também existem propriedades e métodos comuns entre todos eles, porque todas as classes de nós do DOM formam uma única hierarquia.
 
-Each DOM node belongs to the corresponding built-in class.
+Cada nó do DOM pertence à classe nativa correspondente.
 
-The root of the hierarchy is [EventTarget](https://dom.spec.whatwg.org/#eventtarget), that is inherited by  [Node](https://dom.spec.whatwg.org/#interface-node), and other DOM nodes inherit from it.
+A raiz da hierarquia é [EventTarget](https://dom.spec.whatwg.org/#eventtarget), que é herdada por [Node](https://dom.spec.whatwg.org/#interface-node), e outros nós do DOM herdam dela.
 
-Here's the picture, explanations to follow:
+Aqui está a imagem, explicações a seguir:
 
 ![](dom-class-hierarchy.svg)
 
-The classes are:
+As classes são:
 
-- [EventTarget](https://dom.spec.whatwg.org/#eventtarget) -- is the root "abstract" class for everything.
+- [EventTarget](https://dom.spec.whatwg.org/#eventtarget) -- é a classe "abstrata" raiz para tudo.
 
-    Objects of that class are never created. It serves as a base, so that all DOM nodes support so-called "events", we'll study them later.
+    Objetos dessa classe nunca são criados. Ela serve como base, para que todos os nós do DOM suportem os chamados "eventos", vamos estudá-los mais tarde.
 
-- [Node](https://dom.spec.whatwg.org/#interface-node) -- is also an "abstract" class, serving as a base  for DOM nodes.
+- [Node](https://dom.spec.whatwg.org/#interface-node) -- também é uma classe "abstrata", servindo como base para nós do DOM.
 
-    It provides the core tree functionality: `parentNode`, `nextSibling`, `childNodes` and so on (they are getters). Objects of `Node` class are never created. But there are other classes that inherit from it (and so inherit the `Node` functionality).
+    Ela fornece a funcionalidade central de árvore: `parentNode`, `nextSibling`, `childNodes` e assim por diante (são getters). Objetos da classe `Node` nunca são criados. Mas existem outras classes que herdam dela (e assim herdam a funcionalidade de `Node`).
 
-- [Document](https://dom.spec.whatwg.org/#interface-document), for historical reasons often inherited by `HTMLDocument` (though the latest spec doesn't dictate it) -- is a document as a whole.
+- [Document](https://dom.spec.whatwg.org/#interface-document), por motivos históricos frequentemente herdada por `HTMLDocument` (embora a especificação mais recente não exija isso) -- é um documento como um todo.
 
-    The `document` global object belongs exactly to this class. It serves as an entry point to the DOM.
+    O objeto global `document` pertence exatamente a essa classe. Ele serve como ponto de entrada para o DOM.
 
-- [CharacterData](https://dom.spec.whatwg.org/#interface-characterdata) -- an "abstract" class, inherited by:
-    - [Text](https://dom.spec.whatwg.org/#interface-text) -- the class corresponding to a text inside elements, e.g. `Hello` in `<p>Hello</p>`.
-    - [Comment](https://dom.spec.whatwg.org/#interface-comment) -- the class for comments. They are not shown, but each comment becomes a member of DOM.
+- [CharacterData](https://dom.spec.whatwg.org/#interface-characterdata) -- uma classe "abstrata", herdada por:
+    - [Text](https://dom.spec.whatwg.org/#interface-text) -- a classe correspondente a um texto dentro de elementos, por exemplo, `Hello` em `<p>Hello</p>`.
+    - [Comment](https://dom.spec.whatwg.org/#interface-comment) -- a classe para comentários. Eles não são exibidos, mas cada comentário se torna um membro do DOM.
 
-- [Element](https://dom.spec.whatwg.org/#interface-element) -- is the base class for DOM elements.
+- [Element](https://dom.spec.whatwg.org/#interface-element) -- é a classe base para elementos do DOM.
 
-    It provides element-level navigation like `nextElementSibling`, `children` and searching methods like `getElementsByTagName`, `querySelector`.
+    Ela fornece navegação em nível de elemento como `nextElementSibling`, `children` e métodos de busca como `getElementsByTagName`, `querySelector`.
 
-    A browser supports not only HTML, but also XML and SVG. So the `Element` class serves as a base for more specific classes: `SVGElement`, `XMLElement` (we don't need them here) and `HTMLElement`.
+    Um navegador suporta não só HTML, mas também XML e SVG. Então a classe `Element` serve como base para classes mais específicas: `SVGElement`, `XMLElement` (não precisamos delas aqui) e `HTMLElement`.
 
-- Finally, [HTMLElement](https://html.spec.whatwg.org/multipage/dom.html#htmlelement) is the basic class for all HTML elements. We'll work with it most of the time.
+- Finalmente, [HTMLElement](https://html.spec.whatwg.org/multipage/dom.html#htmlelement) é a classe básica para todos os elementos HTML. Vamos trabalhar com ela na maior parte do tempo.
 
-    It is inherited by concrete HTML elements:
-    - [HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement) -- the class for `<input>` elements,
-    - [HTMLBodyElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlbodyelement) -- the class for `<body>` elements,
-    - [HTMLAnchorElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlanchorelement) -- the class for `<a>` elements,
-    - ...and so on.
+    Ela é herdada por elementos HTML concretos:
+    - [HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement) -- a classe para elementos `<input>`,
+    - [HTMLBodyElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlbodyelement) -- a classe para elementos `<body>`,
+    - [HTMLAnchorElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlanchorelement) -- a classe para elementos `<a>`,
+    - ...e assim por diante.
 
-There are many other tags with their own classes that may have specific properties and methods, while some elements, such as `<span>`, `<section>`, `<article>` do not have any specific properties, so they are instances of `HTMLElement` class.
+Existem muitas outras tags com suas próprias classes que podem ter propriedades e métodos específicos, enquanto alguns elementos, como `<span>`, `<section>`, `<article>`, não têm nenhuma propriedade específica, então são instâncias da classe `HTMLElement`.
 
-So, the full set of properties and methods of a given node comes as the result of the chain of inheritance.
+Então, o conjunto completo de propriedades e métodos de um determinado nó vem como resultado da cadeia de herança.
 
-For example, let's consider the DOM object for an `<input>` element. It belongs to [HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement) class.
+Por exemplo, vamos considerar o objeto DOM para um elemento `<input>`. Ele pertence à classe [HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement).
 
-It gets properties and methods as a superposition of (listed in inheritance order):
+Ele obtém propriedades e métodos como uma superposição de (listados na ordem de herança):
 
-- `HTMLInputElement` -- this class provides input-specific properties,
-- `HTMLElement` -- it provides common HTML element methods (and getters/setters),
-- `Element` -- provides generic element methods,
-- `Node` -- provides common DOM node properties,
-- `EventTarget` -- gives the support for events (to be covered),
-- ...and finally it inherits from `Object`, so "plain object" methods like `hasOwnProperty` are also available.
+- `HTMLInputElement` -- essa classe fornece propriedades específicas de input,
+- `HTMLElement` -- ela fornece métodos comuns de elementos HTML (e getters/setters),
+- `Element` -- fornece métodos genéricos de elemento,
+- `Node` -- fornece propriedades comuns de nós do DOM,
+- `EventTarget` -- dá suporte para eventos (a ser coberto),
+- ...e finalmente ela herda de `Object`, então métodos de "objeto simples" como `hasOwnProperty` também estão disponíveis.
 
-To see the DOM node class name, we can recall that an object usually has the `constructor` property. It references the class constructor, and `constructor.name` is its name:
+Para ver o nome da classe de um nó do DOM, podemos lembrar que um objeto geralmente tem a propriedade `constructor`. Ela referencia o construtor da classe, e `constructor.name` é seu nome:
 
 ```js run
 alert( document.body.constructor.name ); // HTMLBodyElement
 ```
 
-...Or we can just `toString` it:
+...Ou podemos simplesmente usar `toString` nele:
 
 ```js run
 alert( document.body ); // [object HTMLBodyElement]
 ```
 
-We also can use `instanceof` to check the inheritance:
+Também podemos usar `instanceof` para checar a herança:
 
 ```js run
 alert( document.body instanceof HTMLBodyElement ); // true
@@ -85,38 +85,38 @@ alert( document.body instanceof Node ); // true
 alert( document.body instanceof EventTarget ); // true
 ```
 
-As we can see, DOM nodes are regular JavaScript objects. They use prototype-based classes for inheritance.
+Como podemos ver, nós do DOM são objetos JavaScript comuns. Eles usam classes baseadas em protótipo para herança.
 
-That's also easy to see by outputting an element with `console.dir(elem)` in a browser. There in the console you can see `HTMLElement.prototype`, `Element.prototype` and so on.
+Isso também é fácil de ver exibindo um elemento com `console.dir(elem)` num navegador. Lá no console você pode ver `HTMLElement.prototype`, `Element.prototype` e assim por diante.
 
 ```smart header="`console.dir(elem)` versus `console.log(elem)`"
-Most browsers support two commands in their developer tools: `console.log` and `console.dir`. They output their arguments to the console. For JavaScript objects these commands usually do the same.
+A maioria dos navegadores suporta dois comandos em suas ferramentas de desenvolvedor: `console.log` e `console.dir`. Eles exibem seus argumentos no console. Para objetos JavaScript, esses comandos geralmente fazem a mesma coisa.
 
-But for DOM elements they are different:
+Mas para elementos do DOM eles são diferentes:
 
-- `console.log(elem)` shows the element DOM tree.
-- `console.dir(elem)` shows the element as a DOM object, good to explore its properties.
+- `console.log(elem)` mostra a árvore DOM do elemento.
+- `console.dir(elem)` mostra o elemento como um objeto DOM, bom para explorar suas propriedades.
 
-Try it on `document.body`.
+Experimente em `document.body`.
 ```
 
-````smart header="IDL in the spec"
-In the specification, DOM classes aren't described by using JavaScript, but a special [Interface description language](https://en.wikipedia.org/wiki/Interface_description_language) (IDL), that is usually easy to understand.
+````smart header="IDL na especificação"
+Na especificação, classes do DOM não são descritas usando JavaScript, mas uma linguagem especial de descrição de interface, [Interface description language](https://en.wikipedia.org/wiki/Interface_description_language) (IDL), que geralmente é fácil de entender.
 
-In IDL all properties are prepended with their types. For instance, `DOMString`, `boolean` and so on.
+Em IDL, todas as propriedades vêm precedidas pelos seus tipos. Por exemplo, `DOMString`, `boolean` e assim por diante.
 
-Here's an excerpt from it, with comments:
+Aqui está um trecho dela, com comentários:
 
 ```js
 // Define HTMLInputElement
 *!*
-// The colon ":" means that HTMLInputElement inherits from HTMLElement
+// Os dois-pontos ":" significam que HTMLInputElement herda de HTMLElement
 */!*
 interface HTMLInputElement: HTMLElement {
-  // here go properties and methods of <input> elements
+  // aqui vão propriedades e métodos de elementos <input>
 
 *!*
-  // "DOMString" means that the value of a property is a string
+  // "DOMString" significa que o valor de uma propriedade é uma string
 */!*
   attribute DOMString accept;
   attribute DOMString alt;
@@ -124,12 +124,12 @@ interface HTMLInputElement: HTMLElement {
   attribute DOMString value;
 
 *!*
-  // boolean value property (true/false)
+  // propriedade de valor booleano (true/false)
   attribute boolean autofocus;
 */!*
   ...
 *!*
-  // now the method: "void" means that the method returns no value
+  // agora o método: "void" significa que o método não retorna nenhum valor
 */!*
   void select();
   ...
@@ -137,95 +137,95 @@ interface HTMLInputElement: HTMLElement {
 ```
 ````
 
-## The "nodeType" property
+## A propriedade "nodeType"
 
-The `nodeType` property provides one more, "old-fashioned" way to get the "type" of a DOM node.
+A propriedade `nodeType` fornece mais uma forma, "à moda antiga", de obter o "tipo" de um nó do DOM.
 
-It has a numeric value:
-- `elem.nodeType == 1` for element nodes,
-- `elem.nodeType == 3` for text nodes,
-- `elem.nodeType == 9` for the document object,
-- there are few other values in [the specification](https://dom.spec.whatwg.org/#node).
+Ela tem um valor numérico:
+- `elem.nodeType == 1` para nós de elemento,
+- `elem.nodeType == 3` para nós de texto,
+- `elem.nodeType == 9` para o objeto document,
+- existem poucos outros valores [na especificação](https://dom.spec.whatwg.org/#node).
 
-For instance:
+Por exemplo:
 
 ```html run
 <body>
   <script>
   let elem = document.body;
 
-  // let's examine: what type of node is in elem?
-  alert(elem.nodeType); // 1 => element
+  // vamos examinar: que tipo de nó está em elem?
+  alert(elem.nodeType); // 1 => elemento
 
-  // and its first child is...
-  alert(elem.firstChild.nodeType); // 3 => text
+  // e seu primeiro filho é...
+  alert(elem.firstChild.nodeType); // 3 => texto
 
-  // for the document object, the type is 9
+  // para o objeto document, o tipo é 9
   alert( document.nodeType ); // 9
   </script>
 </body>
 ```
 
-In modern scripts, we can use `instanceof` and other class-based tests to see the node type, but sometimes `nodeType` may be simpler. We can only read `nodeType`, not change it.
+Em scripts modernos, podemos usar `instanceof` e outros testes baseados em classe para ver o tipo do nó, mas às vezes `nodeType` pode ser mais simples. Só podemos ler `nodeType`, não alterá-lo.
 
-## Tag: nodeName and tagName
+## Tag: nodeName e tagName
 
-Given a DOM node, we can read its tag name from `nodeName` or `tagName` properties:
+Dado um nó do DOM, podemos ler o nome de sua tag a partir das propriedades `nodeName` ou `tagName`:
 
-For instance:
+Por exemplo:
 
 ```js run
 alert( document.body.nodeName ); // BODY
 alert( document.body.tagName ); // BODY
 ```
 
-Is there any difference between `tagName` and `nodeName`?
+Existe alguma diferença entre `tagName` e `nodeName`?
 
-Sure, the difference is reflected in their names, but is indeed a bit subtle.
+Claro, a diferença se reflete em seus nomes, mas é de fato um pouco sutil.
 
-- The `tagName` property exists only for `Element` nodes.
-- The `nodeName` is defined for any `Node`:
-    - for elements it means the same as `tagName`.
-    - for other node types (text, comment, etc.) it has a string with the node type.
+- A propriedade `tagName` existe só para nós `Element`.
+- `nodeName` é definida para qualquer `Node`:
+    - para elementos significa o mesmo que `tagName`.
+    - para outros tipos de nó (texto, comentário, etc.) ela tem uma string com o tipo do nó.
 
-In other words, `tagName` is only supported by element nodes (as it originates from `Element` class), while `nodeName` can say something about other node types.
+Em outras palavras, `tagName` é suportada só por nós de elemento (já que vem da classe `Element`), enquanto `nodeName` pode dizer algo sobre outros tipos de nó.
 
-For instance, let's compare `tagName` and `nodeName` for the `document` and a comment node:
+Por exemplo, vamos comparar `tagName` e `nodeName` para o `document` e um nó de comentário:
 
 
 ```html run
 <body><!-- comment -->
 
   <script>
-    // for comment
-    alert( document.body.firstChild.tagName ); // undefined (not an element)
+    // para comentário
+    alert( document.body.firstChild.tagName ); // undefined (não é um elemento)
     alert( document.body.firstChild.nodeName ); // #comment
 
-    // for document
-    alert( document.tagName ); // undefined (not an element)
+    // para document
+    alert( document.tagName ); // undefined (não é um elemento)
     alert( document.nodeName ); // #document
   </script>
 </body>
 ```
 
-If we only deal with elements, then we can use both `tagName` and `nodeName` - there's no difference.
+Se só lidarmos com elementos, então podemos usar tanto `tagName` quanto `nodeName` - não há diferença.
 
-```smart header="The tag name is always uppercase except in XML mode"
-The browser has two modes of processing documents: HTML and XML. Usually the HTML-mode is used for webpages. XML-mode is enabled when the browser receives an XML-document with the header: `Content-Type: application/xml+xhtml`.
+```smart header="O nome da tag é sempre maiúsculo, exceto no modo XML"
+O navegador tem dois modos de processar documentos: HTML e XML. Normalmente, o modo HTML é usado para páginas web. O modo XML é ativado quando o navegador recebe um documento XML com o cabeçalho: `Content-Type: application/xml+xhtml`.
 
-In HTML mode `tagName/nodeName` is always uppercased: it's `BODY` either for `<body>` or `<BoDy>`.
+No modo HTML, `tagName/nodeName` é sempre maiúsculo: é `BODY` tanto para `<body>` quanto para `<BoDy>`.
 
-In XML mode the case is kept "as is". Nowadays XML mode is rarely used.
+No modo XML, a caixa é mantida "como está". Hoje em dia o modo XML é raramente usado.
 ```
 
 
-## innerHTML: the contents
+## innerHTML: o conteúdo
 
-The [innerHTML](https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin) property allows to get the HTML inside the element as a string.
+A propriedade [innerHTML](https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin) permite obter o HTML dentro do elemento como uma string.
 
-We can also modify it. So it's one of the most powerful ways to change the page.
+Também podemos modificá-la. Então é uma das formas mais poderosas de mudar a página.
 
-The example shows the contents of `document.body` and then replaces it completely:
+O exemplo mostra o conteúdo de `document.body` e então o substitui completamente:
 
 ```html run
 <body>
@@ -233,71 +233,71 @@ The example shows the contents of `document.body` and then replaces it completel
   <div>A div</div>
 
   <script>
-    alert( document.body.innerHTML ); // read the current contents
-    document.body.innerHTML = 'The new BODY!'; // replace it
+    alert( document.body.innerHTML ); // lê o conteúdo atual
+    document.body.innerHTML = 'The new BODY!'; // substitui
   </script>
 
 </body>
 ```
 
-We can try to insert invalid HTML, the browser will fix our errors:
+Podemos tentar inserir HTML inválido, o navegador vai corrigir nossos erros:
 
 ```html run
 <body>
 
   <script>
-    document.body.innerHTML = '<b>test'; // forgot to close the tag
-    alert( document.body.innerHTML ); // <b>test</b> (fixed)
+    document.body.innerHTML = '<b>test'; // esqueceu de fechar a tag
+    alert( document.body.innerHTML ); // <b>test</b> (corrigido)
   </script>
 
 </body>
 ```
 
-```smart header="Scripts don't execute"
-If `innerHTML` inserts a `<script>` tag into the document -- it becomes a part of HTML, but doesn't execute.
+```smart header="Scripts não executam"
+Se `innerHTML` inserir uma tag `<script>` no documento -- ela se torna parte do HTML, mas não executa.
 ```
 
-### Beware: "innerHTML+=" does a full overwrite
+### Cuidado: "innerHTML+=" faz uma sobrescrita completa
 
-We can append HTML to an element by using `elem.innerHTML+="more html"`.
+Podemos acrescentar HTML a um elemento usando `elem.innerHTML+="mais html"`.
 
-Like this:
+Assim:
 
 ```js
 chatDiv.innerHTML += "<div>Hello<img src='smile.gif'/> !</div>";
 chatDiv.innerHTML += "How goes?";
 ```
 
-But we should be very careful about doing it, because what's going on is *not* an addition, but a full overwrite.
+Mas devemos ser muito cuidadosos ao fazer isso, porque o que acontece *não* é uma adição, mas uma sobrescrita completa.
 
-Technically, these two lines do the same:
+Tecnicamente, essas duas linhas fazem a mesma coisa:
 
 ```js
 elem.innerHTML += "...";
-// is a shorter way to write:
+// é uma forma mais curta de escrever:
 *!*
 elem.innerHTML = elem.innerHTML + "..."
 */!*
 ```
 
-In other words, `innerHTML+=` does this:
+Em outras palavras, `innerHTML+=` faz isso:
 
-1. The old contents is removed.
-2. The new `innerHTML` is written instead (a concatenation of the old and the new one).
+1. O conteúdo antigo é removido.
+2. O novo `innerHTML` é escrito no lugar (uma concatenação do antigo com o novo).
 
-**As the content is "zeroed-out" and rewritten from the scratch, all images and other resources will be reloaded**.
+**Como o conteúdo é "zerado" e reescrito do zero, todas as imagens e outros recursos vão ser recarregados**.
 
-In the `chatDiv` example above the line `chatDiv.innerHTML+="How goes?"` re-creates the HTML content and reloads `smile.gif` (hope it's cached). If `chatDiv` has a lot of other text and images, then the reload becomes clearly visible.
+No exemplo `chatDiv` acima, a linha `chatDiv.innerHTML+="How goes?"` recria o conteúdo HTML e recarrega `smile.gif` (espero que esteja em cache). Se `chatDiv` tiver bastante outro texto e imagens, então o recarregamento se torna claramente visível.
 
-There are other side-effects as well. For instance, if the existing text was selected with the mouse, then most browsers will remove the selection upon rewriting `innerHTML`. And if there was an `<input>` with a text entered by the visitor, then the text will be removed. And so on.
+Também existem outros efeitos colaterais. Por exemplo, se o texto existente estava selecionado com o mouse, então a maioria dos navegadores vai remover a seleção ao reescrever `innerHTML`. E se havia um `<input>` com um texto digitado pelo visitante, então o texto vai ser removido. E assim por diante.
 
-Luckily, there are other ways to add HTML besides `innerHTML`, and we'll study them soon.
+Felizmente, existem outras formas de adicionar HTML além de `innerHTML`, e vamos estudá-las em breve.
 
-## outerHTML: full HTML of the element
+## outerHTML: HTML completo do elemento
 
-The `outerHTML` property contains the full HTML of the element. That's like `innerHTML` plus the element itself.
+A propriedade `outerHTML` contém o HTML completo do elemento. É como `innerHTML` mais o próprio elemento.
 
-Here's an example:
+Aqui está um exemplo:
 
 ```html run
 <div id="elem">Hello <b>World</b></div>
@@ -307,11 +307,11 @@ Here's an example:
 </script>
 ```
 
-**Beware: unlike `innerHTML`, writing to `outerHTML` does not change the element. Instead, it replaces it in the DOM.**
+**Cuidado: diferente de `innerHTML`, escrever em `outerHTML` não muda o elemento. Em vez disso, o substitui no DOM.**
 
-Yeah, sounds strange, and strange it is, that's why we make a separate note about it here. Take a look.
+Sim, soa estranho, e é estranho mesmo, por isso fazemos uma observação separada sobre isso aqui. Dê uma olhada.
 
-Consider the example:
+Considere o exemplo:
 
 ```html run
 <div>Hello, world!</div>
@@ -320,39 +320,39 @@ Consider the example:
   let div = document.querySelector('div');
 
 *!*
-  // replace div.outerHTML with <p>...</p>
+  // substitui div.outerHTML por <p>...</p>
 */!*
   div.outerHTML = '<p>A new element</p>'; // (*)
 
 *!*
-  // Wow! 'div' is still the same!
+  // Uau! 'div' ainda é o mesmo!
 */!*
   alert(div.outerHTML); // <div>Hello, world!</div> (**)
 </script>
 ```
 
-Looks really odd, right?
+Parece bem estranho, não é?
 
-In the line `(*)` we replaced `div` with `<p>A new element</p>`. In the outer document (the DOM) we can see the new content instead of the `<div>`. But, as we can see in line `(**)`, the value of the old `div` variable hasn't changed!
+Na linha `(*)` substituímos `div` por `<p>A new element</p>`. No documento externo (o DOM) podemos ver o novo conteúdo no lugar do `<div>`. Mas, como podemos ver na linha `(**)`, o valor da antiga variável `div` não mudou!
 
-The `outerHTML` assignment does not modify the DOM element (the object referenced by, in this case, the variable 'div'), but removes it from the DOM and inserts the new HTML in its place.
+A atribuição a `outerHTML` não modifica o elemento do DOM (o objeto referenciado, nesse caso, pela variável 'div'), mas o remove do DOM e insere o novo HTML no seu lugar.
 
-So what happened in `div.outerHTML=...` is:
-- `div` was removed from the document.
-- Another piece of HTML `<p>A new element</p>` was inserted in its place.
-- `div` still has its old value. The new HTML wasn't saved to any variable.
+Então o que aconteceu em `div.outerHTML=...` foi:
+- `div` foi removido do documento.
+- Outro pedaço de HTML `<p>A new element</p>` foi inserido no seu lugar.
+- `div` ainda tem seu valor antigo. O novo HTML não foi salvo em nenhuma variável.
 
-It's so easy to make an error here: modify `div.outerHTML` and then continue to work with `div` as if it had the new content in it. But it doesn't. Such thing is correct for `innerHTML`, but not for `outerHTML`.
+É muito fácil cometer um erro aqui: modificar `div.outerHTML` e depois continuar trabalhando com `div` como se ele tivesse o novo conteúdo nele. Mas não tem. Isso é correto para `innerHTML`, mas não para `outerHTML`.
 
-We can write to `elem.outerHTML`, but should keep in mind that it doesn't change the element we're writing to ('elem'). It puts the new HTML in its place instead. We can get references to the new elements by querying the DOM.
+Podemos escrever em `elem.outerHTML`, mas devemos ter em mente que isso não muda o elemento em que estamos escrevendo ('elem'). Em vez disso, coloca o novo HTML no seu lugar. Podemos obter referências aos novos elementos consultando o DOM.
 
-## nodeValue/data: text node content
+## nodeValue/data: conteúdo de nó de texto
 
-The `innerHTML` property is only valid for element nodes.
+A propriedade `innerHTML` só é válida para nós de elemento.
 
-Other node types, such as text nodes, have their counterpart: `nodeValue` and `data` properties. These two are almost the same for practical use, there are only minor specification differences. So we'll use `data`, because it's shorter.
+Outros tipos de nó, como nós de texto, têm sua contraparte: as propriedades `nodeValue` e `data`. Essas duas são quase iguais para uso prático, existem só pequenas diferenças de especificação. Então vamos usar `data`, porque é mais curto.
 
-An example of reading the content of a text node and a comment:
+Um exemplo de leitura do conteúdo de um nó de texto e um comentário:
 
 ```html run height="50"
 <body>
@@ -372,9 +372,9 @@ An example of reading the content of a text node and a comment:
 </body>
 ```
 
-For text nodes we can imagine a reason to read or modify them, but why comments?
+Para nós de texto podemos imaginar um motivo para ler ou modificá-los, mas por que comentários?
 
-Sometimes developers embed information or template instructions into HTML in them, like this:
+Às vezes os desenvolvedores incorporam informações ou instruções de template no HTML neles, assim:
 
 ```html
 <!-- if isAdmin -->
@@ -382,13 +382,13 @@ Sometimes developers embed information or template instructions into HTML in the
 <!-- /if -->
 ```
 
-...Then JavaScript can read it from `data` property and process embedded instructions.
+...Então o JavaScript pode ler isso a partir da propriedade `data` e processar instruções incorporadas.
 
-## textContent: pure text
+## textContent: texto puro
 
-The `textContent` provides access to the *text* inside the element: only text, minus all `<tags>`.
+`textContent` fornece acesso ao *texto* dentro do elemento: só texto, menos todas as `<tags>`.
 
-For instance:
+Por exemplo:
 
 ```html run
 <div id="news">
@@ -402,18 +402,18 @@ For instance:
 </script>
 ```
 
-As we can see, only text is returned, as if all `<tags>` were cut out, but the text in them remained.
+Como podemos ver, só o texto é retornado, como se todas as `<tags>` tivessem sido cortadas, mas o texto nelas permaneceu.
 
-In practice, reading such text is rarely needed.
+Na prática, ler esse tipo de texto raramente é necessário.
 
-**Writing to `textContent` is much more useful, because it allows to write text the "safe way".**
+**Escrever em `textContent` é muito mais útil, porque permite escrever texto de forma "segura".**
 
-Let's say we have an arbitrary string, for instance entered by a user, and want to show it.
+Digamos que temos uma string arbitrária, por exemplo digitada por um usuário, e queremos mostrá-la.
 
-- With `innerHTML` we'll have it inserted "as HTML", with all HTML tags.
-- With `textContent` we'll have it inserted "as text", all symbols are treated literally.
+- Com `innerHTML` vamos tê-la inserida "como HTML", com todas as tags HTML.
+- Com `textContent` vamos tê-la inserida "como texto", todos os símbolos são tratados literalmente.
 
-Compare the two:
+Compare os dois:
 
 ```html run
 <div id="elem1"></div>
@@ -427,16 +427,16 @@ Compare the two:
 </script>
 ```
 
-1. The first `<div>` gets the name "as HTML": all tags become tags, so we see the bold name.
-2. The second `<div>` gets the name "as text", so we literally see `<b>Winnie-the-Pooh!</b>`.
+1. O primeiro `<div>` recebe o nome "como HTML": todas as tags se tornam tags, então vemos o nome em negrito.
+2. O segundo `<div>` recebe o nome "como texto", então literalmente vemos `<b>Winnie-the-Pooh!</b>`.
 
-In most cases, we expect the text from a user, and want to treat it as text. We don't want unexpected HTML in our site. An assignment to `textContent` does exactly that.
+Na maioria dos casos, esperamos o texto de um usuário, e queremos tratá-lo como texto. Não queremos HTML inesperado no nosso site. Uma atribuição a `textContent` faz exatamente isso.
 
-## The "hidden" property
+## A propriedade "hidden"
 
-The "hidden" attribute and the DOM property specifies whether the element is visible or not.
+O atributo "hidden" e a propriedade do DOM especificam se o elemento está visível ou não.
 
-We can use it in HTML or assign it using JavaScript, like this:
+Podemos usá-lo em HTML ou atribuí-lo usando JavaScript, assim:
 
 ```html run height="80"
 <div>Both divs below are hidden</div>
@@ -450,9 +450,9 @@ We can use it in HTML or assign it using JavaScript, like this:
 </script>
 ```
 
-Technically, `hidden` works the same as `style="display:none"`. But it's shorter to write.
+Tecnicamente, `hidden` funciona da mesma forma que `style="display:none"`. Mas é mais curto de escrever.
 
-Here's a blinking element:
+Aqui está um elemento piscando:
 
 
 ```html run height=50
@@ -463,16 +463,16 @@ Here's a blinking element:
 </script>
 ```
 
-## More properties
+## Mais propriedades
 
-DOM elements also have additional properties, in particular those that depend on the class:
+Elementos do DOM também têm propriedades adicionais, em particular aquelas que dependem da classe:
 
-- `value` -- the value for `<input>`, `<select>` and `<textarea>` (`HTMLInputElement`, `HTMLSelectElement`...).
-- `href` -- the "href" for `<a href="...">` (`HTMLAnchorElement`).
-- `id` -- the value of "id" attribute, for all elements (`HTMLElement`).
-- ...and much more...
+- `value` -- o valor para `<input>`, `<select>` e `<textarea>` (`HTMLInputElement`, `HTMLSelectElement`...).
+- `href` -- o "href" para `<a href="...">` (`HTMLAnchorElement`).
+- `id` -- o valor do atributo "id", para todos os elementos (`HTMLElement`).
+- ...e muito mais...
 
-For instance:
+Por exemplo:
 
 ```html run height="80"
 <input type="text" id="elem" value="value">
@@ -484,39 +484,39 @@ For instance:
 </script>
 ```
 
-Most standard HTML attributes have the corresponding DOM property, and we can access it like that.
+A maioria dos atributos HTML padrão tem a propriedade do DOM correspondente, e podemos acessá-la assim.
 
-If we want to know the full list of supported properties for a given class, we can find them in the specification. For instance, `HTMLInputElement` is documented at <https://html.spec.whatwg.org/#htmlinputelement>.
+Se quisermos saber a lista completa de propriedades suportadas para uma determinada classe, podemos encontrá-las na especificação. Por exemplo, `HTMLInputElement` está documentado em <https://html.spec.whatwg.org/#htmlinputelement>.
 
-Or if we'd like to get them fast or are interested in a concrete browser specification -- we can always output the element using `console.dir(elem)` and read the properties. Or explore "DOM properties" in the Elements tab of the browser developer tools.
+Ou se quisermos obtê-las rapidamente ou estivermos interessados numa especificação concreta de navegador -- podemos sempre exibir o elemento usando `console.dir(elem)` e ler as propriedades. Ou explorar "DOM properties" na aba Elements das ferramentas de desenvolvedor do navegador.
 
-## Summary
+## Resumo
 
-Each DOM node belongs to a certain class. The classes form a hierarchy. The full set of properties and methods come as the result of inheritance.
+Cada nó do DOM pertence a uma certa classe. As classes formam uma hierarquia. O conjunto completo de propriedades e métodos vem como resultado da herança.
 
-Main DOM node properties are:
+As principais propriedades de nó do DOM são:
 
 `nodeType`
-: We can use it to see if a node is a text or an element node. It has a numeric value: `1` for elements,`3` for text nodes, and a few others for other node types. Read-only.
+: Podemos usá-la para ver se um nó é um nó de texto ou de elemento. Tem um valor numérico: `1` para elementos, `3` para nós de texto, e alguns outros para outros tipos de nó. Somente leitura.
 
 `nodeName/tagName`
-: For elements, tag name (uppercased unless XML-mode). For non-element nodes `nodeName` describes what it is. Read-only.
+: Para elementos, o nome da tag (em maiúsculo, a menos que seja modo XML). Para nós que não são elemento, `nodeName` descreve o que ele é. Somente leitura.
 
 `innerHTML`
-: The HTML content of the element. Can be modified.
+: O conteúdo HTML do elemento. Pode ser modificado.
 
 `outerHTML`
-: The full HTML of the element. A write operation into `elem.outerHTML` does not touch `elem` itself. Instead it gets replaced with the new HTML in the outer context.
+: O HTML completo do elemento. Uma operação de escrita em `elem.outerHTML` não toca no próprio `elem`. Em vez disso, ele é substituído pelo novo HTML no contexto externo.
 
 `nodeValue/data`
-: The content of a non-element node (text, comment). These two are almost the same, usually we use `data`. Can be modified.
+: O conteúdo de um nó que não é elemento (texto, comentário). Essas duas são quase iguais, geralmente usamos `data`. Pode ser modificado.
 
 `textContent`
-: The text inside the element: HTML minus all `<tags>`. Writing into it puts the text inside the element, with all special characters and tags treated exactly as text. Can safely insert user-generated text and protect from unwanted HTML insertions.
+: O texto dentro do elemento: HTML menos todas as `<tags>`. Escrever nele coloca o texto dentro do elemento, com todos os caracteres especiais e tags tratados exatamente como texto. Pode inserir com segurança texto gerado pelo usuário e proteger contra inserções indesejadas de HTML.
 
 `hidden`
-: When set to `true`, does the same as CSS `display:none`.
+: Quando definido como `true`, faz a mesma coisa que o CSS `display:none`.
 
-DOM nodes also have other properties depending on their class. For instance, `<input>` elements (`HTMLInputElement`) support `value`, `type`, while `<a>` elements (`HTMLAnchorElement`) support `href` etc. Most standard HTML attributes have a corresponding DOM property.
+Nós do DOM também têm outras propriedades dependendo de sua classe. Por exemplo, elementos `<input>` (`HTMLInputElement`) suportam `value`, `type`, enquanto elementos `<a>` (`HTMLAnchorElement`) suportam `href` etc. A maioria dos atributos HTML padrão tem uma propriedade do DOM correspondente.
 
-However, HTML attributes and DOM properties are not always the same, as we'll see in the next chapter.
+Porém, atributos HTML e propriedades do DOM nem sempre são a mesma coisa, como veremos no próximo capítulo.
