@@ -1,9 +1,9 @@
-We'll create the table as a string: `"<table>...</table>"`, and then assign it to  `innerHTML`.
+Vamos criar a tabela como uma string: `"<table>...</table>"`, e depois atribuí-la a `innerHTML`.
 
-The algorithm:
+O algoritmo:
 
-1. Create the table header with `<th>` and weekday names.
-2. Create the date object `d = new Date(year, month-1)`. That's the first day of `month` (taking into account that months in JavaScript start from `0`, not `1`).
-3. First few cells till the first day of the month `d.getDay()` may be empty. Let's fill them in with `<td></td>`.
-4. Increase the day in `d`: `d.setDate(d.getDate()+1)`. If `d.getMonth()` is not yet the next month, then add the new cell `<td>` to the calendar. If that's a Sunday, then add a newline <code>"&lt;/tr&gt;&lt;tr&gt;"</code>.
-5. If the month has finished, but the table row is not yet full, add empty `<td>` into it, to make it square.
+1. Crie o cabeçalho da tabela com `<th>` e os nomes dos dias da semana.
+2. Crie o objeto de data `d = new Date(year, month-1)`. Esse é o primeiro dia de `month` (levando em conta que os meses em JavaScript começam de `0`, não de `1`).
+3. As primeiras células até o primeiro dia do mês `d.getDay()` podem ficar vazias. Vamos preenchê-las com `<td></td>`.
+4. Aumente o dia em `d`: `d.setDate(d.getDate()+1)`. Se `d.getMonth()` ainda não for o próximo mês, então adicione a nova célula `<td>` ao calendário. Se for um domingo, então adicione uma nova linha <code>"&lt;/tr&gt;&lt;tr&gt;"</code>.
+5. Se o mês tiver terminado, mas a linha da tabela ainda não estiver completa, adicione `<td>` vazios nela, para deixá-la quadrada.

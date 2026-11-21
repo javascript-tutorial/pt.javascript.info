@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# Show descendants in a tree
+# Mostrar descendentes em uma árvore
 
-There's a tree organized as nested `ul/li`.
+Há uma árvore organizada como `ul/li` encadeados.
 
-Write the code that adds to each `<li>` the number of its descendants. Skip leaves (nodes without children).
+Escreva o código que adiciona a cada `<li>` o número de seus descendentes. Pule as folhas (nós sem filhos).
 
-The result:
+O resultado:
 
 [iframe border=1 src="solution"]

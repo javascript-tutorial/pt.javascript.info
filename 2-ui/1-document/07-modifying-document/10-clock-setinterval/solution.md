@@ -1,6 +1,6 @@
-First, let's make HTML/CSS.
+Primeiro, vamos fazer o HTML/CSS.
 
-Each component of the time would look great in its own `<span>`:
+Cada componente da hora ficaria ótimo em seu próprio `<span>`:
 
 ```html
 <div id="clock">
@@ -8,9 +8,9 @@ Each component of the time would look great in its own `<span>`:
 </div>
 ```
 
-Also we'll need CSS to color them.
+Também vamos precisar de CSS para colori-los.
 
-The `update` function will refresh the clock, to be called by `setInterval` every second:
+A função `update` vai atualizar o relógio, sendo chamada pelo `setInterval` a cada segundo:
 
 ```js
 function update() {
@@ -32,15 +32,15 @@ function update() {
 }
 ```
 
-In the line `(*)` we every time check the current date. The calls to `setInterval` are not reliable: they may happen with delays.
+Na linha `(*)` verificamos a data atual a cada vez. As chamadas a `setInterval` não são confiáveis: podem acontecer com atrasos.
 
-The clock-managing functions:
+As funções que gerenciam o relógio:
 
 ```js
 let timerId;
 
-function clockStart() { // run the clock  
-  if (!timerId) { // only set a new interval if the clock is not running
+function clockStart() { // inicia o relógio  
+  if (!timerId) { // só define um novo intervalo se o relógio não estiver em execução
     timerId = setInterval(update, 1000);
   }
   update(); // (*)
@@ -52,6 +52,6 @@ function clockStop() {
 }
 ```
 
-Please note that the call to `update()` is not only scheduled in `clockStart()`, but immediately run in the line `(*)`. Otherwise the visitor would have to wait till the first execution of `setInterval`. And the clock would be empty till then.
+Note que a chamada a `update()` não é apenas agendada em `clockStart()`, mas também executada imediatamente na linha `(*)`. Caso contrário, o visitante teria que esperar até a primeira execução do `setInterval`. E o relógio ficaria vazio até então.
 
-Also it is important to set a new interval in `clockStart()` only when the clock is not running. Otherways clicking the start button several times would set multiple concurrent intervals. Even worse - we would only keep the `timerID` of the last interval, losing references to all others. Then we wouldn't be able to stop the clock ever again! Note that we need to clear the `timerID` when the clock is stopped in the line `(**)`, so that it can be started again by running `clockStart()`.
+Também é importante definir um novo intervalo em `clockStart()` apenas quando o relógio não estiver em execução. Caso contrário, clicar no botão de início várias vezes definiria múltiplos intervalos simultâneos. Pior ainda - manteríamos apenas o `timerID` do último intervalo, perdendo as referências a todos os outros. Então nunca mais conseguiríamos parar o relógio! Note que precisamos limpar o `timerID` quando o relógio é parado na linha `(**)`, para que ele possa ser iniciado novamente ao executar `clockStart()`.

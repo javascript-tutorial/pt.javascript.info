@@ -2,50 +2,50 @@ importance: 5
 
 ---
 
-# Create a tree from the object
+# Crie uma árvore a partir do objeto
 
-Write a function `createTree` that creates a nested `ul/li` list from the nested object.
+Escreva uma função `createTree` que cria uma lista `ul/li` encadeada a partir do objeto encadeado.
 
-For instance:
+Por exemplo:
 
 ```js
 let data = {
-  "Fish": {
-    "trout": {},
-    "salmon": {}
+  "Peixe": {
+    "truta": {},
+    "salmão": {}
   },
 
-  "Tree": {
-    "Huge": {
+  "Árvore": {
+    "Enorme": {
       "sequoia": {},
-      "oak": {}
+      "carvalho": {}
     },
-    "Flowering": {
-      "apple tree": {},
-      "magnolia": {}
+    "Florescente": {
+      "macieira": {},
+      "magnólia": {}
     }
   }
 };
 ```
 
-The syntax:
+A sintaxe:
 
 ```js
 let container = document.getElementById('container');
 *!*
-createTree(container, data); // creates the tree in the container
+createTree(container, data); // cria a árvore no container
 */!*
 ```
 
-The result (tree) should look like this:
+O resultado (a árvore) deve ficar assim:
 
 [iframe border=1 src="build-tree-dom"]
 
-Choose one of two ways of solving this task:
+Escolha uma de duas formas de resolver essa tarefa:
 
-1. Create the HTML for the tree and then assign to `container.innerHTML`.
-2. Create tree nodes and append with DOM methods.
+1. Crie o HTML para a árvore e depois atribua a `container.innerHTML`.
+2. Crie nós da árvore e anexe-os com métodos do DOM.
 
-Would be great if you could do both.
+Seria ótimo se você conseguisse fazer os dois.
 
-P.S. The tree should not have "extra" elements like empty `<ul></ul>` for the leaves.
+P.S. A árvore não deve ter elementos "extras", como `<ul></ul>` vazios para as folhas.

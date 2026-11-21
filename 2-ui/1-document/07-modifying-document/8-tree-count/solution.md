@@ -1,1 +1,1 @@
-To append text to each `<li>` we can alter the text node `data`.
+Para anexar texto a cada `<li>`, podemos alterar o `data` do nó de texto.
