@@ -8,12 +8,12 @@ afterEach(function() {
 
 describe("readNumber", function() {
 
-  it("se for um número, retorna ele", function() {
+  it("se for um número, retorna o número", function() {
     prompt.returns("123");
     assert.strictEqual(readNumber(), 123);
   });
 
-  it("se for 0, retorna ele", function() {
+  it("se for 0, retorna 0", function() {
     prompt.returns("0");
     assert.strictEqual(readNumber(), 0);
   });

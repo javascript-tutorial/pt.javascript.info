@@ -24,14 +24,14 @@ let billion = 1_000_000_000;
 
 Aqui o sublinhado `_` desempenha o papel de "[açúcar sintático](https://pt.wikipedia.org/wiki/A%C3%A7%C3%BAcar_sint%C3%A1tico)", tornando o número mais legível. O motor do JavaScript simplesmente ignora o `_` entre os dígitos, então é exatamente o mesmo bilhão de antes.
 
-Na vida real, porém, tentamos evitar escrever longas sequências de zeros. Somos preguiçosos demais para isso. Vamos tentar escrever algo como `"1bi"` para um bilhão ou `"7,3bi"` para 7 bilhões e 300 milhões. O mesmo vale para a maioria dos números grandes.
+Na vida real, porém, tentamos evitar escrever longas sequências de zeros. Somos preguiçosos demais para isso. Vamos tentar escrever algo como `"1bi"` para um bilhão ou `"7.3bi"` para 7 bilhões e 300 milhões. O mesmo vale para a maioria dos números grandes.
 
 No JavaScript, podemos encurtar um número adicionando a letra `"e"` a ele e especificando a quantidade de zeros:
 
 ```js run
 let billion = 1e9;  // 1 bilhão, literalmente: 1 e 9 zeros
 
-alert( 7.3e9 );  // 7,3 bilhões (o mesmo que 7300000000 ou 7_300_000_000)
+alert( 7.3e9 );  // 7.3 bilhões (o mesmo que 7300000000 ou 7_300_000_000)
 ```
 
 Em outras palavras, `e` multiplica o número por `1` com a quantidade de zeros dada.
@@ -44,13 +44,13 @@ Em outras palavras, `e` multiplica o número por `1` com a quantidade de zeros d
 Agora vamos escrever algo bem pequeno. Digamos, 1 microssegundo (um milionésimo de segundo):
 
 ```js
-let mсs = 0.000001;
+let mcs = 0.000001;
 ```
 
 Assim como antes, usar `"e"` pode ajudar. Se quisermos evitar escrever os zeros explicitamente, podemos escrever o mesmo valor como:
 
 ```js
-let mcs = 1e-6; // cinco zeros à esquerda do 1
+let mcs = 1e-6; // seis zeros à esquerda do 1
 ```
 
 Se contarmos os zeros em `0.000001`, há 6 deles. Então, naturalmente, é `1e-6`.
@@ -76,7 +76,7 @@ Por exemplo:
 
 ```js run
 alert( 0xff ); // 255
-alert( 0xFF ); // 255 (o mesmo, a caixa não importa)
+alert( 0xFF ); // 255 (o mesmo, maiúsculas ou minúsculas não importam)
 ```
 
 Os sistemas numéricos binário e octal são raramente usados, mas também são suportados usando os prefixos `0b` e `0o`:
@@ -154,7 +154,7 @@ Aqui está a tabela que resume as diferenças entre elas:
 |`-1.6`|  `-2`    |   `-1`  |    `-2`  |   `-1`   |
 
 
-Essas funções cobrem todas as formas possíveis de lidar com a parte decimal de um número. Mas e se quisermos arredondar o número até o `n-ésimo` dígito depois da vírgula?
+Essas funções cobrem todas as formas possíveis de lidar com a parte decimal de um número. Mas e se quisermos arredondar o número até o `n-ésimo` dígito depois do ponto decimal?
 
 Por exemplo, temos `1.2345` e queremos arredondá-lo para 2 dígitos, obtendo só `1.23`.
 
@@ -162,14 +162,14 @@ Há duas formas de fazer isso:
 
 1. Multiplicar e dividir.
 
-    Por exemplo, para arredondar o número até o 2º dígito depois da vírgula, podemos multiplicar o número por `100`, chamar a função de arredondamento e depois dividir de volta.
+    Por exemplo, para arredondar o número até o 2º dígito depois do ponto decimal, podemos multiplicar o número por `100`, chamar a função de arredondamento e depois dividir de volta.
     ```js run
     let num = 1.23456;
 
     alert( Math.round(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
     ```
 
-2. O método [toFixed(n)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) arredonda o número para `n` dígitos depois da vírgula e retorna uma representação em string do resultado.
+2. O método [toFixed(n)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) arredonda o número para `n` dígitos depois do ponto decimal e retorna uma representação em string do resultado.
 
     ```js run
     let num = 12.34;
@@ -190,7 +190,7 @@ Há duas formas de fazer isso:
     alert( num.toFixed(5) ); // "12.34000", zeros adicionados para completar exatamente 5 dígitos
     ```
 
-    Podemos convertê-lo para um número usando o mais unário ou uma chamada `Number()`, por exemplo, escrevendo `+num.toFixed(5)`.
+    Podemos convertê-lo para um número usando o positivo unário ou uma chamada `Number()`, por exemplo, escrevendo `+num.toFixed(5)`.
 
 ## Cálculos imprecisos
 
@@ -260,7 +260,7 @@ let sum = 0.1 + 0.2;
 alert( sum.toFixed(2) ); // "0.30"
 ```
 
-Observe que `toFixed` sempre retorna uma string. Ele garante que o resultado tenha 2 dígitos depois do ponto decimal. Isso é, na verdade, conveniente se temos um e-commerce e precisamos mostrar `$0.30`. Para outros casos, podemos usar o mais unário para convertê-lo em um número:
+Observe que `toFixed` sempre retorna uma string. Ele garante que o resultado tenha 2 dígitos depois do ponto decimal. Isso é, na verdade, conveniente se temos um e-commerce e precisamos mostrar `$0.30`. Para outros casos, podemos usar o positivo unário para convertê-lo em um número:
 
 ```js run
 let sum = 0.1 + 0.2;
@@ -385,7 +385,7 @@ Mencionamos `Object.is` aqui porque ele é frequentemente usado na especificaç�
 
 ## parseInt e parseFloat
 
-A conversão numérica usando o mais unário `+` ou `Number()` é rígida. Se um valor não for exatamente um número, ela falha:
+A conversão numérica usando o positivo unário `+` ou `Number()` é rígida. Se um valor não for exatamente um número, ela falha:
 
 ```js run
 alert( +"100px" ); // NaN
