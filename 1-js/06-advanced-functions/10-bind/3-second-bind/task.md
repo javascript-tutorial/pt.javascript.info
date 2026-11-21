@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Second bind
+# Segundo bind
 
-Can we change `this` by additional binding?
+Podemos mudar o `this` com um vínculo adicional?
 
-What will be the output?
+Qual vai ser a saída?
 
 ```js no-beautify
 function f() {
