@@ -52,7 +52,7 @@ if (true) {
 }
 
 *!*
-alert(test); // ReferenceError: test não está definido
+alert(test); // ReferenceError: test is not defined
 */!*
 ```
 
@@ -82,10 +82,10 @@ function sayHi() {
 }
 
 sayHi();
-alert(phrase); // ReferenceError: phrase não está definido
+alert(phrase); // ReferenceError: phrase is not defined
 ```
 
-Como podemos ver, `var` atravessa o `if`, o `for` ou outros blocos de código. Isso acontece porque, há muito tempo, no JavaScript os blocos não tinham Ambientes Léxicos, e `var` é um resquício disso.
+Como podemos ver, `var` atravessa o `if`, o `for` ou outros blocos de código. Isso acontece porque, há muito tempo, no JavaScript os blocos não tinham Lexical Environments, e `var` é um resquício disso.
 
 ## "var" tolera redeclarações
 
@@ -251,7 +251,7 @@ function go() {
 
 Então, os parênteses em torno da função são um truque para mostrar ao JavaScript que a função é criada no contexto de outra expressão, e, portanto, é uma Expressão de Função: ela não precisa de nome e pode ser chamada imediatamente.
 
-Existem outras formas, além dos parênteses, de dizer ao JavaScript que queremos dizer uma Expressão de Função:
+Existem outras formas, além dos parênteses, de indicar ao JavaScript que se trata de uma Expressão de Função:
 
 ```js run
 // Formas de criar uma IIFE
@@ -269,7 +269,7 @@ Existem outras formas, além dos parênteses, de dizer ao JavaScript que queremo
 }();
 
 *!*+*/!*function() {
-  alert("Operador unário de adição inicia a expressão");
+  alert("Operador mais unário inicia a expressão");
 }();
 ```
 
@@ -279,7 +279,7 @@ Em todos os casos acima, declaramos uma Expressão de Função e a executamos im
 
 Existem duas diferenças principais de `var` em comparação com `let/const`:
 
-1. As variáveis `var` não têm escopo de bloco, sua visibilidade tem escopo na função atual, ou global, se declaradas fora de uma função.
+1. As variáveis `var` não têm escopo de bloco: sua visibilidade fica restrita à função atual, ou é global, se declaradas fora de uma função.
 2. As declarações `var` são processadas no início da função (início do script, para variáveis globais).
 
 Existe mais uma diferença bem pequena relacionada ao objeto global, que vamos abordar no próximo capítulo.
