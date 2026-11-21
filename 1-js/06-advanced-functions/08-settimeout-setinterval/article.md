@@ -239,7 +239,7 @@ Existe um efeito colateral. Uma função referencia o ambiente léxico externo, 
 
 Existe um caso de uso especial: `setTimeout(func, 0)`, ou simplesmente `setTimeout(func)`.
 
-Isso agenda a execução de `func` o quanto antes possível. Mas o agendador só vai chamá-la depois que o script em execução no momento terminar.
+Isso agenda a execução de `func` o mais cedo possível. Mas o agendador só vai chamá-la depois que o script em execução no momento terminar.
 
 Então a função é agendada para rodar "logo depois" do script atual.
 
@@ -253,19 +253,19 @@ alert("Hello");
 
 A primeira linha "coloca a chamada no calendário depois de 0ms". Mas o agendador só vai "checar o calendário" depois que o script atual terminar, então `"Hello"` vem primeiro, e `"World"` -- depois dele.
 
-Também existem casos de uso mais avançados, relacionados a navegadores, de atraso zero, que vamos discutir no capítulo <info:event-loop>.
+Também existem casos de uso avançados do `setTimeout` com atraso zero, relacionados a navegadores, que vamos discutir no capítulo <info:event-loop>.
 
 ````smart header="O atraso zero, na verdade, não é zero (num navegador)"
 No navegador, existe uma limitação de com que frequência timers aninhados podem rodar. O [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) diz: "depois de cinco timers aninhados, o intervalo é forçado a ser de pelo menos 4 milissegundos.".
 
-Vamos demonstrar o que isso significa com o exemplo abaixo. A chamada `setTimeout` nele reagenda a si mesma com atraso zero. Cada chamada lembra o tempo real desde a anterior no array `times`. Como são os atrasos reais? Vamos ver:
+Vamos demonstrar o que isso significa com o exemplo abaixo. A chamada `setTimeout` nele reagenda a si mesma com atraso zero. Cada chamada guarda no array `times` o tempo real decorrido desde o início. Como são os atrasos reais? Vamos ver:
 
 ```js run
 let start = Date.now();
 let times = [];
 
 setTimeout(function run() {
-  times.push(Date.now() - start); // lembra o atraso desde a chamada anterior
+  times.push(Date.now() - start); // guarda o tempo decorrido desde o início
 
   if (start + 100 < Date.now()) alert(times); // mostra os atrasos depois de 100ms
   else setTimeout(run); // senão, reagenda
@@ -289,10 +289,10 @@ Para o JavaScript do lado do servidor, essa limitação não existe, e existem o
 - Os métodos `setTimeout(func, delay, ...args)` e `setInterval(func, delay, ...args)` nos permitem rodar `func` uma vez/regularmente depois de `delay` milissegundos.
 - Para cancelar a execução, devemos chamar `clearTimeout/clearInterval` com o valor retornado por `setTimeout/setInterval`.
 - Chamadas de `setTimeout` aninhadas são uma alternativa mais flexível ao `setInterval`, nos permitindo definir o tempo *entre* as execuções com mais precisão.
-- Agendamento com atraso zero usando `setTimeout(func, 0)` (o mesmo que `setTimeout(func)`) é usado para agendar a chamada "o quanto antes possível, mas depois que o script atual terminar".
+- Agendamento com atraso zero usando `setTimeout(func, 0)` (o mesmo que `setTimeout(func)`) é usado para agendar a chamada "o mais cedo possível, mas depois que o script atual terminar".
 - O navegador limita o atraso mínimo para cinco ou mais chamadas aninhadas de `setTimeout` ou para `setInterval` (depois da 5ª chamada) a 4ms. Isso é por motivos históricos.
 
-Observe que todos os métodos de agendamento não *garantem* o atraso exato.
+Observe que nenhum método de agendamento *garante* o atraso exato.
 
 Por exemplo, o timer no navegador pode ficar mais lento por vários motivos:
 - A CPU está sobrecarregada.

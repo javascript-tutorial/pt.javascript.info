@@ -45,6 +45,7 @@ Se também quisermos que a função rode imediatamente, podemos adicionar uma ch
 ```js run
 function printNumbers(from, to) {
   let current = from;
+  let timerId;
 
   function go() {
     alert(current);
@@ -57,7 +58,7 @@ function printNumbers(from, to) {
 *!*
   go();
 */!*
-  let timerId = setInterval(go, 1000);
+  timerId = setInterval(go, 1000);
 }
 
 printNumbers(5, 10);
