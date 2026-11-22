@@ -43,7 +43,7 @@
   </div>
 
 
-  <div id="mouse-wrap">Mouse coordinates: <span id="mouse">...</span></div>
+  <div id="mouse-wrap">Coordenadas do mouse: <span id="mouse">...</span></div>
   <div id="info"></div>
 
 
@@ -54,7 +54,7 @@
       offsetParent: ['offsetParent', 'offsetLeft', 'offsetTop']
     };
 
-    info.innerHTML = '<h3>Click to see the value:</h3>';
+    info.innerHTML = '<h3>Clique para ver o valor:</h3>';
     for (let k in props) {
       info.innerHTML += `<h4>${k}</h4>`;
       let prop = props[k];

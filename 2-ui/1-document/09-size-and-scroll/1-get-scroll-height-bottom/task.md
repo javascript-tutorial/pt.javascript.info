@@ -2,10 +2,10 @@ importance: 5
 
 ---
 
-# What's the scroll from the bottom?
+# Qual é a rolagem a partir de baixo?
 
-The `elem.scrollTop` property is the size of the scrolled out part from the top. How to get the size of the bottom scroll (let's call it `scrollBottom`)?
+A propriedade `elem.scrollTop` é o tamanho da parte rolada para fora a partir do topo. Como obter o tamanho da rolagem a partir de baixo (vamos chamá-lo de `scrollBottom`)?
 
-Write the code that works for an arbitrary `elem`.
+Escreva o código que funcione para um `elem` arbitrário.
 
-P.S. Please check your code: if there's no scroll or the element is fully scrolled down, then it should return `0`.
+P.S. Teste seu código: se não houver rolagem ou o elemento estiver totalmente rolado para baixo, então ele deve retornar `0`.
