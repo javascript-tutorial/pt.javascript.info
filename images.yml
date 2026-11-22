@@ -111,7 +111,7 @@ metric-client-width-height.svg:
     text: "preenchimento"
     position: left
   "content width:":
-    text: "largura do conteúdo:"
+    text: "conteúdo:"
     position: left
   "scrollbar":
     text: "barra de rolagem"
@@ -124,11 +124,11 @@ metric-client-width-nopadding.svg:
     text: "= largura do conteúdo"
     position: left
   "CSS width:":
-    text: "largura CSS:"
+    text: "larg. CSS:"
     position: left
 metric-css.svg:
   "padding:":
-    text: "preenchimento:"
+    text: "padding:"
     position: left
   "height:":
     text: "altura:"
@@ -140,10 +140,10 @@ metric-css.svg:
     text: "preenchimento"
     position: left
   "content width:":
-    text: "largura do conteúdo:"
+    text: "conteúdo:"
     position: left
   "scrollbar":
-    text: "barra de rolagem"
+    text: "scrollbar"
     position: left
 metric-offset-width-height.svg:
   "border":
@@ -153,7 +153,7 @@ metric-offset-width-height.svg:
     text: "preenchimento"
     position: left
   "content width:":
-    text: "largura do conteúdo:"
+    text: "conteúdo:"
     position: left
   "height:":
     text: "altura:"
