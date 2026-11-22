@@ -1,6 +1,6 @@
 # Disparando eventos personalizados
 
-Não podemos apenas atribuir manipuladores, mas também gerar eventos a partir do JavaScript.
+Podemos não apenas atribuir manipuladores, mas também gerar eventos a partir do JavaScript.
 
 Eventos personalizados podem ser usados para criar "componentes gráficos". Por exemplo, um elemento raiz do nosso próprio menu baseado em JS pode disparar eventos informando o que acontece com o menu: `open` (menu aberto), `select` (um item é selecionado) e assim por diante. Outro código pode escutar esses eventos e observar o que está acontecendo com o menu.
 
@@ -284,7 +284,7 @@ Para eventos personalizados devemos usar o construtor `CustomEvent`. Ele tem uma
 
 Apesar da possibilidade técnica de gerar eventos do navegador como `click` ou `keydown`, devemos usá-los com muito cuidado.
 
-Não devemos gerar eventos do navegador, já que isso é uma forma "hacky" de executar manipuladores. Isso é, na maioria das vezes, uma arquitetura ruim.
+Não devemos gerar eventos do navegador, já que essa é uma forma improvisada de executar manipuladores. Isso é, na maioria das vezes, uma arquitetura ruim.
 
 Eventos nativos podem ser gerados:
 
