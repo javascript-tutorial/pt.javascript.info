@@ -95,3 +95,23 @@ array-shift.svg:
   "to the left":
     text: "para a esquerda"
     position: left
+event-order-bubbling.svg:
+  "Most deeply":
+    text: "Elemento mais"
+    position: center
+  "nested element":
+    text: "aninhado"
+    position: center
+eventflow.svg:
+  "Target":
+    text: "Fase de destino"
+    position: left
+  "Phase":
+    text: ""
+    position: left
+  "Capture":
+    text: "Fase de captura"
+    position: left
+  "Bubbling":
+    text: "Fase de bubbling"
+    position: left

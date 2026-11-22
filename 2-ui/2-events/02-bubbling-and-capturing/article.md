@@ -1,24 +1,24 @@
-# Bubbling and capturing
+# Bubbling e captura
 
-Let's start with an example.
+Vamos começar com um exemplo.
 
-This handler is assigned to `<div>`, but also runs if you click any nested tag like `<em>` or `<code>`:
+Este manipulador é atribuído ao `<div>`, mas também é executado se você clicar em qualquer tag aninhada, como `<em>` ou `<code>`:
 
 ```html autorun height=60
-<div onclick="alert('The handler!')">
-  <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
+<div onclick="alert('O manipulador!')">
+  <em>Se você clicar em <code>EM</code>, o manipulador em <code>DIV</code> é executado.</em>
 </div>
 ```
 
-Isn't it a bit strange? Why does the handler on `<div>` run if the actual click was on `<em>`?
+Não é um pouco estranho? Por que o manipulador em `<div>` é executado se o clique real foi em `<em>`?
 
 ## Bubbling
 
-The bubbling principle is simple.
+O princípio do bubbling é simples.
 
-**When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.**
+**Quando um evento acontece em um elemento, ele primeiro executa os manipuladores nele, depois no seu pai, e assim por diante, subindo por todos os outros ancestrais.**
 
-Let's say we have 3 nested elements `FORM > DIV > P` with a handler on each of them:
+Digamos que temos 3 elementos aninhados `FORM > DIV > P` com um manipulador em cada um deles:
 
 ```html run autorun
 <style>
@@ -35,125 +35,125 @@ Let's say we have 3 nested elements `FORM > DIV > P` with a handler on each of t
 </form>
 ```
 
-A click on the inner `<p>` first runs `onclick`:
-1. On that `<p>`.
-2. Then on the outer `<div>`.
-3. Then on the outer `<form>`.
-4. And so on upwards till the `document` object.
+Um clique no `<p>` interno executa `onclick` primeiro:
+1. Nesse `<p>`.
+2. Depois no `<div>` externo.
+3. Depois no `<form>` externo.
+4. E assim por diante subindo até o objeto `document`.
 
 ![](event-order-bubbling.svg)
 
-So if we click on `<p>`, then we'll see 3 alerts: `p` -> `div` -> `form`.
+Então, se clicarmos em `<p>`, veremos 3 alertas: `p` -> `div` -> `form`.
 
-The process is called "bubbling", because events "bubble" from the inner element up through parents like a bubble in the water.
+O processo é chamado de "bubbling" (borbulhamento), porque os eventos "borbulham" do elemento interno para cima, através dos pais, como uma bolha na água.
 
-```warn header="*Almost* all events bubble."
-The key word in this phrase is "almost".
+```warn header="*Quase* todos os eventos fazem bubbling."
+A palavra-chave nessa frase é "quase".
 
-For instance, a `focus` event does not bubble. There are other examples too, we'll meet them. But still it's an exception, rather than a rule, most events do bubble.
+Por exemplo, um evento `focus` não faz bubbling. Há outros exemplos também, vamos encontrá-los. Mas ainda assim é uma exceção, e não uma regra, a maioria dos eventos faz bubbling.
 ```
 
 ## event.target
 
-A handler on a parent element can always get the details about where it actually happened.
+Um manipulador em um elemento pai pode sempre obter os detalhes sobre onde o evento realmente aconteceu.
 
-**The most deeply nested element that caused the event is called a *target* element, accessible as `event.target`.**
+**O elemento mais profundamente aninhado que causou o evento é chamado de elemento *target* (destino), acessível como `event.target`.**
 
-Note the differences from `this` (=`event.currentTarget`):
+Note as diferenças em relação a `this` (=`event.currentTarget`):
 
-- `event.target` -- is the "target" element that initiated the event, it doesn't change through the bubbling process.
-- `this` -- is the "current" element, the one that has a currently running handler on it.
+- `event.target` -- é o elemento "destino" que iniciou o evento, ele não muda durante o processo de bubbling.
+- `this` -- é o elemento "atual", aquele que tem um manipulador em execução nele.
 
-For instance, if we have a single handler `form.onclick`, then it can "catch" all clicks inside the form. No matter where the click happened, it bubbles up to `<form>` and runs the handler.
+Por exemplo, se temos um único manipulador `form.onclick`, então ele pode "interceptar" todos os cliques dentro do formulário. Não importa onde o clique aconteceu, ele borbulha até `<form>` e executa o manipulador.
 
-In `form.onclick` handler:
+No manipulador `form.onclick`:
 
-- `this` (=`event.currentTarget`) is the `<form>` element, because the handler runs on it.
-- `event.target` is the actual element inside the form that was clicked.
+- `this` (=`event.currentTarget`) é o elemento `<form>`, porque o manipulador é executado nele.
+- `event.target` é o elemento real dentro do formulário que foi clicado.
 
-Check it out:
+Veja só:
 
 [codetabs height=220 src="bubble-target"]
 
-It's possible that `event.target` could equal `this` -- it happens when the click is made directly on the `<form>` element.
+É possível que `event.target` seja igual a `this` -- isso acontece quando o clique é feito diretamente no elemento `<form>`.
 
-## Stopping bubbling
+## Parando o bubbling
 
-A bubbling event goes from the target element straight up. Normally it goes upwards till `<html>`, and then to `document` object, and some events even reach `window`, calling all handlers on the path.
+Um evento em bubbling vai do elemento de destino direto para cima. Normalmente ele vai subindo até `<html>`, e depois para o objeto `document`, e alguns eventos até alcançam `window`, chamando todos os manipuladores pelo caminho.
 
-But any handler may decide that the event has been fully processed and stop the bubbling.
+Mas qualquer manipulador pode decidir que o evento já foi completamente processado e parar o bubbling.
 
-The method for it is `event.stopPropagation()`.
+O método para isso é `event.stopPropagation()`.
 
-For instance, here `body.onclick` doesn't work if you click on `<button>`:
+Por exemplo, aqui `body.onclick` não funciona se você clicar em `<button>`:
 
 ```html run autorun height=60
-<body onclick="alert(`the bubbling doesn't reach here`)">
-  <button onclick="event.stopPropagation()">Click me</button>
+<body onclick="alert(`o bubbling não alcança aqui`)">
+  <button onclick="event.stopPropagation()">Clique em mim</button>
 </body>
 ```
 
 ```smart header="event.stopImmediatePropagation()"
-If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.
+Se um elemento tem múltiplos manipuladores de evento em um único evento, então, mesmo que um deles pare o bubbling, os outros ainda são executados.
 
-In other words, `event.stopPropagation()` stops the move upwards, but on the current element all other handlers will run.
+Em outras palavras, `event.stopPropagation()` para o movimento para cima, mas no elemento atual todos os outros manipuladores vão ser executados.
 
-To stop the bubbling and prevent handlers on the current element from running, there's a method `event.stopImmediatePropagation()`. After it no other handlers execute.
+Para parar o bubbling e impedir que outros manipuladores no elemento atual sejam executados, há um método `event.stopImmediatePropagation()`. Depois dele, nenhum outro manipulador é executado.
 ```
 
-```warn header="Don't stop bubbling without a need!"
-Bubbling is convenient. Don't stop it without a real need: obvious and architecturally well thought out.
+```warn header="Não pare o bubbling sem necessidade!"
+O bubbling é conveniente. Não o interrompa sem uma necessidade real: óbvia e bem pensada arquiteturalmente.
 
-Sometimes `event.stopPropagation()` creates hidden pitfalls that later may become problems.
+Às vezes `event.stopPropagation()` cria armadilhas escondidas que mais tarde podem se tornar problemas.
 
-For instance:
+Por exemplo:
 
-1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that the outer menu won't trigger.
-2. Later we decide to catch clicks on the whole window, to track users' behavior (where people click). Some analytic systems do that. Usually the code uses `document.addEventListener('click'…)` to catch all clicks.
-3. Our analytic won't work over the area where clicks are stopped by `stopPropagation`. Sadly, we've got a "dead zone".
+1. Criamos um menu aninhado. Cada submenu trata cliques em seus elementos e chama `stopPropagation` para que o menu externo não seja acionado.
+2. Mais tarde decidimos receber cliques na janela inteira, para rastrear o comportamento dos usuários (onde as pessoas clicam). Alguns sistemas de análise fazem isso. Normalmente o código usa `document.addEventListener('click'…)` para receber todos os cliques.
+3. Nossa análise não vai funcionar sobre a área onde os cliques são interrompidos por `stopPropagation`. Infelizmente, temos uma "zona morta".
 
-There's usually no real need to prevent the bubbling. A task that seemingly requires that may be solved by other means. One of them is to use custom events, we'll cover them later. Also we can write our data into the `event` object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.
+Normalmente não há necessidade real de impedir o bubbling. Uma tarefa que aparentemente exige isso pode ser resolvida por outros meios. Um deles é usar eventos personalizados, que vamos abordar mais adiante. Também podemos escrever nossos dados no objeto `event` em um manipulador e lê-los em outro, para que possamos passar aos manipuladores nos pais informações sobre o processamento abaixo.
 ```
 
 
 ## Capturing
 
-There's another phase of event processing called "capturing". It is rarely used in real code, but sometimes can be useful.
+Há outra fase do processamento de eventos chamada "capturing" (captura). Ela é raramente usada em código real, mas às vezes pode ser útil.
 
-The standard [DOM Events](https://www.w3.org/TR/DOM-Level-3-Events/) describes 3 phases of event propagation:
+O padrão [DOM Events](https://www.w3.org/TR/DOM-Level-3-Events/) descreve 3 fases de propagação de eventos:
 
-1. Capturing phase -- the event goes down to the element.
-2. Target phase -- the event reached the target element.
-3. Bubbling phase -- the event bubbles up from the element.
+1. Fase de captura -- o evento desce até o elemento.
+2. Fase de destino -- o evento chega ao elemento de destino.
+3. Fase de bubbling -- o evento borbulha para cima a partir do elemento.
 
-Here's the picture, taken from the specification, of the capturing `(1)`, target `(2)` and bubbling `(3)` phases for a click event on a `<td>` inside a table:
+Aqui está a imagem, tirada da especificação, das fases de captura `(1)`, destino `(2)` e bubbling `(3)` para um evento de clique em um `<td>` dentro de uma tabela:
 
 ![](eventflow.svg)
 
-That is: for a click on `<td>` the event first goes through the ancestors chain down to the element (capturing phase), then it reaches the target and triggers there (target phase), and then it goes up (bubbling phase), calling handlers on its way.
+Ou seja: para um clique em `<td>`, o evento primeiro passa pela cadeia de ancestrais descendo até o elemento (fase de captura), depois alcança o destino e é acionado ali (fase de destino), e depois sobe (fase de bubbling), chamando os manipuladores pelo caminho.
 
-Until now, we only talked about bubbling, because the capturing phase is rarely used.
+Até agora, só falamos sobre bubbling, porque a fase de captura é raramente usada.
 
-In fact, the capturing phase was invisible for us, because handlers added using `on<event>`-property or using HTML attributes or using two-argument `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
+Na verdade, a fase de captura era invisível para nós, porque manipuladores adicionados usando a propriedade `on<event>` ou usando atributos HTML ou usando `addEventListener(event, handler)` com dois argumentos não sabem nada sobre captura, eles só são executados na 2ª e 3ª fases.
 
-To catch an event on the capturing phase, we need to set the handler `capture` option to `true`:
+Para capturar um evento na fase de captura, precisamos definir a opção `capture` do manipulador como `true`:
 
 ```js
 elem.addEventListener(..., {capture: true})
 
-// or, just "true" is an alias to {capture: true}
+// ou, apenas "true" é um alias para {capture: true}
 elem.addEventListener(..., true)
 ```
 
-There are two possible values of the `capture` option:
+Há dois valores possíveis para a opção `capture`:
 
-- If it's `false` (default), then the handler is set on the bubbling phase.
-- If it's `true`, then the handler is set on the capturing phase.
+- Se for `false` (padrão), então o manipulador é definido na fase de bubbling.
+- Se for `true`, então o manipulador é definido na fase de captura.
 
 
-Note that while formally there are 3 phases, the 2nd phase ("target phase": the event reached the element) is not handled separately: handlers on both capturing and bubbling phases trigger at that phase.
+Note que, embora formalmente existam 3 fases, a 2ª fase ("fase de destino": o evento chegou ao elemento) não é tratada separadamente: manipuladores tanto da fase de captura quanto da fase de bubbling são acionados nessa fase.
 
-Let's see both capturing and bubbling in action:
+Vamos ver tanto a captura quanto o bubbling em ação:
 
 ```html run autorun height=140 edit
 <style>
@@ -171,63 +171,63 @@ Let's see both capturing and bubbling in action:
 
 <script>
   for(let elem of document.querySelectorAll('*')) {
-    elem.addEventListener("click", e => alert(`Capturing: ${elem.tagName}`), true);
+    elem.addEventListener("click", e => alert(`Captura: ${elem.tagName}`), true);
     elem.addEventListener("click", e => alert(`Bubbling: ${elem.tagName}`));
   }
 </script>
 ```
 
-The code sets click handlers on *every* element in the document to see which ones are working.
+O código define manipuladores de clique em *todos* os elementos do documento para ver quais estão funcionando.
 
-If you click on `<p>`, then the sequence is:
+Se você clicar em `<p>`, então a sequência é:
 
-1. `HTML` -> `BODY` -> `FORM` -> `DIV -> P` (capturing phase, the first listener):
-2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
+1. `HTML` -> `BODY` -> `FORM` -> `DIV -> P` (fase de captura, o primeiro manipulador):
+2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (fase de bubbling, o segundo manipulador).
 
-Please note, the `P` shows up twice, because we've set two listeners: capturing and bubbling. The target triggers at the end of the first and at the beginning of the second phase.
+Note que `P` aparece duas vezes, porque definimos dois manipuladores: captura e bubbling. O destino é acionado no final da primeira fase e no início da segunda.
 
-There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
+Há uma propriedade `event.eventPhase` que nos diz o número da fase em que o evento foi tratado. Mas ela é raramente usada, porque geralmente já a conhecemos no manipulador.
 
-```smart header="To remove the handler, `removeEventListener` needs the same phase"
-If we `addEventListener(..., true)`, then we should mention the same phase in `removeEventListener(..., true)` to correctly remove the handler.
+```smart header="Para remover o manipulador, `removeEventListener` precisa da mesma fase"
+Se fizermos `addEventListener(..., true)`, então devemos mencionar a mesma fase em `removeEventListener(..., true)` para remover corretamente o manipulador.
 ```
 
-````smart header="Listeners on the same element and same phase run in their set order"
-If we have multiple event handlers on the same phase, assigned to the same element with `addEventListener`, they run in the same order as they are created:
+````smart header="Manipuladores no mesmo elemento e na mesma fase são executados na ordem em que foram definidos"
+Se tivermos múltiplos manipuladores de evento na mesma fase, atribuídos ao mesmo elemento com `addEventListener`, eles são executados na mesma ordem em que foram criados:
 
 ```js
-elem.addEventListener("click", e => alert(1)); // guaranteed to trigger first
+elem.addEventListener("click", e => alert(1)); // garantido para ser acionado primeiro
 elem.addEventListener("click", e => alert(2));
 ```
 ````
 
-```smart header="The `event.stopPropagation()` during the capturing also prevents the bubbling"
-The `event.stopPropagation()` method and its sibling `event.stopImmediatePropagation()` can also be called on the capturing phase. Then not only the futher capturing is stopped, but the bubbling as well.
+```smart header="`event.stopPropagation()` durante a captura também impede o bubbling"
+O método `event.stopPropagation()` e seu irmão `event.stopImmediatePropagation()` também podem ser chamados na fase de captura. Então não só a captura adicional é interrompida, mas o bubbling também.
 
-In other words, normally the event goes first down ("capturing") and then up ("bubbling"). But if `event.stopPropagation()` is called during the capturing phase, then the event travel stops, no bubbling will occur.
+Em outras palavras, normalmente o evento primeiro desce ("captura") e depois sobe ("bubbling"). Mas se `event.stopPropagation()` for chamado durante a fase de captura, então a jornada do evento para, nenhum bubbling vai ocorrer.
 ```
 
 
-## Summary
+## Resumo
 
-When an event happens -- the most nested element where it happens gets labeled as the "target element" (`event.target`).
+Quando um evento acontece -- o elemento mais aninhado onde ele acontece é identificado como o "elemento de destino" (`event.target`).
 
-- Then the event moves down from the document root to `event.target`, calling handlers assigned with `addEventListener(..., true)` on the way (`true` is a shorthand for `{capture: true}`).
-- Then handlers are called on the target element itself.
-- Then the event bubbles up from `event.target` to the root, calling handlers assigned using `on<event>`, HTML attributes and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
+- Então o evento se move da raiz do documento para baixo até `event.target`, chamando os manipuladores atribuídos com `addEventListener(..., true)` pelo caminho (`true` é uma forma abreviada de `{capture: true}`).
+- Então os manipuladores são chamados no próprio elemento de destino.
+- Então o evento borbulha de `event.target` até a raiz, chamando os manipuladores atribuídos usando `on<event>`, atributos HTML e `addEventListener` sem o 3º argumento ou com o 3º argumento `false/{capture:false}`.
 
-Each handler can access `event` object properties:
+Cada manipulador pode acessar as propriedades do objeto `event`:
 
-- `event.target` -- the deepest element that originated the event.
-- `event.currentTarget` (=`this`) -- the current element that handles the event (the one that has the handler on it)
-- `event.eventPhase` -- the current phase (capturing=1, target=2, bubbling=3).
+- `event.target` -- o elemento mais profundo que originou o evento.
+- `event.currentTarget` (=`this`) -- o elemento atual que trata o evento (aquele que tem o manipulador nele)
+- `event.eventPhase` -- a fase atual (captura=1, destino=2, bubbling=3).
 
-Any event handler can stop the event by calling `event.stopPropagation()`, but that's not recommended, because we can't really be sure we won't need it above, maybe for completely different things.
+Qualquer manipulador de evento pode parar o evento chamando `event.stopPropagation()`, mas isso não é recomendado, porque não podemos ter certeza de que não vamos precisar dele mais acima, talvez para coisas completamente diferentes.
 
-The capturing phase is used very rarely, usually we handle events on bubbling. And there's a logical explanation for that.
+A fase de captura é usada muito raramente, geralmente tratamos eventos no bubbling. E há uma explicação lógica para isso.
 
-In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then higher-level authorities if needed.
+No mundo real, quando um acidente acontece, as autoridades locais reagem primeiro. Elas conhecem melhor a área onde aconteceu. Depois, autoridades de nível mais alto, se necessário.
 
-The same for event handlers. The code that set the handler on a particular element knows maximum details about the element and what it does. A handler on a particular `<td>` may be suited for that exactly `<td>`, it knows everything about it, so it should get the chance first. Then its immediate parent also knows about the context, but a little bit less, and so on till the very top element that handles general concepts and runs the last one.
+O mesmo vale para manipuladores de evento. O código que definiu o manipulador em um elemento específico conhece o máximo de detalhes sobre o elemento e o que ele faz. Um manipulador em um `<td>` específico pode ser adequado exatamente para aquele `<td>`, ele sabe tudo sobre ele, então deve ter a primeira chance. Depois, seu pai imediato também conhece o contexto, mas um pouco menos, e assim por diante até o elemento mais no topo, que trata conceitos gerais e é executado por último.
 
-Bubbling and capturing lay the foundation for "event delegation" -- an extremely powerful event handling pattern that we study in the next chapter.
+Bubbling e captura são a base para "delegação de eventos" -- um padrão de tratamento de eventos extremamente poderoso que estudamos no próximo capítulo.
