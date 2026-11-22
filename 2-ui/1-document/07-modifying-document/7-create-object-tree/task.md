@@ -4,7 +4,7 @@ importance: 5
 
 # Crie uma árvore a partir do objeto
 
-Escreva uma função `createTree` que cria uma lista `ul/li` encadeada a partir do objeto encadeado.
+Escreva uma função `createTree` que cria uma lista `ul/li` aninhada a partir do objeto aninhado.
 
 Por exemplo:
 

@@ -44,7 +44,7 @@
 
     function clockStart() {
       // define um novo intervalo apenas se o relógio estiver parado
-      // caso contrário, reescreveríamos a referência timerID do intervalo em execução e nunca mais conseguiríamos parar o relógio
+      // caso contrário, reescreveríamos a referência timerId do intervalo em execução e nunca mais conseguiríamos parar o relógio
       if (!timerId) {
         timerId = setInterval(update, 1000);
       }
@@ -53,7 +53,7 @@
 
     function clockStop() {
       clearInterval(timerId);
-      timerId = null; // <-- limpa o timerID para indicar que o relógio foi parado, para que seja possível iniciá-lo novamente em clockStart()
+      timerId = null; // <-- limpa o timerId para indicar que o relógio foi parado, para que seja possível iniciá-lo novamente em clockStart()
     }
 
   </script>
