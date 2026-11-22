@@ -14,10 +14,10 @@ Há um pequeno recurso implementado no documento para conveniência. Um clique e
 
 Seu código deve usar o DOM para obter as coordenadas da janela de:
 
-1. Canto externo superior-esquerdo (isso é simples).
-2. Canto externo inferior-direito (também simples).
-3. Canto interno superior-esquerdo (um pouco mais difícil).
-4. Canto interno inferior-direito (há várias formas, escolha uma).
+1. Canto externo superior esquerdo (isso é simples).
+2. Canto externo inferior direito (também simples).
+3. Canto interno superior esquerdo (um pouco mais difícil).
+4. Canto interno inferior direito (há várias formas, escolha uma).
 
 As coordenadas que você calcular devem ser as mesmas retornadas pelo clique do mouse.
 

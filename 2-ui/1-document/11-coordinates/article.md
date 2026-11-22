@@ -16,7 +16,7 @@ Nesta imagem, pegamos um ponto no documento e demonstramos suas coordenadas ante
 ![](document-and-window-coordinates-scrolled.svg)
 
 Quando o documento rolou:
-- `pageY` - a coordenada relativa ao documento permaneceu a mesma, ela é contada a partir do topo do documento (agora rolado para fora).
+- `pageY` - a coordenada relativa ao documento permaneceu a mesma, ela é contada a partir do topo do documento (agora fora da área visível).
 - `clientY` - a coordenada relativa à janela mudou (a flecha ficou mais curta), já que o mesmo ponto ficou mais perto do topo da janela.
 
 ## Coordenadas do elemento: getBoundingClientRect
@@ -77,7 +77,7 @@ Matematicamente, um retângulo é definido de forma única pelo seu ponto inicia
 
 Tecnicamente é possível que `width/height` sejam negativos, o que permite um retângulo "direcionado", por exemplo, para representar uma seleção de mouse com início e fim marcados corretamente.
 
-Valores negativos de `width/height` significam que o retângulo começa no seu canto inferior-direito e então "cresce" para a esquerda e para cima.
+Valores negativos de `width/height` significam que o retângulo começa no seu canto inferior direito e então "cresce" para a esquerda e para cima.
 
 Aqui está um retângulo com `width` e `height` negativos (por exemplo, `width=-200`, `height=-100`):
 
@@ -99,7 +99,7 @@ Há semelhanças óbvias entre as coordenadas relativas à janela e o `position:
 
 Mas no posicionamento CSS, a propriedade `right` significa a distância a partir da borda direita, e a propriedade `bottom` significa a distância a partir da borda inferior.
 
-Se olharmos para a imagem acima, podemos ver que em JavaScript não é assim. Todas as coordenadas na janela são contadas a partir do canto superior-esquerdo, incluindo essas.
+Se olharmos para a imagem acima, podemos ver que em JavaScript não é assim. Todas as coordenadas na janela são contadas a partir do canto superior esquerdo, incluindo essas.
 ```
 
 ## elementFromPoint(x, y) [#elementFromPoint]
@@ -173,7 +173,7 @@ function createMessageUnder(elem, html) {
 }
 
 // Uso:
-// adiciona ela por 5 segundos no documento
+// adiciona-a ao documento por 5 segundos
 let message = createMessageUnder(elem, 'Olá, mundo!');
 document.body.append(message);
 setTimeout(() => message.remove(), 5000);
@@ -195,17 +195,17 @@ Para mudar isso, precisamos usar coordenadas baseadas no documento e `position:a
 
 ## Coordenadas do documento [#getCoords]
 
-As coordenadas relativas ao documento começam a partir do canto superior-esquerdo do documento, não da janela.
+As coordenadas relativas ao documento começam a partir do canto superior esquerdo do documento, não da janela.
 
-No CSS, as coordenadas da janela correspondem a `position:fixed`, enquanto as coordenadas do documento são parecidas com `position:absolute` no topo.
+No CSS, as coordenadas da janela correspondem a `position:fixed`, enquanto as coordenadas do documento são parecidas com `position:absolute` aplicado no nível superior do documento.
 
 Podemos usar `position:absolute` e `top/left` para colocar algo em um certo lugar do documento, de forma que permaneça lá durante a rolagem da página. Mas primeiro precisamos das coordenadas corretas.
 
 Não há um método padrão para obter as coordenadas de um elemento relativas ao documento. Mas é fácil escrevê-lo.
 
 Os dois sistemas de coordenadas são conectados pela fórmula:
-- `pageY` = `clientY` + altura da parte vertical rolada para fora do documento.
-- `pageX` = `clientX` + largura da parte horizontal rolada para fora do documento.
+- `pageY` = `clientY` + altura da parte vertical do documento que foi rolada para fora da área visível.
+- `pageX` = `clientX` + largura da parte horizontal do documento que foi rolada para fora da área visível.
 
 A função `getCoords(elem)` vai pegar as coordenadas da janela a partir de `elem.getBoundingClientRect()` e adicionar a rolagem atual a elas:
 

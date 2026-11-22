@@ -2,7 +2,7 @@
 
 Os cantos externos são basicamente o que obtemos de [elem.getBoundingClientRect()](https://developer.mozilla.org/en-US/docs/DOM/element.getBoundingClientRect).
 
-Coordenadas do canto superior-esquerdo `answer1` e do canto inferior-direito `answer2`:
+Coordenadas do canto superior esquerdo `answer1` e do canto inferior direito `answer2`:
 
 ```js
 let coords = elem.getBoundingClientRect();
@@ -11,7 +11,7 @@ let answer1 = [coords.left, coords.top];
 let answer2 = [coords.right, coords.bottom];
 ```
 
-# Canto interno superior-esquerdo
+# Canto interno superior esquerdo
 
 Esse difere do canto externo pela largura da borda. Uma forma confiável de obter a distância é `clientLeft/clientTop`:
 
@@ -19,7 +19,7 @@ Esse difere do canto externo pela largura da borda. Uma forma confiável de obte
 let answer3 = [coords.left + field.clientLeft, coords.top + field.clientTop];
 ```
 
-# Canto interno inferior-direito
+# Canto interno inferior direito
 
 No nosso caso precisamos subtrair o tamanho da borda das coordenadas externas.
 
@@ -32,7 +32,7 @@ let answer4 = [
 ];
 ```
 
-Uma forma alternativa seria adicionar `clientWidth/clientHeight` às coordenadas do canto superior-esquerdo. Isso é provavelmente ainda melhor:
+Uma forma alternativa seria adicionar `clientWidth/clientHeight` às coordenadas do canto superior esquerdo. Isso é provavelmente ainda melhor:
 
 ```js
 let answer4 = [
