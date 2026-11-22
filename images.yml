@@ -95,3 +95,7 @@ array-shift.svg:
   "to the left":
     text: "para a esquerda"
     position: left
+dom-class-hierarchy.svg:
+  "Document as a whole":
+    text: "Documento como um todo"
+    position: left
