@@ -75,8 +75,8 @@ Essas propriedades são apenas leitura.
 
 ```smart header="Também disponível como as propriedades `scrollX` e `scrollY` de `window`"
 Por razões históricas, ambas as propriedades existem, mas são a mesma coisa:
-- `window.pageXOffset` é um alias de `window.scrollX`.
-- `window.pageYOffset` é um alias de `window.scrollY`.
+- `window.pageXOffset` é outro nome para `window.scrollX`.
+- `window.pageYOffset` é outro nome para `window.scrollY`.
 ```
 
 ## Rolagem: scrollTo, scrollBy, scrollIntoView [#window-scroll]
@@ -100,7 +100,7 @@ Alternativamente, há uma solução mais simples e universal: os métodos especi
 
     <button onclick="window.scrollBy(0,10)">window.scrollBy(0,10)</button>
     ```
-- O método `scrollTo(pageX,pageY)` rola a página *para coordenadas absolutas*, de forma que o canto superior-esquerdo da parte visível tenha coordenadas `(pageX, pageY)` em relação ao canto superior-esquerdo do documento. É como definir `scrollLeft/scrollTop`.
+- O método `scrollTo(pageX,pageY)` rola a página *para coordenadas absolutas*, de forma que o canto superior esquerdo da parte visível tenha coordenadas `(pageX, pageY)` em relação ao canto superior esquerdo do documento. É como definir `scrollLeft/scrollTop`.
 
     Para rolar até o início, podemos usar `scrollTo(0,0)`.
 
