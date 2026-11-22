@@ -100,24 +100,18 @@ event-order-bubbling.svg:
     text: "Elemento mais"
     position: center
   "nested element":
-    text: "profundamente aninhado"
+    text: "aninhado"
     position: center
 eventflow.svg:
-  "Window":
-    text: "Janela"
-    position: left
-  "Document":
-    text: "Documento"
-    position: left
   "Target":
-    text: "Destino"
+    text: "Fase de destino"
     position: left
   "Phase":
-    text: "Fase"
+    text: ""
     position: left
   "Capture":
-    text: "Captura"
+    text: "Fase de captura"
     position: left
   "Bubbling":
-    text: "Propagação"
+    text: "Fase de bubbling"
     position: left

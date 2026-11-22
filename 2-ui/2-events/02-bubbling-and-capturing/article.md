@@ -1,4 +1,4 @@
-# Bubbling e capturing
+# Bubbling e captura
 
 Vamos começar com um exemplo.
 
@@ -64,7 +64,7 @@ Note as diferenças em relação a `this` (=`event.currentTarget`):
 - `event.target` -- é o elemento "destino" que iniciou o evento, ele não muda durante o processo de bubbling.
 - `this` -- é o elemento "atual", aquele que tem um manipulador em execução nele.
 
-Por exemplo, se temos um único manipulador `form.onclick`, então ele pode "capturar" todos os cliques dentro do formulário. Não importa onde o clique aconteceu, ele borbulha até `<form>` e executa o manipulador.
+Por exemplo, se temos um único manipulador `form.onclick`, então ele pode "interceptar" todos os cliques dentro do formulário. Não importa onde o clique aconteceu, ele borbulha até `<form>` e executa o manipulador.
 
 No manipulador `form.onclick`:
 
@@ -109,7 +109,7 @@ O bubbling é conveniente. Não o interrompa sem uma necessidade real: óbvia e 
 Por exemplo:
 
 1. Criamos um menu aninhado. Cada submenu trata cliques em seus elementos e chama `stopPropagation` para que o menu externo não seja acionado.
-2. Mais tarde decidimos capturar cliques na janela inteira, para rastrear o comportamento dos usuários (onde as pessoas clicam). Alguns sistemas de análise fazem isso. Normalmente o código usa `document.addEventListener('click'…)` para capturar todos os cliques.
+2. Mais tarde decidimos receber cliques na janela inteira, para rastrear o comportamento dos usuários (onde as pessoas clicam). Alguns sistemas de análise fazem isso. Normalmente o código usa `document.addEventListener('click'…)` para receber todos os cliques.
 3. Nossa análise não vai funcionar sobre a área onde os cliques são interrompidos por `stopPropagation`. Infelizmente, temos uma "zona morta".
 
 Normalmente não há necessidade real de impedir o bubbling. Uma tarefa que aparentemente exige isso pode ser resolvida por outros meios. Um deles é usar eventos personalizados, que vamos abordar mais adiante. Também podemos escrever nossos dados no objeto `event` em um manipulador e lê-los em outro, para que possamos passar aos manipuladores nos pais informações sobre o processamento abaixo.
@@ -181,18 +181,18 @@ O código define manipuladores de clique em *todos* os elementos do documento pa
 
 Se você clicar em `<p>`, então a sequência é:
 
-1. `HTML` -> `BODY` -> `FORM` -> `DIV -> P` (fase de captura, o primeiro listener):
-2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (fase de bubbling, o segundo listener).
+1. `HTML` -> `BODY` -> `FORM` -> `DIV -> P` (fase de captura, o primeiro manipulador):
+2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (fase de bubbling, o segundo manipulador).
 
-Note que `P` aparece duas vezes, porque definimos dois listeners: captura e bubbling. O destino é acionado no final da primeira fase e no início da segunda.
+Note que `P` aparece duas vezes, porque definimos dois manipuladores: captura e bubbling. O destino é acionado no final da primeira fase e no início da segunda.
 
-Há uma propriedade `event.eventPhase` que nos diz o número da fase em que o evento foi capturado. Mas ela é raramente usada, porque geralmente já a conhecemos no manipulador.
+Há uma propriedade `event.eventPhase` que nos diz o número da fase em que o evento foi tratado. Mas ela é raramente usada, porque geralmente já a conhecemos no manipulador.
 
 ```smart header="Para remover o manipulador, `removeEventListener` precisa da mesma fase"
 Se fizermos `addEventListener(..., true)`, então devemos mencionar a mesma fase em `removeEventListener(..., true)` para remover corretamente o manipulador.
 ```
 
-````smart header="Listeners no mesmo elemento e na mesma fase são executados na ordem em que foram definidos"
+````smart header="Manipuladores no mesmo elemento e na mesma fase são executados na ordem em que foram definidos"
 Se tivermos múltiplos manipuladores de evento na mesma fase, atribuídos ao mesmo elemento com `addEventListener`, eles são executados na mesma ordem em que foram criados:
 
 ```js
@@ -212,7 +212,7 @@ Em outras palavras, normalmente o evento primeiro desce ("captura") e depois sob
 
 Quando um evento acontece -- o elemento mais aninhado onde ele acontece é identificado como o "elemento de destino" (`event.target`).
 
-- Então o evento se move do raiz do documento para baixo até `event.target`, chamando os manipuladores atribuídos com `addEventListener(..., true)` pelo caminho (`true` é uma forma abreviada de `{capture: true}`).
+- Então o evento se move da raiz do documento para baixo até `event.target`, chamando os manipuladores atribuídos com `addEventListener(..., true)` pelo caminho (`true` é uma forma abreviada de `{capture: true}`).
 - Então os manipuladores são chamados no próprio elemento de destino.
 - Então o evento borbulha de `event.target` até a raiz, chamando os manipuladores atribuídos usando `on<event>`, atributos HTML e `addEventListener` sem o 3º argumento ou com o 3º argumento `false/{capture:false}`.
 
@@ -230,4 +230,4 @@ No mundo real, quando um acidente acontece, as autoridades locais reagem primeir
 
 O mesmo vale para manipuladores de evento. O código que definiu o manipulador em um elemento específico conhece o máximo de detalhes sobre o elemento e o que ele faz. Um manipulador em um `<td>` específico pode ser adequado exatamente para aquele `<td>`, ele sabe tudo sobre ele, então deve ter a primeira chance. Depois, seu pai imediato também conhece o contexto, mas um pouco menos, e assim por diante até o elemento mais no topo, que trata conceitos gerais e é executado por último.
 
-Bubbling e capturing são a base para "delegação de eventos" -- um padrão de tratamento de eventos extremamente poderoso que estudamos no próximo capítulo.
+Bubbling e captura são a base para "delegação de eventos" -- um padrão de tratamento de eventos extremamente poderoso que estudamos no próximo capítulo.
