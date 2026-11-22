@@ -1,47 +1,47 @@
 
 # HTML/CSS
-First let's create HTML/CSS.
+Primeiro vamos criar o HTML/CSS.
 
-A menu is a standalone graphical component on the page, so it's better to put it into a single DOM element.
+Um menu é um componente gráfico independente na página, então é melhor colocá-lo em um único elemento do DOM.
 
-A list of menu items can be laid out as a list `ul/li`.
+Uma lista de itens do menu pode ser organizada como uma lista `ul/li`.
 
-Here's the example structure:
+Aqui está a estrutura de exemplo:
 
 ```html
 <div class="menu">
-  <span class="title">Sweeties (click me)!</span>
+  <span class="title">Doces (clique em mim)!</span>
   <ul>
-    <li>Cake</li>
-    <li>Donut</li>
-    <li>Honey</li>
+    <li>Bolo</li>
+    <li>Rosquinha</li>
+    <li>Mel</li>
   </ul>
 </div>
 ```
 
-We use `<span>` for the title, because `<div>` has an implicit `display:block` on it, and it will occupy 100% of the horizontal width.
+Usamos `<span>` para o título, porque `<div>` tem um `display:block` implícito, e vai ocupar 100% da largura horizontal.
 
-Like this:
-
-```html autorun height=50
-<div style="border: solid red 1px" onclick="alert(1)">Sweeties (click me)!</div>
-```
-
-So if we set `onclick` on it, then it will catch clicks to the right of the text.
-
-As `<span>` has an implicit `display: inline`, it occupies exactly enough place to fit all the text:
+Assim:
 
 ```html autorun height=50
-<span style="border: solid red 1px" onclick="alert(1)">Sweeties (click me)!</span>
+<div style="border: solid red 1px" onclick="alert(1)">Doces (clique em mim)!</div>
 ```
 
-# Toggling the menu
+Então, se definirmos `onclick` nele, ele vai capturar cliques à direita do texto.
 
-Toggling the menu should change the arrow and show/hide the menu list.
+Como `<span>` tem um `display: inline` implícito, ele ocupa exatamente o espaço suficiente para caber todo o texto:
 
-All these changes are perfectly handled by CSS. In JavaScript we should label the current state of the menu by adding/removing the class `.open`.
+```html autorun height=50
+<span style="border: solid red 1px" onclick="alert(1)">Doces (clique em mim)!</span>
+```
 
-Without it, the menu will be closed:
+# Alternando o menu
+
+Alternar o menu deve mudar a seta e mostrar/ocultar a lista do menu.
+
+Todas essas mudanças são perfeitamente tratadas pelo CSS. Em JavaScript devemos sinalizar o estado atual do menu adicionando/removendo a classe `.open`.
+
+Sem ela, o menu ficará fechado:
 
 ```css
 .menu ul {
@@ -58,7 +58,7 @@ Without it, the menu will be closed:
 }
 ```
 
-...And with `.open` the arrow changes and the list shows up:
+...E com `.open` a seta muda e a lista aparece:
 
 ```css
 .menu.open .title::before {
