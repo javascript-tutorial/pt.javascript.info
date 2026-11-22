@@ -223,7 +223,7 @@ element.addEventListener(event, handler, [options]);
 
 `options`
 : Um objeto adicional opcional com propriedades:
-    - `once`: se `true`, então o listener é removido automaticamente depois que é acionado.
+    - `once`: se `true`, então o manipulador é removido automaticamente depois que é acionado.
     - `capture`: a fase em que tratar o evento, a ser abordada mais adiante no capítulo <info:bubbling-and-capturing>. Por razões históricas, `options` também pode ser `false/true`, o que é o mesmo que `{capture: false/true}`.
     - `passive`: se `true`, então o manipulador não vai chamar `preventDefault()`, vamos explicar isso mais adiante em <info:default-browser-action>.
 
@@ -303,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function() {
   alert("DOM construído");
 });
 ```
-Então `addEventListener` é mais universal. Embora esses eventos sejam a exceção, não a regra.
+Então `addEventListener` é mais universal. No entanto, esses eventos são a exceção, não a regra.
 ````
 
 ## Objeto do evento
@@ -402,7 +402,7 @@ Também poderíamos usar objetos de uma classe personalizada, assim:
 </script>
 ```
 
-Aqui o mesmo objeto trata os dois eventos. Note que precisamos configurar explicitamente os eventos a serem escutados usando `addEventListener`. O objeto `menu` só recebe `mousedown` e `mouseup` aqui, não nenhum outro tipo de evento.
+Aqui o mesmo objeto trata os dois eventos. Note que precisamos configurar explicitamente os eventos a serem escutados usando `addEventListener`. O objeto `menu` só recebe `mousedown` e `mouseup` aqui, e nenhum outro tipo de evento.
 
 O método `handleEvent` não precisa fazer todo o trabalho por si só. Ele pode chamar outros métodos específicos de evento em vez disso, assim:
 
