@@ -2,19 +2,19 @@ importance: 4
 
 ---
 
-# Sortable table
+# Tabela ordenável
 
-Make the table sortable: clicks on `<th>` elements should sort it by corresponding column.
+Faça a tabela ser ordenável: cliques nos elementos `<th>` devem ordená-la pela coluna correspondente.
 
-Each `<th>` has the type in the attribute, like this:
+Cada `<th>` tem o tipo no atributo, assim:
 
 ```html
 <table id="grid">
   <thead>
     <tr>
 *!*
-      <th data-type="number">Age</th>
-      <th data-type="string">Name</th>
+      <th data-type="number">Idade</th>
+      <th data-type="string">Nome</th>
 */!*
     </tr>
   </thead>
@@ -32,12 +32,12 @@ Each `<th>` has the type in the attribute, like this:
 </table>
 ```
 
-In the example above the first column has numbers, and the second one -- strings. The sorting function should handle sort according to the type.
+No exemplo acima, a primeira coluna tem números, e a segunda -- strings. A função de ordenação deve tratar a ordenação de acordo com o tipo.
 
-Only `"string"` and `"number"` types should be supported.
+Só os tipos `"string"` e `"number"` devem ser suportados.
 
-The working example:
+O exemplo funcional:
 
 [iframe border=1 src="solution" height=190]
 
-P.S. The table can be big, with any number of rows and columns.
+P.S. A tabela pode ser grande, com qualquer número de linhas e colunas.
