@@ -1,4 +1,4 @@
-# Node properties: type, tag and contents
+# Propriedades de nó: tipo, tag e conteúdo
 
 Vamos dar uma olhada mais a fundo nos nós do DOM.
 
@@ -374,7 +374,7 @@ Um exemplo de leitura do conteúdo de um nó de texto e um comentário:
 
 Para nós de texto podemos imaginar um motivo para ler ou modificá-los, mas por que comentários?
 
-Às vezes os desenvolvedores incorporam informações ou instruções de template no HTML neles, assim:
+Às vezes os desenvolvedores incorporam informações ou instruções de template nos comentários do HTML, assim:
 
 ```html
 <!-- if isAdmin -->
