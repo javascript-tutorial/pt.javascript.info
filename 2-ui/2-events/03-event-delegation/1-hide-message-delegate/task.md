@@ -10,4 +10,4 @@ Assim:
 
 [iframe src="solution" height=420]
 
-P.S. Deve haver apenas um listener de evento no container, use delegação de eventos.
+P.S. Deve haver apenas um manipulador de evento no container, use delegação de eventos.
