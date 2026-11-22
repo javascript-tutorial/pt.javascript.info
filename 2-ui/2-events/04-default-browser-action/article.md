@@ -8,7 +8,7 @@ Por exemplo:
 - Um clique no botão de envio de um formulário -- inicia o envio dele ao servidor.
 - Pressionar o botão do mouse sobre um texto e movê-lo -- seleciona o texto.
 
-Se tratarmos um evento em JavaScript, podemos não querer que a ação correspondente do navegador aconteça, e queremos implementar outro comportamento em vez disso.
+Se tratarmos um evento em JavaScript, podemos não querer que a ação correspondente do navegador aconteça e, em vez disso, querer implementar outro comportamento.
 
 ## Prevenindo ações do navegador
 
@@ -94,7 +94,7 @@ Isso acontece porque a ação do navegador é cancelada em `mousedown`. O foco a
 
 ## A opção "passive" do manipulador
 
-A opção opcional `passive: true` de `addEventListener` sinaliza ao navegador que o manipulador não vai chamar `preventDefault()`.
+A opção `passive: true` de `addEventListener`, que é opcional, sinaliza ao navegador que o manipulador não vai chamar `preventDefault()`.
 
 Por que isso pode ser necessário?
 
