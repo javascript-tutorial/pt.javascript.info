@@ -2,15 +2,15 @@ importance: 5
 
 ---
 
-# Sort the table
+# Ordene a tabela
 
-There's a table:
+Há uma tabela:
 
 ```html run
 <table>
 <thead>
   <tr>
-    <th>Name</th><th>Surname</th><th>Age</th>
+    <th>Nome</th><th>Sobrenome</th><th>Idade</th>
   </tr>
 </thead>
 <tbody>
@@ -30,6 +30,6 @@ There's a table:
 </table>
 ```
 
-There may be more rows in it.
+Pode haver mais linhas nela.
 
-Write the code to sort it by the `"name"` column.
+Escreva o código para ordená-la pela coluna `"nome"`.

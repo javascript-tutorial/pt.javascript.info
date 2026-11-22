@@ -2,18 +2,18 @@ importance: 4
 
 ---
 
-# Create a list
+# Crie uma lista
 
-Write an interface to create a list from user input.
+Escreva uma interface para criar uma lista a partir da entrada do usuário.
 
-For every list item:
+Para cada item da lista:
 
-1. Ask a user about its content using `prompt`.
-2. Create the `<li>` with it and add it to `<ul>`.
-3. Continue until the user cancels the input (by pressing `key:Esc` or via an empty entry).
+1. Pergunte ao usuário sobre seu conteúdo usando `prompt`.
+2. Crie o `<li>` com ele e adicione-o ao `<ul>`.
+3. Continue até que o usuário cancele a entrada (pressionando `key:Esc` ou por meio de uma entrada vazia).
 
-All elements should be created dynamically.
+Todos os elementos devem ser criados dinamicamente.
 
-If a user types HTML-tags, they should be treated like a text.
+Se um usuário digitar tags HTML, elas devem ser tratadas como texto.
 
 [demo src="solution"]

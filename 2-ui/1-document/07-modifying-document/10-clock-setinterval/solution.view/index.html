@@ -43,26 +43,26 @@
     }
 
     function clockStart() {
-      // set a new interval only if the clock is stopped
-      // otherwise we would rewrite the timerID reference to the running interval and wouldn't be able to stop the clock ever again
+      // define um novo intervalo apenas se o relógio estiver parado
+      // caso contrário, reescreveríamos a referência timerId do intervalo em execução e nunca mais conseguiríamos parar o relógio
       if (!timerId) {
         timerId = setInterval(update, 1000);
       }
-      update(); // <--  start right now, don't wait 1 second till the first setInterval works
+      update(); // <-- começa agora mesmo, não espera 1 segundo até o primeiro setInterval funcionar
     }
 
     function clockStop() {
       clearInterval(timerId);
-      timerId = null; // <-- clear timerID to indicate that the clock has been stopped, so that it is possible to start it again in clockStart()
+      timerId = null; // <-- limpa o timerId para indicar que o relógio foi parado, para que seja possível iniciá-lo novamente em clockStart()
     }
 
   </script>
 
-  <!-- click on this button calls clockStart() -->
-  <input type="button" onclick="clockStart()" value="Start">
+  <!-- clicar neste botão chama clockStart() -->
+  <input type="button" onclick="clockStart()" value="Começar">
 
-  <!-- click on this button calls clockStop() -->
-  <input type="button" onclick="clockStop()" value="Stop">
+  <!-- clicar neste botão chama clockStop() -->
+  <input type="button" onclick="clockStop()" value="Parar">
 
 </body>
 </html>

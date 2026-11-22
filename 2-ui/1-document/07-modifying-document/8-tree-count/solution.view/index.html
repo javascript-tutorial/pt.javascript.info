@@ -3,36 +3,36 @@
 <body>
 
   <ul>
-    <li>Animals
+    <li>Animais
       <ul>
-        <li>Mammals
+        <li>Mamíferos
           <ul>
-            <li>Cows</li>
-            <li>Donkeys</li>
-            <li>Dogs</li>
-            <li>Tigers</li>
+            <li>Vacas</li>
+            <li>Burros</li>
+            <li>Cachorros</li>
+            <li>Tigres</li>
           </ul>
         </li>
-        <li>Other
+        <li>Outros
           <ul>
-            <li>Snakes</li>
-            <li>Birds</li>
-            <li>Lizards</li>
+            <li>Cobras</li>
+            <li>Pássaros</li>
+            <li>Lagartos</li>
           </ul>
         </li>
       </ul>
     </li>
-    <li>Fishes
+    <li>Peixes
       <ul>
-        <li>Aquarium
+        <li>Aquário
           <ul>
             <li>Guppy</li>
-            <li>Angelfish</li>
+            <li>Peixe-anjo</li>
           </ul>
         </li>
-        <li>Sea
+        <li>Mar
           <ul>
-            <li>Sea trout</li>
+            <li>Truta marinha</li>
           </ul>
         </li>
       </ul>
@@ -43,11 +43,11 @@
     let lis = document.getElementsByTagName('li');
 
     for (let li of lis) {
-      // get the count of all <li> below this <li>
+      // obtém a contagem de todos os <li> abaixo deste <li>
       let descendantsCount = li.getElementsByTagName('li').length;
       if (!descendantsCount) continue;
 
-      // add directly to the text node (append to the text)
+      // adiciona diretamente ao nó de texto (anexa ao texto)
       li.firstChild.data += ' [' + descendantsCount + ']';
     }
   </script>
