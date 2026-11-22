@@ -4,5 +4,5 @@ menu.onclick = function(event) {
   let href = event.target.getAttribute('href');
   alert(href);
 
-  return false; // prevent url change
+  return false; // previne a mudança de url
 };
