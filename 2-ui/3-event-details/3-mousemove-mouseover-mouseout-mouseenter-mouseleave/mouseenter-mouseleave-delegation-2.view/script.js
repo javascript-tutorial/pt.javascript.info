@@ -1,54 +1,54 @@
-// <td> under the mouse right now (if any)
+// <td> sob o mouse agora (se houver)
 let currentElem = null;
 
 table.onmouseover = function(event) {
-  // before entering a new element, the mouse always leaves the previous one
-  // if currentElem is set, we didn't leave the previous <td>,
-  // that's a mouseover inside it, ignore the event
+  // antes de entrar num novo elemento, o mouse sempre deixa o anterior
+  // se currentElem estiver definido, não deixamos o <td> anterior,
+  // esse é um mouseover dentro dele, ignoramos o evento
   if (currentElem) return;
 
   let target = event.target.closest('td');
 
-  // we moved not into a <td> - ignore
+  // não nos movemos para dentro de um <td> - ignorar
   if (!target) return;
 
-  // moved into <td>, but outside of our table (possible in case of nested tables)
-  // ignore
+  // movemos para um <td>, mas fora da nossa tabela (possível em caso de tabelas aninhadas)
+  // ignorar
   if (!table.contains(target)) return;
 
-  // hooray! we entered a new <td>
+  // eba! entramos num novo <td>
   currentElem = target;
   onEnter(currentElem);
 };
 
 
 table.onmouseout = function(event) {
-  // if we're outside of any <td> now, then ignore the event
-  // that's probably a move inside the table, but out of <td>,
-  // e.g. from <tr> to another <tr>
+  // se estamos fora de qualquer <td> agora, então ignoramos o evento
+  // isso provavelmente é um movimento dentro da tabela, mas fora de um <td>,
+  // por exemplo de uma <tr> para outra <tr>
   if (!currentElem) return;
 
-  // we're leaving the element – where to? Maybe to a descendant?
+  // estamos deixando o elemento – para onde? Talvez para um descendente?
   let relatedTarget = event.relatedTarget;
 
   while (relatedTarget) {
-    // go up the parent chain and check – if we're still inside currentElem
-    // then that's an internal transition – ignore it
+    // sobe a cadeia de pais e verifica – se ainda estamos dentro de currentElem
+    // então essa é uma transição interna – ignoramos ela
     if (relatedTarget == currentElem) return;
 
     relatedTarget = relatedTarget.parentNode;
   }
 
-  // we left the <td>. really.
+  // deixamos o <td>. de verdade.
   onLeave(currentElem);
   currentElem = null;
 };
 
-// any functions to handle entering/leaving an element
+// quaisquer funções para tratar a entrada/saída de um elemento
 function onEnter(elem) {
   elem.style.background = 'pink';
 
-  // show that in textarea
+  // mostra isso na área de texto
   text.value += `over -> ${currentElem.tagName}.${currentElem.className}\n`;
   text.scrollTop = 1e6;
 }
@@ -56,7 +56,7 @@ function onEnter(elem) {
 function onLeave(elem) {
   elem.style.background = '';
 
-  // show that in textarea
+  // mostra isso na área de texto
   text.value += `out <- ${elem.tagName}.${elem.className}\n`;
   text.scrollTop = 1e6;
 }
