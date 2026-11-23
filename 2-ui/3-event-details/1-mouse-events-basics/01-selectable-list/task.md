@@ -2,17 +2,17 @@ importance: 5
 
 ---
 
-# Selectable list
+# Lista selecionável
 
-Create a list where elements are selectable, like in file-managers.
+Crie uma lista onde os elementos sejam selecionáveis, como em gerenciadores de arquivos.
 
-- A click on a list element selects only that element (adds the class `.selected`), deselects all others.
-- If a click is made with `key:Ctrl` (`key:Cmd` for Mac), then the selection is toggled on the element, but other elements are not modified.
+- Um clique num elemento da lista seleciona só aquele elemento (adiciona a classe `.selected`), desseleciona todos os outros.
+- Se o clique for feito com `key:Ctrl` (`key:Cmd` no Mac), então a seleção é alternada no elemento, mas os outros elementos não são modificados.
 
-The demo:
+A demonstração:
 
 [iframe border="1" src="solution" height=180]
 
-P.S. For this task we can assume that list items are text-only. No nested tags.
+P.S. Para esta tarefa podemos supor que os itens da lista são só texto. Sem tags aninhadas.
 
-P.P.S. Prevent the native browser selection of the text on clicks.
+P.P.S. Previna a seleção nativa do navegador do texto nos cliques.
