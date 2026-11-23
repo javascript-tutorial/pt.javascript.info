@@ -24,9 +24,9 @@ document.addEventListener('mousedown', function(event) {
     moveAt(event.clientX, event.clientY);
   }
 
-  // on drag start:
-  //   remember the initial shift
-  //   move the element position:fixed and a direct child of body
+  // no início do arrasto:
+  //   lembra o deslocamento inicial
+  //   move o elemento para position:fixed e filho direto do body
   function startDrag(element, clientX, clientY) {
     if(isDragging) {
       return;
@@ -45,7 +45,7 @@ document.addEventListener('mousedown', function(event) {
     moveAt(clientX, clientY);
   };
 
-  // switch to absolute coordinates at the end, to fix the element in the document
+  // troca para coordenadas absolutas ao final, para fixar o elemento no documento
   function finishDrag() {
     if(!isDragging) {
       return;
@@ -61,49 +61,49 @@ document.addEventListener('mousedown', function(event) {
   }
 
   function moveAt(clientX, clientY) {
-    // new window-relative coordinates
+    // novas coordenadas relativas à janela
     let newX = clientX - shiftX;
     let newY = clientY - shiftY;
 
-    // check if the new coordinates are below the bottom window edge
-    let newBottom = newY + dragElement.offsetHeight; // new bottom
+    // verifica se as novas coordenadas estão abaixo da borda inferior da janela
+    let newBottom = newY + dragElement.offsetHeight; // novo fundo
 
-    // below the window? let's scroll the page
+    // abaixo da janela? vamos rolar a página
     if (newBottom > document.documentElement.clientHeight) {
-      // window-relative coordinate of document end
+      // coordenada relativa à janela do fim do documento
       let docBottom = document.documentElement.getBoundingClientRect().bottom;
 
-      // scroll the document down by 10px has a problem
-      // it can scroll beyond the end of the document
-      // Math.min(how much left to the end, 10)
+      // rolar o documento 10px para baixo tem um problema
+      // pode rolar além do fim do documento
+      // Math.min(quanto falta até o fim, 10)
       let scrollY = Math.min(docBottom - newBottom, 10);
 
-      // calculations are imprecise, there may be rounding errors that lead to scrolling up
-      // that should be impossible, fix that here
+      // os cálculos são imprecisos, pode haver erros de arredondamento que levam a rolar para cima
+      // isso deveria ser impossível, corrige isso aqui
       if (scrollY < 0) scrollY = 0;
 
       window.scrollBy(0, scrollY);
 
-      // a swift mouse move make put the cursor beyond the document end
-      // if that happens -
-      // limit the new Y by the maximally possible (right at the bottom of the document)
+      // um movimento rápido do mouse pode colocar o cursor além do fim do documento
+      // se isso acontecer -
+      // limita o novo Y pelo máximo possível (exatamente no fundo do documento)
       newY = Math.min(newY, document.documentElement.clientHeight - dragElement.offsetHeight);
     }
 
-    // check if the new coordinates are above the top window edge (similar logic)
+    // verifica se as novas coordenadas estão acima da borda superior da janela (lógica parecida)
     if (newY < 0) {
-      // scroll up
+      // rola para cima
       let scrollY = Math.min(-newY, 10);
-      if (scrollY < 0) scrollY = 0; // check precision errors
+      if (scrollY < 0) scrollY = 0; // verifica erros de precisão
 
       window.scrollBy(0, -scrollY);
-      // a swift mouse move can put the cursor beyond the document start
-      newY = Math.max(newY, 0); // newY may not be below 0
+      // um movimento rápido do mouse pode colocar o cursor além do início do documento
+      newY = Math.max(newY, 0); // newY não pode ser menor que 0
     }
 
 
-    // limit the new X within the window boundaries
-    // there's no scroll here so it's simple
+    // limita o novo X dentro dos limites da janela
+    // não há rolagem aqui, então é simples
     if (newX < 0) newX = 0;
     if (newX > document.documentElement.clientWidth - dragElement.offsetWidth) {
       newX = document.documentElement.clientWidth - dragElement.offsetWidth;
