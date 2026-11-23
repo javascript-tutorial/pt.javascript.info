@@ -5,14 +5,14 @@
   <div class="thumb"></div>
 </div>
 
-<p style="border:1px solid gray" onmousemove="this.textContent = new Date()">Mouse over here to see the date</p>
+<p style="border:1px solid gray" onmousemove="this.textContent = new Date()">Passe o mouse aqui para ver a data</p>
 
 <script>
   let thumb = slider.querySelector('.thumb');
   let shiftX;
 
   function onThumbDown(event) {
-    event.preventDefault(); // prevent selection start (browser action)
+    event.preventDefault(); // previne o início da seleção (ação do navegador)
 
     shiftX = event.clientX - thumb.getBoundingClientRect().left;
 
@@ -21,8 +21,8 @@
     thumb.onpointermove = onThumbMove;
 
     thumb.onpointerup = event => {
-      // dragging finished, no need to track pointer any more
-      // ...any other "drag end" logic here...
+      // arrasto concluído, não é mais necessário rastrear o ponteiro
+      // ...qualquer outra lógica de "fim do arrasto" aqui...
       thumb.onpointermove = null;
       thumb.onpointerup = null;
     }
@@ -31,7 +31,7 @@
   function onThumbMove(event) {
     let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
 
-    // if the pointer is out of slider => adjust left to be within the boundaries
+    // se o ponteiro está fora do slider => ajusta o left para ficar dentro dos limites
     if (newLeft < 0) {
       newLeft = 0;
     }
