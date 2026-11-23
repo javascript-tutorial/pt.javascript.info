@@ -1,13 +1,13 @@
-# Fetch users from GitHub
+# Buscar usuários do GitHub
 
-Create an async function `getUsers(names)`, that gets an array of GitHub logins, fetches the users from GitHub and returns an array of GitHub users.
+Crie uma função assíncrona `getUsers(names)` que receba um array de logins do GitHub, busque os usuários na API do GitHub e retorne um array com os dados desses usuários.
 
-The GitHub url with user information for the given `USERNAME` is: `https://api.github.com/users/USERNAME`.
+A URL do GitHub com as informações de um certo `USERNAME` é: `https://api.github.com/users/USERNAME`.
 
-There's a test example in the sandbox.
+Há um exemplo de teste no sandbox.
 
-Important details:
+Detalhes importantes:
 
-1. There should be one `fetch` request per user.
-2. Requests shouldn't wait for each other. So that the data arrives as soon as possible.
-3. If any request fails, or if there's no such user, the function should return `null` in the resulting array.
+1. Deve haver uma requisição `fetch` por usuário.
+2. As requisições não devem esperar umas pelas outras — assim os dados chegam o mais rápido possível.
+3. Se alguma requisição falhar, ou se o usuário não existir, a função deve retornar `null` na posição correspondente do array.
