@@ -2,19 +2,19 @@ importance: 5
 
 ---
 
-# Drag superheroes around the field
+# Arraste super-heróis pelo campo
 
-This task can help you to check understanding of several aspects of Drag'n'Drop and DOM.
+Essa tarefa pode te ajudar a verificar o entendimento de vários aspectos de Drag'n'Drop e DOM.
 
-Make all elements with class `draggable` -- draggable. Like a ball in the chapter.
+Faça todos os elementos com a classe `draggable` -- arrastáveis. Como a bola no capítulo.
 
-Requirements:
+Requisitos:
 
-- Use event delegation to track drag start: a single event handler on `document` for `mousedown`.
-- If elements are dragged to top/bottom window edges -- the page scrolls up/down to allow further dragging.
-- There is no horizontal scroll (this makes the task a bit simpler, adding it is easy).
-- Draggable elements or their parts should never leave the window, even after swift mouse moves.
+- Use delegação de eventos para rastrear o início do arrasto: um único manipulador de evento em `document` para `mousedown`.
+- Se os elementos forem arrastados até as bordas superior/inferior da janela -- a página rola para cima/baixo para permitir continuar arrastando.
+- Não há rolagem horizontal (isso torna a tarefa um pouco mais simples, adicioná-la é fácil).
+- Elementos arrastáveis ou suas partes nunca devem deixar a janela, mesmo depois de movimentos rápidos do mouse.
 
-The demo is too big to fit it here, so here's the link.
+A demonstração é grande demais para caber aqui, então aqui está o link.
 
 [demo src="solution"]

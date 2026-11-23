@@ -1,5 +1,5 @@
-As we can see from HTML/CSS, the slider is a `<div>` with a colored background, that contains a runner -- another `<div>` with `position:relative`.
+Como podemos ver pelo HTML/CSS, o slider é uma `<div>` com um fundo colorido, que contém um controle deslizante -- outra `<div>` com `position:relative`.
 
-To position the runner we use `position:relative`, to provide the coordinates relative to its parent, here it's more convenient here than `position:absolute`.
+Para posicionar o controle deslizante usamos `position:relative`, para fornecer as coordenadas relativas ao seu pai, aqui isso é mais conveniente do que `position:absolute`.
 
-Then we implement horizontal-only Drag'n'Drop with limitation by width.
+Então implementamos um Drag'n'Drop apenas horizontal com limitação pela largura.

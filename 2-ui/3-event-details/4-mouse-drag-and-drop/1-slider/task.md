@@ -4,13 +4,13 @@ importance: 5
 
 # Slider
 
-Create a slider:
+Crie um slider:
 
 [iframe src="solution" height=60 border=1]
 
-Drag the blue thumb with the mouse and move it.
+Arraste o controle deslizante azul com o mouse e mova-o.
 
-Important details:
+Detalhes importantes:
 
-- When the mouse button is pressed, during the dragging the mouse may go over or below the slider. The slider will still work (convenient for the user).
-- If the mouse moves very fast to the left or to the right, the thumb should stop exactly at the edge.
+- Quando o botão do mouse é pressionado, durante o arrasto o mouse pode ir para cima ou para baixo do slider. O slider ainda vai funcionar (conveniente para o usuário).
+- Se o mouse se move muito rápido para a esquerda ou para a direita, o controle deve parar exatamente na borda.
