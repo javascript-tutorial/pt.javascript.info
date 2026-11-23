@@ -6,7 +6,7 @@
   <style>
     body {
       height: 2000px;
-      /* the tooltip should work after page scroll too */
+      /* a tooltip deve funcionar após rolar a página também */
     }
 
     .tooltip {
@@ -49,16 +49,16 @@
 <body>
 
 
-  <div data-tooltip="Here is the house interior" id="house">
-    <div data-tooltip="Here is the roof" id="roof"></div>
+  <div data-tooltip="Aqui é o interior da casa" id="house">
+    <div data-tooltip="Aqui é o telhado" id="roof"></div>
 
-    <p>Once upon a time there was a mother pig who had three little pigs.</p>
+    <p>Era uma vez uma mamãe porca que tinha três porquinhos.</p>
 
-    <p>The three little pigs grew so big that their mother said to them, "You are too big to live here any longer. You must go and build houses for yourselves. But take care that the wolf does not catch you."</p>
+    <p>Os três porquinhos cresceram tanto que a mãe disse a eles: "Vocês estão grandes demais para continuar vivendo aqui. Vocês devem ir e construir casas para si mesmos. Mas tenham cuidado para que o lobo não os pegue."</p>
 
-    <p>The three little pigs set off. "We will take care that the wolf does not catch us," they said.</p>
+    <p>Os três porquinhos partiram. "Vamos tomar cuidado para que o lobo não nos pegue," disseram eles.</p>
 
-    <p>Soon they met a man. <a href="https://en.wikipedia.org/wiki/The_Three_Little_Pigs" data-tooltip="Read on…">Hover over me</a></p>
+    <p>Logo encontraram um homem. <a href="https://pt.wikipedia.org/wiki/Os_Três_Porquinhos" data-tooltip="Leia mais…">Passe o mouse sobre mim</a></p>
 
   </div>
 
@@ -66,25 +66,25 @@
     let tooltip;
 
     document.onmouseover = function(event) {
-      // important: a fast-moving mouse may "jump" right to a child on an annotated node, skipping the parent
-      // so mouseover may happen on a child.
+      // importante: um mouse em movimento rápido pode "saltar" direto para um filho num nó anotado, pulando o pai
+      // então mouseover pode acontecer num filho.
 
       let anchorElem = event.target.closest('[data-tooltip]');
 
       if (!anchorElem) return;
 
-      // show tooltip and remember it
+      // mostra a tooltip e a lembra
       tooltip = showTooltip(anchorElem, anchorElem.dataset.tooltip);
     }
 
     document.onmouseout = function() {
-      // it is possible that mouseout triggered, but we're still inside the element
-      // (its target was inside, and it bubbled)
-      // but in this case we'll have an immediate mouseover,
-      // so the tooltip will be destroyed and shown again
+      // é possível que mouseout tenha sido acionado, mas ainda estamos dentro do elemento
+      // (seu target estava dentro, e ele borbulhou)
+      // mas nesse caso teremos um mouseover imediato,
+      // então a tooltip vai ser destruída e mostrada novamente
       //
-      // luckily, the "blinking" won't be visible,
-      // as both events happen almost at the same time
+      // felizmente, o "piscar" não vai ser visível,
+      // já que os dois eventos acontecem quase ao mesmo tempo
       if (tooltip) {
         tooltip.remove();
         tooltip = false;
@@ -101,7 +101,7 @@
 
       let coords = anchorElem.getBoundingClientRect();
 
-      // position the tooltip over the center of the element
+      // posiciona a tooltip sobre o centro do elemento
       let left = coords.left + (anchorElem.offsetWidth - tooltipElem.offsetWidth) / 2;
       if (left < 0) left = 0;
 

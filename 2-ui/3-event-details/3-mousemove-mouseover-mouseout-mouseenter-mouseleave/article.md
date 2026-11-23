@@ -1,78 +1,78 @@
-# Moving the mouse: mouseover/out, mouseenter/leave
+# Movendo o mouse: mouseover/out, mouseenter/leave
 
-Let's dive into more details about events that happen when the mouse moves between elements.
+Vamos entrar em mais detalhes sobre os eventos que acontecem quando o mouse se move entre elementos.
 
-## Events mouseover/mouseout, relatedTarget
+## Eventos mouseover/mouseout, relatedTarget
 
-The `mouseover` event occurs when a mouse pointer comes over an element, and `mouseout` -- when it leaves.
+O evento `mouseover` acontece quando um cursor de mouse entra sobre um elemento, e `mouseout` -- quando ele o deixa.
 
 ![](mouseover-mouseout.svg)
 
-These events are special, because they have property `relatedTarget`. This property complements `target`. When a mouse leaves one element for another, one of them becomes `target`, and the other one - `relatedTarget`.
+Esses eventos são especiais, porque têm a propriedade `relatedTarget`. Essa propriedade complementa `target`. Quando o mouse deixa um elemento por outro, um deles se torna `target`, e o outro -- `relatedTarget`.
 
-For `mouseover`:
+Para `mouseover`:
 
-- `event.target` -- is the element where the mouse came over.
-- `event.relatedTarget` -- is the element from which the mouse came (`relatedTarget` -> `target`).
+- `event.target` -- é o elemento sobre o qual o mouse entrou.
+- `event.relatedTarget` -- é o elemento de onde o mouse veio (`relatedTarget` -> `target`).
 
-For `mouseout` the reverse:
+Para `mouseout`, o inverso:
 
-- `event.target` -- is the element that the mouse left.
-- `event.relatedTarget` -- is the new under-the-pointer element, that mouse left for (`target` -> `relatedTarget`).
+- `event.target` -- é o elemento que o mouse deixou.
+- `event.relatedTarget` -- é o novo elemento sob o cursor, para o qual o mouse foi (`target` -> `relatedTarget`).
 
 ```online
-In the example below each face and its features are separate elements. When you move the mouse, you can see mouse events in the text area.
+No exemplo abaixo, cada rosto e seus traços são elementos separados. Ao mover o mouse, você pode ver os eventos de mouse na área de texto.
 
-Each event has the information about both `target` and `relatedTarget`:
+Cada evento tem a informação tanto de `target` quanto de `relatedTarget`:
 
 [codetabs src="mouseoverout" height=280]
 ```
 
-```warn header="`relatedTarget` can be `null`"
-The `relatedTarget` property can be `null`.
+```warn header="`relatedTarget` pode ser `null`"
+A propriedade `relatedTarget` pode ser `null`.
 
-That's normal and just means that the mouse came not from another element, but from out of the window. Or that it left the window.
+Isso é normal e só significa que o mouse não veio de outro elemento, mas de fora da janela. Ou que ele saiu da janela.
 
-We should keep that possibility in mind when using `event.relatedTarget` in our code. If we access `event.relatedTarget.tagName`, then there will be an error.
+Devemos ter essa possibilidade em mente ao usar `event.relatedTarget` em nosso código. Se acessarmos `event.relatedTarget.tagName`, então vai haver um erro.
 ```
 
-## Skipping elements
+## Pulando elementos
 
-The `mousemove` event triggers when the mouse moves. But that doesn't mean that every pixel leads to an event.
+O evento `mousemove` é acionado quando o mouse se move. Mas isso não significa que todo pixel gere um evento.
 
-The browser checks the mouse position from time to time. And if it notices changes then triggers the events.
+O navegador verifica a posição do mouse de tempos em tempos. E se ele notar mudanças, então aciona os eventos.
 
-That means that if the visitor is moving the mouse very fast then some DOM-elements may be skipped:
+Isso significa que, se o visitante estiver movendo o mouse muito rápido, então alguns elementos do DOM podem ser pulados:
 
 ![](mouseover-mouseout-over-elems.svg)
 
-If the mouse moves very fast from `#FROM` to `#TO` elements as painted above, then intermediate `<div>` elements (or some of them) may be skipped. The `mouseout` event may trigger on `#FROM` and then immediately `mouseover` on `#TO`.
+Se o mouse se move muito rápido dos elementos `#FROM` para `#TO`, como pintado acima, então os elementos `<div>` intermediários (ou alguns deles) podem ser pulados. O evento `mouseout` pode ser acionado em `#FROM` e então imediatamente `mouseover` em `#TO`.
 
-That's good for performance, because there may be many intermediate elements. We don't really want to process in and out of each one.
+Isso é bom para a performance, porque pode haver muitos elementos intermediários. Realmente não queremos processar a entrada e a saída de cada um deles.
 
-On the other hand, we should keep in mind that the mouse pointer doesn't "visit" all elements along the way. It can "jump".
+Por outro lado, devemos ter em mente que o cursor do mouse não "visita" todos os elementos ao longo do caminho. Ele pode "saltar".
 
-In particular, it's possible that the pointer jumps right inside the middle of the page from out of the window. In that case `relatedTarget` is `null`, because it came from "nowhere":
+Em particular, é possível que o cursor salte direto para o meio da página vindo de fora da janela. Nesse caso, `relatedTarget` é `null`, porque ele veio "de lugar nenhum":
 
 ![](mouseover-mouseout-from-outside.svg)
 
 ```online
-You can check it out "live" on a teststand below.
+Você pode verificar isso "ao vivo" num campo de teste abaixo.
 
-Its HTML has two nested elements: the `<div id="child">` is inside the `<div id="parent">`. If you move the mouse fast over them, then maybe only the child div triggers events, or maybe the parent one, or maybe there will be no events at all.
+O HTML dele tem dois elementos aninhados: a `<div id="child">` está dentro da `<div id="parent">`. Se você mover o mouse rápido sobre eles, então talvez só a div filha acione eventos, ou talvez a pai, ou talvez não haja nenhum evento.
 
-Also move the pointer into the child `div`, and then move it out quickly down through the parent one. If the movement is fast enough, then the parent element is ignored. The mouse will cross the parent element without noticing it.
+Também mova o cursor para dentro da `div` filha, e então mova-o para fora rapidamente, passando pela div pai. Se o movimento for rápido o suficiente, então o elemento pai é ignorado. O mouse vai cruzar o elemento pai sem notá-lo.
 
 [codetabs height=360 src="mouseoverout-fast"]
 ```
 
-```smart header="If `mouseover` triggered, there must be `mouseout`"
-In case of fast mouse movements, intermediate elements may be ignored, but one thing we know for sure: if the pointer "officially" entered an element (`mouseover` event generated), then upon leaving it we always get `mouseout`.
+```smart header="Se `mouseover` foi acionado, deve haver `mouseout`"
+No caso de movimentos rápidos do mouse, elementos intermediários podem ser ignorados, mas uma coisa sabemos com certeza: se o cursor entrou "oficialmente" num elemento (o evento `mouseover` foi gerado), então, ao deixá-lo, sempre obtemos `mouseout`.
 ```
 
-## Mouseout when leaving for a child
+## Mouseout ao sair para um filho
 
-An important feature of `mouseout` -- it triggers, when the pointer moves from an element to its descendant, e.g. from `#parent` to `#child` in this HTML:
+Uma característica importante do `mouseout` -- ele é acionado quando o cursor se move de um elemento para um descendente dele, por exemplo de `#parent` para `#child` neste HTML:
 
 ```html
 <div id="parent">
@@ -80,92 +80,92 @@ An important feature of `mouseout` -- it triggers, when the pointer moves from a
 </div>
 ```
 
-If we're on `#parent` and then move the pointer deeper into `#child`, we get `mouseout` on `#parent`!
+Se estamos em `#parent` e então movemos o cursor mais para dentro, até `#child`, obtemos `mouseout` em `#parent`!
 
 ![](mouseover-to-child.svg)
 
-That may seem strange, but can be easily explained.
+Isso pode parecer estranho, mas pode ser facilmente explicado.
 
-**According to the browser logic, the mouse cursor may be only over a *single* element at any time -- the most nested one and top by z-index.**
+**Segundo a lógica do navegador, o cursor do mouse pode estar somente sobre um *único* elemento a qualquer momento -- o mais aninhado e o mais alto no z-index.**
 
-So if it goes to another element (even a descendant), then it leaves the previous one.
+Então, se ele vai para outro elemento (mesmo um descendente), ele deixa o anterior.
 
-Please note another important detail of event processing.
+Observe outro detalhe importante do processamento de eventos.
 
-The `mouseover` event on a descendant bubbles up. So, if `#parent` has `mouseover` handler, it triggers:
+O evento `mouseover` num descendente borbulha para cima. Então, se `#parent` tiver um manipulador de `mouseover`, ele é acionado:
 
 ![](mouseover-bubble-nested.svg)
 
 ```online
-You can see that very well in the example below: `<div id="child">` is inside the `<div id="parent">`. There are `mouseover/out` handlers on `#parent` element that output event details.
+Você pode ver isso muito bem no exemplo abaixo: a `<div id="child">` está dentro da `<div id="parent">`. Há manipuladores de `mouseover/out` no elemento `#parent` que exibem os detalhes do evento.
 
-If you move the mouse from `#parent` to `#child`, you see two events on `#parent`:
-1. `mouseout [target: parent]` (left the parent), then
-2. `mouseover [target: child]` (came to the child, bubbled).
+Se você mover o mouse de `#parent` para `#child`, você verá dois eventos em `#parent`:
+1. `mouseout [target: parent]` (deixou o pai), então
+2. `mouseover [target: child]` (chegou ao filho, borbulhando).
 
 [codetabs height=360 src="mouseoverout-child"]
 ```
 
-As shown, when the pointer moves from `#parent` element to `#child`, two handlers trigger on the parent element: `mouseout` and `mouseover`:
+Como mostrado, quando o cursor se move do elemento `#parent` para `#child`, dois manipuladores são acionados no elemento pai: `mouseout` e `mouseover`:
 
 ```js
 parent.onmouseout = function(event) {
-  /* event.target: parent element */
+  /* event.target: elemento pai */
 };
 parent.onmouseover = function(event) {
-  /* event.target: child element (bubbled) */
+  /* event.target: elemento filho (borbulhando) */
 };
 ```
 
-**If we don't examine `event.target` inside the handlers, then it may seem that the mouse pointer left `#parent` element, and then immediately came back over it.**
+**Se não examinarmos `event.target` dentro dos manipuladores, então pode parecer que o cursor do mouse deixou o elemento `#parent`, e então imediatamente voltou sobre ele.**
 
-But that's not the case! The pointer is still over the parent, it just moved deeper into the child element.
+Mas não é esse o caso! O cursor ainda está sobre o pai, ele só se moveu mais para dentro do elemento filho.
 
-If there are some actions upon leaving the parent element, e.g. an animation runs in `parent.onmouseout`, we usually don't want it when the pointer just goes deeper into `#parent`.
+Se há algumas ações ao deixar o elemento pai, por exemplo uma animação que acontece em `parent.onmouseout`, geralmente não queremos isso quando o cursor só vai mais para dentro de `#parent`.
 
-To avoid it, we can check `relatedTarget` in the handler and, if the mouse is still inside the element, then ignore such event.
+Para evitar isso, podemos verificar `relatedTarget` no manipulador e, se o mouse ainda estiver dentro do elemento, então ignorar tal evento.
 
-Alternatively we can use other events: `mouseenter` and `mouseleave`, that we'll be covering now, as they don't have such problems.
+Alternativamente, podemos usar outros eventos: `mouseenter` e `mouseleave`, que vamos cobrir agora, já que eles não têm esses problemas.
 
-## Events mouseenter and mouseleave
+## Eventos mouseenter e mouseleave
 
-Events `mouseenter/mouseleave` are like `mouseover/mouseout`. They trigger when the mouse pointer enters/leaves the element.
+Os eventos `mouseenter/mouseleave` são como `mouseover/mouseout`. Eles são acionados quando o cursor do mouse entra/sai do elemento.
 
-But there are two important differences:
+Mas há duas diferenças importantes:
 
-1. Transitions inside the element, to/from descendants, are not counted.
-2. Events `mouseenter/mouseleave` do not bubble.
+1. Transições dentro do elemento, de/para descendentes, não são contadas.
+2. Os eventos `mouseenter/mouseleave` não borbulham.
 
-These events are extremely simple.
+Esses eventos são extremamente simples.
 
-When the pointer enters an element -- `mouseenter` triggers. The exact location of the pointer inside the element or its descendants doesn't matter.
+Quando o cursor entra num elemento -- `mouseenter` é acionado. A localização exata do cursor dentro do elemento ou de seus descendentes não importa.
 
-When the pointer leaves an element -- `mouseleave` triggers.
+Quando o cursor deixa um elemento -- `mouseleave` é acionado.
 
 ```online
-This example is similar to the one above, but now the top element has `mouseenter/mouseleave` instead of `mouseover/mouseout`.
+Este exemplo é parecido com o de cima, mas agora o elemento do topo tem `mouseenter/mouseleave` em vez de `mouseover/mouseout`.
 
-As you can see, the only generated events are the ones related to moving the pointer in and out of the top element. Nothing happens when the pointer goes to the child and back. Transitions between descendants are ignored
+Como você pode ver, os únicos eventos gerados são os relacionados a mover o cursor para dentro e para fora do elemento do topo. Nada acontece quando o cursor vai para o filho e volta. Transições entre descendentes são ignoradas
 
 [codetabs height=340 src="mouseleave"]
 ```
 
-## Event delegation
+## Delegação de eventos
 
-Events `mouseenter/leave` are very simple and easy to use. But they do not bubble. So we can't use event delegation with them.
+Os eventos `mouseenter/leave` são muito simples e fáceis de usar. Mas eles não borbulham. Então não podemos usar delegação de eventos com eles.
 
-Imagine we want to handle mouse enter/leave for table cells. And there are hundreds of cells.
+Imagine que queremos tratar a entrada/saída do mouse para células de tabela. E há centenas de células.
 
-The natural solution would be -- to set the handler on `<table>` and process events there. But `mouseenter/leave` don't bubble. So if such event happens on `<td>`, then only a handler on that `<td>` is able to catch it.
+A solução natural seria -- definir o manipulador em `<table>` e processar os eventos lá. Mas `mouseenter/leave` não borbulham. Então, se tal evento acontece num `<td>`, só um manipulador naquele `<td>` é capaz de capturá-lo.
 
-Handlers for `mouseenter/leave` on `<table>` only trigger when the pointer enters/leaves the table as a whole. It's impossible to get any information about transitions inside it.
+Manipuladores de `mouseenter/leave` em `<table>` só são acionados quando o cursor entra/sai da tabela como um todo. É impossível obter qualquer informação sobre transições dentro dela.
 
-So, let's use `mouseover/mouseout`.
+Então, vamos usar `mouseover/mouseout`.
 
-Let's start with simple handlers that highlight the element under mouse:
+Vamos começar com manipuladores simples que destacam o elemento sob o mouse:
 
 ```js
-// let's highlight an element under the pointer
+// vamos destacar um elemento sob o cursor
 table.onmouseover = function(event) {
   let target = event.target;
   target.style.background = 'pink';
@@ -178,44 +178,44 @@ table.onmouseout = function(event) {
 ```
 
 ```online
-Here they are in action. As the mouse travels across the elements of this table, the current one is highlighted:
+Aqui estão eles em ação. Conforme o mouse percorre os elementos desta tabela, o atual é destacado:
 
 [codetabs height=480 src="mouseenter-mouseleave-delegation"]
 ```
 
-In our case we'd like to handle transitions between table cells `<td>`: entering a cell and leaving it. Other transitions, such as inside the cell or outside of any cells, don't interest us. Let's filter them out.
+No nosso caso, gostaríamos de tratar as transições entre células `<td>` da tabela: entrar numa célula e saí-la. Outras transições, como dentro da célula ou fora de qualquer célula, não nos interessam. Vamos filtrá-las.
 
-Here's what we can do:
+Aqui está o que podemos fazer:
 
-- Remember the currently highlighted `<td>` in a variable, let's call it `currentElem`.
-- On `mouseover` -- ignore the event if we're still inside the current `<td>`.
-- On `mouseout` -- ignore if we didn't leave the current `<td>`.
+- Lembrar o `<td>` atualmente destacado numa variável, vamos chamá-la de `currentElem`.
+- No `mouseover` -- ignorar o evento se ainda estivermos dentro do `<td>` atual.
+- No `mouseout` -- ignorar se não deixamos o `<td>` atual.
 
-Here's an example of code that accounts for all possible situations:
+Aqui está um exemplo de código que leva em conta todas as situações possíveis:
 
 [js src="mouseenter-mouseleave-delegation-2/script.js"]
 
-Once again, the important features are:
-1. It uses event delegation to handle entering/leaving of any `<td>` inside the table. So it relies on `mouseover/out` instead of `mouseenter/leave` that don't bubble and hence allow no delegation.
-2. Extra events, such as moving between descendants of `<td>` are filtered out, so that `onEnter/Leave` runs only if the pointer leaves or enters `<td>` as a whole.
+Mais uma vez, as características importantes são:
+1. Ele usa delegação de eventos para tratar a entrada/saída de qualquer `<td>` dentro da tabela. Então ele depende de `mouseover/out` em vez de `mouseenter/leave`, que não borbulham e, portanto, não permitem delegação.
+2. Eventos extras, como mover entre descendentes de `<td>`, são filtrados, de forma que `onEnter/Leave` só é executado se o cursor deixar ou entrar no `<td>` como um todo.
 
 ```online
-Here's the full example with all details:
+Aqui está o exemplo completo com todos os detalhes:
 
 [codetabs height=460 src="mouseenter-mouseleave-delegation-2"]
 
-Try to move the cursor in and out of table cells and inside them. Fast or slow -- doesn't matter. Only `<td>` as a whole is highlighted, unlike the example before.
+Tente mover o cursor para dentro e para fora das células da tabela e dentro delas. Rápido ou lento -- não importa. Só o `<td>` como um todo é destacado, diferente do exemplo anterior.
 ```
 
-## Summary
+## Resumo
 
-We covered events `mouseover`, `mouseout`, `mousemove`, `mouseenter` and `mouseleave`.
+Cobrimos os eventos `mouseover`, `mouseout`, `mousemove`, `mouseenter` e `mouseleave`.
 
-These things are good to note:
+Essas coisas são boas de notar:
 
-- A fast mouse move may skip intermediate elements.
-- Events `mouseover/out` and `mouseenter/leave` have an additional property: `relatedTarget`. That's the element that we are coming from/to, complementary to `target`.
+- Um movimento rápido do mouse pode pular elementos intermediários.
+- Os eventos `mouseover/out` e `mouseenter/leave` têm uma propriedade adicional: `relatedTarget`. Esse é o elemento de onde/para onde estamos indo, complementar a `target`.
 
-Events `mouseover/out` trigger even when we go from the parent element to a child element. The browser assumes that the mouse can be only over one element at one time -- the deepest one.
+Os eventos `mouseover/out` são acionados mesmo quando vamos do elemento pai para um elemento filho. O navegador assume que o mouse só pode estar sobre um elemento a cada momento -- o mais profundo.
 
-Events `mouseenter/leave` are different in that aspect: they only trigger when the mouse comes in and out the element as a whole. Also they do not bubble.
+Os eventos `mouseenter/leave` são diferentes nesse aspecto: eles só são acionados quando o mouse entra e sai do elemento como um todo. Além disso, eles não borbulham.

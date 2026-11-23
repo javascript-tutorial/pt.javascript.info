@@ -1,18 +1,18 @@
 
-The algorithm looks simple:
-1. Put `onmouseover/out` handlers on the element. Also can use `onmouseenter/leave` here, but they are less universal, won't work if we introduce delegation.
-2. When a mouse cursor entered the element, start measuring the speed on `mousemove`.
-3. If the speed is slow, then run `over`.
-4. When we're going out of the element, and `over` was executed, run `out`.
+O algoritmo parece simples:
+1. Colocar manipuladores `onmouseover/out` no elemento. Também é possível usar `onmouseenter/leave` aqui, mas eles são menos universais, não funcionariam se introduzíssemos delegação.
+2. Quando um cursor de mouse entra no elemento, começar a medir a velocidade em `mousemove`.
+3. Se a velocidade for baixa, então executar `over`.
+4. Quando estamos saindo do elemento, e `over` foi executado, executar `out`.
 
-But how to measure the speed?
+Mas como medir a velocidade?
 
-The first idea can be: run a function every `100ms` and measure the distance between previous and new coordinates. If it's small, then the speed is small.
+A primeira ideia pode ser: executar uma função a cada `100ms` e medir a distância entre as coordenadas anteriores e as novas. Se for pequena, então a velocidade é baixa.
 
-Unfortunately, there's no way to get "current mouse coordinates" in JavaScript. There's no function like `getCurrentMouseCoordinates()`.
+Infelizmente, não há como obter as "coordenadas atuais do mouse" em JavaScript. Não existe uma função como `getCurrentMouseCoordinates()`.
 
-The only way to get coordinates is to listen for mouse events, like `mousemove`, and take coordinates from the event object.
+A única forma de obter coordenadas é escutar eventos de mouse, como `mousemove`, e pegar as coordenadas do objeto do evento.
 
-So let's set a handler on `mousemove` to track coordinates and remember them. And then compare them, once per `100ms`.
+Então, vamos definir um manipulador em `mousemove` para rastrear as coordenadas e lembrá-las. E então compará-las, uma vez a cada `100ms`.
 
-P.S. Please note: the solution tests use `dispatchEvent` to see if the tooltip works right.
+P.S. Note bem: os testes da solução usam `dispatchEvent` para ver se a tooltip funciona corretamente.
