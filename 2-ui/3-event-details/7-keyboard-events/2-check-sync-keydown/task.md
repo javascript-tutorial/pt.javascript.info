@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Extended hotkeys
+# Hotkeys estendidas
 
-Create a function `runOnKeys(func, code1, code2, ... code_n)` that runs `func` on simultaneous pressing of keys with codes `code1`, `code2`, ..., `code_n`.
+Crie uma função `runOnKeys(func, code1, code2, ... code_n)` que executa `func` quando as teclas com os códigos `code1`, `code2`, ..., `code_n` são pressionadas simultaneamente.
 
-For instance, the code below shows `alert` when `"Q"` and `"W"` are pressed together (in any language, with or without CapsLock)
+Por exemplo, o código abaixo mostra um `alert` quando `"Q"` e `"W"` são pressionadas juntas (em qualquer idioma, com ou sem CapsLock)
 
 ```js no-beautify
 runOnKeys(
