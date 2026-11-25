@@ -1,5 +1,5 @@
 
-# URL objects
+# Objetos URL
 
 A classe nativa [URL](https://url.spec.whatwg.org/#api) fornece uma interface conveniente para criar e analisar URLs.
 
@@ -70,7 +70,7 @@ Em geral, o objeto `URL` pode ser passado para qualquer método em vez de uma st
 
 ## SearchParams "?..."
 
-Digamos que queremos criar uma url com parâmetros de busca dados, por exemplo, `https://google.com/search?query=JavaScript`.
+Digamos que queremos criar uma url com determinados parâmetros de busca, por exemplo, `https://google.com/search?query=JavaScript`.
 
 Podemos fornecê-los na string da URL:
 
@@ -120,7 +120,7 @@ Existe um padrão, [RFC3986](https://tools.ietf.org/html/rfc3986), que define qu
 
 Aqueles que não são permitidos devem ser codificados, por exemplo, letras não latinas e espaços - substituídos pelos seus códigos UTF-8, prefixados por `%`, como `%20` (um espaço pode ser codificado por `+`, por motivos históricos, mas isso é uma exceção).
 
-A boa notícia é que objetos `URL` cuidam de tudo isso automaticamente. Só fornecemos todos os parâmetros sem codificação, e então convertemos a `URL` para string:
+A boa notícia é que objetos `URL` cuidam de tudo isso automaticamente. Basta fornecer todos os parâmetros sem codificação e então converter o objeto `URL` para string:
 
 ```js run
 // usando alguns caracteres cirílicos neste exemplo
