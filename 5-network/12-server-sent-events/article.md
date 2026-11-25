@@ -1,4 +1,4 @@
-# Server Sent Events
+# Eventos enviados pelo servidor (Server-Sent Events)
 
 A especificação [Server-Sent Events](https://html.spec.whatwg.org/multipage/comms.html#the-eventsource-interface) descreve uma classe nativa `EventSource`, que mantém a conexão com o servidor e permite receber eventos dele.
 
@@ -29,12 +29,12 @@ O navegador vai se conectar a `url` e manter a conexão aberta, esperando por ev
 O servidor deve responder com status 200 e o cabeçalho `Content-Type: text/event-stream`, então manter a conexão e escrever mensagens nela num formato especial, assim:
 
 ```
-data: Message 1
+data: Mensagem 1
 
-data: Message 2
+data: Mensagem 2
 
-data: Message 3
-data: of two lines
+data: Mensagem 3
+data: de duas linhas
 ```
 
 - O texto de uma mensagem vem depois de `data:`, o espaço depois dos dois-pontos é opcional.
@@ -57,7 +57,7 @@ Para cada mensagem desse tipo, o evento `message` é gerado:
 let eventSource = new EventSource("/events/subscribe");
 
 eventSource.onmessage = function(event) {
-  console.log("New message", event.data);
+  console.log("Nova mensagem", event.data);
   // vai registrar 3 vezes para o fluxo de dados acima
 };
 
@@ -72,7 +72,7 @@ eventSource.onmessage = function(event) {
 let source = new EventSource("https://another-site.com/events");
 ```
 
-O servidor remoto vai obter o cabeçalho `Origin` e deve responder com `Access-Control-Allow-Origin` para prosseguir.
+O servidor remoto vai receber o cabeçalho `Origin` e deve responder com `Access-Control-Allow-Origin` para prosseguir.
 
 Para passar credenciais, devemos definir a opção adicional `withCredentials`, assim:
 
@@ -97,7 +97,7 @@ O servidor pode definir o atraso recomendado usando `retry:` na resposta (em mil
 
 ```js
 retry: 15000
-data: Hello, I set the reconnection delay to 15 seconds
+data: Olá, defini o atraso de reconexão para 15 segundos
 ```
 
 O `retry:` pode vir tanto junto com algum dado, quanto como uma mensagem independente.
@@ -126,14 +126,14 @@ Quando uma conexão quebra por causa de problemas de rede, nenhum dos lados pode
 Para retomar a conexão corretamente, cada mensagem deve ter um campo `id`, assim:
 
 ```
-data: Message 1
+data: Mensagem 1
 id: 1
 
-data: Message 2
+data: Mensagem 2
 id: 2
 
-data: Message 3
-data: of two lines
+data: Mensagem 3
+data: de duas linhas
 id: 3
 ```
 
@@ -156,7 +156,7 @@ EventSource.OPEN = 1;       // conectado
 EventSource.CLOSED = 2;     // conexão fechada
 ```
 
-Quando um objeto é criado, ou a conexão está fora do ar, ele é sempre `EventSource.CONNECTING` (igual a `0`).
+Quando um objeto é criado, ou a conexão está fora do ar, `readyState` é sempre `EventSource.CONNECTING` (igual a `0`).
 
 Podemos consultar essa propriedade para saber o estado do `EventSource`.
 
@@ -217,7 +217,7 @@ Ele oferece:
 
 Isso faz do `EventSource` uma alternativa viável ao `WebSocket`, já que este último é mais de baixo nível e não tem esses recursos nativos (embora eles possam ser implementados).
 
-Em muitas aplicações da vida real, o poder do `EventSource` é só o suficiente.
+Em muitas aplicações da vida real, o poder do `EventSource` é suficiente.
 
 Suportado em todos os navegadores modernos (não no IE).
 
