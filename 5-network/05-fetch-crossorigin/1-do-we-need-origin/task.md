@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Why do we need Origin?
+# Por que precisamos de Origin?
 
-As you probably know, there's HTTP-header `Referer`, that usually contains an url of the page which initiated a network request.
+Como você provavelmente sabe, existe o cabeçalho HTTP `Referer`, que normalmente contém a url da página que iniciou uma requisição de rede.
 
-For instance, when fetching `http://google.com` from `http://javascript.info/some/url`, the headers look like this:
+Por exemplo, ao buscar `http://google.com` a partir de `http://javascript.info/some/url`, os cabeçalhos se parecem com isto:
 
 ```
 Accept: */*
@@ -20,9 +20,9 @@ Referer: http://javascript.info/some/url
 */!*
 ```
 
-As you can see, both `Referer` and `Origin` are present.
+Como você pode ver, tanto `Referer` quanto `Origin` estão presentes.
 
-The questions:
+As perguntas:
 
-1. Why `Origin` is needed, if `Referer` has even more information?
-2. Is it possible that there's no `Referer` or `Origin`, or is it incorrect?
+1. Por que `Origin` é necessário, se `Referer` tem até mais informação?
+2. É possível que não haja `Referer` ou `Origin`, ou que eles estejam incorretos?

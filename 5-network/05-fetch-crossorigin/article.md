@@ -1,8 +1,8 @@
-# Fetch: Cross-Origin Requests
+# Fetch: Requisições Cross-Origin
 
-If we send a `fetch` request to another web-site, it will probably fail.
+Se enviarmos uma requisição `fetch` para outro site, provavelmente ela vai falhar.
 
-For instance, let's try fetching `http://example.com`:
+Por exemplo, vamos tentar buscar `http://example.com`:
 
 ```js run async
 try {
@@ -12,39 +12,39 @@ try {
 }
 ```
 
-Fetch fails, as expected.
+O fetch falha, como esperado.
 
-The core concept here is *origin* -- a domain/port/protocol triplet.
+O conceito central aqui é *origin* -- uma tripla domínio/porta/protocolo.
 
-Cross-origin requests -- those sent to another domain (even a subdomain) or protocol or port -- require special headers from the remote side.
+Requisições cross-origin -- aquelas enviadas para outro domínio (até mesmo um subdomínio) ou protocolo ou porta -- exigem cabeçalhos especiais do lado remoto.
 
-That policy is called "CORS": Cross-Origin Resource Sharing.
+Essa política é chamada de "CORS": Cross-Origin Resource Sharing.
 
-## Why is CORS needed? A brief history
+## Por que o CORS é necessário? Um breve histórico
 
-CORS exists to protect the internet from evil hackers.
+O CORS existe para proteger a internet de hackers mal-intencionados.
 
-Seriously. Let's make a very brief historical digression.
+Sério. Vamos fazer uma breve digressão histórica.
 
-**For many years a script from one site could not access the content of another site.**
+**Por muitos anos, um script de um site não conseguia acessar o conteúdo de outro site.**
 
-That simple, yet powerful rule was a foundation of the internet security. E.g. an evil script from website `hacker.com` could not access the user's mailbox at website `gmail.com`. People felt safe.
+Essa regra simples, mas poderosa, era um fundamento da segurança da internet. Por exemplo, um script mal-intencionado do site `hacker.com` não conseguia acessar a caixa de e-mail do usuário no site `gmail.com`. As pessoas se sentiam seguras.
 
-JavaScript also did not have any special methods to perform network requests at that time. It was a toy language to decorate a web page.
+O JavaScript também não tinha nenhum método especial para realizar requisições de rede naquela época. Era uma linguagem de brinquedo para decorar uma página web.
 
-But web developers demanded more power. A variety of tricks were invented to work around the limitation and make requests to other websites.
+Mas os desenvolvedores web exigiam mais poder. Uma variedade de truques foi inventada para contornar a limitação e fazer requisições para outros sites.
 
-### Using forms
+### Usando formulários
 
-One way to communicate with another server was to submit a `<form>` there. People submitted it into `<iframe>`, just to stay on the current page, like this:
+Uma forma de se comunicar com outro servidor era enviar um `<form>` para lá. As pessoas o enviavam para um `<iframe>`, só para continuar na página atual, assim:
 
 ```html
-<!-- form target -->
+<!-- alvo do formulário -->
 *!*
 <iframe name="iframe"></iframe>
 */!*
 
-<!-- a form could be dynamically generated and submitted by JavaScript -->
+<!-- um formulário poderia ser gerado dinamicamente e enviado pelo JavaScript -->
 *!*
 <form target="iframe" method="POST" action="http://another.com/…">
 */!*
@@ -52,88 +52,88 @@ One way to communicate with another server was to submit a `<form>` there. Peopl
 </form>
 ```
 
-So, it was possible to make a GET/POST request to another site, even without networking methods, as forms can send data anywhere. But as it's forbidden to access the content of an `<iframe>` from another site, it wasn't possible to read the response.
+Então, era possível fazer uma requisição GET/POST para outro site, até mesmo sem métodos de rede, já que formulários podem enviar dados para qualquer lugar. Mas como é proibido acessar o conteúdo de um `<iframe>` de outro site, não era possível ler a resposta.
 
-To be precise, there were actually tricks for that, they required special scripts at both the iframe and the page. So the communication with the iframe was technically possible. Right now there's no point to go into details, let these dinosaurs rest in peace.
+Para ser preciso, na verdade existiam truques para isso, eles exigiam scripts especiais tanto no iframe quanto na página. Então a comunicação com o iframe era tecnicamente possível. Agora não há sentido em entrar em detalhes, vamos deixar esses dinossauros descansarem em paz.
 
-### Using scripts
+### Usando scripts
 
-Another trick was to use a `script` tag. A script could have any `src`, with any domain, like `<script src="http://another.com/…">`. It's possible to execute a script from any website.
+Outro truque era usar uma tag `script`. Um script podia ter qualquer `src`, com qualquer domínio, como `<script src="http://another.com/…">`. É possível executar um script de qualquer site.
 
-If a website, e.g. `another.com` intended to expose data for this kind of access, then a so-called "JSONP (JSON with padding)" protocol was used.
+Se um site, por exemplo `another.com`, pretendia expor dados para esse tipo de acesso, então um protocolo chamado "JSONP (JSON with padding)" era usado.
 
-Here's how it worked.
+Veja como funcionava.
 
-Let's say we, at our site, need to get the data from `http://another.com`, such as the weather:
+Digamos que nós, no nosso site, precisamos obter os dados de `http://another.com`, como o clima:
 
-1. First, in advance, we declare a global function to accept the data, e.g. `gotWeather`.
+1. Primeiro, com antecedência, declaramos uma função global para receber os dados, por exemplo, `gotWeather`.
 
     ```js
-    // 1. Declare the function to process the weather data
+    // 1. Declara a função para processar os dados do clima
     function gotWeather({ temperature, humidity }) {
-      alert(`temperature: ${temperature}, humidity: ${humidity}`);
+      alert(`temperatura: ${temperature}, umidade: ${humidity}`);
     }
     ```
-2. Then we make a `<script>` tag with `src="http://another.com/weather.json?callback=gotWeather"`, using the name of our function as the `callback` URL-parameter.
+2. Então criamos uma tag `<script>` com `src="http://another.com/weather.json?callback=gotWeather"`, usando o nome da nossa função como o parâmetro de URL `callback`.
 
     ```js
     let script = document.createElement('script');
     script.src = `http://another.com/weather.json?callback=gotWeather`;
     document.body.append(script);
     ```
-3. The remote server `another.com` dynamically generates a script that calls `gotWeather(...)` with the data it wants us to receive.
+3. O servidor remoto `another.com` gera dinamicamente um script que chama `gotWeather(...)` com os dados que ele quer que recebamos.
     ```js
-    // The expected answer from the server looks like this:
+    // A resposta esperada do servidor se parece com isso:
     gotWeather({
       temperature: 25,
       humidity: 78
     });
     ```
-4. When the remote script loads and executes, `gotWeather` runs, and, as it's our function, we have the data.
+4. Quando o script remoto carrega e executa, `gotWeather` roda, e, como é nossa função, temos os dados.
 
-That works, and doesn't violate security, because both sides agreed to pass the data this way. And, when both sides agree, it's definitely not a hack. There are still services that provide such access, as it works even for very old browsers.
+Isso funciona, e não viola a segurança, porque os dois lados concordaram em passar os dados dessa forma. E, quando os dois lados concordam, definitivamente não é um hack. Ainda existem serviços que fornecem esse tipo de acesso, já que funciona até mesmo em navegadores muito antigos.
 
-After a while, networking methods appeared in browser JavaScript.
+Depois de um tempo, métodos de rede surgiram no JavaScript do navegador.
 
-At first, cross-origin requests were forbidden. But as a result of long discussions, cross-origin requests were allowed, but with any new capabilities requiring an explicit allowance by the server, expressed in special headers.
+No início, requisições cross-origin eram proibidas. Mas, como resultado de longas discussões, requisições cross-origin passaram a ser permitidas, mas com qualquer nova capacidade exigindo uma permissão explícita do servidor, expressa em cabeçalhos especiais.
 
-## Safe requests
+## Requisições seguras
 
-There are two types of cross-origin requests:
+Existem dois tipos de requisições cross-origin:
 
-1. Safe requests.
-2. All the others.
+1. Requisições seguras.
+2. Todas as outras.
 
-Safe Requests are simpler to make, so let's start with them.
+Requisições seguras são mais simples de fazer, então vamos começar por elas.
 
-A request is safe if it satisfies two conditions:
+Uma requisição é segura se ela satisfaz duas condições:
 
-1. [Safe method](https://fetch.spec.whatwg.org/#cors-safelisted-method): GET, POST or HEAD
-2. [Safe headers](https://fetch.spec.whatwg.org/#cors-safelisted-request-header) -- the only allowed custom headers are:
+1. [Método seguro](https://fetch.spec.whatwg.org/#cors-safelisted-method): GET, POST ou HEAD
+2. [Cabeçalhos seguros](https://fetch.spec.whatwg.org/#cors-safelisted-request-header) -- os únicos cabeçalhos personalizados permitidos são:
     - `Accept`,
     - `Accept-Language`,
     - `Content-Language`,
-    - `Content-Type` with the value `application/x-www-form-urlencoded`, `multipart/form-data` or `text/plain`.
+    - `Content-Type` com o valor `application/x-www-form-urlencoded`, `multipart/form-data` ou `text/plain`.
 
-Any other request is considered "unsafe". For instance, a request with `PUT` method or with an `API-Key` HTTP-header does not fit the limitations.
+Qualquer outra requisição é considerada "insegura". Por exemplo, uma requisição com o método `PUT` ou com um cabeçalho HTTP `API-Key` não se encaixa nas limitações.
 
-**The essential difference is that a safe request can be made with a `<form>` or a `<script>`, without any special methods.**
+**A diferença essencial é que uma requisição segura pode ser feita com um `<form>` ou um `<script>`, sem nenhum método especial.**
 
-So, even a very old server should be ready to accept a safe request.
+Então, até mesmo um servidor muito antigo deveria estar pronto para aceitar uma requisição segura.
 
-Contrary to that, requests with non-standard headers or e.g. method `DELETE` can't be created this way. For a long time JavaScript was unable to do such requests. So an old server may assume that such requests come from a privileged source, "because a webpage is unable to send them".
+Em contraste, requisições com cabeçalhos não padronizados ou, por exemplo, o método `DELETE`, não podem ser criadas dessa forma. Por muito tempo o JavaScript não conseguia fazer esse tipo de requisição. Então um servidor antigo pode assumir que esse tipo de requisição vem de uma fonte privilegiada, "porque uma página web não é capaz de enviá-las".
 
-When we try to make a unsafe request, the browser sends a special "preflight" request that asks the server -- does it agree to accept such cross-origin requests, or not?
+Quando tentamos fazer uma requisição insegura, o navegador envia uma requisição especial de "preflight" que pergunta ao servidor -- ele concorda em aceitar esse tipo de requisição cross-origin, ou não?
 
-And, unless the server explicitly confirms that with headers, an unsafe request is not sent.
+E, a menos que o servidor confirme isso explicitamente com cabeçalhos, uma requisição insegura não é enviada.
 
-Now we'll go into details.
+Agora vamos entrar em detalhes.
 
-## CORS for safe requests
+## CORS para requisições seguras
 
-If a request is cross-origin, the browser always adds the `Origin` header to it.
+Se uma requisição é cross-origin, o navegador sempre adiciona o cabeçalho `Origin` a ela.
 
-For instance, if we request `https://anywhere.com/request` from `https://javascript.info/page`, the headers will look like:
+Por exemplo, se requisitarmos `https://anywhere.com/request` a partir de `https://javascript.info/page`, os cabeçalhos vão se parecer com:
 
 ```http
 GET /request
@@ -144,17 +144,17 @@ Origin: https://javascript.info
 ...
 ```
 
-As you can see, the `Origin` header contains exactly the origin (domain/protocol/port), without a path.
+Como você pode ver, o cabeçalho `Origin` contém exatamente a origem (domínio/protocolo/porta), sem um caminho.
 
-The server can inspect the `Origin` and, if it agrees to accept such a request, add a special header `Access-Control-Allow-Origin` to the response. That header should contain the allowed origin (in our case `https://javascript.info`), or a star `*`. Then the response is successful, otherwise it's an error.
+O servidor pode inspecionar o `Origin` e, se concordar em aceitar essa requisição, adicionar um cabeçalho especial `Access-Control-Allow-Origin` à resposta. Esse cabeçalho deve conter a origem permitida (no nosso caso `https://javascript.info`), ou um asterisco `*`. Então a resposta é bem-sucedida, caso contrário é um erro.
 
-The browser plays the role of a trusted mediator here:
-1. It ensures that the correct `Origin` is sent with a cross-origin request.
-2. It checks for permitting `Access-Control-Allow-Origin` in the response, if it exists, then JavaScript is allowed to access the response, otherwise it fails with an error.
+O navegador exerce o papel de um mediador confiável aqui:
+1. Ele garante que o `Origin` correto é enviado com uma requisição cross-origin.
+2. Ele checa a permissão `Access-Control-Allow-Origin` na resposta, se ela existir, então o JavaScript tem permissão para acessar a resposta, caso contrário ele falha com um erro.
 
 ![](xhr-another-domain.svg)
 
-Here's an example of a permissive server response:
+Aqui está um exemplo de uma resposta permissiva do servidor:
 ```http
 200 OK
 Content-Type:text/html; charset=UTF-8
@@ -163,9 +163,9 @@ Access-Control-Allow-Origin: https://javascript.info
 */!*
 ```
 
-## Response headers
+## Cabeçalhos de resposta
 
-For cross-origin request, by default JavaScript may only access so-called "safe" response headers:
+Para requisições cross-origin, por padrão o JavaScript só pode acessar os chamados cabeçalhos de resposta "seguros":
 
 - `Cache-Control`
 - `Content-Language`
@@ -175,11 +175,11 @@ For cross-origin request, by default JavaScript may only access so-called "safe"
 - `Last-Modified`
 - `Pragma`
 
-Accessing any other response header causes an error.
+Acessar qualquer outro cabeçalho de resposta causa um erro.
 
-To grant JavaScript access to any other response header, the server must send the `Access-Control-Expose-Headers` header. It contains a comma-separated list of unsafe header names that should be made accessible.
+Para dar ao JavaScript acesso a qualquer outro cabeçalho de resposta, o servidor deve enviar o cabeçalho `Access-Control-Expose-Headers`. Ele contém uma lista, separada por vírgulas, dos nomes de cabeçalhos inseguros que devem ser tornados acessíveis.
 
-For example:
+Por exemplo:
 
 ```http
 200 OK
@@ -193,32 +193,32 @@ Access-Control-Expose-Headers: Content-Encoding,API-Key
 */!*
 ```
 
-With such an `Access-Control-Expose-Headers` header, the script is allowed to read the `Content-Encoding` and `API-Key` headers of the response.
+Com esse cabeçalho `Access-Control-Expose-Headers`, o script tem permissão para ler os cabeçalhos `Content-Encoding` e `API-Key` da resposta.
 
-## "Unsafe" requests
+## Requisições "inseguras"
 
-We can use any HTTP-method: not just `GET/POST`, but also `PATCH`, `DELETE` and others.
+Podemos usar qualquer método HTTP: não só `GET/POST`, mas também `PATCH`, `DELETE` e outros.
 
-Some time ago no one could even imagine that a webpage could make such requests. So there may still exist webservices that treat a non-standard method as a signal: "That's not a browser". They can take it into account when checking access rights.
+Algum tempo atrás, ninguém conseguia nem imaginar que uma página web pudesse fazer esse tipo de requisição. Então ainda podem existir serviços web que tratam um método não padronizado como um sinal de: "Isso não é um navegador". Eles podem levar isso em conta ao checar direitos de acesso.
 
-So, to avoid misunderstandings, any "unsafe" request -- that couldn't be done in the old times, the browser does not make such requests right away. First, it sends a preliminary, so-called "preflight" request, to ask for permission.
+Então, para evitar mal-entendidos, para qualquer requisição "insegura" -- que não podia ser feita nos tempos antigos, o navegador não faz esse tipo de requisição imediatamente. Primeiro, ele envia uma requisição preliminar, chamada de "preflight", para pedir permissão.
 
-A preflight request uses the method `OPTIONS`, no body and three headers:
+Uma requisição preflight usa o método `OPTIONS`, sem corpo e com três cabeçalhos:
 
-- `Access-Control-Request-Method` header has the method of the unsafe request.
-- `Access-Control-Request-Headers` header provides a comma-separated list of its unsafe HTTP-headers.
-- `Origin` header tells from where the request came. (such as `https://javascript.info`)
+- O cabeçalho `Access-Control-Request-Method` tem o método da requisição insegura.
+- O cabeçalho `Access-Control-Request-Headers` fornece uma lista, separada por vírgulas, dos seus cabeçalhos HTTP inseguros.
+- O cabeçalho `Origin` diz de onde a requisição veio. (como `https://javascript.info`)
 
-If the server agrees to serve the requests, then it should respond with empty body, status 200 and headers:
+Se o servidor concordar em atender as requisições, então ele deve responder com corpo vazio, status 200 e cabeçalhos:
 
-- `Access-Control-Allow-Origin` must be either `*` or the requesting origin, such as `https://javascript.info`, to allow it.
-- `Access-Control-Allow-Methods` must have the allowed method.
-- `Access-Control-Allow-Headers` must have a list of allowed headers.
-- Additionally, the header `Access-Control-Max-Age` may specify a number of seconds to cache the permissions. So the browser won't have to send a preflight for subsequent requests that satisfy given permissions.
+- `Access-Control-Allow-Origin` deve ser `*` ou a origem que está requisitando, como `https://javascript.info`, para permiti-la.
+- `Access-Control-Allow-Methods` deve ter o método permitido.
+- `Access-Control-Allow-Headers` deve ter uma lista de cabeçalhos permitidos.
+- Além disso, o cabeçalho `Access-Control-Max-Age` pode especificar um número de segundos para armazenar as permissões em cache. Assim o navegador não vai precisar enviar um preflight para requisições subsequentes que satisfaçam as permissões dadas.
 
 ![](xhr-preflight.svg)
 
-Let's see how it works step-by-step on the example of a cross-origin `PATCH` request (this method is often used to update data):
+Vamos ver como isso funciona passo a passo no exemplo de uma requisição `PATCH` cross-origin (esse método é frequentemente usado para atualizar dados):
 
 ```js
 let response = await fetch('https://site.com/service.json', {
@@ -230,14 +230,14 @@ let response = await fetch('https://site.com/service.json', {
 });
 ```
 
-There are three reasons why the request is unsafe (one is enough):
-- Method `PATCH`
-- `Content-Type` is not one of: `application/x-www-form-urlencoded`, `multipart/form-data`, `text/plain`.
-- "Unsafe" `API-Key` header.
+Existem três motivos pelos quais a requisição é insegura (um já basta):
+- Método `PATCH`
+- `Content-Type` não é um destes: `application/x-www-form-urlencoded`, `multipart/form-data`, `text/plain`.
+- Cabeçalho `API-Key` "inseguro".
 
-### Step 1 (preflight request)
+### Passo 1 (requisição preflight)
 
-Prior to sending such a request, the browser, on its own, sends a preflight request that looks like this:
+Antes de enviar essa requisição, o navegador, por conta própria, envia uma requisição preflight que se parece com isto:
 
 ```http
 OPTIONS /service.json
@@ -247,25 +247,25 @@ Access-Control-Request-Method: PATCH
 Access-Control-Request-Headers: Content-Type,API-Key
 ```
 
-- Method: `OPTIONS`.
-- The path -- exactly the same as the main request: `/service.json`.
-- Cross-origin special headers:
-    - `Origin` -- the source origin.
-    - `Access-Control-Request-Method` -- requested method.
-    - `Access-Control-Request-Headers` -- a comma-separated list of "unsafe" headers.
+- Método: `OPTIONS`.
+- O caminho -- exatamente o mesmo da requisição principal: `/service.json`.
+- Cabeçalhos especiais cross-origin:
+    - `Origin` -- a origem de onde partiu.
+    - `Access-Control-Request-Method` -- método requisitado.
+    - `Access-Control-Request-Headers` -- uma lista, separada por vírgulas, de cabeçalhos "inseguros".
 
-### Step 2 (preflight response)
+### Passo 2 (resposta do preflight)
 
-The server should respond with status 200 and the headers:
+O servidor deve responder com status 200 e os cabeçalhos:
 - `Access-Control-Allow-Origin: https://javascript.info`
 - `Access-Control-Allow-Methods: PATCH`
 - `Access-Control-Allow-Headers: Content-Type,API-Key`.
 
-That allows future communication, otherwise an error is triggered.
+Isso permite a comunicação futura, caso contrário um erro é disparado.
 
-If the server expects other methods and headers in the future, it makes sense to allow them in advance by adding them to the list.
+Se o servidor espera outros métodos e cabeçalhos no futuro, faz sentido permiti-los com antecedência, adicionando-os à lista.
 
-For example, this response also allows `PUT`, `DELETE` and additional headers:
+Por exemplo, esta resposta também permite `PUT`, `DELETE` e cabeçalhos adicionais:
 
 ```http
 200 OK
@@ -275,15 +275,15 @@ Access-Control-Allow-Headers: API-Key,Content-Type,If-Modified-Since,Cache-Contr
 Access-Control-Max-Age: 86400
 ```
 
-Now the browser can see that `PATCH` is in `Access-Control-Allow-Methods` and `Content-Type,API-Key` are in the list `Access-Control-Allow-Headers`, so it sends out the main request.
+Agora o navegador consegue ver que `PATCH` está em `Access-Control-Allow-Methods` e `Content-Type,API-Key` estão na lista `Access-Control-Allow-Headers`, então ele envia a requisição principal.
 
-If there's the header `Access-Control-Max-Age` with a number of seconds, then the preflight permissions are cached for the given time. The response above will be cached for 86400 seconds (one day). Within this timeframe, subsequent requests will not cause a preflight. Assuming that they fit the cached allowances, they will be sent directly.
+Se existir o cabeçalho `Access-Control-Max-Age` com um número de segundos, então as permissões do preflight são armazenadas em cache pelo tempo dado. A resposta acima vai ser armazenada em cache por 86400 segundos (um dia). Dentro desse período, requisições subsequentes não vão causar um preflight. Assumindo que elas se encaixem nas permissões em cache, elas vão ser enviadas diretamente.
 
-### Step 3 (actual request)
+### Passo 3 (requisição real)
 
-When the preflight is successful, the browser now makes the main request. The process here is the same as for safe requests.
+Quando o preflight é bem-sucedido, o navegador agora faz a requisição principal. O processo aqui é o mesmo das requisições seguras.
 
-The main request has the `Origin` header (because it's cross-origin):
+A requisição principal tem o cabeçalho `Origin` (porque ela é cross-origin):
 
 ```http
 PATCH /service.json
@@ -293,37 +293,37 @@ API-Key: secret
 Origin: https://javascript.info
 ```
 
-### Step 4 (actual response)
+### Passo 4 (resposta real)
 
-The server should not forget to add `Access-Control-Allow-Origin` to the main response. A successful preflight does not relieve from that:
+O servidor não deve esquecer de adicionar `Access-Control-Allow-Origin` à resposta principal. Um preflight bem-sucedido não dispensa isso:
 
 ```http
 Access-Control-Allow-Origin: https://javascript.info
 ```
 
-Then JavaScript is able to read the main server response.
+Então o JavaScript consegue ler a resposta principal do servidor.
 
 ```smart
-Preflight request occurs "behind the scenes", it's invisible to JavaScript.
+A requisição preflight ocorre "nos bastidores", é invisível para o JavaScript.
 
-JavaScript only gets the response to the main request or an error if there's no server permission.
+O JavaScript só recebe a resposta da requisição principal ou um erro, se não houver permissão do servidor.
 ```
 
-## Credentials
+## Credenciais
 
-A cross-origin request initiated by JavaScript code by default does not bring any credentials (cookies or HTTP authentication).
+Uma requisição cross-origin iniciada pelo código JavaScript, por padrão, não traz nenhuma credencial (cookies ou autenticação HTTP).
 
-That's uncommon for HTTP-requests. Usually, a request to `http://site.com` is accompanied by all cookies from that domain. Cross-origin requests made by JavaScript methods on the other hand are an exception.
+Isso é incomum para requisições HTTP. Normalmente, uma requisição para `http://site.com` vem acompanhada de todos os cookies daquele domínio. Requisições cross-origin feitas por métodos do JavaScript, por outro lado, são uma exceção.
 
-For example, `fetch('http://another.com')` does not send any cookies, even those  (!) that belong to `another.com` domain.
+Por exemplo, `fetch('http://another.com')` não envia nenhum cookie, nem mesmo aqueles (!) que pertencem ao domínio `another.com`.
 
-Why?
+Por quê?
 
-That's because a request with credentials is much more powerful than without them. If allowed, it grants JavaScript the full power to act on behalf of the user and access sensitive information using their credentials.
+Isso acontece porque uma requisição com credenciais é muito mais poderosa do que sem elas. Se permitida, ela dá ao JavaScript o poder total de agir em nome do usuário e acessar informações sensíveis usando as credenciais dele.
 
-Does the server really trust the script that much? Then it must explicitly allow requests with credentials with an additional header.
+O servidor realmente confia tanto assim no script? Então ele precisa permitir explicitamente requisições com credenciais com um cabeçalho adicional.
 
-To send credentials in `fetch`, we need to add the option `credentials: "include"`, like this:
+Para enviar credenciais no `fetch`, precisamos adicionar a opção `credentials: "include"`, assim:
 
 ```js
 fetch('http://another.com', {
@@ -331,11 +331,11 @@ fetch('http://another.com', {
 });
 ```
 
-Now `fetch` sends cookies originating from `another.com` with request to that site.
+Agora `fetch` envia cookies originários de `another.com` na requisição para esse site.
 
-If the server agrees to accept the request *with credentials*, it should add a header `Access-Control-Allow-Credentials: true` to the response, in addition to `Access-Control-Allow-Origin`.
+Se o servidor concordar em aceitar a requisição *com credenciais*, ele deve adicionar um cabeçalho `Access-Control-Allow-Credentials: true` à resposta, além de `Access-Control-Allow-Origin`.
 
-For example:
+Por exemplo:
 
 ```http
 200 OK
@@ -343,42 +343,42 @@ Access-Control-Allow-Origin: https://javascript.info
 Access-Control-Allow-Credentials: true
 ```
 
-Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` for requests with credentials. Like shown above, it must provide the exact origin there. That's an additional safety measure, to ensure that the server really knows who it trusts to make such requests.
+Observe: `Access-Control-Allow-Origin` é proibido de usar um asterisco `*` para requisições com credenciais. Como mostrado acima, ele deve fornecer a origem exata ali. Essa é uma medida de segurança adicional, para garantir que o servidor realmente saiba em quem confia para fazer esse tipo de requisição.
 
-## Summary
+## Resumo
 
-From the browser point of view, there are two kinds of cross-origin requests: "safe" and all the others.
+Do ponto de vista do navegador, existem dois tipos de requisições cross-origin: "seguras" e todas as outras.
 
-"Safe" requests must satisfy the following conditions:
-- Method: GET, POST or HEAD.
-- Headers -- we can set only:
+Requisições "seguras" devem satisfazer as seguintes condições:
+- Método: GET, POST ou HEAD.
+- Cabeçalhos -- só podemos definir:
     - `Accept`
     - `Accept-Language`
     - `Content-Language`
-    - `Content-Type` to the value `application/x-www-form-urlencoded`, `multipart/form-data` or `text/plain`.
+    - `Content-Type` com o valor `application/x-www-form-urlencoded`, `multipart/form-data` ou `text/plain`.
 
-The essential difference is that safe requests were doable since ancient times using `<form>` or `<script>` tags, while unsafe were impossible for browsers for a long time.
+A diferença essencial é que requisições seguras eram possíveis desde tempos antigos usando tags `<form>` ou `<script>`, enquanto as inseguras eram impossíveis para navegadores por muito tempo.
 
-So, the practical difference is that safe requests are sent right away, with the `Origin` header, while for the other ones the browser makes a preliminary "preflight" request, asking for permission.
+Então, a diferença prática é que requisições seguras são enviadas imediatamente, com o cabeçalho `Origin`, enquanto para as outras o navegador faz uma requisição preliminar de "preflight", pedindo permissão.
 
-**For safe requests:**
+**Para requisições seguras:**
 
-- → The browser sends the `Origin` header with the origin.
-- ← For requests without credentials (not sent by default), the server should set:
-    - `Access-Control-Allow-Origin` to `*` or same value as `Origin`
-- ← For requests with credentials, the server should set:
-    - `Access-Control-Allow-Origin` to same value as `Origin`
-    - `Access-Control-Allow-Credentials` to `true`
+- → O navegador envia o cabeçalho `Origin` com a origem.
+- ← Para requisições sem credenciais (não enviadas por padrão), o servidor deve definir:
+    - `Access-Control-Allow-Origin` como `*` ou o mesmo valor de `Origin`
+- ← Para requisições com credenciais, o servidor deve definir:
+    - `Access-Control-Allow-Origin` como o mesmo valor de `Origin`
+    - `Access-Control-Allow-Credentials` como `true`
 
-Additionally, to grant JavaScript access to any response headers except `Cache-Control`,  `Content-Language`, `Content-Type`, `Expires`, `Last-Modified` or `Pragma`, the server should list the allowed ones in `Access-Control-Expose-Headers` header.
+Além disso, para dar ao JavaScript acesso a qualquer cabeçalho de resposta, exceto `Cache-Control`, `Content-Language`, `Content-Type`, `Expires`, `Last-Modified` ou `Pragma`, o servidor deve listar os permitidos no cabeçalho `Access-Control-Expose-Headers`.
 
-**For unsafe requests, a preliminary "preflight" request is issued before the requested one:**
+**Para requisições inseguras, uma requisição preliminar de "preflight" é emitida antes da requisição desejada:**
 
-- → The browser sends an `OPTIONS` request to the same URL, with the headers:
-    - `Access-Control-Request-Method` has requested method.
-    - `Access-Control-Request-Headers` lists unsafe requested headers.
-- ← The server should respond with status 200 and the headers:
-    - `Access-Control-Allow-Methods` with a list of allowed methods,
-    - `Access-Control-Allow-Headers` with a list of allowed headers,
-    - `Access-Control-Max-Age` with a number of seconds to cache the permissions.
-- Then the actual request is sent, and the previous "safe" scheme is applied.
+- → O navegador envia uma requisição `OPTIONS` para a mesma URL, com os cabeçalhos:
+    - `Access-Control-Request-Method` tem o método requisitado.
+    - `Access-Control-Request-Headers` lista os cabeçalhos inseguros requisitados.
+- ← O servidor deve responder com status 200 e os cabeçalhos:
+    - `Access-Control-Allow-Methods` com uma lista de métodos permitidos,
+    - `Access-Control-Allow-Headers` com uma lista de cabeçalhos permitidos,
+    - `Access-Control-Max-Age` com um número de segundos para armazenar as permissões em cache.
+- Então a requisição real é enviada, e o esquema "seguro" anterior é aplicado.

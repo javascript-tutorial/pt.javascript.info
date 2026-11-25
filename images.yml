@@ -95,3 +95,47 @@ array-shift.svg:
   "to the left":
     text: "para a esquerda"
     position: left
+xhr-another-domain.svg:
+  "Browser":
+    text: "Navegador"
+    position: center
+  "Server":
+    text: "Servidor"
+    position: center
+  "HTTP-request":
+    text: "Requisição HTTP"
+    position: center
+  "HTTP-response":
+    text: "Resposta HTTP"
+    position: center
+  "if the header allows, then success,":
+    text: "se o cabeçalho permitir, sucesso,"
+    position: left
+  "otherwise fail":
+    text: "senão, falha"
+    position: left
+  "(or https://javascript.info)":
+    text: "(ou https://javascript.info)"
+    position: left
+xhr-preflight.svg:
+  "Browser":
+    text: "Navegador"
+    position: center
+  "Server":
+    text: "Servidor"
+    position: center
+  "Main HTTP-response":
+    text: "Resposta HTTP principal"
+    position: left
+  "otherwise error":
+    text: "senão, erro"
+    position: left
+  "if allowed: success,":
+    text: "se permitido: sucesso,"
+    position: left
+  "Main HTTP-request":
+    text: "Requisição HTTP principal"
+    position: left
+  "if allowed":
+    text: "permitido"
+    position: left
