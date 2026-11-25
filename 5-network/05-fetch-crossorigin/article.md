@@ -1,4 +1,4 @@
-# Fetch: Cross-Origin Requests
+# Fetch: Requisições Cross-Origin
 
 Se enviarmos uma requisição `fetch` para outro site, provavelmente ela vai falhar.
 
@@ -104,7 +104,7 @@ Existem dois tipos de requisições cross-origin:
 1. Requisições seguras.
 2. Todas as outras.
 
-Requisições Seguras são mais simples de fazer, então vamos começar por elas.
+Requisições seguras são mais simples de fazer, então vamos começar por elas.
 
 Uma requisição é segura se ela satisfaz duas condições:
 
@@ -203,7 +203,7 @@ Algum tempo atrás, ninguém conseguia nem imaginar que uma página web pudesse 
 
 Então, para evitar mal-entendidos, para qualquer requisição "insegura" -- que não podia ser feita nos tempos antigos, o navegador não faz esse tipo de requisição imediatamente. Primeiro, ele envia uma requisição preliminar, chamada de "preflight", para pedir permissão.
 
-Uma requisição preflight usa o método `OPTIONS`, sem corpo e três cabeçalhos:
+Uma requisição preflight usa o método `OPTIONS`, sem corpo e com três cabeçalhos:
 
 - O cabeçalho `Access-Control-Request-Method` tem o método da requisição insegura.
 - O cabeçalho `Access-Control-Request-Headers` fornece uma lista, separada por vírgulas, dos seus cabeçalhos HTTP inseguros.

@@ -137,5 +137,5 @@ xhr-preflight.svg:
     text: "Requisição HTTP principal"
     position: left
   "if allowed":
-    text: "se permitido"
+    text: "permitido"
     position: left
