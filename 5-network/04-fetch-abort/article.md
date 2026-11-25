@@ -1,5 +1,5 @@
 
-# Fetch: Abort
+# Fetch: Abortar
 
 Como sabemos, `fetch` retorna uma promessa. E o JavaScript geralmente não tem o conceito de "abortar" uma promessa. Então, como podemos cancelar um `fetch` em andamento? Por exemplo, se as ações do usuário no nosso site indicarem que o `fetch` não é mais necessário.
 
@@ -9,13 +9,13 @@ O uso é bem direto:
 
 ## O objeto AbortController
 
-Cria um controller:
+Crie um controlador:
 
 ```js
 let controller = new AbortController();
 ```
 
-Um controller é um objeto extremamente simples.
+Um controlador é um objeto extremamente simples.
 
 - Ele tem um único método `abort()`,
 - E uma única propriedade `signal`, que permite definir ouvintes de evento nela.
@@ -99,7 +99,7 @@ try {
 
 `AbortController` é escalável. Ele permite cancelar vários fetches de uma vez.
 
-Aqui está um esboço de código que busca várias `urls` em paralelo, e usa um único controller para abortar todas elas:
+Aqui está um esboço de código que busca várias `urls` em paralelo, e usa um único controlador para abortar todas elas:
 
 ```js
 let urls = [...]; // uma lista de urls para buscar em paralelo
