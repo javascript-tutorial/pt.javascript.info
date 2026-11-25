@@ -64,7 +64,7 @@ const handleStateChange = (state) => {
         downloadBtn.disabled = true;
         previewContainerEl.classList.add("previewContainer--disabled");
         spinnerContainerEl.classList.remove("spinnerContainer--hidden");
-        spinnerTextEl.innerText = "Loading...";
+        spinnerTextEl.innerText = "Carregando...";
         canvasEl.classList.remove("canvas--ready");
     } else if (!state.loading) {
         selectEl.disabled = false;
@@ -203,7 +203,7 @@ const startOver = () => {
         .querySelectorAll(".thumbnail-item--selected")
         .forEach((item) => item.classList.remove("thumbnail-item--selected"));
 
-    loggerContainerEl.innerHTML = '<p class="logger-title">Logger:</p>';
+    loggerContainerEl.innerHTML = '<p class="logger-title">Log:</p>';
 };
 
 const downloadCollage = () => {

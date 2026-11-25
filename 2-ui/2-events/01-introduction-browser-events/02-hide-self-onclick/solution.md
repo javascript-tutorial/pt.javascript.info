@@ -1,5 +1,5 @@
-Can use `this` in the handler to reference "the element itself" here:
+Podemos usar `this` no manipulador para referenciar "o próprio elemento" aqui:
 
 ```html run height=50
-<input type="button" onclick="this.hidden=true" value="Click to hide">
+<input type="button" onclick="this.hidden=true" value="Clique para ocultar">
 ```

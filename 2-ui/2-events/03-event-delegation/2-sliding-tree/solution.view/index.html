@@ -17,36 +17,36 @@
 <body>
 
   <ul class="tree" id="tree">
-    <li>Animals
+    <li>Animais
       <ul>
-        <li>Mammals
+        <li>Mamíferos
           <ul>
-            <li>Cows</li>
-            <li>Donkeys</li>
-            <li>Dogs</li>
-            <li>Tigers</li>
+            <li>Vacas</li>
+            <li>Burros</li>
+            <li>Cachorros</li>
+            <li>Tigres</li>
           </ul>
         </li>
-        <li>Other
+        <li>Outros
           <ul>
-            <li>Snakes</li>
-            <li>Birds</li>
-            <li>Lizards</li>
+            <li>Cobras</li>
+            <li>Pássaros</li>
+            <li>Lagartos</li>
           </ul>
         </li>
       </ul>
     </li>
-    <li>Fishes
+    <li>Peixes
       <ul>
-        <li>Aquarium
+        <li>Aquário
           <ul>
             <li>Guppy</li>
-            <li>Angelfish</li>
+            <li>Peixe-anjo</li>
           </ul>
         </li>
-        <li>Sea
+        <li>Mar
           <ul>
-            <li>Sea trout</li>
+            <li>Truta marinha</li>
           </ul>
         </li>
       </ul>
@@ -54,15 +54,15 @@
   </ul>
 
   <script>
-    // move all text into <span>
-    // they occupy exactly the place necessary for the text,
+    // move todo o texto para <span>
+    // eles ocupam exatamente o espaço necessário para o texto,
     for (let li of tree.querySelectorAll('li')) {
       let span = document.createElement('span');
       li.prepend(span);
-      span.append(span.nextSibling); // move the text node into span
+      span.append(span.nextSibling); // move o nó de texto para dentro do span
     }
 
-    // catch clicks on whole tree
+    // captura cliques na árvore inteira
     tree.onclick = function(event) {
 
       if (event.target.tagName != 'SPAN') {
@@ -70,7 +70,7 @@
       }
 
       let childrenContainer = event.target.parentNode.querySelector('ul');
-      if (!childrenContainer) return; // no children
+      if (!childrenContainer) return; // sem filhos
 
       childrenContainer.hidden = !childrenContainer.hidden;
     }

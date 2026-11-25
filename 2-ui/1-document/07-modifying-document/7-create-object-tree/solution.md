@@ -1,4 +1,4 @@
-The easiest way to walk the object is to use recursion.
+O jeito mais fácil de percorrer o objeto é usar recursão.
 
-1. [The solution with innerHTML](sandbox:innerhtml).
-2. [The solution with DOM](sandbox:build-tree-dom).
+1. [A solução com innerHTML](sandbox:innerhtml).
+2. [A solução com DOM](sandbox:build-tree-dom).

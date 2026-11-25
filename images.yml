@@ -88,3 +88,19 @@ recursion-pow.svg:
   "recursive call until n==1":
     text: "chamada recursiva até n==1"
     position: left
+array-pop.svg:
+  "clear":
+    text: "limpar"
+    position: center
+array-shift.svg:
+  "clear":
+    text: "limpar"
+    position: center
+  "move":
+    text: "mover"
+    position: left
+  "elements":
+    text: "elementos"
+    position: left
+  "to the left":
+    text: "para a esquerda"

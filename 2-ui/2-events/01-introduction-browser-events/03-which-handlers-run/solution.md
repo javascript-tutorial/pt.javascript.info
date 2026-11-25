@@ -1,8 +1,8 @@
-The answer: `1` and `2`.
+A resposta: `1` e `2`.
 
-The first handler triggers, because it's not removed by `removeEventListener`. To remove the handler we need to pass exactly the function that was assigned. And in the code a new function is passed, that looks the same, but is still another function.
+O primeiro manipulador é acionado, porque não é removido por `removeEventListener`. Para remover o manipulador precisamos passar exatamente a função que foi atribuída. E no código uma nova função é passada, que parece a mesma, mas ainda é outra função.
 
-To remove a function object, we need to store a reference to it, like this:
+Para remover um objeto de função, precisamos armazenar uma referência a ele, assim:
 
 ```js
 function handler() {
@@ -13,4 +13,4 @@ button.addEventListener("click", handler);
 button.removeEventListener("click", handler);
 ```
 
-The handler `button.onclick` works independently and in addition to `addEventListener`.
+O manipulador `button.onclick` funciona independentemente, além do `addEventListener`.
