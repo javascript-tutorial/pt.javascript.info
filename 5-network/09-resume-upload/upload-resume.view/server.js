@@ -13,18 +13,18 @@ function onUpload(req, res) {
   let startByte = +req.headers['x-start-byte'];
 
   if (!fileId) {
-    res.writeHead(400, "No file id");
+    res.writeHead(400, "Sem id de arquivo");
     res.end();
   }
 
-  // we'll files "nowhere"
+  // vamos "descartar" os arquivos
   let filePath = '/dev/null';
-  // could use a real path instead, e.g.
+  // poderíamos usar um caminho real em vez disso, por exemplo
   // let filePath = path.join('/tmp', fileId);
 
   debug("onUpload fileId: ", fileId);
 
-  // initialize a new upload
+  // inicializa um novo upload
   if (!uploads[fileId]) uploads[fileId] = {};
   let upload = uploads[fileId];
 
@@ -32,56 +32,56 @@ function onUpload(req, res) {
 
   let fileStream;
 
-  // if startByte is 0 or not set, create a new file, otherwise check the size and append to existing one
+  // se startByte for 0 ou não estiver definido, cria um novo arquivo, caso contrário checa o tamanho e acrescenta ao existente
   if (!startByte) {
     upload.bytesReceived = 0;
     fileStream = fs.createWriteStream(filePath, {
       flags: 'w'
     });
-    debug("New file created: " + filePath);
+    debug("Novo arquivo criado: " + filePath);
   } else {
-    // we can check on-disk file size as well to be sure
+    // também podemos checar o tamanho do arquivo em disco para ter certeza
     if (upload.bytesReceived != startByte) {
-      res.writeHead(400, "Wrong start byte");
+      res.writeHead(400, "Byte inicial incorreto");
       res.end(upload.bytesReceived);
       return;
     }
-    // append to existing file
+    // acrescenta ao arquivo existente
     fileStream = fs.createWriteStream(filePath, {
       flags: 'a'
     });
-    debug("File reopened: " + filePath);
+    debug("Arquivo reaberto: " + filePath);
   }
 
 
   req.on('data', function(data) {
-    debug("bytes received", upload.bytesReceived);
+    debug("bytes recebidos", upload.bytesReceived);
     upload.bytesReceived += data.length;
   });
 
-  // send request body to file
+  // envia o corpo da requisição para o arquivo
   req.pipe(fileStream);
 
-  // when the request is finished, and all its data is written
+  // quando a requisição termina, e todos os seus dados são escritos
   fileStream.on('close', function() {
     if (upload.bytesReceived == req.headers['x-file-size']) {
-      debug("Upload finished");
+      debug("Upload concluído");
       delete uploads[fileId];
 
-      // can do something else with the uploaded file here
+      // podemos fazer outra coisa com o arquivo enviado aqui
 
-      res.end("Success " + upload.bytesReceived);
+      res.end("Sucesso " + upload.bytesReceived);
     } else {
-      // connection lost, we leave the unfinished file around
-      debug("File unfinished, stopped at " + upload.bytesReceived);
+      // conexão perdida, deixamos o arquivo inacabado por aí
+      debug("Arquivo incompleto, parou em " + upload.bytesReceived);
       res.end();
     }
   });
 
-  // in case of I/O error - finish the request
+  // em caso de erro de I/O - termina a requisição
   fileStream.on('error', function(err) {
-    debug("fileStream error");
-    res.writeHead(500, "File error");
+    debug("erro no fileStream");
+    res.writeHead(500, "Erro de arquivo");
     res.end();
   });
 
@@ -117,7 +117,7 @@ function accept(req, res) {
 
 if (!module.parent) {
   http.createServer(accept).listen(8080);
-  console.log('Server listening at port 8080');
+  console.log('Servidor escutando na porta 8080');
 } else {
   exports.accept = accept;
 }
