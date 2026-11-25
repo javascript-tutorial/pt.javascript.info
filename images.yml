@@ -78,6 +78,16 @@ promiseQueue.svg:
   "script execution finished":
     text: "execução do script terminada"
     position: left
+recursion-pow.svg:
+  "Yes":
+    text: "Sim"
+    position: center
+  "No":
+    text: "Não"
+    position: center
+  "recursive call until n==1":
+    text: "chamada recursiva até n==1"
+    position: left
 array-pop.svg:
   "clear":
     text: "limpar"
@@ -94,4 +104,3 @@ array-shift.svg:
     position: left
   "to the left":
     text: "para a esquerda"
-    position: left
