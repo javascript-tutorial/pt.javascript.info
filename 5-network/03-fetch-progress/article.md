@@ -1,5 +1,5 @@
 
-# Fetch: Download progress
+# Fetch: Progresso do download
 
 O método `fetch` permite acompanhar o progresso do *download*.
 
@@ -88,14 +88,14 @@ Vamos explicar isso passo a passo:
 
 1. Realizamos o `fetch` como de costume, mas em vez de chamar `response.json()`, obtemos um leitor de stream `response.body.getReader()`.
 
-    Observe que não podemos usar os dois métodos para ler a mesma resposta: ou usamos um reader, ou um método de resposta para obter o resultado.
+    Observe que não podemos usar os dois métodos para ler a mesma resposta: ou usamos um leitor, ou um método de resposta para obter o resultado.
 2. Antes de ler, podemos descobrir o tamanho total da resposta a partir do cabeçalho `Content-Length`.
 
     Ele pode estar ausente em requisições cross-origin (veja o capítulo <info:fetch-crossorigin>) e, bem, tecnicamente um servidor não é obrigado a defini-lo. Mas geralmente ele está presente.
-3. Chama `await reader.read()` até terminar.
+3. Chamamos `await reader.read()` até terminar.
 
     Reunimos os pedaços da resposta no array `chunks`. Isso é importante, porque depois que a resposta é consumida, não vamos conseguir "reler" usando `response.json()` ou outra forma (você pode tentar, vai dar erro).
-4. No final, temos `chunks` -- um array de pedaços `Uint8Array` de bytes. Precisamos juntá-los num único resultado. Infelizmente, não existe um único método que concatena isso, então existe um código para fazer isso:
+4. No final, temos `chunks` -- um array de pedaços `Uint8Array` de bytes. Precisamos juntá-los num único resultado. Infelizmente, não existe um único método que os concatene, então é preciso um pouco de código para isso:
     1. Criamos `chunksAll = new Uint8Array(receivedLength)` -- um array do mesmo tipo com o tamanho combinado.
     2. Então usamos o método `.set(chunk, position)` para copiar cada `chunk` um após o outro nele.
 5. Temos o resultado em `chunksAll`. Mas é um array de bytes, não uma string.
