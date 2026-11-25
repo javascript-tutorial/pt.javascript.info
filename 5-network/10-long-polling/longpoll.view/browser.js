@@ -1,4 +1,4 @@
-// Sending messages, a simple POST
+// Enviando mensagens, um POST simples
 function PublishForm(form, url) {
 
   function sendMessage(message) {
@@ -18,7 +18,7 @@ function PublishForm(form, url) {
   };
 }
 
-// Receiving messages with long polling
+// Recebendo mensagens com long polling
 function SubscribePane(elem, url) {
 
   function showMessage(message) {
@@ -31,18 +31,18 @@ function SubscribePane(elem, url) {
     let response = await fetch(url);
 
     if (response.status == 502) {
-      // Connection timeout
-      // happens when the connection was pending for too long
-      // let's reconnect
+      // Timeout de conexão
+      // acontece quando a conexão ficou pendente por tempo demais
+      // vamos reconectar
       await subscribe();
     } else if (response.status != 200) {
-      // Show Error
+      // Mostra o erro
       showMessage(response.statusText);
-      // Reconnect in one second
+      // Reconecta em um segundo
       await new Promise(resolve => setTimeout(resolve, 1000));
       await subscribe();
     } else {
-      // Got message
+      // Mensagem recebida
       let message = await response.text();
       showMessage(message);
       await subscribe();
