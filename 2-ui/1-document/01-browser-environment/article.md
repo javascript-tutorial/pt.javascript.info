@@ -1,4 +1,4 @@
-# Browser environment, specs
+# Ambiente do navegador, especificações
 
 A linguagem JavaScript foi inicialmente criada para navegadores web. Desde então, ela evoluiu para uma linguagem com muitos usos e plataformas.
 
@@ -54,7 +54,7 @@ Aqui, usamos `document.body.style`, mas existe muito, muito mais. Propriedades e
 ```smart header="DOM não é só para navegadores"
 A especificação do DOM explica a estrutura de um documento e fornece objetos para manipulá-lo. Existem ferramentas não relacionadas a navegadores que também usam o DOM.
 
-Por exemplo, scripts do lado do servidor que baixam páginas HTML e as processam também podem usar o DOM. Embora eles possam suportar só uma parte da especificação.
+Por exemplo, scripts do lado do servidor que baixam páginas HTML e as processam também podem usar o DOM. No entanto, eles podem suportar apenas uma parte da especificação.
 ```
 
 ```smart header="CSSOM para estilização"
@@ -69,7 +69,7 @@ O Browser Object Model (BOM) representa objetos adicionais fornecidos pelo naveg
 
 Por exemplo:
 
-- O objeto [navigator](mdn:api/Window/navigator) fornece informações de fundo sobre o navegador e o sistema operacional. Existem muitas propriedades, mas as duas mais conhecidas são: `navigator.userAgent` -- sobre o navegador atual, e `navigator.platform` -- sobre a plataforma (pode ajudar a diferenciar entre Windows/Linux/Mac etc).
+- O objeto [navigator](mdn:api/Window/navigator) fornece informações gerais sobre o navegador e o sistema operacional. Existem muitas propriedades, mas as duas mais conhecidas são: `navigator.userAgent` -- sobre o navegador atual, e `navigator.platform` -- sobre a plataforma (pode ajudar a diferenciar entre Windows/Linux/Mac etc).
 - O objeto [location](mdn:api/Window/location) nos permite ler a URL atual e pode redirecionar o navegador para uma nova.
 
 Aqui está como podemos usar o objeto `location`:
