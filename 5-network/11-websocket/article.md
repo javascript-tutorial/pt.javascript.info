@@ -119,7 +119,7 @@ Por exemplo:
 
 - `Sec-WebSocket-Extensions: deflate-frame` significa que o navegador suporta compressão de dados. Uma extensão é algo relacionado à transferência dos dados, uma funcionalidade que estende o protocolo WebSocket. O cabeçalho `Sec-WebSocket-Extensions` é enviado automaticamente pelo navegador, com a lista de todas as extensões que ele suporta.
 
-- `Sec-WebSocket-Protocol: soap, wamp` significa que gostaríamos de transferir não só qualquer dado, mas dados nos protocolos [SOAP](https://en.wikipedia.org/wiki/SOAP) ou WAMP ("The WebSocket Application Messaging Protocol"). Subprotocolos WebSocket são registrados no [catálogo IANA](https://www.iana.org/assignments/websocket/websocket.xml). Então, esse cabeçalho descreve os formatos de dados que vamos usar.
+- `Sec-WebSocket-Protocol: soap, wamp` significa que gostaríamos de transferir não um dado qualquer, mas sim dados nos protocolos [SOAP](https://en.wikipedia.org/wiki/SOAP) ou WAMP ("The WebSocket Application Messaging Protocol"). Subprotocolos WebSocket são registrados no [catálogo IANA](https://www.iana.org/assignments/websocket/websocket.xml). Então, esse cabeçalho descreve os formatos de dados que vamos usar.
 
     Esse cabeçalho opcional é definido usando o segundo parâmetro de `new WebSocket`. É o array de subprotocolos, por exemplo, se quisermos usar SOAP ou WAMP:
 
@@ -192,7 +192,7 @@ socket.onmessage = (event) => {
 
 Imagine que nosso app está gerando muitos dados para enviar. Mas o usuário tem uma conexão de rede lenta, talvez numa internet móvel, fora da cidade.
 
-Podemos chamar `socket.send(data)` repetidamente. Mas os dados vão ficar em buffer (armazenados) na memória e enviados só tão rápido quanto a velocidade da rede permitir.
+Podemos chamar `socket.send(data)` repetidamente. Mas os dados vão ficar em buffer (armazenados) na memória e ser enviados só tão rápido quanto a velocidade da rede permitir.
 
 A propriedade `socket.bufferedAmount` armazena quantos bytes permanecem em buffer nesse momento, esperando para serem enviados pela rede.
 
@@ -211,7 +211,7 @@ setInterval(() => {
 
 ## Fechamento da conexão
 
-Normalmente, quando uma das partes quer fechar a conexão (tanto navegador quanto servidor têm direitos iguais), elas enviam um "frame de fechamento de conexão" com um código numérico e um motivo textual.
+Normalmente, quando uma das partes quer fechar a conexão (tanto navegador quanto servidor têm direitos iguais), ela envia um "frame de fechamento de conexão" com um código numérico e um motivo textual.
 
 O método para isso é:
 ```js
