@@ -148,7 +148,7 @@ Como isso funciona? Se criarmos vários contadores, eles vão ser independentes?
 
 Entender essas coisas é ótimo para o conhecimento geral do JavaScript e benéfico para cenários mais complexos. Então vamos nos aprofundar um pouco.
 
-## Ambiente Léxico
+## Ambiente Lexical
 
 ```warn header="Aqui existem dragões!"
 A explicação técnica aprofundada vem a seguir.
@@ -160,32 +160,32 @@ Para clareza, a explicação é dividida em vários passos.
 
 ### Passo 1. Variáveis
 
-No JavaScript, toda função em execução, bloco de código `{...}`, e o script como um todo têm um objeto interno (oculto) associado conhecido como *Ambiente Léxico*.
+No JavaScript, toda função em execução, bloco de código `{...}`, e o script como um todo têm um objeto interno (oculto) associado conhecido como *Ambiente Lexical*.
 
-O objeto Ambiente Léxico consiste em duas partes:
+O objeto Ambiente Lexical consiste em duas partes:
 
 1. *Environment Record* -- um objeto que armazena todas as variáveis locais como suas propriedades (e algumas outras informações, como o valor de `this`).
 2. Uma referência ao *ambiente léxico externo*, aquele associado ao código externo.
 
 **Uma "variável" é só uma propriedade do objeto interno especial, `Environment Record`. "Obter ou mudar uma variável" significa "obter ou mudar uma propriedade desse objeto".**
 
-Neste código simples, sem funções, existe apenas um Ambiente Léxico:
+Neste código simples, sem funções, existe apenas um Ambiente Lexical:
 
 ![ambiente léxico](lexical-environment-global.svg)
 
-Esse é o chamado Ambiente Léxico *global*, associado ao script inteiro.
+Esse é o chamado Ambiente Lexical *global*, associado ao script inteiro.
 
-Na imagem acima, o retângulo representa o Environment Record (o armazenamento de variáveis) e a seta representa a referência externa. O Ambiente Léxico global não tem referência externa, por isso a seta aponta para `null`.
+Na imagem acima, o retângulo representa o Environment Record (o armazenamento de variáveis) e a seta representa a referência externa. O Ambiente Lexical global não tem referência externa, por isso a seta aponta para `null`.
 
-Conforme o código começa a executar e avança, o Ambiente Léxico muda.
+Conforme o código começa a executar e avança, o Ambiente Lexical muda.
 
 Aqui está um código um pouco mais longo:
 
 ![ambiente léxico](closure-variable-phrase.svg)
 
-Os retângulos do lado direito demonstram como o Ambiente Léxico global muda durante a execução:
+Os retângulos do lado direito demonstram como o Ambiente Lexical global muda durante a execução:
 
-1. Quando o script começa, o Ambiente Léxico já vem pré-populado com todas as variáveis declaradas.
+1. Quando o script começa, o Ambiente Lexical já vem pré-populado com todas as variáveis declaradas.
     - Inicialmente, elas estão no estado "Não inicializado" (*Uninitialized*). Esse é um estado interno especial, significa que o motor sabe sobre a variável, mas ela não pode ser referenciada até ter sido declarada com `let`. É quase como se a variável não existisse.
 2. Então a definição `let phrase` aparece. Ainda não há atribuição, então seu valor é `undefined`. Podemos usar a variável a partir desse ponto em diante.
 3. `phrase` recebe um valor atribuído.
@@ -196,8 +196,8 @@ Por enquanto tudo parece simples, certo?
 - Uma variável é uma propriedade de um objeto interno especial, associado ao bloco/função/script que está sendo executado no momento.
 - Trabalhar com variáveis, na verdade, é trabalhar com as propriedades desse objeto.
 
-```smart header="Ambiente Léxico é um objeto de especificação"
-"Ambiente Léxico" é um objeto de especificação: ele só existe "teoricamente" na [especificação da linguagem](https://tc39.es/ecma262/#sec-lexical-environments) para descrever como as coisas funcionam. Não conseguimos obter esse objeto no nosso código e manipulá-lo diretamente.
+```smart header="Ambiente Lexical é um objeto de especificação"
+"Ambiente Lexical" é um objeto de especificação: ele só existe "teoricamente" na [especificação da linguagem](https://tc39.es/ecma262/#sec-lexical-environments) para descrever como as coisas funcionam. Não conseguimos obter esse objeto no nosso código e manipulá-lo diretamente.
 
 Os motores do JavaScript também podem otimizá-lo, descartar variáveis que não são usadas para economizar memória e realizar outros truques internos, desde que o comportamento visível continue sendo o descrito.
 ```
@@ -208,19 +208,19 @@ Uma função também é um valor, assim como uma variável.
 
 **A diferença é que uma Declaração de Função é totalmente inicializada instantaneamente.**
 
-Quando um Ambiente Léxico é criado, uma Declaração de Função se torna imediatamente uma função pronta para uso (diferente de `let`, que fica inutilizável até a declaração).
+Quando um Ambiente Lexical é criado, uma Declaração de Função se torna imediatamente uma função pronta para uso (diferente de `let`, que fica inutilizável até a declaração).
 
 É por isso que podemos usar uma função, declarada como Declaração de Função, até mesmo antes da própria declaração.
 
-Por exemplo, aqui está o estado inicial do Ambiente Léxico global quando adicionamos uma função:
+Por exemplo, aqui está o estado inicial do Ambiente Lexical global quando adicionamos uma função:
 
 ![](closure-function-declaration.svg)
 
 Naturalmente, esse comportamento só se aplica a Declarações de Função, não a Expressões de Função, onde atribuímos uma função a uma variável, como `let say = function(name)...`.
 
-### Passo 3. Ambiente Léxico interno e externo
+### Passo 3. Ambiente Lexical interno e externo
 
-Quando uma função roda, no início da chamada, um novo Ambiente Léxico é criado automaticamente para armazenar as variáveis locais e os parâmetros da chamada.
+Quando uma função roda, no início da chamada, um novo Ambiente Lexical é criado automaticamente para armazenar as variáveis locais e os parâmetros da chamada.
 
 Por exemplo, para `say("John")`, fica assim (a execução está na linha marcada com uma seta):
 
@@ -239,19 +239,19 @@ Por exemplo, para `say("John")`, fica assim (a execução está na linha marcada
 
 Durante a chamada da função temos dois Ambientes Léxicos: o interno (da chamada da função) e o externo (global):
 
-- O Ambiente Léxico interno corresponde à execução atual de `say`. Ele tem uma única propriedade: `name`, o argumento da função. Chamamos `say("John")`, então o valor de `name` é `"John"`.
-- O Ambiente Léxico externo é o Ambiente Léxico global. Ele tem a variável `phrase` e a própria função.
+- O Ambiente Lexical interno corresponde à execução atual de `say`. Ele tem uma única propriedade: `name`, o argumento da função. Chamamos `say("John")`, então o valor de `name` é `"John"`.
+- O Ambiente Lexical externo é o Ambiente Lexical global. Ele tem a variável `phrase` e a própria função.
 
-O Ambiente Léxico interno tem uma referência ao externo (`outer`).
+O Ambiente Lexical interno tem uma referência ao externo (`outer`).
 
-**Quando o código quer acessar uma variável -- o Ambiente Léxico interno é pesquisado primeiro, depois o externo, depois o mais externo ainda, e assim por diante, até o global.**
+**Quando o código quer acessar uma variável -- o Ambiente Lexical interno é pesquisado primeiro, depois o externo, depois o mais externo ainda, e assim por diante, até o global.**
 
 Se uma variável não for encontrada em lugar nenhum, isso é um erro no modo estrito (sem `use strict`, uma atribuição a uma variável inexistente cria uma nova variável global, para compatibilidade com código antigo).
 
 Neste exemplo, a busca acontece assim:
 
-- Para a variável `name`, o `alert` dentro de `say` a encontra imediatamente no Ambiente Léxico interno.
-- Quando ele quer acessar `phrase`, não existe `phrase` localmente, então ele segue a referência para o Ambiente Léxico externo e a encontra lá.
+- Para a variável `name`, o `alert` dentro de `say` a encontra imediatamente no Ambiente Lexical interno.
+- Quando ele quer acessar `phrase`, não existe `phrase` localmente, então ele segue a referência para o Ambiente Lexical externo e a encontra lá.
 
 ![busca no ambiente léxico](lexical-environment-simple-lookup.svg)
 
@@ -272,7 +272,7 @@ function makeCounter() {
 let counter = makeCounter();
 ```
 
-No início de cada chamada de `makeCounter()`, um novo objeto Ambiente Léxico é criado, para armazenar variáveis dessa execução de `makeCounter`.
+No início de cada chamada de `makeCounter()`, um novo objeto Ambiente Lexical é criado, para armazenar variáveis dessa execução de `makeCounter`.
 
 Então temos dois Ambientes Léxicos aninhados, assim como no exemplo acima:
 
@@ -280,19 +280,19 @@ Então temos dois Ambientes Léxicos aninhados, assim como no exemplo acima:
 
 O que é diferente é que, durante a execução de `makeCounter()`, uma pequena função aninhada é criada, com só uma linha: `return count++`. Ainda não a executamos, só a criamos.
 
-Todas as funções lembram o Ambiente Léxico no qual foram criadas. Tecnicamente, não existe mágica alguma aqui: todas as funções têm a propriedade oculta chamada `[[Environment]]`, que guarda a referência ao Ambiente Léxico onde a função foi criada:
+Todas as funções lembram o Ambiente Lexical no qual foram criadas. Tecnicamente, não existe mágica alguma aqui: todas as funções têm a propriedade oculta chamada `[[Environment]]`, que guarda a referência ao Ambiente Lexical onde a função foi criada:
 
 ![](closure-makecounter-environment.svg)
 
-Então, `counter.[[Environment]]` tem a referência ao Ambiente Léxico `{count: 0}`. É assim que a função lembra onde foi criada, não importa onde seja chamada. A referência `[[Environment]]` é definida uma vez e para sempre no momento da criação da função.
+Então, `counter.[[Environment]]` tem a referência ao Ambiente Lexical `{count: 0}`. É assim que a função lembra onde foi criada, não importa onde seja chamada. A referência `[[Environment]]` é definida uma vez e para sempre no momento da criação da função.
 
-Mais tarde, quando `counter()` é chamada, um novo Ambiente Léxico é criado para a chamada, e sua referência de Ambiente Léxico externo é obtida de `counter.[[Environment]]`:
+Mais tarde, quando `counter()` é chamada, um novo Ambiente Lexical é criado para a chamada, e sua referência de Ambiente Lexical externo é obtida de `counter.[[Environment]]`:
 
 ![](closure-makecounter-nested-call.svg)
 
-Agora, quando o código dentro de `counter()` procura pela variável `count`, ele primeiro pesquisa seu próprio Ambiente Léxico (vazio, já que não há variáveis locais ali), depois o Ambiente Léxico da chamada externa de `makeCounter()`, onde a encontra e a modifica.
+Agora, quando o código dentro de `counter()` procura pela variável `count`, ele primeiro pesquisa seu próprio Ambiente Lexical (vazio, já que não há variáveis locais ali), depois o Ambiente Lexical da chamada externa de `makeCounter()`, onde a encontra e a modifica.
 
-**Uma variável é atualizada no Ambiente Léxico onde ela vive.**
+**Uma variável é atualizada no Ambiente Lexical onde ela vive.**
 
 Aqui está o estado depois da execução:
 
@@ -312,11 +312,11 @@ Numa entrevista, quando um desenvolvedor frontend recebe uma pergunta sobre "o q
 
 ## Coleta de lixo
 
-Normalmente, um Ambiente Léxico é removido da memória, com todas as suas variáveis, depois que a chamada da função termina. Isso acontece porque não há referências a ele. Como qualquer objeto do JavaScript, ele só é mantido na memória enquanto for alcançável.
+Normalmente, um Ambiente Lexical é removido da memória, com todas as suas variáveis, depois que a chamada da função termina. Isso acontece porque não há referências a ele. Como qualquer objeto do JavaScript, ele só é mantido na memória enquanto for alcançável.
 
 Porém, se existir uma função aninhada que ainda seja alcançável depois do fim de uma função, então ela tem a propriedade `[[Environment]]` que referencia o ambiente léxico.
 
-Nesse caso, o Ambiente Léxico ainda é alcançável mesmo depois da conclusão da função, então ele continua vivo.
+Nesse caso, o Ambiente Lexical ainda é alcançável mesmo depois da conclusão da função, então ele continua vivo.
 
 Por exemplo:
 
@@ -329,11 +329,11 @@ function f() {
   }
 }
 
-let g = f(); // g.[[Environment]] guarda uma referência ao Ambiente Léxico
+let g = f(); // g.[[Environment]] guarda uma referência ao Ambiente Lexical
 // da chamada de f() correspondente
 ```
 
-Observe que, se `f()` for chamada muitas vezes, e as funções resultantes forem salvas, então todos os objetos Ambiente Léxico correspondentes também vão ser retidos na memória. No código abaixo, os 3:
+Observe que, se `f()` for chamada muitas vezes, e as funções resultantes forem salvas, então todos os objetos Ambiente Lexical correspondentes também vão ser retidos na memória. No código abaixo, os 3:
 
 ```js
 function f() {
@@ -342,14 +342,14 @@ function f() {
   return function() { alert(value); };
 }
 
-// 3 funções no array, cada uma delas linkada a um Ambiente Léxico
+// 3 funções no array, cada uma delas linkada a um Ambiente Lexical
 // da execução correspondente de f()
 let arr = [f(), f(), f()];
 ```
 
-Um objeto Ambiente Léxico morre quando se torna inalcançável (assim como qualquer outro objeto). Em outras palavras, ele existe só enquanto houver pelo menos uma função aninhada o referenciando.
+Um objeto Ambiente Lexical morre quando se torna inalcançável (assim como qualquer outro objeto). Em outras palavras, ele existe só enquanto houver pelo menos uma função aninhada o referenciando.
 
-No código abaixo, depois que a função aninhada é removida, seu Ambiente Léxico envolvente (e, portanto, o `value`) é limpo da memória:
+No código abaixo, depois que a função aninhada é removida, seu Ambiente Lexical envolvente (e, portanto, o `value`) é limpo da memória:
 
 ```js
 function f() {

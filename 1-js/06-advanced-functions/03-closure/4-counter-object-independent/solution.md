@@ -1,7 +1,7 @@
 
 Com certeza vai funcionar direitinho.
 
-As duas funções aninhadas são criadas dentro do mesmo Ambiente Léxico externo, então elas compartilham acesso à mesma variável `count`:
+As duas funções aninhadas são criadas dentro do mesmo Ambiente Lexical externo, então elas compartilham acesso à mesma variável `count`:
 
 ```js run
 function Counter() {

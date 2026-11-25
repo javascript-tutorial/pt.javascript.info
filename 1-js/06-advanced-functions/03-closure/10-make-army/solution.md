@@ -88,7 +88,7 @@ Vamos examinar o que exatamente acontece dentro de `makeArmy`, e a solução vai
     
     Aqui, `let j = i` declara uma variável "local à iteração", `j`, e copia `i` para ela. Primitivos são copiados "por valor", então na verdade obtemos uma cópia independente de `i`, pertencente à iteração atual do laço.
     
-    Os shooters funcionam corretamente, porque o valor de `i` agora vive um pouco mais perto. Não no Ambiente Léxico de `makeArmy()`, mas no Ambiente Léxico que corresponde à iteração atual do laço:
+    Os shooters funcionam corretamente, porque o valor de `i` agora vive um pouco mais perto. Não no Ambiente Lexical de `makeArmy()`, mas no Ambiente Lexical que corresponde à iteração atual do laço:
     
     ![](lexenv-makearmy-while-fixed.svg)
     
