@@ -4,7 +4,7 @@ libs:
 
 ---
 
-# DOM tree
+# Árvore DOM
 
 A espinha dorsal de um documento HTML são as tags.
 
@@ -279,4 +279,4 @@ Podemos usar as ferramentas de desenvolvedor para inspecionar o DOM e modificá-
 
 Aqui abordamos o básico, as ações mais usadas e importantes para começar. Existe uma documentação extensa sobre as Chrome Developer Tools em <https://developers.google.com/web/tools/chrome-devtools>. A melhor forma de aprender as ferramentas é clicar aqui e ali, ler os menus: a maioria das opções é óbvia. Depois, quando você já souber delas em geral, leia a documentação e pegue o resto.
 
-Nós do DOM têm propriedades e métodos que nos permitem transitar entre eles, modificá-los, mover pela página, e mais. Vamos entrar nisso nos próximos capítulos.
+Nós do DOM têm propriedades e métodos que nos permitem transitar entre eles, modificá-los, nos mover pela página, e mais. Vamos entrar nisso nos próximos capítulos.
