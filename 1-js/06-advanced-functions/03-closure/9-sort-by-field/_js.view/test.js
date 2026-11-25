@@ -6,7 +6,7 @@ describe("byField", function(){
     { name: "Ann", age: 19, surname: "Hathaway" },
   ];
 
-  it("sorts users by name", function(){
+  it("ordena usuários por name", function(){
     let nameSortedKey = [
       { name: "Ann", age: 19, surname: "Hathaway" },
       { name: "John", age: 20, surname: "Johnson"},
@@ -16,7 +16,7 @@ describe("byField", function(){
     assert.deepEqual(nameSortedKey, nameSortedAnswer);
   });
 
-  it("sorts users by age", function(){
+  it("ordena usuários por age", function(){
     let ageSortedKey = [
       { name: "Pete", age: 18, surname: "Peterson" },
       { name: "Ann", age: 19, surname: "Hathaway" },
@@ -26,7 +26,7 @@ describe("byField", function(){
     assert.deepEqual(ageSortedKey, ageSortedAnswer);
   });
 
-  it("sorts users by surname", function(){
+  it("ordena usuários por surname", function(){
     let surnameSortedKey = [
       { name: "Ann", age: 19, surname: "Hathaway" },
       { name: "John", age: 20, surname: "Johnson"},

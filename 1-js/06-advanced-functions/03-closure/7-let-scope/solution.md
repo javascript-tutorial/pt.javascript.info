@@ -1,6 +1,6 @@
-The result is: **error**.
+O resultado é: **erro**.
 
-Try running it:
+Tente rodar:
 
 ```js run
 let x = 1;
@@ -15,20 +15,20 @@ function func() {
 func();
 ```
 
-In this example we can observe the peculiar difference between a "non-existing" and "uninitialized" variable.
+Neste exemplo podemos observar a diferença peculiar entre uma variável "inexistente" e uma "não inicializada".
 
-As you may have read in the article [](info:closure), a variable starts in the "uninitialized" state from the moment when the execution enters a code block (or a function). And it stays uninitalized until the corresponding `let` statement.
+Como você deve ter lido no artigo [](info:closure), uma variável começa no estado "não inicializado" a partir do momento em que a execução entra num bloco de código (ou numa função). E ela continua não inicializada até a instrução `let` correspondente.
 
-In other words, a variable technically exists, but can't be used before `let`.
+Em outras palavras, a variável tecnicamente existe, mas não pode ser usada antes do `let`.
 
-The code above demonstrates it.
+O código acima demonstra isso.
 
 ```js
 function func() {
 *!*
-  // the local variable x is known to the engine from the beginning of the function,
-  // but "uninitialized" (unusable) until let ("dead zone")
-  // hence the error
+  // o motor sabe da variável local x desde o início da função,
+  // mas ela está "não inicializada" (inutilizável) até o let ("zona morta")
+  // daí o erro
 */!*
 
   console.log(x); // ReferenceError: Cannot access 'x' before initialization
@@ -37,4 +37,4 @@ function func() {
 }
 ```
 
-This zone of temporary unusability of a variable (from the beginning of the code block till `let`) is sometimes called the "dead zone".
+Essa zona de inutilização temporária de uma variável (desde o início do bloco de código até o `let`) às vezes é chamada de "zona morta" (*dead zone*).

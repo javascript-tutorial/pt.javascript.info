@@ -1,9 +1,9 @@
 importance: 5
 
 ---
-# Function in if
+# Função no if
 
-Look at the code. What will be the result of the call at the last line?
+Olhe o código. Qual vai ser o resultado da chamada na última linha?
 
 ```js run
 let phrase = "Hello";

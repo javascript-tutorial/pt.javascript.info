@@ -78,6 +78,79 @@ promiseQueue.svg:
   "script execution finished":
     text: "execução do script terminada"
     position: left
+closure-function-declaration.svg:
+  "execution start":
+    text: "início da execução"
+    position: left
+closure-variable-phrase.svg:
+  "execution start":
+    text: "início da execução"
+    position: left
+lexical-environment-global-2.svg:
+  "execution start":
+    text: "início da execução"
+    position: left
+lexical-environment-global-3.svg:
+  "execution start":
+    text: "início da execução"
+    position: left
+closure-makecounter-nested-call-2.svg:
+  "modified here":
+    text: "modificado aqui"
+    position: left
+lexenv-nested-makecounter-6.svg:
+  "modified here":
+    text: "modificado aqui"
+    position: left
+lexical-environment-global.svg:
+  "Lexical Environment":
+    text: "Ambiente Lexical"
+    position: left
+lexical-environment-simple.svg:
+  "Lexical Environment of the call":
+    text: "Ambiente Lexical da chamada"
+    position: left
+closure-makecounter.svg:
+  "global LexicalEnvironment":
+    text: "Ambiente Lexical global"
+    position: right
+  "LexicalEnvironment":
+    text: "Ambiente Lexical"
+    position: left
+  "of makeCounter() call":
+    text: "de makeCounter()"
+    position: left
+lexenv-nested-makecounter-2.svg:
+  "global LexicalEnvironment":
+    text: "Ambiente Lexical global"
+    position: right
+  "LexicalEnvironment":
+    text: "Ambiente Lexical"
+    position: left
+  "of makeCounter() call":
+    text: "de makeCounter()"
+    position: left
+lexenv-makearmy-empty.svg:
+  "LexicalEnvironment":
+    text: "Ambiente Lexical"
+    position: left
+  "while iteration":
+    text: "iteração do while"
+    position: left
+lexenv-makearmy-for-fixed.svg:
+  "LexicalEnvironment":
+    text: "Ambiente Lexical"
+    position: left
+  "for iteration":
+    text: "iteração do for"
+    position: left
+lexenv-makearmy-while-fixed.svg:
+  "LexicalEnvironment":
+    text: "Ambiente Lexical"
+    position: left
+  "while iteration":
+    text: "iteração do while"
+    position: left
 array-pop.svg:
   "clear":
     text: "limpar"
@@ -94,4 +167,3 @@ array-shift.svg:
     position: left
   "to the left":
     text: "para a esquerda"
-    position: left

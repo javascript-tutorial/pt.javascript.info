@@ -2,9 +2,9 @@ importance: 4
 
 ---
 
-# Is variable visible?
+# A variável é visível?
 
-What will be the result of this code?
+Qual vai ser o resultado deste código?
 
 ```js
 let x = 1;
@@ -18,4 +18,4 @@ function func() {
 func();
 ```
 
-P.S. There's a pitfall in this task. The solution is not obvious.
+P.S. Tem uma pegadinha nessa tarefa. A solução não é óbvia.

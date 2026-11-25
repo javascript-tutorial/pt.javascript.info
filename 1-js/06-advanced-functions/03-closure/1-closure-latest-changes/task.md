@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Does a function pickup latest changes?
+# Uma função pega as mudanças mais recentes?
 
-The function sayHi uses an external variable name. When the function runs, which value is it going to use?
+A função sayHi usa uma variável externa name. Quando a função roda, qual valor ela vai usar?
 
 ```js
 let name = "John";
@@ -15,9 +15,9 @@ function sayHi() {
 
 name = "Pete";
 
-sayHi(); // what will it show: "John" or "Pete"?
+sayHi(); // o que vai mostrar: "John" ou "Pete"?
 ```
 
-Such situations are common both in browser and server-side development. A function may be scheduled to execute later than it is created, for instance after a user action or a network request.
+Situações assim são comuns tanto no desenvolvimento para navegador quanto no lado do servidor. Uma função pode ser agendada para executar depois de ser criada, por exemplo, após uma ação do usuário ou uma requisição de rede.
 
-So, the question is: does it pick up the latest changes?
+Então, a pergunta é: ela pega as mudanças mais recentes?
