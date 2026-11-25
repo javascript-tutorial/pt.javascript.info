@@ -303,7 +303,7 @@ Se chamarmos `counter()` várias vezes, a variável `count` vai aumentar para `2
 ```smart header="Closure"
 Existe um termo geral de programação, "closure", que os desenvolvedores geralmente deveriam conhecer.
 
-Uma [closure](https://pt.wikipedia.org/wiki/Clausura_(ci%C3%AAncia_da_computa%C3%A7%C3%A3o)) é uma função que lembra suas variáveis externas e consegue acessá-las. Em algumas linguagens, isso não é possível, ou uma função precisa ser escrita de uma forma especial para isso acontecer. Mas, como explicado acima, no JavaScript, todas as funções são naturalmente closures (existe só uma exceção, que será coberta em <info:new-function>).
+Uma [closure](https://pt.wikipedia.org/wiki/Clausura_%28ci%C3%AAncia_da_computa%C3%A7%C3%A3o%29) é uma função que lembra suas variáveis externas e consegue acessá-las. Em algumas linguagens, isso não é possível, ou uma função precisa ser escrita de uma forma especial para isso acontecer. Mas, como explicado acima, no JavaScript, todas as funções são naturalmente closures (existe só uma exceção, que será coberta em <info:new-function>).
 
 Ou seja: elas lembram automaticamente onde foram criadas usando uma propriedade oculta `[[Environment]]`, e então seu código pode acessar as variáveis externas.
 
