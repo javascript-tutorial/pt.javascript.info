@@ -38,7 +38,7 @@ function onUpload(req, res) {
     fileStream = fs.createWriteStream(filePath, {
       flags: 'w'
     });
-    debug("New file created: " + filePath);
+    debug("Novo arquivo criado: " + filePath);
   } else {
     // também podemos checar o tamanho do arquivo em disco para ter certeza
     if (upload.bytesReceived != startByte) {
@@ -50,12 +50,12 @@ function onUpload(req, res) {
     fileStream = fs.createWriteStream(filePath, {
       flags: 'a'
     });
-    debug("File reopened: " + filePath);
+    debug("Arquivo reaberto: " + filePath);
   }
 
 
   req.on('data', function(data) {
-    debug("bytes received", upload.bytesReceived);
+    debug("bytes recebidos", upload.bytesReceived);
     upload.bytesReceived += data.length;
   });
 
@@ -65,7 +65,7 @@ function onUpload(req, res) {
   // quando a requisição termina, e todos os seus dados são escritos
   fileStream.on('close', function() {
     if (upload.bytesReceived == req.headers['x-file-size']) {
-      debug("Upload finished");
+      debug("Upload concluído");
       delete uploads[fileId];
 
       // podemos fazer outra coisa com o arquivo enviado aqui
@@ -73,14 +73,14 @@ function onUpload(req, res) {
       res.end("Sucesso " + upload.bytesReceived);
     } else {
       // conexão perdida, deixamos o arquivo inacabado por aí
-      debug("File unfinished, stopped at " + upload.bytesReceived);
+      debug("Arquivo incompleto, parou em " + upload.bytesReceived);
       res.end();
     }
   });
 
   // em caso de erro de I/O - termina a requisição
   fileStream.on('error', function(err) {
-    debug("fileStream error");
+    debug("erro no fileStream");
     res.writeHead(500, "Erro de arquivo");
     res.end();
   });

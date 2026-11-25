@@ -1,10 +1,10 @@
-# Resumable file upload
+# Upload de arquivo retomável
 
 Com o método `fetch` é bem fácil fazer upload de um arquivo.
 
 Como retomar o upload depois de perder a conexão? Não existe nenhuma opção nativa para isso, mas temos as peças para implementá-lo.
 
-Uploads retomáveis devem vir com indicação de progresso de upload, já que esperamos arquivos grandes (se é que podemos precisar retomar). Então, como `fetch` não permite acompanhar o progresso de upload, vamos usar o [XMLHttpRequest](info:xmlhttprequest).
+Uploads retomáveis devem vir com indicação de progresso de upload, já que esperamos arquivos grandes (que talvez precisem ser retomados). Então, como `fetch` não permite acompanhar o progresso de upload, vamos usar o [XMLHttpRequest](info:xmlhttprequest).
 
 ## O evento de progresso nem tão útil assim
 
@@ -22,7 +22,7 @@ Para retomar o upload, precisamos saber *exatamente* o número de bytes recebido
 
 ## Algoritmo
 
-1. Primeiro, cria um id de arquivo, para identificar unicamente o arquivo que vamos enviar:
+1. Primeiro, crie um id de arquivo, para identificar unicamente o arquivo que vamos enviar:
     ```js
     let fileId = file.name + '-' + file.size + '-' + file.lastModified;
     ```
@@ -30,7 +30,7 @@ Para retomar o upload, precisamos saber *exatamente* o número de bytes recebido
 
     Se o nome, ou o tamanho, ou a data da última modificação mudar, então vai existir outro `fileId`.
 
-2. Envia uma requisição ao servidor, perguntando quantos bytes ele já tem, assim:
+2. Envie uma requisição ao servidor, perguntando quantos bytes ele já tem, assim:
     ```js
     let response = await fetch('status', {
       headers: {
@@ -57,14 +57,14 @@ Para retomar o upload, precisamos saber *exatamente* o número de bytes recebido
     xhr.setRequestHeader('X-Start-Byte', startByte);
 
     xhr.upload.onprogress = (e) => {
-      console.log(`Uploaded ${startByte + e.loaded} of ${startByte + e.total}`);
+      console.log(`Enviado ${startByte + e.loaded} de ${startByte + e.total}`);
     };
 
     // o arquivo pode vir de input.files[0] ou outra fonte
     xhr.send(file.slice(startByte));
     ```
 
-    Aqui enviamos ao servidor tanto o id do arquivo como `X-File-Id`, para que ele saiba qual arquivo estamos enviando, quanto o byte inicial como `X-Start-Byte`, para que ele saiba que não estamos enviando pela primeira vez, mas retomando.
+    Aqui enviamos ao servidor o id do arquivo no cabeçalho `X-File-Id`, para que ele saiba qual arquivo estamos enviando, e o byte inicial no cabeçalho `X-Start-Byte`, para que ele saiba que não estamos enviando pela primeira vez, mas retomando.
 
     O servidor deve checar seus registros, e se já houve um upload desse arquivo, e o tamanho atualmente enviado é exatamente `X-Start-Byte`, então acrescentar os dados a ele.
 
