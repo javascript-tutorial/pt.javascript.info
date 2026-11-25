@@ -65,9 +65,9 @@ async function subscribe() {
 subscribe();
 ```
 
-Como você pode ver, a função `subscribe` faz um fetch, depois espera a resposta, trata ela e se chama de novo.
+Como você pode ver, a função `subscribe` faz um fetch, depois espera a resposta, a trata e se chama de novo.
 
-```warn header="O servidor deve estar bem com muitas conexões pendentes"
+```warn header="O servidor deve suportar muitas conexões pendentes"
 A arquitetura do servidor deve ser capaz de trabalhar com muitas conexões pendentes.
 
 Certas arquiteturas de servidor rodam um processo por conexão, resultando em tantos processos quantas conexões existirem, enquanto cada processo consome uma boa quantidade de memória. Então, conexões demais vão simplesmente consumir tudo.
