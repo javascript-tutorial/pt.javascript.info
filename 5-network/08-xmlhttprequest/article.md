@@ -42,7 +42,7 @@ Para fazer a requisição, precisamos de 3 passos:
 
     Observe que a chamada `open`, ao contrário do seu nome, não abre a conexão. Ela só configura a requisição, mas a atividade de rede só começa com a chamada de `send`.
 
-3. Envie.
+3. Enviá-lo.
 
     ```js
     xhr.send([body])
@@ -52,7 +52,7 @@ Para fazer a requisição, precisamos de 3 passos:
 
     Alguns métodos de requisição como `GET` não têm corpo. E alguns deles como `POST` usam `body` para enviar os dados ao servidor. Vamos ver exemplos disso mais tarde.
 
-4. Escute os eventos de `xhr` para a resposta.
+4. Escutar os eventos de `xhr` para a resposta.
 
     Estes três eventos são os mais amplamente usados:
     - `load` -- quando a requisição está completa (mesmo que o status HTTP seja algo como 400 ou 500), e a resposta é totalmente baixada.
@@ -143,7 +143,7 @@ xhr.open('GET', url); // https://google.com/search?q=test+me%21
 
 ````
 
-## Response Type
+## Tipo de resposta
 
 Podemos usar a propriedade `xhr.responseType` para definir o formato da resposta:
 
@@ -180,7 +180,7 @@ Nos scripts antigos você também pode encontrar as propriedades `xhr.responseTe
 Elas existem por motivos históricos, para obter uma string ou um documento XML. Hoje em dia, devemos definir o formato em `xhr.responseType` e obter `xhr.response` como demonstrado acima.
 ```
 
-## Ready states
+## Estados de prontidão
 
 `XMLHttpRequest` muda entre estados conforme avança. O estado atual é acessível como `xhr.readyState`.
 
@@ -194,7 +194,7 @@ LOADING = 3; // a resposta está carregando (um pacote de dados foi recebido)
 DONE = 4; // requisição completa
 ```
 
-Um objeto `XMLHttpRequest` percorre eles na ordem `0` -> `1` -> `2` -> `3` -> ... -> `3` -> `4`. O estado `3` se repete toda vez que um pacote de dados é recebido pela rede.
+Um objeto `XMLHttpRequest` os percorre na ordem `0` -> `1` -> `2` -> `3` -> ... -> `3` -> `4`. O estado `3` se repete toda vez que um pacote de dados é recebido pela rede.
 
 Podemos acompanhá-los usando o evento `readystatechange`:
 
@@ -519,7 +519,7 @@ Na verdade, existem mais eventos, a [especificação moderna](https://xhr.spec.w
 - `timeout` -- a requisição foi cancelada por causa de timeout (só acontece se ele foi definido).
 - `loadend` -- dispara depois de `load`, `error`, `timeout` ou `abort`.
 
-Os eventos `error`, `abort`, `timeout`, e `load` são mutuamente exclusivos. Só um deles pode acontecer.
+Os eventos `error`, `abort`, `timeout` e `load` são mutuamente exclusivos. Só um deles pode acontecer.
 
 Os eventos mais usados são conclusão do carregamento (`load`), falha no carregamento (`error`), ou podemos usar um único tratador `loadend` e checar as propriedades do objeto de requisição `xhr` para ver o que aconteceu.
 
