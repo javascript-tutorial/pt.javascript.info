@@ -91,7 +91,7 @@ Os valores possíveis são descritos na especificação [Referrer Policy](https:
 - **`"origin"`** -- envia só a origem no `Referer`, não a URL completa da página, por exemplo, só `http://site.com` em vez de `http://site.com/path`.
 - **`"origin-when-cross-origin"`** -- envia o `Referer` completo para a mesma origem, mas só a parte da origem para requisições cross-origin (como acima).
 - **`"same-origin"`** -- envia o `Referer` completo para a mesma origem, mas nenhum `Referer` para requisições cross-origin.
-- **`"strict-origin"`** -- envia só a origem, não o `Referer`, para requisições HTTPS→HTTP.
+- **`"strict-origin"`** -- envia só a origem, e nenhum `Referer` para requisições HTTPS→HTTP.
 - **`"unsafe-url"`** -- sempre envia a url completa no `Referer`, até mesmo para requisições HTTPS→HTTP.
 
 Aqui está uma tabela com todas as combinações:
@@ -171,7 +171,7 @@ A opção `redirect` permite mudar isso:
 
 - **`"follow"`** -- o padrão, segue redirecionamentos HTTP,
 - **`"error"`** -- erro no caso de redirecionamento HTTP,
-- **`"manual"`** -- permite processar redirecionamentos HTTP manualmente. No caso de redirecionamento, vamos obter um objeto de resposta especial, com `response.type="opaqueredirect"` e a maioria das outras propriedades zeradas/vazias.
+- **`"manual"`** -- permite processar redirecionamentos HTTP manualmente. No caso de redirecionamento, vamos obter um objeto de resposta especial, com `response.type="opaqueredirect"` e o status e a maioria das outras propriedades zerados/vazios.
 
 ## integrity
 
