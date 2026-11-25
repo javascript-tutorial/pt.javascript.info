@@ -1,91 +1,91 @@
 
-# Event delegation
+# Delegação de eventos
 
-Capturing and bubbling allow us to implement one of the most powerful event handling patterns called *event delegation*.
+Capturing e bubbling nos permitem implementar um dos padrões mais poderosos de tratamento de eventos, chamado *delegação de eventos*.
 
-The idea is that if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them -- we put a single handler on their common ancestor.
+A ideia é que, se temos muitos elementos tratados de forma parecida, então, em vez de atribuir um manipulador a cada um deles -- colocamos um único manipulador no seu ancestral comum.
 
-In the handler we get `event.target` to see where the event actually happened and handle it.
+No manipulador, obtemos `event.target` para ver onde o evento realmente aconteceu e tratá-lo.
 
-Let's see an example -- the [Ba-Gua diagram](http://en.wikipedia.org/wiki/Ba_gua) reflecting the ancient Chinese philosophy.
+Vamos ver um exemplo -- o [diagrama Ba-Gua](http://en.wikipedia.org/wiki/Ba_gua), que reflete a antiga filosofia chinesa.
 
-Here it is:
+Aqui está:
 
 [iframe height=350 src="bagua" edit link]
 
-The HTML is like this:
+O HTML é assim:
 
 ```html
 <table>
   <tr>
-    <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+    <th colspan="3"><em>Bagua</em>: Direção, Elemento, Cor, Significado</th>
   </tr>
   <tr>
-    <td class="nw"><strong>Northwest</strong><br>Metal<br>Silver<br>Elders</td>
+    <td class="nw"><strong>Noroeste</strong><br>Metal<br>Prata<br>Idosos</td>
     <td class="n">...</td>
     <td class="ne">...</td>
   </tr>
-  <tr>...2 more lines of this kind...</tr>
-  <tr>...2 more lines of this kind...</tr>
+  <tr>...mais 2 linhas desse tipo...</tr>
+  <tr>...mais 2 linhas desse tipo...</tr>
 </table>
 ```
 
-The table has 9 cells, but there could be 99 or 9999, doesn't matter.
+A tabela tem 9 células, mas poderia ter 99 ou 9999, não importa.
 
-**Our task is to highlight a cell `<td>` on click.**
+**Nossa tarefa é destacar uma célula `<td>` ao clicar.**
 
-Instead of assign an `onclick` handler to each `<td>` (can be many) -- we'll setup the "catch-all" handler on `<table>` element.
+Em vez de atribuir um manipulador `onclick` a cada `<td>` (podem ser muitos) -- vamos configurar o manipulador "pega-tudo" no elemento `<table>`.
 
-It will use `event.target` to get the clicked element and highlight it.
+Ele vai usar `event.target` para obter o elemento clicado e destacá-lo.
 
-The code:
+O código:
 
 ```js
 let selectedTd;
 
 *!*
 table.onclick = function(event) {
-  let target = event.target; // where was the click?
+  let target = event.target; // onde foi o clique?
 
-  if (target.tagName != 'TD') return; // not on TD? Then we're not interested
+  if (target.tagName != 'TD') return; // não foi em TD? Então não estamos interessados
 
-  highlight(target); // highlight it
+  highlight(target); // destaca
 };
 */!*
 
 function highlight(td) {
-  if (selectedTd) { // remove the existing highlight if any
+  if (selectedTd) { // remove o destaque existente, se houver
     selectedTd.classList.remove('highlight');
   }
   selectedTd = td;
-  selectedTd.classList.add('highlight'); // highlight the new td
+  selectedTd.classList.add('highlight'); // destaca o novo td
 }
 ```
 
-Such a code doesn't care how many cells there are in the table. We can add/remove `<td>` dynamically at any time and the highlighting will still work.
+Esse código não se importa com quantas células há na tabela. Podemos adicionar/remover `<td>` dinamicamente em qualquer momento e o destaque continuará funcionando.
 
-Still, there's a drawback.
+Ainda assim, há uma desvantagem.
 
-The click may occur not on the `<td>`, but inside it.
+O clique pode ocorrer não no `<td>`, mas dentro dele.
 
-In our case if we take a look inside the HTML, we can see nested tags inside `<td>`, like `<strong>`:
+No nosso caso, se olharmos dentro do HTML, podemos ver tags aninhadas dentro de `<td>`, como `<strong>`:
 
 ```html
 <td>
 *!*
-  <strong>Northwest</strong>
+  <strong>Noroeste</strong>
 */!*
   ...
 </td>
 ```
 
-Naturally, if a click happens on that `<strong>` then it becomes the value of `event.target`.
+Naturalmente, se um clique acontece nesse `<strong>`, então ele se torna o valor de `event.target`.
 
 ![](bagua-bubble.svg)
 
-In the handler `table.onclick` we should take such `event.target` and find out whether the click was inside `<td>` or not.
+No manipulador `table.onclick` devemos pegar esse `event.target` e descobrir se o clique foi dentro de um `<td>` ou não.
 
-Here's the improved code:
+Aqui está o código melhorado:
 
 ```js
 table.onclick = function(event) {
@@ -99,33 +99,33 @@ table.onclick = function(event) {
 };
 ```
 
-Explanations:
-1. The method `elem.closest(selector)` returns the nearest ancestor that matches the selector. In our case we look for `<td>` on the way up from the source element.
-2. If `event.target` is not inside any `<td>`, then the call returns immediately, as there's nothing to do.
-3. In case of nested tables, `event.target` may be a `<td>`, but lying outside of the current table. So we check if that's actually *our table's* `<td>`.
-4. And, if it's so, then highlight it.
+Explicações:
+1. O método `elem.closest(selector)` retorna o ancestral mais próximo que corresponde ao seletor. No nosso caso, procuramos por `<td>` subindo a partir do elemento de origem.
+2. Se `event.target` não estiver dentro de nenhum `<td>`, então a chamada retorna imediatamente, já que não há nada a fazer.
+3. No caso de tabelas aninhadas, `event.target` pode ser um `<td>`, mas fora da nossa tabela atual. Então verificamos se é realmente o `<td>` *da nossa tabela*.
+4. E, se for, então o destacamos.
 
-As the result, we have a fast, efficient highlighting code, that doesn't care about the total number of `<td>` in the table.
+Como resultado, temos um código de destaque rápido e eficiente, que não se importa com o número total de `<td>` na tabela.
 
-## Delegation example: actions in markup
+## Exemplo de delegação: ações na marcação
 
-There are other uses for event delegation.
+Há outros usos para a delegação de eventos.
 
-Let's say, we want to make a menu with buttons "Save", "Load", "Search" and so on. And there's an object with methods `save`, `load`, `search`... How to match them?
+Digamos que queremos fazer um menu com botões "Salvar", "Carregar", "Buscar" e assim por diante. E há um objeto com métodos `save`, `load`, `search`... Como relacioná-los?
 
-The first idea may be to assign a separate handler to each button. But there's a more elegant solution. We can add a handler for the whole menu and `data-action` attributes for buttons that has the method to call:
+A primeira ideia pode ser atribuir um manipulador separado a cada botão. Mas há uma solução mais elegante. Podemos adicionar um manipulador para o menu inteiro e atributos `data-action` para os botões que contêm o método a chamar:
 
 ```html
-<button *!*data-action="save"*/!*>Click to Save</button>
+<button *!*data-action="save"*/!*>Clique para Salvar</button>
 ```
 
-The handler reads the attribute and executes the method. Take a look at the working example:
+O manipulador lê o atributo e executa o método. Dê uma olhada no exemplo funcional:
 
 ```html autorun height=60 run untrusted
 <div id="menu">
-  <button data-action="save">Save</button>
-  <button data-action="load">Load</button>
-  <button data-action="search">Search</button>
+  <button data-action="save">Salvar</button>
+  <button data-action="load">Carregar</button>
+  <button data-action="search">Buscar</button>
 </div>
 
 <script>
@@ -136,15 +136,15 @@ The handler reads the attribute and executes the method. Take a look at the work
     }
 
     save() {
-      alert('saving');
+      alert('salvando');
     }
 
     load() {
-      alert('loading');
+      alert('carregando');
     }
 
     search() {
-      alert('searching');
+      alert('buscando');
     }
 
     onClick(event) {
@@ -161,37 +161,37 @@ The handler reads the attribute and executes the method. Take a look at the work
 </script>
 ```
 
-Please note that `this.onClick` is bound to `this` in `(*)`. That's important, because otherwise `this` inside it would reference the DOM element (`elem`), not the `Menu` object, and `this[action]` would not be what we need.
+Note que `this.onClick` está vinculado a `this` em `(*)`. Isso é importante, porque, caso contrário, `this` dentro dele referenciaria o elemento do DOM (`elem`), não o objeto `Menu`, e `this[action]` não seria o que precisamos.
 
-So, what advantages does delegation give us here?
+Então, quais vantagens a delegação nos dá aqui?
 
 ```compare
-+ We don't need to write the code to assign a handler to each button. Just make a method and put it in the markup.
-+ The HTML structure is flexible, we can add/remove buttons at any time.
++ Não precisamos escrever o código para atribuir um manipulador a cada botão. Basta criar um método e colocá-lo na marcação.
++ A estrutura HTML é flexível, podemos adicionar/remover botões em qualquer momento.
 ```
 
-We could also use classes `.action-save`, `.action-load`, but an attribute `data-action` is better semantically. And we can use it in CSS rules too.
+Também poderíamos usar classes `.action-save`, `.action-load`, mas um atributo `data-action` é semanticamente melhor. E também podemos usá-lo em regras CSS.
 
-## The "behavior" pattern
+## O padrão "comportamento"
 
-We can also use event delegation to add "behaviors" to elements *declaratively*, with special attributes and classes.
+Também podemos usar a delegação de eventos para adicionar "comportamentos" a elementos *declarativamente*, com atributos e classes especiais.
 
-The pattern has two parts:
-1. We add a custom attribute to an element that describes its behavior.
-2. A document-wide handler tracks events, and if an event happens on an attributed element -- performs the action.
+O padrão tem duas partes:
+1. Adicionamos um atributo personalizado a um elemento que descreve seu comportamento.
+2. Um manipulador no nível do documento rastreia eventos, e, se um evento acontece em um elemento com esse atributo -- executa a ação.
 
-### Behavior: Counter
+### Comportamento: Contador
 
-For instance, here the attribute `data-counter` adds a behavior: "increase value on click" to buttons:
+Por exemplo, aqui o atributo `data-counter` adiciona um comportamento: "aumentar o valor ao clicar" a botões:
 
 ```html run autorun height=60
-Counter: <input type="button" value="1" data-counter>
-One more counter: <input type="button" value="2" data-counter>
+Contador: <input type="button" value="1" data-counter>
+Mais um contador: <input type="button" value="2" data-counter>
 
 <script>
   document.addEventListener('click', function(event) {
 
-    if (event.target.dataset.counter != undefined) { // if the attribute exists...
+    if (event.target.dataset.counter != undefined) { // se o atributo existir...
       event.target.value++;
     }
 
@@ -199,27 +199,27 @@ One more counter: <input type="button" value="2" data-counter>
 </script>
 ```
 
-If we click a button -- its value is increased. Not buttons, but the general approach is important here.
+Se clicarmos em um botão -- seu valor é aumentado. Não os botões, mas a abordagem geral é o que importa aqui.
 
-There can be as many attributes with `data-counter` as we want. We can add new ones to HTML at any moment. Using the event delegation we "extended" HTML, added an attribute that describes a new behavior.
+Pode haver quantos atributos `data-counter` quisermos. Podemos adicionar novos ao HTML em qualquer momento. Usando a delegação de eventos, "estendemos" o HTML, adicionando um atributo que descreve um novo comportamento.
 
-```warn header="For document-level handlers -- always `addEventListener`"
-When we assign an event handler to the `document` object, we should always use `addEventListener`, not `document.on<event>`, because the latter will cause conflicts: new handlers overwrite old ones.
+```warn header="Para manipuladores no nível do documento -- sempre `addEventListener`"
+Quando atribuímos um manipulador de evento ao objeto `document`, devemos sempre usar `addEventListener`, não `document.on<event>`, porque o último vai causar conflitos: novos manipuladores sobrescrevem os antigos.
 
-For real projects it's normal that there are many handlers on `document` set by different parts of the code.
+Em projetos reais é normal que existam muitos manipuladores em `document` definidos por diferentes partes do código.
 ```
 
-### Behavior: Toggler
+### Comportamento: Alternador (Toggler)
 
-One more example of behavior. A click on an element with the attribute `data-toggle-id` will show/hide the element with the given `id`:
+Mais um exemplo de comportamento. Um clique em um elemento com o atributo `data-toggle-id` vai mostrar/ocultar o elemento com o `id` dado:
 
 ```html autorun run height=60
 <button *!*data-toggle-id="subscribe-mail"*/!*>
-  Show the subscription form
+  Mostrar o formulário de inscrição
 </button>
 
 <form id="subscribe-mail" hidden>
-  Your mail: <input type="email">
+  Seu e-mail: <input type="email">
 </form>
 
 <script>
@@ -236,37 +236,37 @@ One more example of behavior. A click on an element with the attribute `data-tog
 </script>
 ```
 
-Let's note once again what we did. Now, to add toggling functionality to an element -- there's no need to know JavaScript, just use the attribute `data-toggle-id`.
+Vamos notar de novo o que fizemos. Agora, para adicionar funcionalidade de alternância a um elemento -- não há necessidade de saber JavaScript, basta usar o atributo `data-toggle-id`.
 
-That may become really convenient -- no need to write JavaScript for every such element. Just use the behavior. The document-level handler makes it work for any element of the page.
+Isso pode se tornar realmente conveniente -- sem necessidade de escrever JavaScript para cada elemento assim. Basta usar o comportamento. O manipulador no nível do documento faz isso funcionar para qualquer elemento da página.
 
-We can combine multiple behaviors on a single element as well.
+Também podemos combinar múltiplos comportamentos em um único elemento.
 
-The "behavior" pattern can be an alternative to mini-fragments of JavaScript.
+O padrão "comportamento" pode ser uma alternativa a mini-fragmentos de JavaScript.
 
-## Summary
+## Resumo
 
-Event delegation is really cool! It's one of the most helpful patterns for DOM events.
+A delegação de eventos é realmente ótima! É um dos padrões mais úteis para eventos do DOM.
 
-It's often used to add the same handling for many similar elements, but not only for that.
+É frequentemente usada para adicionar o mesmo tratamento a muitos elementos parecidos, mas não só para isso.
 
-The algorithm:
+O algoritmo:
 
-1. Put a single handler on the container.
-2. In the handler -- check the source element `event.target`.
-3. If the event happened inside an element that interests us, then handle the event.
+1. Coloque um único manipulador no container.
+2. No manipulador -- verifique o elemento de origem `event.target`.
+3. Se o evento aconteceu dentro de um elemento que nos interessa, então trate o evento.
 
-Benefits:
+Benefícios:
 
 ```compare
-+ Simplifies initialization and saves memory: no need to add many handlers.
-+ Less code: when adding or removing elements, no need to add/remove handlers.
-+ DOM modifications: we can mass add/remove elements with `innerHTML` and the like.
++ Simplifica a inicialização e economiza memória: não há necessidade de adicionar muitos manipuladores.
++ Menos código: ao adicionar ou remover elementos, não há necessidade de adicionar/remover manipuladores.
++ Modificações no DOM: podemos adicionar/remover elementos em massa com `innerHTML` e similares.
 ```
 
-The delegation has its limitations of course:
+A delegação tem suas limitações, claro:
 
 ```compare
-- First, the event must be bubbling. Some events do not bubble. Also, low-level handlers should not use `event.stopPropagation()`.
-- Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter whether they interest us or not. But usually the load is negligible, so we don't take it into account.
+- Primeiro, o evento precisa fazer bubbling. Alguns eventos não fazem bubbling. Além disso, manipuladores de nível mais baixo não devem usar `event.stopPropagation()`.
+- Segundo, a delegação pode adicionar carga à CPU, porque o manipulador no nível do container reage a eventos em qualquer lugar do container, não importa se nos interessam ou não. Mas geralmente a carga é insignificante, então não a levamos em conta.
 ```

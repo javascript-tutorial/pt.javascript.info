@@ -151,3 +151,19 @@ lexenv-makearmy-while-fixed.svg:
   "while iteration":
     text: "iteração do while"
     position: left
+array-pop.svg:
+  "clear":
+    text: "limpar"
+    position: center
+array-shift.svg:
+  "clear":
+    text: "limpar"
+    position: center
+  "move":
+    text: "mover"
+    position: left
+  "elements":
+    text: "elementos"
+    position: left
+  "to the left":
+    text: "para a esquerda"

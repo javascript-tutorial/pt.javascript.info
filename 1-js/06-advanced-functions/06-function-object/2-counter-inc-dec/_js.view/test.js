@@ -1,6 +1,6 @@
 describe("counter", function() {
 
-  it("increases from call to call", function() {
+  it("aumenta a cada chamada", function() {
 
     let counter = makeCounter();
 
@@ -11,7 +11,7 @@ describe("counter", function() {
 
   
   describe("counter.set", function() {
-    it("sets the count", function() {
+    it("define a contagem", function() {
 
       let counter = makeCounter();
 
@@ -23,7 +23,7 @@ describe("counter", function() {
   });
   
   describe("counter.decrease", function() {
-    it("decreases the count", function() {
+    it("diminui a contagem", function() {
 
       let counter = makeCounter();
 

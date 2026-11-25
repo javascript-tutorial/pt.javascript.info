@@ -1,4 +1,4 @@
-The solution has two parts.
+A solução tem duas partes.
 
-1. Wrap every tree node title into `<span>`. Then we can CSS-style them on `:hover` and handle clicks exactly on text, because `<span>` width is exactly the text width (unlike without it).
-2. Set a handler to the `tree` root node and handle clicks on that `<span>` titles.
+1. Envolva o título de cada nó da árvore em um `<span>`. Então podemos estilizá-los com CSS no `:hover` e tratar cliques exatamente no texto, porque a largura do `<span>` é exatamente a largura do texto (diferente de sem ele).
+2. Defina um manipulador no nó raiz `tree` e trate cliques nesses títulos `<span>`.

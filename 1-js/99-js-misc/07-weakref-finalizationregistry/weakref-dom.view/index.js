@@ -14,10 +14,10 @@ const startMessages = (element) => {
     const timerId = setInterval(() => { // (6)
         if (element.deref()) { // (7)
             const payload = document.createElement("p");
-            payload.textContent = `Message: System status OK: ${new Date().toLocaleTimeString()}`;
+            payload.textContent = `Mensagem: Status do sistema OK: ${new Date().toLocaleTimeString()}`;
             element.deref().append(payload);
         } else { // (8)
-            alert("The element has been deleted."); // (9)
+            alert("O elemento foi excluído."); // (9)
             clearInterval(timerId);
         }
     }, 1000);
