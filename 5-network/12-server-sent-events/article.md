@@ -1,80 +1,80 @@
-# Server Sent Events
+# Eventos enviados pelo servidor (Server-Sent Events)
 
-The [Server-Sent Events](https://html.spec.whatwg.org/multipage/comms.html#the-eventsource-interface) specification describes a built-in class `EventSource`, that keeps connection with the server and allows to receive events from it.
+A especificação [Server-Sent Events](https://html.spec.whatwg.org/multipage/comms.html#the-eventsource-interface) descreve uma classe nativa `EventSource`, que mantém a conexão com o servidor e permite receber eventos dele.
 
-Similar to `WebSocket`, the connection is persistent.
+Assim como o `WebSocket`, a conexão é persistente.
 
-But there are several important differences:
+Mas existem várias diferenças importantes:
 
 | `WebSocket` | `EventSource` |
 |-------------|---------------|
-| Bi-directional: both client and server can exchange messages | One-directional: only server sends data |
-| Binary and text data | Only text |
-| WebSocket protocol | Regular HTTP |
+| Bidirecional: tanto cliente quanto servidor podem trocar mensagens | Unidirecional: só o servidor envia dados |
+| Dados binários e de texto | Só texto |
+| Protocolo WebSocket | HTTP comum |
 
-`EventSource` is a less-powerful way of communicating with the server than `WebSocket`.
+`EventSource` é uma forma menos poderosa de se comunicar com o servidor do que `WebSocket`.
 
-Why should one ever use it?
+Por que alguém usaria isso?
 
-The main reason: it's simpler. In many applications, the power of `WebSocket` is a little bit too much.
+O principal motivo: é mais simples. Em muitas aplicações, o poder do `WebSocket` é um pouco demais.
 
-We need to receive a stream of data from server: maybe chat messages or market prices, or whatever. That's what `EventSource` is good at. Also it supports auto-reconnect, something  we need to implement manually with `WebSocket`. Besides, it's a plain old HTTP, not a new protocol.
+Precisamos receber um fluxo de dados do servidor: talvez mensagens de chat ou preços de mercado, ou qualquer coisa assim. É nisso que `EventSource` é bom. Também suporta reconexão automática, algo que precisamos implementar manualmente com `WebSocket`. Além disso, é um HTTP simples e comum, não um protocolo novo.
 
-## Getting messages
+## Obtendo mensagens
 
-To start receiving messages, we just need to create `new EventSource(url)`.
+Para começar a receber mensagens, só precisamos criar `new EventSource(url)`.
 
-The browser will connect to `url` and keep the connection open, waiting for events.
+O navegador vai se conectar a `url` e manter a conexão aberta, esperando por eventos.
 
-The server should respond with status 200 and the header `Content-Type: text/event-stream`, then keep the connection and write messages into it in the special format, like this:
+O servidor deve responder com status 200 e o cabeçalho `Content-Type: text/event-stream`, então manter a conexão e escrever mensagens nela num formato especial, assim:
 
 ```
-data: Message 1
+data: Mensagem 1
 
-data: Message 2
+data: Mensagem 2
 
-data: Message 3
-data: of two lines
+data: Mensagem 3
+data: de duas linhas
 ```
 
-- A message text goes after `data:`, the space after the colon is optional.
-- Messages are delimited with double line breaks `\n\n`.
-- To send a line break `\n`, we can immediately send one more `data:` (3rd message above).
+- O texto de uma mensagem vem depois de `data:`, o espaço depois dos dois-pontos é opcional.
+- Mensagens são delimitadas com quebras de linha duplas `\n\n`.
+- Para enviar uma quebra de linha `\n`, podemos imediatamente enviar mais um `data:` (3ª mensagem acima).
 
-In practice, complex messages are usually sent JSON-encoded. Line-breaks are encoded as `\n` within them, so multiline `data:` messages are not necessary.
+Na prática, mensagens complexas geralmente são enviadas codificadas em JSON. Quebras de linha são codificadas como `\n` dentro delas, então mensagens `data:` multilinha não são necessárias.
 
-For instance:
+Por exemplo:
 
 ```js
 data: {"user":"John","message":"First line*!*\n*/!* Second line"}
 ```
 
-...So we can assume that one `data:` holds exactly one message.
+...Então podemos assumir que um `data:` contém exatamente uma mensagem.
 
-For each such message, the `message` event is generated:
+Para cada mensagem desse tipo, o evento `message` é gerado:
 
 ```js
 let eventSource = new EventSource("/events/subscribe");
 
 eventSource.onmessage = function(event) {
-  console.log("New message", event.data);
-  // will log 3 times for the data stream above
+  console.log("Nova mensagem", event.data);
+  // vai registrar 3 vezes para o fluxo de dados acima
 };
 
-// or eventSource.addEventListener('message', ...)
+// ou eventSource.addEventListener('message', ...)
 ```
 
-### Cross-origin requests
+### Requisições cross-origin
 
-`EventSource` supports cross-origin requests, like `fetch` and any other networking methods. We can use any URL:
+`EventSource` suporta requisições cross-origin, como `fetch` e qualquer outro método de rede. Podemos usar qualquer URL:
 
 ```js
 let source = new EventSource("https://another-site.com/events");
 ```
 
-The remote server will get the `Origin` header and must respond with `Access-Control-Allow-Origin` to proceed.
+O servidor remoto vai receber o cabeçalho `Origin` e deve responder com `Access-Control-Allow-Origin` para prosseguir.
 
-To pass credentials, we should set the additional option `withCredentials`, like this:
+Para passar credenciais, devemos definir a opção adicional `withCredentials`, assim:
 
 ```js
 let source = new EventSource("https://another-site.com/events", {
@@ -82,30 +82,30 @@ let source = new EventSource("https://another-site.com/events", {
 });
 ```
 
-Please see the chapter <info:fetch-crossorigin> for more details about cross-origin headers.
+Veja o capítulo <info:fetch-crossorigin> para mais detalhes sobre cabeçalhos cross-origin.
 
 
-## Reconnection
+## Reconexão
 
-Upon creation, `new EventSource` connects to the server, and if the connection is broken -- reconnects.
+Na criação, `new EventSource` se conecta ao servidor, e se a conexão for quebrada -- reconecta.
 
-That's very convenient, as we don't have to care about it.
+Isso é bem conveniente, já que não precisamos nos preocupar com isso.
 
-There's a small delay between reconnections, a few seconds by default.
+Existe um pequeno atraso entre reconexões, alguns segundos por padrão.
 
-The server can set the recommended delay using `retry:` in response (in milliseconds):
+O servidor pode definir o atraso recomendado usando `retry:` na resposta (em milissegundos):
 
 ```js
 retry: 15000
-data: Hello, I set the reconnection delay to 15 seconds
+data: Olá, defini o atraso de reconexão para 15 segundos
 ```
 
-The `retry:` may come both together with some data, or as a standalone message.
+O `retry:` pode vir tanto junto com algum dado, quanto como uma mensagem independente.
 
-The browser should wait that many milliseconds before reconnecting. Or longer, e.g. if the browser knows (from OS) that there's no network connection at the moment, it may wait until the connection appears, and then retry.
+O navegador deve esperar essa quantidade de milissegundos antes de reconectar. Ou mais, por exemplo, se o navegador sabe (pelo SO) que não há conexão de rede no momento, ele pode esperar até a conexão aparecer, e então tentar de novo.
 
-- If the server wants the browser to stop reconnecting, it should respond with HTTP status 204.
-- If the browser wants to close the connection, it should call `eventSource.close()`:
+- Se o servidor quiser que o navegador pare de reconectar, ele deve responder com status HTTP 204.
+- Se o navegador quiser fechar a conexão, ele deve chamar `eventSource.close()`:
 
 ```js
 let eventSource = new EventSource(...);
@@ -113,64 +113,64 @@ let eventSource = new EventSource(...);
 eventSource.close();
 ```
 
-Also, there will be no reconnection if the response has an incorrect `Content-Type` or its HTTP status differs from 301, 307, 200 and 204. In such cases the `"error"` event will be emitted, and the browser won't reconnect.
+Além disso, não vai haver reconexão se a resposta tiver um `Content-Type` incorreto ou seu status HTTP for diferente de 301, 307, 200 e 204. Nesses casos, o evento `"error"` vai ser emitido, e o navegador não vai reconectar.
 
 ```smart
-When a connection is finally closed, there's no way to "reopen" it. If we'd like to connect again, just create a new `EventSource`.
+Quando uma conexão é finalmente fechada, não há como "reabri-la". Se quisermos conectar de novo, basta criar um novo `EventSource`.
 ```
 
-## Message id
+## Id da mensagem
 
-When a connection breaks due to network problems, either side can't be sure which messages were received, and which weren't.
+Quando uma conexão quebra por causa de problemas de rede, nenhum dos lados pode ter certeza de quais mensagens foram recebidas, e quais não foram.
 
-To correctly resume the connection, each message should have an `id` field, like this:
+Para retomar a conexão corretamente, cada mensagem deve ter um campo `id`, assim:
 
 ```
-data: Message 1
+data: Mensagem 1
 id: 1
 
-data: Message 2
+data: Mensagem 2
 id: 2
 
-data: Message 3
-data: of two lines
+data: Mensagem 3
+data: de duas linhas
 id: 3
 ```
 
-When a message with `id:` is received, the browser:
+Quando uma mensagem com `id:` é recebida, o navegador:
 
-- Sets the property `eventSource.lastEventId` to its value.
-- Upon reconnection sends the header `Last-Event-ID` with that `id`, so that the server may re-send following messages.
+- Define a propriedade `eventSource.lastEventId` com seu valor.
+- Ao reconectar, envia o cabeçalho `Last-Event-ID` com esse `id`, para que o servidor possa reenviar as mensagens seguintes.
 
-```smart header="Put `id:` after `data:`"
-Please note: the `id` is appended below message `data` by the server, to ensure that `lastEventId` is updated after the message is received.
+```smart header="Coloque `id:` depois de `data:`"
+Observe: o `id` é anexado depois do `data` da mensagem pelo servidor, para garantir que `lastEventId` seja atualizado depois que a mensagem for recebida.
 ```
 
-## Connection status: readyState
+## Status da conexão: readyState
 
-The `EventSource` object has `readyState` property, that has one of three values:
+O objeto `EventSource` tem a propriedade `readyState`, que tem um de três valores:
 
 ```js no-beautify
-EventSource.CONNECTING = 0; // connecting or reconnecting
-EventSource.OPEN = 1;       // connected
-EventSource.CLOSED = 2;     // connection closed
+EventSource.CONNECTING = 0; // conectando ou reconectando
+EventSource.OPEN = 1;       // conectado
+EventSource.CLOSED = 2;     // conexão fechada
 ```
 
-When an object is created, or the connection is down, it's always `EventSource.CONNECTING` (equals `0`).
+Quando um objeto é criado, ou a conexão está fora do ar, `readyState` é sempre `EventSource.CONNECTING` (igual a `0`).
 
-We can query this property to know the state of `EventSource`.
+Podemos consultar essa propriedade para saber o estado do `EventSource`.
 
-## Event types
+## Tipos de evento
 
-By default `EventSource` object generates three events:
+Por padrão, o objeto `EventSource` gera três eventos:
 
-- `message` -- a message received, available as `event.data`.
-- `open` -- the connection is open.
-- `error` -- the connection could not be established, e.g. the server returned HTTP 500 status.
+- `message` -- uma mensagem recebida, disponível como `event.data`.
+- `open` -- a conexão está aberta.
+- `error` -- a conexão não pôde ser estabelecida, por exemplo, o servidor retornou status HTTP 500.
 
-The server may specify another type of event with `event: ...` at the event start.
+O servidor pode especificar outro tipo de evento com `event: ...` no início do evento.
 
-For example:
+Por exemplo:
 
 ```
 event: join
@@ -182,7 +182,7 @@ event: leave
 data: Bob
 ```
 
-To handle custom events, we must use `addEventListener`, not `onmessage`:
+Para tratar eventos personalizados, devemos usar `addEventListener`, não `onmessage`:
 
 ```js
 eventSource.addEventListener('join', event => {
@@ -198,74 +198,74 @@ eventSource.addEventListener('leave', event => {
 });
 ```
 
-## Full example
+## Exemplo completo
 
-Here's the server that sends messages with `1`, `2`, `3`, then `bye` and breaks the connection.
+Aqui está o servidor que envia mensagens com `1`, `2`, `3`, depois `bye` e quebra a conexão.
 
-Then the browser automatically reconnects.
+Então o navegador reconecta automaticamente.
 
 [codetabs src="eventsource"]
 
-## Summary
+## Resumo
 
-`EventSource` object automatically establishes a persistent connection and allows the server to send messages over it.
+O objeto `EventSource` estabelece automaticamente uma conexão persistente e permite que o servidor envie mensagens por ela.
 
-It offers:
-- Automatic reconnect, with tunable `retry` timeout.
-- Message ids to resume events, the last received identifier is sent in `Last-Event-ID` header upon reconnection.
-- The current state is in the `readyState` property.
+Ele oferece:
+- Reconexão automática, com timeout `retry` ajustável.
+- Ids de mensagem para retomar eventos, o último identificador recebido é enviado no cabeçalho `Last-Event-ID` ao reconectar.
+- O estado atual está na propriedade `readyState`.
 
-That makes `EventSource` a viable alternative to `WebSocket`, as the latter is more low-level and lacks such built-in features (though they can be implemented).
+Isso faz do `EventSource` uma alternativa viável ao `WebSocket`, já que este último é mais de baixo nível e não tem esses recursos nativos (embora eles possam ser implementados).
 
-In many real-life applications, the power of `EventSource` is just enough.
+Em muitas aplicações da vida real, o poder do `EventSource` é suficiente.
 
-Supported in all modern browsers (not IE).
+Suportado em todos os navegadores modernos (não no IE).
 
-The syntax is:
+A sintaxe é:
 
 ```js
 let source = new EventSource(url, [credentials]);
 ```
 
-The second argument has only one possible option: `{ withCredentials: true }`, it allows sending cross-origin credentials.
+O segundo argumento tem só uma opção possível: `{ withCredentials: true }`, que permite enviar credenciais cross-origin.
 
-Overall cross-origin security is same as for `fetch` and other network methods.
+No geral, a segurança cross-origin é a mesma de `fetch` e outros métodos de rede.
 
-### Properties of an `EventSource` object
+### Propriedades de um objeto `EventSource`
 
 `readyState`
-: The current connection state: either `EventSource.CONNECTING (=0)`, `EventSource.OPEN (=1)` or `EventSource.CLOSED (=2)`.
+: O estado atual da conexão: `EventSource.CONNECTING (=0)`, `EventSource.OPEN (=1)` ou `EventSource.CLOSED (=2)`.
 
 `lastEventId`
-: The last received `id`. Upon reconnection the browser sends it in the header `Last-Event-ID`.
+: O último `id` recebido. Ao reconectar, o navegador o envia no cabeçalho `Last-Event-ID`.
 
-### Methods
+### Métodos
 
 `close()`
-: Closes the connection.
+: Fecha a conexão.
 
-### Events
+### Eventos
 
 `message`
-: Message received, the data is in `event.data`.
+: Mensagem recebida, o dado está em `event.data`.
 
 `open`
-: The connection is established.
+: A conexão foi estabelecida.
 
 `error`
-: In case of an error, including both lost connection (will auto-reconnect) and fatal errors. We can check `readyState` to see if the reconnection is being attempted.
+: Em caso de erro, incluindo tanto conexão perdida (vai reconectar automaticamente) quanto erros fatais. Podemos checar `readyState` para ver se a reconexão está sendo tentada.
 
-The server may set a custom event name in `event:`. Such events should be handled using `addEventListener`, not `on<event>`.
+O servidor pode definir um nome de evento personalizado em `event:`. Esses eventos devem ser tratados usando `addEventListener`, não `on<event>`.
 
-### Server response format
+### Formato da resposta do servidor
 
-The server sends messages, delimited by `\n\n`.
+O servidor envia mensagens, delimitadas por `\n\n`.
 
-A message may have following fields:
+Uma mensagem pode ter os seguintes campos:
 
-- `data:` -- message body, a sequence of multiple `data` is interpreted as a single message, with `\n` between the parts.
-- `id:` -- renews `lastEventId`, sent in `Last-Event-ID` on reconnect.
-- `retry:` -- recommends a retry delay for reconnections in ms. There's no way to set it from JavaScript.
-- `event:` -- event name, must precede `data:`.
+- `data:` -- corpo da mensagem, uma sequência de múltiplos `data` é interpretada como uma única mensagem, com `\n` entre as partes.
+- `id:` -- renova `lastEventId`, enviado em `Last-Event-ID` ao reconectar.
+- `retry:` -- recomenda um atraso de nova tentativa para reconexões em ms. Não há como defini-lo a partir do JavaScript.
+- `event:` -- nome do evento, deve preceder `data:`.
 
-A message may include one or more fields in any order, but `id:` usually goes the last.
+Uma mensagem pode incluir um ou mais campos em qualquer ordem, mas `id:` geralmente vai por último.
